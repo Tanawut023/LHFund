@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+/* @import "~assets/fonts/fonts"; */
+
+@import "/assets/Content/default/css/main.css";
+/* @font-face {
+    font-family: 'KitithadaRegular';
+    src: url("/assets/fonts/PSL094PRO.eot");
+    src: url("/assets/fonts/PSL094PRO.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/PSL094PRO.woff") format("woff"), url("/assets/fonts/PSL094PRO.ttf") format("truetype"), url("/assets/fonts/PSL094PRO.svg") format("svg");
+    font-weight: normal;
+    font-style: normal; 
+} */

@@ -1,0 +1,434 @@
+<div id="main-wrapper">
+	<div id="main-slider" class="main-slider">
+		<div class="index-slider slider-container">
+			<div>
+				<div class="foo-item">					
+								<div class="contact-wrapper" *ngIf="page == 'signin'">
+									<div class="container">
+										<div class="row">
+											<div class="col-md-6 col-md-offset-6">
+												<div class="contact-popup active">
+
+													<div class="popup-content">
+														<!-- <a href="javascript:void(0)" class="btn-close">5</a> -->
+														<div class="contact-title">
+															<div class="row">
+																<div class="col-md-10">
+																	<p>
+																		<i class="fas fa-user fa-lg pr-2"></i>
+																		เข้าสู่ระบบ
+																	</p>
+																</div>
+																<div class="col-md-2">
+																	<ul>
+																		<li class="th current">
+																			<a href="#" title="ไทย">Thai</a>
+																		</li>
+																		<li class="en">
+																			<a href="#" title="Eng">Eng</a>
+																		</li>
+																	</ul>
+																</div>
+															</div>
+															<!-- <p>
+                                                                    หากมีข้อสงสัยที่ต้องการสอบถาม กรุณาระบุในช่องด้านล่าง
+                                                                </p> -->
+														</div>
+														<div class="contact-form-wrapper">
+															<form>
+																<div class="row">
+																	<div class="col-sm-12">
+																		<p>ชื่อผู้เข้าระบบ
+																			<span>*</span>
+																		</p>
+																		<div class="input-wrapper mb-3">
+																			<input id="name" name="name" maxlength="30" type="text">
+																		</div>
+																	</div>
+																	<div class="col-sm-12">
+																		<p>รหัสผ่าน
+																			<span>*</span>
+																		</p>
+																		<div class="input-wrapper ">
+																			<input id="password" name="password" maxlength="30" type="password">
+																		</div>
+																	</div>
+																</div>
+
+																<div class="row">
+																	<div class="col-md-12">
+																		<p class="mb-3">ลืมรหัสผ่าน
+
+																			<a style="cursor: pointer;" (click)="checkpage('forgotpassword')">
+																				<i class="fa fa-question-circle" aria-hidden="true"></i>
+																			</a>
+
+
+																		</p>
+																	</div>
+																</div>
+																<div class="row pb-4">
+																	<div class="col-md-6 col-sm-12">
+																		<p>กรุณากรอกรหัสเพื่อยืนยันตัวตน
+																		</p>
+																	</div>
+																	<div class="col-md-2 col-sm-6">
+
+																		<div class="input-wrapper">
+																			<input id="email" name="email" maxlength="30" type="text">
+																		</div>
+																	</div>
+																	<div class="col-md-1 col-sm-6">
+																		<i class="fas fa-sync-alt" aria-hidden="true"></i>
+																	</div>
+																	<div class="col-md-2 col-sm-6">
+
+																		<div class="input-wrapper">
+																			<input id="tel" name="tel" maxlength="30" type="text">
+																		</div>
+																	</div>
+																</div>
+
+																<div class="row">
+																	<div class="col-md-4">
+																		<div class="btn-wrapper-left">
+																			<button class="btn-med btn-light" (click)="checkpage()">
+																				<p>
+																					ลงทะเบียน
+																					<i class="fa fa-angle-right" aria-hidden="true"></i>
+																				</p>
+																			</button>
+																		</div>
+																	</div>
+
+																	<div class="col-md-8 ">
+																		<div class="btn-wrapper-right">
+																			<button class="btn-med btn-white btn-primary" (click)="checkpage('otp')">
+																				<p>เข้าสู่ระบบ
+																					<i class="fa fa-angle-right" aria-hidden="true"></i>
+																				</p>
+																			</button>
+																		</div>
+																	</div>
+																</div>
+															</form>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="contact-wrapper" *ngIf="page == 'forgotpassword'">
+									<div class="container">
+										<div class="row">
+											<div class="col-md-6 col-md-offset-6">
+												<div class="contact-popup active">
+													<!-- <div class="caption-link mail">
+																E-Mail
+															</div> -->
+													<div class="popup-content">
+														<!-- <a href="javascript:void(0)" class="btn-close">5</a> -->
+														<div class="contact-title">
+															<div class="row">
+																<div class="col-md-10">
+																	<p>
+																		ลืมรหัสผ่าน
+																		<i class="fas fa-unlock-alt pl-2"></i>
+																	</p>
+																</div>
+																<div class="col-md-2">
+																	<ul>
+																		<li class="th current">
+																			<a href="#" title="ไทย">Thai</a>
+																		</li>
+																		<li class="en">
+																			<a href="#" title="Eng">Eng</a>
+																		</li>
+																	</ul>
+																</div>
+															</div>
+															<!-- <p>
+																		หากมีข้อสงสัยที่ต้องการสอบถาม กรุณาระบุในช่องด้านล่าง
+																	</p> -->
+														</div>
+														<div class="contact-form-wrapper">
+															<form>
+																<div class="row">
+																	<div class="col-sm-12">
+																		<p>ชื่อผู้เข้าระบบ
+
+																		</p>
+																		<div class="input-wrapper mb-3">
+																			<input id="name" name="name" maxlength="30" type="text">
+																		</div>
+																	</div>
+																	<div class="col-sm-12">
+																		<p>รหัสบัตรประจำตัว
+
+																		</p>
+																		<div class="input-wrapper mb-3">
+																			<input id="userid" name="userid" maxlength="30" type="text">
+																		</div>
+																	</div>
+																	<div class="col-sm-12">
+																		<p>อีเมล์
+
+																		</p>
+																		<div class="input-wrapper mb-5">
+																			<input id="email" name="email" maxlength="30" type="text">
+																		</div>
+																	</div>
+																</div>
+
+
+
+																<div class="row">
+																	<div class="col-md-4">
+																		<div class="btn-wrapper-left">
+																			<button class="btn-med btn-white btn-red" (click)="checkpage('signin')">
+																				<p>
+																					ย้อนกลับ
+																					<i class="fa fa-angle-right" aria-hidden="true"></i>
+																				</p>
+																			</button>
+																		</div>
+																	</div>
+
+																	<div class="col-md-8 ">
+																		<div class="btn-wrapper-right">
+																			<button class="btn-med btn-white btn-primary" (click)="login()">
+																				<p>ยอมรับ
+																					<i class="fa fa-angle-right" aria-hidden="true"></i>
+																				</p>
+																			</button>
+																		</div>
+																	</div>
+																</div>
+															</form>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="contact-wrapper" *ngIf="page == 'otp'">
+									<div class="container">
+										<div class="row">
+											<div class="col-md-6 col-md-offset-6">
+												<div class="contact-popup active">
+
+													<div class="popup-content">
+														<!-- <a href="javascript:void(0)" class="btn-close">5</a> -->
+														<div class="contact-title">
+															<div class="row">
+																<div class="col-md-10">
+																	<p>
+																		<i class="fas fa-user fa-lg pr-2"></i>
+																		ระบบความปลอดภัย OTP
+																	</p>
+																</div>
+																<div class="col-md-2">
+																	<ul>
+																		<li class="th current">
+																			<a href="#" title="ไทย">Thai</a>
+																		</li>
+																		<li class="en">
+																			<a href="#" title="Eng">Eng</a>
+																		</li>
+																	</ul>
+																</div>
+															</div>
+															<!-- <p>
+																		หากมีข้อสงสัยที่ต้องการสอบถาม กรุณาระบุในช่องด้านล่าง
+																	</p> -->
+														</div>
+														<div class="contact-form-wrapper">
+															<form>
+																<div class="row">
+																	<div class="col-sm-12">
+																		<p>เลือกช่องทางรับรหัส OTP
+																		</p>
+
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="col-md">
+																		<div class="form-check">
+																			<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+																			<label class="form-check-label" for="defaultCheck1">
+																				โทรศัพท์
+																			</label>
+																		</div>
+
+																	</div>
+																	<div class="col-md">
+																		<div class="form-check">
+																			<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+																			<label class="form-check-label" for="defaultCheck1">
+																				อีเมล์
+																			</label>
+																		</div>
+
+																	</div>
+																</div>
+
+
+																<div class="row">
+																	<div class="col-md-6">
+																		<div class="input-wrapper mb-3 mt-2">
+																			<input id="email-or-tel" name="email-or-tel" maxlength="30" type="text">
+																		</div>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="col-md-12">
+																		<p>ระบุรหัส OTP ที่ได้รับ</p>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="col-md-8">
+																		<div class="input-wrapper">
+																			<input id="name" name="name" maxlength="30" type="text">
+																		</div>
+																	</div>
+
+																	<div class="col-md-4">
+
+																		<div class="btn-wrapper">
+																			<button class="btn-blue" (click)="checkpage()">
+																				<div class="row">
+																					<div class="col-md">
+																				<p>
+																					Request OTP
+																					<i class="fa fa-angle-right" aria-hidden="true"></i>
+																				</p>
+																			</div>
+																			</div>
+																			</button>
+																		</div>
+																	</div>
+																</div>
+																<div class="row pb-4">
+																		<div class="col-md-12">
+																			<p>กรุณากดปุ่ม "Request OTP" เพื่อรับรหัสรักษาความปลอดภัย</p>
+																		</div>
+																	</div>
+
+																<div class="row">
+																	<div class="col-md-4">
+																		<div class="btn-wrapper-left">
+																			<button class="btn-med btn-light" (click)="checkpage('signin')">
+																				<p>
+																					ยกเลิก
+																					<i class="fa fa-angle-right" aria-hidden="true"></i>
+																				</p>
+																			</button>
+																		</div>
+																	</div>
+
+																	<div class="col-md-8 ">
+																		<div class="btn-wrapper-right">
+																			<button class="btn-med btn-white" (click)="checkpage()">
+																				ยืนยัน
+																					<i class="fa fa-angle-right" aria-hidden="true"></i>
+																				
+																			</button>
+																		</div>
+																	</div>
+																</div>
+															</form>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+				</div>
+				
+			</div>
+			
+			<div class="slider-controller">
+				<div id="foo_pager"></div>
+			</div>
+			
+		</div>
+		
+	</div><div class="clearfix"></div>
+	<div class="copyright">
+		<h5 class="mt-5">ต้องการสอบถามข้อมูล ติดต่อผ่ายทะเบียนกองทุนสำรองเลี้ยงชีพ
+			<span>บลจ.แลนด์ แอนด์ เฮาส์ จำกัด</span>
+		</h5>
+		<p>Tel. 02-286-3484 จ่อ 335 - 336 หรือ E-mail : registrar_pvd@lhfund.co.th</p>
+	</div>
+	
+	<!-- .slider-container -->
+
+	<!-- <div class="" id="maincontainer-wrapper">
+
+	</div> -->
+	
+
+	<footer id="footer-wrapper" class="footer-wrapper">
+		<!--#include file="../Shared/footer.aspx"-->
+	</footer>
+	<!-- #footer-wrapper -->
+</div>
+
+
+
+
+
+
+
+
+<!-- <div class="main-slider">
+	<div class="index-slider slider-container">
+		<div id="foo">
+			<div class="foo-item">
+				<img src="/assets/Images/banners/banner-about.jpg" />
+				<div class="wrap-login">
+
+					<div class="title-login">
+						<h3>เข้าสู่ระบบ</h3>
+						<ul class="sw-lang">
+                                <li class="th current">
+                                    <a href="#" title="ไทย">ไทย</a>
+                                </li>
+                                <li class="en">
+                                    <a href="#" title="Eng">Eng</a>
+                                </li>
+                                <li class="ch">
+                                    <a href="#" title="Chi">Chi</a>
+                                </li>
+                        </ul>
+					</div>
+
+
+
+
+
+				</div>
+			</div>
+
+		</div>
+		<div class="slider-controller">
+			<div id="foo_pager"></div>
+		</div>
+	</div>
+
+	<div class="breadcrumb-section">
+		<ol class="breadcrumb">
+			<li>
+				<a href="/" title="หน้าหลัก">หน้าหลัก</a>
+			</li>
+			<li class="active">
+				<span>เกี่ยวกับเรา</span>
+			</li>
+		</ol>
+	</div>
+</div>
+
+<div class="clearfix"></div> -->

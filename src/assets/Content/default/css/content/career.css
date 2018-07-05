@@ -1,0 +1,273 @@
+/* set global config vars */
+/* defualt page width setting(PC) */
+/* off canvas menu width *eg. 70px or 70% */
+/* main slide margin top */
+/* header height */
+/* footer height */
+/* global body setting */
+/* default font family */
+/*Arial*/
+/* text sizing multiplier */
+/* text sizing */
+/* default theme color */
+/* special theme */
+/* insert special theme for this website */
+/* text sizing */
+@font-face {
+  font-family: 'KitithadaRegular';
+  src: url("/assets/fonts/PSL094PRO.eot");
+  src: url("/assets/fonts/PSL094PRO.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/PSL094PRO.woff") format("woff"), url("/assets/fonts/PSL094PRO.ttf") format("truetype"), url("/assets/fonts/PSL094PRO.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'KitithadaBold';
+  src: url("/assets/fonts/PSL096PRO.eot");
+  src: url("/assets/fonts/PSL096PRO.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/PSL096PRO.woff") format("woff"), url("/assets/fonts/PSL096PRO.ttf") format("truetype"), url("/assets/fonts/PSL096PRO.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+/* note : for IE8,7 need css3pie helper*/
+.career-wrapper {
+  position: relative;
+  max-width: 100%;
+  padding: 0;
+  padding-bottom: 75px;
+  margin: 0 auto;
+  background-color: #fff; }
+  .career-wrapper .career-list-wrapper {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden; }
+    .career-wrapper .career-list-wrapper .list-group {
+      margin-bottom: 25px;
+      border-bottom: 1px solid #5a5a5a; }
+      .career-wrapper .career-list-wrapper .list-group .list-group-item {
+        padding: 1px 0 1px 0;
+        margin: 0 auto;
+        margin-bottom: 0;
+        border: none;
+        border-top: 1px solid #5a5a5a;
+        background-color: transparent; }
+        .career-wrapper .career-list-wrapper .list-group .list-group-item:first-child {
+          padding: 0;
+          border-bottom: none; }
+        .career-wrapper .career-list-wrapper .list-group .list-group-item:last-child {
+          padding: 0;
+          border-bottom: none; }
+        .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-head {
+          height: auto;
+          padding: 15px 5px;
+          border: none;
+          background-color: transparent;
+          cursor: pointer; }
+          .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-head > div {
+            height: auto;
+            padding: 0;
+            margin: 0;
+            line-height: 34px; }
+            .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-head > div h3 {
+              max-width: 90%;
+              margin: 0;
+              line-height: 34px;
+              color: #5a5a5a; }
+              .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-head > div h3 span {
+                font-size: 28px;
+                line-height: 28px;
+                color: #5a5a5a; }
+            .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-head > div .icn-circle {
+              position: absolute;
+              top: 0;
+              right: 0;
+              font-size: 24px;
+              color: #5a5a5a;
+              -webkit-border-radius: 50%;
+              -moz-border-radius: 50%;
+              border-radius: 50%;
+              -pie-border-radius: 50%;
+              behavior: url("/assets/pie/PIE.htc");
+              background-color: transparent; }
+              .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-head > div .icn-circle.fa-stack {
+                width: 34px;
+                height: 34px; }
+                .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-head > div .icn-circle.fa-stack .fa-stack-2x {
+                  font-size: 24px;
+                  line-height: 34px; }
+            .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-head > div a {
+              position: absolute;
+              top: 0px;
+              left: 10px;
+              height: 25px;
+              color: #fff;
+              text-decoration: none;
+              vertical-align: middle;
+              line-height: 23px; }
+          .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-head.active {
+            border-bottom: none; }
+            .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-head.active h3 {
+              color: #1CA59B; }
+              .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-head.active h3 span {
+                color: #5a5a5a; }
+        .career-wrapper .career-list-wrapper .list-group .list-group-item .active > div {
+          padding: 0;
+          margin: 0;
+          line-height: 34px; }
+          .career-wrapper .career-list-wrapper .list-group .list-group-item .active > div .fa-angle-down:before {
+            content: "\f106"; }
+        .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-content {
+          display: none;
+          height: auto;
+          padding: 5px;
+          padding-bottom: 20px;
+          border: none;
+          border-top: none;
+          text-align: left;
+          background-color: transparent; }
+          .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-content.opened {
+            display: block; }
+          .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-content .position-main {
+            margin-bottom: 30px;
+            font-size: 22px;
+            line-height: 32px; }
+            .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-content .position-main h3 {
+              margin: 0;
+              margin-bottom: 10px;
+              color: #1CA59B; }
+            .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-content .position-main p {
+              font-size: 22px;
+              line-height: 32px; }
+            .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-content .position-main a {
+              font-size: 22px;
+              line-height: 32px;
+              color: #1CA59B; }
+              .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-content .position-main a:hover {
+                color: #000; }
+            .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-content .position-main ul {
+              max-width: 500px;
+              list-style-type: disc;
+              list-style-position: outside;
+              padding-left: 25px; }
+              .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-content .position-main ul li {
+                width: 100%;
+                margin-bottom: 0;
+                font-size: 22px;
+                line-height: 32px; }
+            .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-content .position-main ol {
+              max-width: 500px;
+              list-style-type: decimal;
+              list-style-position: outside;
+              padding-left: 25px; }
+              .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-content .position-main ol li {
+                width: 100%;
+                margin-bottom: 0;
+                font-size: 22px;
+                line-height: 32px; }
+          .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-content .position-register {
+            margin-bottom: 15px; }
+            .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-content .position-register h3 {
+              margin: 0;
+              margin-bottom: 10px;
+              font-size: 24px;
+              line-height: 28px;
+              color: #5a5a5a; }
+            .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-content .position-register a {
+              font-size: 22px;
+              line-height: 28px;
+              color: #1CA59B; }
+              .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-content .position-register a:hover {
+                color: #000; }
+          .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-content .upload-wrap {
+            position: relative;
+            display: block;
+            width: 100%; }
+          .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-content .browse-wrap {
+            width: 100%;
+            height: 42px;
+            top: 0;
+            left: 0;
+            margin: 0;
+            cursor: pointer;
+            overflow: hidden;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+            background-color: #999;
+            background-image: url("../../../../images/site/icons/icon-upload.png");
+            background-position: 15px center;
+            background-repeat: no-repeat; }
+            .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-content .browse-wrap .title {
+              color: #fff; }
+            .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-content .browse-wrap .upload {
+              width: 100%;
+              height: 100%;
+              right: 0;
+              margin: 0;
+              bottom: 0;
+              padding: 0;
+              opacity: 0;
+              outline: none;
+              cursor: inherit;
+              position: absolute; }
+          .career-wrapper .career-list-wrapper .list-group .list-group-item .list-group-content .upload-path {
+            display: block;
+            width: 100%;
+            height: 30px;
+            margin-bottom: 10px; }
+  .career-wrapper .list-pagination {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 40px;
+    margin-bottom: 20px; }
+    .career-wrapper .list-pagination .page-text {
+      font-size: 22px; }
+    .career-wrapper .list-pagination .view-all {
+      font-size: 22px;
+      cursor: pointer; }
+      .career-wrapper .list-pagination .view-all:hover {
+        color: #1CA59B; }
+    .career-wrapper .list-pagination .holder {
+      margin-left: 10px;
+      margin-right: 10px;
+      display: inline-block;
+      vertical-align: middle; }
+      .career-wrapper .list-pagination .holder a {
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        font-size: 24px;
+        line-height: 40px;
+        cursor: pointer;
+        margin: 0 5px;
+        color: #5a5a5a;
+        text-align: center; }
+        .career-wrapper .list-pagination .holder a:hover {
+          background-color: #1CA59B;
+          color: #fff; }
+        .career-wrapper .list-pagination .holder a.jp-previous {
+          text-indent: -9999px;
+          background-image: url("../../../../Images/icons/ico-slideleft.png");
+          background-position: center center;
+          background-repeat: no-repeat; }
+          .career-wrapper .list-pagination .holder a.jp-previous:hover {
+            background-color: transparent;
+            color: #fff; }
+        .career-wrapper .list-pagination .holder a.jp-next {
+          text-indent: -9999px;
+          background-image: url("../../../../Images/icons/ico-slideright.png");
+          background-position: center center;
+          background-repeat: no-repeat; }
+          .career-wrapper .list-pagination .holder a.jp-next:hover {
+            background-color: transparent;
+            color: #fff; }
+        .career-wrapper .list-pagination .holder a.jp-first, .career-wrapper .list-pagination .holder a.jp-last {
+          color: #5a5a5a;
+          background-color: transparent; }
+          .career-wrapper .list-pagination .holder a.jp-first:hover, .career-wrapper .list-pagination .holder a.jp-last:hover {
+            color: #5a5a5a;
+            background-color: transparent; }
+        .career-wrapper .list-pagination .holder a.jp-current {
+          background-color: #1CA59B;
+          color: #fff; }
+          .career-wrapper .list-pagination .holder a.jp-current:hover {
+            color: #fff; }

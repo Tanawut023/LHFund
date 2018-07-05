@@ -1,0 +1,309 @@
+/* set global config vars */
+/* defualt page width setting(PC) */
+/* off canvas menu width *eg. 70px or 70% */
+/* main slide margin top */
+/* header height */
+/* footer height */
+/* global body setting */
+/* default font family */
+/*Arial*/
+/* text sizing multiplier */
+/* text sizing */
+/* default theme color */
+/* special theme */
+/* insert special theme for this website */
+/* text sizing */
+@font-face {
+  font-family: 'KitithadaRegular';
+  src: url("/assets/fonts/PSL094PRO.eot");
+  src: url("/assets/fonts/PSL094PRO.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/PSL094PRO.woff") format("woff"), url("/assets/fonts/PSL094PRO.ttf") format("truetype"), url("/assets/fonts/PSL094PRO.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'KitithadaBold';
+  src: url("/assets/fonts/PSL096PRO.eot");
+  src: url("/assets/fonts/PSL096PRO.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/PSL096PRO.woff") format("woff"), url("/assets/fonts/PSL096PRO.ttf") format("truetype"), url("/assets/fonts/PSL096PRO.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+/* note : for IE8,7 need css3pie helper*/
+#maincontainer-wrapper {
+  margin-top: 50px; }
+
+#main-wrapper {
+  background-image: url("/assets/Images/banners/banner-contact.jpg");
+  width: 100%;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 15px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; }
+  #main-wrapper .copyright {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    width: 100%;
+    z-index: 2;
+    text-decoration: none;
+    margin-top: 40%; }
+    #main-wrapper .copyright h1, #main-wrapper .copyright h2, #main-wrapper .copyright h3, #main-wrapper .copyright h4, #main-wrapper .copyright h5, #main-wrapper .copyright h6 {
+      margin: 0 auto;
+      margin-bottom: 15px;
+      color: #5a5a5a; }
+    #main-wrapper .copyright p {
+      margin: 0 auto;
+      margin-bottom: 15px;
+      font-size: 24px;
+      line-height: 24px;
+      color: #5a5a5a; }
+    #main-wrapper .copyright span {
+      margin: 0 auto;
+      margin-bottom: 15px;
+      color: #1CA59B;
+      font-size: 24px;
+      line-height: 28px; }
+
+.contact-wrapper {
+  position: relative;
+  max-width: 100%;
+  padding: 0;
+  margin: 0 auto; }
+  .contact-wrapper .contact-popup {
+    position: static;
+    display: inline-block;
+    vertical-align: top;
+    width: auto;
+    height: auto;
+    margin: 0 10px; }
+  .contact-wrapper .caption-link {
+    width: 70px;
+    height: 70px;
+    display: block;
+    text-indent: -9999px;
+    background-size: cover;
+    cursor: pointer; }
+    .contact-wrapper .caption-link.phone {
+      background-image: url("../../../../Images/contact_phone.png");
+      background-repeat: no-repeat; }
+      .contact-wrapper .caption-link.phone:hover {
+        background-image: url("../../../../Images/contact_phone_over.png"); }
+    .contact-wrapper .caption-link.location {
+      background-image: url("../../../../Images/contact_location.png");
+      background-repeat: no-repeat; }
+      .contact-wrapper .caption-link.location:hover {
+        background-image: url("../../../../Images/contact_location_over.png"); }
+    .contact-wrapper .caption-link.mail {
+      background-image: url("../../../../Images/contact_mail.png");
+      background-repeat: no-repeat; }
+      .contact-wrapper .caption-link.mail:hover {
+        background-image: url("../../../../Images/contact_mail_over.png"); }
+  .contact-wrapper .popup-content {
+    position: absolute;
+    background: #1CA59B;
+    min-width: 100%;
+    right: 0;
+    top: 20px;
+    opacity: 0;
+    z-index: -1;
+    text-align: left;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+    padding: 20px;
+    visibility: hidden; }
+    .contact-wrapper .popup-content h1, .contact-wrapper .popup-content h2, .contact-wrapper .popup-content h3 {
+      margin: 0;
+      margin-bottom: 20px;
+      color: #1CA59B; }
+    .contact-wrapper .popup-content p, .contact-wrapper .popup-content span {
+      font-size: 22px;
+      line-height: 24px;
+      color: #fff;
+      text-align: left; }
+    .contact-wrapper .popup-content ul {
+      display: inline-block;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      float: left; }
+      .contact-wrapper .popup-content ul li {
+        display: inline-block;
+        padding: 10px 0;
+        margin: 0 5px; }
+        .contact-wrapper .popup-content ul li a {
+          font-size: 22px;
+          line-height: 28px;
+          color: #fff; }
+          .contact-wrapper .popup-content ul li a:hover {
+            color: #000;
+            text-decoration: none; }
+        .contact-wrapper .popup-content ul li.current a {
+          color: #000; }
+          .contact-wrapper .popup-content ul li.current a:hover {
+            color: #000;
+            text-decoration: none; }
+    .contact-wrapper .popup-content .btn-blue {
+      position: relative;
+      color: #1CA59B;
+      border: 1px solid #293D69;
+      background-color: #293D69;
+      display: inline-block;
+      vertical-align: middle;
+      cursor: pointer;
+      padding: 0 50px;
+      margin: 0 auto;
+      font-family: "KitithadaBold";
+      min-width: 100px;
+      height: 42px;
+      -webkit-transition: all 0.2s ease-in-out;
+      -moz-transition: all 0.2s ease-in-out;
+      -o-transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out;
+      text-decoration: none; }
+      .contact-wrapper .popup-content .btn-blue:hover {
+        color: #fff;
+        border: 1px solid #000;
+        background-color: #000; }
+    .contact-wrapper .popup-content .btn-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 40px;
+      height: 40px;
+      font-size: 28px;
+      line-height: 40px;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      background-color: #1CA59B;
+      padding: 0;
+      text-align: center;
+      display: block;
+      cursor: pointer;
+      text-decoration: none;
+      -webkit-transition: all 0.2s ease-in-out;
+      -moz-transition: all 0.2s ease-in-out;
+      -o-transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out;
+      z-index: 20; }
+      .contact-wrapper .popup-content .btn-close:hover {
+        /*color: $color-primary;
+                border-color: $color-primary;*/ }
+    .contact-wrapper .popup-content .gmap {
+      margin-top: 40px;
+      margin-bottom: 10px; }
+    .contact-wrapper .popup-content .btn-wrapper {
+      text-align: center; }
+    .contact-wrapper .popup-content .btn-red p {
+      text-align: left;
+      color: #C90A11;
+      margin-top: 7px; }
+    .contact-wrapper .popup-content .btn-primary p {
+      text-align: left;
+      color: #1CA59B;
+      margin-top: 7px; }
+    .contact-wrapper .popup-content .btn-wrapper-right {
+      text-align: right;
+      -webkit-box-pack: end;
+      -ms-flex-pack: end;
+      justify-content: flex-end; }
+      .contact-wrapper .popup-content .btn-wrapper-right p {
+        text-align: left;
+        margin-top: 7px; }
+    .contact-wrapper .popup-content .btn-wrapper-left {
+      text-align: left;
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      justify-content: flex-start; }
+      .contact-wrapper .popup-content .btn-wrapper-left p {
+        text-align: left;
+        margin-top: 7px; }
+  .contact-wrapper .contact-title {
+    margin-bottom: 20px; }
+    .contact-wrapper .contact-title h1, .contact-wrapper .contact-title h2, .contact-wrapper .contact-title h3 {
+      margin: 0;
+      margin-bottom: 5px;
+      color: #fff; }
+    .contact-wrapper .contact-title p {
+      color: #fff; }
+    .contact-wrapper .contact-title .sw-lang {
+      float: right; }
+  .contact-wrapper .contact-info {
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0 0 20px 0; }
+    .contact-wrapper .contact-info .label {
+      font-size: 22px;
+      line-height: 24px;
+      color: #5a5a5a; }
+    .contact-wrapper .contact-info .info span {
+      font-size: 22px;
+      line-height: 24px;
+      color: #1CA59B; }
+    .contact-wrapper .contact-info .info a {
+      font-size: 22px;
+      line-height: 24px;
+      color: #1CA59B; }
+      .contact-wrapper .contact-info .info a:hover {
+        color: #000;
+        text-decoration: none; }
+  .contact-wrapper .contact-form-wrapper input[type="text"], .contact-wrapper .contact-form-wrapper textarea {
+    color: #5a5a5a; }
+  .contact-wrapper .contact-form-wrapper input[type="password"] {
+    color: #5a5a5a; }
+  .contact-wrapper .contact-form-wrapper p {
+    margin-bottom: 10px; }
+    .contact-wrapper .contact-form-wrapper p span {
+      color: #C90A11; }
+  .contact-wrapper .contact-form-wrapper .captcha {
+    min-height: 80px;
+    color: #5a5a5a; }
+  .contact-wrapper .active .popup-content {
+    opacity: 1;
+    z-index: 98;
+    margin-top: 0;
+    visibility: visible;
+    overflow: visible !important; }
+  @media screen and (max-width: 767px) {
+    .contact-wrapper {
+      margin-bottom: 75px; } }
+
+.modal-custom .modal-dialog .modal-content .modal-body .address {
+  display: block;
+  width: 240px;
+  height: auto;
+  padding: 10px;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  border: 1px solid #cdcdcd;
+  background-color: #fff; }
+  .modal-custom .modal-dialog .modal-content .modal-body .address h3 {
+    margin: 0 auto;
+    margin-bottom: 20px;
+    font-size: 24px;
+    line-height: 24px;
+    color: #1CA59B; }
+  .modal-custom .modal-dialog .modal-content .modal-body .address p, .modal-custom .modal-dialog .modal-content .modal-body .address span {
+    font-size: 22px;
+    line-height: 24px; }
+
+.modal-custom .modal-dialog .modal-content .modal-footer {
+  text-align: left; }

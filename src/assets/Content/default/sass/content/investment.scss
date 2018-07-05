@@ -1,0 +1,425 @@
+﻿@import "../variables";
+@import "../helpers/fontface";
+@import "../helpers/mixin_css3";
+
+.investment-wrapper {
+    position: relative;
+    max-width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    margin-bottom: 75px;
+
+    .heading-section {
+        padding: 20px;
+        margin: 0 auto;
+        background-color: $color-white;
+
+        h2 {
+            margin: 0;
+        }
+    }
+
+    .list-wrapper {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+
+        .list-download-wrapper {
+            float: left;
+            width: 100%;
+            height: auto;
+            padding: 0;
+            margin: 0;
+            margin-bottom: 50px;
+            background-color: $color-white;
+
+            .list-title {
+                display: block;
+                width: 100%;
+                height: auto;
+                padding: 0;
+                margin-bottom: 20px;
+                text-align: center;
+                background-color: #ccc;
+
+                .th-wrapper {
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    font-size: $text-x-small;
+                    line-height: $text-x-small;
+                    text-align: center;
+                    border-right: 1px solid $color-white;
+
+                    &:last-child {
+                        border: none;
+                    }
+                }
+            }
+
+            .list-group {
+                display: block;
+                width: 100%;
+                height: auto;
+                padding: 0;
+                margin: 0;
+                margin-bottom: 50px;
+
+                .list-item {
+                    display: block;
+                    width: 100%;
+                    height: auto;
+                    padding: 0 0 10px 0;
+                    margin: 0 0 10px 0;
+                    font-size: $text-content;
+                    line-height: $text-x-small;
+
+                    p.title {
+                        margin-bottom: 5px;
+                        color: $color-primary;
+                    }
+
+                    .date {
+                        text-align: center;
+                    }
+
+                    .document {
+                        text-align: left;
+
+                        a {
+                            display: block;
+                            padding-left: 25px;
+                            font-size: $text-content;
+                            line-height: $text-x-small;
+                            color: $color-text;
+                            background-image: url('../../../../Images/icons/ico-list-name.jpg');
+                            background-position: left top;
+                            background-repeat: no-repeat;
+
+                            &:hover {
+                                color: $color-primary;
+                                text-decoration: none;
+                            }
+                        }
+                    }
+
+                    .download-with-icon {
+                        text-align: center;
+
+                        a {
+                            display: block;
+                            padding-left: 30px;
+                            font-size: $text-content;
+                            line-height: $text-x-small;
+                            color: $color-text;
+                            background-image: url('../../../../Images/icons/ico-download-list-black.jpg');
+                            background-position: left center;
+                            background-repeat: no-repeat;
+
+                            &:hover {
+                                color: $color-primary;
+                                text-decoration: none;
+                            }
+                        }
+                    }
+
+                    @media screen and (max-width: 999px) {
+                        padding: 20px;
+
+                        .date, .document {
+                            text-align: left;
+                            margin-bottom: 20px;
+                        }
+
+                        .download-with-icon {
+                            display: inline-block;
+                            text-align: left;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .list-pagination {
+        text-align: center;
+        vertical-align: middle;
+        line-height: 40px;
+        margin-bottom: 20px;
+
+        .page-text {
+            font-size: $text-content;
+        }
+
+        .view-all {
+            font-size: $text-content;
+            cursor: pointer;
+
+            &:hover {
+                color: $color-primary;
+            }
+        }
+
+        .holder {
+            margin-left: 10px;
+            margin-right: 10px;
+            display: inline-block;
+            vertical-align: middle;
+
+            a {
+                width: 40px;
+                height: 40px;
+                display: inline-block;
+                font-size: $text-x-small;
+                line-height: 40px;
+                cursor: pointer;
+                margin: 0 5px;
+                color: $color-text;
+                text-align: center;
+
+                &:hover {
+                    background-color: $color-primary;
+                    color: $color-white;
+                }
+
+                &.jp-previous {
+                    text-indent: -9999px;
+                    background-image: url('../../../../Images/icons/ico-slideleft.png');
+                    background-position: center center;
+                    background-repeat: no-repeat;
+
+                    &:hover {
+                        background-color: transparent;
+                        color: $color-white;
+                    }
+                }
+
+                &.jp-next {
+                    text-indent: -9999px;
+                    background-image: url('../../../../Images/icons/ico-slideright.png');
+                    background-position: center center;
+                    background-repeat: no-repeat;
+
+                    &:hover {
+                        background-color: transparent;
+                        color: $color-white;
+                    }
+                }
+
+                &.jp-first, &.jp-last {
+                    color: $color-text;
+                    background-color: transparent;
+
+                    &:hover {
+                        color: $color-text;
+                        background-color: transparent;
+                    }
+                }
+
+                &.jp-current {
+                    background-color: $color-primary;
+                    color: $color-white;
+
+                    &:hover {
+                        color: $color-white;
+                    }
+                }
+            }
+        }
+    }
+
+    .texteditor-wrapper {
+        display: block;
+        padding: 0 0 20px 0;
+        margin: 0 auto;
+        background-color: $color-white;
+
+        .content-editor {
+            &.-investment {
+                display: block;
+                padding: 20px;
+
+                .title {
+                    color: $color-text;
+                }
+
+                .bg-title {
+                    padding: 10px 20px;
+                    color: $color-white;
+                    background-color: $color-text;
+                }
+
+                .bg-title2 {
+                    padding: 10px 20px;
+                    color: $color-white;
+                    background-color: $color-secondary;
+                }
+
+                .text-box {
+                    display: block;
+                    padding-left: 20px;
+                    padding-right: 20px;
+                    margin-bottom: 20px;
+
+                    p {
+                        span {
+                            color: $color-primary;
+                        }
+                    }
+
+                    ol, ul {
+                        ol, ul {
+                            padding-top: 10px;
+                            padding-bottom: 10px;
+                        }
+                    }
+
+                    @media screen and (max-width: 767px) {
+                        padding-left: 10px;
+                        padding-right: 10px;
+                    }
+                }
+            }
+
+            &.-point-name {
+                display: block;
+                margin-bottom: 0;
+
+                a {
+                    color: $color-primary;
+
+                    &:hover {
+                        color: $color-hover;
+                    }
+                }
+            }
+        }
+
+        .list-group {
+            padding-left: 20px;
+            padding-right: 20px;
+            margin-bottom: 25px;
+            border-bottom: none;
+            //home page
+            .list-group-item {
+                padding: 1px 0 1px 0;
+                margin: 0 auto;
+                margin-bottom: 2px;
+                border: none;
+                border-top: none;
+                background-color: transparent;
+
+                &:first-child {
+                    padding: 0;
+                    border-bottom: none;
+                }
+
+                &:last-child {
+                    padding: 0;
+                    border-bottom: none;
+                }
+
+                .list-group-head {
+                    height: auto;
+                    padding: 15px 20px;
+                    border: none;
+                    background-color: $color-text;
+                    cursor: pointer;
+
+                    > div {
+                        height: auto;
+                        padding: 0;
+                        margin: 0;
+                        line-height: 34px;
+
+                        h3 {
+                            max-width: 90%;
+                            margin: 0;
+                            line-height: 34px;
+                            color: $color-white;
+
+                            span {
+                                font-size: $text-small;
+                                line-height: $text-small;
+                                color: $color-white;
+                            }
+                        }
+
+                        .icn-circle {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            font-size: $text-x-small;
+                            color: $color-text;
+                            @include round-corner(50%);
+                            background-color: transparent;
+
+                            &.fa-stack {
+                                width: 34px;
+                                height: 34px;
+
+                                .fa-stack-2x {
+                                    font-size: $text-x-small;
+                                    line-height: 34px;
+                                    color: $color-white;
+                                }
+                            }
+                        }
+
+                        a {
+                            position: absolute;
+                            top: 0px;
+                            left: 10px;
+                            height: 25px;
+                            color: $color-white;
+                            text-decoration: none;
+                            vertical-align: middle;
+                            line-height: 23px;
+                        }
+                    }
+
+                    &.active {
+                        border-bottom: none;
+                        background-color: $color-primary;
+                        /*h3 {
+                            color: $color-primary;
+
+                            span {
+                                color: $color-text;
+                            }
+                        }*/
+                    }
+                }
+
+                .active {
+                    > div {
+                        // height: 50px;
+                        padding: 0;
+                        margin: 0;
+                        line-height: 34px;
+
+                        .fa-angle-down:before {
+                            content: "\f106";
+                        }
+                    }
+                }
+
+                .list-group-content {
+                    display: none;
+                    height: auto;
+                    padding: 10px 20px;
+                    padding-bottom: 20px;
+                    border: none;
+                    // border-bottom: 1px solid $color-secondary;
+                    border-top: none;
+                    text-align: left;
+                    background-color: transparent;
+
+                    &.opened {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}

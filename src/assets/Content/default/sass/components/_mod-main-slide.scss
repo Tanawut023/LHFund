@@ -1,0 +1,157 @@
+.main-slider {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+
+    @media screen and (max-width: $screen-sm-max) {
+        height: auto;
+        margin-bottom: 0;
+    }
+
+    @media screen and (max-width: $screen-xs-max) {
+        margin-bottom: 0;
+    }
+}
+
+.slider-container {
+    position: relative;
+    display: none;
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+
+        @media screen and (max-width: $screen-sm-max) {
+            width: 150%;
+        }
+
+        @media screen and (max-width: $screen-xs-max) {
+            width: 200%;
+        }
+    }
+}
+.slider-controller {
+    position: absolute;
+    width: 100%;
+    bottom: 90px;
+    z-index: 1;
+
+    @media screen and (max-width: $screen-md-max) {
+        bottom: 50px;
+    }
+
+    @media screen and (max-width: $screen-sm-max) {
+        bottom: 10px;
+    }
+}
+
+#foo_pager {
+    width: 100%;
+    text-align: center;
+
+    span.pager_list {
+        display: inline-block;
+        margin: 0 5px;
+        width: 20px;
+        height: 20px;
+
+        > a {
+            display: block;
+            width: 20px;
+            height: 20px;
+            @include round-corner(50%);
+            background-color: $color-secondary;
+        }
+
+        &.selected a {
+            background-color: $color-primary;
+        }
+    }
+
+    @media screen and (max-width: $screen-xs-max) {
+        width: 100%;
+    }
+}
+a#foo_prev:link, a#foo_next:link{
+  color: #222;
+}
+a#foo_prev:hover, a#foo_prev:visited, a#foo_next:hover, a#foo_next:visited{
+  color: #000;
+}
+#foo_prev{
+  display: inline-block!important;
+  &>.foo_prev.-box{
+    text-decoration: none;
+    min-height: 27px;
+    min-width: 27px;
+    display: inline-block;
+    background: url("/assets/images/bg/bg-slide-controller.png");
+    text-align: center;
+    font-weight: 100;
+    padding-top: 5px;
+    float: left;
+  }
+}
+#foo_next{
+  display: inline-block!important;
+  &>.foo_next.-box{
+    text-decoration: none;
+    min-height: 27px;
+    min-width: 27px;
+    display: inline-block;
+    background: url("/assets/images/bg/bg-slide-controller.png");
+    text-align: center;
+    padding-top: 5px;
+    padding-left: 2px;
+    float: left;
+  }
+}
+
+// @media (max-width: 1280px){
+//   	#foo_pager{
+// 		top: 19%;
+// 	}
+// }
+
+// @media (max-width: 1024px){
+//   	#foo_pager{
+// 		top: 18%;
+// 	}
+// }
+
+// @media (max-width: 980px){
+//   #foo_pager{
+// 		top: 18%;
+// 	}
+// }
+
+// @media (max-width: 800px){
+//   #foo_pager{
+// 		top: 22%;
+// 	}
+// }
+
+// @media (max-width: 768px){
+//   #foo_pager{
+// 		top: 22%;
+// 	}
+// }
+
+// @media (max-width: 360px){
+//   #foo_pager{
+// 		top: 6%;
+// 	}
+// }
+
+// @media #{$mobile} {
+// 	.slider-controller{
+// 		display: none;
+// 	}
+// }
+
+// @media #{$tablet} {
+// 	.slider-controller{
+// 		display: none;
+// 	}
+// }

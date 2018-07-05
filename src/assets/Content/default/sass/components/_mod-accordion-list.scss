@@ -1,0 +1,248 @@
+.list-group{
+	width: 100%;
+
+	//home page
+	.list-group-item{
+		margin: 1px 0 0 0;
+		padding: 1px 0 1px 0;
+		/*background:#F7A6FD;*/
+
+		&:first-child{
+			padding: 0 0 1px 0;
+		}
+
+		.list-group-head{
+			position: relative;
+			height: 25px;
+			/*background: url(../images/bg-list-group-bar.jpg) repeat-x;*/
+			font-size: 1.2em;
+			cursor: pointer;
+			/*@include gradient-bg(#5a95c1 ,#385773);*/
+
+			> div{
+				position: relative;
+				display: block;
+				margin-right: 10px;
+				height: 25px;
+				/*background:url('../images/icn-plus.png') right 5px no-repeat;*/
+				.icn-circle{
+					position: absolute;
+					top: 3px;
+					right: 5px;
+					font-size: 9px;
+					color: #999;
+					.fa-stack-1x{
+						font-size: $text-x-small;
+					}
+				}
+
+				a{
+					position: absolute;
+					top: 0px;
+					left: 10px;
+					height: 25px;
+					color:#FFFFFF;
+					text-decoration: none;
+					vertical-align: middle;
+					line-height: 23px;
+					/*background: url(../images/icn-plus.jpg) right 0 no-repeat #71F49B;*/
+				}
+
+			}
+
+		}
+
+		.active{
+			>div{
+				position: relative;
+				display: block;
+				margin-right: 10px;
+				height: 25px;
+				// background:url('../images/icn-minus.png') right 5px no-repeat;
+				.fa-plus:before {
+				  content: "\f068";
+				}
+				.fa-chevron-down:before {
+				  content: "\f077";
+				}
+			}
+
+		}
+
+		.list-group-content{
+			display: none;
+			height: 172px;
+			background:#AFB8F5;
+			&.opened{
+				display: block;
+			}
+			&.home-2-head{ // +27
+				height: 199px;
+				.iframe-home-box{
+					height: 167px;
+				}
+			}
+			&.home-2-head--nomore{
+				height: 199px;
+				.iframe-home-box{
+					height: 194px;
+				}
+			}
+			.iframe-home-box{
+				overflow: hidden;
+				padding: 5px 0 0 0;
+				height: 140px;
+				>iframe{
+					width: 1px;
+        			min-width: 100%;
+				}
+			}
+			.list-group-more{
+				display: block;
+				margin: 5px 0 0 0;
+				font-size: 0.8em;
+				i{
+					color:#e00100;
+				}
+				a{
+					color: #333333;
+					text-decoration: none;
+					&:hover{
+						text-decoration: underline;
+					}
+				}
+			}
+			.home-msg-box{
+				margin-top: 5px;
+				height: 194px;
+				@include gradient-bg(#5a95c1 ,#385773);
+				>.msg-box{
+					padding-top: 30px;
+					text-align: center;
+					font-size: 20px;
+					color: #fff;
+					.msg-login{
+						margin-top: 10px;
+					}
+				}
+			}
+		}
+	}
+
+	//faq page
+	&.faq-list{
+
+		.list-group-item{
+			margin: 1px 0 0 0;
+			padding: 0;
+			border-bottom: 1px solid #ccc;
+			background:#F7A6FD;
+			&:first-child{
+				padding: 0;
+			}
+			.list-group-head{
+				position: relative;
+				height: auto;
+				min-height: initial;
+				font-size: $text-large;
+				cursor: pointer;
+				border-bottom: 1px solid #ccc;
+				background: none;
+				-pie-background: none;
+				line-height: 32px;
+				> div{
+					position: relative;
+					display: block;
+					margin-right: 10px;
+					padding: 3px 30px 5px 0;
+					height: auto;
+					min-height: initial;
+					// background:url('../images/icn-plus.png') right 5px no-repeat;
+					.icn-circle{
+						position: absolute;
+						top: 8px;
+						right: 0px;
+						width: 25px;
+						height: 25px;
+						background-color: $color-primary;
+						@include round-corner(50%);
+						font-size: 11px;
+						.fa-inverse{
+							color: #666;
+							color: $color-secondary;
+						}
+						.fa-stack-1x{
+							font-size: 16px;
+							line-height: 26px;
+							text-shadow: none;
+							color: #fff;
+						}
+					}
+					a{
+						position: relative;
+						top: 0px;
+						left: 0px;
+						height: auto;
+						min-height: initial;
+						color: $color-primary;
+						color: $color-primary;
+						text-decoration: none;
+						vertical-align: middle;
+						line-height: 16px;
+						font-weight: 400;
+						// background: url(../images/icn-plus.jpg) right 0 no-repeat #71F49B;
+					}
+
+				}
+
+			}
+			.list-group-content{
+				display: none;
+				margin: 0 0 0 0;
+				height: auto;
+				background:#AFB8F5;
+				line-height: 24px !important;
+				&.opened{
+					display: block;
+				}
+
+				.iframe-home-box{
+					overflow: hidden;
+					padding: 10px 5px;
+					height: auto;
+					>iframe{
+						width: 1px;
+	        	min-width: 100%;
+					}
+					.texteditor{
+						font-family: $default-font;
+						ul{
+							li{
+								list-style-position: inside;
+							}
+						}
+					}
+				}
+
+				.list-group-more{
+					display: block;
+					margin: 5px 0 0 3px;
+					font-size: 0.8em;
+					i{
+						color:#e00100;
+					}
+					a{
+						color: #333333;
+						text-decoration: none;
+						&:hover{
+							text-decoration: underline;
+						}
+					}
+				}
+			}
+
+		}
+
+	}//faq-list
+
+}

@@ -1,0 +1,375 @@
+/* set global config vars */
+/* defualt page width setting(PC) */
+/* off canvas menu width *eg. 70px or 70% */
+/* main slide margin top */
+/* header height */
+/* footer height */
+/* global body setting */
+/* default font family */
+/*Arial*/
+/* text sizing multiplier */
+/* text sizing */
+/* default theme color */
+/* special theme */
+/* insert special theme for this website */
+/* text sizing */
+@font-face {
+  font-family: 'KitithadaRegular';
+  src: url("/assets/fonts/PSL094PRO.eot");
+  src: url("/assets/fonts/PSL094PRO.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/PSL094PRO.woff") format("woff"), url("/assets/fonts/PSL094PRO.ttf") format("truetype"), url("/assets/fonts/PSL094PRO.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'KitithadaBold';
+  src: url("/assets/fonts/PSL096PRO.eot");
+  src: url("/assets/fonts/PSL096PRO.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/PSL096PRO.woff") format("woff"), url("/assets/fonts/PSL096PRO.ttf") format("truetype"), url("/assets/fonts/PSL096PRO.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+/* note : for IE8,7 need css3pie helper*/
+.property-fund-wrapper {
+  position: relative;
+  max-width: 100%;
+  padding: 0;
+  margin: 0 auto;
+  margin-bottom: 75px; }
+  .property-fund-wrapper .heading-section {
+    padding: 0;
+    background-color: transparent; }
+    .property-fund-wrapper .heading-section .summary-compare-wrapper {
+      position: relative;
+      padding: 20px;
+      margin: 0 auto;
+      margin-top: -148px;
+      text-align: center;
+      background-color: #1CA59B; }
+      .property-fund-wrapper .heading-section .summary-compare-wrapper p {
+        margin-bottom: 20px;
+        color: #fff; }
+        .property-fund-wrapper .heading-section .summary-compare-wrapper p span {
+          font-size: 40px; }
+      @media screen and (max-width: 767px) {
+        .property-fund-wrapper .heading-section .summary-compare-wrapper {
+          margin-top: 25px; } }
+  .property-fund-wrapper .sub-title-wrapper h3 {
+    margin: 0;
+    line-height: 42px;
+    color: #1CA59B; }
+  .property-fund-wrapper .fund-list-wrapper {
+    margin-top: 50px; }
+    .property-fund-wrapper .fund-list-wrapper .property-fund-list {
+      padding-bottom: 30px;
+      background-color: #fff; }
+      .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item {
+        display: block;
+        max-width: 100%;
+        padding: 0;
+        margin: 0 0 10px 0;
+        background-color: #f5f5f5; }
+        .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item:nth-child(2n) {
+          background-color: #fff; }
+        .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item p {
+          font-size: 20px;
+          line-height: 20px; }
+        .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item h3 {
+          margin: 10px 0; }
+        .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .img-wrapper {
+          max-width: 100%; }
+          .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .img-wrapper img {
+            max-width: 100%; }
+        .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .name-wrapper {
+          padding-top: 10px;
+          padding-bottom: 10px; }
+          .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .name-wrapper a {
+            color: #1CA59B; }
+            .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .name-wrapper a:hover {
+              color: #000;
+              text-decoration: none; }
+        .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .risk-wrapper {
+          padding-top: 10px;
+          padding-bottom: 10px; }
+          .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .risk-wrapper .chart {
+            margin-left: 0;
+            margin-right: 0; }
+        .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .nav-wrapper {
+          padding-top: 10px;
+          padding-bottom: 10px;
+          /*border-right: 5px solid $color-white;*/ }
+          .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .nav-wrapper h3 {
+            color: #1CA59B; }
+        .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .check-wrapper {
+          padding-top: 10px;
+          padding-bottom: 10px;
+          text-align: center; }
+          .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .check-wrapper .custom-radio input[type="checkbox"] + label {
+            float: none;
+            margin: 20px auto; }
+        .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .stock-prices {
+          padding: 0 10px;
+          text-align: center; }
+          .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .stock-prices h3 {
+            color: #1CA59B;
+            margin-bottom: 0; }
+          .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .stock-prices p {
+            margin-bottom: 10px; }
+          .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .stock-prices .value {
+            display: block;
+            padding: 5px;
+            margin-bottom: 20px;
+            font-size: 24px;
+            line-height: 24px;
+            color: #fff;
+            background-color: #1CA59B; }
+            .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .stock-prices .value p {
+              font-size: 18px;
+              line-height: 24px; }
+      .property-fund-wrapper .fund-list-wrapper .property-fund-list .owl-carousel .item {
+        padding: 10px; }
+      @media screen and (max-width: 1199px) {
+        .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item {
+          padding-bottom: 10px;
+          margin-bottom: 20px;
+          border-bottom: 1px solid #f5f5f5;
+          background-color: #fff; }
+          .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item:nth-child(2n) {
+            background-color: #fff; }
+          .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .name-wrapper {
+            padding: 15px; }
+          .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .risk-wrapper {
+            padding: 15px; }
+          .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .nav-wrapper {
+            padding: 15px; }
+          .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .check-wrapper {
+            padding: 15px; } }
+      @media screen and (max-width: 999px) {
+        .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item {
+          padding-bottom: 10px;
+          margin-bottom: 20px;
+          border-bottom: 1px solid #f5f5f5;
+          background-color: #fff; }
+          .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item:nth-child(2n) {
+            background-color: #fff; }
+          .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .name-wrapper {
+            padding: 15px; }
+          .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .risk-wrapper {
+            padding: 15px; }
+          .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .nav-wrapper {
+            padding: 15px; }
+          .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .check-wrapper {
+            padding: 15px; } }
+      @media screen and (max-width: 767px) {
+        .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .check-wrapper {
+          text-align: left; }
+          .property-fund-wrapper .fund-list-wrapper .property-fund-list .property-fund-item .check-wrapper .custom-radio {
+            display: inline-block;
+            width: auto; } }
+  .property-fund-wrapper .fund-detail-wrapper {
+    /*.information-detail-wrapper {
+            display: block;
+            max-width: 100%;
+            padding: 0;
+            margin: 0 0 30px 0;
+        }*/ }
+    .property-fund-wrapper .fund-detail-wrapper .information-wrapper {
+      display: block;
+      max-width: 100%;
+      padding: 0;
+      margin: 0 0 30px 0; }
+      .property-fund-wrapper .fund-detail-wrapper .information-wrapper.bg-white {
+        padding: 20px;
+        background-color: #fff; }
+      .property-fund-wrapper .fund-detail-wrapper .information-wrapper p {
+        font-size: 20px;
+        line-height: 20px; }
+      .property-fund-wrapper .fund-detail-wrapper .information-wrapper h3 {
+        margin: 10px 0; }
+      .property-fund-wrapper .fund-detail-wrapper .information-wrapper .img-wrapper {
+        max-width: 100%; }
+        .property-fund-wrapper .fund-detail-wrapper .information-wrapper .img-wrapper img {
+          max-width: 100%; }
+      .property-fund-wrapper .fund-detail-wrapper .information-wrapper .name-wrapper {
+        padding-top: 10px;
+        padding-bottom: 10px; }
+        .property-fund-wrapper .fund-detail-wrapper .information-wrapper .name-wrapper a {
+          color: #1CA59B; }
+          .property-fund-wrapper .fund-detail-wrapper .information-wrapper .name-wrapper a:hover {
+            color: #000;
+            text-decoration: none; }
+      .property-fund-wrapper .fund-detail-wrapper .information-wrapper .risk-wrapper {
+        padding-top: 10px;
+        padding-bottom: 10px; }
+        .property-fund-wrapper .fund-detail-wrapper .information-wrapper .risk-wrapper .chart {
+          margin-left: 0;
+          margin-right: 0; }
+      .property-fund-wrapper .fund-detail-wrapper .information-wrapper .nav-wrapper {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-right: 5px solid #fff; }
+        .property-fund-wrapper .fund-detail-wrapper .information-wrapper .nav-wrapper h3 {
+          color: #1CA59B; }
+      .property-fund-wrapper .fund-detail-wrapper .information-wrapper .check-wrapper {
+        padding-top: 10px;
+        padding-bottom: 10px; }
+        .property-fund-wrapper .fund-detail-wrapper .information-wrapper .check-wrapper .custom-radio input[type="checkbox"] + label {
+          float: none;
+          margin: 20px auto; }
+      @media screen and (max-width: 767px) {
+        .property-fund-wrapper .fund-detail-wrapper .information-wrapper .img-wrapper img {
+          min-width: 100%; } }
+  .property-fund-wrapper .fund-table-wrapper .heading-section {
+    padding: 25px 20px;
+    background-color: #fff; }
+  .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison > thead > tr > th {
+    width: 33.3333%;
+    text-align: left; }
+    .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison > thead > tr > th:last-child {
+      border-right: none; }
+  .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison > tbody > tr > td:last-child .td-chart {
+    border-right: none; }
+  .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison > tbody > tr.captions td {
+    background-color: #f5f5f5;
+    border-bottom-color: #f5f5f5; }
+  .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison .cell-detail {
+    padding-bottom: 50px; }
+  .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison .td-chart {
+    padding: 10px 20px;
+    padding-bottom: 50px;
+    border-right: 1px solid #f5f5f5; }
+    .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison .td-chart .chart-block {
+      padding: 0; }
+      .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison .td-chart .chart-block h4, .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison .td-chart .chart-block p {
+        font-size: 22px;
+        line-height: 24px; }
+      .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison .td-chart .chart-block h4 {
+        color: #1CA59B; }
+  .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison .graph-tools {
+    padding: 20px; }
+    .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison .graph-tools .dateinput {
+      padding-right: 25px;
+      background-image: url("../../../../Images/icons/datepicker.jpg");
+      background-repeat: no-repeat;
+      background-position-y: center;
+      background-position-x: calc(100% - 10px); }
+    .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison .graph-tools .nav-chart-tabs {
+      display: block;
+      width: 100%;
+      padding-top: 25px;
+      overflow: hidden; }
+      .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison .graph-tools .nav-chart-tabs ul {
+        list-style: none;
+        padding: 0;
+        margin: 0; }
+        .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison .graph-tools .nav-chart-tabs ul li {
+          float: left;
+          width: auto;
+          position: relative;
+          display: block;
+          padding: 9px 15px;
+          /*width: 100%;*/
+          margin-bottom: 1px;
+          border-right: 1px solid #fff;
+          background: #D3D3D3;
+          color: #5a5a5a;
+          cursor: pointer; }
+          .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison .graph-tools .nav-chart-tabs ul li a {
+            font-size: 22px;
+            line-height: 24px;
+            color: #5a5a5a; }
+          .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison .graph-tools .nav-chart-tabs ul li:hover {
+            background-color: #1CA59B; }
+            .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison .graph-tools .nav-chart-tabs ul li:hover a {
+              color: #fff; }
+          .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison .graph-tools .nav-chart-tabs ul li.active {
+            background-color: #1CA59B;
+            cursor: pointer; }
+            .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison .graph-tools .nav-chart-tabs ul li.active a {
+              color: #fff; }
+      @media screen and (max-width: 1199px) {
+        .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison .graph-tools .nav-chart-tabs {
+          margin-bottom: 20px; }
+          .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison .graph-tools .nav-chart-tabs ul li {
+            display: inline-block;
+            width: auto; }
+            .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison .graph-tools .nav-chart-tabs ul li.active:after {
+              display: none; } }
+  .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison .graph-block {
+    position: relative; }
+    .property-fund-wrapper .fund-table-wrapper .table-responsive .table.table-comparison .graph-block .highcharts {
+      padding: 20px; }
+  .property-fund-wrapper .btn-wrapper {
+    display: inline-block;
+    width: auto;
+    margin: 10px auto; }
+  .property-fund-wrapper .list-group {
+    margin-top: -50px; }
+    .property-fund-wrapper .list-group .list-group-item {
+      padding: 1px 0 1px 0;
+      margin: 0 auto;
+      margin-bottom: 10px;
+      border-bottom: none; }
+      .property-fund-wrapper .list-group .list-group-item:first-child {
+        padding: 0;
+        border-bottom: none; }
+      .property-fund-wrapper .list-group .list-group-item:last-child {
+        padding: 0;
+        border-bottom: none; }
+        .property-fund-wrapper .list-group .list-group-item:last-child .list-group-head {
+          border-bottom: none; }
+      .property-fund-wrapper .list-group .list-group-item .list-group-head {
+        height: 50px;
+        border-bottom: 1px solid #cdcdcd;
+        background-color: transparent;
+        cursor: pointer; }
+        .property-fund-wrapper .list-group .list-group-item .list-group-head > div {
+          height: 50px;
+          padding: 0 15px;
+          margin: 0;
+          line-height: 34px; }
+          .property-fund-wrapper .list-group .list-group-item .list-group-head > div h3 {
+            margin: 0 auto;
+            line-height: 34px;
+            color: #1CA59B; }
+          .property-fund-wrapper .list-group .list-group-item .list-group-head > div .icn-circle {
+            position: absolute;
+            top: 0;
+            right: 20px;
+            font-size: 28px;
+            color: #1CA59B;
+            border-radius: 50%;
+            background-color: transparent; }
+            .property-fund-wrapper .list-group .list-group-item .list-group-head > div .icn-circle.fa-stack {
+              width: 34px;
+              height: 34px; }
+              .property-fund-wrapper .list-group .list-group-item .list-group-head > div .icn-circle.fa-stack .fa-stack-2x {
+                font-size: 28px;
+                line-height: 34px; }
+          .property-fund-wrapper .list-group .list-group-item .list-group-head > div a {
+            position: absolute;
+            top: 0px;
+            left: 10px;
+            height: 25px;
+            color: #fff;
+            text-decoration: none;
+            vertical-align: middle;
+            line-height: 23px; }
+        .property-fund-wrapper .list-group .list-group-item .list-group-head.active {
+          border-bottom: none; }
+      .property-fund-wrapper .list-group .list-group-item .active > div {
+        height: 50px;
+        padding: 0 15px;
+        margin: 0;
+        line-height: 50px; }
+        .property-fund-wrapper .list-group .list-group-item .active > div .fa-angle-down:before {
+          content: "\f106"; }
+      .property-fund-wrapper .list-group .list-group-item .list-group-content {
+        display: none;
+        height: auto;
+        padding: 0;
+        border: none;
+        /*border-bottom: 1px solid $color-secondary;*/
+        border-top: none;
+        text-align: center;
+        background-color: transparent; }
+        .property-fund-wrapper .list-group .list-group-item .list-group-content.opened {
+          display: block; }

@@ -1,0 +1,247 @@
+﻿@import "../variables";
+@import "../helpers/fontface";
+@import "../helpers/mixin_css3";
+
+.news-wrapper {
+    position: relative;
+    max-width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    margin-bottom: 75px;
+
+    .news-list-wrapper {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+
+        .item {
+            display: block;
+            padding: 5px;
+            margin-bottom: 20px;
+
+            a {
+                position: relative;
+                display: block;
+                /*height: 580px;*/
+                padding: 10px 0;
+                color: $color-text;
+                background-color: $color-white;
+
+                .date {
+                    padding: 0 15px;
+                    margin-bottom: 10px;
+                }
+
+                .img {
+                    position: relative;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    /*height: 210px;*/
+                    border: none;
+
+                    img {
+                        width: 100%;
+                        max-width: 100%;
+                    }
+                }
+
+                .description {
+                    padding: 0 20px;
+                    margin: 0 auto;
+                    margin-top: 20px;
+
+                    h3 {
+                        height: 85px;
+                        margin: 0 auto;
+                        margin-bottom: 10px;
+                        font-size: $text-small;
+                        line-height: $text-small;
+                        color: #373737;
+                    }
+
+                    p {
+                        height: 100px;
+                        margin: 0 auto;
+                        font-size: $text-x-small;
+                        line-height: $text-small;
+                    }
+                }
+
+                .btn-wrapper {
+                    margin: 20px 0;
+                }
+
+                &:hover {
+                    text-decoration: none;
+                    -webkit-box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.5);
+                    box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.5);
+
+                    .btn-wrapper {
+                        .btn-med {
+                            &.btn-secondary {
+                                border: 1px solid $color-primary;
+                                background-color: $color-primary;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .news-detail-wrapper {
+        width: 100%;
+        padding: 0 25px;
+        margin: 0;
+        background-color: $color-white;
+        overflow: hidden;
+
+        .title-wrapper {
+            margin-bottom: 20px;
+        }
+
+        @media screen and (max-width: 999px) {
+            padding-left: 25px;
+        }
+    }
+    // Investment
+    .widget-wrapper {
+
+        .widget {
+            height: 300px;
+            margin: 0 auto;
+            margin-bottom: 30px;
+
+            a {
+                display: block;
+                color: $color-text;
+
+                &:hover {
+                    color: $color-primary;
+                    text-decoration: none;
+                }
+            }
+
+            .img {
+                position: relative;
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                /*height: 210px;*/
+                border: 1px solid #ddd;
+
+                img {
+                    width: 100%;
+                    max-width: 100%;
+                }
+
+                .icon-video {
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                }
+            }
+
+            .description {
+                padding: 0 10px;
+                margin: 5px 0;
+
+                h3 {
+                    height: 70px;
+                    margin: 0 auto;
+                    font-size: $text-small;
+                    line-height: $text-small;
+                }
+            }
+        }
+    }
+    // Pagination Style
+    .list-pagination {
+        text-align: center;
+        vertical-align: middle;
+        line-height: 40px;
+        margin-bottom: 20px;
+
+        .page-text {
+            font-size: $text-content;
+        }
+
+        .view-all {
+            font-size: $text-content;
+            cursor: pointer;
+
+            &:hover {
+                color: $color-primary;
+            }
+        }
+
+        .holder {
+            margin-left: 10px;
+            margin-right: 10px;
+            display: inline-block;
+            vertical-align: middle;
+
+            a {
+                width: 40px;
+                height: 40px;
+                display: inline-block;
+                font-size: $text-x-small;
+                line-height: 40px;
+                cursor: pointer;
+                margin: 0 5px;
+                color: $color-text;
+                text-align: center;
+
+                &:hover {
+                    background-color: $color-primary;
+                    color: $color-white;
+                }
+
+                &.jp-previous {
+                    text-indent: -9999px;
+                    background-image: url('../../../../Images/icons/ico-slideleft.png');
+                    background-position: center center;
+                    background-repeat: no-repeat;
+
+                    &:hover {
+                        background-color: transparent;
+                        color: $color-white;
+                    }
+                }
+
+                &.jp-next {
+                    text-indent: -9999px;
+                    background-image: url('../../../../Images/icons/ico-slideright.png');
+                    background-position: center center;
+                    background-repeat: no-repeat;
+
+                    &:hover {
+                        background-color: transparent;
+                        color: $color-white;
+                    }
+                }
+
+                &.jp-first, &.jp-last {
+                    color: $color-text;
+                    background-color: transparent;
+
+                    &:hover {
+                        color: $color-text;
+                        background-color: transparent;
+                    }
+                }
+
+                &.jp-current {
+                    background-color: $color-primary;
+                    color: $color-white;
+
+                    &:hover {
+                        color: $color-white;
+                    }
+                }
+            }
+        }
+    }
+}

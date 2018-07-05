@@ -1,0 +1,87 @@
+﻿@import "../variables";
+@import "../helpers/fontface";
+@import "../helpers/mixin_css3";
+
+.page-content-wrapper {
+    .provident-fund-wrapper {
+        position: relative;
+        max-width: 100%;
+        padding: 0;
+        margin: 0 auto;
+        margin-bottom: 75px;
+
+        .fund-list-wrapper {
+            .fund-list {
+                .list-group {
+                    min-height: 320px;
+                    height: auto;
+                    padding: 15px;
+
+                    ul {
+                        height: auto;
+
+                        li {
+                            padding-left: 15px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .contact-information-wrapper {
+            display: block;
+            padding: 30px 30px 50px 30px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background-color: $color-white;
+        }
+
+        .contact-form-wrapper {
+            display: block;
+            padding: 30px 50px;
+            background-color: $color-white;
+
+            .content-editor {
+                a {
+                    color: $color-primary;
+
+                    &:hover {
+                        color: $color-hover;
+                    }
+                }
+            }
+
+            h3 {
+                margin-top: 0;
+            }
+
+            p {
+                margin-bottom: 10px;
+
+                span {
+                    color: #C90A11;
+                }
+            }
+
+            .custom-radio {
+                margin-bottom: 20px;
+            }
+
+            input-wrapper {
+                margin-bottom: 20px;
+            }
+
+            #other {
+                display: none;
+            }
+
+            @media screen and (max-width: 999px) {
+                padding: 30px;
+            }
+
+            @media screen and (max-width: 767px) {
+                padding: 30px 15px;
+            }
+        }
+    }
+}

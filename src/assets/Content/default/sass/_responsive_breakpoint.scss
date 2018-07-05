@@ -1,0 +1,69 @@
+/* *************************************************************** */
+/* ************** ksec css media query breakpoint  *************** */
+/* *************************************************************** */
+/* note : use bootstrap custom breakpoint                          */
+/* *************************************************************** */
+
+
+// mobile-first normal style
+// apply to screen max-width 767px
+// note : overide by apply media screen-xs-min
+.style{
+  property: mobile-first-value;
+}
+
+
+
+
+// screen xs  apply to screen  min-width 480px and above
+// note: extra style for small screen mobile landscape ( 320*480 )
+@media (min-width: $screen-xs-min) {
+
+  .style{
+    property: value;
+  }
+
+}// media min480
+
+
+
+
+// screen sm  apply to screen  min-width 768px and above
+// note: mostly portrait tablet use this style
+@media (min-width: $screen-sm-min) {
+
+  .style{
+    property: value;
+  }
+
+}// media min768
+
+
+
+
+// screen md  apply to screen  min-width 1000px and above
+// note: ipad landscape(1024) and small screen desktop(1024) use this style
+@media (min-width: $screen-md-min) {
+
+  .style{
+    property: value;
+  }
+
+}// media min1000
+
+
+
+
+// screen lg  apply to screen  min-width 1200px and above
+// note: desktop and FullHD screen tablet use this style
+@media (min-width: $screen-lg-min) {
+
+  .style{
+    property: value;
+  }
+
+}// media min1200
+
+
+
+
