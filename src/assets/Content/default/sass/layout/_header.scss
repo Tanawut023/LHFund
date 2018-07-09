@@ -209,7 +209,9 @@
         height: auto;
         padding: 0;
         margin: 0;
-        background-color: $color-white;
+        border-bottom: 5px solid $color-primary;
+        //background-color: $color-white;
+        background-color: rgba(255,255,255,0.8);
         -webkit-box-shadow: 0px 5px 5px -5px rgba(0,0,0,0.5);
         box-shadow: 0px 5px 5px -5px rgba(0,0,0,0.5);
 
@@ -218,10 +220,14 @@
             padding: 0;
             margin: 0 auto;
         }
-
+        .bg-logo{
+            background-color: $color-white;
+            padding: 0 20px;
+        }
         .logo {
             margin: 20px 0;
         }
+        
 
         .main-nav {
             position: relative;
@@ -635,6 +641,12 @@
         .lt-ie9 & {
         }
     }
+}
+#header.header-login{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: 9999;
 }
 
 #header-Menu {

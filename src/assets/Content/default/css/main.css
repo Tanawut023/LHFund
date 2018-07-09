@@ -4308,7 +4308,8 @@ input[type=reset] {
     position: relative;
     color: #1CA59B;
     border: 1px solid #1CA59B;
-    background-color: #fff; }
+    background-color: #fff;
+    width: 100%; }
     .btn-sm.btn-white:hover,
     .btn-med.btn-white:hover,
     .btn-lg.btn-white:hover,
@@ -4726,18 +4727,18 @@ input[type=reset] {
   .custom-radio input[type=radio] {
     display: none; }
   .custom-radio input[type=radio] + label {
-    background-image: url("../../../Images/icons/ico-rad.png");
+    background-image: url("../../../Images/icons/radio-icon.png");
     background-position: 0 0;
     background-repeat: no-repeat;
-    height: 25px;
-    width: 25px;
+    height: 28px;
+    width: 28px;
     display: block;
     float: left;
     padding: 0;
     margin-right: 10px;
     cursor: pointer; }
   .custom-radio input[type=radio]:checked + label {
-    background-image: url("../../../Images/icons/ico-rad-checked.png");
+    background-image: url("../../../Images/icons/radio-icon-check.png");
     background-position: 0 0;
     background-repeat: no-repeat; }
   .custom-radio input[type=radio]:disabled + label + span.content-rdo-inline {
@@ -4766,6 +4767,62 @@ input[type=reset] {
   .custom-radio input[type=checkbox]:checked + label + span.content-rdo-inline {
     color: #5a5a5a; }
   .custom-radio span.content-rdo-inline {
+    padding-left: 0;
+    line-height: 25px;
+    color: #5a5a5a;
+    display: block;
+    float: left;
+    max-width: 85%;
+    cursor: pointer; }
+
+.custom-radio-between {
+  display: block;
+  width: 100%;
+  position: relative;
+  overflow: hidden; }
+  .custom-radio-between input[type=radio] {
+    display: none; }
+  .custom-radio-between input[type=radio] + label {
+    background-image: url("../../../Images/icons/radio-icon2.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    height: 28px;
+    width: 28px;
+    display: block;
+    float: left;
+    padding: 0;
+    margin-right: 10px;
+    cursor: pointer; }
+  .custom-radio-between input[type=radio]:checked + label {
+    background-image: url("../../../Images/icons/radio-icon-check2.png");
+    background-position: 0 0;
+    background-repeat: no-repeat; }
+  .custom-radio-between input[type=radio]:disabled + label + span.content-rdo-inline {
+    color: #f0f0f0; }
+  .custom-radio-between input[type=radio]:checked + label + span.content-rdo-inline {
+    color: #5a5a5a; }
+  .custom-radio-between input[type=checkbox] {
+    display: none; }
+  .custom-radio-between input[type=checkbox] + label {
+    background-image: url("../../../Images/icons/ico-rad.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    height: 25px;
+    width: 25px;
+    display: block;
+    float: left;
+    padding: 0;
+    margin-right: 10px;
+    cursor: pointer; }
+  .custom-radio-between input[type=checkbox]:checked + label {
+    background-image: url("../../../Images/icons/ico-rad-checked.png");
+    background-position: 0 0;
+    background-repeat: no-repeat; }
+  .custom-radio-between input[type=checkbox]:disabled + label + span.content-rdo-inline {
+    color: #f0f0f0; }
+  .custom-radio-between input[type=checkbox]:checked + label + span.content-rdo-inline {
+    color: #5a5a5a; }
+  .custom-radio-between span.content-rdo-inline {
     padding-left: 0;
     line-height: 25px;
     color: #5a5a5a;
@@ -4918,13 +4975,17 @@ input[type=reset] {
     height: auto;
     padding: 0;
     margin: 0;
-    background-color: #fff;
+    border-bottom: 5px solid #1CA59B;
+    background-color: rgba(255, 255, 255, 0.8);
     -webkit-box-shadow: 0px 5px 5px -5px rgba(0, 0, 0, 0.5);
     box-shadow: 0px 5px 5px -5px rgba(0, 0, 0, 0.5); }
     #header .bottom-menu-wrapper .wrapper {
       max-width: 1328px;
       padding: 0;
       margin: 0 auto; }
+    #header .bottom-menu-wrapper .bg-logo {
+      background-color: #fff;
+      padding: 0 20px; }
     #header .bottom-menu-wrapper .logo {
       margin: 20px 0; }
     #header .bottom-menu-wrapper .main-nav {
@@ -5238,6 +5299,12 @@ input[type=reset] {
   @media screen and (max-width: 999px) {
     #header .nav-expander {
       display: block; } }
+
+#header.header-login {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  z-index: 9999; }
 
 #header-Menu {
   height: 82px;
@@ -5787,12 +5854,11 @@ input[type=reset] {
     width: 85%; }
 
 .select-wrapper {
-  margin: 0 auto;
-  margin-bottom: 15px; }
+  margin: 0 auto; }
   .select-wrapper.inline-block {
     display: inline-block;
     vertical-align: top;
-    width: 85%; }
+    width: 100%; }
 
 .title-wrapper {
   display: block;

@@ -123,12 +123,12 @@
 
 .select-wrapper {
     margin: 0 auto;
-    margin-bottom: 15px;
+    // margin-bottom: 15px;
 
     &.inline-block {
         display: inline-block;
         vertical-align: top;
-        width: 85%;
+        width: 100%;        
     }
 }
 

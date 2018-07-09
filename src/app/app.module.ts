@@ -11,6 +11,9 @@ import { FooterComponent } from './footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { HeaderLoginComponent } from './header-login/header-login.component';
+
+import * as $ from 'jquery';
  
 // Add an icon to the library for convenient access in other components
 library.add(faCoffee);
@@ -20,7 +23,8 @@ library.add(faCoffee);
     AppComponent,
     LoginComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    HeaderLoginComponent
   ],
   imports: [
     BrowserModule,
