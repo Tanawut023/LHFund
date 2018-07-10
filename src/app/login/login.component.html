@@ -102,7 +102,7 @@
 													<div class="row">
 														<div class="col-md-6">
 															<div class="btn-wrapper-left">
-																<button class="btn-med btn-light" (click)="checkpage('')">
+																<button class="btn-med btn-light" (click)="checkpage('submit')" [routerLink]="['/myport']">
 																	<p>
 																		เข้าสู่ระบบ
 																		<i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -113,7 +113,7 @@
 
 														<div class="col-md-6 ">
 															<div class="btn-wrapper-left">
-																<button class="btn-med btn-white btn-primary" (click)="checkpage('signup1')">
+																<button class="btn-med btn-white btn-primary" (click)="checkpage('signup1')" >
 																	<p>ลงทะเบียน
 																		<i class="fa fa-angle-right" aria-hidden="true"></i>
 																	</p>
@@ -692,9 +692,6 @@
 					</div>
 				</div>
 			</div>
-			<!-- <div class="slider-controller">
-				<div id="foo_pager"></div>
-			</div> -->
 		</div>
 
 	</div>
@@ -727,3 +724,8 @@
 	<!--#include file="../Shared/footer.aspx"-->
 </footer>
 	<!-- #footer-wrapper -->
+
+	<!-- <canvas id="myChart" width="400" height="400"></canvas> -->
+	<div>
+		<canvas id="canvas">{{ myChart }}</canvas>
+	</div>

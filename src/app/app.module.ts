@@ -14,6 +14,8 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { HeaderLoginComponent } from './header-login/header-login.component';
 
 import * as $ from 'jquery';
+import { MyportComponent } from './myport/myport.component';
+import { ChartModule } from 'angular-highcharts';
  
 // Add an icon to the library for convenient access in other components
 library.add(faCoffee);
@@ -24,13 +26,15 @@ library.add(faCoffee);
     LoginComponent,
     HeaderComponent,
     FooterComponent,
-    HeaderLoginComponent
+    HeaderLoginComponent,
+    MyportComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,    
-    FontAwesomeModule
+    FontAwesomeModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -28,6 +28,15 @@
   font-style: normal; }
 
 /* note : for IE8,7 need css3pie helper*/
+.top-menu-wrapper {
+  display: none !important; }
+
+.bottom-menu-wrapper {
+  display: none !important; }
+
+.footer_sub {
+  display: none !important; }
+
 #maincontainer-wrapper {
   margin-top: 50px; }
 

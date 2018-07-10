@@ -1,0 +1,236 @@
+<div class="" id="maincontainer-wrapper">
+    <div class="page-content-wrapper">
+        <div class="mutual-fund-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="tabs-menu-wrapper">
+                            <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
+                                <li role="presentation" id="menu1" class="current">
+                                    <a routerLink="/dashboard" title="หน้ารวม Port">หน้ารวม Port</a>
+                                </li>
+                                <li role="presentation" id="menu2">
+                                    <a routerLink="/risk-assessment-form" title="แบบประเมินความเสี่ยง">แบบประเมินความเสี่ยง</a>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                        <div class="fund-table-wrapper">
+                            <div class="heading-section">
+                                <div class="row">
+                                    <!-- <div class="col-sm-6 col-md-4">
+                                      <h2>มูลค่าหน่วยลงทุน</h2>
+                                  </div> -->
+
+                                    <div class="col-sm-12 col-md-12 icon-option mb-3">
+                                        <!-- <div class="add-download">
+                                            <a href="#" class="">ดาวน์โหลดทุกกองทุน
+                                            </a>
+                                        </div>
+                                        <div class="add-print">
+                                            <a href="#" class="" onclick="window.print();">พิมพ์หน้านี้
+                                            </a>
+                                        </div> -->
+                                        <ul class="">
+                                                <li class="ico-fb">
+                                                    <a href="#" title="facebook">
+                                                        <img src="/assets/Images/icons/ico-pipe.png" />
+                                                    </a>
+                                                </li>
+                                                <li class="ico-line">
+                                                    <a href="#" title="line">
+                                                        <img src="/assets/Images/icons/ico-download.png" />
+                                                    </a>
+                                                </li>
+                                                <li class="ico-yt">
+                                                    <a href="#" title="youtube">
+                                                        <img src="/assets/Images/icons/ico-print.png" />
+                                                    </a>
+                                                </li>
+                                                
+                                            </ul>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+
+                                        <p>เลขที่ผู้ถือหนวยลงทุน</p>
+                                        <br/>
+                                        <div class="select-wrapper inline-block">
+                                                <select name="ddlLink" id="ddlLink">
+                                                    <option value="0" selected="">9990244757</option>
+                                                    <option value="36">36</option>
+                                                    <option value="29">29</option>
+                                                </select>
+                                            </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <p>ชื่อผู้ถือหนวยลงทุน</p>
+                                        <span>เนติวัฒน์ โชติกร</span>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+
+                                        <p>ยอดคงเหลือ ณ วันที่</p>
+                                        <span>7 มิถุนายน 2561</span>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+
+                                        <p>วันที่ออกรายงาน</p>
+                                        <span>7 มิถุนายน 2561</span>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+
+                                        <p>ที่อยู่</p>
+                                        <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
+                                    </div>
+                                    <!-- <div class="col-sm-3 col-md-2">
+                                      <div class="add-print">
+                                          <a href="#" class="" onclick="window.print();">พิมพ์หน้านี้
+                                          </a>
+                                      </div>
+                                  </div> -->
+                                </div>
+                            </div>
+                            <div class="fund-list-wrapper">
+                            <div class="row">
+                                <div class="col">
+                                        <div class="title-heading">
+                                                <h3>มูลค่าทรัพย์สินสุทธ(บาท)</h3>
+                                                <h3>฿ 70,474,729.91</h3>
+                                            </div>
+                                </div>
+                                <div class="col">
+                                        <div class="title-heading-blue">
+                                                <h3>กำไร/ขาดทุน (บาท)</h3>
+                                                <h3>฿ 669,638.80</h3>
+                                            </div>
+                                    </div>
+                            </div>
+                        </div>
+
+                            
+                            <div class="row">                               
+                                    <div class="col">
+                                        <div class="table-responsive">
+                                            <table class="table table-performance">
+                                            <tbody>
+                                                <tr class="captions">
+                                                    <td colspan="11">
+                                                        <h3>
+                                                            สัดส่วนเงินลงทุน
+                                                        </h3>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        Fund Type
+                                                    </th>
+                                                    <th>
+                                                        วันที่
+                                                    </th>
+                                                    <th>
+                                                        มูลค่าหน่วย
+                                                    </th>
+                                                    <th>
+                                                        Current Amount (Bath)
+                                                    </th>
+                                                    <th>
+                                                        Asset Allocation Of Port(%)
+                                                    </th>
+                                                </tr>
+                                                <tr class="line">
+                                                    <td>
+                                                        <a href="/MutualFund/FundDetail" title="ชื่อกองทุน">
+                                                            LHMM
+                                                        </a>
+                                                    </td>
+                                                    <td class="txt-right">
+                                                        10.2851
+                                                    </td>
+                                                    <td class="txt-right">
+                                                        4,514,125,213.81
+                                                    </td>
+                                                    <td class="txt-right">
+                                                        10.4180
+                                                    </td>
+                                                    <td class="txt-right">
+                                                        10.2851
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <a href="/MutualFund/FundDetail" title="ชื่อกองทุน">
+                                                            LHMM
+                                                        </a>
+                                                    </td>
+                                                    <td class="txt-right">
+                                                        10.2851
+                                                    </td>
+                                                    <td class="txt-right">
+                                                        4,514,125,213.81
+                                                    </td>
+                                                    <td class="txt-right">
+                                                        10.4180
+                                                    </td>
+                                                    <td class="txt-right">
+                                                        10.2851
+                                                    </td>
+                                                </tr>
+                                                <tr class="line">
+                                                    <td>
+                                                        <a href="/MutualFund/FundDetail" title="ชื่อกองทุน">
+                                                            LHMM
+                                                        </a>
+                                                    </td>
+                                                    <td class="txt-right">
+                                                        10.2851
+                                                    </td>
+                                                    <td class="txt-right">
+                                                        4,514,125,213.81
+                                                    </td>
+                                                    <td class="txt-right">
+                                                        10.4180
+                                                    </td>
+                                                    <td class="txt-right">
+                                                        10.2851
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <a href="/MutualFund/FundDetail" title="ชื่อกองทุน">
+                                                            LHMM
+                                                        </a>
+                                                    </td>
+                                                    <td class="txt-right">
+                                                        10.2851
+                                                    </td>
+                                                    <td class="txt-right">
+                                                        4,514,125,213.81
+                                                    </td>
+                                                    <td class="txt-right">
+                                                        10.4180
+                                                    </td>
+                                                    <td class="txt-right">
+                                                        10.2851
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>   
+                                         </div>
+                                        </div>
+                                        <div class="col"> 
+                                            <div [chart]="chart"></div>
+                                        </div>
+                                 
+                            </div>
+                                
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <button (click)="add()">Add Point!</button> -->
+
+<!-- <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto">{{ myChart }}</div> -->

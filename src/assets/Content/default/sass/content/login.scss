@@ -2,27 +2,36 @@
 @import "../helpers/fontface";
 @import "../helpers/mixin_css3";
 
+.top-menu-wrapper{
+    display: none !important;
+}
+.bottom-menu-wrapper{
+    display: none !important;
+}
+.footer_sub{
+    display: none !important;
+}
 
 #maincontainer-wrapper{
     margin-top: 50px;
 }
 #main-wrapper{
     background-image: url("/assets/Images/banners/banner-login.png");
-  width: 100%;  
-  min-height: 100vh;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  padding: 15px;
-  
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+    width: 100%;  
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 
   @media screen and (max-width: 767px){
     background-image: url("/assets/Images/banners/banner-login-m.png");

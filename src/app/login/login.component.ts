@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,  OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import * as $ from 'jquery-match-height';
 import { Directive, ElementRef, AfterViewChecked, Input, HostListener } from '@angular/core';
+import * as Chart from 'chart.js'
 
 library.add(fas, far);
 
@@ -14,7 +15,7 @@ library.add(fas, far);
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.css','../../assets/Content/default/css/content/login.css'],
 })
 
 @Directive({
@@ -25,30 +26,54 @@ export class LoginComponent implements OnInit {
  
   page = "signin";
   myMatchHeight: string;  
+//   canvas: any;
+  ctx: any;
+  myChart:any;
+
 
   constructor(private el: ElementRef) { }
 
-  ngOnInit() { 
-   
-    // $(function() {
-    //     $('.item').matchHeight();
-    // });
-   
-        // $("button").click(function(){
-        //     var div = $("div");  
-        //     div.animate({left: '100px'}, "slow");
-        //     div.animate({fontSize: '5em'}, "slow");
-        // });
-
-         
-        // $('.item').matchHeight();
-       
-        // $('.row').each(function(i, elem) {
-        //     $(elem)
-        //         .find('.article-box .well')   // Only children of this row
-        //         .matchHeight({byRow: false}); // Row detection gets confused so disable it
-        // });
-    
+//   ngOnInit() {  
+        
+//   }
+ngOnInit() {
+    // this.ctx = document.getElementById("myChart");
+    this.myChart = new Chart('canvas', {
+    type: 'pie',
+    data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        // scales: {
+        //     yAxes: [{
+        //         ticks: {
+        //             beginAtZero:true
+        //         }
+        //     }]
+        // }
+    }
+});
   }
  
   
@@ -71,7 +96,10 @@ export class LoginComponent implements OnInit {
     case 'signup2':
         this.page = "signup2";
         break;
-    default:
+    default: 
+        
+        this.page = "signin";
+        console.log(this.page)
         break;
 }
     
