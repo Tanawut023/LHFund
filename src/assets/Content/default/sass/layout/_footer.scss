@@ -551,8 +551,17 @@
             }*/
             .copyright {
                 position: relative;
-                text-align: left;
-
+                text-align: center;
+                h5{
+                    font-size: $text-x-small;
+                    line-height: $text-content;
+                    color: $color-text;
+                }
+                span{
+                    font-size: $text-x-small;
+                    line-height: $text-content;
+                    color: $color-primary;
+                }
                 p {
                     font-size: $base-fontsize;
                     line-height: $text-content;

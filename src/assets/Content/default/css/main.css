@@ -4120,6 +4120,26 @@ if it's not present, don't show loader */
   .lt-ie9 #main-wrapper {
     min-width: 1000px; }
 
+.no-margin {
+  margin-right: 0px;
+  margin-left: 0px; }
+
+.no-padding {
+  padding-right: 0px;
+  padding-left: 0px; }
+
+.width50 {
+  width: 50% !important; }
+
+.bg-blue {
+  background-color: #00698C !important; }
+
+.bg-primary {
+  background-color: #1CA59B !important; }
+
+.bg-darkbrown {
+  background-color: #5a5a5a !important; }
+
 #header-wrapper {
   width: 100%;
   height: auto;
@@ -4202,16 +4222,17 @@ select {
   -pie-border-radius: 0;
   behavior: url("/assets/pie/PIE.htc");
   font-size: 22px;
-  color: #5a5a5a;
+  color: #1CA59B;
   outline: none; }
 
 select {
-  /*margin-bottom: 15px;*/
-  background-image: url("/assets/Images/icons/p_dropdown_black.png");
+  margin-bottom: 15px;
+  background-image: url("/assets/Images/icons/ico-arrow-down-green.png");
   background-repeat: no-repeat;
   background-position: center right 10px;
   background-position-y: center;
-  background-position-x: calc(100% - 15px); }
+  background-position-x: calc(100% - 15px);
+  background-color: #f5f5f5; }
 
 input[type=button],
 input[type=submit],
@@ -4278,6 +4299,24 @@ input[type=reset] {
     * button.btn-sm.btn-secondary:hover,
     * button.btn-med.btn-secondary:hover,
     * button.btn-lg.btn-secondary:hover {
+      border: 1px solid #000;
+      background-color: #000; }
+  .btn-sm.btn-cancel,
+  .btn-med.btn-cancel,
+  .btn-lg.btn-cancel,
+  * button.btn-sm.btn-cancel,
+  * button.btn-med.btn-cancel,
+  * button.btn-lg.btn-cancel {
+    position: relative;
+    color: #fff;
+    border: 1px solid #cdcdcd;
+    background-color: #C90A11; }
+    .btn-sm.btn-cancel:hover,
+    .btn-med.btn-cancel:hover,
+    .btn-lg.btn-cancel:hover,
+    * button.btn-sm.btn-cancel:hover,
+    * button.btn-med.btn-cancel:hover,
+    * button.btn-lg.btn-cancel:hover {
       border: 1px solid #000;
       background-color: #000; }
   .btn-sm.btn-light,
@@ -4581,6 +4620,17 @@ input[type=reset] {
             .table-responsive .table.table-performance > tbody > tr > td a:hover {
               color: #000;
               text-decoration: none; }
+        .table-responsive .table.table-performance > tbody > tr.captions > td {
+          padding: 20px 20px 10px 20px;
+          text-align: left; }
+          .table-responsive .table.table-performance > tbody > tr.captions > td h3 {
+            margin: 0;
+            font-size: 28px;
+            line-height: 28px;
+            color: #1CA59B; }
+          .table-responsive .table.table-performance > tbody > tr.captions > td p {
+            margin: 0;
+            color: #1CA59B; }
         .table-responsive .table.table-performance > tbody tr.line {
           background: #f5f5f5; }
     .table-responsive .table.table-comparison {
@@ -5265,7 +5315,7 @@ input[type=reset] {
     padding: 0;
     margin: 0;
     border-bottom: 5px solid #1CA59B;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: #fff;
     -webkit-box-shadow: 0px 5px 5px -5px rgba(0, 0, 0, 0.5);
     box-shadow: 0px 5px 5px -5px rgba(0, 0, 0, 0.5); }
     #header .bottom-menu-wrapper .wrapper {
@@ -6115,6 +6165,14 @@ input[type=reset] {
           font-size: 28px;
           line-height: 40px; } }
 
+.dateinput {
+  padding-right: 25px;
+  background-image: url("/assets/Images/icons/ico-date-green.png");
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: calc(100% - 10px);
+  cursor: pointer; }
+
 .btn-wrapper {
   display: block;
   margin: 0 auto;
@@ -6405,7 +6463,8 @@ input[type=reset] {
 .page-content-wrapper {
   position: relative;
   display: block;
-  max-width: 100%; }
+  max-width: 100%;
+  background-color: #f5f5f5; }
   .page-content-wrapper .sidenav-left {
     display: block; }
     .page-content-wrapper .sidenav-left .vertical-menu-wrapper {
@@ -6833,12 +6892,6 @@ input[type=reset] {
         font-size: 28px;
         line-height: 28px;
         color: #5a5a5a; }
-    .page-content-wrapper .heading-section .dateinput {
-      padding-right: 25px;
-      background-image: url("/assets/Images/icons/datepicker.jpg");
-      background-repeat: no-repeat;
-      background-position-y: center;
-      background-position-x: calc(100% - 10px); }
     @media screen and (max-width: 767px) {
       .page-content-wrapper .heading-section .add-print, .page-content-wrapper .heading-section .add-download {
         text-align: left;
@@ -6852,8 +6905,8 @@ input[type=reset] {
       padding: 20px;
       text-align: left;
       background-color: #1CA59B; }
-      .page-content-wrapper .fund-list-wrapper .title-heading h3 {
-        margin: 0 auto;
+      .page-content-wrapper .fund-list-wrapper .title-heading h3, .page-content-wrapper .fund-list-wrapper .title-heading h5 {
+        margin: 10px 0;
         font-size: 28px;
         line-height: 28px;
         color: #fff; }
@@ -6861,9 +6914,9 @@ input[type=reset] {
       height: 90px;
       padding: 20px;
       text-align: left;
-      background-color: #293D69; }
+      background-color: #00698C; }
       .page-content-wrapper .fund-list-wrapper .title-heading-blue h3 {
-        margin: 0 auto;
+        margin: 10px 0;
         font-size: 28px;
         line-height: 28px;
         color: #fff; }
@@ -7409,7 +7462,7 @@ input[type=reset] {
     padding: 0;
     padding-right: 25px;
     margin: 0;
-    background-image: url("/assets/Images/icons/datepicker.jpg");
+    background-image: url("/assets/Images/icons/ico-date-green.png");
     background-repeat: no-repeat;
     background-position-y: center;
     background-position-x: calc(100% - 5px); }
@@ -8317,7 +8370,15 @@ input[type=reset] {
             }*/ }
       .footer .footer_sub .footer_sub--block .copyright {
         position: relative;
-        text-align: left; }
+        text-align: center; }
+        .footer .footer_sub .footer_sub--block .copyright h5 {
+          font-size: 24px;
+          line-height: 22px;
+          color: #5a5a5a; }
+        .footer .footer_sub .footer_sub--block .copyright span {
+          font-size: 24px;
+          line-height: 22px;
+          color: #1CA59B; }
         .footer .footer_sub .footer_sub--block .copyright p {
           font-size: 20px;
           line-height: 22px;

@@ -5,7 +5,7 @@ import { Chart } from 'angular-highcharts';
 @Component({
   selector: 'app-myport',
   templateUrl: './myport.component.html',
-  styleUrls: ['./myport.component.scss','../../assets/Content/default/css/content/myport.css']
+  styleUrls: ['./myport.component.scss',]
 })
 export class MyportComponent implements OnInit {
 

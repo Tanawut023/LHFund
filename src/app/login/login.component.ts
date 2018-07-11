@@ -15,9 +15,9 @@ library.add(fas, far);
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css','../../assets/Content/default/css/content/login.css'],
+  styleUrls: ['./login.component.css'],
 })
-
+// ,'../../assets/Content/default/css/content/login.css'
 @Directive({
     selector: '[myMatchHeight]'
 })

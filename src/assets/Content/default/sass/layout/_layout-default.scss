@@ -68,6 +68,14 @@
         }
     }
 }
+.dateinput {
+    padding-right: 25px;
+    background-image: url('/assets/Images/icons/ico-date-green.png');
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: calc(100% - 10px);
+    cursor: pointer;
+}
 
 .btn-wrapper {
     display: block;
@@ -529,6 +537,7 @@
     position: relative;
     display: block;
     max-width: 100%;
+    background-color: #f5f5f5;
 
     .sidenav-left {
         display: block;
@@ -1070,6 +1079,7 @@
         padding: 20px;
         padding-bottom: 0;
         margin-bottom: 20px;
+        
 
         h2 {
             margin: 0 auto;
@@ -1148,13 +1158,7 @@
             }
         }
 
-        .dateinput {
-            padding-right: 25px;
-            background-image: url('/assets/Images/icons/datepicker.jpg');
-            background-repeat: no-repeat;
-            background-position-y: center;
-            background-position-x: calc(100% - 10px);
-        }
+        
 
         @media screen and (max-width: $screen-xs-max) {
             .add-print, .add-download {
@@ -1175,12 +1179,13 @@
             text-align: left;
             background-color: $color-primary;
 
-            h3 {
-                margin: 0 auto;
+            h3,h5 {
+                margin: 10px 0;
                 font-size: $text-small;
                 line-height: $text-small;
                 color: $color-white;
             }
+
         }
         .title-heading-blue {
             height: 90px;
@@ -1189,7 +1194,7 @@
             background-color: $color-blue;
 
             h3 {
-                margin: 0 auto;
+                margin: 10px 0;
                 font-size: $text-small;
                 line-height: $text-small;
                 color: $color-white;
@@ -1995,7 +2000,7 @@
             padding: 0;
             padding-right: 25px;
             margin: 0;
-            background-image: url('/assets/Images/icons/datepicker.jpg');
+            background-image: url('/assets/Images/icons/ico-date-green.png');
             background-repeat: no-repeat;
             background-position-y: center;
             background-position-x: calc(100% - 5px);

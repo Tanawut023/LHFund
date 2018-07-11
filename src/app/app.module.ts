@@ -16,6 +16,7 @@ import { HeaderLoginComponent } from './header-login/header-login.component';
 import * as $ from 'jquery';
 import { MyportComponent } from './myport/myport.component';
 import { ChartModule } from 'angular-highcharts';
+import { TransactionComponent } from './transaction/transaction.component';
  
 // Add an icon to the library for convenient access in other components
 library.add(faCoffee);
@@ -27,7 +28,8 @@ library.add(faCoffee);
     HeaderComponent,
     FooterComponent,
     HeaderLoginComponent,
-    MyportComponent
+    MyportComponent,
+    TransactionComponent
   ],
   imports: [
     BrowserModule,
