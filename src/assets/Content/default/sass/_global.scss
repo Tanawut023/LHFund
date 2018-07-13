@@ -46,6 +46,8 @@ if it's not present, don't show loader */
 .no-margin{
     margin-right: 0px;
     margin-left: 0px;
+    margin-bottom: 0px !important;
+    margin-top: 0px !important;
 }
 .no-padding{
     padding-right: 0px;
@@ -62,6 +64,16 @@ if it's not present, don't show loader */
 }
 .bg-darkbrown{
     background-color: $color-text !important;
+}
+.bg-sea{
+    background-color: #4BBEC5 !important;
+}
+.color-red{
+    color: $color-red !important;
+    font-size: 22px;
+}
+.margin-top90{
+    margin-top: 90px;
 }
 
 #header-wrapper {
@@ -90,7 +102,7 @@ input[type="text"] {
     height: 40px;
     margin: 0 auto;
     padding: 8px 10px 7px 10px;
-    border: 1px solid $color-secondary;
+    border: 1px solid $color-little-gray;
     font-size: $text-content;
 
     @media screen and (max-width: $screen-sm-max) {
@@ -153,7 +165,7 @@ select {
     line-height: 42px;
     margin: 0 auto;
     padding: 0px 10px 0px 10px;
-    border: 1px solid #ccc;
+    border: 1px solid $color-little-gray;
     @include round-corner(0);
     font-size: $text-content;
     color: $color-primary;
@@ -162,13 +174,13 @@ select {
 }
 
 select {
-    margin-bottom: 15px;
+    margin-bottom: 30px;
     background-image: url('/assets/Images/icons/ico-arrow-down-green.png');
     background-repeat: no-repeat;
     background-position: center right 10px;
     background-position-y: center;
     background-position-x: calc(100% - 15px);
-    background-color: #f5f5f5;
+    background-color: $color-little-gray;
 }
 
 input[type=button],
@@ -194,9 +206,10 @@ input[type=reset] {
     text-align: center;
     font-family: $default-font;
     color: $color-hover;
-    min-width: 200px;
+    // min-width: 200px;
     height: 42px;
-    text-transform: uppercase;
+    width: 100%;
+    // text-transform: uppercase;
     background-color: transparent;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
@@ -355,11 +368,12 @@ input[type=reset] {
                         font-size: $text-x-small;
                         line-height: $text-x-small;
                         font-weight: normal;
-                        color: $color-primary;
-                        text-align: left;
+                        color: $color-white;
+                        text-align: center;
                         vertical-align: middle;
                         border: none;
                         background-color: transparent;
+                        border-right: 1px solid $color-white;
 
                         &.txt-center {
                             text-align: center;
@@ -378,8 +392,10 @@ input[type=reset] {
                         padding-bottom: 15px;
                         font-size: $text-content;
                         line-height: $text-x-small;
-                        text-align: left;
+                        text-align: center;
                         border: none;
+                        border-bottom: 1px solid $color-white;
+                        background-color: #f5f5f5;
 
                         &.txt-center {
                             text-align: center;
@@ -966,7 +982,7 @@ input[type=reset] {
     }
 
     input[type=radio] + label {
-        background-image: url('../../../Images/icons/radio-icon2.png');
+        background-image: url('../../../Images/icons/radio-icon-black.png');
         background-position: 0 0;
         background-repeat: no-repeat;
         height: 28px;

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'app-transaction',
-    templateUrl: './transaction.component.html',
-    styleUrls: ['./transaction.component.scss',]
+    selector: 'app-report',
+    templateUrl: './report.component.html',
+    styleUrls: ['./report.component.scss']
 })
-export class TransactionComponent implements OnInit {
-    page = "purchase";
+export class ReportComponent implements OnInit {
+    page = "home";
 
     constructor() { }
 

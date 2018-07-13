@@ -4122,7 +4122,9 @@ if it's not present, don't show loader */
 
 .no-margin {
   margin-right: 0px;
-  margin-left: 0px; }
+  margin-left: 0px;
+  margin-bottom: 0px !important;
+  margin-top: 0px !important; }
 
 .no-padding {
   padding-right: 0px;
@@ -4139,6 +4141,16 @@ if it's not present, don't show loader */
 
 .bg-darkbrown {
   background-color: #5a5a5a !important; }
+
+.bg-sea {
+  background-color: #4BBEC5 !important; }
+
+.color-red {
+  color: #C90A11 !important;
+  font-size: 22px; }
+
+.margin-top90 {
+  margin-top: 90px; }
 
 #header-wrapper {
   width: 100%;
@@ -4160,7 +4172,7 @@ input[type="text"] {
   height: 40px;
   margin: 0 auto;
   padding: 8px 10px 7px 10px;
-  border: 1px solid #cdcdcd;
+  border: 1px solid #f5f5f5;
   font-size: 22px; }
   @media screen and (max-width: 999px) {
     input[type="text"] {
@@ -4215,7 +4227,7 @@ select {
   line-height: 42px;
   margin: 0 auto;
   padding: 0px 10px 0px 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #f5f5f5;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
@@ -4226,7 +4238,7 @@ select {
   outline: none; }
 
 select {
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   background-image: url("/assets/Images/icons/ico-arrow-down-green.png");
   background-repeat: no-repeat;
   background-position: center right 10px;
@@ -4256,9 +4268,8 @@ input[type=reset] {
   text-align: center;
   font-family: "KitithadaBold";
   color: #000;
-  min-width: 200px;
   height: 42px;
-  text-transform: uppercase;
+  width: 100%;
   background-color: transparent;
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
@@ -4465,11 +4476,12 @@ input[type=reset] {
         font-size: 24px;
         line-height: 24px;
         font-weight: normal;
-        color: #1CA59B;
-        text-align: left;
+        color: #fff;
+        text-align: center;
         vertical-align: middle;
         border: none;
-        background-color: transparent; }
+        background-color: transparent;
+        border-right: 1px solid #fff; }
         .table-responsive .table.table-custom thead tr th.txt-center {
           text-align: center; }
         .table-responsive .table.table-custom thead tr th.txt-right {
@@ -4478,8 +4490,10 @@ input[type=reset] {
         padding-bottom: 15px;
         font-size: 22px;
         line-height: 24px;
-        text-align: left;
-        border: none; }
+        text-align: center;
+        border: none;
+        border-bottom: 1px solid #fff;
+        background-color: #f5f5f5; }
         .table-responsive .table.table-custom tbody tr td.txt-center {
           text-align: center; }
         .table-responsive .table.table-custom tbody tr td.txt-right {
@@ -4833,7 +4847,7 @@ input[type=reset] {
   .custom-radio-between input[type=radio] {
     display: none; }
   .custom-radio-between input[type=radio] + label {
-    background-image: url("../../../Images/icons/radio-icon2.png");
+    background-image: url("../../../Images/icons/radio-icon-black.png");
     background-position: 0 0;
     background-repeat: no-repeat;
     height: 28px;
@@ -6166,6 +6180,7 @@ input[type=reset] {
           line-height: 40px; } }
 
 .dateinput {
+  margin-bottom: 30px !important;
   padding-right: 25px;
   background-image: url("/assets/Images/icons/ico-date-green.png");
   background-repeat: no-repeat;
@@ -6194,7 +6209,7 @@ input[type=reset] {
 
 .input-wrapper {
   margin: 0 auto;
-  margin-bottom: 5px; }
+  margin-bottom: 25px; }
   .input-wrapper.inline-block {
     display: inline-block;
     vertical-align: top;
@@ -6477,23 +6492,14 @@ input[type=reset] {
         margin: 0; }
         .page-content-wrapper .sidenav-left .vertical-menu-wrapper ul li {
           display: block;
-          padding: 10px 25px 10px 10px;
           margin: 0;
-          border-bottom: 1px solid #ccc; }
+          border-bottom: 1px solid #fff;
+          background-color: #f5f5f5; }
           .page-content-wrapper .sidenav-left .vertical-menu-wrapper ul li a {
             display: block;
+            padding: 10px;
             color: #5a5a5a; }
             .page-content-wrapper .sidenav-left .vertical-menu-wrapper ul li a:hover {
-              text-decoration: none; }
-          .page-content-wrapper .sidenav-left .vertical-menu-wrapper ul li:hover {
-            background-color: #1CA59B;
-            background-image: url("/assets/Images/icons/ico-arrow-right-white.png");
-            background-repeat: no-repeat;
-            background-position: center right 10px;
-            background-position-y: 15px;
-            background-position-x: calc(100% - 5px); }
-            .page-content-wrapper .sidenav-left .vertical-menu-wrapper ul li:hover a {
-              color: #fff;
               text-decoration: none; }
           .page-content-wrapper .sidenav-left .vertical-menu-wrapper ul li.current {
             background-color: #1CA59B;
@@ -6505,6 +6511,30 @@ input[type=reset] {
             .page-content-wrapper .sidenav-left .vertical-menu-wrapper ul li.current a {
               color: #fff;
               text-decoration: none; }
+          .page-content-wrapper .sidenav-left .vertical-menu-wrapper ul li .btn-gray {
+            position: relative;
+            color: #fff;
+            border: 1px solid #5a5a5a;
+            background-color: #5a5a5a;
+            display: inline-block;
+            vertical-align: middle;
+            cursor: pointer;
+            padding: 0 30 0 10px;
+            margin: 0 auto;
+            font-family: "KitithadaBold";
+            min-width: 100%;
+            height: 100%;
+            -webkit-transition: all 0.2s ease-in-out;
+            -moz-transition: all 0.2s ease-in-out;
+            -o-transition: all 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
+            text-decoration: none; }
+            .page-content-wrapper .sidenav-left .vertical-menu-wrapper ul li .btn-gray:hover {
+              color: #fff;
+              border: 1px solid #1CA59B;
+              background-color: #1CA59B; }
+            .page-content-wrapper .sidenav-left .vertical-menu-wrapper ul li .btn-gray img {
+              margin-left: 20px; }
       @media screen and (max-width: 999px) {
         .page-content-wrapper .sidenav-left .vertical-menu-wrapper {
           display: none; } }
@@ -6837,8 +6867,7 @@ input[type=reset] {
       margin: 0; }
   .page-content-wrapper .heading-section {
     padding: 20px;
-    padding-bottom: 0;
-    margin-bottom: 20px; }
+    padding-bottom: 0; }
     .page-content-wrapper .heading-section h2 {
       margin: 0 auto;
       margin-bottom: 20px;
@@ -6901,8 +6930,8 @@ input[type=reset] {
     display: block;
     max-width: 100%; }
     .page-content-wrapper .fund-list-wrapper .title-heading {
-      height: 90px;
-      padding: 20px;
+      height: 120px;
+      padding: 30px;
       text-align: left;
       background-color: #1CA59B; }
       .page-content-wrapper .fund-list-wrapper .title-heading h3, .page-content-wrapper .fund-list-wrapper .title-heading h5 {
@@ -6911,11 +6940,29 @@ input[type=reset] {
         line-height: 28px;
         color: #fff; }
     .page-content-wrapper .fund-list-wrapper .title-heading-blue {
-      height: 90px;
-      padding: 20px;
+      height: 120px;
+      padding: 30px;
       text-align: left;
       background-color: #00698C; }
+      .page-content-wrapper .fund-list-wrapper .title-heading-blue p {
+        font-size: 20px;
+        line-height: 20px;
+        color: #fff; }
       .page-content-wrapper .fund-list-wrapper .title-heading-blue h3 {
+        margin: 10px 0;
+        font-size: 28px;
+        line-height: 28px;
+        color: #fff; }
+    .page-content-wrapper .fund-list-wrapper .title-heading-sea {
+      height: 120px;
+      padding: 30px;
+      text-align: left;
+      background-color: #4BBEC5; }
+      .page-content-wrapper .fund-list-wrapper .title-heading-sea p {
+        font-size: 20px;
+        line-height: 20px;
+        color: #fff; }
+      .page-content-wrapper .fund-list-wrapper .title-heading-sea h3 {
         margin: 10px 0;
         font-size: 28px;
         line-height: 28px;
@@ -7357,7 +7404,7 @@ input[type=reset] {
       margin-bottom: 0; }
       .tabs-menu-wrapper .nav-tabs > li a {
         color: #5a5a5a;
-        font-size: 24px;
+        font-size: 22px;
         line-height: 28px;
         background-color: transparent;
         border: 0;

@@ -17,6 +17,10 @@ import * as $ from 'jquery';
 import { MyportComponent } from './myport/myport.component';
 import { ChartModule } from 'angular-highcharts';
 import { TransactionComponent } from './transaction/transaction.component';
+import { RmfLtfComponent } from './rmf-ltf/rmf-ltf.component';
+import { RegularListComponent } from './regular-list/regular-list.component';
+import { ReportComponent } from './report/report.component';
+import { ProfileComponent } from './profile/profile.component';
  
 // Add an icon to the library for convenient access in other components
 library.add(faCoffee);
@@ -29,7 +33,11 @@ library.add(faCoffee);
     FooterComponent,
     HeaderLoginComponent,
     MyportComponent,
-    TransactionComponent
+    TransactionComponent,
+    RmfLtfComponent,
+    RegularListComponent,
+    ReportComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
