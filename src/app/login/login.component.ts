@@ -37,7 +37,11 @@ export class LoginComponent implements OnInit {
         
 //   }
 ngOnInit() {
+    this.page = "signin";
     // this.ctx = document.getElementById("myChart");
+
+    // $('#top-menu-wrapper').find('div').addClass('none');
+
     this.myChart = new Chart('canvas', {
     type: 'pie',
     data: {

@@ -62,18 +62,30 @@ if it's not present, don't show loader */
 .bg-primary{
     background-color: $color-primary !important;
 }
+.bg-little-primary{
+    background-color: rgba(28, 165, 155, 0.9) !important;
+}
 .bg-darkbrown{
     background-color: $color-text !important;
 }
 .bg-sea{
     background-color: #4BBEC5 !important;
 }
+.bg-green{
+    background-color: #809E23 !important;
+}
+.bg-little-green{
+    background-color: #8FB127 !important;
+}
 .color-red{
     color: $color-red !important;
     font-size: 22px;
 }
-.margin-top90{
-    margin-top: 90px;
+.bg-little-blue{
+    background-color: rgba(0, 103, 137,0.9) !important;
+}
+.none{
+    display: none;
 }
 
 #header-wrapper {
@@ -203,7 +215,7 @@ input[type=reset] {
     cursor: pointer;
     padding: 0 20px;
     margin: 0 auto;
-    text-align: center;
+    text-align: left;
     font-family: $default-font;
     color: $color-hover;
     // min-width: 200px;
@@ -215,12 +227,47 @@ input[type=reset] {
     -moz-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
     text-decoration: none;
+    
 
     &.btn-primary {
         position: relative;
         color: $color-white;
         border: 1px solid $color-primary;
         background-color: $color-primary;
+
+        &:hover {
+            border: 1px solid $color-hover;
+            background-color: $color-hover;
+        }
+    }
+
+    &.btn-confirm-login {
+        position: relative;
+        color: $color-white;
+        border: 1px solid #4BD987;
+        background-color: #4BD987;
+
+        &:hover {
+            border: 1px solid $color-hover;
+            background-color: $color-hover;
+        }
+    }
+    &.btn-next-login {
+        position: relative;
+        color: $color-white;
+        border: 1px solid #02CBD5;
+        background-color: #02CBD5;
+
+        &:hover {
+            border: 1px solid $color-hover;
+            background-color: $color-hover;
+        }
+    }
+    &.btn-back-login {
+        position: relative;
+        color: $color-white;
+        border: 1px solid $color-text;
+        background-color: $color-text;
 
         &:hover {
             border: 1px solid $color-hover;
@@ -242,7 +289,7 @@ input[type=reset] {
     &.btn-cancel {
         position: relative;
         color: $color-white;
-        border: 1px solid $color-secondary;
+        border: 1px solid $color-red;
         background-color: $color-red;
 
         &:hover {
@@ -372,7 +419,7 @@ input[type=reset] {
                         text-align: center;
                         vertical-align: middle;
                         border: none;
-                        background-color: transparent;
+                        background-color: $color-primary;
                         border-right: 1px solid $color-white;
 
                         &.txt-center {
@@ -408,6 +455,77 @@ input[type=reset] {
                 }
             }
         }
+        &.table-custom-score {
+            border-collapse: collapse !important;
+
+            thead {
+                tr {
+                    th {
+                        padding-bottom: 15px;                        
+                        font-size: $text-x-small;
+                        line-height: $text-x-small;
+                        font-weight: normal;
+                        color: $color-title;
+                        text-align: center;
+                        vertical-align: middle;
+                        // border: none;
+                        background-color: transparent;
+                        border: 1px solid $color-secondary;
+
+                        &.txt-center {
+                            text-align: center;
+                        }
+
+                        &.txt-right {
+                            text-align: right;
+                        }
+                        &.txt-left {
+                            text-align: left;
+                            margin-left: 5px;
+                        }
+                    }
+                }
+            }
+
+            tbody {
+                tr {
+                    td {
+                        padding-bottom: 15px;
+                        padding-left: 20px;
+                        font-size: $text-content;
+                        line-height: $text-x-small;
+                        text-align: center;
+                        // border: none;
+                        border: 1px solid $color-secondary;
+                        background-color: transparent;
+
+                        ul {
+                            list-style: none;
+                            padding: 0;
+                            margin: 0;
+                          }
+                          
+                          li {
+                            // padding-left: 1em; 
+                            // text-indent: -.7em;
+                          }
+                          
+                          li::before {
+                            content: "▪ ";
+                            color: $color-primary; /* or whatever color you prefer */
+                          }
+
+                        &.txt-center {
+                            text-align: center;
+                        }
+
+                        &.txt-right {
+                            text-align: right;
+                        }
+                    }
+                }
+            }
+        }
 
         &.table-nav {
             padding: 0;
@@ -423,7 +541,7 @@ input[type=reset] {
                         border: none;
                         text-align: center;
                         border-right: 1px solid $color-white;
-                        background-color: $color-secondary;
+                        background-color: $color-primary;
 
                         &.first-th {
                             border-bottom: 1px solid $color-white;
@@ -446,7 +564,8 @@ input[type=reset] {
                         border: none;
                         text-align: center;
                         border-right: 1px solid $color-white;
-                        background-color: $color-secondary;
+                        background-color: $color-primary;
+                        color: $color-white;
 
                         &:last-child {
                             border-right: none;
@@ -459,7 +578,7 @@ input[type=reset] {
                         line-height: $text-x-small;
                         font-weight: normal;
                         border: none;
-                        text-align: center;
+                        text-align: left;
 
                         &.txt-right {
                             text-align: right;
@@ -475,7 +594,9 @@ input[type=reset] {
 
                         &:first-child {
                             max-width: 200px;
-                        }
+                        }                       
+
+                        
 
                         a {
                             font-size: $text-x-small;
@@ -511,18 +632,30 @@ input[type=reset] {
                             }
                         }
                     }
+                    &:last-child {
+                        td{
+                           border-bottom: 2px solid #f5f5f5; 
+                        }
+                        th{
+                            border-bottom: 2px solid #f5f5f5; 
+                        }
+                        
+
+                    }
                 }
 
                 tr {
                     &.summary {
                         th {
-                            padding-left: 20px;
-                            padding-right: 20px;
-                            font-size: 28px;
-                            line-height: 26px;
+                            padding: 15px 10px;
+                            font-size: $text-content;
+                            line-height: $text-x-small;
                             font-weight: normal;
+                            // border: none;
+                            text-align: left;
                             color: $color-primary;
-                            border: none;
+                            border-top: 2px solid #f5f5f5;
+                            border-bottom: 2px solid #f5f5f5;
                             background-color: transparent;
 
                             &.custom-label {
@@ -531,6 +664,12 @@ input[type=reset] {
                                 background-color: $color-primary;
                             }
                         }
+                    }
+                }
+                tr {
+                    &.line {
+                        background: #f5f5f5;                        
+                        text-align: left !important;
                     }
                 }
             }
@@ -554,7 +693,7 @@ input[type=reset] {
                         border: none;
                         text-align: center;
                         border-right: 1px solid $color-white;
-                        background-color: $color-secondary;
+                        background-color: $color-title;
 
                         &.first-th {
                             border-bottom: 1px solid $color-white;
@@ -579,7 +718,8 @@ input[type=reset] {
                         border: none;
                         text-align: center;
                         border-right: 1px solid $color-white;
-                        background-color: $color-secondary;
+                        background-color: $color-text;
+                        color: $color-white;
 
                         &:last-child {
                             border-right: none;
@@ -623,7 +763,7 @@ input[type=reset] {
                     }
                     &.captions {
                         > td {
-                            padding: 20px 20px 10px 20px;
+                            padding: 20px 0px;
                             text-align: left;
 
                             h3 {
@@ -976,6 +1116,7 @@ input[type=reset] {
     width: 100%;
     position: relative;
     overflow: hidden;
+    margin-bottom: 15px;
     // Radio
     input[type=radio] {
         display: none;
@@ -983,6 +1124,87 @@ input[type=reset] {
 
     input[type=radio] + label {
         background-image: url('../../../Images/icons/radio-icon-black.png');
+        background-position: 0 0;
+        background-repeat: no-repeat;
+        height: 26px;
+        width: 26px;
+        display: block;
+        float: left;
+        padding: 0;
+        margin-right: 10px;
+        // vertical-align: top;
+        cursor: pointer;
+    }
+
+    input[type=radio]:checked + label {
+        background-image: url('../../../Images/icons/radio-icon-check2.png');
+        background-position: 0 0;
+        background-repeat: no-repeat;
+    }
+
+    input[type=radio]:disabled + label + span.content-rdo-inline {
+        color: #f0f0f0;
+    }
+
+    input[type=radio]:checked + label + span.content-rdo-inline {
+        color: $color-text;
+    }
+    // Checkbox
+    input[type=checkbox] {
+        display: none;
+    }
+
+    input[type=checkbox] + label {
+        background-image: url('../../../Images/icons/ico-rad.png');
+        background-position: 0 0;
+        background-repeat: no-repeat;
+        height: 25px;
+        width: 25px;
+        display: block;
+        float: left;
+        padding: 0;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    input[type=checkbox]:checked + label {
+        background-image: url('../../../Images/icons/ico-rad-checked.png');
+        background-position: 0 0;
+        background-repeat: no-repeat;
+    }
+
+    input[type=checkbox]:disabled + label + span.content-rdo-inline {
+        color: #f0f0f0;
+    }
+
+    input[type=checkbox]:checked + label + span.content-rdo-inline {
+        color: $color-text;
+    }
+
+    span.content-rdo-inline {
+        padding-left: 0;
+        // font-size: $base-fontsize;
+        line-height: 25px;
+        color: $color-text;
+        display: block;
+        float: left;
+        max-width: 85%;
+        cursor: pointer;
+    }
+}
+.custom-radio-login {
+    display: block;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 15px;
+    // Radio
+    input[type=radio] {
+        display: none;
+    }
+
+    input[type=radio] + label {
+        background-image: url('../../../Images/icons/radio-icon.png');
         background-position: 0 0;
         background-repeat: no-repeat;
         height: 28px;
@@ -996,7 +1218,7 @@ input[type=reset] {
     }
 
     input[type=radio]:checked + label {
-        background-image: url('../../../Images/icons/radio-icon-check2.png');
+        background-image: url('../../../Images/icons/radio-icon-check3.png');
         background-position: 0 0;
         background-repeat: no-repeat;
     }

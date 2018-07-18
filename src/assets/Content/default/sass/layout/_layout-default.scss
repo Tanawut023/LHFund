@@ -549,12 +549,15 @@
                     // padding: 10px 25px 10px 10px;
                     margin: 0;
                     border-bottom: 1px solid $color-white;
-                    background-color: $color-little-gray;
+                    background-color: $color-blue;
 
                     a {
                         display: block;
-                        padding: 10px;
-                        color: $color-text;
+                        padding: 10px 20px;
+                        color: $color-white;
+                        font-size: $text-content;
+                        line-height: $text-small;
+
 
                         &:hover {
                             text-decoration: none;
@@ -588,11 +591,11 @@
                             text-decoration: none;
                         }
                     }
-                    .btn-gray {
+                    .btn-download {
                         position: relative;
                         color: $color-white;
-                        border: 1px solid $color-text;
-                        background-color: $color-text;
+                        border: 1px solid $color-primary;
+                        background-color: $color-primary;
                 
                         display: inline-block;
                         vertical-align: middle;
@@ -613,8 +616,8 @@
                 
                         &:hover {
                             color: $color-white;
-                            border: 1px solid $color-primary;
-                            background-color: $color-primary;
+                            border: 1px solid $color-hover;
+                            background-color: $color-hover;
                         }  
                         img{
                             margin-left: 20px;
@@ -1107,7 +1110,7 @@
 
         h2 {
             margin: 0 auto;
-            margin-bottom: 20px;
+            margin:  20px 0px;
             color: $color-primary;
         }
 
@@ -1205,8 +1208,19 @@
 
             h3,h5 {
                 margin: 10px 0;
-                font-size: $text-small;
+                font-size: $text-x-small;
+                line-height: $text-x-small;
+                color: $color-white;
+            }
+            h1 {
+                margin: 10px 0;
+                font-size: $text-large;
                 line-height: $text-small;
+                color: $color-white;
+            }
+            p{
+                font-size: $base-fontsize;
+                line-height: $base-fontsize;
                 color: $color-white;
             }
 
@@ -1222,11 +1236,25 @@
                 line-height: $base-fontsize;
                 color: $color-white;
             }
+            
+            h1 {
+                margin: 10px 0;
+                font-size: $text-small;
+                line-height: $text-small;
+                color: $color-white;
+            }
 
 
             h3 {
                 margin: 10px 0;
-                font-size: $text-small;
+                font-size: $text-x-small;
+                line-height: $text-x-small;
+                color: $color-white;
+            }
+            
+            h1 {
+                margin: 10px 0;
+                font-size: $text-large;
                 line-height: $text-small;
                 color: $color-white;
             }

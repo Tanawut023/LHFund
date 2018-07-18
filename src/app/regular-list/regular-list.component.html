@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="" id="maincontainer-wrapper">
     <div class="page-content-wrapper">
       <div class="mutual-fund-wrapper" *ngIf="page == 'home'">
@@ -63,34 +64,20 @@
                         <p>ชื่อผู้ถือหน่วยลงทุน</p>
                         <span>เนติวัฒน์ โชติกร</span>
                       </div>
-                      <div class="col-md-3">
-                        <p>วันที่ทำรายงาน</p>
-                        <span>7 มิถุนายน 2561</span>
-                        <!-- <p>ยอดคงเหลือ ณ วันที่</p>
-                                          <span>7 มิถุนายน 2561</span> -->
-                      </div>
-  
-                      <!-- <div class="col-sm-3 col-md-2">
-                                        <div class="add-print">
-                                            <a href="#" class="" onclick="window.print();">พิมพ์หน้านี้
-                                            </a>
-                                        </div>
-                                    </div> -->
                     </div>
                   </div>
                 </div>
                 <div class="detail-body-wrapper">
                   <div class="row">
                     <div class="col-md-12">
-                      <H4 class="text-left">ซื้อหน่วยลงทุนแบบประจำ</H4>
-                      <p>ขั้นตอนที่ 1 เลือกลงทุนและใส่จำนวนที่ต้องการ</p>
+                      <H4 class="text-left mb-3">ซื้อหน่วยลงทุนแบบประจำ</H4>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                       <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                           <span>กองทุน</span>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                           <div class="select-wrapper inline-block">
                             <select name="ddlLink" id="ddlLink">
                               <option value="0" selected="">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
@@ -99,10 +86,10 @@
                             </select>
                           </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                           <span>หักบัญชีธนาคาร</span>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                           <div class="select-wrapper inline-block">
   
                             <select name="ddlLink" id="ddlLink">
@@ -113,15 +100,15 @@
                             </select>
                           </div>
                         </div> 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <span>จำนวน(บาท)</span>
                           </div>
-                          <div class="col-md-6">
+                          <div class="col-md-4">
                             <div class="input-wrapper ">
                               <input id="name" name="name" maxlength="30" type="text" class="bg-gray" placeholder="0">
                             </div>
                           </div>
-                          <div class="col-md-3">
+                          <div class="col-md-4">
                             <div class="select-wrapper inline-block">
     
                               <select name="ddlLink" id="ddlLink">
@@ -135,9 +122,9 @@
   
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                       <div class="row">
-                          <div class="col-md-3">
+                          <div class="col-md-4">
                               <span>เงื่อนไข</span>
                             </div>
                             <div class="col-md-4">
@@ -147,7 +134,7 @@
                                     <p>รายเดือน</p>
                                 </div>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-4">
                               <div class="select-wrapper inline-block">
       
                                 <select name="ddlLink" id="ddlLink">
@@ -157,45 +144,56 @@
                                 </select>
                               </div>
                             </div>                        
-                        <div class="col-md-3">
-                          <span>ระยะเวลาเริ่มต้น</span>
-                        </div>
-                        <div class="col-md-9">
-                          <div class="input-wrapper">
-                            <input class="form-control textinput dateinput bg-gray" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text">
-                          </div>
-                        </div>
-                        <div class="col-md-3">
+                        
+                        <!-- <div class="col-md-4">
                             <span>ระยะเวลาสิ้นสุด</span>
                           </div>
-                          <div class="col-md-9">
+                          <div class="col-md-8">
                             <div class="input-wrapper">
                               <input class="form-control textinput dateinput bg-gray" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text">
                             </div>
-                          </div>
+                          </div> -->
   
+                      </div>
+                      <div class="row">
+                          <div class="col-md-4">
+                              <span>ระยะเวลาเริ่มต้น</span>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="input-wrapper">
+                                <input class="form-control textinput dateinput bg-gray" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text">
+                              </div>
+                            </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-4">
+                              <span>ระยะเวลาสิ้นสุด</span>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="input-wrapper">
+                                <input class="form-control textinput dateinput bg-gray" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text">
+                              </div>
+                            </div>
+                      </div>
+
+                      <div class="row">
+                          <div class="col-md-4 offset-4">
+                              <button class="btn-med btn-primary" (click)="checkpage('signup1')" >
+                                  ตกลง
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>                                  
+                                </button>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn-med btn-cancel" (click)="checkpage('signup1')" >
+                                    ยกเลิก
+                                      <i class="fa fa-angle-right" aria-hidden="true"></i>                                    
+                                  </button>
+                            </div>
                       </div>
                     </div>
                   </div>
-  
-                  <div class="row mt-3">
-                    <div class="col text-right">
-                        <button class="btn-med btn-cancel width50" (click)="checkpage('signup1')" >
-                            ยกเลิก
-                              <i class="fa fa-angle-right" aria-hidden="true"></i>
-                            
-                          </button>
-                    </div>
-                    <div class="col text-left">
-                        <button class="btn-med btn-primary width50" (click)="checkpage('signup1')" >
-                            ตกลง
-                              <i class="fa fa-angle-right" aria-hidden="true"></i>
-                            
-                          </button>
-                    </div>
-                  </div>
                 </div>
-                <!-- <div class="detail-footer-wrapper">
+                <div class="detail-footer-wrapper">
                   <div class="row">
                     <div class="col-md-6 text-left">
                      <h4>รายการซื้อหน่วยลงทุน</h4> (รายการที่รอดำเนินการ)
@@ -209,7 +207,7 @@
                         ไม่มีรายการที่รอดำเนินงาน
                       </div>
                   </div>
-                </div> -->
+                </div>
               </div>
             </div>
           </div>
@@ -456,4 +454,5 @@
   
     </div>
   </div>
+  <app-footer></app-footer>
   

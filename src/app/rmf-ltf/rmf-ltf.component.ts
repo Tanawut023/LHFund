@@ -11,6 +11,8 @@ export class RmfLtfComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $('#bottom-main-nav li').find('a').removeClass('current');
+    $('#bottom-main-nav li#rmf-ltf').find('a').addClass('current');
   }
 
   checkpage(page) {

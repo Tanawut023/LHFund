@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <div class="" id="maincontainer-wrapper">
   <div class="page-content-wrapper">
     <div class="mutual-fund-wrapper" *ngIf="page == 'home'">
@@ -66,330 +68,222 @@
                   </div>
                 </div>
               </div>
-              <div class="detail-body-wrapper">
-                <div class="row">
-                  <div class="col-md-12">
-                    <H4 class="text-left">ซื้อหน่วยลงทุน</H4>
-                    <p>ขั้นตอนที่ 1 เลือกลงทุนและใส่จำนวนที่ต้องการ</p>
-                  </div>
-                  <div class="col-md-12 mb-3">
-                    <H4 class="text-left">ที่อยู่</H4>
-                  </div>
-                </div>
+              
+               
                 <!-- <div class="col-md-6"> -->
                 <div class="form-profile-wrapper">
-                  <form>
+                 <form>
+                    <div class="detail-body-wrapper">   
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                              <H4 class="text-left">ข้อมูลส่วนตัว</H4>
+                            </div>
+                          </div>
+                  
                     <div class="row">
                       <div class="col-md-3">
                         <p>เลขที่</p>
-                      </div>
-                      <div class="col-md-3">
                         <div class="input-wrapper ">
                           <input id="password" name="password" maxlength="30" type="text" value="9/259">
                         </div>
                       </div>
-                      <div class="col-md-6">
-                        <label>ต.ย 99/99</label>
-                      </div>
-                    </div>
 
-                    <div class="row">
                       <div class="col-md-3">
                         <p>หมู่ที่</p>
-                      </div>
-                      <div class="col-md-3">
                         <div class="input-wrapper ">
                           <input id="password" name="password" maxlength="30" type="text" value="">
                         </div>
                       </div>
-                      <div class="col-md-6">
-                        <label>ต.ย 9</label>
-                      </div>
-                    </div>
 
-                    <div class="row">
                       <div class="col-md-3">
                         <p>อาคาร/หมู่บ้าน</p>
-                      </div>
-                      <div class="col-md-3">
                         <div class="input-wrapper ">
                           <input id="password" name="password" maxlength="30" type="text" value="">
                         </div>
                       </div>
-                      <div class="col-md-6">
-                        <label>ต.ย มิตรภาพ</label>
-                      </div>
-                    </div>
 
-                    <div class="row">
                       <div class="col-md-3">
                         <p>ชั้น</p>
-                      </div>
-                      <div class="col-md-3">
                         <div class="input-wrapper ">
                           <input id="password" name="password" maxlength="30" type="text" value="">
                         </div>
                       </div>
-                      <div class="col-md-6">
-                        <label>ต.ย ชั้น1-2 โซนเอ, ชั้น12, ชั้น18 โซนบี</label>
-                      </div>
-                    </div>
 
+                    </div>
                     <div class="row">
                       <div class="col-md-3">
                         <p>ซอย</p>
-                      </div>
-                      <div class="col-md-3">
                         <div class="input-wrapper ">
                           <input id="password" name="password" maxlength="30" type="text" value="จุลดิส">
                         </div>
                       </div>
-                      <div class="col-md-6">
-                        <label>&nbsp;</label>
+
+                      <div class="col-md-3">
+                        <p>ถนน</p>
+                        <div class="input-wrapper ">
+                          <input id="password" name="password" maxlength="30" type="text" value="">
+                        </div>
                       </div>
+
+                      <div class="col-md-3">
+                        <p>แขวง/ตำบล</p>
+                        <div class="input-wrapper ">
+                          <input id="password" name="password" maxlength="30" type="text" value="พยาไท">
+                        </div>
+                      </div>
+
+                      <div class="col-md-3">
+                        <p>เขต/อำเภอ</p>
+                        <div class="input-wrapper ">
+                          <input id="password" name="password" maxlength="30" type="text" value="ราชเทวี">
+                        </div>
+                      </div>
+
                     </div>
 
                     <div class="row">
+                      <div class="col-md-3">
+                        <p>จังหวัด</p>
+                        <div class="select-wrapper inline-block">
+
+                          <select name="ddlLink" id="ddlLink">
+                            <option value="0" selected="">กรุงเทพมหานคร</option>
+                            <option value="36">กรุงเทพมหานคร</option>
+                            <option value="29">กรุงเทพมหานคร</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-md-3">
+                        <p>รหัสไปรษณีย์</p>
+                        <div class="input-wrapper ">
+                          <input id="password" name="password" maxlength="30" type="text" value="10400">
+                        </div>
+                      </div>
+
+                      <div class="col-md-3">
+                        <p>ประเทศ</p>
+                        <div class="select-wrapper inline-block">
+
+                          <select name="ddlLink" id="ddlLink">
+                            <option value="0" selected="">ประเทศไทย</option>
+                            <option value="36">ประเทศลาว</option>
+                            <option value="29">ประเทศพม่า</option>
+                          </select>
+                        </div>
+                      </div>
+
+                    </div>
+
+
+                  </div>
+                    <div class="detail-footer-wrapper">
+                      <div class="row">
                         <div class="col-md-3">
-                          <p>ถนน</p>
+                          <span>เบอร์โทรศัพท์ ที่ติดต่อ</span>
                         </div>
                         <div class="col-md-3">
                           <div class="input-wrapper ">
                             <input id="password" name="password" maxlength="30" type="text" value="">
                           </div>
                         </div>
-                        <div class="col-md-6">
-                          <label>ต.ย วิภาวดี</label>
-                        </div>
+
+                        <div class="col-md-3">
+                            <span>เบอร์โทรศัพท์ มือถือ</span>
+                          </div>
+
+                        <div class="col-md-3">
+                            <div class="input-wrapper ">
+                              <input id="password" name="password" maxlength="30" type="text" value="0850594153">
+                            </div>
+                          </div>
                       </div>
 
                       <div class="row">
-                          <div class="col-md-3">
-                            <p>แขวง/ตำบล</p>
+                        <div class="col-md-3">
+                          <span>เบอร์โทรศัพท์ ที่ทำงาน</span>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="input-wrapper ">
+                            <input id="password" name="password" maxlength="30" type="text" value="">
                           </div>
+                        </div>
+                        <div class="col-md-3">
+                            <span>เบอร์โทรสาร</span>
+                          </div>
+
                           <div class="col-md-3">
-                            <div class="input-wrapper ">
-                              <input id="password" name="password" maxlength="30" type="text" value="พยาไท">
+                              <div class="input-wrapper ">
+                                <input id="password" name="password" maxlength="30" type="text" value="">
+                              </div>
                             </div>
-                          </div>
-                          <div class="col-md-6">
-                            <label>ต.ย ลุมพินี</label>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-3">
+                          <span>อีเมล</span>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="input-wrapper ">
+                            <input id="password" name="password" maxlength="30" type="text" value="natiwat@hotmail.com">
                           </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-3">
-                              <p>เขต/อำเภอ</p>
-                            </div>
-                            <div class="col-md-3">
-                              <div class="input-wrapper ">
-                                <input id="password" name="password" maxlength="30" type="text" value="ราชเทวี">
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <label>ต.ย ปทุมวัน</label>
-                            </div>
+                        <div class="col-md-3">
+                            <span>หักภาษี ณ ที่จ่าย</span>
                           </div>
 
-                          <div class="row">
-                              <div class="col-md-3">
-                                <p>จังหวัด</p>
-                              </div>
-                              <div class="col-md-3">
-                                  <div class="select-wrapper inline-block">
-
-                                      <select name="ddlLink" id="ddlLink">
-                                        <option value="0" selected="">กรุงเทพมหานคร</option>
-                                        <option value="36">กรุงเทพมหานคร</option>
-                                        <option value="29">กรุงเทพมหานคร</option>
-                                      </select>
-                                    </div>
-                              </div>
-                              <div class="col-md-6">
-                                <label>ต.ย กรุงเทพมหานคร</label>
+                          <div class="col-md-3">
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <div class="custom-radio-between">
+                                    <input value="101" id="101" name="rad1" type="radio">
+                                    <label for="101"></label>
+                                    <p>หัก</p>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="custom-radio-between">
+                                    <input value="102" id="102" name="rad1" type="radio">
+                                    <label for="102"></label>
+                                    <p>ไม่หัก</p>
+                                  </div>
+                                </div>
                               </div>
                             </div>
+                        
+                      </div>
+                      <div class="row mt-3">
+                          <div class="col-3 offset-3">
+                              <button class="btn-med btn-primary" (click)="checkpage('signup1')">
+                                  ตกลง
+                                  <i class="fa fa-angle-right" aria-hidden="true"></i>
+        
+                                </button>
+                            
+                          </div>
+                          <div class="col-md-3">
+                            <button class="btn-med btn-cancel" (click)="checkpage('signup1')">
+                              ยกเลิก
+                              <i class="fa fa-angle-right" aria-hidden="true"></i>
+    
+                            </button>
+                          </div>
+                        </div>
 
-                            <div class="row">
-                                <div class="col-md-3">
-                                  <p>รหัสไปรษณีย์</p>
-                                </div>
-                                <div class="col-md-3">
-                                  <div class="input-wrapper ">
-                                    <input id="password" name="password" maxlength="30" type="text" value="10400">
-                                  </div>
-                                </div>
-                                <div class="col-md-6">
-                                  <label>&nbsp;</label>
-                                </div>
-                              </div>
-
-                            <div class="row">
-                                <div class="col-md-3">
-                                  <p>ประเทศ</p>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="select-wrapper inline-block">
-  
-                                        <select name="ddlLink" id="ddlLink">
-                                          <option value="0" selected="">ประเทศไทย</option>
-                                          <option value="36">ประเทศลาว</option>
-                                          <option value="29">ประเทศพม่า</option>
-                                        </select>
-                                      </div>
-                                </div>
-                                <div class="col-md-6">
-                                  <label>ต.ย ประเทศไทย</label>
-                                </div>
-                              </div>
-
-                            <div class="row">
-                                <div class="col-md-3">
-                                  <span>เบอร์โทรศัพท์ ที่ติดต่อ</span>
-                                </div>
-                                <div class="col-md-3">
-                                  <div class="input-wrapper ">
-                                    <input id="password" name="password" maxlength="30" type="text" value="">
-                                  </div>
-                                </div>
-                                <div class="col-md-6">
-                                  <label>ต.ย 026575757</label>
-                                </div>
-                              </div>
-
-                              <div class="row">
-                                  <div class="col-md-3">
-                                    <span>เบอร์โทรศัพท์ ที่ทำงาน</span>
-                                  </div>
-                                  <div class="col-md-3">
-                                    <div class="input-wrapper ">
-                                      <input id="password" name="password" maxlength="30" type="text" value="">
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <label>ต.ย 026575757</label>
-                                  </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-3">
-                                      <span>เบอร์โทรศัพท์ มือถือ</span>
-                                    </div>
-                                    <div class="col-md-3">
-                                      <div class="input-wrapper ">
-                                        <input id="password" name="password" maxlength="30" type="text" value="0850594153">
-                                      </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                      <label>ต.ย 0899575757</label>
-                                    </div>
-                                  </div>
-
-                                  <div class="row">
-                                      <div class="col-md-3">
-                                        <span>เบอร์โทรสาร</span>
-                                      </div>
-                                      <div class="col-md-3">
-                                        <div class="input-wrapper ">
-                                          <input id="password" name="password" maxlength="30" type="text" value="">
-                                        </div>
-                                      </div>
-                                      <div class="col-md-6">
-                                        <label>ต.ย 026575757</label>
-                                      </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                          <span>อีเมล</span>
-                                        </div>
-                                        <div class="col-md-3">
-                                          <div class="input-wrapper ">
-                                            <input id="password" name="password" maxlength="30" type="text" value="natiwat@hotmail.com">
-                                          </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                          <label>ต.ย yourname@domain.com</label>
-                                        </div>
-                                      </div>
-
-                                      <div class="row">
-                                          <div class="col-md-3">
-                                            <span>รหัสผ่าน</span>
-                                          </div>
-                                          <div class="col-md-3">
-                                            <div class="input-wrapper ">
-                                              <input id="password" name="password" maxlength="30" type="text" value="yourpassword">
-                                            </div>
-                                          </div>
-                                          <div class="col-md-6">
-                                            <label>ต.ย yourpassword</label>
-                                          </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                              <span>หักภาษี ณ ที่จ่าย</span>
-                                            </div>
-                                            <div class="col-md-3">
-                                              <div class="row">
-                                                  <div class="col-md-6">
-                                                      <div class="custom-radio-between">
-                                                          <input value="101" id="101" name="rad1" type="radio">
-                                                          <label for="101"></label>
-                                                          <p>หัก</p>
-                                                      </div>
-                                                  </div>
-                                                  <div class="col-md-6">
-                                                      <div class="custom-radio-between">
-                                                          <input value="102" id="102" name="rad2" type="radio">
-                                                          <label for="102"></label>
-                                                          <p >ไม่หัก</p>
-                                                  </div>
-                                                  </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                              <label>&nbsp;</label>
-                                            </div>
-                                          </div>
+                    </div>
+                    
 
                   </form>
+                
+
                 </div>
                 <!-- </div> -->
 
 
-                <div class="row mt-3">
-                  <div class="col text-right">
-                    <button class="btn-med btn-cancel width50" (click)="checkpage('signup1')">
-                      ยกเลิก
-                      <i class="fa fa-angle-right" aria-hidden="true"></i>
 
-                    </button>
-                  </div>
-                  <div class="col text-left">
-                    <button class="btn-med btn-primary width50" (click)="checkpage('signup1')">
-                      ตกลง
-                      <i class="fa fa-angle-right" aria-hidden="true"></i>
-
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <!-- <div class="detail-footer-wrapper">
-                <div class="row">
-                  <div class="col-md-6 text-left">
-                    <h4>รายการซื้อหน่วยลงทุน</h4> (รายการที่รอดำเนินการ)
-
-                  </div>
-                  <div class="col-md-6 text-right">
-
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>ดูรายการทั้งหมด
-                  </div>
-                  <div class="col-md-12 mt-5 text-center">
-                    ไม่มีรายการที่รอดำเนินงาน
-                  </div>
-                </div>
+              
+              <!-- <div class="detail-footer-wrapper">                
               </div> -->
             </div>
           </div>
@@ -637,3 +531,4 @@
 
     </div>
   </div>
+  <app-footer></app-footer>

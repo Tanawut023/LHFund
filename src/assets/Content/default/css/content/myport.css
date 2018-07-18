@@ -28,6 +28,47 @@
   font-style: normal; }
 
 /* note : for IE8,7 need css3pie helper*/
+.score-wrapper {
+  overflow: hidden;
+  position: relative; }
+  .score-wrapper .score-result {
+    padding: 0 20px;
+    margin-bottom: 30px;
+    overflow: hidden; }
+  .score-wrapper .score-row {
+    margin-bottom: 40px;
+    overflow: hidden; }
+  .score-wrapper .score-col-left {
+    float: left;
+    width: 380px;
+    margin-right: 25px; }
+  .score-wrapper .score-col-right {
+    float: left;
+    width: auto; }
+  .score-wrapper .score-content {
+    position: relative;
+    font-size: 30px;
+    text-align: center;
+    /*background: url('../images/bg-score.jpg') bottom right no-repeat;*/ }
+    .score-wrapper .score-content .score-display {
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+      margin: 5px 5px;
+      padding: 0px;
+      background-color: #1CA59B;
+      color: #fff;
+      line-height: 100px;
+      text-align: center;
+      /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+      -webkit-border-radius: 50px;
+      /* Firefox 1-3.6 */
+      -moz-border-radius: 50px;
+      /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+      border-radius: 50px;
+      font-size: 72px;
+      vertical-align: middle; }
+
 .open-account-wrapper {
   /*padding: 35px 0 105px 0;*/
   background-color: #f0f0f0;
@@ -448,7 +489,8 @@
           color: #cdcdcd;
           background-color: #1CA59B; }
       .open-account-wrapper .open-account-box .wrap-container .wrap-suitability .control-label {
-        margin: 0; }
+        margin: 0;
+        display: unset; }
       .open-account-wrapper .open-account-box .wrap-container .wrap-suitability .label-txt {
         border-bottom: 5px solid #1CA59B;
         margin: 10px 0;
@@ -618,6 +660,9 @@
   .mutual-fund-wrapper h4 {
     color: #1CA59B !important;
     display: unset; }
+  .mutual-fund-wrapper h2 {
+    color: #1CA59B !important;
+    display: block; }
   .mutual-fund-wrapper span {
     color: #1CA59B; }
   .mutual-fund-wrapper .form-profile-wrapper {
@@ -641,7 +686,7 @@
     .mutual-fund-wrapper .form-profile-wrapper label {
       color: #cdcdcd; }
   .mutual-fund-wrapper .fund-list-wrapper {
-    margin-top: 20px; }
+    margin: 20px 0px; }
   .mutual-fund-wrapper .detail-head-wrapper {
     position: relative;
     max-width: 100%;
@@ -656,6 +701,8 @@
     margin: 0 auto;
     border-bottom: 5px solid #f5f5f5;
     width: 100%; }
+    .mutual-fund-wrapper .detail-body-wrapper h4 {
+      display: block; }
   .mutual-fund-wrapper .detail-footer-wrapper {
     position: relative;
     max-width: 100%;

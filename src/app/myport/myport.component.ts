@@ -17,9 +17,20 @@ export class MyportComponent implements OnInit {
 
     ngOnInit() {
 
+        $('#bottom-main-nav li').find('a').removeClass('current');
+        $('#bottom-main-nav li#myport').find('a').addClass('current');
+
         this.chart = new Chart({
             chart: {
-                type: 'pie'
+                type: 'pie',
+            },
+            legend: {
+                align: 'right',
+                verticalAlign:'middle',
+                width: 200,
+                itemWidth: 100,
+                y: -50,
+                x: -50
             },
             title: {
                 text: ''
@@ -40,42 +51,39 @@ export class MyportComponent implements OnInit {
                         style: {
                             // color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                         }
-                    }
+                    },
+                    showInLegend: true
                 }
             },
             series: [{
-                name: 'Brands',
+                name: 'Name',
                 // colorByPoint: true,
                 data: [{
-                    name: 'Chrome',
-                    y: 61.41,
-                    sliced: true,
-                    selected: true
+                    name: 'Fixed Income',
+                    y: 39.14
                 }, {
-                    name: 'Internet Explorer',
-                    y: 11.84
+                    name: 'Money Market',
+                    y: 39.14
                 }, {
-                    name: 'Firefox',
-                    y: 10.85
+                    name: 'Mixed',
+                    y: 10.34
                 }, {
-                    name: 'Edge',
-                    y: 4.67
+                    name: 'Fund of Property Fund',
+                    y: 10.34
                 }, {
-                    name: 'Safari',
-                    y: 4.18
+                    name: 'Equity',
+                    y: 10.34
                 }, {
-                    name: 'Sogou Explorer',
-                    y: 1.64
+                    name: 'Foreign Investment Fund',
+                    y: 7.80
                 }, {
-                    name: 'Opera',
-                    y: 1.6
+                    name: 'Retirement Mutual Fund',
+                    y: 1.59
                 }, {
-                    name: 'QQ',
-                    y: 1.2
-                }, {
-                    name: 'Other',
-                    y: 2.61
-                }]
+                    name: 'Long Term Equity Fund',
+                    y: 0.71
+                }
+            ]
             }]
         });
 
@@ -87,8 +95,8 @@ export class MyportComponent implements OnInit {
             case 'suitability':
                 this.page = "suitability";
                 break;
-            case 'dashboard':
-                this.page = "dashboard";
+            case 'suitability-score':
+                this.page = "suitability-score";
                 break;
             case 'otp':
                 this.page = "otp";

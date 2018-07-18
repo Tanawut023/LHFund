@@ -11,6 +11,8 @@ export class ReportComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
+        $('#bottom-main-nav li').find('a').removeClass('current');
+        $('#bottom-main-nav li#report').find('a').addClass('current');
     }
     checkpage(page) {
         console.log(page)

@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="" id="maincontainer-wrapper">
     <div class="page-content-wrapper">
       <div class="mutual-fund-wrapper" *ngIf="page == 'home'">
@@ -74,19 +75,6 @@
                         <p>ชื่อผู้ถือหน่วยลงทุน</p>
                         <span>เนติวัฒน์ โชติกร</span>
                       </div>
-                      <div class="col-md-3">
-                        <p>วันที่ทำรายงาน</p>
-                        <span>7 มิถุนายน 2561</span>
-                        <!-- <p>ยอดคงเหลือ ณ วันที่</p>
-                                          <span>7 มิถุนายน 2561</span> -->
-                      </div>
-  
-                      <!-- <div class="col-sm-3 col-md-2">
-                                        <div class="add-print">
-                                            <a href="#" class="" onclick="window.print();">พิมพ์หน้านี้
-                                            </a>
-                                        </div>
-                                    </div> -->
                     </div>
                   </div>
                 </div>
@@ -96,92 +84,167 @@
                       <!-- <H4 class="text-left">ซื้อหน่วยลงทุน</H4> -->
                       <p>กรุณาเลือกกองทุนและวันที่ต้องการดูรายการ</p>
                     </div>
-                    <div class="col-md-6">
+                  <div class="col-md-8">
                       <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                           <span>กลุ่มกองทุน</span>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                           <div class="select-wrapper inline-block">
                             <select name="ddlLink" id="ddlLink">
-                              <option value="0" selected="">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
+                              <option value="0" selected="">แสดงทุกกลุ่ม</option>
                               <option value="36">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
                               <option value="29">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
                             </select>
                           </div>
                         </div>
-                        <div class="col-md-3">
+                      </div>
+                      <div class="row">
+
+                        <div class="col-md-4">
                           <span>กองทุน</span>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                           <div class="select-wrapper inline-block">
   
                             <select name="ddlLink" id="ddlLink">
-                              <option value="0" selected="">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
+                              <option value="0" selected="">แสดงทุกกองทุน</option>
                               <option value="36">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
                               <option value="29">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
                             </select>
                           </div>
                         </div> 
-                       
+                       </div>
   
-                      </div>
-                    </div>
-                    <div class="col-md-6">
+                      
                       <div class="row">                        
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                           <span>จากวันที่</span>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                           <div class="input-wrapper">
                             <input class="form-control textinput dateinput bg-gray" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text">
                           </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <span>ถึงวันที่</span>
                           </div>
-                          <div class="col-md-9">
+                          <div class="col-md-8">
                             <div class="input-wrapper">
                               <input class="form-control textinput dateinput bg-gray" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text">
                             </div>
                           </div>
   
                       </div>
+
+                      <div class="row">
+                          <div class="col-md-4 offset-4">
+                              <button class="btn-med btn-primary" (click)="checkpage('signup1')" >
+                                  ตกลง
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                  
+                                </button>
+                          </div>
+                          <div class="col-md-4">
+                              <button class="btn-med btn-cancel" (click)="checkpage('signup1')" >
+                                  ยกเลิก
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                  
+                                </button>
+                          </div>
+                        </div>
                     </div>
-                  </div>
+                    </div>
   
-                  <div class="row mt-3">
-                    <div class="col text-right">
-                        <button class="btn-med btn-cancel width50" (click)="checkpage('signup1')" >
-                            ยกเลิก
-                              <i class="fa fa-angle-right" aria-hidden="true"></i>
-                            
-                          </button>
-                    </div>
-                    <div class="col text-left">
-                        <button class="btn-med btn-primary width50" (click)="checkpage('signup1')" >
-                            ตกลง
-                              <i class="fa fa-angle-right" aria-hidden="true"></i>
-                            
-                          </button>
-                    </div>
-                  </div>
+                  
                 </div>
-                <!-- <div class="detail-footer-wrapper">
-                  <div class="row">
-                    <div class="col-md-6 text-left">
-                     <h4>รายการซื้อหน่วยลงทุน</h4> (รายการที่รอดำเนินการ)
-                      
+                <div class="detail-footer-wrapper">
+                    <div class="table-responsive">
+                        <table class="table table-nav">
+                            <tbody>
+                                <!-- <tr class="captions">
+                                    <td colspan="11">
+                                        <h3>
+                                            สัดส่วนเงินลงทุน
+                                        </h3>
+                                    </td>
+                                </tr> -->
+                                <tr>
+                                    <th>
+                                        ชื่อกองทุน
+                                    </th>
+                                    <th>
+                                        วันที่
+                                    </th>
+                                    <th>
+                                        รายการ
+                                    </th>
+                                    <th>
+                                        มูลค่าหน่วย
+                                    </th>
+                                    <th>
+                                        จำนวนหน่วย
+                                    </th>
+                                    <th>
+                                       จำนวนเงิน
+                                    </th>
+                                </tr>
+                                <tr class="line">
+                                    <td>
+                                       กองทุนที่เน้นตราสารเงิน (KFCRASH)
+                                    </td>
+                                    <td colspan="6">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        KFCRASH
+                                    </td>
+                                    <td class="txt-right">
+                                        03/03/2561
+                                    </td>
+                                    <td class="txt-right">
+                                        SUB
+                                    </td>
+                                    <td class="txt-right">
+                                        11.4523
+                                    </td>
+                                    <td class="txt-right">
+                                        110
+                                    </td>
+                                    <td class="txt-right">
+                                        17,055.45
+                                    </td>
+                                </tr>
+                                <tr class="line">
+                                    <td>
+                                       กองทุนที่เน้นการลงทุนในหุ้น (KFCRASH)
+                                    </td>
+                                    <td colspan="6">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        KFCRASH
+                                    </td>
+                                    <td class="txt-right">
+                                        03/03/2561
+                                    </td>
+                                    <td class="txt-right">
+                                        SUB
+                                    </td>
+                                    <td class="txt-right">
+                                        11.4523
+                                    </td>
+                                    <td class="txt-right">
+                                        110
+                                    </td>
+                                    <td class="txt-right">
+                                        17,055.45
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="col-md-6 text-right">
-                        
-                              <i class="fa fa-angle-right" aria-hidden="true"></i>ดูรายการทั้งหมด
-                      </div>
-                      <div class="col-md-12 mt-5 text-center">
-                        ไม่มีรายการที่รอดำเนินงาน
-                      </div>
-                  </div>
-                </div> -->
+                </div>
               </div>
             </div>
           </div>
@@ -428,4 +491,5 @@
   
     </div>
   </div>
+  <app-footer></app-footer>
   

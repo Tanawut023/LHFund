@@ -41,6 +41,7 @@
 											</div>
 											<div class="contact-form-wrapper">
 												<form>
+													<div class="detail-login-wrapper">
 													<div class="row">
 														<div class="col-sm-12">
 															<p>ชื่อผู้เข้าระบบ
@@ -61,16 +62,14 @@
 													<div class="row">
 														<div class="col-md-12">
 															<p class="mb-3">ลืมรหัสผ่าน
-
 																<a style="cursor: pointer;" (click)="checkpage('forgotpassword')">
 																	<i class="fa fa-question-circle" aria-hidden="true"></i>
 																</a>
-
-
 															</p>
 														</div>
 													</div>
-													<div class="row">
+												</div>
+													<!-- <div class="row">
 														<div class="col-md-6 col-sm-6">
 															<p>กรุณากรอกรหัสเพื่อยืนยันตัวตน
 															</p>
@@ -96,13 +95,13 @@
 																</div>
 														</div>
 
-													</div>
+													</div> -->
 													
 
 													<div class="row">
 														<div class="col-md-6">
 															<div class="btn-wrapper-left">
-																<button class="btn-med btn-light width50" (click)="checkpage('submit')" [routerLink]="['/myport']">
+																<button class="btn-med btn-confirm-login" (click)="checkpage('submit')" [routerLink]="['/myport']">
 																	<p>
 																		เข้าสู่ระบบ
 																		<i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -113,7 +112,7 @@
 
 														<div class="col-md-6 ">
 															<div class="btn-wrapper-left">
-																<button class="btn-med btn-white btn-primary" (click)="checkpage('signup1')" >
+																<button class="btn-med btn-next-login" (click)="checkpage('signup1')" >
 																	<p>ลงทะเบียน
 																		<i class="fa fa-angle-right" aria-hidden="true"></i>
 																	</p>
@@ -164,10 +163,10 @@
 											</div>
 											<div class="contact-form-wrapper">
 												<form>
+													<div class="detail-login-wrapper">
 													<div class="row">
-														<div class="col-sm-12 mb-2">
+														<div class="col-sm-12">
 															<p>ชื่อผู้เข้าระบบ
-
 															</p>
 															<div class="input-wrapper">
 																<input id="name" name="name" maxlength="30" type="text">
@@ -175,7 +174,6 @@
 														</div>
 														<div class="col-sm-12">
 															<p>เลขบัตรประจำตัว
-
 															</p>
 															<div class="input-wrapper ">
 																<input id="userid" name="userid" maxlength="30" type="text">
@@ -183,38 +181,45 @@
 														</div>
 														<div class="col-sm-12">
 															<p>อีเมล์
-
 															</p>
 															<div class="input-wrapper ">
 																<input id="email" name="email" maxlength="30" type="text">
 															</div>
 														</div>
 													</div>
-
-
+													</div>
 
 													<div class="row">
-														<div class="col-md-6">
-															<div class="btn-wrapper-left">
-																<button class="btn-med btn-white btn-red" (click)="checkpage('signin')">
-																	<p>
-																		ย้อนกลับ
-																		<i class="fa fa-angle-right" aria-hidden="true"></i>
-																	</p>
-																</button>
+															<div class="col-md-6">															
+																<div class="btn-wrapper-left">
+																	<div class="row">
+																		<div class="col-md-10">
+																			<button class="btn-med btn-back-login" (click)="checkpage('signin')">
+																				<p>																					ย้อนกลับ
+																					<i class="fa fa-angle-right" aria-hidden="true"></i>
+																				</p>
+																			</button>
+																		</div>
+																	</div>
+																</div>
+															</div>
+	
+															<div class="col-md-6 ">
+																<div class="btn-wrapper-right">
+																	<div class="row justify-content-end">
+																		<div class="col-md-10">
+																			<button class="btn-med btn-confirm-login" (click)="checkpage()">
+																				<p>ตกลง
+																					<i class="fa fa-angle-right" aria-hidden="true"></i>
+																				</p>
+																			</button>
+																		</div>
+																	</div>
+																	
+																</div>
 															</div>
 														</div>
 
-														<div class="col-md-6 ">
-															<div class="btn-wrapper-right">
-																<button class="btn-med btn-white btn-primary" (click)="login()">
-																	<p>ตกลง
-																		<i class="fa fa-angle-right" aria-hidden="true"></i>
-																	</p>
-																</button>
-															</div>
-														</div>
-													</div>
 												</form>
 											</div>
 										</div>
@@ -260,49 +265,14 @@
 												<form>
 													<div class="row">
 														<div class="col-sm-12">
-															<p>เลือกช่องทางรับรหัส OTP
+															<p>ระบบจะส่งรหัส OTP ไปยังเบอร์โทรศัพท์มือถือ
 															</p>
-
 														</div>
 													</div>
-													<div class="row">
-														<div class="col-md">
-																<div class="custom-radio">
-													                    <input value="101" id="101" name="rad1" type="radio" checked>
-													                    <label for="101"></label>
-													                    <span >โทรศัพท์</span>
-												                    </div>
-
-															<!-- <div class="form-check">
-																<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-																<p class="form-check-label" for="defaultCheck1">
-																	โทรศัพท์
-																</p>
-															</div> -->
-
-														</div>
-														<div class="col-md">
-																<div class="custom-radio">
-													                    <input value="102" id="102" name="rad2" type="radio">
-													                    <label for="102"></label>
-													                    <span >อีเมล์</span>
-												                    </div>
-															<!-- <div class="form-check">
-																<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-																<p class="form-check-label" for="defaultCheck1">
-																	อีเมล์
-																</p>
-															</div> -->
-
-														</div>
-													</div>
-												
-
-
 													<div class="row">
 														<div class="col-md-6">
 															<div class="input-wrapper mb-3 mt-2">
-																<input id="email-or-tel" name="email-or-tel" maxlength="30" type="text">
+																<input id="email-or-tel" name="email-or-tel" maxlength="30" type="text" placeholder="085XXXXXXX">
 															</div>
 														</div>
 													</div>
@@ -322,7 +292,7 @@
 
 															<div class="btn-wrapper">
 																<button class="btn-blue" (click)="checkpage()">
-																	Request OTP
+																	ส่งรหัส OTP
 																	<i class="fa fa-angle-right" aria-hidden="true"></i>
 																</button>
 															</div>
@@ -334,25 +304,34 @@
 														</div>
 													</div>
 
-													<div class="row">
-														<div class="col-md-6">
+													<div class="row mt-3">
+														<div class="col-md-6">															
 															<div class="btn-wrapper-left">
-																<button class="btn-med btn-white btn-red" (click)="checkpage('signin')">
-																	<p>
-																		ยกเลิก
-																		<i class="fa fa-angle-right" aria-hidden="true"></i>
-																	</p>
-																</button>
+																<div class="row">
+																	<div class="col-md-10">
+																		<button class="btn-med btn-cancel" (click)="checkpage('signin')">
+																			<p>
+																				ยกเลิก
+																				<i class="fa fa-angle-right" aria-hidden="true"></i>
+																			</p>
+																		</button>
+																	</div>
+																</div>
 															</div>
 														</div>
 
 														<div class="col-md-6 ">
 															<div class="btn-wrapper-right">
-																<button class="btn-med btn-white btn-primary" (click)="checkpage()">
-																	<p>ยืนยัน
-																		<i class="fa fa-angle-right" aria-hidden="true"></i>
-																	</p>
-																</button>
+																<div class="row justify-content-end">
+																	<div class="col-md-10">
+																		<button class="btn-med btn-confirm-login" (click)="checkpage()">
+																			<p>ยืนยัน
+																				<i class="fa fa-angle-right" aria-hidden="true"></i>
+																			</p>
+																		</button>
+																	</div>
+																</div>
+																
 															</div>
 														</div>
 													</div>
@@ -372,7 +351,6 @@
 									<div class="contact-popup active">
 
 										<div class="popup-side-content-left item">
-											<!-- <a href="javascript:void(0)" class="btn-close">5</a> -->
 											<div class="contact-title">
 												<div class="row">
 													<div class="col">
@@ -394,9 +372,6 @@
 														</ul>
 													</div>
 												</div>
-												<!-- <p>
-															หากมีข้อสงสัยที่ต้องการสอบถาม กรุณาระบุในช่องด้านล่าง
-														</p> -->
 											</div>
 											<div class="contact-form-wrapper">
 												<form>
@@ -425,7 +400,7 @@
 
 														<div class="col-sm-12 mt-3">
 															<div class="btn-wrapper-left">
-																<button class="btn-med btn-white btn-primary" (click)="checkpage('signup2')">
+																<button class="btn-med btn-next-login" (click)="checkpage('signup2')">
 																	<p class="pl-1 ">ถัดไป
 																		<i class="fa fa-angle-right pl-4" aria-hidden="true"></i>
 																	</p>
@@ -443,7 +418,6 @@
 									<div class="contact-popup active">
 
 										<div class="popup-side-content-right item">
-											<!-- <a href="javascript:void(0)" class="btn-close">5</a> -->
 											<div class="contact-title">
 												<div class="row ">
 													<div class="col-md-10 col-md-offset-8 xs-hide">
@@ -462,24 +436,28 @@
 															</p> -->
 											</div>
 											<div class="contact-form-wrapper">
-												<div class="row">
+												<div class="row mt-5">
 													<div class="col-md-12 mb-2">
 														<h3>ทำความเข้าใจลักษณะสินค้า,</h3>
 														<h3>เงื่อนไข,ผลตอบแทน</h3>
 														<h3>และความเสี่ยงก่อนตัดสินใจ</h3>
 													</div>
-													<div class="col-md-12 mb-5">
+													<div class="col-md-12 text-center mt-3">
 														<div class="btn-wrapper">
-															<button class="btn-signin" (click)="checkpage('signin')">
-																	<div class="login-icon ml-2">
+															<div class="row justify-content-center">
+																<div class="col-md-8">
+																	<button class="btn-med btn-light" (click)="checkpage('signin')">
+																	<div class="login-icon ml-2 mt-1">
 																			<!-- <img src="/assets/Images/icons/icon-login-green.png" /> -->
-																			<img src="/assets/Images/icons/icon-login-green.png" class="visible-lg-block" />
+																			<img src="/assets/Images/icons/icon-login-white.png" class="visible-lg-block" />
               																<img src="/assets/Images/icons/icon-login-white.png" class="visible-md-block visible-sm-block visible-xs-block" />
 																	</div>
-																<p>
 																	เข้าสู่ระบบ
-																</p>
-															</button>
+																	</button>
+
+																</div>
+															</div>
+															
 														</div>
 													</div>
 
@@ -495,11 +473,9 @@
 					<div class="contact-wrapper" *ngIf="page == 'signup2'">
 						<div class="container">
 							<div class="row">
-								<div class="col-md-6 col-md-offset-3">
+								<div class="col-md-6 col-md-offset-6">
 									<div class="contact-popup active">
-
-										<div class="popup-side-content-left">
-											<!-- <a href="javascript:void(0)" class="btn-close">5</a> -->
+										<div class="popup-content">
 											<div class="contact-title">
 												<div class="row">
 													<div class="col">
@@ -510,7 +486,7 @@
 															ลงทะเบียนเข้าใช้ระบบ
 														</p>
 													</div>
-													<div class="col d-flex justify-content-end xs-show">
+													<div class="col d-flex justify-content-end">
 														<ul>
 															<li class="th current">
 																<a href="#" title="ไทย">Thai</a>
@@ -525,7 +501,7 @@
 											<div class="contact-form-wrapper">
 												<form>
 													<div class="row">
-														<div class="col-md-2">
+														<div class="col-md-3">
 																	<p>คำนำหน้า
 																	</p>
 																	<div class="select-wrapper inline-block">
@@ -536,7 +512,7 @@
 																			</select>
 																		</div>
 														</div>
-														<div class="col-md-5">
+														<div class="col-md-4">
 															<p>ชื่อ
 															</p>
 															<div class="input-wrapper">
@@ -561,7 +537,7 @@
 															</div>
 														</div>
 														<div class="col-md-6">
-															<p>เบอร์โทรศัพท์
+															<p>เบอร์โทรศัพท์มือถือ
 															</p>
 															<div class="input-wrapper ">
 																<input id="tel" name="tel" maxlength="30" type="text">
@@ -598,19 +574,59 @@
 																	</div>
 															</div>
 														</div>
-
-
 													</div>
+
+													<div class="row justify-content-start">
+															<div class="col-md-12">
+																	<div class="custom-radio-login">
+																			<input value="101" id="101" name="rad1" type="radio">
+																			<label for="101"></label>
+																			<span >ยอมรับ</span>
+																	</div>
+																	<!-- <img src="/assets/Images/icons/radio-icon-check3.png" > -->
+															</div>
+													</div>
+													<div class="row">
+															<div class="col-md-6">															
+																<div class="btn-wrapper-left">
+																	<div class="row">
+																		<div class="col-md-6">
+																			<button class="btn-med btn-back-login" (click)="checkpage('signup1')">
+																				<p>
+																					ย้อนกลับ
+																					<i class="fa fa-angle-right" aria-hidden="true"></i>
+																				</p>
+																			</button>
+																		</div>
+																	</div>
+																</div>
+															</div>
+	
+															<div class="col-md-6">
+																<div class="btn-wrapper-right">
+																	<div class="row justify-content-end">
+																		<div class="col-md-12">
+																			<button class="btn-med btn-confirm-login" (click)="checkpage('otp')">
+																				<p>ถัดไป
+																					<i class="fa fa-angle-right" aria-hidden="true"></i>
+																				</p>
+																			</button>
+																		</div>
+																	</div>
+																	
+																</div>
+															</div>
+														</div>
+
 												</form>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-3">
+								<!-- <div class="col-md-3">
 									<div class="contact-popup active">
 
 										<div class="popup-side-content-right">
-											<!-- <a href="javascript:void(0)" class="btn-close">5</a> -->
 											<div class="contact-title">
 												<div class="row ">
 													<div class="col-md-10 col-md-offset-8 xs-hide">
@@ -626,7 +642,7 @@
 												</div>
 											</div>
 											<div class="contact-form-wrapper">
-												<div class="row">
+												<div class="row mt-5">
 													<div class="col-md-12 mb-2">
 														<h3>ทำความเข้าใจลักษณะสินค้า,</h3>
 														<h3>เงื่อนไข,ผลตอบแทน</h3>
@@ -646,20 +662,13 @@
 														</div>
 													</div>
 												</div>
-												<div class="row">
+												<div class="row mt-4">
 														<div class="col-md-6">
-																<div class="custom-radio-between margin-top90">
+																<div class="custom-radio-between">
 													                    <input value="101" id="101" name="rad1" type="radio" checked>
 													                    <label for="101"></label>
 													                    <span >ยอมรับ</span>
 																	</div>
-																	
-																<!-- <div class="form-check">
-																	<input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked="checked">
-																	<p class="form-check-label" for="defaultCheck1">
-																		ยอมรับ
-																	</p>
-																</div> -->
 	
 															</div>
 													</div>
@@ -686,7 +695,7 @@
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
@@ -702,15 +711,6 @@
 		</h5>
 		<p>Tel. 02-286-3484 ต่อ 335 - 336 หรือ E-mail : registrar_pvd@lhfund.co.th</p>
 	</div>
-
-	<!-- .slider-container -->
-
-	<!-- <div class="" id="maincontainer-wrapper">
-
-	</div> -->
-
-
-	
 </div>
 <div class="clearfix"></div>
 <footer id="footer-wrapper" class="footer-wrapper">
@@ -721,15 +721,4 @@
 		<p>Tel. 02-286-3484 ต่อ 335 - 336 </p>
 		<p>หรือ E-mail : registrar_pvd@lhfund.co.th</p>
 	</div>
-	<!--#include file="../Shared/footer.aspx"-->
 </footer>
-	<!-- #footer-wrapper -->
-
-	<!-- <canvas id="myChart" width="400" height="400"></canvas> -->
-	<!-- <div>
-		<canvas id="canvas">{{ myChart }}</canvas>
-	</div> -->
-
-	<!-- <div class="test">
-		<p>test</p>
-	</div> -->

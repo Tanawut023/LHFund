@@ -10,6 +10,8 @@ export class RegularListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $('#bottom-main-nav li').find('a').removeClass('current');
+    $('#bottom-main-nav li#regular-list').find('a').addClass('current');
   }
   checkpage(page) {
     console.log(page)
