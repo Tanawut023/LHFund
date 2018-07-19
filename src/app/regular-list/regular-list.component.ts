@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./regular-list.component.scss']
 })
 export class RegularListComponent implements OnInit {
-  page = "home";
+  page = "regular-purchase";
   constructor() { }
 
   ngOnInit() {
@@ -14,27 +14,28 @@ export class RegularListComponent implements OnInit {
     $('#bottom-main-nav li#regular-list').find('a').addClass('current');
   }
   checkpage(page) {
+    window.scroll(0,0);
     console.log(page)
 
     switch (page) {
-        case 'purchase':
-            this.page = "purchase";
+        case 'regular-purchase':
+            this.page = "regular-purchase";
             break;
-        case 'sell':
-            this.page = "sell";
+        case 'regular-sell':
+            this.page = "regular-sell";
             break;
-        case 'otp':
-            this.page = "otp";
+        case 'regular-exchange':
+            this.page = "regular-exchange";
             break;
-        case 'signup1':
-            this.page = "signup1";
+        case 'all':
+            this.page = "all";
             break;
         case 'signup2':
             this.page = "signup2";
             break;
         default:
 
-            this.page = "signin";
+            this.page = "regular-purchase";
             console.log(this.page)
             break;
     }

@@ -1,25 +1,486 @@
 <app-header></app-header>
 <div class="" id="maincontainer-wrapper">
-    <div class="page-content-wrapper">
-      <div class="mutual-fund-wrapper" *ngIf="page == 'home'">
+  <div class="page-content-wrapper">
+    <div class="mutual-fund-wrapper" *ngIf="page == 'regular-purchase'">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="tabs-menu-wrapper">
+              <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
+                <li role="presentation" id="menu1" class="current">
+                  <a title="รายการซื้อ" (click)="checkpage('regular-purchase')">รายการซื้อแบบประจำ</a>
+                </li>
+                <li role="presentation" id="menu2">
+                  <a title="รายการขาย" (click)="checkpage('regular-sell')">รายการขายคืนแบบประจำ</a>
+                </li>
+                <li role="presentation" id="menu3" (click)="checkpage('regular-exchange')">
+                  <a title="รายการสับเปลี่ยน">รายการสับเปลี่ยนแบบประจำ</a>
+                </li>
+                <li role="presentation" id="menu4" (click)="checkpage('all')">
+                  <a title="รายการตั้งซื้อขายล่วงหน้า">ดูรายการทั้งหมด</a>
+                </li>
+
+
+              </ul>
+            </div>
+
+            <div class="fund-table-wrapper">
+              <div class="heading-section">
+                <div class="row">
+                  <div class="detail-head-wrapper">
+                    <div class="col-md-12 icon-option mb-3">
+
+                      <ul class="">
+                        <li class="ico-fb">
+                          <a href="#" title="facebook">
+                            <img src="/assets/Images/icons/ico-pipe.png" />
+                          </a>
+                        </li>
+                        <li class="ico-line">
+                          <a href="#" title="line">
+                            <img src="/assets/Images/icons/ico-download.png" />
+                          </a>
+                        </li>
+                        <li class="ico-yt">
+                          <a href="#" title="youtube">
+                            <img src="/assets/Images/icons/ico-print.png" />
+                          </a>
+                        </li>
+
+                      </ul>
+                    </div>
+                    <div class="col-md-3">
+
+                      <p>เลขที่ผู้ถือหน่วยลงทุน</p>
+                      <div class="select-wrapper inline-block">
+                        <select name="ddlLink" id="ddlLink">
+                          <option value="0" selected="">9990244757</option>
+                          <option value="36">9990244757</option>
+                          <option value="29">9990244757</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <p>ชื่อผู้ถือหน่วยลงทุน</p>
+                      <span>เนติวัฒน์ โชติกร</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-body-wrapper">
+                <div class="row">
+                  <div class="col-md-12">
+                    <H4 class="text-left">ซื้อหน่วยลงทุนแบบประจำ</H4>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <span>กองทุน</span>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="select-wrapper inline-block">
+                          <select name="ddlLink" id="ddlLink">
+                            <option value="0" selected="">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
+                            <option value="36">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
+                            <option value="29">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <span>หักบัญชีธนาคาร</span>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="select-wrapper inline-block">
+
+                          <select name="ddlLink" id="ddlLink">
+                            <option value="0" selected="">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
+                            <option value="36">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
+                            <option value="29">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
+
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <span>จำนวน(บาท)</span>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="input-wrapper ">
+                          <input id="name" name="name" maxlength="30" type="text" class="bg-gray" placeholder="0">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="select-wrapper inline-block">
+
+                          <select name="ddlLink" id="ddlLink">
+                            <option value="0" selected="">บาท</option>
+                            <option value="36">เยน</option>
+                            <option value="29">ดอลล่า</option>
+                          </select>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <span>เงื่อนไข</span>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="custom-radio-between">
+                          <input value="101" id="101" name="rad1" type="radio" checked>
+                          <label for="101"></label>
+                          <p>รายเดือน</p>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="select-wrapper inline-block">
+
+                          <select name="ddlLink" id="ddlLink">
+                            <option value="0" selected="">วันที่1</option>
+                            <option value="36">วันที่2</option>
+                            <option value="29">วันที่3</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <span>ระยะเวลาเริ่มต้น</span>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="input-wrapper">
+                          <input class="form-control textinput dateinput bg-gray" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <span>ระยะเวลาสิ้นสุด</span>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="input-wrapper">
+                          <input class="form-control textinput dateinput bg-gray" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4 offset-4">
+                        <button class="btn-med btn-primary" (click)="checkpage('signup1')">
+                          ตกลง
+                          <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                      <div class="col-md-4">
+                        <button class="btn-med btn-cancel" (click)="checkpage('signup1')">
+                          ยกเลิก
+                          <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-footer-wrapper">
+                <div class="row">
+                  <div class="col-md-6 text-left">
+                    <h4>รายการซื้อหน่วยลงทุน</h4> (รายการที่รอดำเนินการ)
+
+                  </div>
+                  <div class="col-md-6 text-right">
+
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>ดูรายการทั้งหมด
+                  </div>
+                  <div class="col-md-12 mt-5 text-center">
+                    ไม่มีรายการที่รอดำเนินงาน
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mutual-fund-wrapper" *ngIf="page == 'regular-sell'">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="tabs-menu-wrapper">
+              <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
+                  <li role="presentation" id="menu1">
+                      <a title="รายการซื้อ" (click)="checkpage('regular-purchase')">รายการซื้อแบบประจำ</a>
+                    </li>
+                    <li role="presentation" id="menu2" class="current">
+                      <a title="รายการขาย" (click)="checkpage('regular-sell')">รายการขายคืนแบบประจำ</a>
+                    </li>
+                    <li role="presentation" id="menu3" (click)="checkpage('regular-exchange')">
+                      <a title="รายการสับเปลี่ยน">รายการสับเปลี่ยนแบบประจำ</a>
+                    </li>
+                    <li role="presentation" id="menu4" (click)="checkpage('all')">
+                      <a title="รายการตั้งซื้อขายล่วงหน้า">ดูรายการทั้งหมด</a>
+                    </li>
+
+              </ul>
+            </div>
+
+            <div class="fund-table-wrapper">
+              <div class="heading-section">
+                <div class="row">
+                  <div class="detail-head-wrapper">
+                    <div class="col-md-12 icon-option mb-3">
+
+                      <ul class="">
+                        <li class="ico-fb">
+                          <a href="#" title="facebook">
+                            <img src="/assets/Images/icons/ico-pipe.png" />
+                          </a>
+                        </li>
+                        <li class="ico-line">
+                          <a href="#" title="line">
+                            <img src="/assets/Images/icons/ico-download.png" />
+                          </a>
+                        </li>
+                        <li class="ico-yt">
+                          <a href="#" title="youtube">
+                            <img src="/assets/Images/icons/ico-print.png" />
+                          </a>
+                        </li>
+
+                      </ul>
+                    </div>
+                    <div class="col-md-3">
+
+                      <p>เลขที่ผู้ถือหน่วยลงทุน</p>
+
+                      <div class="select-wrapper inline-block">
+                        <select name="ddlLink" id="ddlLink">
+                          <option value="0" selected="">9990244757</option>
+                          <option value="36">9990244757</option>
+                          <option value="29">9990244757</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <p>ชื่อผู้ถือหน่วยลงทุน</p>
+                      <span>เนติวัฒน์ โชติกร</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-body-wrapper">
+                <div class="row">
+                  <div class="col-md-12">
+                    <H4 class="text-left">ขายคืนหน่วยลงทุนแบบประจำ</H4>
+                    <!-- <p>ขั้นตอนที่ 1 เลือกลงทุนและใส่จำนวนที่ต้องการ</p> -->
+                  </div>
+                  <div class="col-md-8">                    
+                    <div class="row">
+                      <div class="col-md-4">
+                        <span>กองทุนต้นทาง</span>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="select-wrapper inline-block">
+
+                          <select name="ddlLink" id="ddlLink">
+                            <option value="0" selected="">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
+                            <option value="36">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
+                            <option value="29">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <div class="table-responsive">
+                      <table class="table table-custom">
+                        <thead>
+                          <tr>
+                            <th class="bg-blue">
+                              ยอดคงเหลือ (หน่วย)
+                            </th>
+                            <th class="bg-primary">
+                              ยอดคงเหลือ (บาท)
+                            </th>
+                            <th class="bg-darkbrown">
+                              วันที่มีผล
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <a href="/MutualFund" title="ประเภทกองทุน">6.2456
+                              </a>
+                            </td>
+                            <td>
+                              <a href="/MutualFund/FundDetail" title="ชื่อกองทุน">74.39
+                              </a>
+                            </td>
+                            <td>
+                              05/04/60
+                              <a class="color-red">(ณ วันที่ผ่านมา)</a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="/MutualFund" title="ประเภทกองทุน">6.2456
+                              </a>
+                            </td>
+                            <td>
+                              <a href="/MutualFund/FundDetail" title="ชื่อกองทุน">N/A
+                              </a>
+                            </td>
+                            <td>
+                              05/04/60
+                              <a class="color-red">(หลังหักรายการวันนี้)</a>
+                            </td>
+                          </tr>
+                        </tbody>
+
+                      </table>
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <span>จำนวนที่ขายคืน</span>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="input-wrapper ">
+                          <input id="name" name="name" maxlength="30" type="text" class="bg-gray" placeholder="0">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="select-wrapper inline-block">
+
+                          <select name="ddlLink" id="ddlLink">
+                            <option value="0" selected="">บาท</option>
+                            <option value="36">เยน</option>
+                            <option value="29">ดอลล่า</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <span>รับเงินค่าขายคืน</span>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="select-wrapper inline-block">
+
+                          <select name="ddlLink" id="ddlLink">
+                            <option value="0" selected="">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
+                            <option value="36">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
+                            <option value="29">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                          <span>เงื่อนไข</span>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="custom-radio-between">
+                            <input value="101" id="101" name="rad1" type="radio" checked>
+                            <label for="101"></label>
+                            <p>รายเดือน</p>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="select-wrapper inline-block">
+  
+                            <select name="ddlLink" id="ddlLink">
+                              <option value="0" selected="">วันที่1</option>
+                              <option value="36">วันที่2</option>
+                              <option value="29">วันที่3</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <span>ระยะเวลาเริ่มต้น</span>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="input-wrapper">
+                            <input class="form-control textinput dateinput bg-gray" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <span>ระยะเวลาสิ้นสุด</span>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="input-wrapper">
+                            <input class="form-control textinput dateinput bg-gray" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text">
+                          </div>
+                        </div>
+                      </div>
+                    <div class="row">
+                      <div class="col-md-4 offset-4">
+                        <button class="btn-med btn-primary" (click)="checkpage('signup1')">
+                          ตกลง
+                          <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                      <div class="col-md-4">
+                        <button class="btn-med btn-cancel" (click)="checkpage('signup1')">
+                          ยกเลิก
+                          <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                    </div>
+
+
+                  </div>
+
+
+                </div>
+
+              </div>
+              <div class="detail-footer-wrapper">
+                <div class="row">
+                  <div class="col-md-6 text-left">
+                    <h4>รายการซื้อหน่วยลงทุน</h4> (รายการที่รอดำเนินการ)
+
+                  </div>
+                  <div class="col-md-6 text-right">
+
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>ดูรายการทั้งหมด
+                  </div>
+                  <div class="col-md-12 mt-5 text-center">
+                    ไม่มีรายการที่รอดำเนินงาน
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="mutual-fund-wrapper" *ngIf="page == 'regular-exchange'">
         <div class="container">
           <div class="row">
             <div class="col-md-12">
               <div class="tabs-menu-wrapper">
                 <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
-                  <li role="presentation" id="menu1"  class="current">
-                    <a  title="รายการซื้อ" (click)="checkpage('purchase')">รายการซื้อแบบประจำ</a>
-                  </li>
-                  <li role="presentation" id="menu2">
-                    <a  title="รายการขาย" (click)="checkpage('sell')">รายการขายคืนแบบประจำ</a>
-                  </li>
-                  <li role="presentation" id="menu3">
-                    <a  title="รายการสับเปลี่ยน">รายการสับเปลี่ยนแบบประจำ</a>
-                  </li>
-                  <li role="presentation" id="menu4" >
-                    <a  title="รายการตั้งซื้อขายล่วงหน้า">ดูรายการทั้งหมด</a>
-                  </li>
-                                   
+                    <li role="presentation" id="menu1">
+                        <a title="รายการซื้อ" (click)="checkpage('regular-purchase')">รายการซื้อแบบประจำ</a>
+                      </li>
+                      <li role="presentation" id="menu2" >
+                        <a title="รายการขาย" (click)="checkpage('regular-sell')">รายการขายคืนแบบประจำ</a>
+                      </li>
+                      <li role="presentation" id="menu3" class="current" (click)="checkpage('regular-exchange')">
+                        <a title="รายการสับเปลี่ยน">รายการสับเปลี่ยนแบบประจำ</a>
+                      </li>
+                      <li role="presentation" id="menu4" (click)="checkpage('all')">
+                        <a title="รายการตั้งซื้อขายล่วงหน้า">ดูรายการทั้งหมด</a>
+                      </li>
   
                 </ul>
               </div>
@@ -51,7 +512,8 @@
                       </div>
                       <div class="col-md-3">
   
-                        <p>เลขที่ผู้ถือหน่วยลงทุน</p>                        
+                        <p>เลขที่ผู้ถือหน่วยลงทุน</p>
+  
                         <div class="select-wrapper inline-block">
                           <select name="ddlLink" id="ddlLink">
                             <option value="0" selected="">9990244757</option>
@@ -70,15 +532,17 @@
                 <div class="detail-body-wrapper">
                   <div class="row">
                     <div class="col-md-12">
-                      <H4 class="text-left mb-3">ซื้อหน่วยลงทุนแบบประจำ</H4>
+                      <H4 class="text-left">สับเปลี่ยนหน่วยลงทุนแบบประจำ</H4>
+                      <!-- <p>ขั้นตอนที่ 1 เลือกลงทุนและใส่จำนวนที่ต้องการ</p> -->
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-8">                    
                       <div class="row">
                         <div class="col-md-4">
-                          <span>กองทุน</span>
+                          <span>กองทุนต้นทาง</span>
                         </div>
                         <div class="col-md-8">
                           <div class="select-wrapper inline-block">
+  
                             <select name="ddlLink" id="ddlLink">
                               <option value="0" selected="">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
                               <option value="36">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
@@ -86,373 +550,179 @@
                             </select>
                           </div>
                         </div>
+                      </div>
+                    </div>
+                    <div class="col-md-9">
+                      <div class="table-responsive">
+                        <table class="table table-custom">
+                          <thead>
+                            <tr>
+                              <th class="bg-blue">
+                                ยอดคงเหลือ (หน่วย)
+                              </th>
+                              <th class="bg-primary">
+                                ยอดคงเหลือ (บาท)
+                              </th>
+                              <th class="bg-darkbrown">
+                                วันที่มีผล
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>
+                                <a href="/MutualFund" title="ประเภทกองทุน">6.2456
+                                </a>
+                              </td>
+                              <td>
+                                <a href="/MutualFund/FundDetail" title="ชื่อกองทุน">74.39
+                                </a>
+                              </td>
+                              <td>
+                                05/04/60
+                                <a class="color-red">(ณ วันที่ผ่านมา)</a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <a href="/MutualFund" title="ประเภทกองทุน">6.2456
+                                </a>
+                              </td>
+                              <td>
+                                <a href="/MutualFund/FundDetail" title="ชื่อกองทุน">N/A
+                                </a>
+                              </td>
+                              <td>
+                                05/04/60
+                                <a class="color-red">(หลังหักรายการวันนี้)</a>
+                              </td>
+                            </tr>
+                          </tbody>
+  
+                        </table>
+                      </div>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="row">
                         <div class="col-md-4">
-                          <span>หักบัญชีธนาคาร</span>
+                          <span>สับเปลี่ยนจำนวน</span>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="input-wrapper ">
+                            <input id="name" name="name" maxlength="30" type="text" class="bg-gray" placeholder="0">
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="select-wrapper inline-block">
+  
+                            <select name="ddlLink" id="ddlLink">
+                              <option value="0" selected="">บาท</option>
+                              <option value="36">เยน</option>
+                              <option value="29">ดอลล่า</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <span>กองทุนปลายทาง</span>
                         </div>
                         <div class="col-md-8">
                           <div class="select-wrapper inline-block">
   
                             <select name="ddlLink" id="ddlLink">
-                                <option value="0" selected="">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
-                                <option value="36">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
-                                <option value="29">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
-                            
+                              <option value="0" selected="">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
+                              <option value="36">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
+                              <option value="29">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
                             </select>
                           </div>
-                        </div> 
-                        <div class="col-md-4">
-                            <span>จำนวน(บาท)</span>
+                        </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-4">
+                            <span>เงื่อนไข</span>
                           </div>
                           <div class="col-md-4">
-                            <div class="input-wrapper ">
-                              <input id="name" name="name" maxlength="30" type="text" class="bg-gray" placeholder="0">
+                            <div class="custom-radio-between">
+                              <input value="101" id="101" name="rad1" type="radio" checked>
+                              <label for="101"></label>
+                              <p>รายเดือน</p>
                             </div>
                           </div>
                           <div class="col-md-4">
                             <div class="select-wrapper inline-block">
     
                               <select name="ddlLink" id="ddlLink">
-                                <option value="0" selected="">บาท</option>
-                                <option value="36">เยน</option>
-                                <option value="29">ดอลล่า</option>
+                                <option value="0" selected="">วันที่1</option>
+                                <option value="36">วันที่2</option>
+                                <option value="29">วันที่3</option>
                               </select>
                             </div>
                           </div>
-                       
-  
-                      </div>
-                    </div>
-                    <div class="col-md-8">
-                      <div class="row">
+                        </div>
+                        <div class="row">
                           <div class="col-md-4">
-                              <span>เงื่อนไข</span>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="custom-radio-between">
-                                    <input value="101" id="101" name="rad1" type="radio" checked>
-                                    <label for="101"></label>
-                                    <p>รายเดือน</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                              <div class="select-wrapper inline-block">
-      
-                                <select name="ddlLink" id="ddlLink">
-                                  <option value="0" selected="">วันที่1</option>
-                                  <option value="36">วันที่2</option>
-                                  <option value="29">วันที่3</option>
-                                </select>
-                              </div>
-                            </div>                        
-                        
-                        <!-- <div class="col-md-4">
-                            <span>ระยะเวลาสิ้นสุด</span>
+                            <span>ระยะเวลาเริ่มต้น</span>
                           </div>
-                          <div class="col-md-8">
+                          <div class="col-md-4">
                             <div class="input-wrapper">
                               <input class="form-control textinput dateinput bg-gray" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text">
                             </div>
-                          </div> -->
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-4">
+                            <span>ระยะเวลาสิ้นสุด</span>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="input-wrapper">
+                              <input class="form-control textinput dateinput bg-gray" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text">
+                            </div>
+                          </div>
+                        </div>
+                      <div class="row">
+                        <div class="col-md-4 offset-4">
+                          <button class="btn-med btn-primary" (click)="checkpage('signup1')">
+                            ตกลง
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                          </button>
+                        </div>
+                        <div class="col-md-4">
+                          <button class="btn-med btn-cancel" (click)="checkpage('signup1')">
+                            ยกเลิก
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                          </button>
+                        </div>
+                      </div>
   
-                      </div>
-                      <div class="row">
-                          <div class="col-md-4">
-                              <span>ระยะเวลาเริ่มต้น</span>
-                            </div>
-                            <div class="col-md-4">
-                              <div class="input-wrapper">
-                                <input class="form-control textinput dateinput bg-gray" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text">
-                              </div>
-                            </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-md-4">
-                              <span>ระยะเวลาสิ้นสุด</span>
-                            </div>
-                            <div class="col-md-4">
-                              <div class="input-wrapper">
-                                <input class="form-control textinput dateinput bg-gray" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text">
-                              </div>
-                            </div>
-                      </div>
-
-                      <div class="row">
-                          <div class="col-md-4 offset-4">
-                              <button class="btn-med btn-primary" (click)="checkpage('signup1')" >
-                                  ตกลง
-                                    <i class="fa fa-angle-right" aria-hidden="true"></i>                                  
-                                </button>
-                            </div>
-                            <div class="col-md-4">
-                                <button class="btn-med btn-cancel" (click)="checkpage('signup1')" >
-                                    ยกเลิก
-                                      <i class="fa fa-angle-right" aria-hidden="true"></i>                                    
-                                  </button>
-                            </div>
-                      </div>
+  
                     </div>
+  
+  
                   </div>
+  
                 </div>
                 <div class="detail-footer-wrapper">
                   <div class="row">
                     <div class="col-md-6 text-left">
-                     <h4>รายการซื้อหน่วยลงทุน</h4> (รายการที่รอดำเนินการ)
-                      
+                      <h4>รายการซื้อหน่วยลงทุน</h4> (รายการที่รอดำเนินการ)
+  
                     </div>
                     <div class="col-md-6 text-right">
-                        
-                              <i class="fa fa-angle-right" aria-hidden="true"></i>ดูรายการทั้งหมด
-                      </div>
-                      <div class="col-md-12 mt-5 text-center">
-                        ไม่มีรายการที่รอดำเนินงาน
-                      </div>
+  
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>ดูรายการทั้งหมด
+                    </div>
+                    <div class="col-md-12 mt-5 text-center">
+                      ไม่มีรายการที่รอดำเนินงาน
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+  
+  
       </div>
-      <div class="mutual-fund-wrapper" *ngIf="page == 'sell'">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="tabs-menu-wrapper">
-                  <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
-                    <li role="presentation" id="menu1" >
-                      <a  title="รายการซื้อ" (click)="checkpage('purchase')">รายการซื้อ2</a>
-                    </li>
-                    <li role="presentation" id="menu2" class="current">
-                      <a  title="รายการขาย" (click)="checkpage('sell')">รายการขาย</a>
-                    </li>
-                    <li role="presentation" id="menu3">
-                      <a routerLink="/risk-assessment-form" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a>
-                    </li>
-                    <li role="presentation" id="menu4">
-                      <a routerLink="/risk-assessment-form" title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a>
-                    </li>
-                    <li role="presentation" id="menu5">
-                      <a routerLink="/risk-assessment-form" title="รายการขายเพื่อซื้อ">รายการขายเพื่อซื้อ</a>
-                    </li>
-    
-                  </ul>
-                </div>
-    
-                <div class="fund-table-wrapper">
-                  <div class="heading-section">
-                    <div class="row">
-                      <div class="detail-head-wrapper">
-                        <div class="col-md-12 icon-option mb-3">
-    
-                          <ul class="">
-                            <li class="ico-fb">
-                              <a href="#" title="facebook">
-                                <img src="/assets/Images/icons/ico-pipe.png" />
-                              </a>
-                            </li>
-                            <li class="ico-line">
-                              <a href="#" title="line">
-                                <img src="/assets/Images/icons/ico-download.png" />
-                              </a>
-                            </li>
-                            <li class="ico-yt">
-                              <a href="#" title="youtube">
-                                <img src="/assets/Images/icons/ico-print.png" />
-                              </a>
-                            </li>
-    
-                          </ul>
-                        </div>
-                        <div class="col-md-3">
-    
-                          <p>เลขที่ผู้ถือหน่วยลงทุน</p>
-                         
-                          <div class="select-wrapper inline-block">
-                            <select name="ddlLink" id="ddlLink">
-                              <option value="0" selected="">9990244757</option>
-                              <option value="36">9990244757</option>
-                              <option value="29">9990244757</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <p>ชื่อผู้ถือหน่วยลงทุน</p>
-                          <span>เนติวัฒน์ โชติกร</span>
-                        </div>
-                        <div class="col-md-3">
-                          <p>วันที่ทำรายงาน</p>
-                          <span>7 มิถุนายน 2561</span>
-                          <!-- <p>ยอดคงเหลือ ณ วันที่</p>
-                                            <span>7 มิถุนายน 2561</span> -->
-                        </div>
-    
-                        <!-- <div class="col-sm-3 col-md-2">
-                                          <div class="add-print">
-                                              <a href="#" class="" onclick="window.print();">พิมพ์หน้านี้
-                                              </a>
-                                          </div>
-                                      </div> -->
-                      </div>
-                    </div>
-                  </div>
-                  <div class="detail-body-wrapper">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <H4 class="text-left">ซื้อหน่วยลงทุน</H4>
-                        <p>ขั้นตอนที่ 1 เลือกลงทุนและใส่จำนวนที่ต้องการ</p>
-                      </div>
-                      <div class="col-md-6">
-                          <div class="row">
-                              <div class="col-md-3">
-                                <span>กองทุนต้นทาง</span>
-                              </div>
-                              <div class="col-md-9">
-                                  <div class="select-wrapper inline-block">
-    
-                                      <select name="ddlLink" id="ddlLink">
-                                        <option value="0" selected="">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
-                                        <option value="36">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
-                                        <option value="29">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
-                                      </select>
-                                    </div>
-                              </div>
-                      </div>                    
-                    </div>
-                    <div class="col-md-9">
-                        <div class="table-responsive">
-                            <table class="table table-custom">
-                                <thead>
-                                    
-                                    <tr>
-                                        <th class="bg-blue">
-                                            ยอดคงเหลือ (หน่วย)
-                                        </th>
-                                        <th class="bg-primary">
-                                            ยอดคงเหลือ (บาท)
-                                        </th>
-                                        <th class="bg-darkbrown">
-                                            วันที่
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <a href="/MutualFund" title="ประเภทกองทุน">6.2456
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="/MutualFund/FundDetail" title="ชื่อกองทุน">74.39
-                                            </a>
-                                        </td>
-                                        <td>
-                                            05/04/60
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                      <td>
-                                          <a href="/MutualFund" title="ประเภทกองทุน">6.2456
-                                          </a>
-                                      </td>
-                                      <td>
-                                          <a href="/MutualFund/FundDetail" title="ชื่อกองทุน">N/A
-                                          </a>
-                                      </td>
-                                      <td>
-                                          05/04/60
-                                      </td>
-                                  </tr>                                  
-                                </tbody>
-                                
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-md-7">
-                        <div class="row">
-                            <div class="col-md-3">
-                              <span>จำนวน</span>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="input-wrapper ">
-                                <input id="name" name="name" maxlength="30" type="text" class="bg-gray" placeholder="0">
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <div class="select-wrapper inline-block">
-      
-                                <select name="ddlLink" id="ddlLink">
-                                  <option value="0" selected="">บาท</option>
-                                  <option value="36">เยน</option>
-                                  <option value="29">ดอลล่า</option>
-                                </select>
-                              </div>
-                            </div>
-  
-                            <div class="col-md-3">
-                                <span>หักบัญชีธนาคาร</span>
-                              </div>
-                              <div class="col-md-9">
-                                <div class="select-wrapper inline-block">
-        
-                                  <select name="ddlLink" id="ddlLink">
-                                    <option value="0" selected="">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
-                                    <option value="36">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
-                                    <option value="29">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
-                                  </select>
-                                </div>
-                              </div>
-  
-                              <div class="col-md-9 offset-md-3 no-padding">
-                                  <div class="row mt-3">                   
-        
-                            <div class="col text-left" >
-                                <button class="btn-med btn-cancel" (click)="checkpage('signup1')" >
-                                    ยกเลิก
-                                      <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                    
-                                  </button>
-                            </div>
-                            <div class="col text-right ">
-                                <button class="btn-med btn-primary" (click)="checkpage('signup1')" >
-                                    ตกลง
-                                      <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                    
-                                  </button>
-                            </div>
-                          </div>
-                                </div>
-                            
-                          </div>
-                          
-                      
-                  </div>
-    
-                    
-                  </div>
-                  
-                </div>
-                <div class="detail-footer-wrapper">
-                    <div class="row">
-                      <div class="col-md-6 text-left">
-                       <h4>รายการซื้อหน่วยลงทุน</h4> (รายการที่รอดำเนินการ)
-                        
-                      </div>
-                      <div class="col-md-6 text-right">
-                          
-                                <i class="fa fa-angle-right" aria-hidden="true"></i>ดูรายการทั้งหมด
-                        </div>
-                        <div class="col-md-12 mt-5 text-center">
-                          ไม่มีรายการที่รอดำเนินงาน
-                        </div>
-                    </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-        </div>
-  
-  
-    </div>
   </div>
   <app-footer></app-footer>
-  

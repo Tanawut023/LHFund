@@ -16,6 +16,7 @@ export class ReportComponent implements OnInit {
     }
     checkpage(page) {
         console.log(page)
+        window.scroll(0,0);
 
         switch (page) {
             case 'purchase':

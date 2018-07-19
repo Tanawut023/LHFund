@@ -627,7 +627,7 @@
             }
 
             @media screen and (max-width: 999px) {
-                display: none;
+                // display: none;
             }
         }
 
@@ -1945,6 +1945,7 @@
 
         > li {
             margin-bottom: 0;
+            cursor: pointer;
 
             a {
                 color: $color-text;

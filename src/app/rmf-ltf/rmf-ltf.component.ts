@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rmf-ltf.component.scss']
 })
 export class RmfLtfComponent implements OnInit {
-  page = "certificate";
+  page = "ltf-condition-complete";
 
   constructor() { }
 
@@ -16,6 +16,7 @@ export class RmfLtfComponent implements OnInit {
   }
 
   checkpage(page) {
+    window.scroll(0,0);
     console.log(page)
 
     switch (page) {
@@ -25,8 +26,8 @@ export class RmfLtfComponent implements OnInit {
         case 'certificate':
             this.page = "certificate";
             break;
-        case 'otp':
-            this.page = "otp";
+        case 'ltf-condition-complete':
+            this.page = "ltf-condition-complete";
             break;
         case 'signup1':
             this.page = "signup1";
@@ -36,7 +37,7 @@ export class RmfLtfComponent implements OnInit {
             break;
         default:
 
-            this.page = "home";
+            this.page = "ltf-condition-complete";
             console.log(this.page)
             break;
     }

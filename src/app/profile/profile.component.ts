@@ -14,27 +14,30 @@ export class ProfileComponent implements OnInit {
     $('#bottom-main-nav li#profile').find('a').addClass('current');
   }
   checkpage(page) {
+    window.scroll(0,0);
     console.log(page)
 
     switch (page) {
-      case 'purchase':
-        this.page = "purchase";
+      case 'suitability':
+        this.page = "suitability";
         break;
-      case 'sell':
-        this.page = "sell";
+      case 'suitability-score':
+        this.page = "suitability-score";
         break;
-      case 'otp':
-        this.page = "otp";
+      case 'home':
+        this.page = "home";
         break;
-      case 'signup1':
-        this.page = "signup1";
+      case 'over-view':
+        this.page = "over-view";
         break;
-      case 'signup2':
-        this.page = "signup2";
+      case 'change-password':
+        this.page = "change-password";
         break;
+      case 'setting':
+      this.page = "setting";
+      break;
       default:
-
-        this.page = "signin";
+        this.page = "home";
         console.log(this.page)
         break;
     }

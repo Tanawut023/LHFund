@@ -15,6 +15,7 @@ export class TransactionComponent implements OnInit {
         $('#bottom-main-nav li#transaction').find('a').addClass('current');
     }
     checkpage(page) {
+        window.scroll(0,0);
         console.log(page)
 
         switch (page) {

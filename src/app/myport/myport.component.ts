@@ -90,7 +90,7 @@ export class MyportComponent implements OnInit {
     }
     checkpage(page) {
         console.log(page)
-
+        window.scroll(0,0);
         switch (page) {
             case 'suitability':
                 this.page = "suitability";

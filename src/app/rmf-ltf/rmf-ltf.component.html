@@ -8,9 +8,9 @@
             <div class="tabs-menu-wrapper">
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu1">
-                  <a title="รายการซื้อ" (click)="checkpage('')">หน่วยลงทุน LTF ที่ครบตามเงื่อนไข</a>
+                  <a title="รายการซื้อ" (click)="checkpage('ltf-condition-complete')">หน่วยลงทุน LTF ที่ครบตามเงื่อนไข</a>
                 </li>
-                <li role="presentation" id="menu2"  class="current">
+                <li role="presentation" id="menu2" class="current">
                   <a title="รายการขาย" (click)="checkpage('conclusion')">สรุปยอดซื้อ RMF & LTF ในรอบปี</a>
                 </li>
                 <li role="presentation" id="menu3">
@@ -50,7 +50,7 @@
                     </div>
                     <div class="col-md-3">
 
-                      <p>เลขที่ผู้ถือหน่วยลงทุน</p>                      
+                      <p>เลขที่ผู้ถือหน่วยลงทุน</p>
                       <div class="select-wrapper inline-block">
                         <select name="ddlLink" id="ddlLink">
                           <option value="0" selected="">9990244757</option>
@@ -59,8 +59,8 @@
                         </select>
                       </div>
                     </div>
-                  
-                  
+
+
                     <div class="col-md-3">
                       <p>ชื่อผู้ถือหน่วยลงทุน</p>
                       <span>เนติวัฒน์ โชติกร</span>
@@ -68,8 +68,8 @@
                   </div>
                 </div>
               </div>
-              <div class="detail-body-wrapper">                
-              <div class="row">
+              <div class="detail-body-wrapper">
+                <div class="row">
                   <div class="col-md-2">
                     <p>RMF & LTF ปี พ.ศ.</p>
                   </div>
@@ -80,236 +80,252 @@
                         <option value="36">2560</option>
                         <option value="29">2559</option>
                       </select>
-                    </div>                      
+                    </div>
                   </div>
                   <div class="col-md-3">
-                      <button class="btn-med btn-primary width50" (click)="checkpage('signup1')">
-                          ตกลง
-                          <i class="fa fa-angle-right" aria-hidden="true"></i>      
-                      </button>                    
-                    </div>
+                    <button class="btn-med btn-primary width50" (click)="checkpage('signup1')">
+                      ตกลง
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </button>
+                  </div>
 
                   <div class="col-md-12">
-                  <div class="fund-list-wrapper">
+                    <div class="fund-list-wrapper">
                       <div class="row">
-                          <div class="col-md-6 col-xs-12 no-padding">
-                                  <div class="title-heading-blue">
-                                      <div class="row">
-                                          <!-- <div class="col-md-2"><img src="/assets/Images/icons/ico-asset.png"></div> -->
-                                          <div class="col-md-12"><h1 class="no-margin">มูลค่าการลงทุน RMF & LTF</h1></div>
-                                          <div class="col-md-12"><h3 class="no-margin">จาก 1 มกราคม 2561 ถึง 12 มิถุนายน 2561</h3></div>
-                                      </div>    
-                          </div>
-                          </div>
-                          <div class="col-md-3 col-xs-12 no-padding">
-                                  <div class="title-heading">
-                                      <div class="row">
-                                              <div class="col-md-3"><img src="/assets/Images/icons/ico-rmf.png"></div>
-                                              <div class="col-md-9">
-                                                <div class="row">
-                                                  <div class="col-sm-12"><p>มูลค่าการลงทุน RMF (บาท)</p></div>
-                                                  <div class="col-sm-12"><h3 class="no-margin">฿ 669,638.80</h3></div>
-                                                </div>                                                  
-                                              </div>
-                                              
-                                      </div>
-                                   </div>
-                          </div>
-                          <div class="col-md-3 col-xs-12 no-padding">
-                              <div class="title-heading-sea">
-                                  <div class="row">
-                                      <div class="col-md-3"><img src="/assets/Images/icons/ico-ltf.png"></div>
-                                      <div class="col-md-9">
-                                        <div class="row">
-                                          <div class="col-sm-12"><p>มูลค่าการลงทุน LTF (บาท)</p></div>
-                                          <div class="col-sm-12"><h3 class="no-margin">฿ 669,638.80</h3></div>
-                                        </div>                                                  
-                                      </div>
-                                      
+                        <div class="col-md-6 col-xs-12 no-padding">
+                          <div class="title-heading-blue">
+                            <div class="row">
+                              <!-- <div class="col-md-2"><img src="/assets/Images/icons/ico-asset.png"></div> -->
+                              <div class="col-md-12">
+                                <h1 class="no-margin">มูลค่าการลงทุน RMF & LTF</h1>
                               </div>
-                               </div>
+                              <div class="col-md-12">
+                                <h3 class="no-margin">จาก 1 มกราคม 2561 ถึง 12 มิถุนายน 2561</h3>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-3 col-xs-12 no-padding">
+                          <div class="title-heading">
+                            <div class="row">
+                              <div class="col-md-3">
+                                <img src="/assets/Images/icons/ico-rmf.png">
+                              </div>
+                              <div class="col-md-9">
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <p>มูลค่าการลงทุน RMF (บาท)</p>
+                                  </div>
+                                  <div class="col-sm-12">
+                                    <h3 class="no-margin">฿ 669,638.80</h3>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-3 col-xs-12 no-padding">
+                          <div class="title-heading-sea">
+                            <div class="row">
+                              <div class="col-md-3">
+                                <img src="/assets/Images/icons/ico-ltf.png">
+                              </div>
+                              <div class="col-md-9">
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <p>มูลค่าการลงทุน LTF (บาท)</p>
+                                  </div>
+                                  <div class="col-sm-12">
+                                    <h3 class="no-margin">฿ 669,638.80</h3>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
                 <div class="row">
-                    <div class="table-responsive">
-                        <table class="table table-nav">
-                            <tbody>
-                                <tr>
-                                    <th>
-                                        วันที่ทำรายการ
-                                    </th>
-                                    <th>
-                                        ประเภทหน่วยลงทุน
-                                    </th>
-                                    <th>
-                                        มูลค่าการลงทุน
-                                    </th>
-                                    <th>
-                                        หน่วย
-                                    </th>
-                                    <th>
-                                        มูลค่าต่อหน่วย
-                                    </th>
-                                </tr>
-                                <tr class="line">
-                                    <td colspan="5">
-                                       KFHCARERMF : กองทุนเปิดกรุงศรีโกลบอลเฮลธ์แคร์อควิตี้เพื่อการเลี้ยงชีพ
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        03/03/2561
-                                    </td>
-                                    <td class="text-center">
-                                       DE
-                                    </td>
-                                    <td class="txt-right">
-                                        200.000
-                                    </td>
-                                    <td class="txt-right">
-                                        17,055.4525
-                                    </td>
-                                    <td class="txt-right">
-                                        11.1500
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        03/03/2561
-                                    </td>
-                                    <td class="text-center">
-                                       DE
-                                    </td>
-                                    <td class="txt-right">
-                                        200.000
-                                    </td>
-                                    <td class="txt-right">
-                                        17,055.4525
-                                    </td>
-                                    <td class="txt-right">
-                                        11.1500
-                                    </td>
-                                </tr>
-                                <tr class="summary">
-                                    <th colspan="2">
-                                      รวม KFHCARERMF
-                                    </th>
-                                    <th class="text-right">
-                                        400.000
-                                    </th>
-                                    <th class="text-right">
-                                        51,116.3575
-                                    </th>
-                                    <th class="text-right">
-                                      &nbsp;
-                                  </th>
-                                </tr>
-                                <tr class="line">
-                                    <td colspan="5">
-                                       KFHCARERMF : กองทุนเปิดกรุงศรีโกลบอลเฮลธ์แคร์อควิตี้เพื่อการเลี้ยงชีพ
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        03/03/2561
-                                    </td>
-                                    <td class="text-center">
-                                       DE
-                                    </td>
-                                    <td class="txt-right">
-                                        200.000
-                                    </td>
-                                    <td class="txt-right">
-                                        17,055.4525
-                                    </td>
-                                    <td class="txt-right">
-                                        11.1500
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        03/03/2561
-                                    </td>
-                                    <td class="text-center">
-                                       DE
-                                    </td>
-                                    <td class="txt-right">
-                                        200.000
-                                    </td>
-                                    <td class="txt-right">
-                                        17,055.4525
-                                    </td>
-                                    <td class="txt-right">
-                                        11.1500
-                                    </td>
-                                </tr>
-                                <tr class="summary">
-                                  <th colspan="2">
-                                    รวม KFHCARERMF
-                                  </th>
-                                  <th class="text-right">
-                                      400.000
-                                  </th>
-                                  <th class="text-right">
-                                      51,116.3575
-                                  </th>
-                                  <th class="text-right">
-                                    &nbsp;
-                                </th>
-                              </tr>
-                            </tbody>
-                        </table>
-                    </div>                    
+                  <div class="table-responsive">
+                    <table class="table table-nav">
+                      <tbody>
+                        <tr>
+                          <th>
+                            วันที่ทำรายการ
+                          </th>
+                          <th>
+                            ประเภทหน่วยลงทุน
+                          </th>
+                          <th>
+                            มูลค่าการลงทุน
+                          </th>
+                          <th>
+                            หน่วย
+                          </th>
+                          <th>
+                            มูลค่าต่อหน่วย
+                          </th>
+                        </tr>
+                        <tr class="line">
+                          <td colspan="5">
+                            KFHCARERMF : กองทุนเปิดกรุงศรีโกลบอลเฮลธ์แคร์อควิตี้เพื่อการเลี้ยงชีพ
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="text-center">
+                            03/03/2561
+                          </td>
+                          <td class="text-center">
+                            DE
+                          </td>
+                          <td class="txt-right">
+                            200.000
+                          </td>
+                          <td class="txt-right">
+                            17,055.4525
+                          </td>
+                          <td class="txt-right">
+                            11.1500
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="text-center">
+                            03/03/2561
+                          </td>
+                          <td class="text-center">
+                            DE
+                          </td>
+                          <td class="txt-right">
+                            200.000
+                          </td>
+                          <td class="txt-right">
+                            17,055.4525
+                          </td>
+                          <td class="txt-right">
+                            11.1500
+                          </td>
+                        </tr>
+                        <tr class="summary">
+                          <th colspan="2">
+                            รวม KFHCARERMF
+                          </th>
+                          <th class="text-right">
+                            400.000
+                          </th>
+                          <th class="text-right">
+                            51,116.3575
+                          </th>
+                          <th class="text-right">
+                            &nbsp;
+                          </th>
+                        </tr>
+                        <tr class="line">
+                          <td colspan="5">
+                            KFHCARERMF : กองทุนเปิดกรุงศรีโกลบอลเฮลธ์แคร์อควิตี้เพื่อการเลี้ยงชีพ
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="text-center">
+                            03/03/2561
+                          </td>
+                          <td class="text-center">
+                            DE
+                          </td>
+                          <td class="txt-right">
+                            200.000
+                          </td>
+                          <td class="txt-right">
+                            17,055.4525
+                          </td>
+                          <td class="txt-right">
+                            11.1500
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="text-center">
+                            03/03/2561
+                          </td>
+                          <td class="text-center">
+                            DE
+                          </td>
+                          <td class="txt-right">
+                            200.000
+                          </td>
+                          <td class="txt-right">
+                            17,055.4525
+                          </td>
+                          <td class="txt-right">
+                            11.1500
+                          </td>
+                        </tr>
+                        <tr class="summary">
+                          <th colspan="2">
+                            รวม KFHCARERMF
+                          </th>
+                          <th class="text-right">
+                            400.000
+                          </th>
+                          <th class="text-right">
+                            51,116.3575
+                          </th>
+                          <th class="text-right">
+                            &nbsp;
+                          </th>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                   <div class="col-md-6 mt-2">
                     <p class="color-red no-margin">หมายเหตุ: คำนวณจากยอดเงินลงทุนใหม่ในรอบปีทั้งหมด โดยไม่รวมรายการดังต่อไปนี้</p>
                     <p class="color-red no-margin">1. เงินลงทุนที่รับโอนมาจากหรือโอนออกไปยังบลจ.อื่น</p>
                     <p class="color-red no-margin">2. รายการสับเปลี่ยนระหว่าง RMF ด้วยกันหรือ LTF ด้วยกัน</p>
                     <p class="color-red no-margin">3. จำนวนเงินที่ขายคืนระหว่างปี</p>
-                    <p class="color-red no-margin">4. เงินลงทุนใน RMF/LTF ของผู้ถือหน่วยท่านเดียวกัน แต่อยู่ในบัญชีผู้ถือลงทุนหมายเลขอื่นกับ บลจ.กรุงศรี</p>                                   
+                    <p class="color-red no-margin">4. เงินลงทุนใน RMF/LTF ของผู้ถือหน่วยท่านเดียวกัน แต่อยู่ในบัญชีผู้ถือลงทุนหมายเลขอื่นกับ บลจ.กรุงศรี</p>
                   </div>
-                  
-                </div>
 
                 </div>
+
+              </div>
               <div class="detail-footer-wrapper">
                 <div class="row">
                   <div class="col-md-12 text-left">
                     <h4>คำย่อ</h4>
                   </div>
-                  <div class="col-md-3 text-left">  
+                  <div class="col-md-3 text-left">
                     <p class="no-margin">BB=ยอดที่ยกมา</p>
-                      <p class="no-margin">EB=ยอดที่ยกไป</p>
-                      <p class="no-margin">DE=ซื้อ</p>            
-                                   
+                    <p class="no-margin">EB=ยอดที่ยกไป</p>
+                    <p class="no-margin">DE=ซื้อ</p>
+
                   </div>
                   <div class="col-md-3 text-left">
-                      <p class="no-margin">WI=ขายคืน</p>
-                      <p class="no-margin">SO=สับเปลี่ยนออก</p>
-                      <p class="no-margin">SI=สับเปลี่ยนเข้า</p>
+                    <p class="no-margin">WI=ขายคืน</p>
+                    <p class="no-margin">SO=สับเปลี่ยนออก</p>
+                    <p class="no-margin">SI=สับเปลี่ยนเข้า</p>
                   </div>
                   <div class="col-md-3 text-left">
-                      <p class="no-margin">TO=โอนออก</p>
-                      <p class="no-margin">TI=โอนเข้า</p>
-                      <p class="no-margin">COR=แก้ไข</p>
+                    <p class="no-margin">TO=โอนออก</p>
+                    <p class="no-margin">TI=โอนเข้า</p>
+                    <p class="no-margin">COR=แก้ไข</p>
                   </div>
 
-                  <div class="col-md-12  mt-5 "> 
+                  <div class="col-md-12  mt-5 ">
                     <div class="row justify-content-center">
                       <div class="col-md-3 ">
                         <button class="btn-med btn-primary" (click)="checkpage('signup1')">
                           พิมพ์
                           <i class="fa fa-angle-right" aria-hidden="true"></i>
-    
-                      </button>
+
+                        </button>
                       </div>
-                    </div>                   
-                      
                     </div>
+
+                  </div>
                 </div>
-                
+
               </div>
             </div>
           </div>
@@ -320,23 +336,23 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-              <div class="tabs-menu-wrapper">
-                  <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
-                    <li role="presentation" id="menu1">
-                      <a title="รายการซื้อ" (click)="checkpage('')">หน่วยลงทุน LTF ที่ครบตามเงื่อนไข</a>
-                    </li>
-                    <li role="presentation" id="menu2">
-                      <a title="รายการขาย" (click)="checkpage('conclusion')">สรุปยอดซื้อ RMF & LTF ในรอบปี</a>
-                    </li>
-                    <li role="presentation" id="menu3" class="current">
-                      <a title="รายการสับเปลี่ยน">หนังสือรับรองฯ RMF</a>
-                    </li>
-                    <li role="presentation" id="menu4">
-                      <a title="รายการตั้งซื้อขายล่วงหน้า">หนังสือรับรองฯ LTF</a>
-                    </li>
-    
-                  </ul>
-                </div>
+            <div class="tabs-menu-wrapper">
+              <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
+                <li role="presentation" id="menu1">
+                  <a title="รายการซื้อ" (click)="checkpage('ltf-condition-complete')">หน่วยลงทุน LTF ที่ครบตามเงื่อนไข</a>
+                </li>
+                <li role="presentation" id="menu2">
+                  <a title="รายการขาย" (click)="checkpage('conclusion')">สรุปยอดซื้อ RMF & LTF ในรอบปี</a>
+                </li>
+                <li role="presentation" id="menu3" class="current">
+                  <a title="รายการสับเปลี่ยน" (click)="checkpage('certificate')">หนังสือรับรองฯ RMF</a>
+                </li>
+                <li role="presentation" id="menu4">
+                  <a title="รายการตั้งซื้อขายล่วงหน้า">หนังสือรับรองฯ LTF</a>
+                </li>
+
+              </ul>
+            </div>
 
             <div class="fund-table-wrapper">
               <div class="heading-section">
@@ -365,7 +381,7 @@
                     </div>
                     <div class="col-md-3">
 
-                      <p>เลขที่ผู้ถือหน่วยลงทุน</p>                      
+                      <p>เลขที่ผู้ถือหน่วยลงทุน</p>
                       <div class="select-wrapper inline-block">
                         <select name="ddlLink" id="ddlLink">
                           <option value="0" selected="">9990244757</option>
@@ -397,20 +413,20 @@
                   <div class="col-md-6 pull-md-6">
                     <div class="row">
                       <div class="col-md-6">
-                          <div class="custom-radio-between">
-                              <input value="101" id="101" name="rad1" type="radio" checked>
-                              <label for="101"></label>
-                              <p>หนังสือรับรองฯ RMF</p>
-                          </div>
+                        <div class="custom-radio-between">
+                          <input value="101" id="101" name="rad1" type="radio" checked>
+                          <label for="101"></label>
+                          <p>หนังสือรับรองฯ RMF</p>
+                        </div>
                       </div>
                       <div class="col-md-6">
-                          <div class="custom-radio-between">
-                              <input value="102" id="102" name="rad1" type="radio">
-                              <label for="102"></label>
-                              <p >หนังสือรับรองฯ ขายคืน RMF</p>
+                        <div class="custom-radio-between">
+                          <input value="102" id="102" name="rad1" type="radio">
+                          <label for="102"></label>
+                          <p>หนังสือรับรองฯ ขายคืน RMF</p>
+                        </div>
                       </div>
-                      </div>
-                     
+
                       <div class="col-md-6">
                         <div class="row">
                           <div class="col-md-12">
@@ -426,35 +442,35 @@
                             </div>
                           </div>
                           <div class="col-md-6 offset-6">
-                              <button class="btn-med btn-primary" (click)="checkpage('signup1')">
-                                  ตกลง
-                                  <i class="fa fa-angle-right" aria-hidden="true"></i>
-            
-                        </button>
+                            <button class="btn-med btn-primary" (click)="checkpage('signup1')">
+                              ตกลง
+                              <i class="fa fa-angle-right" aria-hidden="true"></i>
+
+                            </button>
+                          </div>
                         </div>
-                        </div>
-                          
+
                       </div>
-                      
-                      
+
+
                     </div>
                   </div>
                 </div>
-                
+
 
               </div>
               <div class="detail-footer-wrapper">
                 <div class="sidenav-left">
                   <div class="vertical-menu-wrapper">
                     <h3>
-                        หนังสือรับรองฯ RMF
+                      หนังสือรับรองฯ RMF
                     </h3>
                     <ul>
                       <li>
                         <div class="row">
                           <div class="col-md-10">
                             <a href="#" title="ชื่อเมนู">
-                                (ชื่อ) หนังสือรับรองฯ RMF
+                              (ชื่อ) หนังสือรับรองฯ RMF
                             </a>
                           </div>
                           <div class="col-md-2">
@@ -466,35 +482,35 @@
                         </div>
                       </li>
                       <li>
-                          <div class="row">
-                            <div class="col-md-10">
-                              <a href="#" title="ชื่อเมนู">
-                                  (ชื่อ) หนังสือรับรองฯ RMF
-                              </a>
-                            </div>
-                            <div class="col-md-2">
-                              <button class="btn-sm btn-download width50 " (click)="checkpage('signup1')">
-                                  Download
-                                  <img src="/assets/Images/icons/ico-download-white.png">
-                              </button>
-                            </div>
+                        <div class="row">
+                          <div class="col-md-10">
+                            <a href="#" title="ชื่อเมนู">
+                              (ชื่อ) หนังสือรับรองฯ RMF
+                            </a>
                           </div>
-                        </li>
-                        <li>
-                            <div class="row">
-                              <div class="col-md-10">
-                                <a href="#" title="ชื่อเมนู">
-                                    (ชื่อ) หนังสือรับรองฯ RMF
-                                </a>
-                              </div>
-                              <div class="col-md-2">
-                                <button class="btn-sm btn-download width50 " (click)="checkpage('signup1')">
-                                    Download
-                                  <img src="/assets/Images/icons/ico-download-white.png">
-                                </button>
-                              </div>
-                            </div>
-                          </li>
+                          <div class="col-md-2">
+                            <button class="btn-sm btn-download width50 " (click)="checkpage('signup1')">
+                              Download
+                              <img src="/assets/Images/icons/ico-download-white.png">
+                            </button>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="row">
+                          <div class="col-md-10">
+                            <a href="#" title="ชื่อเมนู">
+                              (ชื่อ) หนังสือรับรองฯ RMF
+                            </a>
+                          </div>
+                          <div class="col-md-2">
+                            <button class="btn-sm btn-download width50 " (click)="checkpage('signup1')">
+                              Download
+                              <img src="/assets/Images/icons/ico-download-white.png">
+                            </button>
+                          </div>
+                        </div>
+                      </li>
 
                     </ul>
                     <div class="clearfix"></div>
@@ -550,6 +566,156 @@
       </div>
 
 
+    </div>
+    <div class="mutual-fund-wrapper" *ngIf="page == 'ltf-condition-complete'">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="tabs-menu-wrapper">
+              <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
+                  <li role="presentation" id="menu1" class="current">
+                      <a title="รายการซื้อ" (click)="checkpage('ltf-condition-complete')">หน่วยลงทุน LTF ที่ครบตามเงื่อนไข</a>
+                    </li>
+                    <li role="presentation" id="menu2" >
+                      <a title="รายการขาย" (click)="checkpage('conclusion')">สรุปยอดซื้อ RMF & LTF ในรอบปี</a>
+                    </li>
+                    <li role="presentation" id="menu3">
+                      <a title="รายการสับเปลี่ยน" (click)="checkpage('certificate')">หนังสือรับรองฯ RMF</a>
+                    </li>
+                    <li role="presentation" id="menu4">
+                      <a title="รายการตั้งซื้อขายล่วงหน้า">หนังสือรับรองฯ LTF</a>
+                    </li>
+
+              </ul>
+            </div>
+
+            <div class="fund-table-wrapper">
+              <div class="heading-section">
+                <div class="row">
+                  <div class="detail-head-wrapper">
+                    <div class="col-md-12 icon-option mb-3">
+
+                      <ul class="">
+                        <li class="ico-fb">
+                          <a href="#" title="facebook">
+                            <img src="/assets/Images/icons/ico-pipe.png" />
+                          </a>
+                        </li>
+                        <li class="ico-line">
+                          <a href="#" title="line">
+                            <img src="/assets/Images/icons/ico-download.png" />
+                          </a>
+                        </li>
+                        <li class="ico-yt">
+                          <a href="#" title="youtube">
+                            <img src="/assets/Images/icons/ico-print.png" />
+                          </a>
+                        </li>
+
+                      </ul>
+                    </div>
+                    <div class="col-md-3">
+
+                      <p>เลขที่ผู้ถือหน่วยลงทุน</p>
+                      <div class="select-wrapper inline-block">
+                        <select name="ddlLink" id="ddlLink">
+                          <option value="0" selected="">9990244757</option>
+                          <option value="36">9990244757</option>
+                          <option value="29">9990244757</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <p>ชื่อผู้ถือหน่วยลงทุน</p>
+                      <span>เนติวัฒน์ โชติกร</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-body-wrapper">
+                <div class="table-responsive">
+                  <table class="table table-nav">
+                    <tbody>
+                      <tr>
+                        <th>
+                          ชื่อกองทุน
+                        </th>
+                        <th>
+                          วันที่ซื้อ
+                        </th>
+                        <th>
+                          จำนวนหน่วย
+                        </th>
+                        <th>
+                          วันที่
+                        </th>
+                        <th>
+                          มูลค่าต่อหน่วย
+                        </th>
+                        <th>
+                          มูลค่าหน่วย
+                        </th>
+                      </tr>
+                      <tr class="line">
+                        <td>
+                          กองทุนที่เน้นตราสารเงิน (KFCRASH)
+                        </td>
+                        <td colspan="6">&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          KFCRASH
+                        </td>
+                        <td class="txt-right">
+                          03/03/2561
+                        </td>
+                        <td class="txt-right">
+                          SUB
+                        </td>
+                        <td class="txt-right">
+                          11.4523
+                        </td>
+                        <td class="txt-right">
+                          110
+                        </td>
+                        <td class="txt-right">
+                          17,055.45
+                        </td>
+                      </tr>
+                      <tr class="line">
+                        <td>
+                          กองทุนที่เน้นการลงทุนในหุ้น (KFCRASH)
+                        </td>
+                        <td colspan="6">&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          KFCRASH
+                        </td>
+                        <td class="txt-right">
+                          03/03/2561
+                        </td>
+                        <td class="txt-right">
+                          SUB
+                        </td>
+                        <td class="txt-right">
+                          11.4523
+                        </td>
+                        <td class="txt-right">
+                          110
+                        </td>
+                        <td class="txt-right">
+                          17,055.45
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <app-footer></app-footer>

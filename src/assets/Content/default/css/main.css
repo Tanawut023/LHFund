@@ -4692,7 +4692,8 @@ input[type=reset] {
             background-color: #1CA59B; }
         .table-responsive .table.table-nav > tbody tr.line {
           background: #f5f5f5;
-          text-align: left !important; }
+          text-align: left !important;
+          color: #333; }
     .table-responsive .table.table-performance {
       width: 99.99%;
       padding: 0;
@@ -6710,9 +6711,6 @@ input[type=reset] {
               background-color: #000; }
             .page-content-wrapper .sidenav-left .vertical-menu-wrapper ul li .btn-download img {
               margin-left: 20px; }
-      @media screen and (max-width: 999px) {
-        .page-content-wrapper .sidenav-left .vertical-menu-wrapper {
-          display: none; } }
     .page-content-wrapper .sidenav-left .dropdown-content {
       display: none;
       margin-top: 20px; }
@@ -7595,7 +7593,8 @@ input[type=reset] {
     margin-bottom: 0;
     border-bottom: 0; }
     .tabs-menu-wrapper .nav-tabs > li {
-      margin-bottom: 0; }
+      margin-bottom: 0;
+      cursor: pointer; }
       .tabs-menu-wrapper .nav-tabs > li a {
         color: #5a5a5a;
         font-size: 22px;
