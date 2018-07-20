@@ -657,17 +657,32 @@ h4{
         margin: 0;
         display: unset;
       }
-      .label-txt{
-        border-bottom: 5px solid $color-primary;
-        margin:  10px 0;
-        padding:  20px;
-      }
+    //   .label-txt{
+    //     border-bottom: 5px solid $color-primary;
+    //     margin:  10px 0;
+    //     padding:  20px;
+    //   }
       
       .choice-wrap{
         padding-bottom: 15px;
         margin-bottom: 15px;
         overflow: hidden;
         width: 100%;
+
+        &.-select-type{
+            font-size: 24px;
+            text-align: left;
+            /* Hiding radio button */
+            input[type='radio'] {display:none;}
+            /* Hiding second image in label tags */
+            // label.item > img:nth-child(2) {display:none;}
+            label.item > span { color: $color-secondary; padding: 0 10px;}
+            /* When radio-button is checked, display second image in the following label tag */
+            // input[type='radio']:checked + label.item > img:nth-child(1) {display:none;}
+            // input[type='radio']:checked + label.item > img:nth-child(2) {display:inline-block;}
+    
+            input[type='radio']:checked + label.item > span { color: $color-primary}
+          }
       }
 
       .question-wrapper{
@@ -933,6 +948,7 @@ background-color: $color-secondary;
 
         h4{
             display: block;
+            margin-bottom: 20px;
         }
     }
     .detail-footer-wrapper{
@@ -1633,6 +1649,48 @@ background-color: $color-secondary;
                     text-decoration: none;
                 }
             }
+        }
+    }
+}
+
+
+#company, #personal{
+    
+    span{
+            color: #b9b9b9;
+    }
+    
+    .label-txt{
+        border-bottom: 5px solid #b9b9b9;        
+    }
+
+    .custom-radio-between{
+        color: #b9b9b9;
+    }
+
+    .custom-radio-between input[type=radio] + label{
+        opacity: 0.25;
+    }
+
+    &.active{
+        
+        span{
+                color: $color-primary;
+        }
+        
+
+        .custom-radio-between{
+            color: #5a5a5a;
+        }
+    
+        .custom-radio-between input[type=radio] + label{
+            opacity: 1;
+        }
+        .input-wrapper input[type=text]{
+            border: 1px solid $color-title;
+        }
+        .label-txt{
+            border-bottom: 5px solid $color-primary;
         }
     }
 }

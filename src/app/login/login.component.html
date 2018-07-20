@@ -1,708 +1,696 @@
 <app-header-login></app-header-login>
 <div id="main-wrapper" class="main-login-wrapper">	
-	<div id="main-slider" class="main-slider">
-		<div class="index-slider slider-container">
-			<div>
-				<div class="foo-item">
-					<div class="contact-wrapper" *ngIf="page == 'signin'">
-						<div class="container">
-							<div class="row">
-								<div class="col-md-6 col-md-offset-6">
-									<div class="contact-popup active">
+	<div class="contact-wrapper" *ngIf="page == 'signin'">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-6">
+					<div class="contact-popup active">
 
-										<div class="popup-content">
-											<!-- <a href="javascript:void(0)" class="btn-close">5</a> -->
-											<div class="contact-title">
-												<div class="row">
-													<div class="col ">
-														<div class="login-icon">
-																<img src="/assets/Images/icons/icon-login-white.png" />
-														</div>
-														<p>
-															
-															<!-- <img src="/assets/Images/icons/icon-login-white.png" /> -->
-															เข้าสู่ระบบ
-														</p>
-													</div>
-													<div class="col d-flex justify-content-end">
-														<ul>
-															<li class="th current">
-																<a href="#" title="ไทย">Thai</a>
-															</li>
-															<li class="en ">
-																<a href="#" title="Eng">Eng</a>
-															</li>
-														</ul>
-													</div>
-												</div>
-												<!-- <p>
-														หากมีข้อสงสัยที่ต้องการสอบถาม กรุณาระบุในช่องด้านล่าง
-													</p> -->
-											</div>
-											<div class="contact-form-wrapper">
-												<form>
-													<div class="detail-login-wrapper">
-													<div class="row">
-														<div class="col-sm-12">
-															<p>ชื่อผู้เข้าระบบ
-															</p>
-															<div class="input-wrapper">
-																<input id="name" name="name" maxlength="30" type="text">
-															</div>
-														</div>
-														<div class="col-sm-12">
-															<p>รหัสผ่าน
-															</p>
-															<div class="input-wrapper ">
-																<input id="password" name="password" maxlength="30" type="password">
-															</div>
-														</div>
-													</div>
-
-													<div class="row">
-														<div class="col-md-12">
-															<p class="mb-3">ลืมรหัสผ่าน
-																<a style="cursor: pointer;" (click)="checkpage('forgotpassword')">
-																	<i class="fa fa-question-circle" aria-hidden="true"></i>
-																</a>
-															</p>
-														</div>
-													</div>
-												</div>
-													<!-- <div class="row">
-														<div class="col-md-6 col-sm-6">
-															<p>กรุณากรอกรหัสเพื่อยืนยันตัวตน
-															</p>
-														</div>
-													
-														<div class="col-md-6 col-sm-12">
-																<div class="row">
-																	<div class="col-md-5 col-sm-6 col-xs-6">
-
-																			<div class="captcha">
-																				<img src="/assets/Images/icons/captcha.png"/>
-																			</div>
-																		</div>
-																		<div class="col-md-1 col-sm-6 col-xs-2">
-																			<i class="fas fa-sync-alt refresh" aria-hidden="true"></i>
-																		</div>
-																		<div class="col-md-5 col-sm-6 col-xs-6">
-				
-																			<div class="input-wrapper">
-																				<input id="tel" name="tel" maxlength="30" type="text">
-																			</div>
-																		</div>
-																</div>
-														</div>
-
-													</div> -->
-													
-
-													<div class="row">
-														<div class="col-md-6">
-															<div class="btn-wrapper-left">
-																<button class="btn-med btn-confirm-login" (click)="checkpage('submit')" [routerLink]="['/myport']">
-																	<p>
-																		เข้าสู่ระบบ
-																		<i class="fa fa-angle-right" aria-hidden="true"></i>
-																	</p>
-																</button>
-															</div>
-														</div>
-
-														<div class="col-md-6 ">
-															<div class="btn-wrapper-left">
-																<button class="btn-med btn-next-login" (click)="checkpage('signup1')" >
-																	<p>ลงทะเบียน
-																		<i class="fa fa-angle-right" aria-hidden="true"></i>
-																	</p>
-																</button>
-															</div>
-														</div>
-													</div>
-												</form>
-											</div>
+						<div class="popup-content">
+							<div class="contact-title">
+								<div class="row">
+									<div class="col ">
+										<div class="login-icon">
+												<img src="/assets/Images/icons/icon-login-white.png" />
 										</div>
+										<p>
+											เข้าสู่ระบบ
+										</p>
+									</div>
+									<div class="col d-flex justify-content-end">
+										<ul>
+											<li class="th current">
+												<a href="#" title="ไทย">Thai</a>
+											</li>
+											<li class="en ">
+												<a href="#" title="Eng">Eng</a>
+											</li>
+										</ul>
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-					<div class="contact-wrapper" *ngIf="page == 'forgotpassword'">
-						<div class="container">
-							<div class="row">
-								<div class="col-md-6 col-md-offset-6">
-									<div class="contact-popup active">
-										<!-- <div class="caption-link mail">
-													E-Mail
-												</div> -->
-										<div class="popup-content">
-											<!-- <a href="javascript:void(0)" class="btn-close">5</a> -->
-											<div class="contact-title">
-												<div class="row">
-													<div class="col">
-														<p><i class="fas fa-unlock-alt mr-2"></i>
-															ลืมรหัสผ่าน
-															
-														</p>
-													</div>
-													<div class="col d-flex justify-content-end">
-														<ul>
-															<li class="th current">
-																<a href="#" title="ไทย">Thai</a>
-															</li>
-															<li class="en">
-																<a href="#" title="Eng">Eng</a>
-															</li>
-														</ul>
-													</div>
-												</div>
-												<!-- <p>
-															หากมีข้อสงสัยที่ต้องการสอบถาม กรุณาระบุในช่องด้านล่าง
-														</p> -->
+							<div class="contact-form-wrapper">
+								<form>
+									<div class="detail-login-wrapper">
+									<div class="row">
+										<div class="col-sm-12">
+											<p>ชื่อผู้เข้าระบบ
+											</p>
+											<div class="input-wrapper">
+												<input id="name" name="name" maxlength="30" type="text">
 											</div>
-											<div class="contact-form-wrapper">
-												<form>
-													<div class="detail-login-wrapper">
-													<div class="row">
-														<div class="col-sm-12">
-															<p>ชื่อผู้เข้าระบบ
-															</p>
-															<div class="input-wrapper">
-																<input id="name" name="name" maxlength="30" type="text">
-															</div>
-														</div>
-														<div class="col-sm-12">
-															<p>เลขบัตรประจำตัว
-															</p>
-															<div class="input-wrapper ">
-																<input id="userid" name="userid" maxlength="30" type="text">
-															</div>
-														</div>
-														<div class="col-sm-12">
-															<p>อีเมล์
-															</p>
-															<div class="input-wrapper ">
-																<input id="email" name="email" maxlength="30" type="text">
-															</div>
-														</div>
-													</div>
-													</div>
-
-													<div class="row">
-															<div class="col-md-6">															
-																<div class="btn-wrapper-left">
-																	<div class="row">
-																		<div class="col-md-10">
-																			<button class="btn-med btn-back-login" (click)="checkpage('signin')">
-																				<p>																					ย้อนกลับ
-																					<i class="fa fa-angle-right" aria-hidden="true"></i>
-																				</p>
-																			</button>
-																		</div>
-																	</div>
-																</div>
-															</div>
-	
-															<div class="col-md-6 ">
-																<div class="btn-wrapper-right">
-																	<div class="row justify-content-end">
-																		<div class="col-md-10">
-																			<button class="btn-med btn-confirm-login" (click)="checkpage()">
-																				<p>ตกลง
-																					<i class="fa fa-angle-right" aria-hidden="true"></i>
-																				</p>
-																			</button>
-																		</div>
-																	</div>
-																	
-																</div>
-															</div>
-														</div>
-
-												</form>
+										</div>
+										<div class="col-sm-12">
+											<p>รหัสผ่าน
+											</p>
+											<div class="input-wrapper ">
+												<input id="password" name="password" maxlength="30" type="password">
 											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-12">
+											<p class="mb-3">ลืมรหัสผ่าน
+												<a style="cursor: pointer;" (click)="checkpage('forgotpassword')">
+													<i class="fa fa-question-circle" aria-hidden="true"></i>
+												</a>
+											</p>
 										</div>
 									</div>
 								</div>
-							</div>
-						</div>
-					</div>
-					<div class="contact-wrapper" *ngIf="page == 'otp'">
-						<div class="container">
-							<div class="row">
-								<div class="col-md-6 col-md-offset-6">
-									<div class="contact-popup active">
-
-										<div class="popup-content">
-											<!-- <a href="javascript:void(0)" class="btn-close">5</a> -->
-											<div class="contact-title">
-												<div class="row">
-													<div class="col-md-10">
-															<div class="login-icon">
-																	<img src="/assets/Images/icons/icon-otp-white.png" />
-															</div>
-														<p>														
-															ระบบความปลอดภัย OTP
-														</p>
-													</div>
-													<div class="col-md-2">
-														<ul>
-															<li class="th current">
-																<a href="#" title="ไทย">Thai</a>
-															</li>
-															<li class="en">
-																<a href="#" title="Eng">Eng</a>
-															</li>
-														</ul>
-													</div>
-												</div>
-												<!-- <p>
-															หากมีข้อสงสัยที่ต้องการสอบถาม กรุณาระบุในช่องด้านล่าง
-														</p> -->
+									<div class="row">
+										<div class="col-md-6">
+											<div class="btn-wrapper-left">
+												<button class="btn-med btn-confirm-login" (click)="checkpage('submit')" [routerLink]="['/myport']">
+													<p>
+														เข้าสู่ระบบ
+														<i class="fa fa-angle-right" aria-hidden="true"></i>
+													</p>
+												</button>
 											</div>
-											<div class="contact-form-wrapper">
-												<form>
-													<div class="row">
-														<div class="col-sm-12">
-															<p>ระบบจะส่งรหัส OTP ไปยังเบอร์โทรศัพท์มือถือ
-															</p>
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-md-6">
-															<div class="input-wrapper mb-3 mt-2">
-																<input id="email-or-tel" name="email-or-tel" maxlength="30" type="text" placeholder="085XXXXXXX">
-															</div>
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-md-12">
-															<p>ระบุรหัส OTP ที่ได้รับ</p>
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-md-8">
-															<div class="input-wrapper">
-																<input id="name" name="name" maxlength="30" type="text">
-															</div>
-														</div>
+										</div>
 
-														<div class="col-md-4">
-
-															<div class="btn-wrapper">
-																<button class="btn-blue" (click)="checkpage()">
-																	ส่งรหัส OTP
-																	<i class="fa fa-angle-right" aria-hidden="true"></i>
-																</button>
-															</div>
-														</div>
-													</div>
-													<div class="row pb-4">
-														<div class="col-md-12">
-															<p>กรุณากดปุ่ม "Request OTP" เพื่อรับรหัสรักษาความปลอดภัย</p>
-														</div>
-													</div>
-
-													<div class="row mt-3">
-														<div class="col-md-6">															
-															<div class="btn-wrapper-left">
-																<div class="row">
-																	<div class="col-md-10">
-																		<button class="btn-med btn-cancel" (click)="checkpage('signin')">
-																			<p>
-																				ยกเลิก
-																				<i class="fa fa-angle-right" aria-hidden="true"></i>
-																			</p>
-																		</button>
-																	</div>
-																</div>
-															</div>
-														</div>
-
-														<div class="col-md-6 ">
-															<div class="btn-wrapper-right">
-																<div class="row justify-content-end">
-																	<div class="col-md-10">
-																		<button class="btn-med btn-confirm-login" (click)="checkpage()">
-																			<p>ยืนยัน
-																				<i class="fa fa-angle-right" aria-hidden="true"></i>
-																			</p>
-																		</button>
-																	</div>
-																</div>
-																
-															</div>
-														</div>
-													</div>
-												</form>
+										<div class="col-md-6 ">
+											<div class="btn-wrapper-left">
+												<button class="btn-med btn-next-login" (click)="checkpage('signup1')" >
+													<p>ลงทะเบียน
+														<i class="fa fa-angle-right" aria-hidden="true"></i>
+													</p>
+												</button>
 											</div>
 										</div>
 									</div>
-								</div>
-
-							</div>
-						</div>
-					</div>
-					<div class="contact-wrapper" *ngIf="page == 'signup1'">
-						<div class="container">
-							<div class="row">
-								<div class="col-md-3 col-md-offset-6">
-									<div class="contact-popup active">
-
-										<div class="popup-side-content-left item">
-											<div class="contact-title">
-												<div class="row">
-													<div class="col">
-															<div class="login-icon">
-																	<img src="/assets/Images/icons/icon-register.png" />
-															</div>
-														<p>															
-															ลงทะเบียนเข้าใช้ระบบ
-														</p>
-													</div>
-													<div class="col d-flex justify-content-end xs-show">
-														<ul>
-															<li class="th current">
-																<a href="#" title="ไทย">Thai</a>
-															</li>
-															<li class="en ">
-																<a href="#" title="Eng">Eng</a>
-															</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-											<div class="contact-form-wrapper">
-												<form>
-													<div class="row">
-														<div class="col-sm-12">
-															<p>ชื่อผู้เข้าระบบ
-															</p>
-															<div class="input-wrapper">
-																<input id="name" name="name" maxlength="30" type="text">
-															</div>
-														</div>
-														<div class="col-sm-12">
-															<p>รหัสผ่าน
-															</p>
-															<div class="input-wrapper ">
-																<input id="password" name="password" maxlength="30" type="password">
-															</div>
-														</div>
-														<div class="col-sm-12">
-															<p>ยืนยันรหัสผ่าน
-															</p>
-															<div class="input-wrapper ">
-																<input id="confirmpassword" name="confirmpassword" maxlength="30" type="password">
-															</div>
-														</div>
-
-														<div class="col-sm-12 mt-3">
-															<div class="btn-wrapper-left">
-																<button class="btn-med btn-next-login" (click)="checkpage('signup2')">
-																	<p class="pl-1 ">ถัดไป
-																		<i class="fa fa-angle-right pl-4" aria-hidden="true"></i>
-																	</p>
-																</button>
-															</div>
-														</div>
-													</div>
-
-												</form>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="contact-popup active">
-
-										<div class="popup-side-content-right item">
-											<div class="contact-title">
-												<div class="row ">
-													<div class="col-md-10 col-md-offset-8 xs-hide">
-														<ul>
-															<li class="th current">
-																<a href="#" title="ไทย">Thai</a>
-															</li>
-															<li class="en">
-																<a href="#" title="Eng">Eng</a>
-															</li>
-														</ul>
-													</div>
-												</div>
-												<!-- <p>
-																หากมีข้อสงสัยที่ต้องการสอบถาม กรุณาระบุในช่องด้านล่าง
-															</p> -->
-											</div>
-											<div class="contact-form-wrapper">
-												<div class="row mt-5">
-													<div class="col-md-12 mb-2">
-														<h3>ทำความเข้าใจลักษณะสินค้า,</h3>
-														<h3>เงื่อนไข,ผลตอบแทน</h3>
-														<h3>และความเสี่ยงก่อนตัดสินใจ</h3>
-													</div>
-													<div class="col-md-12 text-center mt-3">
-														<div class="btn-wrapper">
-															<div class="row justify-content-center">
-																<div class="col-md-8">
-																	<button class="btn-med btn-light" (click)="checkpage('signin')">
-																	<div class="login-icon ml-2 mt-1">
-																			<!-- <img src="/assets/Images/icons/icon-login-green.png" /> -->
-																			<img src="/assets/Images/icons/icon-login-white.png" class="visible-lg-block" />
-              																<img src="/assets/Images/icons/icon-login-white.png" class="visible-md-block visible-sm-block visible-xs-block" />
-																	</div>
-																	เข้าสู่ระบบ
-																	</button>
-
-																</div>
-															</div>
-															
-														</div>
-													</div>
-
-													
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="contact-wrapper" *ngIf="page == 'signup2'">
-						<div class="container">
-							<div class="row">
-								<div class="col-md-6 col-md-offset-6">
-									<div class="contact-popup active">
-										<div class="popup-content">
-											<div class="contact-title">
-												<div class="row">
-													<div class="col">
-															<div class="login-icon">
-																	<img src="/assets/Images/icons/icon-register.png" />
-															</div>
-														<p>															
-															ลงทะเบียนเข้าใช้ระบบ
-														</p>
-													</div>
-													<div class="col d-flex justify-content-end">
-														<ul>
-															<li class="th current">
-																<a href="#" title="ไทย">Thai</a>
-															</li>
-															<li class="en ">
-																<a href="#" title="Eng">Eng</a>
-															</li>
-														</ul>
-													</div>													
-												</div>												
-											</div>
-											<div class="contact-form-wrapper">
-												<form>
-													<div class="row">
-														<div class="col-md-3">
-																	<p>คำนำหน้า
-																	</p>
-																	<div class="select-wrapper inline-block">
-																			<select name="ddlLink" id="ddlLink">
-																				<option value="นาย" selected="">นาย</option>
-																				<option value="นางสาว">นางสาว</option>
-																				<option value="นาง">นาง</option>
-																			</select>
-																		</div>
-														</div>
-														<div class="col-md-4">
-															<p>ชื่อ
-															</p>
-															<div class="input-wrapper">
-																<input id="firstname" name="firstname" maxlength="30" type="text">
-															</div>
-														</div>
-														<div class="col-md-5">
-															<p>นามสกุล
-															</p>
-															<div class="input-wrapper ">
-																<input id="lastname" name="lastname" maxlength="30" type="text">
-															</div>
-														</div>
-													</div>
-
-													<div class="row">
-														<div class="col-md-6">
-															<p>เลขบัตรประชาชน
-															</p>
-															<div class="input-wrapper ">
-																<input id="IDcard" name="IDcard" maxlength="30" type="text">
-															</div>
-														</div>
-														<div class="col-md-6">
-															<p>เบอร์โทรศัพท์มือถือ
-															</p>
-															<div class="input-wrapper ">
-																<input id="tel" name="tel" maxlength="30" type="text">
-															</div>
-														</div>
-													</div>
-
-													<div class="row">
-														<div class="col-md-6 col-xs-12">
-															<p>อีเมล์
-															</p>
-															<div class="input-wrapper ">
-																<input id="email" name="email" maxlength="30" type="text">
-															</div>
-														</div>
-														<div class="col-md-6 col-xs-12">
-															<p>กรุณากรอกรหัสเพื่อยืนยันตัวตน
-															</p>
-															<div class="row">
-																<div class="col-md-5 col-sm-6 col-xs-6">
-
-																		<div class="captcha">
-																			<img src="/assets/Images/icons/captcha.png"/>
-																		</div>
-																	</div>
-																	<div class="col-md-1 col-sm-6 col-xs-2">
-																		<i class="fas fa-sync-alt refresh" aria-hidden="true"></i>
-																	</div>
-																	<div class="col-md-5 col-sm-6 col-xs-6">
-			
-																		<div class="input-wrapper">
-																			<input id="tel" name="tel" maxlength="30" type="text">
-																		</div>
-																	</div>
-															</div>
-														</div>
-													</div>
-
-													<div class="row justify-content-start">
-															<div class="col-md-12">
-																	<div class="custom-radio-login">
-																			<input value="101" id="101" name="rad1" type="radio">
-																			<label for="101"></label>
-																			<span >ยอมรับ</span>
-																	</div>
-																	<!-- <img src="/assets/Images/icons/radio-icon-check3.png" > -->
-															</div>
-													</div>
-													<div class="row">
-															<div class="col-md-6">															
-																<div class="btn-wrapper-left">
-																	<div class="row">
-																		<div class="col-md-6">
-																			<button class="btn-med btn-back-login" (click)="checkpage('signup1')">
-																				<p>
-																					ย้อนกลับ
-																					<i class="fa fa-angle-right" aria-hidden="true"></i>
-																				</p>
-																			</button>
-																		</div>
-																	</div>
-																</div>
-															</div>
-	
-															<div class="col-md-6">
-																<div class="btn-wrapper-right">
-																	<div class="row justify-content-end">
-																		<div class="col-md-12">
-																			<button class="btn-med btn-confirm-login" (click)="checkpage('otp')">
-																				<p>ถัดไป
-																					<i class="fa fa-angle-right" aria-hidden="true"></i>
-																				</p>
-																			</button>
-																		</div>
-																	</div>
-																	
-																</div>
-															</div>
-														</div>
-
-												</form>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- <div class="col-md-3">
-									<div class="contact-popup active">
-
-										<div class="popup-side-content-right">
-											<div class="contact-title">
-												<div class="row ">
-													<div class="col-md-10 col-md-offset-8 xs-hide">
-														<ul>
-															<li class="th current">
-																<a href="#" title="ไทย" class="active">Thai</a>
-															</li>
-															<li class="en">
-																<a href="#" title="Eng">Eng</a>
-															</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-											<div class="contact-form-wrapper">
-												<div class="row mt-5">
-													<div class="col-md-12 mb-2">
-														<h3>ทำความเข้าใจลักษณะสินค้า,</h3>
-														<h3>เงื่อนไข,ผลตอบแทน</h3>
-														<h3>และความเสี่ยงก่อนตัดสินใจ</h3>
-													</div>
-													<div class="col-md-12 mb-4">
-														<div class="btn-wrapper">
-															<button class="btn-signin" (click)="checkpage('signin')">
-																	<div class="login-icon ml-2">
-																			<img src="/assets/Images/icons/icon-login-green.png" class="visible-lg-block" />
-              																<img src="/assets/Images/icons/icon-login-white.png" class="visible-md-block visible-sm-block visible-xs-block" />
-																	</div>
-																<p>
-																	เข้าสู่ระบบ
-																</p>
-															</button>
-														</div>
-													</div>
-												</div>
-												<div class="row mt-4">
-														<div class="col-md-6">
-																<div class="custom-radio-between">
-													                    <input value="101" id="101" name="rad1" type="radio" checked>
-													                    <label for="101"></label>
-													                    <span >ยอมรับ</span>
-																	</div>
-	
-															</div>
-													</div>
-												<div class="row">													
-													<div class="col-md-6">														
-														<div class="btn-wrapper-left">
-															<button class="btn-red" (click)="checkpage('signup1')">
-																<p class="pl-1 ">ย้อนกลับ
-																	<i class="fa fa-angle-right pl-4" aria-hidden="true"></i>
-																</p>
-															</button>
-														</div>
-													</div>
-													<div class="col-md-6">														
-															<div class="btn-wrapper-left">
-																<button class="btn-next" (click)="checkpage('otp')">
-																	<p class="pl-1 ">ลงทะเบียน
-																		<i class="fa fa-angle-right pl-4" aria-hidden="true"></i>
-																	</p>
-																</button>
-															</div>
-														</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div> -->
+								</form>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="contact-wrapper" *ngIf="page == 'forgotpassword'">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-6">
+					<div class="contact-popup active">
+						<div class="popup-content">
+							<div class="contact-title">
+								<div class="row">
+									<div class="col">
+										<p><i class="fas fa-unlock-alt mr-2"></i>
+											ลืมรหัสผ่าน
+											
+										</p>
+									</div>
+									<div class="col d-flex justify-content-end">
+										<ul>
+											<li class="th current">
+												<a href="#" title="ไทย">Thai</a>
+											</li>
+											<li class="en">
+												<a href="#" title="Eng">Eng</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="contact-form-wrapper">
+								<form>
+									<div class="detail-login-wrapper">
+									<div class="row">
+										<div class="col-sm-12">
+											<p>ชื่อผู้เข้าระบบ
+											</p>
+											<div class="input-wrapper">
+												<input id="name" name="name" maxlength="30" type="text">
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<p>เลขบัตรประจำตัว
+											</p>
+											<div class="input-wrapper ">
+												<input id="userid" name="userid" maxlength="30" type="text">
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<p>อีเมล์
+											</p>
+											<div class="input-wrapper ">
+												<input id="email" name="email" maxlength="30" type="text">
+											</div>
+										</div>
+									</div>
+									</div>
 
+									<div class="row">
+											<div class="col-md-6">															
+												<div class="btn-wrapper-left">
+													<div class="row">
+														<div class="col-md-10">
+															<button class="btn-med btn-back-login" (click)="checkpage('signin')">
+																<p>																					ย้อนกลับ
+																	<i class="fa fa-angle-right" aria-hidden="true"></i>
+																</p>
+															</button>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-md-6 ">
+												<div class="btn-wrapper-right">
+													<div class="row justify-content-end">
+														<div class="col-md-10">
+															<button class="btn-med btn-confirm-login" (click)="checkpage()">
+																<p>ตกลง
+																	<i class="fa fa-angle-right" aria-hidden="true"></i>
+																</p>
+															</button>
+														</div>
+													</div>
+													
+												</div>
+											</div>
+										</div>
+
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="contact-wrapper" *ngIf="page == 'otp'">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-6">
+					<div class="contact-popup active">
+
+						<div class="popup-content">
+							<div class="contact-title">
+								<div class="row">
+									<div class="col">
+											<div class="login-icon">
+													<img src="/assets/Images/icons/icon-otp-white.png" />
+											</div>
+										<p>														
+											ระบบความปลอดภัย OTP
+										</p>
+									</div>
+									<div class="col d-flex justify-content-end">
+										<ul>
+											<li class="th current">
+												<a href="#" title="ไทย">Thai</a>
+											</li>
+											<li class="en">
+												<a href="#" title="Eng">Eng</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="contact-form-wrapper">
+								<form>
+									<div class="row">
+										<div class="col-sm-12">
+											<p>ระบบจะส่งรหัส OTP ไปยังเบอร์โทรศัพท์มือถือ
+											</p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="input-wrapper mb-3 mt-2">
+												<input id="email-or-tel" name="email-or-tel" maxlength="30" type="text" placeholder="085XXXXXXX">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<p>ระบุรหัส OTP ที่ได้รับ</p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-8">
+											<div class="input-wrapper">
+												<input id="name" name="name" maxlength="30" type="text">
+											</div>
+										</div>
+
+										<div class="col-md-4">
+
+											<div class="btn-wrapper">
+												<button class="btn-blue" (click)="checkpage()">
+													ส่งรหัส OTP
+													<i class="fa fa-angle-right" aria-hidden="true"></i>
+												</button>
+											</div>
+										</div>
+									</div>
+									<div class="row pb-4">
+										<div class="col-md-12">
+											<p>กรุณากดปุ่ม "Request OTP" เพื่อรับรหัสรักษาความปลอดภัย</p>
+										</div>
+									</div>
+
+									<div class="row mt-3">
+										<div class="col-md-6">															
+											<div class="btn-wrapper-left">
+												<div class="row">
+													<div class="col-md-10">
+														<button class="btn-med btn-cancel" (click)="checkpage('signin')">
+															<p>
+																ยกเลิก
+																<i class="fa fa-angle-right" aria-hidden="true"></i>
+															</p>
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-md-6 ">
+											<div class="btn-wrapper-right">
+												<div class="row justify-content-end">
+													<div class="col-md-10">
+														<button class="btn-med btn-confirm-login" (click)="checkpage()">
+															<p>ยืนยัน
+																<i class="fa fa-angle-right" aria-hidden="true"></i>
+															</p>
+														</button>
+													</div>
+												</div>
+												
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="contact-wrapper" *ngIf="page == 'signup1'">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-6">
+					<div class="contact-popup active">
+						<div class="popup-content item">
+							<div class="row">
+							<div class="col-md-6 col-xs-12">
+									<div class="contact-title">
+											<div class="row">
+												<div class="col">
+														<div class="login-icon">
+																<img src="/assets/Images/icons/icon-register.png" />
+														</div>
+													<p>															
+														ลงทะเบียนเข้าใช้ระบบ
+													</p>
+												</div>
+												<div class="col d-flex justify-content-end xs-show">
+													<ul>
+														<li class="th current">
+															<a href="#" title="ไทย">Thai</a>
+														</li>
+														<li class="en ">
+															<a href="#" title="Eng">Eng</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="contact-form-wrapper">
+											<form>
+												<div class="row">
+													<div class="col-sm-12">
+														<p>ชื่อผู้เข้าระบบ
+														</p>
+														<div class="input-wrapper">
+															<input id="name" name="name" maxlength="30" type="text">
+														</div>
+													</div>
+													<div class="col-sm-12">
+														<p>รหัสผ่าน
+														</p>
+														<div class="input-wrapper ">
+															<input id="password" name="password" maxlength="30" type="password">
+														</div>
+													</div>
+													<div class="col-sm-12">
+														<p>ยืนยันรหัสผ่าน
+														</p>
+														<div class="input-wrapper ">
+															<input id="confirmpassword" name="confirmpassword" maxlength="30" type="password">
+														</div>
+													</div>
+			
+													<div class="col-sm-12 mt-3">
+														<div class="btn-wrapper-left">
+															<button class="btn-med btn-next-login" (click)="checkpage('signup2')">
+																<p class="pl-1 ">ลงทะเบียน
+																	<i class="fa fa-angle-right pl-4" aria-hidden="true"></i>
+																</p>
+															</button>
+														</div>
+													</div>
+												</div>
+			
+											</form>
+										</div>
+							</div>
+							<div class="col-md-6 col-xs-12">
+									<div class="contact-title">
+											<div class="row ">
+												<div class="col-md-10 col-md-offset-8 xs-hide">
+													<ul>
+														<li class="th current">
+															<a href="#" title="ไทย">Thai</a>
+														</li>
+														<li class="en">
+															<a href="#" title="Eng">Eng</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="contact-form-wrapper">
+											<div class="row mt-5">
+												<div class="col-md-12 mb-2 mt">
+													<h3>ทำความเข้าใจลักษณะสินค้า,</h3>
+													<h3>เงื่อนไข,ผลตอบแทน</h3>
+													<h3>และความเสี่ยงก่อนตัดสินใจ</h3>
+												</div>
+												<div class="col-md-12 text-center mt-3">
+													<div class="btn-wrapper">
+														<div class="row justify-content-center">
+															<div class="col-md-8">
+																<button class="btn-med btn-light" (click)="checkpage('signin')">
+																<div class="login-icon ml-2 mt-1">
+																		<img src="/assets/Images/icons/icon-login-white.png" class="visible-lg-block" />
+																		  <img src="/assets/Images/icons/icon-login-white.png" class="visible-md-block visible-sm-block visible-xs-block" />
+																</div>
+																เข้าสู่ระบบ
+																</button>
+			
+															</div>
+														</div>
+														
+													</div>
+												</div>
+			
+												
+											</div>
+										</div>
+							</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<!-- <div class="col-md-3">
+					<div class="contact-popup active">
+
+						<div class="popup-side-content-right item">
+							<div class="contact-title">
+								<div class="row ">
+									<div class="col-md-10 col-md-offset-8 xs-hide">
+										<ul>
+											<li class="th current">
+												<a href="#" title="ไทย">Thai</a>
+											</li>
+											<li class="en">
+												<a href="#" title="Eng">Eng</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="contact-form-wrapper">
+								<div class="row mt-5">
+									<div class="col-md-12 mb-2">
+										<h3>ทำความเข้าใจลักษณะสินค้า,</h3>
+										<h3>เงื่อนไข,ผลตอบแทน</h3>
+										<h3>และความเสี่ยงก่อนตัดสินใจ</h3>
+									</div>
+									<div class="col-md-12 text-center mt-3">
+										<div class="btn-wrapper">
+											<div class="row justify-content-center">
+												<div class="col-md-8">
+													<button class="btn-med btn-light" (click)="checkpage('signin')">
+													<div class="login-icon ml-2 mt-1">
+															<img src="/assets/Images/icons/icon-login-white.png" class="visible-lg-block" />
+															  <img src="/assets/Images/icons/icon-login-white.png" class="visible-md-block visible-sm-block visible-xs-block" />
+													</div>
+													เข้าสู่ระบบ
+													</button>
+
+												</div>
+											</div>
+											
+										</div>
+									</div>
+
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> -->
+			</div>
+		</div>
+	</div>
+	<div class="contact-wrapper" *ngIf="page == 'signup2'">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-6">
+					<div class="contact-popup active">
+						<div class="popup-content">
+							<div class="contact-title">
+								<div class="row">
+									<div class="col">
+											<div class="login-icon">
+													<img src="/assets/Images/icons/icon-register.png" />
+											</div>
+										<p>															
+											ลงทะเบียนเข้าใช้ระบบ
+										</p>
+									</div>
+									<div class="col d-flex justify-content-end">
+										<ul>
+											<li class="th current">
+												<a href="#" title="ไทย">Thai</a>
+											</li>
+											<li class="en ">
+												<a href="#" title="Eng">Eng</a>
+											</li>
+										</ul>
+									</div>													
+								</div>												
+							</div>
+							<div class="contact-form-wrapper">
+								<form>
+									<div class="row">
+										<div class="col-md-3">
+													<p>คำนำหน้า
+													</p>
+													<div class="select-wrapper inline-block">
+															<select name="ddlLink" id="ddlLink">
+																<option value="นาย" selected="">นาย</option>
+																<option value="นางสาว">นางสาว</option>
+																<option value="นาง">นาง</option>
+															</select>
+														</div>
+										</div>
+										<div class="col-md-4">
+											<p>ชื่อ
+											</p>
+											<div class="input-wrapper">
+												<input id="firstname" name="firstname" maxlength="30" type="text">
+											</div>
+										</div>
+										<div class="col-md-5">
+											<p>นามสกุล
+											</p>
+											<div class="input-wrapper ">
+												<input id="lastname" name="lastname" maxlength="30" type="text">
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-6">
+											<p>เลขบัตรประชาชน
+											</p>
+											<div class="input-wrapper ">
+												<input id="IDcard" name="IDcard" maxlength="30" type="text">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<p>เบอร์โทรศัพท์มือถือ
+											</p>
+											<div class="input-wrapper ">
+												<input id="tel" name="tel" maxlength="30" type="text">
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-6 col-xs-12">
+											<p>อีเมล์
+											</p>
+											<div class="input-wrapper ">
+												<input id="email" name="email" maxlength="30" type="text">
+											</div>
+										</div>
+										<div class="col-md-6 col-xs-12">
+											<p>กรุณากรอกรหัสเพื่อยืนยันตัวตน
+											</p>
+											<div class="row">
+												<div class="col-md-5 col-sm-6 col-xs-6">
+
+														<div class="captcha">
+															<img src="/assets/Images/icons/captcha.png"/>
+														</div>
+													</div>
+													<div class="col-md-1 col-sm-6 col-xs-2">
+														<i class="fas fa-sync-alt refresh" aria-hidden="true"></i>
+													</div>
+													<div class="col-md-5 col-sm-6 col-xs-6">
+
+														<div class="input-wrapper">
+															<input id="tel" name="tel" maxlength="30" type="text">
+														</div>
+													</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row justify-content-start">
+											<div class="col-md-12">
+													<div class="custom-radio-login">
+															<input value="101" id="101" name="rad1" type="radio">
+															<label for="101"></label>
+															<span >ยอมรับ</span>
+													</div>
+											</div>
+									</div>
+									<div class="row">
+											<div class="col-md-6">															
+												<div class="btn-wrapper-left">
+													<div class="row">
+														<div class="col-md-6">
+															<button class="btn-med btn-back-login" (click)="checkpage('signup1')">
+																<p>
+																	ย้อนกลับ
+																	<i class="fa fa-angle-right" aria-hidden="true"></i>
+																</p>
+															</button>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-md-6">
+												<div class="btn-wrapper-right">
+													<div class="row justify-content-end">
+														<div class="col-md-12">
+															<button class="btn-med btn-confirm-login" (click)="checkpage('otp')">
+																<p>ถัดไป
+																	<i class="fa fa-angle-right" aria-hidden="true"></i>
+																</p>
+															</button>
+														</div>
+													</div>
+													
+												</div>
+											</div>
+										</div>
+
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="col-md-3">
+					<div class="contact-popup active">
+
+						<div class="popup-side-content-right">
+							<div class="contact-title">
+								<div class="row ">
+									<div class="col-md-10 col-md-offset-8 xs-hide">
+										<ul>
+											<li class="th current">
+												<a href="#" title="ไทย" class="active">Thai</a>
+											</li>
+											<li class="en">
+												<a href="#" title="Eng">Eng</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="contact-form-wrapper">
+								<div class="row mt-5">
+									<div class="col-md-12 mb-2">
+										<h3>ทำความเข้าใจลักษณะสินค้า,</h3>
+										<h3>เงื่อนไข,ผลตอบแทน</h3>
+										<h3>และความเสี่ยงก่อนตัดสินใจ</h3>
+									</div>
+									<div class="col-md-12 mb-4">
+										<div class="btn-wrapper">
+											<button class="btn-signin" (click)="checkpage('signin')">
+													<div class="login-icon ml-2">
+															<img src="/assets/Images/icons/icon-login-green.png" class="visible-lg-block" />
+															  <img src="/assets/Images/icons/icon-login-white.png" class="visible-md-block visible-sm-block visible-xs-block" />
+													</div>
+												<p>
+													เข้าสู่ระบบ
+												</p>
+											</button>
+										</div>
+									</div>
+								</div>
+								<div class="row mt-4">
+										<div class="col-md-6">
+												<div class="custom-radio-between">
+														<input value="101" id="101" name="rad1" type="radio" checked>
+														<label for="101"></label>
+														<span >ยอมรับ</span>
+													</div>
+
+											</div>
+									</div>
+								<div class="row">													
+									<div class="col-md-6">														
+										<div class="btn-wrapper-left">
+											<button class="btn-red" (click)="checkpage('signup1')">
+												<p class="pl-1 ">ย้อนกลับ
+													<i class="fa fa-angle-right pl-4" aria-hidden="true"></i>
+												</p>
+											</button>
+										</div>
+									</div>
+									<div class="col-md-6">														
+											<div class="btn-wrapper-left">
+												<button class="btn-next" (click)="checkpage('otp')">
+													<p class="pl-1 ">ลงทะเบียน
+														<i class="fa fa-angle-right pl-4" aria-hidden="true"></i>
+													</p>
+												</button>
+											</div>
+										</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> -->
+			</div>
+		</div>
 	</div>
 	<div class="clearfix"></div>
 	<div class="copyright .d-none .d-sm-block">

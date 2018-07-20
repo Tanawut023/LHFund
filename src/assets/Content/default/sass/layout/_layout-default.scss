@@ -1,3 +1,11 @@
+.max-width-wrapper{
+    display: block;
+    width: 100%;
+    max-width: 1280px;
+    padding: 0;
+    margin: 0 auto;
+}
+
 .quicklink-wrapper {
     position: absolute;
     top: 55px;
@@ -613,6 +621,7 @@
                         -moz-transition: all 0.2s ease-in-out;
                         transition: all 0.2s ease-in-out;
                         text-decoration: none;
+                        text-align: center;
                 
                         &:hover {
                             color: $color-white;

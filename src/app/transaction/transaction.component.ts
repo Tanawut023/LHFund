@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./transaction.component.scss',]
 })
 export class TransactionComponent implements OnInit {
-    page = "purchase";
+    page = "purchase-over-view";
 
     constructor() { }
 
@@ -19,24 +19,24 @@ export class TransactionComponent implements OnInit {
         console.log(page)
 
         switch (page) {
-            case 'purchase':
-                this.page = "purchase";
+            case 'purchase-over-view':
+                this.page = "purchase-over-view";
                 break;
             case 'sell':
                 this.page = "sell";
                 break;
-            case 'otp':
-                this.page = "otp";
+            case 'purchase-step1':
+                this.page = "purchase-step1";
                 break;
-            case 'signup1':
-                this.page = "signup1";
+            case 'purchase-step2':
+                this.page = "purchase-step2";
                 break;
             case 'signup2':
                 this.page = "signup2";
                 break;
             default:
 
-                this.page = "signin";
+                this.page = "purchase-over-view";
                 console.log(this.page)
                 break;
         }

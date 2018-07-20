@@ -491,15 +491,24 @@
       .open-account-wrapper .open-account-box .wrap-container .wrap-suitability .control-label {
         margin: 0;
         display: unset; }
-      .open-account-wrapper .open-account-box .wrap-container .wrap-suitability .label-txt {
-        border-bottom: 5px solid #1CA59B;
-        margin: 10px 0;
-        padding: 20px; }
       .open-account-wrapper .open-account-box .wrap-container .wrap-suitability .choice-wrap {
         padding-bottom: 15px;
         margin-bottom: 15px;
         overflow: hidden;
         width: 100%; }
+        .open-account-wrapper .open-account-box .wrap-container .wrap-suitability .choice-wrap.-select-type {
+          font-size: 24px;
+          text-align: left;
+          /* Hiding radio button */
+          /* Hiding second image in label tags */
+          /* When radio-button is checked, display second image in the following label tag */ }
+          .open-account-wrapper .open-account-box .wrap-container .wrap-suitability .choice-wrap.-select-type input[type='radio'] {
+            display: none; }
+          .open-account-wrapper .open-account-box .wrap-container .wrap-suitability .choice-wrap.-select-type label.item > span {
+            color: #cdcdcd;
+            padding: 0 10px; }
+          .open-account-wrapper .open-account-box .wrap-container .wrap-suitability .choice-wrap.-select-type input[type='radio']:checked + label.item > span {
+            color: #1CA59B; }
       .open-account-wrapper .open-account-box .wrap-container .wrap-suitability .question-wrapper {
         margin-bottom: 10px; }
     @media screen and (max-width: 767px) {
@@ -702,7 +711,8 @@
     border-bottom: 5px solid #f5f5f5;
     width: 100%; }
     .mutual-fund-wrapper .detail-body-wrapper h4 {
-      display: block; }
+      display: block;
+      margin-bottom: 20px; }
   .mutual-fund-wrapper .detail-footer-wrapper {
     position: relative;
     max-width: 100%;
@@ -1165,3 +1175,30 @@
       #calendar .fc-event .fc-event-title a:hover {
         color: #000;
         text-decoration: none; }
+
+#company span, #personal span {
+  color: #b9b9b9; }
+
+#company .label-txt, #personal .label-txt {
+  border-bottom: 5px solid #b9b9b9; }
+
+#company .custom-radio-between, #personal .custom-radio-between {
+  color: #b9b9b9; }
+
+#company .custom-radio-between input[type=radio] + label, #personal .custom-radio-between input[type=radio] + label {
+  opacity: 0.25; }
+
+#company.active span, #personal.active span {
+  color: #1CA59B; }
+
+#company.active .custom-radio-between, #personal.active .custom-radio-between {
+  color: #5a5a5a; }
+
+#company.active .custom-radio-between input[type=radio] + label, #personal.active .custom-radio-between input[type=radio] + label {
+  opacity: 1; }
+
+#company.active .input-wrapper input[type=text], #personal.active .input-wrapper input[type=text] {
+  border: 1px solid #333; }
+
+#company.active .label-txt, #personal.active .label-txt {
+  border-bottom: 5px solid #1CA59B; }

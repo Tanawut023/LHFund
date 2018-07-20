@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./report.component.scss']
 })
 export class ReportComponent implements OnInit {
-    page = "home";
+    page = "past-events";
 
     constructor() { }
 
@@ -19,24 +19,24 @@ export class ReportComponent implements OnInit {
         window.scroll(0,0);
 
         switch (page) {
-            case 'purchase':
-                this.page = "purchase";
+            case 'confirmation':
+                this.page = "confirmation";
                 break;
-            case 'sell':
-                this.page = "sell";
+            case 'past-events':
+                this.page = "past-events";
                 break;
-            case 'otp':
-                this.page = "otp";
+            case 'not-available-list':
+                this.page = "not-available-list";
                 break;
-            case 'signup1':
-                this.page = "signup1";
+            case 'summary':
+                this.page = "summary";
                 break;
-            case 'signup2':
-                this.page = "signup2";
+            case 'receipt-history':
+                this.page = "receipt-history";
                 break;
             default:
 
-                this.page = "signin";
+                this.page = "past-events";
                 console.log(this.page)
                 break;
         }
