@@ -21,6 +21,8 @@ import { RmfLtfComponent } from './rmf-ltf/rmf-ltf.component';
 import { RegularListComponent } from './regular-list/regular-list.component';
 import { ReportComponent } from './report/report.component';
 import { ProfileComponent } from './profile/profile.component';
+import { MyportMenuComponent } from './myport/myport-menu/myport-menu.component';
+import { ProfileMenuComponent } from './profile/profile-menu/profile-menu.component';
  
 // Add an icon to the library for convenient access in other components
 library.add(faCoffee);
@@ -37,7 +39,9 @@ library.add(faCoffee);
     RmfLtfComponent,
     RegularListComponent,
     ReportComponent,
-    ProfileComponent
+    ProfileComponent,
+    MyportMenuComponent,
+    ProfileMenuComponent
   ],
   imports: [
     BrowserModule,

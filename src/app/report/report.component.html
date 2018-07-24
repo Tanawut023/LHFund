@@ -6,6 +6,38 @@
         <div class="row">
           <div class="col-md-12">
             <div class="tabs-menu-wrapper">
+                <div class="dropdown dropdown-content">
+                    <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                      เมนูกองทุน
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a (click)="checkpage('history')" title="ประวัติซื้อขาย">ประวัติซื้อขาย</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('')" title="ยอดคงเหลือ">ยอดคงเหลือ</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('receipt-history')" title="ประวัติการรับเงินปันผล">ประวัติการรับเงินปันผล</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('past-events')" title="รายการเคลื่อนไหวที่ผ่านมา">รายการเคลื่อนไหวที่ผ่านมา</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('summary')" title="สรุปกำไร/ขาดทุน">สรุปกำไร/ขาดทุน</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('')" title="รายการวันนี้">รายการวันนี้</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('not-available-list')" title="รายการที่ยังไม่มีผล">รายการที่ยังไม่มีผล</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('confirmation')" title="ใบยืนยันการทำรายการ">ใบยืนยันการทำรายการ</a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu1">
                   <a title="ประวัติซื้อขาย" (click)="checkpage('past-events')">ประวัติซื้อขาย</a>
@@ -39,7 +71,7 @@
               <div class="heading-section">
                 <div class="row">
                   <div class="detail-head-wrapper">
-                    <div class="col-md-12 icon-option mb-3">
+                    <div class="col-md-12 col-xs-12 icon-option mb-3">
 
                       <ul class="">
                         <li class="ico-fb">
@@ -137,14 +169,14 @@
                     </div>
 
                     <div class="row">
-                      <div class="col-md-3 offset-md-4">
+                      <div class="col-md-3 col-xs-6 offset-md-4">
                         <button class="btn-med btn-primary" (click)="checkpage('signup1')">
                           ตกลง
                           <i class="fa fa-angle-right" aria-hidden="true"></i>
 
                         </button>
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-3 col-xs-6">
                         <button class="btn-med btn-cancel" (click)="checkpage('signup1')">
                           ยกเลิก
                           <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -254,6 +286,38 @@
         <div class="row">
           <div class="col-md-12">
             <div class="tabs-menu-wrapper">
+              <div class="dropdown dropdown-content">
+                <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                  เมนูกองทุน
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a (click)="checkpage('history')" title="ประวัติซื้อขาย">ประวัติซื้อขาย</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('')" title="ยอดคงเหลือ">ยอดคงเหลือ</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('receipt-history')" title="ประวัติการรับเงินปันผล">ประวัติการรับเงินปันผล</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('past-events')" title="รายการเคลื่อนไหวที่ผ่านมา">รายการเคลื่อนไหวที่ผ่านมา</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('summary')" title="สรุปกำไร/ขาดทุน">สรุปกำไร/ขาดทุน</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('')" title="รายการวันนี้">รายการวันนี้</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('not-available-list')" title="รายการที่ยังไม่มีผล">รายการที่ยังไม่มีผล</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('confirmation')" title="ใบยืนยันการทำรายการ">ใบยืนยันการทำรายการ</a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu1">
                   <a title="ประวัติซื้อขาย" (click)="checkpage('history')">ประวัติซื้อขาย</a>
@@ -287,7 +351,7 @@
               <div class="heading-section">
                 <div class="row">
                   <div class="detail-head-wrapper">
-                    <div class="col-md-12 icon-option mb-3">
+                    <div class="col-md-12 col-xs-12 icon-option mb-3">
 
                       <ul class="">
                         <li class="ico-fb">
@@ -341,7 +405,7 @@
                           <input class="form-control textinput dateinput bg-gray" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text">
                         </div>
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-3 col-xs-6">
                         <button class="btn-med btn-primary" (click)="checkpage('signup1')">
                           ตกลง
                           <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -364,14 +428,14 @@
                     <ul>
                       <li>
                         <div class="row">
-                          <div class="col-md-10">
+                          <div class="col-md-10 col-xs-9">
                             <a href="#" title="ชื่อเมนู">
                               (ชื่อ) ใบยืนยันการทำรายการ
                             </a>
                           </div>
-                          <div class="col-md-2">
+                          <div class="col-md-2 col-xs-3">
                             <button class="btn-sm btn-download width50 " (click)="checkpage('signup1')">
-                              Download
+                              <p>Download</p>
                               <img src="/assets/Images/icons/ico-download-white.png">
                             </button>
                           </div>
@@ -379,14 +443,14 @@
                       </li>
                       <li>
                         <div class="row">
-                          <div class="col-md-10">
+                          <div class="col-md-10 col-xs-9">
                             <a href="#" title="ชื่อเมนู">
                               (ชื่อ) ใบยืนยันการทำรายการ
                             </a>
                           </div>
-                          <div class="col-md-2">
+                          <div class="col-md-2 col-xs-3">
                             <button class="btn-sm btn-download width50 " (click)="checkpage('signup1')">
-                              Download
+                              <p>Download</p>
                               <img src="/assets/Images/icons/ico-download-white.png">
                             </button>
                           </div>
@@ -394,14 +458,14 @@
                       </li>
                       <li>
                         <div class="row">
-                          <div class="col-md-10">
+                          <div class="col-md-10 col-xs-9">
                             <a href="#" title="ชื่อเมนู">
                               (ชื่อ) ใบยืนยันการทำรายการ
                             </a>
                           </div>
-                          <div class="col-md-2">
+                          <div class="col-md-2 col-xs-3">
                             <button class="btn-sm btn-download width50 " (click)="checkpage('signup1')">
-                              Download
+                              <p>Download</p>
                               <img src="/assets/Images/icons/ico-download-white.png">
                             </button>
                           </div>
@@ -425,6 +489,38 @@
         <div class="row">
           <div class="col-md-12">
             <div class="tabs-menu-wrapper">
+                <div class="dropdown dropdown-content">
+                    <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                      เมนูกองทุน
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a (click)="checkpage('history')" title="ประวัติซื้อขาย">ประวัติซื้อขาย</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('')" title="ยอดคงเหลือ">ยอดคงเหลือ</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('receipt-history')" title="ประวัติการรับเงินปันผล">ประวัติการรับเงินปันผล</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('past-events')" title="รายการเคลื่อนไหวที่ผ่านมา">รายการเคลื่อนไหวที่ผ่านมา</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('summary')" title="สรุปกำไร/ขาดทุน">สรุปกำไร/ขาดทุน</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('')" title="รายการวันนี้">รายการวันนี้</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('not-available-list')" title="รายการที่ยังไม่มีผล">รายการที่ยังไม่มีผล</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('confirmation')" title="ใบยืนยันการทำรายการ">ใบยืนยันการทำรายการ</a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu1">
                   <a title="ประวัติซื้อขาย" (click)="checkpage('history')">ประวัติซื้อขาย</a>
@@ -458,7 +554,7 @@
               <div class="heading-section">
                 <div class="row">
                   <div class="detail-head-wrapper">
-                    <div class="col-md-12 icon-option mb-3">
+                    <div class="col-md-12 col-xs-12 icon-option mb-3">
 
                       <ul class="">
                         <li class="ico-fb">
@@ -640,7 +736,7 @@
 
                   <div class="col-md-12  mt-5 ">
                     <div class="row justify-content-center">
-                      <div class="col-md-2 ">
+                      <div class="col-md-2 col-xs-6 col-sm-4">
                         <button class="btn-med btn-primary" (click)="checkpage('signup1')">
                           พิมพ์
                           <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -663,6 +759,38 @@
         <div class="row">
           <div class="col-md-12">
             <div class="tabs-menu-wrapper">
+                <div class="dropdown dropdown-content">
+                    <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                      เมนูกองทุน
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a (click)="checkpage('history')" title="ประวัติซื้อขาย">ประวัติซื้อขาย</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('')" title="ยอดคงเหลือ">ยอดคงเหลือ</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('receipt-history')" title="ประวัติการรับเงินปันผล">ประวัติการรับเงินปันผล</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('past-events')" title="รายการเคลื่อนไหวที่ผ่านมา">รายการเคลื่อนไหวที่ผ่านมา</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('summary')" title="สรุปกำไร/ขาดทุน">สรุปกำไร/ขาดทุน</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('')" title="รายการวันนี้">รายการวันนี้</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('not-available-list')" title="รายการที่ยังไม่มีผล">รายการที่ยังไม่มีผล</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('confirmation')" title="ใบยืนยันการทำรายการ">ใบยืนยันการทำรายการ</a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu1">
                   <a title="ประวัติซื้อขาย" (click)="checkpage('history')">ประวัติซื้อขาย</a>
@@ -696,7 +824,7 @@
               <div class="heading-section">
                 <div class="row">
                   <div class="detail-head-wrapper">
-                    <div class="col-md-12 icon-option mb-3">
+                    <div class="col-md-12 col-xs-12 icon-option mb-3">
 
                       <ul class="">
                         <li class="ico-fb">
@@ -930,7 +1058,7 @@
 
                   <div class="col-md-12  mt-5 ">
                     <div class="row justify-content-center">
-                      <div class="col-md-2 ">
+                      <div class="col-md-2 col-xs-6 col-sm-4">
                         <button class="btn-med btn-primary" (click)="checkpage('signup1')">
                           พิมพ์
                           <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -952,6 +1080,38 @@
         <div class="row">
           <div class="col-md-12">
             <div class="tabs-menu-wrapper">
+                <div class="dropdown dropdown-content">
+                    <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                      เมนูกองทุน
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a (click)="checkpage('history')" title="ประวัติซื้อขาย">ประวัติซื้อขาย</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('')" title="ยอดคงเหลือ">ยอดคงเหลือ</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('receipt-history')" title="ประวัติการรับเงินปันผล">ประวัติการรับเงินปันผล</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('past-events')" title="รายการเคลื่อนไหวที่ผ่านมา">รายการเคลื่อนไหวที่ผ่านมา</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('summary')" title="สรุปกำไร/ขาดทุน">สรุปกำไร/ขาดทุน</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('')" title="รายการวันนี้">รายการวันนี้</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('not-available-list')" title="รายการที่ยังไม่มีผล">รายการที่ยังไม่มีผล</a>
+                      </li>
+                      <li>
+                        <a (click)="checkpage('confirmation')" title="ใบยืนยันการทำรายการ">ใบยืนยันการทำรายการ</a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu1">
                   <a title="ประวัติซื้อขาย" (click)="checkpage('history')">ประวัติซื้อขาย</a>
@@ -985,7 +1145,7 @@
               <div class="heading-section">
                 <div class="row">
                   <div class="detail-head-wrapper">
-                    <div class="col-md-12 icon-option mb-3">
+                    <div class="col-md-12 col-xs-12 icon-option mb-3">
 
                       <ul class="">
                         <li class="ico-fb">
@@ -1073,36 +1233,36 @@
 
               </div>
               <div class="detail-footer-wrapper">
-                  <div class="row">
-                      <div class="col-md-12 mb-3">
-                          <div class="sidenav-left">
-                              <div class="vertical-menu-wrapper">
-                                <h4>
-                                    เงินปันผล และหนังสือรับรองฯ
-                                </h4>
-                                <ul>
-                                  <li>
-                                    <div class="row mt-3">
-                                      <div class="col-md-10">
-                                        <a href="#" title="ชื่อเมนู">
-                                            หนังสือรับรองฯ KFHEALTH-D 21/03/2557
-                                        </a>
-                                      </div>
-                                      <div class="col-md-2">
-                                        <button class="btn-sm btn-download width50 " (click)="checkpage('signup1')">
-                                          Download
-                                          <img src="/assets/Images/icons/ico-download-white.png">
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </li>                                 
-            
-                                </ul>
-                                <div class="clearfix"></div>
+                <div class="row">
+                  <div class="col-md-12 mb-3">
+                    <div class="sidenav-left">
+                      <div class="vertical-menu-wrapper">
+                        <h4>
+                          เงินปันผล และหนังสือรับรองฯ
+                        </h4>
+                        <ul>
+                          <li>
+                            <div class="row mt-3">
+                              <div class="col-md-10 col-xs-9">
+                                <a href="#" title="ชื่อเมนู">
+                                  หนังสือรับรองฯ KFHEALTH-D 21/03/2557
+                                </a>
+                              </div>
+                              <div class="col-md-2 col-xs-3">
+                                <button class="btn-sm btn-download width50 " (click)="checkpage('signup1')">
+                                  <p>Download</p>
+                                  <img src="/assets/Images/icons/ico-download-white.png">
+                                </button>
                               </div>
                             </div>
+                          </li>
+
+                        </ul>
+                        <div class="clearfix"></div>
                       </div>
+                    </div>
                   </div>
+                </div>
 
                 <div class="table-responsive">
                   <table class="table table-nav">
@@ -1143,7 +1303,7 @@
                       </tr>
                       <tr>
                         <td class="text-left">
-                            04/03/2557
+                          04/03/2557
                         </td>
                         <td class="">
                           1.0000
@@ -1169,7 +1329,7 @@
                       </tr>
                       <tr>
                         <td class="text-left">
-                            04/03/2557
+                          04/03/2557
                         </td>
                         <td class="">
                           1.0000
@@ -1195,7 +1355,7 @@
                       </tr>
                       <tr>
                         <td class="text-left">
-                            04/03/2557
+                          04/03/2557
                         </td>
                         <td class="">
                           1.0000
@@ -1221,7 +1381,7 @@
                       </tr>
                       <tr>
                         <td class="text-left">
-                            04/03/2557
+                          04/03/2557
                         </td>
                         <td class="">
                           1.0000
@@ -1247,7 +1407,7 @@
                       </tr>
                       <tr>
                         <td class="text-left">
-                            04/03/2557
+                          04/03/2557
                         </td>
                         <td class="">
                           1.0000
@@ -1273,7 +1433,7 @@
                       </tr>
                       <tr>
                         <td class="text-left">
-                            04/03/2557
+                          04/03/2557
                         </td>
                         <td class="">
                           1.0000
@@ -1298,24 +1458,24 @@
                         </td>
                       </tr>
                       <tr class="summary">
-                          <th colspan="3">
-                              รวม : KFHEALTH-D
-                          </th>
-                          <th class="text-right">
-                              689,748.84
-                          </th>
-                          <th class="text-right">
-                            &nbsp;
-                          </th>
-                          <th class="text-right">
-                              689,748.84
-                          </th>
-                          <th class="text-right">
-                              689,748.84
-                          </th>
-                          <th class="text-right">
-                            &nbsp;
-                          </th>
+                        <th colspan="3">
+                          รวม : KFHEALTH-D
+                        </th>
+                        <th class="text-right">
+                          689,748.84
+                        </th>
+                        <th class="text-right">
+                          &nbsp;
+                        </th>
+                        <th class="text-right">
+                          689,748.84
+                        </th>
+                        <th class="text-right">
+                          689,748.84
+                        </th>
+                        <th class="text-right">
+                          &nbsp;
+                        </th>
                       </tr>
 
 

@@ -1,0 +1,72 @@
+/* set global config vars */
+/* defualt page width setting(PC) */
+/* off canvas menu width *eg. 70px or 70% */
+/* main slide margin top */
+/* header height */
+/* footer height */
+/* global body setting */
+/* default font family */
+/*Arial*/
+/* text sizing multiplier */
+/* text sizing */
+/* default theme color */
+/* special theme */
+/* insert special theme for this website */
+/* text sizing */
+.list-pagination {
+  text-align: right;
+  vertical-align: middle;
+  line-height: 40px;
+  margin-bottom: 20px; }
+  .list-pagination .page-text {
+    font-size: 22px; }
+  .list-pagination .view-all {
+    font-size: 22px;
+    cursor: pointer; }
+    .list-pagination .view-all:hover {
+      color: #1CA59B; }
+  .list-pagination .holder {
+    margin-left: 10px;
+    margin-right: 5px;
+    display: inline-block;
+    vertical-align: middle; }
+    .list-pagination .holder a {
+      width: 30px;
+      height: 28;
+      display: inline-block;
+      font-size: 24px;
+      line-height: 28px;
+      cursor: pointer;
+      margin: 0 5px;
+      color: #5a5a5a;
+      text-align: center; }
+      .list-pagination .holder a:hover {
+        background-color: #1CA59B;
+        color: #fff; }
+      .list-pagination .holder a.jp-previous {
+        text-indent: -9999px;
+        background-image: url("/assets/Images/icons/ico-slideleft2.png");
+        background-position: center center;
+        background-repeat: no-repeat; }
+        .list-pagination .holder a.jp-previous:hover {
+          background-color: transparent;
+          color: #fff; }
+      .list-pagination .holder a.jp-next {
+        text-indent: -9999px;
+        background-image: url("/assets/Images/icons/ico-slideright2.png");
+        background-position: center center;
+        background-repeat: no-repeat; }
+        .list-pagination .holder a.jp-next:hover {
+          background-color: transparent;
+          color: #fff; }
+      .list-pagination .holder a.jp-first, .list-pagination .holder a.jp-last {
+        color: #5a5a5a;
+        background-color: transparent; }
+        .list-pagination .holder a.jp-first:hover, .list-pagination .holder a.jp-last:hover {
+          color: #5a5a5a;
+          background-color: transparent; }
+      .list-pagination .holder a.jp-current {
+        background-color: #1CA59B;
+        color: #fff; }
+        .list-pagination .holder a.jp-current:hover {
+          color: #fff; }

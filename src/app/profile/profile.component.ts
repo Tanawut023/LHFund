@@ -6,19 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  page = "home";
+  page = "edit-profile";
   test = "disabled";
   constructor() { }
 
   ngOnInit() {
+    
     $('#bottom-main-nav li').find('a').removeClass('current');
     $('#bottom-main-nav li#profile').find('a').addClass('current');
-    $('#answerC1').find('input[type="radio"]').attr("disabled", "disabled");
-    $('#answerC2').find('input[type="radio"]').attr("disabled", "disabled");
-    $('input[name="account-type"]').click(function() {
-      console.log('ไม่ทำงานว่ะ');
-      
-    });
   }
   checkpage(page) {
     window.scroll(0,0);
@@ -27,15 +22,20 @@ export class ProfileComponent implements OnInit {
     switch (page) {
       case 'suitability':
         this.page = "suitability";
+        this.checktype('size10');
         break;
       case 'suitability-score':
         this.page = "suitability-score";
         break;
-      case 'home':
-        this.page = "home";
+      case 'edit-profile':
+        this.page = "edit-profile";
+        $('#mutual-tab-menu').find('li').removeClass('current');
+        $('#mutual-tab-menu').find('li#menu1').addClass('current');
         break;
       case 'over-view':
         this.page = "over-view";
+        $('#mutual-tab-menu').find('li').removeClass('current');
+        $('#mutual-tab-menu').find('li#menu2').addClass('current');
         break;
       case 'change-password':
         this.page = "change-password";
@@ -44,7 +44,7 @@ export class ProfileComponent implements OnInit {
       this.page = "setting";
       break;
       default:
-        this.page = "home";
+        this.page = "edit-profile";
         console.log(this.page)
         break;
     }
@@ -96,5 +96,12 @@ export class ProfileComponent implements OnInit {
         // $('#answerP2').find('input[type="radio"]').removeAttr("checked");
         
     }
+  }
+  disable(){
+    console.log("test");
+    $('#answerC1').find('input[type="radio"]').attr("disabled", "disabled");
+    $('#answerC2').find('input[type="radio"]').attr("disabled", "disabled");
+    $('#answerP1').find('input[type="radio"]'). attr("disabled", "disabled");
+    $('#answerP2').find('input[type="radio"]'). attr("disabled", "disabled");
   }
 }

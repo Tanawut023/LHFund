@@ -1,0 +1,26 @@
+@import '../../assets/Content/default/sass/variables';
+.fund-list-wrapper{
+     @media screen and (max-width: 999px) {
+        .title-heading{
+            height: 120px;            
+            vertical-align: middle;
+            
+
+        }
+    }
+    @media screen and (max-width: 767px) {
+        h3{
+            font-size: 35px;
+
+        }
+        .title-heading{
+            height: 120px;
+            padding: 40px;
+            vertical-align: middle;
+            
+
+        }
+      }
+}
+
+   

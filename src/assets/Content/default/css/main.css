@@ -6664,6 +6664,15 @@ input[type=reset] {
               background-color: #000; }
             .page-content-wrapper .sidenav-left .vertical-menu-wrapper ul li .btn-download img {
               margin-left: 20px; }
+              @media screen and (max-width: 767px) {
+                .page-content-wrapper .sidenav-left .vertical-menu-wrapper ul li .btn-download img {
+                  margin-left: 0px; } }
+            .page-content-wrapper .sidenav-left .vertical-menu-wrapper ul li .btn-download p {
+              display: unset; }
+      @media screen and (max-width: 999px) {
+        .page-content-wrapper .sidenav-left .vertical-menu-wrapper p {
+          display: none !important;
+          margin-bottom: 0px; } }
     .page-content-wrapper .sidenav-left .dropdown-content {
       display: none;
       margin-top: 20px; }
@@ -6747,9 +6756,9 @@ input[type=reset] {
             text-decoration: none; }
     @media screen and (max-width: 999px) {
       .page-content-wrapper .icon-option {
-        text-align: left; }
+        text-align: right; }
         .page-content-wrapper .icon-option ul {
-          float: left; }
+          float: right; }
           .page-content-wrapper .icon-option ul.sw-lang {
             float: right; } }
   .page-content-wrapper .article-right {
@@ -7191,9 +7200,6 @@ input[type=reset] {
                 color: #1CA59B;
                 text-decoration: none; }
     @media screen and (max-width: 999px) {
-      .page-content-wrapper .fund-list-wrapper .title-heading {
-        height: auto;
-        padding: 10px 20px; }
       .page-content-wrapper .fund-list-wrapper .fund-list .list-group {
         height: auto; }
         .page-content-wrapper .fund-list-wrapper .fund-list .list-group ul {
@@ -7582,12 +7588,14 @@ input[type=reset] {
   .tabs-menu-wrapper .dropdown-content {
     display: none; }
     .tabs-menu-wrapper .dropdown-content .btn-med {
-      max-width: 300px;
+      max-width: 100%;
       margin: 0;
       background-image: url("/assets/Images/icons/p_dropdown_select.png");
       background-position: right center;
       background-position-x: calc(100% - 15px);
       background-repeat: no-repeat; }
+    .tabs-menu-wrapper .dropdown-content .dropdown-toggle:after {
+      display: none; }
     .tabs-menu-wrapper .dropdown-content .dropdown-menu {
       max-width: 300px;
       border-radius: 0; }
@@ -7599,8 +7607,8 @@ input[type=reset] {
         max-width: unset;
         width: 100%; }
       .tabs-menu-wrapper .dropdown-content .btn-med.btn-primary {
-        border-color: #cdcdcd;
-        background-color: #cdcdcd; } }
+        border-color: #1CA59B;
+        background-color: #1CA59B; } }
   .tabs-menu-wrapper .btn-primary:active,
   .tabs-menu-wrapper .btn-primary.active,
   .tabs-menu-wrapper .open > .btn-primary.dropdown-toggle {
@@ -7610,8 +7618,8 @@ input[type=reset] {
       .tabs-menu-wrapper .btn-primary:active,
       .tabs-menu-wrapper .btn-primary.active,
       .tabs-menu-wrapper .open > .btn-primary.dropdown-toggle {
-        border-color: #cdcdcd;
-        background-color: #cdcdcd; } }
+        border-color: #1CA59B;
+        background-color: #1CA59B; } }
   .tabs-menu-wrapper .btn-primary:active:hover,
   .tabs-menu-wrapper .btn-primary:active:focus,
   .tabs-menu-wrapper .btn-primary:active.focus,
@@ -7633,8 +7641,8 @@ input[type=reset] {
       .tabs-menu-wrapper .open > .btn-primary.dropdown-toggle:hover,
       .tabs-menu-wrapper .open > .btn-primary.dropdown-toggle:focus,
       .tabs-menu-wrapper .open > .btn-primary.dropdown-toggle.focus {
-        border-color: #cdcdcd;
-        background-color: #cdcdcd; } }
+        border-color: #1CA59B;
+        background-color: #1CA59B; } }
 
 .search-wrapper {
   margin-bottom: 32px; }

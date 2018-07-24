@@ -31,8 +31,23 @@ export class TransactionComponent implements OnInit {
             case 'purchase-step2':
                 this.page = "purchase-step2";
                 break;
-            case 'signup2':
-                this.page = "signup2";
+            case 'purchase-view-list':
+                this.page = "purchase-view-list";
+                break;
+            case 'sell-step1':
+            this.page = "sell-step1";
+                break;
+            case 'sell-step2':
+            this.page = "sell-step2";
+                break;
+            case 'exchange':
+            this.page = "exchange";
+                break;
+            case 'exchange-step1':
+            this.page = "exchange-step1";
+                break;
+            case 'exchange-step2':
+            this.page = "exchange-step2";
                 break;
             default:
 

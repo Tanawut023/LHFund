@@ -630,13 +630,25 @@
                         }  
                         img{
                             margin-left: 20px;
-                        }        
+                            @media screen and (max-width: 767px) {                                
+                                    margin-left: 0px;                                 
+                            }
+                        }
+                        p{
+                            display: unset
+                        }      
                     }
                 }
             }
 
             @media screen and (max-width: 999px) {
                 // display: none;
+            }
+            @media screen and (max-width: 999px) {
+                p{
+                    display: none !important;
+                    margin-bottom: 0px;
+                }  
             }
         }
 
@@ -748,11 +760,11 @@
         }
 
         @media screen and (max-width: $screen-sm-max) {
-            text-align: left;
+            text-align: right;
 
 
             ul {
-                float: left;
+                float: right;
 
                 &.sw-lang {
                     float: right;
@@ -1395,8 +1407,8 @@
 
         @media screen and (max-width: $screen-sm-max) {
             .title-heading {
-                height: auto;
-                padding: 10px 20px;
+                // height: auto;
+                // padding: 10px 20px;
             }
 
             .fund-list {
@@ -1945,6 +1957,12 @@
 
     .dropdown-menu {
         width: 100%;
+
+        // .dropdown-toggle:after{
+        
+        //     display: none;
+            
+        // }
     }
 
     .nav-tabs {
@@ -2001,12 +2019,18 @@
         display: none;
 
         .btn-med {
-            max-width: 300px;
+            max-width: 100%;
             margin: 0;
             background-image: url('/assets/Images/icons/p_dropdown_select.png');
             background-position: right center;
             background-position-x: calc(100% - 15px);
             background-repeat: no-repeat;
+        }
+        .dropdown-toggle{
+            
+            &:after{
+                display: none;
+            }
         }
 
         .dropdown-menu {
@@ -2026,8 +2050,8 @@
 
             .btn-med {
                 &.btn-primary {
-                    border-color: $color-secondary;
-                    background-color: $color-secondary;
+                    border-color: $color-primary;
+                    background-color: $color-primary;
                 }
             }
         }
@@ -2040,8 +2064,8 @@
         background-color: $color-primary;
 
         @media screen and (max-width: $screen-xs-max) {
-            border-color: $color-secondary;
-            background-color: $color-secondary;
+            border-color: $color-primary;
+            background-color: $color-primary;
         }
     }
 
@@ -2058,8 +2082,8 @@
         background-color: $color-primary;
 
         @media screen and (max-width: $screen-xs-max) {
-            border-color: $color-secondary;
-            background-color: $color-secondary;
+            border-color: $color-primary;
+            background-color: $color-primary;
         }
     }
 }

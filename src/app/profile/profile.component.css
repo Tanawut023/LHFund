@@ -1,0 +1,27 @@
+/* set global config vars */
+/* defualt page width setting(PC) */
+/* off canvas menu width *eg. 70px or 70% */
+/* main slide margin top */
+/* header height */
+/* footer height */
+/* global body setting */
+/* default font family */
+/*Arial*/
+/* text sizing multiplier */
+/* text sizing */
+/* default theme color */
+/* special theme */
+/* insert special theme for this website */
+/* text sizing */
+@media screen and (max-width: 999px) {
+  .fund-list-wrapper .title-heading {
+    height: 120px;
+    vertical-align: middle; } }
+
+@media screen and (max-width: 767px) {
+  .fund-list-wrapper h3 {
+    font-size: 35px; }
+  .fund-list-wrapper .title-heading {
+    height: 120px;
+    padding: 40px;
+    vertical-align: middle; } }

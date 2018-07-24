@@ -52,6 +52,10 @@ if it's not present, don't show loader */
 .no-padding{
     padding-right: 0px;
     padding-left: 0px;
+    // @media screen and (max-width: 767px) {
+    //     padding-right: 10px;
+    //     padding-left: 10px;
+    //   }
 }
 .width50{
     width: 50% !important;

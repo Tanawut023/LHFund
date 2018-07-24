@@ -29,8 +29,8 @@ export class MyportComponent implements OnInit {
                 verticalAlign:'middle',
                 width: 200,
                 itemWidth: 100,
-                y: -50,
-                x: -50
+                y: 0,
+                x: 0
             },
             title: {
                 text: ''

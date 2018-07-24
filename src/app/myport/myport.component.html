@@ -6,23 +6,40 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="tabs-menu-wrapper">
-                            <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
+                            <!-- <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                                 <li role="presentation" id="menu1" class="current">
                                     <a (click)="checkpage('dashboard')" title="หน้ารวม Port">หน้ารวม Port</a>
                                 </li>
-                                <!-- <li role="presentation" id="menu2">
-                                    <a (click)="checkpage('suitability')" title="แบบประเมินความเสี่ยง">แบบประเมินความเสี่ยง</a>
-                                </li> -->
-
-                            </ul>
+                            </ul> -->
+                            <div class="dropdown dropdown-content">
+                                    <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                        หน้ารวม Port
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a (click)="checkpage('dashboard')" title="ตรวจสอบ/แก้ไข ข้อมูลส่วนตัว">หน้ารวม Port</a>
+                                        </li>
+                                        <!-- <li>
+                                            <a (click)="checkpage('over-view')" title="แบบประเมินความเสี่ยงในการลงทุนที่เหมาะสม">แบบประเมินความเสี่ยงในการลงทุนที่เหมาะสม</a>
+                                        </li>
+                                        <li>
+                                            <a (click)="checkpage('change-password')" title="เปลี่ยนรหัสผ่าน">เปลี่ยนรหัสผ่าน</a>
+                                        </li>
+                                        <li>
+                                            <a (click)="checkpage('setting')" title="ตั้งค่า">ตั้งค่า</a>
+                                        </li> -->
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
                         </div>
+                        <app-myport-menu></app-myport-menu>
 
                         <div class="fund-table-wrapper">
                             <div class="heading-section">
                                 <div class="detail-head-wrapper">
                                 <div class="row">
                                     
-                                    <div class="col-sm-12 col-md-12 icon-option mb-3">
+                                    <div class="col-sm-12 col-md-12 col-xs-12 icon-option mb-3">
                                         <ul class="">
                                             <li class="ico-fb">
                                                 <a href="#" title="facebook">
@@ -45,7 +62,7 @@
                                     <div class="col-sm-6 col-md-3">
 
                                         <p>เลขที่ผู้ถือหน่วยลงทุน</p>
-                                        <div class="select-wrapper inline-block">
+                                        <div class="select-wrapper inline-block pb-3">
                                             <select name="ddlLink" id="ddlLink">
                                                 <option value="0" selected="">9990244757</option>
                                                 <option value="36">9990244757</option>
@@ -76,35 +93,22 @@
                                 
                                         <div class="title-heading">
                                             <div class="row">
-                                                <div class="col-md-1">
+                                                <div class="col-md-1 col-xs-4">
                                                     <img src="/assets/Images/icons/ico-asset.png">
                                                 </div>
-                                                <div class="col-md-6 text-left">
-                                                    <h3>มูลค่าทรัพย์สินสุทธ(บาท)</h3>
+                                                <div class="col-md-11 col-xs-8">
+                                                    <div class="row">
+                                                        <div class="col-md-6 text-md-left">
+                                                        <h3>มูลค่าทรัพย์สินสุทธ(บาท)</h3>
+                                                        </div>
+                                                        <div class="col-md-6 text-md-right">
+                                                        <h1>฿ 70,474,729.91</h1>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-5 text-right">
-                                                    <h1>฿ 70,474,729.91</h1>
-                                                </div>
+                                                
                                             </div>
                                         </div>
-                                   
-                                    <!-- <div class="col-md-6 col-xs-12 no-padding">
-                                        <div class="title-heading-blue">
-                                            <div class="row">
-                                                <div class="col-md-2">
-                                                    <img src="/assets/Images/icons/ico-income.png">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <h3>กำไร/ขาดทุน (บาท)</h3>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <h3>฿ 669,638.80</h3>
-                                                </div>
-                                            </div>
-
-
-                                        </div>
-                                    </div> -->
                                 
                             </div>
                             <div class="row">
@@ -327,19 +331,24 @@
     
                             </div>
                             <div class="fund-list-wrapper">                                
-                                    <div class="title-heading-blue">
+                                    <div class="title-heading bg-blue">
                                         <div class="row">
-                                            <div class="col-md-1">
+                                            <div class="col-md-1 col-xs-4">
                                                 <img src="/assets/Images/icons/ico-income.png">
                                             </div>
-                                            <div class="col-md-6">
-                                                <h3>กำไร/ขาดทุน (บาท)</h3>
-                                            </div>
-                                            <div class="col-md-5 text-right">
-                                                <h1>฿ 669,638.80</h1>
+                                            <div class="col-md-11 col-xs-8">
+                                                    <div class="row">
+                                                        <div class="col-md-6 text-md-left">
+                                                        <h3>กำไร/ขาดทุน (บาท)</h3>
+                                                        </div>
+                                                        <div class="col-md-6 text-md-right">
+                                                        <h1>฿ 669,638.80</h1>
+                                                        </div>
+                                                    </div>
                                             </div>
                                         </div>
                                     </div>
+                                    
                                 <div class="row">
                                 <div class="col-md-12">
                                     <div class="row">

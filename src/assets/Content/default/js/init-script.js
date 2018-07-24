@@ -209,6 +209,7 @@ main_nav = function(){
 main_canvas = function(){
   // Navigation Menu Slider
   $('#nav-expander').on('click',function(e){
+    console.log('111111');
     e.preventDefault();
     $('body').toggleClass('nav-expanded');
   });

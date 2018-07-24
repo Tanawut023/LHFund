@@ -7,3 +7,16 @@
 // .footer_sub{
 //     display: none !important;
 // }
+.fund-list-wrapper{
+    @media screen and (max-width: 767px) {
+        .title-heading{
+            padding: 20px
+        }
+        img{
+            padding: 20px;
+        }
+        h1{
+            font-size: 30px;
+        }
+      }
+}
