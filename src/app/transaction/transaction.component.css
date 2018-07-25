@@ -70,3 +70,7 @@
         color: #fff; }
         .list-pagination .holder a.jp-current:hover {
           color: #fff; }
+
+.modal-header {
+  background-color: #FF4A4A;
+  border-radius: 0px; }

@@ -19,7 +19,7 @@ const routes: Routes = [
     { path: 'rmf-ltf', component: RmfLtfComponent },
     { path: 'regular-list', component: RegularListComponent },
     { path: 'report', component: ReportComponent },
-    { path: 'profile', component: ProfileComponent },
+    { path: 'profile', component: ProfileComponent }
 ];
 
 @NgModule({

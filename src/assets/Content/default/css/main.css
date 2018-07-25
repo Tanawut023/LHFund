@@ -5527,7 +5527,7 @@ input[type=reset] {
     position: absolute;
     text-decoration: none;
     text-transform: uppercase;
-    top: 10px;
+    top: 40px;
     right: 10px;
     transition: right 0.5s ease-in-out 0s;
     -webkit-transition: right 0.5s ease-in-out 0s;
@@ -7999,7 +7999,7 @@ input[type=reset] {
         .modal-custom .modal-dialog .modal-content .modal-header .modal-title {
           float: left;
           max-width: 90%;
-          color: #000;
+          color: #fff;
           font-family: "KitithadaBold";
           font-size: 40px;
           line-height: 40px;
@@ -8030,12 +8030,11 @@ input[type=reset] {
           font-weight: 400;
           line-height: 40px;
           margin: 11px 0; }
-        .modal-custom .modal-dialog .modal-content .modal-body p {
-          font-size: 22px;
-          line-height: 28px; }
-          .modal-custom .modal-dialog .modal-content .modal-body p.note {
-            color: #1CA59B;
-            margin-bottom: 10px; }
+        .modal-custom .modal-dialog .modal-content .modal-body p.note {
+          color: #1CA59B;
+          margin-bottom: 10px; }
+        .modal-custom .modal-dialog .modal-content .modal-body span {
+          color: #1CA59B; }
         .modal-custom .modal-dialog .modal-content .modal-body label {
           line-height: 28px; }
         .modal-custom .modal-dialog .modal-content .modal-body img {

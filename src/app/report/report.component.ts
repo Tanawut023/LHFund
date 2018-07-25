@@ -34,6 +34,9 @@ export class ReportComponent implements OnInit {
             case 'receipt-history':
                 this.page = "receipt-history";
                 break;
+            case 'type':
+                this.page = "type";
+                break;
             default:
 
                 this.page = "past-events";

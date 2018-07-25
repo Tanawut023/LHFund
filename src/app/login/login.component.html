@@ -274,7 +274,7 @@
 											<div class="btn-wrapper-right">
 												<div class="row justify-content-end">
 													<div class="col-md-10">
-														<button class="btn-med btn-confirm-login" (click)="checkpage()">
+														<button class="btn-med btn-confirm-login" (click)="checkpage('signup2')">
 															<p>ยืนยัน
 																<i class="fa fa-angle-right" aria-hidden="true"></i>
 															</p>
@@ -294,7 +294,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="contact-wrapper" *ngIf="page == 'signup1'">
+	<div class="contact-wrapper" *ngIf="page == 'signup2'">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-6">
@@ -351,7 +351,7 @@
 			
 													<div class="col-sm-12 mt-3">
 														<div class="btn-wrapper-left">
-															<button class="btn-med btn-next-login" (click)="checkpage('signup2')">
+															<button class="btn-med btn-next-login" (click)="checkpage('signin')">
 																<p class="pl-1 ">ลงทะเบียน
 																	<i class="fa fa-angle-right pl-4" aria-hidden="true"></i>
 																</p>
@@ -464,7 +464,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="contact-wrapper" *ngIf="page == 'signup2'">
+	<div class="contact-wrapper" *ngIf="page == 'signup1'">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-6">
@@ -584,7 +584,7 @@
 												<div class="btn-wrapper-left">
 													<div class="row">
 														<div class="col-md-6">
-															<button class="btn-med btn-back-login" (click)="checkpage('signup1')">
+															<button class="btn-med btn-back-login" (click)="checkpage('signin')">
 																<p>
 																	ย้อนกลับ
 																	<i class="fa fa-angle-right" aria-hidden="true"></i>

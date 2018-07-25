@@ -116,4 +116,8 @@ export class MyportComponent implements OnInit {
 
 
     }
+    print(){
+        window.focus();
+window.print();
+    }
 }

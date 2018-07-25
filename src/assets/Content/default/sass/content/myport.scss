@@ -973,9 +973,9 @@ background-color: $color-secondary;
         border-bottom: 5px solid #f5f5f5;
         width: 100%;
 
-        h4{
-            display: block;
-            // margin-bottom: 20px;
+        h4,span{
+            display: inline-block;
+            margin-right: 10px;
         }
     }
     .detail-footer-wrapper{

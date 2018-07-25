@@ -4,6 +4,9 @@
     @media screen and (max-width: 767px) {
         .title-heading{
             padding: 20px;
+           p{
+               margin-bottom: 1rem !important;
+           }
         }
         .title-heading-blue{
             padding: 10px 20px;
@@ -18,6 +21,16 @@
             font-size: 30px;
         }
       }
+      @media screen and (max-width: 999px) {
+        .title-heading{
+
+            p,h3{
+                margin: 0px;
+                padding-left: 10px;
+                
+            }
+        }
+    }
 }
 .vertical-menu-wrapper{
     @media screen and (max-width: 767px) {

@@ -2551,11 +2551,12 @@
             .modal-header {
                 border-bottom: 0;
                 overflow: hidden;
+                
 
                 .modal-title {
                     float: left;
                     max-width: 90%;
-                    color: $color-hover;
+                    color: $color-white;
                     font-family: $default-font;
                     font-size: $text-large;
                     line-height: $text-large;
@@ -2599,14 +2600,17 @@
                 }
 
                 p {
-                    font-size: $text-content;
-                    line-height: $text-small;
+                    // font-size: $text-content;
+                    // line-height: $text-small;
 
 
                     &.note {
                         color: $color-primary;
                         margin-bottom: 10px;
                     }
+                }
+                span{
+                    color: $color-primary;
                 }
 
                 label {

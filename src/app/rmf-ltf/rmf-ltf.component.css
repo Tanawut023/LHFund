@@ -1,6 +1,8 @@
 @media screen and (max-width: 767px) {
   .fund-list-wrapper .title-heading {
     padding: 20px; }
+    .fund-list-wrapper .title-heading p {
+      margin-bottom: 1rem !important; }
   .fund-list-wrapper .title-heading-blue {
     padding: 10px 20px; }
     .fund-list-wrapper .title-heading-blue p {
@@ -9,6 +11,11 @@
     padding: 10px 20px; }
   .fund-list-wrapper h3 {
     font-size: 30px; } }
+
+@media screen and (max-width: 999px) {
+  .fund-list-wrapper .title-heading p, .fund-list-wrapper .title-heading h3 {
+    margin: 0px;
+    padding-left: 10px; } }
 
 @media screen and (max-width: 767px) {
   .vertical-menu-wrapper img {
