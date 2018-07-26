@@ -34,6 +34,15 @@ export class TransactionComponent implements OnInit {
             case 'purchase-view-list':
                 this.page = "purchase-view-list";
                 break;
+            case 'sell-view-list':
+                this.page = "sell-view-list";
+                break;
+            case 'exchange-view-list':
+                this.page = "exchange-view-list";
+                break;
+            case 'purchase-for-sell-view-list':
+                this.page = "purchase-for-sell-view-list";
+                break;
             case 'sell-step1':
             this.page = "sell-step1";
                 break;
@@ -48,6 +57,15 @@ export class TransactionComponent implements OnInit {
                 break;
             case 'exchange-step2':
             this.page = "exchange-step2";
+                break;
+            case 'purchase-for-sell':
+            this.page = "purchase-for-sell";
+                break;
+            case 'purchase-for-sell-step1':
+            this.page = "purchase-for-sell-step1";
+                break;
+            case 'purchase-for-sell-step2':
+            this.page = "purchase-for-sell-step2";
                 break;
             default:
 

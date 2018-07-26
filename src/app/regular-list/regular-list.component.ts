@@ -21,14 +21,23 @@ export class RegularListComponent implements OnInit {
         case 'regular-purchase':
             this.page = "regular-purchase";
             break;
+        case 'regular-purchase-step1':
+            this.page = "regular-purchase-step1";
+            break;
         case 'regular-sell':
             this.page = "regular-sell";
+            break;
+        case 'regular-sell-step1':
+            this.page = "regular-sell-step1";
             break;
         case 'regular-exchange':
             this.page = "regular-exchange";
             break;
-        case 'all':
-            this.page = "all";
+        case 'regular-exchange-step1':
+            this.page = "regular-exchange-step1";
+            break;
+        case 'all-list':
+            this.page = "all-list";
             break;
         case 'signup2':
             this.page = "signup2";

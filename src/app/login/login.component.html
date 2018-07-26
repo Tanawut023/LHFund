@@ -149,7 +149,7 @@
 													<div class="row">
 														<div class="col-md-10">
 															<button class="btn-med btn-back-login" (click)="checkpage('signin')">
-																<p>																					ย้อนกลับ
+																<p>ย้อนกลับ
 																	<i class="fa fa-angle-right" aria-hidden="true"></i>
 																</p>
 															</button>
@@ -162,7 +162,7 @@
 												<div class="btn-wrapper-right">
 													<div class="row justify-content-end">
 														<div class="col-md-10">
-															<button class="btn-med btn-confirm-login" (click)="checkpage()">
+															<button class="btn-med btn-confirm-login" (click)="checkpage('otp-forgot')">
 																<p>ตกลง
 																	<i class="fa fa-angle-right" aria-hidden="true"></i>
 																</p>
@@ -220,10 +220,18 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-md-6">
-											<div class="input-wrapper mb-3 mt-2">
+										<div class="col-md-8">
+											<div class="input-wrapper">
 												<input id="email-or-tel" name="email-or-tel" maxlength="30" type="text" placeholder="085XXXXXXX">
 											</div>
+										</div>
+										<div class="col-md-4">
+												<div class="btn-wrapper">
+													<button class="btn-med btn-blue" (click)="checkpage()">
+														ส่งรหัส OTP
+														<i class="fa fa-angle-right" aria-hidden="true"></i>
+													</button>
+												</div>
 										</div>
 									</div>
 									<div class="row">
@@ -232,21 +240,11 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-md-8">
+										<div class="col-md-6">
 											<div class="input-wrapper">
 												<input id="name" name="name" maxlength="30" type="text">
 											</div>
-										</div>
-
-										<div class="col-md-4">
-
-											<div class="btn-wrapper">
-												<button class="btn-blue" (click)="checkpage()">
-													ส่งรหัส OTP
-													<i class="fa fa-angle-right" aria-hidden="true"></i>
-												</button>
-											</div>
-										</div>
+										</div>										
 									</div>
 									<div class="row pb-4">
 										<div class="col-md-12">
@@ -274,10 +272,15 @@
 											<div class="btn-wrapper-right">
 												<div class="row justify-content-end">
 													<div class="col-md-10">
-														<button class="btn-med btn-confirm-login" (click)="checkpage('signup2')">
+														<button class="btn-med btn-confirm-login" (click)="checkpage('signin')" *ngIf="otp == 'forgot'">
 															<p>ยืนยัน
 																<i class="fa fa-angle-right" aria-hidden="true"></i>
 															</p>
+														</button>
+														<button class="btn-med btn-confirm-login" (click)="checkpage('signup2')" *ngIf="otp == 'signup'">
+																<p>ยืนยัน
+																	<i class="fa fa-angle-right" aria-hidden="true"></i>
+																</p>
 														</button>
 													</div>
 												</div>
@@ -300,8 +303,8 @@
 				<div class="col-md-6 col-md-offset-6">
 					<div class="contact-popup active">
 						<div class="popup-content item">
-							<div class="row">
-							<div class="col-md-6 col-xs-12">
+							<!-- <div class="row">
+							<div class="col-md-6 col-xs-12"> -->
 									<div class="contact-title">
 											<div class="row">
 												<div class="col">
@@ -312,7 +315,7 @@
 														ลงทะเบียนเข้าใช้ระบบ
 													</p>
 												</div>
-												<div class="col d-flex justify-content-end xs-show">
+												<div class="col d-flex justify-content-end">
 													<ul>
 														<li class="th current">
 															<a href="#" title="ไทย">Thai</a>
@@ -326,6 +329,7 @@
 										</div>
 										<div class="contact-form-wrapper">
 											<form>
+												<div class="detail-login-wrapper">
 												<div class="row">
 													<div class="col-sm-12">
 														<p>ชื่อผู้เข้าระบบ
@@ -347,9 +351,8 @@
 														<div class="input-wrapper ">
 															<input id="confirmpassword" name="confirmpassword" maxlength="30" type="password">
 														</div>
-													</div>
-			
-													<div class="col-sm-12 mt-3">
+													</div>			
+													<!-- <div class="col-sm-12 mt-3">
 														<div class="btn-wrapper-left">
 															<button class="btn-med btn-next-login" (click)="checkpage('signin')">
 																<p class="pl-1 ">ลงทะเบียน
@@ -357,13 +360,37 @@
 																</p>
 															</button>
 														</div>
-													</div>
+													</div> -->
 												</div>
-			
+											</div>
+										
+												<div class="row">
+														<div class="col-md-6">
+															<div class="btn-wrapper-left">
+																<button class="btn-med btn-back-login" (click)="checkpage('signup1')">
+																	<p>
+																		ย้อนกลับ
+																		<i class="fa fa-angle-right" aria-hidden="true"></i>
+																	</p>
+																</button>
+															</div>
+														</div>
+				
+														<div class="col-md-6 ">
+															<div class="btn-wrapper-left">
+																<button class="btn-med btn-next-login" (click)="checkpage('signin')" >
+																	<p>ลงทะเบียน
+																		<i class="fa fa-angle-right" aria-hidden="true"></i>
+																	</p>
+																</button>
+															</div>
+														</div>
+												</div>
 											</form>
 										</div>
-							</div>
-							<div class="col-md-6 col-xs-12">
+							<!-- </div>
+						</div> -->
+							<!-- <div class="col-md-6 col-xs-12">
 									<div class="contact-title">
 											<div class="row ">
 												<div class="col-md-10 col-md-offset-8 xs-hide">
@@ -406,8 +433,8 @@
 												
 											</div>
 										</div>
-							</div>
-							</div>
+							</div> -->
+							
 							
 						</div>
 					</div>
@@ -599,7 +626,7 @@
 												<div class="btn-wrapper-right">
 													<div class="row justify-content-end">
 														<div class="col-md-12">
-															<button class="btn-med btn-confirm-login" (click)="checkpage('otp')">
+															<button class="btn-med btn-confirm-login" (click)="checkpage('otp-signup')">
 																<p>ถัดไป
 																	<i class="fa fa-angle-right" aria-hidden="true"></i>
 																</p>

@@ -86,7 +86,11 @@
         }
     }
 }
+.modal-title{
+    color: $color-white !important;
+}
 .modal-header{
+    // color: $color-white ;
     background-color: $color-red;
     border-radius:0px; 
     // color: $color-white!important;

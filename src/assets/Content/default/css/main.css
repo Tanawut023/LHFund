@@ -4163,6 +4163,10 @@ if it's not present, don't show loader */
 .none {
   display: none; }
 
+.bg-gray {
+  background-color: #f5f5f5;
+  color: #1CA59B; }
+
 #header-wrapper {
   width: 100%;
   height: auto;
@@ -4581,6 +4585,9 @@ input[type=reset] {
           text-align: center; }
         .table-responsive .table.table-custom tbody tr td.txt-right {
           text-align: right; }
+        .table-responsive .table.table-custom tbody tr td.content {
+          color: #1CA59B;
+          border-left: 1px solid #fff; }
     .table-responsive .table.table-custom-score {
       border-collapse: collapse !important; }
       .table-responsive .table.table-custom-score thead tr th {
@@ -4631,10 +4638,13 @@ input[type=reset] {
         border: none;
         text-align: center;
         border-right: 1px solid #fff;
-        background-color: #1CA59B; }
+        background-color: #1CA59B;
+        color: #fff; }
         .table-responsive .table.table-nav > thead > tr > th.first-th {
           border-bottom: 1px solid #fff;
           background-color: #adadad; }
+        .table-responsive .table.table-nav > thead > tr > th.last-th {
+          border-bottom: 1px solid #fff; }
       .table-responsive .table.table-nav > tbody {
         border: 2px solid black;
         border-collapse: separate;
@@ -7999,7 +8009,7 @@ input[type=reset] {
         .modal-custom .modal-dialog .modal-content .modal-header .modal-title {
           float: left;
           max-width: 90%;
-          color: #fff;
+          color: #000;
           font-family: "KitithadaBold";
           font-size: 40px;
           line-height: 40px;
@@ -8015,7 +8025,12 @@ input[type=reset] {
           /*font-family: $default-font;*/
           font-size: unset;
           line-height: unset;
-          cursor: pointer; }
+          opacity: 1;
+          cursor: pointer;
+          position: absolute;
+          top: -78px;
+          right: 0px;
+          background-color: #FF4A4A; }
           .modal-custom .modal-dialog .modal-content .modal-header .close span {
             font-size: unset;
             line-height: unset; }

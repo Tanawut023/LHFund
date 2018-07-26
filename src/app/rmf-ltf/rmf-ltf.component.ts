@@ -23,8 +23,11 @@ export class RmfLtfComponent implements OnInit {
         case 'conclusion':
             this.page = "conclusion";
             break;
-        case 'certificate':
-            this.page = "certificate";
+        case 'certificate-rmf':
+            this.page = "certificate-rmf";
+            break;
+        case 'certificate-ltf':
+            this.page = "certificate-ltf";
             break;
         case 'ltf-condition-complete':
             this.page = "ltf-condition-complete";

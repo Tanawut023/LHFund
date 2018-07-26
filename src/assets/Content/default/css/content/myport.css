@@ -727,12 +727,13 @@
     .mutual-fund-wrapper .detail-body-wrapper h4, .mutual-fund-wrapper .detail-body-wrapper span {
       display: inline-block;
       margin-right: 10px; }
+    .mutual-fund-wrapper .detail-body-wrapper p {
+      margin-bottom: 1.5rem; }
   .mutual-fund-wrapper .detail-footer-wrapper {
     position: relative;
     max-width: 100%;
     padding: 30px;
     margin: 0 auto;
-    border-bottom: 5px solid #f5f5f5;
     width: 100%; }
     .mutual-fund-wrapper .detail-footer-wrapper h4 {
       line-height: 0px;
@@ -740,9 +741,6 @@
       @media screen and (max-width: 767px) {
         .mutual-fund-wrapper .detail-footer-wrapper h4 {
           margin-bottom: 0px; } }
-  .mutual-fund-wrapper .bg-gray {
-    background-color: #f5f5f5;
-    color: #1CA59B; }
   .mutual-fund-wrapper .fund-table-wrapper .graph-wrapper {
     padding: 25px 20px;
     padding-top: 0;

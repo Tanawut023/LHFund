@@ -25,7 +25,8 @@ library.add(fas, far);
 export class LoginComponent implements OnInit {
  
   page = "signin";
-  myMatchHeight: string;  
+  myMatchHeight: string; 
+  otp = "";
 //   canvas: any;
   ctx: any;
   myChart:any;
@@ -91,8 +92,13 @@ ngOnInit() {
     case 'forgotpassword':
         this.page = "forgotpassword";
         break;
-    case 'otp':
+    case 'otp-forgot':
         this.page = "otp";
+        this.otp = "forgot"
+        break;
+    case 'otp-signup':
+        this.page = "otp";
+        this.otp = "signup"
         break;
     case 'signup1':
         this.page = "signup1";

@@ -91,6 +91,10 @@ if it's not present, don't show loader */
 .none{
     display: none;
 }
+.bg-gray{
+    background-color: #f5f5f5;
+    color: $color-primary;
+}
 
 #header-wrapper {
     width: 100%;
@@ -466,6 +470,10 @@ input[type=reset] {
                         &.txt-right {
                             text-align: right;
                         }
+                        &.content {
+                            color: $color-primary;
+                            border-left: 1px solid $color-white;
+                        }
                     }
                 }
             }
@@ -557,10 +565,14 @@ input[type=reset] {
                         text-align: center;
                         border-right: 1px solid $color-white;
                         background-color: $color-primary;
+                        color: $color-white;
 
                         &.first-th {
                             border-bottom: 1px solid $color-white;
                             background-color: #adadad;
+                        }
+                        &.last-th{
+                            border-bottom: 1px solid $color-white;
                         }
                     }
                 }

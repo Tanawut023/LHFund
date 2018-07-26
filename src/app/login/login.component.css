@@ -10,3 +10,6 @@
 .footer_sub{
     display: none !important;
 }
+input[type="text"],input[type="password"]{
+    height: 42px !important;
+}

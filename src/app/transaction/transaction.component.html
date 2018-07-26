@@ -6,19 +6,27 @@
         <div class="row">
           <div class="col-md-12">
             <div class="tabs-menu-wrapper">
-                <div class="dropdown dropdown-content">
-                    <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                        เมนูกองทุน 
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a></li>
-                        <li><a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a></li>
-                        <li><a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a></li>
-                        <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
-                        <li><a  title="รายการขายเพื่อซื้อ">รายการขายเพื่อซื้อ</a></li>                        
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
+              <div class="dropdown dropdown-content">
+                <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                  เมนูกองทุน
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a>
+                  </li>
+                  <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
+                  <li>
+                    <a (click)="checkpage('purchase-for-sell')" title="รายการซื้อเพื่อขาย">รายการซื้อเพื่อขาย</a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu1" class="current">
                   <a title="รายการซื้อ" (click)="checkpage('purchase-over-view')">รายการซื้อ</a>
@@ -33,7 +41,7 @@
                   <a title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a>
                 </li> -->
                 <li role="presentation" id="menu5">
-                  <a title="รายการขายเพื่อซื้อ">รายการขายเพื่อซื้อ</a>
+                  <a title="รายการซื้อเพื่อขาย" (click)="checkpage('purchase-for-sell')">รายการซื้อเพื่อขาย</a>
                 </li>
 
               </ul>
@@ -46,7 +54,7 @@
                     <div class="col-md-12 col-xs-12 icon-option mb-3">
 
                       <ul class="">
-                        <li class="ico-fb">
+                        <!-- <li class="ico-fb">
                           <a href="#" title="facebook">
                             <img src="/assets/Images/icons/ico-pipe.png" />
                           </a>
@@ -55,7 +63,7 @@
                           <a href="#" title="line">
                             <img src="/assets/Images/icons/ico-download.png" />
                           </a>
-                        </li>
+                        </li> -->
                         <li class="ico-yt">
                           <a href="#" title="youtube">
                             <img src="/assets/Images/icons/ico-print.png" />
@@ -192,15 +200,15 @@
               </div>
               <div class="detail-footer-wrapper">
                 <div class="row">
-                    <div class="col-md-2 text-left">                    
-                        <h4>รายการซื้อหน่วยลงทุน</h4>
-                      </div>
-                      <div class="col-md-4 mb-3 text-left no-padding">                    
-                        (รายการที่รอดำเนินการ)
-                      </div>
-                      <div class="col-md-6 text-md-right">
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>ดูรายการทั้งหมด
-                      </div>
+                  <div class="col-md-2 text-left">
+                    <h4>รายการซื้อหน่วยลงทุน</h4>
+                  </div>
+                  <div class="col-md-4 mb-3 text-left no-padding">
+                    (รายการที่รอดำเนินการ)
+                  </div>
+                  <div class="col-md-6 text-md-right">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>ดูรายการทั้งหมด
+                  </div>
                   <div class="col-md-12 mt-2">
                     <div class="table-responsive">
                       <table class="table table-custom">
@@ -275,8 +283,8 @@
                               07/06/2561
                             </td>
                             <td>
-                              <a >
-                                <img src="/assets/Images/icons/ico-edit.png" >
+                              <a>
+                                <img src="/assets/Images/icons/ico-edit.png">
                               </a>
                             </td>
                             <td>
@@ -302,19 +310,27 @@
         <div class="row">
           <div class="col-md-12">
             <div class="tabs-menu-wrapper">
-                <div class="dropdown dropdown-content">
-                    <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                        เมนูกองทุน 
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a></li>
-                        <li><a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a></li>
-                        <li><a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a></li>
-                        <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
-                        <li><a  title="รายการขายเพื่อซื้อ">รายการขายเพื่อซื้อ</a></li>                        
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
+              <div class="dropdown dropdown-content">
+                <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                  เมนูกองทุน
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a>
+                  </li>
+                  <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
+                  <li>
+                    <a (click)="checkpage('purchase-for-sell')" title="รายการซื้อเพื่อขาย">รายการซื้อเพื่อขาย</a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
 
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu1">
@@ -324,13 +340,13 @@
                   <a title="รายการขาย" (click)="checkpage('sell')">รายการขาย</a>
                 </li>
                 <li role="presentation" id="menu3">
-                  <a title="รายการสับเปลี่ยน"(click)="checkpage('exchange')" >รายการสับเปลี่ยน</a>
+                  <a title="รายการสับเปลี่ยน" (click)="checkpage('exchange')">รายการสับเปลี่ยน</a>
                 </li>
                 <!-- <li role="presentation" id="menu4">
                   <a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a>
                 </li> -->
                 <li role="presentation" id="menu5">
-                  <a  title="รายการขายเพื่อซื้อ">รายการขายเพื่อซื้อ</a>
+                  <a title="รายการซื้อเพื่อขาย" (click)="checkpage('purchase-for-sell')">รายการซื้อเพื่อขาย</a>
                 </li>
 
               </ul>
@@ -343,7 +359,7 @@
                     <div class="col-md-12 col-xs-12 icon-option mb-3">
 
                       <ul class="">
-                        <li class="ico-fb">
+                        <!-- <li class="ico-fb">
                           <a href="#" title="facebook">
                             <img src="/assets/Images/icons/ico-pipe.png" />
                           </a>
@@ -352,7 +368,7 @@
                           <a href="#" title="line">
                             <img src="/assets/Images/icons/ico-download.png" />
                           </a>
-                        </li>
+                        </li> -->
                         <li class="ico-yt">
                           <a href="#" title="youtube">
                             <img src="/assets/Images/icons/ico-print.png" />
@@ -466,12 +482,12 @@
                       <div class="col-md-4">
                         <span>จำนวนที่ขายคืน</span>
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-3 col-xs-6">
                         <div class="input-wrapper ">
                           <input id="name" name="name" maxlength="30" type="text" class="bg-gray" placeholder="0">
                         </div>
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-3 col-xs-6">
                         <div class="select-wrapper inline-block">
 
                           <select name="ddlLink" id="ddlLink">
@@ -535,18 +551,18 @@
               </div>
               <div class="detail-footer-wrapper">
                 <div class="row">
-                    <div class="col-md-2 text-left">                    
-                        <h4>รายการซื้อหน่วยลงทุน</h4>
-                      </div>
-                      <div class="col-md-4 mb-3 text-left no-padding">                    
-                        (รายการที่รอดำเนินการ)
-                      </div>
-                      <div class="col-md-6 text-md-right">
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>ดูรายการทั้งหมด
-                      </div>
-                      <div class="col-md-12 mt-5 text-center">
-                          ไม่มีรายการที่รอดำเนินงาน
-                      </div>
+                  <div class="col-md-2 text-left">
+                    <h4>รายการซื้อหน่วยลงทุน</h4>
+                  </div>
+                  <div class="col-md-4 mb-3 text-left no-padding">
+                    (รายการที่รอดำเนินการ)
+                  </div>
+                  <div class="col-md-6 text-md-right">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>ดูรายการทั้งหมด
+                  </div>
+                  <div class="col-md-12 mt-5 text-center">
+                    ไม่มีรายการที่รอดำเนินงาน
+                  </div>
                 </div>
               </div>
             </div>
@@ -561,19 +577,27 @@
         <div class="row">
           <div class="col-md-12">
             <div class="tabs-menu-wrapper">
-                <div class="dropdown dropdown-content">
-                    <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                        เมนูกองทุน 
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a></li>
-                        <li><a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a></li>
-                        <li><a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a></li>
-                        <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
-                        <li><a  title="รายการขายเพื่อซื้อ">รายการขายเพื่อซื้อ</a></li>                        
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
+              <div class="dropdown dropdown-content">
+                <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                  เมนูกองทุน
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a>
+                  </li>
+                  <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
+                  <li>
+                    <a title="รายการซื้อเพื่อขาย" (click)="checkpage('purchase-for-sell')">รายการซื้อเพื่อขาย</a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu1">
                   <a title="รายการซื้อ" (click)="checkpage('purchase-over-view')">รายการซื้อ</a>
@@ -588,7 +612,7 @@
                   <a routerLink="/risk-assessment-form" title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a>
                 </li> -->
                 <li role="presentation" id="menu5">
-                  <a routerLink="/risk-assessment-form" title="รายการขายเพื่อซื้อ">รายการขายเพื่อซื้อ</a>
+                  <a (click)="checkpage('purchase-for-sell')" title="รายการซื้อเพื่อขาย">รายการซื้อเพื่อขาย</a>
                 </li>
 
               </ul>
@@ -601,7 +625,7 @@
                     <div class="col-md-12 col-xs-12 icon-option mb-3">
 
                       <ul class="">
-                        <li class="ico-fb">
+                        <!-- <li class="ico-fb">
                           <a href="#" title="facebook">
                             <img src="/assets/Images/icons/ico-pipe.png" />
                           </a>
@@ -610,7 +634,7 @@
                           <a href="#" title="line">
                             <img src="/assets/Images/icons/ico-download.png" />
                           </a>
-                        </li>
+                        </li> -->
                         <li class="ico-yt">
                           <a href="#" title="youtube">
                             <img src="/assets/Images/icons/ico-print.png" />
@@ -647,17 +671,10 @@
                     </div>
                     <div class="row">
                       <div class="col-md-4">
-                        <span>กองทุนต้นทาง</span>
+                        <p>กองทุนต้นทาง</p>
                       </div>
                       <div class="col-md-6">
-                        <div class="select-wrapper inline-block">
-
-                          <select name="ddlLink" id="ddlLink">
-                            <option value="0" selected="">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
-                            <option value="36">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
-                            <option value="29">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
-                          </select>
-                        </div>
+                        <span>KFCRASH - กองทุนกรุงศรีตราสารเงิน</span>
                       </div>
                     </div>
                   </div>
@@ -769,19 +786,27 @@
         <div class="row">
           <div class="col-md-12">
             <div class="tabs-menu-wrapper">
-                <div class="dropdown dropdown-content">
-                    <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                        เมนูกองทุน 
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a></li>
-                        <li><a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a></li>
-                        <li><a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a></li>
-                        <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
-                        <li><a  title="รายการขายเพื่อซื้อ">รายการขายเพื่อซื้อ</a></li>                        
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
+              <div class="dropdown dropdown-content">
+                <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                  เมนูกองทุน
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a>
+                  </li>
+                  <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
+                  <li>
+                    <a title="รายการซื้อเพื่อขาย" (click)="checkpage('purchase-for-sell')">รายการซื้อเพื่อขาย</a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu1">
                   <a title="รายการซื้อ" (click)="checkpage('purchase-over-view')">รายการซื้อ</a>
@@ -796,7 +821,7 @@
                   <a routerLink="/risk-assessment-form" title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a>
                 </li> -->
                 <li role="presentation" id="menu5">
-                  <a routerLink="/risk-assessment-form" title="รายการขายเพื่อซื้อ">รายการขายเพื่อซื้อ</a>
+                  <a (click)="checkpage('purchase-for-sell')" title="รายการซื้อเพื่อขาย">รายการซื้อเพื่อขาย</a>
                 </li>
 
               </ul>
@@ -809,7 +834,7 @@
                     <div class="col-md-12 col-xs-12 icon-option mb-3">
 
                       <ul class="">
-                        <li class="ico-fb">
+                        <!-- <li class="ico-fb">
                           <a href="#" title="facebook">
                             <img src="/assets/Images/icons/ico-pipe.png" />
                           </a>
@@ -818,7 +843,7 @@
                           <a href="#" title="line">
                             <img src="/assets/Images/icons/ico-download.png" />
                           </a>
-                        </li>
+                        </li> -->
                         <li class="ico-yt">
                           <a href="#" title="youtube">
                             <img src="/assets/Images/icons/ico-print.png" />
@@ -855,17 +880,10 @@
                     </div>
                     <div class="row">
                       <div class="col-md-4">
-                        <span>กองทุนต้นทาง</span>
+                        <p>กองทุนต้นทาง</p>
                       </div>
                       <div class="col-md-6">
-                        <div class="select-wrapper inline-block">
-
-                          <select name="ddlLink" id="ddlLink">
-                            <option value="0" selected="">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
-                            <option value="36">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
-                            <option value="29">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
-                          </select>
-                        </div>
+                        <span>KFCRASH - กองทุนกรุงศรีตราสารเงิน</span>
                       </div>
                     </div>
                   </div>
@@ -955,7 +973,7 @@
                         </button>
                       </div>
                       <div class="col-md-3 col-xs-6 ">
-                        <button class="btn-med btn-blue" (click)="checkpage('sell')">
+                        <button class="btn-med btn-blue" (click)="checkpage('sell-view-list')">
                           ดูรายการ
                           <i class="fa fa-angle-right" aria-hidden="true"></i>
                         </button>
@@ -965,7 +983,700 @@
 
                   <div class="col-md-12 mt-3">
                     <span class="color-red no-margin">การยืนยันรายการนี้ยังไม่ถือว่ารายการขายหน่วยลงทุนสมบูรณ์ ในกรณีที่ท่านยังมิได้ขอออกสมุดบัญชีแสดงสิทธิในหน่วยลงทุน
-                      นายทะเบียนจะจัดส่งหนังสือรับรองสิทธิในหน่วยลงทุนให้แก่ท่าน</span>
+                      นายทะเบียนจะจัดส่งหนังสือรับรองสิทธิในหน่วยลงทุนให้แก่ท่าน
+                    </span>
+                    <span class="color-red no-margin">เมื่อรายการนี้ได้ทำเสร็จสมบูรณ์ ภายใน 2 วันทำการ</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="mutual-fund-wrapper" *ngIf="page == 'purchase-for-sell'">
+      <div class="max-width-wrapper">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="tabs-menu-wrapper">
+              <div class="dropdown dropdown-content">
+                <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                  เมนูกองทุน
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a>
+                  </li>
+                  <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
+                  <li>
+                    <a (click)="checkpage('purchase-for-sell')" title="รายการซื้อเพื่อขาย">รายการซื้อเพื่อขาย</a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+
+              <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
+                <li role="presentation" id="menu1">
+                  <a title="รายการซื้อ" (click)="checkpage('purchase-over-view')">รายการซื้อ</a>
+                </li>
+                <li role="presentation" id="menu2">
+                  <a title="รายการขาย" (click)="checkpage('sell')">รายการขาย</a>
+                </li>
+                <li role="presentation" id="menu3">
+                  <a title="รายการสับเปลี่ยน" (click)="checkpage('exchange')">รายการสับเปลี่ยน</a>
+                </li>
+                <!-- <li role="presentation" id="menu4">
+                    <a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a>
+                  </li> -->
+                <li role="presentation" id="menu5" class="current">
+                  <a title="รายการซื้อเพื่อขาย" (click)="checkpage('purchase-for-sell')">รายการซื้อเพื่อขาย</a>
+                </li>
+
+              </ul>
+            </div>
+
+            <div class="fund-table-wrapper">
+              <div class="heading-section">
+                <div class="row">
+                  <div class="detail-head-wrapper">
+                    <div class="col-md-12 col-xs-12 icon-option mb-3">
+
+                      <ul class="">
+                        <!-- <li class="ico-fb">
+                          <a href="#" title="facebook">
+                            <img src="/assets/Images/icons/ico-pipe.png" />
+                          </a>
+                        </li>
+                        <li class="ico-line">
+                          <a href="#" title="line">
+                            <img src="/assets/Images/icons/ico-download.png" />
+                          </a>
+                        </li> -->
+                        <li class="ico-yt">
+                          <a href="#" title="youtube">
+                            <img src="/assets/Images/icons/ico-print.png" />
+                          </a>
+                        </li>
+
+                      </ul>
+                    </div>
+                    <div class="col-md-3">
+
+                      <p>เลขที่ผู้ถือหน่วยลงทุน</p>
+
+                      <div class="select-wrapper inline-block">
+                        <select name="ddlLink" id="ddlLink">
+                          <option value="0" selected="">9990244757</option>
+                          <option value="36">9990244757</option>
+                          <option value="29">9990244757</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <p>ชื่อผู้ถือหน่วยลงทุน</p>
+                      <span>เนติวัฒน์ โชติกร</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-body-wrapper">
+                <div class="row">
+                  <div class="col-md-12">
+                    <H4 class="text-left">รายการซื้อเพื่อขาย</H4>
+                    <!-- <p>ขั้นตอนที่ 1 เลือกลงทุนและใส่จำนวนที่ต้องการ</p> -->
+                  </div>
+                  <div class="col-md-9">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <p>วันที่ทำรายการ</p>
+                      </div>
+                      <div class="col-md-6">
+                        <span>7 มิถุนายน 2561</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <span>กองทุนต้นทาง</span>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="select-wrapper inline-block">
+
+                          <select name="ddlLink" id="ddlLink">
+                            <option value="0" selected="">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
+                            <option value="36">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
+                            <option value="29">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <div class="table-responsive">
+                      <table class="table table-custom">
+                        <thead>
+                          <tr>
+                            <th class="bg-blue">
+                              ยอดคงเหลือ (หน่วย)
+                            </th>
+                            <th class="bg-primary">
+                              ยอดคงเหลือ (บาท)
+                            </th>
+                            <th class="bg-darkbrown">
+                              วันที่มีผล
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <a href="/MutualFund" title="ประเภทกองทุน">6.2456
+                              </a>
+                            </td>
+                            <td>
+                              <a href="/MutualFund/FundDetail" title="ชื่อกองทุน">74.39
+                              </a>
+                            </td>
+                            <td>
+                              05/04/60
+                              <a class="color-red">(ณ วันที่ผ่านมา)</a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="/MutualFund" title="ประเภทกองทุน">6.2456
+                              </a>
+                            </td>
+                            <td>
+                              <a href="/MutualFund/FundDetail" title="ชื่อกองทุน">N/A
+                              </a>
+                            </td>
+                            <td>
+                              05/04/60
+                              <a class="color-red">(หลังหักรายการวันนี้)</a>
+                            </td>
+                          </tr>
+                        </tbody>
+
+                      </table>
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <span>ซื้อเพื่อขายจำนวน</span>
+                      </div>
+                      <div class="col-md-3 col-xs-6">
+                        <div class="input-wrapper ">
+                          <input id="name" name="name" maxlength="30" type="text" class="bg-gray" placeholder="0">
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-xs-6">
+                        <div class="select-wrapper inline-block">
+
+                          <select name="ddlLink" id="ddlLink">
+                            <option value="0" selected="">บาท</option>
+                            <option value="36">เยน</option>
+                            <option value="29">ดอลล่า</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <span>กองทุนปลายทาง</span>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="select-wrapper inline-block">
+
+                          <select name="ddlLink" id="ddlLink">
+                            <option value="0" selected="">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
+                            <option value="36">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
+                            <option value="29">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">
+                        <span>วันที่ทำรายการซื้อเพื่อขายล่วงหน้า</span>
+                      </div>
+                      <div class="col-md-3">
+
+                        <div class="input-wrapper">
+                          <input class="form-control textinput dateinput bg-gray" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text">
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-3 col-xs-6 offset-md-4">
+                        <button class="btn-med btn-primary" (click)="checkpage('purchase-for-sell-step1')">
+                          ตกลง
+                          <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                      <div class="col-md-3 col-xs-6">
+                        <button class="btn-med btn-cancel" (click)="checkpage('purchase-for-sell')">
+                          ยกเลิก
+                          <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                    </div>
+
+
+                  </div>
+
+
+                </div>
+
+              </div>
+              <div class="detail-footer-wrapper">
+                <div class="row">
+                  <div class="col-md-2 text-left">
+                    <h4>รายการซื้อหน่วยลงทุน</h4>
+                  </div>
+                  <div class="col-md-4 mb-3 text-left no-padding">
+                    (รายการที่รอดำเนินการ)
+                  </div>
+                  <div class="col-md-6 text-md-right">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>ดูรายการทั้งหมด
+                  </div>
+                  <div class="col-md-12 mt-5 text-center">
+                    ไม่มีรายการที่รอดำเนินงาน
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="mutual-fund-wrapper" *ngIf="page == 'purchase-for-sell-step1'">
+      <div class="max-width-wrapper">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="tabs-menu-wrapper">
+              <div class="dropdown dropdown-content">
+                <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                  เมนูกองทุน
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a>
+                  </li>
+                  <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
+                  <li>
+                    <a (click)="checkpage('purchase-for-sell')" title="รายการซื้อเพื่อขาย">รายการซื้อเพื่อขาย</a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
+                <li role="presentation" id="menu1">
+                  <a title="รายการซื้อ" (click)="checkpage('purchase-over-view')">รายการซื้อ</a>
+                </li>
+                <li role="presentation" id="menu2">
+                  <a title="รายการขาย" (click)="checkpage('sell')">รายการขาย</a>
+                </li>
+                <li role="presentation" id="menu3">
+                  <a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a>
+                </li>
+                <!-- <li role="presentation" id="menu4">
+                    <a routerLink="/risk-assessment-form" title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a>
+                  </li> -->
+                <li role="presentation" id="menu5" class="current">
+                  <a (click)="checkpage('purchase-for-sell')" title="รายการซื้อเพื่อขาย">รายการซื้อเพื่อขาย</a>
+                </li>
+
+              </ul>
+            </div>
+
+            <div class="fund-table-wrapper">
+              <div class="heading-section">
+                <div class="row">
+                  <div class="detail-head-wrapper">
+                    <div class="col-md-12 col-xs-12 icon-option mb-3">
+
+                      <ul class="">
+                        <!-- <li class="ico-fb">
+                          <a href="#" title="facebook">
+                            <img src="/assets/Images/icons/ico-pipe.png" />
+                          </a>
+                        </li>
+                        <li class="ico-line">
+                          <a href="#" title="line">
+                            <img src="/assets/Images/icons/ico-download.png" />
+                          </a>
+                        </li> -->
+                        <li class="ico-yt">
+                          <a href="#" title="youtube">
+                            <img src="/assets/Images/icons/ico-print.png" />
+                          </a>
+                        </li>
+
+                      </ul>
+                    </div>
+                    <div class="col-md-3">
+                      <p>เลขที่ผู้ถือหน่วยลงทุน</p>
+                      <span>9990244757</span>
+                    </div>
+                    <div class="col-md-3">
+                      <p>ชื่อผู้ถือหน่วยลงทุน</p>
+                      <span>เนติวัฒน์ โชติกร</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-body-wrapper">
+                <div class="row">
+                  <div class="col-md-12">
+                    <H4 class="text-left">รายการซื้อเพื่อขาย</H4>
+                    <!-- <p>ขั้นตอนที่ 1 เลือกลงทุนและใส่จำนวนที่ต้องการ</p> -->
+                  </div>
+                  <div class="col-md-9">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <p>วันที่ทำรายการ</p>
+                      </div>
+                      <div class="col-md-6">
+                        <span>7 มิถุนายน 2561</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <p>กองทุนต้นทาง</p>
+                      </div>
+                      <div class="col-md-6">
+                        <span>KFCRASH - กองทุนกรุงศรีตราสารเงิน</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <div class="table-responsive">
+                      <table class="table table-custom">
+                        <thead>
+                          <tr>
+                            <th class="bg-blue">
+                              ยอดคงเหลือ (หน่วย)
+                            </th>
+                            <th class="bg-primary">
+                              ยอดคงเหลือ (บาท)
+                            </th>
+                            <th class="bg-darkbrown">
+                              วันที่มีผล
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <a href="/MutualFund" title="ประเภทกองทุน">6.2456
+                              </a>
+                            </td>
+                            <td>
+                              <a href="/MutualFund/FundDetail" title="ชื่อกองทุน">74.39
+                              </a>
+                            </td>
+                            <td>
+                              05/04/60
+                              <a class="color-red">(ณ วันที่ผ่านมา)</a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="/MutualFund" title="ประเภทกองทุน">6.2456
+                              </a>
+                            </td>
+                            <td>
+                              <a href="/MutualFund/FundDetail" title="ชื่อกองทุน">N/A
+                              </a>
+                            </td>
+                            <td>
+                              05/04/60
+                              <a class="color-red">(หลังหักรายการวันนี้)</a>
+                            </td>
+                          </tr>
+                        </tbody>
+
+                      </table>
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <p>ซื้อเพื่อขายจำนวน</p>
+                      </div>
+                      <div class="col-md-6">
+                        <span>30 หน่วย</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <p>กองทุนปลายทาง</p>
+                      </div>
+                      <div class="col-md-6">
+                        <span>ธนคารกรุงศรีอยุธยา จำกัด (มหาชน)</span>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">
+                        <p>วันที่รายการมีผล</p>
+                      </div>
+                      <div class="col-md-3">
+                        <span>10 มิถุนายน 2561</span>
+
+                      </div>
+                    </div>
+
+                    <div class="row mt-2">
+                      <div class="col-md-3 col-xs-6 offset-md-4">
+                        <button class="btn-med btn-primary" (click)="checkpage('purchase-for-sell-step2')">
+                          ยืนยัน
+                          <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                      <div class="col-md-3 col-xs-6 ">
+                        <button class="btn-med btn-back-login" (click)="checkpage('purchase-for-sell-step1')">
+                          ย้อนกลับ
+                          <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="mutual-fund-wrapper" *ngIf="page == 'purchase-for-sell-step2'">
+      <div class="max-width-wrapper">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="tabs-menu-wrapper">
+              <div class="dropdown dropdown-content">
+                <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                  เมนูกองทุน
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a>
+                  </li>
+                  <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
+                  <li>
+                    <a (click)="checkpage('purchase-for-sell')" title="รายการซื้อเพื่อขาย">รายการซื้อเพื่อขาย</a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
+                <li role="presentation" id="menu1">
+                  <a title="รายการซื้อ" (click)="checkpage('purchase-over-view')">รายการซื้อ</a>
+                </li>
+                <li role="presentation" id="menu2">
+                  <a title="รายการขาย" (click)="checkpage('sell')">รายการขาย</a>
+                </li>
+                <li role="presentation" id="menu3">
+                  <a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a>
+                </li>
+                <!-- <li role="presentation" id="menu4">
+                    <a routerLink="/risk-assessment-form" title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a>
+                  </li> -->
+                <li role="presentation" id="menu5" class="current">
+                  <a (click)="checkpage('purchase-for-sell')" title="รายการซื้อเพื่อขาย">รายการซื้อเพื่อขาย</a>
+                </li>
+
+              </ul>
+            </div>
+
+            <div class="fund-table-wrapper">
+              <div class="heading-section">
+                <div class="row">
+                  <div class="detail-head-wrapper">
+                    <div class="col-md-12 col-xs-12 icon-option mb-3">
+
+                      <ul class="">
+                        <!-- <li class="ico-fb">
+                          <a href="#" title="facebook">
+                            <img src="/assets/Images/icons/ico-pipe.png" />
+                          </a>
+                        </li>
+                        <li class="ico-line">
+                          <a href="#" title="line">
+                            <img src="/assets/Images/icons/ico-download.png" />
+                          </a>
+                        </li> -->
+                        <li class="ico-yt">
+                          <a href="#" title="youtube">
+                            <img src="/assets/Images/icons/ico-print.png" />
+                          </a>
+                        </li>
+
+                      </ul>
+                    </div>
+                    <div class="col-md-3">
+                      <p>เลขที่ผู้ถือหน่วยลงทุน</p>
+                      <span>9990244757</span>
+                    </div>
+                    <div class="col-md-3">
+                      <p>ชื่อผู้ถือหน่วยลงทุน</p>
+                      <span>เนติวัฒน์ โชติกร</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-body-wrapper">
+                <div class="row">
+                  <div class="col-md-12">
+                    <H4 class="text-left">รายการซื้อเพื่อขาย</H4>
+                    <!-- <p>ขั้นตอนที่ 1 เลือกลงทุนและใส่จำนวนที่ต้องการ</p> -->
+                  </div>
+                  <div class="col-md-9">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <p>วันที่ทำรายการ</p>
+                      </div>
+                      <div class="col-md-6">
+                        <span>7 มิถุนายน 2561</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <p>กองทุนต้นทาง</p>
+                      </div>
+                      <div class="col-md-6">
+                        <span>KFCRASH - กองทุนกรุงศรีตราสารเงิน</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <div class="table-responsive">
+                      <table class="table table-custom">
+                        <thead>
+                          <tr>
+                            <th class="bg-blue">
+                              ยอดคงเหลือ (หน่วย)
+                            </th>
+                            <th class="bg-primary">
+                              ยอดคงเหลือ (บาท)
+                            </th>
+                            <th class="bg-darkbrown">
+                              วันที่มีผล
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <a href="/MutualFund" title="ประเภทกองทุน">6.2456
+                              </a>
+                            </td>
+                            <td>
+                              <a href="/MutualFund/FundDetail" title="ชื่อกองทุน">74.39
+                              </a>
+                            </td>
+                            <td>
+                              05/04/60
+                              <a class="color-red">(ณ วันที่ผ่านมา)</a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="/MutualFund" title="ประเภทกองทุน">6.2456
+                              </a>
+                            </td>
+                            <td>
+                              <a href="/MutualFund/FundDetail" title="ชื่อกองทุน">N/A
+                              </a>
+                            </td>
+                            <td>
+                              05/04/60
+                              <a class="color-red">(หลังหักรายการวันนี้)</a>
+                            </td>
+                          </tr>
+                        </tbody>
+
+                      </table>
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <p>ซื้อเพื่อขายจำนวน</p>
+                      </div>
+                      <div class="col-md-6">
+                        <span>30 หน่วย</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <p>กองทุนปลายทาง</p>
+                      </div>
+                      <div class="col-md-6">
+                        <span>ธนคารกรุงศรีอยุธยา จำกัด (มหาชน)</span>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">
+                        <p>วันทำรายการซื้อเพื่อขายล่วงหน้า</p>
+                      </div>
+                      <div class="col-md-3">
+                        <span>10 มิถุนายน 2561</span>
+
+                      </div>
+                    </div>
+
+                    <div class="row mt-2">
+                      <div class="col-md-3 col-xs-6  offset-md-4">
+                        <button class="btn-med btn-primary" (click)="checkpage('sell-step2')">
+                          พิมพ์
+                          <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                      <div class="col-md-3 col-xs-6 ">
+                        <button class="btn-med btn-blue" (click)="checkpage('purchase-for-sell-view-list')">
+                          ดูรายการ
+                          <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12 mt-3">
+                    <span class="color-red no-margin">การยืนยันรายการนี้ยังไม่ถือว่ารายการขายหน่วยลงทุนสมบูรณ์ ในกรณีที่ท่านยังมิได้ขอออกสมุดบัญชีแสดงสิทธิในหน่วยลงทุน
+                      นายทะเบียนจะจัดส่งหนังสือรับรองสิทธิในหน่วยลงทุนให้แก่ท่าน
+                    </span>
                     <span class="color-red no-margin">เมื่อรายการนี้ได้ทำเสร็จสมบูรณ์ ภายใน 2 วันทำการ</span>
                   </div>
                 </div>
@@ -983,19 +1694,27 @@
         <div class="row">
           <div class="col-md-12">
             <div class="tabs-menu-wrapper">
-                <div class="dropdown dropdown-content">
-                    <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                        เมนูกองทุน 
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a></li>
-                        <li><a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a></li>
-                        <li><a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a></li>
-                        <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
-                        <li><a  title="รายการขายเพื่อซื้อ">รายการขายเพื่อซื้อ</a></li>                        
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
+              <div class="dropdown dropdown-content">
+                <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                  เมนูกองทุน
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a>
+                  </li>
+                  <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
+                  <li>
+                    <a (click)="checkpage('purchase-for-sell')" title="รายการซื้อเพื่อขาย">รายการซื้อเพื่อขาย</a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu1">
                   <a title="รายการซื้อ" (click)="checkpage('purchase-over-view')">รายการซื้อ</a>
@@ -1010,7 +1729,7 @@
                   <a routerLink="/risk-assessment-form" title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a>
                 </li> -->
                 <li role="presentation" id="menu5">
-                  <a routerLink="/risk-assessment-form" title="รายการขายเพื่อซื้อ">รายการขายเพื่อซื้อ</a>
+                  <a (click)="checkpage('purchase-for-sell')" title="รายการซื้อเพื่อขาย">รายการซื้อเพื่อขาย</a>
                 </li>
 
               </ul>
@@ -1023,7 +1742,7 @@
                     <div class="col-md-12 col-xs-12 icon-option mb-3">
 
                       <ul class="">
-                        <li class="ico-fb">
+                        <!-- <li class="ico-fb">
                           <a href="#" title="facebook">
                             <img src="/assets/Images/icons/ico-pipe.png" />
                           </a>
@@ -1032,7 +1751,7 @@
                           <a href="#" title="line">
                             <img src="/assets/Images/icons/ico-download.png" />
                           </a>
-                        </li>
+                        </li> -->
                         <li class="ico-yt">
                           <a href="#" title="youtube">
                             <img src="/assets/Images/icons/ico-print.png" />
@@ -1215,18 +1934,18 @@
               </div>
               <div class="detail-footer-wrapper">
                 <div class="row">
-                    <div class="col-md-2 text-left">                    
-                        <h4>รายการซื้อหน่วยลงทุน</h4>
-                      </div>
-                      <div class="col-md-4 mb-3 text-left no-padding">                    
-                        (รายการที่รอดำเนินการ)
-                      </div>
-                      <div class="col-md-6 text-md-right">
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>ดูรายการทั้งหมด
-                      </div>
-                      <div class="col-md-12 mt-5 text-center">
-                          ไม่มีรายการที่รอดำเนินงาน
-                      </div>
+                  <div class="col-md-2 text-left">
+                    <h4>รายการซื้อหน่วยลงทุน</h4>
+                  </div>
+                  <div class="col-md-4 mb-3 text-left no-padding">
+                    (รายการที่รอดำเนินการ)
+                  </div>
+                  <div class="col-md-6 text-md-right">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>ดูรายการทั้งหมด
+                  </div>
+                  <div class="col-md-12 mt-5 text-center">
+                    ไม่มีรายการที่รอดำเนินงาน
+                  </div>
                 </div>
               </div>
             </div>
@@ -1241,19 +1960,27 @@
         <div class="row">
           <div class="col-md-12">
             <div class="tabs-menu-wrapper">
-                <div class="dropdown dropdown-content">
-                    <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                        เมนูกองทุน 
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a></li>
-                        <li><a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a></li>
-                        <li><a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a></li>
-                        <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
-                        <li><a  title="รายการขายเพื่อซื้อ">รายการขายเพื่อซื้อ</a></li>                        
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
+              <div class="dropdown dropdown-content">
+                <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                  เมนูกองทุน
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a>
+                  </li>
+                  <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
+                  <li>
+                    <a (click)="checkpage('purchase-for-sell')" title="รายการซื้อเพื่อขาย">รายการซื้อเพื่อขาย</a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu1">
                   <a title="รายการซื้อ" (click)="checkpage('purchase-over-view')">รายการซื้อ</a>
@@ -1268,7 +1995,7 @@
                   <a routerLink="/risk-assessment-form" title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a>
                 </li> -->
                 <li role="presentation" id="menu5">
-                  <a routerLink="/risk-assessment-form" title="รายการขายเพื่อซื้อ">รายการขายเพื่อซื้อ</a>
+                  <a (click)="checkpage('purchase-for-sell')" title="รายการซื้อเพื่อขาย">รายการซื้อเพื่อขาย</a>
                 </li>
 
               </ul>
@@ -1281,7 +2008,7 @@
                     <div class="col-md-12 col-xs-12 icon-option mb-3">
 
                       <ul class="">
-                        <li class="ico-fb">
+                        <!-- <li class="ico-fb">
                           <a href="#" title="facebook">
                             <img src="/assets/Images/icons/ico-pipe.png" />
                           </a>
@@ -1290,7 +2017,7 @@
                           <a href="#" title="line">
                             <img src="/assets/Images/icons/ico-download.png" />
                           </a>
-                        </li>
+                        </li> -->
                         <li class="ico-yt">
                           <a href="#" title="youtube">
                             <img src="/assets/Images/icons/ico-print.png" />
@@ -1327,17 +2054,10 @@
                     </div>
                     <div class="row">
                       <div class="col-md-4">
-                        <span>กองทุนต้นทาง</span>
+                        <p>กองทุนต้นทาง</p>
                       </div>
                       <div class="col-md-6">
-                        <div class="select-wrapper inline-block">
-
-                          <select name="ddlLink" id="ddlLink">
-                            <option value="0" selected="">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
-                            <option value="36">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
-                            <option value="29">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
-                          </select>
-                        </div>
+                        <span>KFCRASH - กองทุนกรุงศรีตราสารเงิน</span>
                       </div>
                     </div>
                   </div>
@@ -1449,19 +2169,27 @@
         <div class="row">
           <div class="col-md-12">
             <div class="tabs-menu-wrapper">
-                <div class="dropdown dropdown-content">
-                    <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                        เมนูกองทุน 
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a></li>
-                        <li><a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a></li>
-                        <li><a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a></li>
-                        <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
-                        <li><a  title="รายการขายเพื่อซื้อ">รายการขายเพื่อซื้อ</a></li>                        
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
+              <div class="dropdown dropdown-content">
+                <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                  เมนูกองทุน
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a>
+                  </li>
+                  <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
+                  <li>
+                    <a (click)="checkpage('purchase-for-sell')" title="รายการซื้อเพื่อขาย">รายการซื้อเพื่อขาย</a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu1">
                   <a title="รายการซื้อ" (click)="checkpage('purchase-over-view')">รายการซื้อ</a>
@@ -1476,7 +2204,7 @@
                   <a routerLink="/risk-assessment-form" title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a>
                 </li> -->
                 <li role="presentation" id="menu5">
-                  <a routerLink="/risk-assessment-form" title="รายการขายเพื่อซื้อ">รายการขายเพื่อซื้อ</a>
+                  <a (click)="checkpage('purchase-for-sell')" title="รายการซื้อเพื่อขาย">รายการซื้อเพื่อขาย</a>
                 </li>
 
               </ul>
@@ -1489,7 +2217,7 @@
                     <div class="col-md-12 col-xs-12 icon-option mb-3">
 
                       <ul class="">
-                        <li class="ico-fb">
+                        <!-- <li class="ico-fb">
                           <a href="#" title="facebook">
                             <img src="/assets/Images/icons/ico-pipe.png" />
                           </a>
@@ -1498,7 +2226,7 @@
                           <a href="#" title="line">
                             <img src="/assets/Images/icons/ico-download.png" />
                           </a>
-                        </li>
+                        </li> -->
                         <li class="ico-yt">
                           <a href="#" title="youtube">
                             <img src="/assets/Images/icons/ico-print.png" />
@@ -1535,17 +2263,10 @@
                     </div>
                     <div class="row">
                       <div class="col-md-4">
-                        <span>กองทุนต้นทาง</span>
+                        <p>กองทุนต้นทาง</p>
                       </div>
                       <div class="col-md-6">
-                        <div class="select-wrapper inline-block">
-
-                          <select name="ddlLink" id="ddlLink">
-                            <option value="0" selected="">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
-                            <option value="36">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
-                            <option value="29">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
-                          </select>
-                        </div>
+                        <span>KFCRASH - กองทุนกรุงศรีตราสารเงิน</span>
                       </div>
                     </div>
                   </div>
@@ -1635,7 +2356,7 @@
                         </button>
                       </div>
                       <div class="col-md-3 col-xs-6">
-                        <button class="btn-med btn-blue" (click)="checkpage('exchange')">
+                        <button class="btn-med btn-blue" (click)="checkpage('exchange-view-list')">
                           ดูรายการ
                           <i class="fa fa-angle-right" aria-hidden="true"></i>
                         </button>
@@ -1645,7 +2366,8 @@
 
                   <div class="col-md-12 mt-3">
                     <span class="color-red no-margin">การยืนยันรายการนี้ยังไม่ถือว่ารายการขายหน่วยลงทุนสมบูรณ์ ในกรณีที่ท่านยังมิได้ขอออกสมุดบัญชีแสดงสิทธิในหน่วยลงทุน
-                      นายทะเบียนจะจัดส่งหนังสือรับรองสิทธิในหน่วยลงทุนให้แก่ท่าน</span>
+                      นายทะเบียนจะจัดส่งหนังสือรับรองสิทธิในหน่วยลงทุนให้แก่ท่าน
+                    </span>
                     <span class="color-red no-margin">เมื่อรายการนี้ได้ทำเสร็จสมบูรณ์ ภายใน 2 วันทำการ</span>
                   </div>
                 </div>
@@ -1663,19 +2385,27 @@
         <div class="row">
           <div class="col-md-12">
             <div class="tabs-menu-wrapper">
-                <div class="dropdown dropdown-content">
-                    <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                        เมนูกองทุน 
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a></li>
-                        <li><a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a></li>
-                        <li><a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a></li>
-                        <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
-                        <li><a  title="รายการขายเพื่อซื้อ">รายการขายเพื่อซื้อ</a></li>                        
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
+              <div class="dropdown dropdown-content">
+                <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                  เมนูกองทุน
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a>
+                  </li>
+                  <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
+                  <li>
+                    <a (click)="checkpage('purchase-for-sell')" title="รายการซื้อเพื่อขาย">รายการซื้อเพื่อขาย</a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu1" class="current">
                   <a title="รายการซื้อ" (click)="checkpage('purchase-over-view')">รายการซื้อ</a>
@@ -1690,7 +2420,7 @@
                   <a title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a>
                 </li> -->
                 <li role="presentation" id="menu5">
-                  <a title="รายการขายเพื่อซื้อ">รายการขายเพื่อซื้อ</a>
+                  <a title="รายการซื้อเพื่อขาย" (click)="checkpage('purchase-for-sell')">รายการซื้อเพื่อขาย</a>
                 </li>
 
               </ul>
@@ -1703,7 +2433,7 @@
                     <div class="col-md-12 col-xs-12 icon-option mb-3">
 
                       <ul class="">
-                        <li class="ico-fb">
+                        <!-- <li class="ico-fb">
                           <a href="#" title="facebook">
                             <img src="/assets/Images/icons/ico-pipe.png" />
                           </a>
@@ -1712,7 +2442,7 @@
                           <a href="#" title="line">
                             <img src="/assets/Images/icons/ico-download.png" />
                           </a>
-                        </li>
+                        </li> -->
                         <li class="ico-yt">
                           <a href="#" title="youtube">
                             <img src="/assets/Images/icons/ico-print.png" />
@@ -1722,9 +2452,9 @@
                       </ul>
                     </div>
                     <div class="col-md-3">
-                        <p>เลขที่ผู้ถือหน่วยลงทุน</p>
-                        <span>9990244757</span>
-                      </div>
+                      <p>เลขที่ผู้ถือหน่วยลงทุน</p>
+                      <span>9990244757</span>
+                    </div>
                     <div class="col-md-3">
                       <p>ชื่อผู้ถือหน่วยลงทุน</p>
                       <span>เนติวัฒน์ โชติกร</span>
@@ -1828,19 +2558,27 @@
         <div class="row">
           <div class="col-md-12">
             <div class="tabs-menu-wrapper">
-                <div class="dropdown dropdown-content">
-                    <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                        เมนูกองทุน 
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a></li>
-                        <li><a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a></li>
-                        <li><a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a></li>
-                        <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
-                        <li><a  title="รายการขายเพื่อซื้อ">รายการขายเพื่อซื้อ</a></li>                        
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
+              <div class="dropdown dropdown-content">
+                <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                  เมนูกองทุน
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a>
+                  </li>
+                  <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
+                  <li>
+                    <a (click)="checkpage('purchase-for-sell')" title="รายการซื้อเพื่อขาย">รายการซื้อเพื่อขาย</a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu1" class="current">
                   <a title="รายการซื้อ" (click)="checkpage('purchase-over-view')">รายการซื้อ</a>
@@ -1855,7 +2593,7 @@
                   <a title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a>
                 </li> -->
                 <li role="presentation" id="menu5">
-                  <a title="รายการขายเพื่อซื้อ">รายการขายเพื่อซื้อ</a>
+                  <a title="รายการซื้อเพื่อขาย" (click)="checkpage('purchase-for-sell')">รายการซื้อเพื่อขาย</a>
                 </li>
 
               </ul>
@@ -1868,7 +2606,7 @@
                     <div class="col-md-12 col-xs-12 icon-option mb-3">
 
                       <ul class="">
-                        <li class="ico-fb">
+                        <!-- <li class="ico-fb">
                           <a href="#" title="facebook">
                             <img src="/assets/Images/icons/ico-pipe.png" />
                           </a>
@@ -1877,7 +2615,7 @@
                           <a href="#" title="line">
                             <img src="/assets/Images/icons/ico-download.png" />
                           </a>
-                        </li>
+                        </li> -->
                         <li class="ico-yt">
                           <a href="#" title="youtube">
                             <img src="/assets/Images/icons/ico-print.png" />
@@ -1887,9 +2625,9 @@
                       </ul>
                     </div>
                     <div class="col-md-3">
-                        <p>เลขที่ผู้ถือหน่วยลงทุน</p>
-                        <span>9990244757</span>
-                      </div>
+                      <p>เลขที่ผู้ถือหน่วยลงทุน</p>
+                      <span>9990244757</span>
+                    </div>
                     <div class="col-md-3">
                       <p>ชื่อผู้ถือหน่วยลงทุน</p>
                       <span>เนติวัฒน์ โชติกร</span>
@@ -1991,19 +2729,27 @@
         <div class="row">
           <div class="col-md-12">
             <div class="tabs-menu-wrapper">
-                <div class="dropdown dropdown-content">
-                    <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                        เมนูกองทุน 
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a></li>
-                        <li><a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a></li>
-                        <li><a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a></li>
-                        <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
-                        <li><a  title="รายการขายเพื่อซื้อ">รายการขายเพื่อซื้อ</a></li>                        
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
+              <div class="dropdown dropdown-content">
+                <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                  เมนูกองทุน
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a>
+                  </li>
+                  <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
+                  <li>
+                    <a (click)="checkpage('purchase-for-sell')" title="รายการซื้อเพื่อขาย">รายการซื้อเพื่อขาย</a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu1" class="current">
                   <a title="รายการซื้อ" (click)="checkpage('purchase-over-view')">รายการซื้อ</a>
@@ -2018,7 +2764,7 @@
                   <a title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a>
                 </li> -->
                 <li role="presentation" id="menu5">
-                  <a title="รายการขายเพื่อซื้อ">รายการขายเพื่อซื้อ</a>
+                  <a title="รายการซื้อเพื่อขาย" (click)="checkpage('purchase-for-sell')">รายการซื้อเพื่อขาย</a>
                 </li>
 
               </ul>
@@ -2031,7 +2777,7 @@
                     <div class="col-md-12 col-xs-12 icon-option mb-3">
 
                       <ul class="">
-                        <li class="ico-fb">
+                        <!-- <li class="ico-fb">
                           <a href="#" title="facebook">
                             <img src="/assets/Images/icons/ico-pipe.png" />
                           </a>
@@ -2040,7 +2786,7 @@
                           <a href="#" title="line">
                             <img src="/assets/Images/icons/ico-download.png" />
                           </a>
-                        </li>
+                        </li> -->
                         <li class="ico-yt">
                           <a href="#" title="youtube">
                             <img src="/assets/Images/icons/ico-print.png" />
@@ -2410,36 +3156,1397 @@
         </div>
       </div>
     </div>
-    <div class="modal fade modal-custom" tabindex="-1" role="dialog" id="disclaimer">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"><img src="../../Images/icons/icon-close-wtext.png" /></span>
-                        </button> -->
-                    <h4 class="modal-title">คุณต้องการลบรายการที่เลือกหรือไม่</h4>
-                </div>
-                <div class="modal-body" id="content-scroll-1">
-                  <div class="row mt-3">
-                    <div class="col-md-6 col-xs-6">
-                        <p>เลขที่ผู้ถือหน่วยลงทุน</p>
-                        <span>9990244757</span>
+    <div class="mutual-fund-wrapper" *ngIf="page == 'sell-view-list'">
+      <div class="max-width-wrapper">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="tabs-menu-wrapper">
+              <div class="dropdown dropdown-content">
+                <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                  เมนูกองทุน
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a>
+                  </li>
+                  <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
+                  <li>
+                    <a (click)="checkpage('purchase-for-sell')" title="รายการซื้อเพื่อขาย">รายการซื้อเพื่อขาย</a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
+                <li role="presentation" id="menu1">
+                  <a title="รายการซื้อ" (click)="checkpage('purchase-over-view')">รายการซื้อ</a>
+                </li>
+                <li role="presentation" id="menu2" class="current">
+                  <a title="รายการขาย" (click)="checkpage('sell')">รายการขาย</a>
+                </li>
+                <li role="presentation" id="menu3">
+                  <a title="รายการสับเปลี่ยน" (click)="checkpage('exchange')">รายการสับเปลี่ยน</a>
+                </li>
+                <!-- <li role="presentation" id="menu4">
+                    <a title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a>
+                  </li> -->
+                <li role="presentation" id="menu5">
+                  <a title="รายการซื้อเพื่อขาย" (click)="checkpage('purchase-for-sell')">รายการซื้อเพื่อขาย</a>
+                </li>
+
+              </ul>
+            </div>
+
+            <div class="fund-table-wrapper">
+              <div class="heading-section">
+                <div class="row">
+                  <div class="detail-head-wrapper">
+                    <div class="col-md-12 col-xs-12 icon-option mb-3">
+
+                      <ul class="">
+                        <!-- <li class="ico-fb">
+                          <a href="#" title="facebook">
+                            <img src="/assets/Images/icons/ico-pipe.png" />
+                          </a>
+                        </li>
+                        <li class="ico-line">
+                          <a href="#" title="line">
+                            <img src="/assets/Images/icons/ico-download.png" />
+                          </a>
+                        </li> -->
+                        <li class="ico-yt">
+                          <a href="#" title="youtube">
+                            <img src="/assets/Images/icons/ico-print.png" />
+                          </a>
+                        </li>
+
+                      </ul>
+                    </div>
+                    <div class="col-md-3">
+
+                      <p>เลขที่ผู้ถือหน่วยลงทุน</p>
+
+                      <div class="select-wrapper inline-block">
+                        <select name="ddlLink" id="ddlLink">
+                          <option value="0" selected="">9990244757</option>
+                          <option value="36">9990244757</option>
+                          <option value="29">9990244757</option>
+                        </select>
                       </div>
-                    <div class="col-md-6 col-xs-6">
+                    </div>
+                    <div class="col-md-3">
                       <p>ชื่อผู้ถือหน่วยลงทุน</p>
                       <span>เนติวัฒน์ โชติกร</span>
                     </div>
                   </div>
                 </div>
-                <div class="modal-footer">
-                    <!-- <button type="button" class="btn-med btn-secondary" data-dismiss="modal">Cancel</button> -->
-                    <button type="button" class="btn-med btn-cancel" data-dismiss="modal">ลบรายการนี้</button>
+              </div>
+              <div class="detail-body-wrapper">
+                <div class="row">
+                  <div class="col-md-12 mb-3">
+                    <H4 class="text-left" style="display: unset;">รายการขายคืนหน่วยลงทุนทั้งหมด </H4>
+                    <p style="display: unset;">(รายการที่รอดำเนินการ)</p>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="table-responsive">
+                      <table class="table table-custom">
+                        <thead>
+                          <tr>
+                            <th>
+                              กองทุน
+                            </th>
+                            <th>
+                              วิธีชำระเงิน
+                            </th>
+                            <th>
+                              บาท (THB)
+                            </th>
+                            <th>
+                              วันและเวลาที่ทำการ
+                            </th>
+                            <th>
+                              วันที่มีผล
+                            </th>
+                            <th>
+                              แก้ไข
+                            </th>
+                            <th>
+                              ยกเลิก
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                        </tbody>
+
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 offset-md-8 no-padding">
+                    <div class="list-pagination">
+                      <div class="holder">
+                        <!-- <a class="jp-first jp-disabled">First</a> -->
+                        <a class="jp-previous jp-disabled">previous</a>
+                        <a class="jp-current">1</a>
+                        <!-- <span class="jp-hidden">...</span> -->
+                        <a class="">2</a>
+                        <a class="">3</a>
+                        <a class="jp-next">next</a>
+                        <!-- <a class="jp-last">Last</a> -->
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-            <!-- /.modal-content -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mutual-fund-wrapper" *ngIf="page == 'exchange-view-list'">
+      <div class="max-width-wrapper">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="tabs-menu-wrapper">
+              <div class="dropdown dropdown-content">
+                <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                  เมนูกองทุน
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a>
+                  </li>
+                  <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
+                  <li>
+                    <a (click)="checkpage('purchase-for-sell')" title="รายการซื้อเพื่อขาย">รายการซื้อเพื่อขาย</a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
+                <li role="presentation" id="menu1">
+                  <a title="รายการซื้อ" (click)="checkpage('purchase-over-view')">รายการซื้อ</a>
+                </li>
+                <li role="presentation" id="menu2">
+                  <a title="รายการขาย" (click)="checkpage('sell')">รายการขาย</a>
+                </li>
+                <li role="presentation" id="menu3" class="current">
+                  <a title="รายการสับเปลี่ยน" (click)="checkpage('exchange')">รายการสับเปลี่ยน</a>
+                </li>
+                <!-- <li role="presentation" id="menu4">
+                      <a title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a>
+                    </li> -->
+                <li role="presentation" id="menu5">
+                  <a (click)="checkpage('purchase-for-sell')" title="รายการซื้อเพื่อขาย">รายการซื้อเพื่อขาย</a>
+                </li>
+
+              </ul>
+            </div>
+
+            <div class="fund-table-wrapper">
+              <div class="heading-section">
+                <div class="row">
+                  <div class="detail-head-wrapper">
+                    <div class="col-md-12 col-xs-12 icon-option mb-3">
+
+                      <ul class="">
+                        <!-- <li class="ico-fb">
+                          <a href="#" title="facebook">
+                            <img src="/assets/Images/icons/ico-pipe.png" />
+                          </a>
+                        </li>
+                        <li class="ico-line">
+                          <a href="#" title="line">
+                            <img src="/assets/Images/icons/ico-download.png" />
+                          </a>
+                        </li> -->
+                        <li class="ico-yt">
+                          <a href="#" title="youtube">
+                            <img src="/assets/Images/icons/ico-print.png" />
+                          </a>
+                        </li>
+
+                      </ul>
+                    </div>
+                    <div class="col-md-3">
+
+                      <p>เลขที่ผู้ถือหน่วยลงทุน</p>
+
+                      <div class="select-wrapper inline-block">
+                        <select name="ddlLink" id="ddlLink">
+                          <option value="0" selected="">9990244757</option>
+                          <option value="36">9990244757</option>
+                          <option value="29">9990244757</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <p>ชื่อผู้ถือหน่วยลงทุน</p>
+                      <span>เนติวัฒน์ โชติกร</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-body-wrapper">
+                <div class="row">
+                  <div class="col-md-12 mb-3">
+                    <H4 class="text-left" style="display: unset;">รายการสับเปลี่ยนหน่วยลงทุนทั้งหมด </H4>
+                    <p style="display: unset;">(รายการที่รอดำเนินการ)</p>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="table-responsive">
+                      <table class="table table-custom">
+                        <thead>
+                          <tr>
+                            <th>
+                              กองทุน
+                            </th>
+                            <th>
+                              วิธีชำระเงิน
+                            </th>
+                            <th>
+                              บาท (THB)
+                            </th>
+                            <th>
+                              วันและเวลาที่ทำการ
+                            </th>
+                            <th>
+                              วันที่มีผล
+                            </th>
+                            <th>
+                              แก้ไข
+                            </th>
+                            <th>
+                              ยกเลิก
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                        </tbody>
+
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 offset-md-8 no-padding">
+                    <div class="list-pagination">
+                      <div class="holder">
+                        <!-- <a class="jp-first jp-disabled">First</a> -->
+                        <a class="jp-previous jp-disabled">previous</a>
+                        <a class="jp-current">1</a>
+                        <!-- <span class="jp-hidden">...</span> -->
+                        <a class="">2</a>
+                        <a class="">3</a>
+                        <a class="jp-next">next</a>
+                        <!-- <a class="jp-last">Last</a> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mutual-fund-wrapper" *ngIf="page == 'purchase-for-sell-view-list'">
+      <div class="max-width-wrapper">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="tabs-menu-wrapper">
+              <div class="dropdown dropdown-content">
+                <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                  เมนูกองทุน
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a (click)="checkpage('purchase-over-view')" title="รายการซื้อ">รายการซื้อ</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('sell')" title="รายการขาย">รายการขาย</a>
+                  </li>
+                  <li>
+                    <a (click)="checkpage('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a>
+                  </li>
+                  <!-- <li><a  title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a></li> -->
+                  <li>
+                    <a (click)="checkpage('purchase-for-sell')" title="รายการซื้อเพื่อขาย">รายการซื้อเพื่อขาย</a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
+                <li role="presentation" id="menu1">
+                  <a title="รายการซื้อ" (click)="checkpage('purchase-over-view')">รายการซื้อ</a>
+                </li>
+                <li role="presentation" id="menu2">
+                  <a title="รายการขาย" (click)="checkpage('sell')">รายการขาย</a>
+                </li>
+                <li role="presentation" id="menu3">
+                  <a title="รายการสับเปลี่ยน" (click)="checkpage('exchange')">รายการสับเปลี่ยน</a>
+                </li>
+                <!-- <li role="presentation" id="menu4">
+                        <a title="รายการตั้งซื้อขายล่วงหน้า">รายการตั้งซื้อขายล่วงหน้า</a>
+                      </li> -->
+                <li role="presentation" id="menu5" class="current">
+                  <a title="รายการซื้อเพื่อขาย" (click)="checkpage('purchase-for-sell')">รายการซื้อเพื่อขาย</a>
+                </li>
+
+              </ul>
+            </div>
+
+            <div class="fund-table-wrapper">
+              <div class="heading-section">
+                <div class="row">
+                  <div class="detail-head-wrapper">
+                    <div class="col-md-12 col-xs-12 icon-option mb-3">
+
+                      <ul class="">
+                        <!-- <li class="ico-fb">
+                          <a href="#" title="facebook">
+                            <img src="/assets/Images/icons/ico-pipe.png" />
+                          </a>
+                        </li>
+                        <li class="ico-line">
+                          <a href="#" title="line">
+                            <img src="/assets/Images/icons/ico-download.png" />
+                          </a>
+                        </li> -->
+                        <li class="ico-yt">
+                          <a href="#" title="youtube">
+                            <img src="/assets/Images/icons/ico-print.png" />
+                          </a>
+                        </li>
+
+                      </ul>
+                    </div>
+                    <div class="col-md-3">
+
+                      <p>เลขที่ผู้ถือหน่วยลงทุน</p>
+
+                      <div class="select-wrapper inline-block">
+                        <select name="ddlLink" id="ddlLink">
+                          <option value="0" selected="">9990244757</option>
+                          <option value="36">9990244757</option>
+                          <option value="29">9990244757</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <p>ชื่อผู้ถือหน่วยลงทุน</p>
+                      <span>เนติวัฒน์ โชติกร</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-body-wrapper">
+                <div class="row">
+                  <div class="col-md-12 mb-3">
+                    <H4 class="text-left" style="display: unset;">รายการซื้อเพื่อขายหน่วยลงทุนทั้งหมด </H4>
+                    <p style="display: unset;">(รายการที่รอดำเนินการ)</p>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="table-responsive">
+                      <table class="table table-custom">
+                        <thead>
+                          <tr>
+                            <th>
+                              กองทุน
+                            </th>
+                            <th>
+                              วิธีชำระเงิน
+                            </th>
+                            <th>
+                              บาท (THB)
+                            </th>
+                            <th>
+                              วันและเวลาที่ทำการ
+                            </th>
+                            <th>
+                              วันที่มีผล
+                            </th>
+                            <th>
+                              แก้ไข
+                            </th>
+                            <th>
+                              ยกเลิก
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                            </td>
+                            <td>
+                              หักบัญชี
+                            </td>
+                            <td>
+                              20,000.00
+                            </td>
+                            <td>
+                              07/06/2561, 11:25
+                            </td>
+                            <td>
+                              07/06/2561
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-edit.png">
+                              </a>
+                            </td>
+                            <td>
+                              <a href="">
+                                <img src="/assets/Images/icons/ico-delete.png" alt="">
+                              </a>
+                            </td>
+                          </tr>
+
+                        </tbody>
+
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 offset-md-8 no-padding">
+                    <div class="list-pagination">
+                      <div class="holder">
+                        <!-- <a class="jp-first jp-disabled">First</a> -->
+                        <a class="jp-previous jp-disabled">previous</a>
+                        <a class="jp-current">1</a>
+                        <!-- <span class="jp-hidden">...</span> -->
+                        <a class="">2</a>
+                        <a class="">3</a>
+                        <a class="jp-next">next</a>
+                        <!-- <a class="jp-last">Last</a> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade modal-custom" tabindex="-1" role="dialog" id="disclaimer">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+
+            <h4 class="modal-title">คุณต้องการลบรายการที่เลือกหรือไม่</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <h4 class="modal-title">X</h4>
+            </button>
+          </div>
+          <div class="modal-body" id="content-scroll-1">
+            <div class="row mt-3">
+              <div class="col-md-6 col-xs-6">
+                <p>เลขที่ผู้ถือหน่วยลงทุน</p>
+                <span>9990244757</span>
+              </div>
+              <div class="col-md-6 col-xs-6">
+                <p>ชื่อผู้ถือหน่วยลงทุน</p>
+                <span>เนติวัฒน์ โชติกร</span>
+              </div>
+
+              <div class="col-md-12 mt-4">
+                <div class="table-responsive">
+                  <table class="table table-custom">
+                    <tbody>
+                      <tr>
+                        <td class="text-left">
+                          วันที่ทำรายการ
+                        </td>
+                        <td class="text-left content">
+                          7 มิถุนายน 2561, 11:25
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-left">
+                          เลือกวิธีชำระเงิน
+                        </td>
+                        <td class="text-left content">
+                          หักบัญชีธนาคาร
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-left">
+                          กองทุน
+                        </td>
+                        <td class="text-left content">
+                          กองทุนเปิดกรุงศรีหุ้นระยะยาว
+                          <br/>ไทยออลสตาร์ปันผล
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-left">
+                          จำนวน
+                        </td>
+                        <td class="text-left content">
+                          80,000 บาท
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-left">
+                          หักบัญชีธนาคาร
+                        </td>
+                        <td class="text-left content">
+                          ธนคารกรุงศรีอยุธยา จำกัด (มหาชน)
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-left">
+                          วันที่ทำรายการซื้อล่วงหน้า
+                        </td>
+                        <td class="text-left content">
+                          7 มิถุนายน 2561
+                        </td>
+                      </tr>
+
+                    </tbody>
+
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <div class="row">
+                <div class="col-md-12 col-xs-12 text-center">
+                  <button type="button" class="btn-med btn-cancel" data-dismiss="modal">ลบรายการนี้
+
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
     </div>
-    <!-- /.modal -->
-  </div>
-  <app-footer></app-footer>
+    <app-footer></app-footer>
