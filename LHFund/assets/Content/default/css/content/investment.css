@@ -1,0 +1,318 @@
+/* set global config vars */
+/* defualt page width setting(PC) */
+/* off canvas menu width *eg. 70px or 70% */
+/* main slide margin top */
+/* header height */
+/* footer height */
+/* global body setting */
+/* default font family */
+/*Arial*/
+/* text sizing multiplier */
+/* text sizing */
+/* default theme color */
+/* special theme */
+/* insert special theme for this website */
+/* text sizing */
+@font-face {
+  font-family: 'KitithadaRegular';
+  src: url("/assets/fonts/PSL094PRO.eot");
+  src: url("/assets/fonts/PSL094PRO.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/PSL094PRO.woff") format("woff"), url("/assets/fonts/PSL094PRO.ttf") format("truetype"), url("/assets/fonts/PSL094PRO.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'KitithadaBold';
+  src: url("/assets/fonts/PSL096PRO.eot");
+  src: url("/assets/fonts/PSL096PRO.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/PSL096PRO.woff") format("woff"), url("/assets/fonts/PSL096PRO.ttf") format("truetype"), url("/assets/fonts/PSL096PRO.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+/* note : for IE8,7 need css3pie helper*/
+.investment-wrapper {
+  position: relative;
+  max-width: 100%;
+  padding: 0;
+  margin: 0 auto;
+  margin-bottom: 75px; }
+  .investment-wrapper .heading-section {
+    padding: 20px;
+    margin: 0 auto;
+    background-color: #fff; }
+    .investment-wrapper .heading-section h2 {
+      margin: 0; }
+  .investment-wrapper .list-wrapper {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden; }
+    .investment-wrapper .list-wrapper .list-download-wrapper {
+      float: left;
+      width: 100%;
+      height: auto;
+      padding: 0;
+      margin: 0;
+      margin-bottom: 50px;
+      background-color: #fff; }
+      .investment-wrapper .list-wrapper .list-download-wrapper .list-title {
+        display: block;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        margin-bottom: 20px;
+        text-align: center;
+        background-color: #ccc; }
+        .investment-wrapper .list-wrapper .list-download-wrapper .list-title .th-wrapper {
+          padding-top: 10px;
+          padding-bottom: 10px;
+          font-size: 24px;
+          line-height: 24px;
+          text-align: center;
+          border-right: 1px solid #fff; }
+          .investment-wrapper .list-wrapper .list-download-wrapper .list-title .th-wrapper:last-child {
+            border: none; }
+      .investment-wrapper .list-wrapper .list-download-wrapper .list-group {
+        display: block;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        margin: 0;
+        margin-bottom: 50px; }
+        .investment-wrapper .list-wrapper .list-download-wrapper .list-group .list-item {
+          display: block;
+          width: 100%;
+          height: auto;
+          padding: 0 0 10px 0;
+          margin: 0 0 10px 0;
+          font-size: 22px;
+          line-height: 24px; }
+          .investment-wrapper .list-wrapper .list-download-wrapper .list-group .list-item p.title {
+            margin-bottom: 5px;
+            color: #1CA59B; }
+          .investment-wrapper .list-wrapper .list-download-wrapper .list-group .list-item .date {
+            text-align: center; }
+          .investment-wrapper .list-wrapper .list-download-wrapper .list-group .list-item .document {
+            text-align: left; }
+            .investment-wrapper .list-wrapper .list-download-wrapper .list-group .list-item .document a {
+              display: block;
+              padding-left: 25px;
+              font-size: 22px;
+              line-height: 24px;
+              color: #5a5a5a;
+              background-image: url("../../../../Images/icons/ico-list-name.jpg");
+              background-position: left top;
+              background-repeat: no-repeat; }
+              .investment-wrapper .list-wrapper .list-download-wrapper .list-group .list-item .document a:hover {
+                color: #1CA59B;
+                text-decoration: none; }
+          .investment-wrapper .list-wrapper .list-download-wrapper .list-group .list-item .download-with-icon {
+            text-align: center; }
+            .investment-wrapper .list-wrapper .list-download-wrapper .list-group .list-item .download-with-icon a {
+              display: block;
+              padding-left: 30px;
+              font-size: 22px;
+              line-height: 24px;
+              color: #5a5a5a;
+              background-image: url("../../../../Images/icons/ico-download-list-black.jpg");
+              background-position: left center;
+              background-repeat: no-repeat; }
+              .investment-wrapper .list-wrapper .list-download-wrapper .list-group .list-item .download-with-icon a:hover {
+                color: #1CA59B;
+                text-decoration: none; }
+          @media screen and (max-width: 999px) {
+            .investment-wrapper .list-wrapper .list-download-wrapper .list-group .list-item {
+              padding: 20px; }
+              .investment-wrapper .list-wrapper .list-download-wrapper .list-group .list-item .date, .investment-wrapper .list-wrapper .list-download-wrapper .list-group .list-item .document {
+                text-align: left;
+                margin-bottom: 20px; }
+              .investment-wrapper .list-wrapper .list-download-wrapper .list-group .list-item .download-with-icon {
+                display: inline-block;
+                text-align: left; } }
+  .investment-wrapper .list-pagination {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 40px;
+    margin-bottom: 20px; }
+    .investment-wrapper .list-pagination .page-text {
+      font-size: 22px; }
+    .investment-wrapper .list-pagination .view-all {
+      font-size: 22px;
+      cursor: pointer; }
+      .investment-wrapper .list-pagination .view-all:hover {
+        color: #1CA59B; }
+    .investment-wrapper .list-pagination .holder {
+      margin-left: 10px;
+      margin-right: 10px;
+      display: inline-block;
+      vertical-align: middle; }
+      .investment-wrapper .list-pagination .holder a {
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        font-size: 24px;
+        line-height: 40px;
+        cursor: pointer;
+        margin: 0 5px;
+        color: #5a5a5a;
+        text-align: center; }
+        .investment-wrapper .list-pagination .holder a:hover {
+          background-color: #1CA59B;
+          color: #fff; }
+        .investment-wrapper .list-pagination .holder a.jp-previous {
+          text-indent: -9999px;
+          background-image: url("../../../../Images/icons/ico-slideleft.png");
+          background-position: center center;
+          background-repeat: no-repeat; }
+          .investment-wrapper .list-pagination .holder a.jp-previous:hover {
+            background-color: transparent;
+            color: #fff; }
+        .investment-wrapper .list-pagination .holder a.jp-next {
+          text-indent: -9999px;
+          background-image: url("../../../../Images/icons/ico-slideright.png");
+          background-position: center center;
+          background-repeat: no-repeat; }
+          .investment-wrapper .list-pagination .holder a.jp-next:hover {
+            background-color: transparent;
+            color: #fff; }
+        .investment-wrapper .list-pagination .holder a.jp-first, .investment-wrapper .list-pagination .holder a.jp-last {
+          color: #5a5a5a;
+          background-color: transparent; }
+          .investment-wrapper .list-pagination .holder a.jp-first:hover, .investment-wrapper .list-pagination .holder a.jp-last:hover {
+            color: #5a5a5a;
+            background-color: transparent; }
+        .investment-wrapper .list-pagination .holder a.jp-current {
+          background-color: #1CA59B;
+          color: #fff; }
+          .investment-wrapper .list-pagination .holder a.jp-current:hover {
+            color: #fff; }
+  .investment-wrapper .texteditor-wrapper {
+    display: block;
+    padding: 0 0 20px 0;
+    margin: 0 auto;
+    background-color: #fff; }
+    .investment-wrapper .texteditor-wrapper .content-editor.-investment {
+      display: block;
+      padding: 20px; }
+      .investment-wrapper .texteditor-wrapper .content-editor.-investment .title {
+        color: #5a5a5a; }
+      .investment-wrapper .texteditor-wrapper .content-editor.-investment .bg-title {
+        padding: 10px 20px;
+        color: #fff;
+        background-color: #5a5a5a; }
+      .investment-wrapper .texteditor-wrapper .content-editor.-investment .bg-title2 {
+        padding: 10px 20px;
+        color: #fff;
+        background-color: #cdcdcd; }
+      .investment-wrapper .texteditor-wrapper .content-editor.-investment .text-box {
+        display: block;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-bottom: 20px; }
+        .investment-wrapper .texteditor-wrapper .content-editor.-investment .text-box p span {
+          color: #1CA59B; }
+        .investment-wrapper .texteditor-wrapper .content-editor.-investment .text-box ol ol, .investment-wrapper .texteditor-wrapper .content-editor.-investment .text-box ol ul, .investment-wrapper .texteditor-wrapper .content-editor.-investment .text-box ul ol, .investment-wrapper .texteditor-wrapper .content-editor.-investment .text-box ul ul {
+          padding-top: 10px;
+          padding-bottom: 10px; }
+        @media screen and (max-width: 767px) {
+          .investment-wrapper .texteditor-wrapper .content-editor.-investment .text-box {
+            padding-left: 10px;
+            padding-right: 10px; } }
+    .investment-wrapper .texteditor-wrapper .content-editor.-point-name {
+      display: block;
+      margin-bottom: 0; }
+      .investment-wrapper .texteditor-wrapper .content-editor.-point-name a {
+        color: #1CA59B; }
+        .investment-wrapper .texteditor-wrapper .content-editor.-point-name a:hover {
+          color: #000; }
+    .investment-wrapper .texteditor-wrapper .list-group {
+      padding-left: 20px;
+      padding-right: 20px;
+      margin-bottom: 25px;
+      border-bottom: none; }
+      .investment-wrapper .texteditor-wrapper .list-group .list-group-item {
+        padding: 1px 0 1px 0;
+        margin: 0 auto;
+        margin-bottom: 2px;
+        border: none;
+        border-top: none;
+        background-color: transparent; }
+        .investment-wrapper .texteditor-wrapper .list-group .list-group-item:first-child {
+          padding: 0;
+          border-bottom: none; }
+        .investment-wrapper .texteditor-wrapper .list-group .list-group-item:last-child {
+          padding: 0;
+          border-bottom: none; }
+        .investment-wrapper .texteditor-wrapper .list-group .list-group-item .list-group-head {
+          height: auto;
+          padding: 15px 20px;
+          border: none;
+          background-color: #5a5a5a;
+          cursor: pointer; }
+          .investment-wrapper .texteditor-wrapper .list-group .list-group-item .list-group-head > div {
+            height: auto;
+            padding: 0;
+            margin: 0;
+            line-height: 34px; }
+            .investment-wrapper .texteditor-wrapper .list-group .list-group-item .list-group-head > div h3 {
+              max-width: 90%;
+              margin: 0;
+              line-height: 34px;
+              color: #fff; }
+              .investment-wrapper .texteditor-wrapper .list-group .list-group-item .list-group-head > div h3 span {
+                font-size: 28px;
+                line-height: 28px;
+                color: #fff; }
+            .investment-wrapper .texteditor-wrapper .list-group .list-group-item .list-group-head > div .icn-circle {
+              position: absolute;
+              top: 0;
+              right: 0;
+              font-size: 24px;
+              color: #5a5a5a;
+              -webkit-border-radius: 50%;
+              -moz-border-radius: 50%;
+              border-radius: 50%;
+              -pie-border-radius: 50%;
+              behavior: url("/assets/pie/PIE.htc");
+              background-color: transparent; }
+              .investment-wrapper .texteditor-wrapper .list-group .list-group-item .list-group-head > div .icn-circle.fa-stack {
+                width: 34px;
+                height: 34px; }
+                .investment-wrapper .texteditor-wrapper .list-group .list-group-item .list-group-head > div .icn-circle.fa-stack .fa-stack-2x {
+                  font-size: 24px;
+                  line-height: 34px;
+                  color: #fff; }
+            .investment-wrapper .texteditor-wrapper .list-group .list-group-item .list-group-head > div a {
+              position: absolute;
+              top: 0px;
+              left: 10px;
+              height: 25px;
+              color: #fff;
+              text-decoration: none;
+              vertical-align: middle;
+              line-height: 23px; }
+          .investment-wrapper .texteditor-wrapper .list-group .list-group-item .list-group-head.active {
+            border-bottom: none;
+            background-color: #1CA59B;
+            /*h3 {
+                            color: $color-primary;
+
+                            span {
+                                color: $color-text;
+                            }
+                        }*/ }
+        .investment-wrapper .texteditor-wrapper .list-group .list-group-item .active > div {
+          padding: 0;
+          margin: 0;
+          line-height: 34px; }
+          .investment-wrapper .texteditor-wrapper .list-group .list-group-item .active > div .fa-angle-down:before {
+            content: "\f106"; }
+        .investment-wrapper .texteditor-wrapper .list-group .list-group-item .list-group-content {
+          display: none;
+          height: auto;
+          padding: 10px 20px;
+          padding-bottom: 20px;
+          border: none;
+          border-top: none;
+          text-align: left;
+          background-color: transparent; }
+          .investment-wrapper .texteditor-wrapper .list-group .list-group-item .list-group-content.opened {
+            display: block; }

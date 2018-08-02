@@ -1,0 +1,277 @@
+.side-nav{
+  header{
+    h1{
+      margin: 0;
+      padding: 0;
+      height: 60px;
+      font-size: 30px;
+      font-weight: normal;
+      line-height: 20px;
+      color: #333;
+      &.black{
+        color: #333;
+      }
+      &.white{
+        color: #333;
+        .lt-ie9 & {
+          color: #fff;
+        }
+        @media (min-width: $screen-sm-min) {
+           color: #fff;
+        }// media min768
+      }
+    }
+  }
+  >ul{
+    min-height: 100px;
+    background: none;
+  }
+  ul{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 5px 0;
+    list-style: none;
+
+    >li{
+      // background: url(../images/side-nav/icn-black-arrow.png) right 6px no-repeat;
+      line-height: 1.1em;
+
+      a{
+        position: relative;
+        display: block;
+        padding: 0.1em;
+        padding-left: 0px;
+        padding-right: 30px;
+        font-size: 21px;
+        color: #fff;
+        text-decoration: none;
+        &:hover{
+          color: $color-secondary;
+        }
+        &.current{
+          color: $color-secondary;
+        }
+        >span{
+          display: block;
+          box-sizing: border-box;
+          padding-right: 16px;
+        }
+        >i.fa-caret-right{
+          position: absolute;
+          right: 10px;
+          top: 1px;
+          font-size: 17px;
+        }
+        >i.fa-caret-left{
+          position: absolute;
+          right: 10px;
+          top: 1px;
+          font-size: 17px;
+        }
+        >i.fa-caret-right{
+          position: absolute;
+          right: 10px;
+          top: 1px;
+          font-size: 17px;
+        }
+        >i.fa-plus-circle{
+          position: absolute;
+          right: 5px;
+          top: 1px;
+          font-size: 17px;
+        }
+        >i.fa-minus-circle{
+          display: none;
+          position: absolute;
+          right: 5px;
+          top: 1px;
+          font-size: 17px;
+        }
+
+        .lt-ie9 &{
+          padding: 4px 5px;
+          font-size: 20px;
+          >i.fa-caret-right{
+            top: 1px;
+            font-size: 17px;
+          }
+          >i.fa-caret-left{
+            top: 1px;
+            font-size: 17px;
+          }
+          >i.fa-caret-right{
+            position: absolute;
+            right: 10px;
+            top: 1px;
+            font-size: 17px;
+          }
+          >i.fa-plus-circle{
+            position: absolute;
+            right: 5px;
+            top: 1px;
+            font-size: 17px;
+          }
+          >i.fa-minus-circle{
+            display: none;
+            position: absolute;
+            right: 5px;
+            top: 1px;
+            font-size: 17px;
+          }
+        }
+        @media (min-width: $screen-md-min) {
+          padding: 0 25px;
+          font-size: 21px;
+          >i.fa-caret-right{
+            top: 1px;
+            font-size: 17px;
+          }
+          >i.fa-caret-left{
+            top: 1px;
+            font-size: 17px;
+          }
+          >i.fa-caret-right{
+            position: absolute;
+            right: 10px;
+            top: 1px;
+            font-size: 17px;
+          }
+          >i.fa-plus-circle{
+            top: 1px;
+            font-size: 17px;
+          }
+          >i.fa-minus-circle{
+            top: 1px;
+            font-size: 17px;
+          }
+
+        }// media min768
+      }
+    }
+
+    .expanded{
+      >ul{
+        box-sizing: border-box;
+        >li{
+          >a{
+            >span{
+            }
+          }
+        }
+      }
+    }
+
+    .has-sub{
+      a{
+      }
+      &.expanded{
+        >a{
+          color: $color-secondary;
+          >i.fa-minus-circle{
+            display: block;
+          }
+          >i.fa-plus-circle{
+            display: none;
+          }
+        }
+      }
+      >a{
+      }
+    }
+  }
+  .side-nav-lv1{
+    display: block;
+    padding-top: 0;
+    >li{
+      border-bottom: 0px;
+      >a{
+        &:hover{
+          background: none;
+        }
+      }
+      &.expanded{
+        background: lighten($color-primary,5%);
+      }
+    }
+
+    .side-nav-lv2{
+      display: none;
+      >li{
+        >a{
+          >span{
+            padding-left: 10px;
+          }
+        }
+        >a:hover{
+          background: lighten($color-primary,5%);
+          &.current{
+          }
+          >i{
+
+          }
+        }
+      }
+      .has-sub{
+        &.expanded{
+          background: darken($color-primary,10%);
+        }
+      }
+
+      .side-nav-lv3{
+        display: none;
+        >li{
+          >a{
+            &.current{
+            }
+            >span{
+              padding-left: 20px;
+            }
+            >i{
+            }
+            >i.fa-caret-right{
+              left: 15px;
+            }
+          }
+        }
+        .has-sub{
+          &.expanded{
+            // background: darken($color-primary,15%);
+          }
+        }
+
+        .side-nav-lv4{
+          display: none;
+          // margin: 0 0 0 10px;
+          >li{
+            >a{
+              >span{
+                padding-left: 30px;
+              }
+              >i.fa-caret-right{
+                // position: absolute;
+                left: 25px;
+                // top: 10px;
+                // margin: 3px 0 0 0;
+                // font-size: 17px;
+                // color: #DF0000;
+              }
+            }
+          }
+
+          .side-nav-lv5{
+            display: none;
+            margin: 0 0 0 10px;
+            >li{
+              >a{
+                >span{
+                  padding-left: 10px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

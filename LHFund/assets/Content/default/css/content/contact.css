@@ -1,0 +1,202 @@
+/* set global config vars */
+/* defualt page width setting(PC) */
+/* off canvas menu width *eg. 70px or 70% */
+/* main slide margin top */
+/* header height */
+/* footer height */
+/* global body setting */
+/* default font family */
+/*Arial*/
+/* text sizing multiplier */
+/* text sizing */
+/* default theme color */
+/* special theme */
+/* insert special theme for this website */
+/* text sizing */
+@font-face {
+  font-family: 'KitithadaRegular';
+  src: url("/assets/fonts/PSL094PRO.eot");
+  src: url("/assets/fonts/PSL094PRO.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/PSL094PRO.woff") format("woff"), url("/assets/fonts/PSL094PRO.ttf") format("truetype"), url("/assets/fonts/PSL094PRO.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'KitithadaBold';
+  src: url("/assets/fonts/PSL096PRO.eot");
+  src: url("/assets/fonts/PSL096PRO.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/PSL096PRO.woff") format("woff"), url("/assets/fonts/PSL096PRO.ttf") format("truetype"), url("/assets/fonts/PSL096PRO.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+/* note : for IE8,7 need css3pie helper*/
+#maincontainer-wrapper {
+  margin-top: 50px; }
+
+.contact-wrapper {
+  position: relative;
+  max-width: 100%;
+  padding: 0;
+  margin: 0 auto;
+  margin-bottom: 400px; }
+  .contact-wrapper .contact-popup {
+    position: static;
+    display: inline-block;
+    vertical-align: top;
+    width: auto;
+    height: auto;
+    margin: 0 10px; }
+  .contact-wrapper .caption-link {
+    width: 70px;
+    height: 70px;
+    display: block;
+    text-indent: -9999px;
+    background-size: cover;
+    cursor: pointer; }
+    .contact-wrapper .caption-link.phone {
+      background-image: url("../../../../Images/contact_phone.png");
+      background-repeat: no-repeat; }
+      .contact-wrapper .caption-link.phone:hover {
+        background-image: url("../../../../Images/contact_phone_over.png"); }
+    .contact-wrapper .caption-link.location {
+      background-image: url("../../../../Images/contact_location.png");
+      background-repeat: no-repeat; }
+      .contact-wrapper .caption-link.location:hover {
+        background-image: url("../../../../Images/contact_location_over.png"); }
+    .contact-wrapper .caption-link.mail {
+      background-image: url("../../../../Images/contact_mail.png");
+      background-repeat: no-repeat; }
+      .contact-wrapper .caption-link.mail:hover {
+        background-image: url("../../../../Images/contact_mail_over.png"); }
+  .contact-wrapper .popup-content {
+    position: absolute;
+    background: #fff;
+    min-width: 100%;
+    border: 1px solid #a9a9a9;
+    right: 0;
+    top: 90px;
+    opacity: 0;
+    z-index: -1;
+    text-align: left;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+    margin-top: 10px;
+    padding: 20px;
+    visibility: hidden; }
+    .contact-wrapper .popup-content h1, .contact-wrapper .popup-content h2, .contact-wrapper .popup-content h3 {
+      margin: 0;
+      margin-bottom: 20px;
+      color: #1CA59B; }
+    .contact-wrapper .popup-content p, .contact-wrapper .popup-content span {
+      font-size: 22px;
+      line-height: 24px;
+      color: #5a5a5a; }
+    .contact-wrapper .popup-content ul {
+      padding: 0;
+      margin: 0;
+      width: 75%; }
+      .contact-wrapper .popup-content ul li {
+        font-weight: 300;
+        list-style: none;
+        line-height: 24px;
+        margin-bottom: 10px; }
+    .contact-wrapper .popup-content .btn-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 40px;
+      height: 40px;
+      font-size: 28px;
+      line-height: 40px;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      background-color: #1CA59B;
+      padding: 0;
+      text-align: center;
+      display: block;
+      cursor: pointer;
+      text-decoration: none;
+      -webkit-transition: all 0.2s ease-in-out;
+      -moz-transition: all 0.2s ease-in-out;
+      -o-transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out;
+      z-index: 20; }
+      .contact-wrapper .popup-content .btn-close:hover {
+        /*color: $color-primary;
+                border-color: $color-primary;*/ }
+    .contact-wrapper .popup-content .gmap {
+      margin-top: 40px;
+      margin-bottom: 10px; }
+    .contact-wrapper .popup-content .btn-wrapper {
+      text-align: left; }
+  .contact-wrapper .contact-title {
+    margin-bottom: 20px; }
+    .contact-wrapper .contact-title h1, .contact-wrapper .contact-title h2, .contact-wrapper .contact-title h3 {
+      margin: 0;
+      margin-bottom: 5px;
+      color: #1CA59B; }
+    .contact-wrapper .contact-title p {
+      color: #1CA59B; }
+  .contact-wrapper .contact-info {
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0 0 20px 0; }
+    .contact-wrapper .contact-info .label {
+      font-size: 22px;
+      line-height: 24px;
+      color: #5a5a5a; }
+    .contact-wrapper .contact-info .info span {
+      font-size: 22px;
+      line-height: 24px;
+      color: #1CA59B; }
+    .contact-wrapper .contact-info .info a {
+      font-size: 22px;
+      line-height: 24px;
+      color: #1CA59B; }
+      .contact-wrapper .contact-info .info a:hover {
+        color: #000;
+        text-decoration: none; }
+  .contact-wrapper .contact-form-wrapper input[type="text"], .contact-wrapper .contact-form-wrapper textarea {
+    color: #5a5a5a; }
+  .contact-wrapper .contact-form-wrapper p {
+    margin-bottom: 10px; }
+    .contact-wrapper .contact-form-wrapper p span {
+      color: #FF4A4A; }
+  .contact-wrapper .contact-form-wrapper .captcha {
+    min-height: 80px;
+    color: #5a5a5a; }
+  .contact-wrapper .active .popup-content {
+    opacity: 1;
+    z-index: 98;
+    margin-top: 0;
+    visibility: visible;
+    overflow: visible !important; }
+  @media screen and (max-width: 767px) {
+    .contact-wrapper {
+      margin-bottom: 75px; } }
+
+.modal-custom .modal-dialog .modal-content .modal-body .address {
+  display: block;
+  width: 240px;
+  height: auto;
+  padding: 10px;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  border: 1px solid #cdcdcd;
+  background-color: #fff; }
+  .modal-custom .modal-dialog .modal-content .modal-body .address h3 {
+    margin: 0 auto;
+    margin-bottom: 20px;
+    font-size: 24px;
+    line-height: 24px;
+    color: #1CA59B; }
+  .modal-custom .modal-dialog .modal-content .modal-body .address p, .modal-custom .modal-dialog .modal-content .modal-body .address span {
+    font-size: 22px;
+    line-height: 24px; }
+
+.modal-custom .modal-dialog .modal-content .modal-footer {
+  text-align: left; }

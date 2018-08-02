@@ -1,0 +1,91 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+    font-family: $font-regular;
+    // font-family: 'Kanit', sans-serif;
+    font-weight: normal;
+}
+
+.clearfix{
+    clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+ol, ul{
+	list-style: none;
+}
+/* remove link outline */
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+p, span, a {
+    font-weight: normal;
+}
+
+h1, h2, h3{
+  margin-top: 22px;
+  margin-bottom: 22px;
+}
+
+h1 {
+    font-size: $text-x-large;
+    line-height: $text-x-large;
+}
+
+h2 {
+    font-size: $text-large;
+    line-height: $text-large;
+}
+
+h3 {
+    font-size: $text-small;
+    line-height: $text-small;
+}
+
+p, a, span {
+    font-size: $text-x-small;
+    line-height: $text-x-small;
+}
+
+a{
+    text-decoration: none;
+    outline: 0;
+    outline-style: none;
+      &:hover{
+        text-decoration: none;
+        outline: 0;
+        outline-style: none;
+      }
+      &:focus{
+        text-decoration: none;
+        outline: 0;
+        outline-style: none;
+      }
+      &:active{
+        text-decoration: none;
+        outline: 0;
+        outline-style: none;
+      }
+}
+
+@media screen and (max-width: $screen-xs-max){
+    h1 {
+        font-size: 44px;
+        line-height: 44px;
+    }
+
+    /*h2 {
+        font-size: 32px;
+        line-height: 38px;
+    }*/
+}

@@ -1,0 +1,211 @@
+﻿@import "../variables";
+@import "../helpers/fontface";
+@import "../helpers/mixin_css3";
+
+.about-wrapper {
+    position: relative;
+    max-width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    margin-bottom: 50px;
+
+    .board-list {
+        display: block;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        margin-bottom: 30px;
+        overflow: hidden;
+
+        h2 {
+            margin: 0 auto;
+            /*margin-bottom: 15px;*/
+            color: $color-primary;
+        }
+
+        .board-item {
+            position: relative;
+            max-height: 325px;
+            margin-top: 20px;
+            /*margin-bottom: 20px;*/
+
+            img {
+                width: 100%;
+                display: block;
+                margin: 0 auto;
+            }
+
+            .caption {
+                width: 100%;
+                display: block;
+                margin: 0 auto;
+                position: relative;
+                background: $color-primary;
+                background: transparentize($color-primary, 0.25);
+                color: $color-white;
+                height: 125px;
+                margin-top: -125px;
+                padding: 10px;
+                overflow: hidden;
+
+                h3 {
+                    margin: 0 auto;
+                    font-size: $text-small;
+                    line-height: $text-small;
+                }
+
+                p {
+                    margin: 0 auto;
+                    font-size: $text-x-small;
+                    line-height: $text-x-small;
+                }
+            }
+
+            &:hover {
+                cursor: pointer;
+
+                .caption {
+                    color: $color-primary;
+                    background: #000;
+                    background: transparentize(#000, 0.25);
+                }
+            }
+        }
+
+        .modal-dialog {
+            margin: 0 auto;
+            margin-top: 3%;
+            width: 60%;
+
+            @media screen and (max-width: 1024px) {
+                width: 80%;
+                margin-top: 10%;
+            }
+        }
+
+        .modal-content {
+            padding: 20px;
+            border-radius: 0;
+
+            .close-area {
+                position: absolute;
+                top: -35px;
+                right: 5px;
+
+                .close-detail {
+                    background-color: transparent;
+                    color: #333333;
+                    border: 0;
+                    font-size: 16px;
+                    position: relative;
+                    z-index: 1100;
+
+                    i {
+                        background-color: $color-white;
+                        color: $color-primary;
+                        display: inline-block;
+                        border-radius: 50%;
+                        width: 26px;
+                        height: 26px;
+                        line-height: 26px;
+                        text-align: center;
+                        margin-top: 0;
+                        font-style: normal;
+                    }
+
+                    &:focus {
+                        outline: 0;
+                    }
+                }
+            }
+
+            .popup-header {
+                padding: 0;
+                padding-left: 25px;
+                padding-bottom: 20px;
+                margin-top: 20px;
+
+                h3 {
+                    margin: 0 auto;
+                    font-size: $text-large;
+                    line-height: $text-large;
+                    color: $color-primary;
+                }
+
+                p {
+                    font-size: $text-small;
+                    line-height: $text-small;
+                    color: $color-text;
+                }
+            }
+
+            .popup-content {
+                display: block;
+                padding: 15px 20px;
+                margin-left: 100px;
+                margin-top: -55px;
+                background: $color-primary;
+                background: transparentize($color-primary, 0.25);
+                color: $color-white;
+
+                > div {
+                    max-height: 310px;
+                    overflow: auto;
+                }
+
+                .content-text {
+                    padding-bottom: 15px;
+                    padding-right: 15px;
+                }
+
+                h3 {
+                    font-size: $text-small;
+                    line-height: $text-small;
+                    margin: 5px 0;
+                }
+
+                p {
+                    font-size: $text-x-small;
+                    line-height: $text-x-small;
+                    margin: 5px 0;
+                }
+
+                ul, ol {
+                    list-style-type: none;
+                    list-style-image: url("../../../../Images/icons/ico-list-white.jpg");
+                    list-style-position: outside;
+                    padding-left: 20px;
+                    margin-bottom: 25px;
+
+                    li {
+                        margin-bottom: 5px;
+                    }
+                }
+
+                @media screen and (max-width: 1024px) {
+                    margin: 0px;
+                    margin-top: 15px;
+                    padding: 15px;
+
+                    > div {
+                        max-height: 250px;
+                    }
+                }
+
+                @media screen and (max-width: 999px) {
+                    margin: 0px;
+                    margin-top: 15px;
+                    padding: 15px;
+
+                    > div {
+                        max-height: 250px;
+                    }
+                }
+
+                @media screen and (max-width: 640px) {
+                    margin-top: 0px;
+                }
+            }
+        }
+    }
+}

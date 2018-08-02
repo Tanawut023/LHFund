@@ -1,0 +1,240 @@
+/* set global config vars */
+/* defualt page width setting(PC) */
+/* off canvas menu width *eg. 70px or 70% */
+/* main slide margin top */
+/* header height */
+/* footer height */
+/* global body setting */
+/* default font family */
+/*Arial*/
+/* text sizing multiplier */
+/* text sizing */
+/* default theme color */
+/* special theme */
+/* insert special theme for this website */
+/* text sizing */
+@font-face {
+  font-family: 'KitithadaRegular';
+  src: url("/assets/fonts/PSL094PRO.eot");
+  src: url("/assets/fonts/PSL094PRO.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/PSL094PRO.woff") format("woff"), url("/assets/fonts/PSL094PRO.ttf") format("truetype"), url("/assets/fonts/PSL094PRO.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'KitithadaBold';
+  src: url("/assets/fonts/PSL096PRO.eot");
+  src: url("/assets/fonts/PSL096PRO.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/PSL096PRO.woff") format("woff"), url("/assets/fonts/PSL096PRO.ttf") format("truetype"), url("/assets/fonts/PSL096PRO.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+/* note : for IE8,7 need css3pie helper*/
+.footer .register-wrapper {
+  display: none; }
+
+.private-fund-wrapper {
+  position: relative;
+  max-width: 100%;
+  padding: 0;
+  margin: 0 auto;
+  border-bottom: 2px solid #fff; }
+  .private-fund-wrapper .title-wrapper {
+    text-align: center;
+    padding: 0;
+    padding-top: 65px;
+    padding-bottom: 145px; }
+    .private-fund-wrapper .title-wrapper .title {
+      color: #5a5a5a; }
+    @media screen and (max-width: 999px) {
+      .private-fund-wrapper .title-wrapper {
+        padding-top: 50px;
+        padding-bottom: 50px; } }
+  .private-fund-wrapper .agent-contact-wrapper {
+    position: relative;
+    max-width: 100%;
+    padding: 25px 0 65px 0;
+    background-color: #1CA59B; }
+    .private-fund-wrapper .agent-contact-wrapper .heading-wrapper {
+      color: #fff;
+      text-align: center; }
+      .private-fund-wrapper .agent-contact-wrapper .heading-wrapper .title {
+        font-size: 40px;
+        line-height: 40px;
+        margin: 0;
+        margin-bottom: 20px; }
+      .private-fund-wrapper .agent-contact-wrapper .heading-wrapper .descripstion {
+        font-size: 28px;
+        line-height: 28px; }
+    .private-fund-wrapper .agent-contact-wrapper .contact-wrapper {
+      margin-top: 50px; }
+      .private-fund-wrapper .agent-contact-wrapper .contact-wrapper h3 {
+        margin: 0;
+        font-size: 28px;
+        line-height: 28px;
+        color: #fff; }
+        .private-fund-wrapper .agent-contact-wrapper .contact-wrapper h3 a {
+          color: #fff;
+          font-size: 28px;
+          line-height: 28px; }
+      .private-fund-wrapper .agent-contact-wrapper .contact-wrapper p {
+        font-size: 24px;
+        line-height: 24px;
+        color: #fff; }
+      .private-fund-wrapper .agent-contact-wrapper .contact-wrapper a {
+        font-size: 24px;
+        line-height: 24px;
+        color: #fff; }
+        .private-fund-wrapper .agent-contact-wrapper .contact-wrapper a:hover {
+          text-decoration: none; }
+      .private-fund-wrapper .agent-contact-wrapper .contact-wrapper .phone-contact {
+        min-height: 70px;
+        padding-left: 80px;
+        margin-bottom: 20px;
+        background-image: url("../../../../Images/icons/ico-agent-tel.png");
+        background-repeat: no-repeat;
+        background-position: left top; }
+      .private-fund-wrapper .agent-contact-wrapper .contact-wrapper .email-contact {
+        min-height: 70px;
+        padding-left: 80px;
+        margin-bottom: 20px;
+        background-image: url("../../../../Images/icons/ico-agent-mail.png");
+        background-repeat: no-repeat;
+        background-position: left top; }
+      .private-fund-wrapper .agent-contact-wrapper .contact-wrapper .location-contact {
+        min-height: 70px;
+        padding-left: 80px;
+        margin-bottom: 20px;
+        background-image: url("../../../../Images/icons/ico-agent-location.png");
+        background-repeat: no-repeat;
+        background-position: left top; }
+  .private-fund-wrapper .fund-detail-wrapper .information-section .data-wrapper {
+    margin-bottom: 20px; }
+    .private-fund-wrapper .fund-detail-wrapper .information-section .data-wrapper .txt-label {
+      text-align: right; }
+      .private-fund-wrapper .fund-detail-wrapper .information-section .data-wrapper .txt-label p {
+        line-height: 35px; }
+    .private-fund-wrapper .fund-detail-wrapper .information-section .data-wrapper .txt-value {
+      font-size: 66px;
+      line-height: 70px;
+      color: #1CA59B; }
+  .private-fund-wrapper .fund-detail-wrapper .information-section .invesment-distribute .graph-block {
+    font-size: 14px; }
+  .private-fund-wrapper .fund-table-wrapper {
+    background-color: transparent; }
+    .private-fund-wrapper .fund-table-wrapper.bg-white {
+      background-color: #fff; }
+    .private-fund-wrapper .fund-table-wrapper .table-responsive {
+      padding-bottom: 0;
+      overflow-x: auto; }
+      .private-fund-wrapper .fund-table-wrapper .table-responsive .table.table-nav > thead > tr > th {
+        font-size: 20px; }
+      .private-fund-wrapper .fund-table-wrapper .table-responsive .table.table-nav > tbody > tr > td {
+        font-size: 20px;
+        background-color: #fff; }
+        .private-fund-wrapper .fund-table-wrapper .table-responsive .table.table-nav > tbody > tr > td a {
+          font-size: 20px; }
+        .private-fund-wrapper .fund-table-wrapper .table-responsive .table.table-nav > tbody > tr > td:nth-child(1) {
+          min-width: 150px;
+          text-align: left; }
+        .private-fund-wrapper .fund-table-wrapper .table-responsive .table.table-nav > tbody > tr > td:nth-child(2) {
+          min-width: 150px; }
+      .private-fund-wrapper .fund-table-wrapper .table-responsive .table.table-nav > tbody > tr.total-row > td {
+        background-color: transparent; }
+      .private-fund-wrapper .fund-table-wrapper .table-responsive.summary {
+        margin-top: 25px;
+        overflow-x: unset; }
+        .private-fund-wrapper .fund-table-wrapper .table-responsive.summary .table.table-nav-summary {
+          padding: 0;
+          border-collapse: separate; }
+          .private-fund-wrapper .fund-table-wrapper .table-responsive.summary .table.table-nav-summary > thead > tr > th {
+            vertical-align: middle;
+            font-size: 20px;
+            line-height: 22px;
+            font-weight: normal;
+            border: none;
+            text-align: center;
+            border-right: none;
+            background-color: transparent; }
+          .private-fund-wrapper .fund-table-wrapper .table-responsive.summary .table.table-nav-summary > tbody {
+            border: 2px solid black;
+            border-collapse: separate;
+            border-spacing: 4px; }
+            .private-fund-wrapper .fund-table-wrapper .table-responsive.summary .table.table-nav-summary > tbody > tr > td {
+              padding: 10px;
+              font-weight: normal;
+              border: none;
+              border-bottom: 1px solid #fff; }
+              .private-fund-wrapper .fund-table-wrapper .table-responsive.summary .table.table-nav-summary > tbody > tr > td:nth-child(1) {
+                text-align: right;
+                font-size: 30px;
+                line-height: 32px;
+                color: #fff;
+                background-color: #1CA59B; }
+              .private-fund-wrapper .fund-table-wrapper .table-responsive.summary .table.table-nav-summary > tbody > tr > td:nth-child(2) {
+                text-align: right;
+                font-size: 32px;
+                line-height: 32px;
+                color: #1CA59B; }
+              .private-fund-wrapper .fund-table-wrapper .table-responsive.summary .table.table-nav-summary > tbody > tr > td:nth-child(3) {
+                text-align: center;
+                font-size: 32px;
+                line-height: 32px;
+                color: #1CA59B; }
+              .private-fund-wrapper .fund-table-wrapper .table-responsive.summary .table.table-nav-summary > tbody > tr > td.note {
+                text-align: left;
+                font-size: 18px;
+                line-height: 22px;
+                color: #5a5a5a;
+                background-color: transparent; }
+
+.signin-wrapper {
+  position: relative;
+  display: block;
+  max-width: 100%;
+  min-height: 294px;
+  padding: 25px 0;
+  margin: 0 auto;
+  background-color: #fff;
+  background-image: url("../../../../Images/home/feature-banner-3.jpg");
+  background-position: left top;
+  background-repeat: no-repeat;
+  background-size: cover; }
+  .signin-wrapper img {
+    max-width: 100%;
+    display: none; }
+  .signin-wrapper .title {
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 48px;
+    line-height: 48px;
+    color: #fff;
+    text-align: center;
+    visibility: hidden; }
+  .signin-wrapper .subtitle {
+    font-size: 40px;
+    line-height: 40px;
+    color: #fff;
+    text-align: center; }
+  .signin-wrapper .caption-outer {
+    position: relative;
+    display: block;
+    visibility: hidden; }
+    .signin-wrapper .caption-outer .caption-inner {
+      display: table;
+      width: 100%;
+      height: 100%;
+      padding: 0 10px; }
+      .signin-wrapper .caption-outer .caption-inner .caption {
+        display: table-cell;
+        vertical-align: middle; }
+  .signin-wrapper .forgot-password {
+    text-align: left;
+    visibility: hidden; }
+    .signin-wrapper .forgot-password a {
+      color: #fff;
+      font-size: 28px;
+      line-height: 28px; }
+      .signin-wrapper .forgot-password a:hover {
+        color: #000;
+        text-decoration: none; }
+  .signin-wrapper * button .btn-med, .signin-wrapper .btn-med {
+    width: 100%; }

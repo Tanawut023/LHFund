@@ -1,0 +1,65 @@
+/* set global config vars */
+
+/* defualt page width setting(PC) */
+$page-max-width: 100%;
+$page-min-width: 320px; //minimum screen support
+
+//for disable responsive layout in old browser
+$page-oldbrowser-width: 1000px;
+
+/* off canvas menu width *eg. 70px or 70% */
+$offcanvas-width: 240px;
+$offcanvas-bgColor: #00295A;
+
+/* main slide margin top */
+$main-slide-marginTop: 134px;
+$main-slide-imageHeight: 741px;
+
+/* header height */
+$header-height: 117px;
+
+/* footer height */
+$footer-marginTop: 20px; //for adjust whitespace between content and footer
+$footer-height: 130px;
+$footer-bg: #fff;
+
+/* global body setting */
+$body-bg: #fff;
+$page-lineheight: 1em;
+$base-fontsize: 20px;
+
+/* default font family */
+$font-regular: "KitithadaBold";
+$font-bold: "KitithadaBold";
+$default-font: "KitithadaBold"; /*Arial*/
+
+/* text sizing multiplier */
+$text-multiplier: 0.0625; // different between sizing (1px)
+
+/* text sizing */
+$text-content: 22px; //1.14rem
+$text-content-small: $text-content - $text-multiplier;
+$text-content-large: $text-content + $text-multiplier;
+
+/* default theme color */
+$color-primary: #1CA59B;
+$color-secondary: #cdcdcd;
+
+$color-title: #333;
+$color-text: #5a5a5a;
+
+$color-white: #fff;
+$color-red: #FF4A4A;
+$color-blue: #00698C;
+$color-green: #067169;
+$color-hover: #000;
+$color-little-gray: #f5f5f5;
+// $color-darkbrown: #595959;
+
+/* special theme */
+/* insert special theme for this website */
+/* text sizing */
+$text-x-large: 66px; 
+$text-large: 40px; 
+$text-small: 28px; 
+$text-x-small: 24px; 

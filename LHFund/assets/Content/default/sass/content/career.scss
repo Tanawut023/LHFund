@@ -1,0 +1,354 @@
+﻿@import "../variables";
+@import "../helpers/fontface";
+@import "../helpers/mixin_css3";
+
+.career-wrapper {
+    position: relative;
+    max-width: 100%;
+    padding: 0;
+    padding-bottom: 75px;
+    margin: 0 auto;
+    background-color: $color-white;
+
+    .career-list-wrapper {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+
+        .list-group {
+            margin-bottom: 25px;
+            border-bottom: 1px solid #5a5a5a;
+            //home page
+            .list-group-item {
+                padding: 1px 0 1px 0;
+                margin: 0 auto;
+                margin-bottom: 0;
+                border: none;
+                border-top: 1px solid $color-text;
+                background-color: transparent;
+
+                &:first-child {
+                    padding: 0;
+                    border-bottom: none;
+                }
+
+                &:last-child {
+                    padding: 0;
+                    border-bottom: none;
+                }
+
+                .list-group-head {
+                    height: auto;
+                    padding: 15px 5px;
+                    border: none;
+                    background-color: transparent;
+                    cursor: pointer;
+
+                    > div {
+                        height: auto;
+                        padding: 0;
+                        margin: 0;
+                        line-height: 34px;
+
+                        h3 {
+                            max-width: 90%;
+                            margin: 0;
+                            line-height: 34px;
+                            color: $color-text;
+
+                            span {
+                                font-size: $text-small;
+                                line-height: $text-small;
+                                color: $color-text;
+                            }
+                        }
+
+                        .icn-circle {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            font-size: $text-x-small;
+                            color: $color-text;
+                            @include round-corner(50%);
+                            background-color: transparent;
+
+                            &.fa-stack {
+                                width: 34px;
+                                height: 34px;
+
+                                .fa-stack-2x {
+                                    font-size: $text-x-small;
+                                    line-height: 34px;
+                                }
+                            }
+                        }
+
+                        a {
+                            position: absolute;
+                            top: 0px;
+                            left: 10px;
+                            height: 25px;
+                            color: $color-white;
+                            text-decoration: none;
+                            vertical-align: middle;
+                            line-height: 23px;
+                        }
+                    }
+
+                    &.active {
+                        border-bottom: none;
+
+                        h3 {
+                            color: $color-primary;
+
+                            span {
+                                color: $color-text;
+                            }
+                        }
+                    }
+                }
+
+                .active {
+                    > div {
+                        // height: 50px;
+                        padding: 0;
+                        margin: 0;
+                        line-height: 34px;
+
+                        .fa-angle-down:before {
+                            content: "\f106";
+                        }
+                    }
+                }
+
+                .list-group-content {
+                    display: none;
+                    height: auto;
+                    padding: 5px;
+                    padding-bottom: 20px;
+                    border: none;
+                    // border-bottom: 1px solid $color-secondary;
+                    border-top: none;
+                    text-align: left;
+                    background-color: transparent;
+
+                    &.opened {
+                        display: block;
+                    }
+
+                    .position-main {
+                        margin-bottom: 30px;
+                        font-size: $text-content;
+                        line-height: 32px;
+
+                        h3 {
+                            margin: 0;
+                            margin-bottom: 10px;
+                            color: $color-primary;
+                        }
+
+                        p {
+                            font-size: $text-content;
+                            line-height: 32px;
+                        }
+
+                        a {
+                            font-size: $text-content;
+                            line-height: 32px;
+                            color: $color-primary;
+
+                            &:hover {
+                                color: $color-hover;
+                            }
+                        }
+
+                        ul {
+                            max-width: 500px;
+                            list-style-type: disc;
+                            list-style-position: outside;
+                            padding-left: 25px;
+
+                            li {
+                                width: 100%;
+                                margin-bottom: 0;
+                                font-size: $text-content;
+                                line-height: 32px;
+                            }
+                        }
+
+                        ol {
+                            max-width: 500px;
+                            list-style-type: decimal;
+                            list-style-position: outside;
+                            padding-left: 25px;
+
+                            li {
+                                width: 100%;
+                                margin-bottom: 0;
+                                font-size: $text-content;
+                                line-height: 32px;
+                            }
+                        }
+                    }
+
+                    .position-register {
+                        margin-bottom: 15px;
+
+                        h3 {
+                            margin: 0;
+                            margin-bottom: 10px;
+                            font-size: $text-x-small;
+                            line-height: $text-small;
+                            color: $color-text;
+                        }
+
+                        a {
+                            font-size: $text-content;
+                            line-height: $text-small;
+                            color: $color-primary;
+
+                            &:hover {
+                                color: $color-hover;
+                            }
+                        }
+                    }
+
+                    .upload-wrap {
+                        position: relative;
+                        display: block;
+                        width: 100%;
+                    }
+
+                    .browse-wrap {
+                        width: 100%;
+                        height: 42px;
+                        top: 0;
+                        left: 0;
+                        margin: 0;
+                        cursor: pointer;
+                        overflow: hidden;
+                        padding: 10px;
+                        text-align: center;
+                        position: relative;
+                        background-color: #999;
+                        background-image: url('../../../../images/site/icons/icon-upload.png');
+                        background-position: 15px center;
+                        background-repeat: no-repeat;
+
+                        .title {
+                            color: $color-white;
+                        }
+
+                        .upload {
+                            width: 100%;
+                            height: 100%;
+                            right: 0;
+                            margin: 0;
+                            bottom: 0;
+                            padding: 0;
+                            opacity: 0;
+                            outline: none;
+                            cursor: inherit;
+                            position: absolute;
+                        }
+                    }
+
+                    .upload-path {
+                        display: block;
+                        width: 100%;
+                        height: 30px;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+        }
+    }
+    // Pagination Style
+    .list-pagination {
+        text-align: center;
+        vertical-align: middle;
+        line-height: 40px;
+        margin-bottom: 20px;
+
+        .page-text {
+            font-size: $text-content;
+        }
+
+        .view-all {
+            font-size: $text-content;
+            cursor: pointer;
+
+            &:hover {
+                color: $color-primary;
+            }
+        }
+
+        .holder {
+            margin-left: 10px;
+            margin-right: 10px;
+            display: inline-block;
+            vertical-align: middle;
+
+            a {
+                width: 40px;
+                height: 40px;
+                display: inline-block;
+                font-size: $text-x-small;
+                line-height: 40px;
+                cursor: pointer;
+                margin: 0 5px;
+                color: $color-text;
+                text-align: center;
+
+                &:hover {
+                    background-color: $color-primary;
+                    color: $color-white;
+                }
+
+                &.jp-previous {
+                    text-indent: -9999px;
+                    background-image: url('../../../../Images/icons/ico-slideleft.png');
+                    background-position: center center;
+                    background-repeat: no-repeat;
+
+                    &:hover {
+                        background-color: transparent;
+                        color: $color-white;
+                    }
+                }
+
+                &.jp-next {
+                    text-indent: -9999px;
+                    background-image: url('../../../../Images/icons/ico-slideright.png');
+                    background-position: center center;
+                    background-repeat: no-repeat;
+
+                    &:hover {
+                        background-color: transparent;
+                        color: $color-white;
+                    }
+                }
+
+                &.jp-first, &.jp-last {
+                    color: $color-text;
+                    background-color: transparent;
+
+                    &:hover {
+                        color: $color-text;
+                        background-color: transparent;
+                    }
+                }
+
+                &.jp-current {
+                    background-color: $color-primary;
+                    color: $color-white;
+
+                    &:hover {
+                        color: $color-white;
+                    }
+                }
+            }
+        }
+    }
+}

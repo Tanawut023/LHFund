@@ -1,0 +1,76 @@
+/* set global config vars */
+/* defualt page width setting(PC) */
+/* off canvas menu width *eg. 70px or 70% */
+/* main slide margin top */
+/* header height */
+/* footer height */
+/* global body setting */
+/* default font family */
+/*Arial*/
+/* text sizing multiplier */
+/* text sizing */
+/* default theme color */
+/* special theme */
+/* insert special theme for this website */
+/* text sizing */
+@font-face {
+  font-family: 'KitithadaRegular';
+  src: url("/assets/fonts/PSL094PRO.eot");
+  src: url("/assets/fonts/PSL094PRO.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/PSL094PRO.woff") format("woff"), url("/assets/fonts/PSL094PRO.ttf") format("truetype"), url("/assets/fonts/PSL094PRO.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'KitithadaBold';
+  src: url("/assets/fonts/PSL096PRO.eot");
+  src: url("/assets/fonts/PSL096PRO.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/PSL096PRO.woff") format("woff"), url("/assets/fonts/PSL096PRO.ttf") format("truetype"), url("/assets/fonts/PSL096PRO.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+/* note : for IE8,7 need css3pie helper*/
+.page-content-wrapper .provident-fund-wrapper {
+  position: relative;
+  max-width: 100%;
+  padding: 0;
+  margin: 0 auto;
+  margin-bottom: 75px; }
+  .page-content-wrapper .provident-fund-wrapper .fund-list-wrapper .fund-list .list-group {
+    min-height: 320px;
+    height: auto;
+    padding: 15px; }
+    .page-content-wrapper .provident-fund-wrapper .fund-list-wrapper .fund-list .list-group ul {
+      height: auto; }
+      .page-content-wrapper .provident-fund-wrapper .fund-list-wrapper .fund-list .list-group ul li {
+        padding-left: 15px; }
+  .page-content-wrapper .provident-fund-wrapper .contact-information-wrapper {
+    display: block;
+    padding: 30px 30px 50px 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #fff; }
+  .page-content-wrapper .provident-fund-wrapper .contact-form-wrapper {
+    display: block;
+    padding: 30px 50px;
+    background-color: #fff; }
+    .page-content-wrapper .provident-fund-wrapper .contact-form-wrapper .content-editor a {
+      color: #1CA59B; }
+      .page-content-wrapper .provident-fund-wrapper .contact-form-wrapper .content-editor a:hover {
+        color: #000; }
+    .page-content-wrapper .provident-fund-wrapper .contact-form-wrapper h3 {
+      margin-top: 0; }
+    .page-content-wrapper .provident-fund-wrapper .contact-form-wrapper p {
+      margin-bottom: 10px; }
+      .page-content-wrapper .provident-fund-wrapper .contact-form-wrapper p span {
+        color: #C90A11; }
+    .page-content-wrapper .provident-fund-wrapper .contact-form-wrapper .custom-radio {
+      margin-bottom: 20px; }
+    .page-content-wrapper .provident-fund-wrapper .contact-form-wrapper input-wrapper {
+      margin-bottom: 20px; }
+    .page-content-wrapper .provident-fund-wrapper .contact-form-wrapper #other {
+      display: none; }
+    @media screen and (max-width: 999px) {
+      .page-content-wrapper .provident-fund-wrapper .contact-form-wrapper {
+        padding: 30px; } }
+    @media screen and (max-width: 767px) {
+      .page-content-wrapper .provident-fund-wrapper .contact-form-wrapper {
+        padding: 30px 15px; } }

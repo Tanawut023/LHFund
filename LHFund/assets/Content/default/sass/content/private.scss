@@ -1,0 +1,344 @@
+﻿@import "../variables";
+@import "../helpers/fontface";
+@import "../helpers/mixin_css3";
+
+//ซ่อน footer
+.footer .register-wrapper{  
+    display: none;
+}
+
+.private-fund-wrapper {
+    position: relative;
+    max-width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    border-bottom: 2px solid $color-white;
+
+    .title-wrapper {
+        text-align: center;
+        padding: 0;
+        padding-top: 65px;
+        padding-bottom: 145px;
+
+        .title {
+            color: $color-text;
+        }
+
+        @media screen and (max-width: 999px) {
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+    }
+
+    .agent-contact-wrapper {
+        position: relative;
+        max-width: 100%;
+        padding: 25px 0 65px 0;
+        background-color: $color-primary;
+
+        .heading-wrapper {
+            color: $color-white;
+            text-align: center;
+
+            .title {
+                font-size: $text-large;
+                line-height: $text-large;
+                margin: 0;
+                margin-bottom: 20px;
+            }
+
+            .descripstion {
+                font-size: $text-small;
+                line-height: $text-small;
+            }
+        }
+
+        .contact-wrapper {
+            margin-top: 50px;
+
+            h3 {
+                margin: 0;
+                font-size: $text-small;
+                line-height: $text-small;
+                color: $color-white;
+
+                a {
+                    color: $color-white;
+                    font-size: $text-small;
+                    line-height: $text-small;
+                }
+            }
+
+            p {
+                font-size: $text-x-small;
+                line-height: $text-x-small;
+                color: $color-white;
+            }
+
+            a {
+                font-size: $text-x-small;
+                line-height: $text-x-small;
+                color: $color-white;
+
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+
+            .phone-contact {
+                min-height: 70px;
+                padding-left: 80px;
+                margin-bottom: 20px;
+                background-image: url('../../../../Images/icons/ico-agent-tel.png');
+                background-repeat: no-repeat;
+                background-position: left top;
+            }
+
+            .email-contact {
+                min-height: 70px;
+                padding-left: 80px;
+                margin-bottom: 20px;
+                background-image: url('../../../../Images/icons/ico-agent-mail.png');
+                background-repeat: no-repeat;
+                background-position: left top;
+            }
+
+            .location-contact {
+                min-height: 70px;
+                padding-left: 80px;
+                margin-bottom: 20px;
+                background-image: url('../../../../Images/icons/ico-agent-location.png');
+                background-repeat: no-repeat;
+                background-position: left top;
+            }
+        }
+    }
+
+    //override fund-detail-wrapper
+    .fund-detail-wrapper {
+        .information-section {
+            .data-wrapper {
+                margin-bottom: 20px;
+
+                .txt-label {
+                    text-align: right;
+
+                    p {
+                        line-height: 35px;
+                    }
+                }
+
+                .txt-value {
+                    font-size: $text-x-large;
+                    line-height: 70px;
+                    color: $color-primary;
+                }
+            }
+
+            .invesment-distribute {
+                .graph-block {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    //override fund-table-wrapper
+    .fund-table-wrapper {
+        background-color: transparent;
+
+        &.bg-white {
+            background-color: $color-white;
+        }
+
+        .table-responsive {
+            padding-bottom: 0;
+            overflow-x: auto;
+
+            .table {
+                &.table-nav {
+                    > thead {
+                        > tr {
+                            > th {
+                                font-size: $base-fontsize;
+                            }
+                        }
+                    }
+
+                    > tbody {
+                        > tr {
+                            > td {
+                                font-size: $base-fontsize;
+                                background-color: $color-white;
+
+                                a {
+                                    font-size: $base-fontsize;
+                                }
+
+                                &:nth-child(1) {
+                                    min-width: 150px;
+                                    text-align: left;
+                                }
+
+                                &:nth-child(2) {
+                                    min-width: 150px;
+                                }
+                            }
+
+                            &.total-row {
+                                > td {
+                                    background-color: transparent;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.summary {
+                margin-top: 25px;
+                overflow-x: unset;
+
+                .table {
+                    &.table-nav-summary {
+                        padding: 0;
+                        border-collapse: separate;
+
+                        > thead {
+                            > tr {
+                                > th {
+                                    vertical-align: middle;
+                                    font-size: $base-fontsize;
+                                    line-height: $text-content;
+                                    font-weight: normal;
+                                    border: none;
+                                    text-align: center;
+                                    border-right: none;
+                                    background-color: transparent;
+                                }
+                            }
+                        }
+
+                        > tbody {
+                            border: 2px solid black;
+                            border-collapse: separate;
+                            border-spacing: 4px;
+
+                            > tr {
+                                > td {
+                                    padding: 10px;
+                                    font-weight: normal;
+                                    border: none;
+                                    border-bottom: 1px solid $color-white;
+
+                                    &:nth-child(1) {
+                                        text-align: right;
+                                        font-size: 30px;
+                                        line-height: 32px;
+                                        color: $color-white;
+                                        background-color: $color-primary;
+                                    }
+
+                                    &:nth-child(2) {
+                                        text-align: right;
+                                        font-size: 32px;
+                                        line-height: 32px;
+                                        color: $color-primary;
+                                    }
+
+                                    &:nth-child(3) {
+                                        text-align: center;
+                                        font-size: 32px;
+                                        line-height: 32px;
+                                        color: $color-primary;
+                                    }
+
+                                    &.note {
+                                        text-align: left;
+                                        font-size: 18px;
+                                        line-height: $text-content;
+                                        color: $color-text;
+                                        background-color: transparent;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.signin-wrapper {
+    position: relative;
+    display: block;
+    max-width: 100%;
+    min-height: 294px;
+    padding: 25px 0;
+    margin: 0 auto;
+    background-color: $color-white;
+    background-image: url('../../../../Images/home/feature-banner-3.jpg');
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    img {
+        max-width: 100%;
+        display: none;
+    }
+
+    .title {
+        margin: 0;
+        margin-bottom: 10px;
+        font-size: 48px;
+        line-height: 48px;
+        color: $color-white;
+        text-align: center;
+        visibility: hidden;
+    }
+
+    .subtitle {
+        font-size: $text-large;
+        line-height: $text-large;
+        color: $color-white;
+        text-align: center;
+    }
+
+    .caption-outer {
+        position: relative;
+        display: block;
+        visibility: hidden;
+
+        .caption-inner {
+            display: table;
+            width: 100%;
+            height: 100%;
+            padding: 0 10px;
+
+            .caption {
+                display: table-cell;
+                vertical-align: middle;
+            }
+        }
+    }
+
+    .forgot-password {
+        text-align: left;
+        visibility: hidden;
+
+        a {
+            color: $color-white;
+            font-size: $text-small;
+            line-height: $text-small;
+
+            &:hover {
+                color: $color-hover;
+                text-decoration: none;
+            }
+        }
+    }
+
+    * button .btn-med, .btn-med {
+        width: 100%;
+    }
+}

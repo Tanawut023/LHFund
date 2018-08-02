@@ -1,0 +1,41 @@
+/* grid system */
+@import "bootstrap";
+
+/* variables */
+@import "variables";
+
+/* reset */
+@import "reset";
+
+/* css3 crossbrowser */
+/* note : for IE8,7 need 'css3pie' */
+@import "helpers/mixin_css3";
+
+/* fontface class */
+@import "helpers/fontface";
+
+/* scss components */
+@import "components/mod-main-slide";
+@import "components/mod-canvas-menu";
+// @import "components/mod-side-nav";
+// @import "components/mod-tab-content";
+@import "components/mod-accordion-list";
+@import "components/mod-banner-slide";
+// @import "components/mod-sticky-footer";
+
+/* main layout */
+@import "global";
+
+/* general inputs buttons style  */
+// @import "forms";
+
+/* general table style  */
+// @import "table";
+
+/* content page*/
+
+
+/* responsive control stylesheet */
+/* **DO NOT** import another scss component below reponsive import!! */
+// @import "responsive-mobile";
+// @import "responsive-tablet";

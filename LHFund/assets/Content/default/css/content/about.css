@@ -1,0 +1,178 @@
+/* set global config vars */
+/* defualt page width setting(PC) */
+/* off canvas menu width *eg. 70px or 70% */
+/* main slide margin top */
+/* header height */
+/* footer height */
+/* global body setting */
+/* default font family */
+/*Arial*/
+/* text sizing multiplier */
+/* text sizing */
+/* default theme color */
+/* special theme */
+/* insert special theme for this website */
+/* text sizing */
+@font-face {
+  font-family: 'KitithadaRegular';
+  src: url("/assets/fonts/PSL094PRO.eot");
+  src: url("/assets/fonts/PSL094PRO.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/PSL094PRO.woff") format("woff"), url("/assets/fonts/PSL094PRO.ttf") format("truetype"), url("/assets/fonts/PSL094PRO.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'KitithadaBold';
+  src: url("/assets/fonts/PSL096PRO.eot");
+  src: url("/assets/fonts/PSL096PRO.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/PSL096PRO.woff") format("woff"), url("/assets/fonts/PSL096PRO.ttf") format("truetype"), url("/assets/fonts/PSL096PRO.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+/* note : for IE8,7 need css3pie helper*/
+.about-wrapper {
+  position: relative;
+  max-width: 100%;
+  padding: 0;
+  margin: 0 auto;
+  margin-bottom: 50px; }
+  .about-wrapper .board-list {
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin-bottom: 30px;
+    overflow: hidden; }
+    .about-wrapper .board-list h2 {
+      margin: 0 auto;
+      /*margin-bottom: 15px;*/
+      color: #1CA59B; }
+    .about-wrapper .board-list .board-item {
+      position: relative;
+      max-height: 325px;
+      margin-top: 20px;
+      /*margin-bottom: 20px;*/ }
+      .about-wrapper .board-list .board-item img {
+        width: 100%;
+        display: block;
+        margin: 0 auto; }
+      .about-wrapper .board-list .board-item .caption {
+        width: 100%;
+        display: block;
+        margin: 0 auto;
+        position: relative;
+        background: #1CA59B;
+        background: rgba(28, 165, 155, 0.75);
+        color: #fff;
+        height: 125px;
+        margin-top: -125px;
+        padding: 10px;
+        overflow: hidden; }
+        .about-wrapper .board-list .board-item .caption h3 {
+          margin: 0 auto;
+          font-size: 28px;
+          line-height: 28px; }
+        .about-wrapper .board-list .board-item .caption p {
+          margin: 0 auto;
+          font-size: 24px;
+          line-height: 24px; }
+      .about-wrapper .board-list .board-item:hover {
+        cursor: pointer; }
+        .about-wrapper .board-list .board-item:hover .caption {
+          color: #1CA59B;
+          background: #000;
+          background: rgba(0, 0, 0, 0.75); }
+    .about-wrapper .board-list .modal-dialog {
+      margin: 0 auto;
+      margin-top: 3%;
+      width: 60%; }
+      @media screen and (max-width: 1024px) {
+        .about-wrapper .board-list .modal-dialog {
+          width: 80%;
+          margin-top: 10%; } }
+    .about-wrapper .board-list .modal-content {
+      padding: 20px;
+      border-radius: 0; }
+      .about-wrapper .board-list .modal-content .close-area {
+        position: absolute;
+        top: -35px;
+        right: 5px; }
+        .about-wrapper .board-list .modal-content .close-area .close-detail {
+          background-color: transparent;
+          color: #333333;
+          border: 0;
+          font-size: 16px;
+          position: relative;
+          z-index: 1100; }
+          .about-wrapper .board-list .modal-content .close-area .close-detail i {
+            background-color: #fff;
+            color: #1CA59B;
+            display: inline-block;
+            border-radius: 50%;
+            width: 26px;
+            height: 26px;
+            line-height: 26px;
+            text-align: center;
+            margin-top: 0;
+            font-style: normal; }
+          .about-wrapper .board-list .modal-content .close-area .close-detail:focus {
+            outline: 0; }
+      .about-wrapper .board-list .modal-content .popup-header {
+        padding: 0;
+        padding-left: 25px;
+        padding-bottom: 20px;
+        margin-top: 20px; }
+        .about-wrapper .board-list .modal-content .popup-header h3 {
+          margin: 0 auto;
+          font-size: 40px;
+          line-height: 40px;
+          color: #1CA59B; }
+        .about-wrapper .board-list .modal-content .popup-header p {
+          font-size: 28px;
+          line-height: 28px;
+          color: #5a5a5a; }
+      .about-wrapper .board-list .modal-content .popup-content {
+        display: block;
+        padding: 15px 20px;
+        margin-left: 100px;
+        margin-top: -55px;
+        background: #1CA59B;
+        background: rgba(28, 165, 155, 0.75);
+        color: #fff; }
+        .about-wrapper .board-list .modal-content .popup-content > div {
+          max-height: 310px;
+          overflow: auto; }
+        .about-wrapper .board-list .modal-content .popup-content .content-text {
+          padding-bottom: 15px;
+          padding-right: 15px; }
+        .about-wrapper .board-list .modal-content .popup-content h3 {
+          font-size: 28px;
+          line-height: 28px;
+          margin: 5px 0; }
+        .about-wrapper .board-list .modal-content .popup-content p {
+          font-size: 24px;
+          line-height: 24px;
+          margin: 5px 0; }
+        .about-wrapper .board-list .modal-content .popup-content ul, .about-wrapper .board-list .modal-content .popup-content ol {
+          list-style-type: none;
+          list-style-image: url("../../../../Images/icons/ico-list-white.jpg");
+          list-style-position: outside;
+          padding-left: 20px;
+          margin-bottom: 25px; }
+          .about-wrapper .board-list .modal-content .popup-content ul li, .about-wrapper .board-list .modal-content .popup-content ol li {
+            margin-bottom: 5px; }
+        @media screen and (max-width: 1024px) {
+          .about-wrapper .board-list .modal-content .popup-content {
+            margin: 0px;
+            margin-top: 15px;
+            padding: 15px; }
+            .about-wrapper .board-list .modal-content .popup-content > div {
+              max-height: 250px; } }
+        @media screen and (max-width: 999px) {
+          .about-wrapper .board-list .modal-content .popup-content {
+            margin: 0px;
+            margin-top: 15px;
+            padding: 15px; }
+            .about-wrapper .board-list .modal-content .popup-content > div {
+              max-height: 250px; } }
+        @media screen and (max-width: 640px) {
+          .about-wrapper .board-list .modal-content .popup-content {
+            margin-top: 0px; } }

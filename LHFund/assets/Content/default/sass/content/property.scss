@@ -1,0 +1,592 @@
+﻿@import "../variables";
+@import "../helpers/fontface";
+@import "../helpers/mixin_css3";
+
+.property-fund-wrapper {
+    position: relative;
+    max-width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    margin-bottom: 75px;
+
+    .heading-section {
+        padding: 0;
+        background-color: transparent;
+
+        .summary-compare-wrapper {
+            position: relative;
+            padding: 20px;
+            margin: 0 auto;
+            margin-top: -148px;
+            text-align: center;
+            background-color: $color-primary;
+
+            p {
+                margin-bottom: 20px;
+                color: $color-white;
+
+                span {
+                    font-size: $text-large;
+                }
+            }
+
+            @media screen and (max-width: 767px) {
+                margin-top: 25px;
+            }
+        }
+    }
+
+    .sub-title-wrapper {
+        h3 {
+            margin: 0;
+            line-height: 42px;
+            color: $color-primary;
+        }
+    }
+
+    .fund-list-wrapper {
+        margin-top: 50px;
+
+        .property-fund-list {
+            padding-bottom: 30px;
+            background-color: $color-white;
+
+            .property-fund-item {
+                display: block;
+                max-width: 100%;
+                padding: 0;
+                margin: 0 0 10px 0;
+                background-color: #f5f5f5;
+
+                &:nth-child(2n) {
+                    background-color: $color-white;
+                }
+
+                p {
+                    font-size: $base-fontsize;
+                    line-height: $base-fontsize;
+                }
+
+                h3 {
+                    margin: 10px 0;
+                }
+
+                .img-wrapper {
+                    max-width: 100%;
+
+                    img {
+                        max-width: 100%;
+                    }
+                }
+
+                .name-wrapper {
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+
+                    a {
+                        color: $color-primary;
+
+                        &:hover {
+                            color: $color-hover;
+                            text-decoration: none;
+                        }
+                    }
+                }
+
+                .risk-wrapper {
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+
+                    .chart {
+                        margin-left: 0;
+                        margin-right: 0;
+                    }
+                }
+
+                .nav-wrapper {
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    /*border-right: 5px solid $color-white;*/
+                    h3 {
+                        color: $color-primary;
+                    }
+                }
+
+                .check-wrapper {
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    text-align: center;
+
+                    .custom-radio input[type="checkbox"] + label {
+                        float: none;
+                        margin: 20px auto;
+                    }
+                }
+
+                .stock-prices {
+                    padding: 0 10px;
+                    text-align: center;
+
+                    h3 {
+                        color: $color-primary;
+                        margin-bottom: 0;
+                    }
+
+                    p {
+                        margin-bottom: 10px;
+                    }
+
+                    .value {
+                        display: block;
+                        padding: 5px;
+                        margin-bottom: 20px;
+                        font-size: $text-x-small;
+                        line-height: $text-x-small;
+                        color: $color-white;
+                        background-color: $color-primary;
+
+                        p {
+                            font-size: 18px;
+                            line-height: $text-x-small;
+                        }
+                    }
+                }
+            }
+
+            .owl-carousel {
+                .item {
+                    padding: 10px;
+                }
+            }
+
+            @media screen and (max-width: 1199px) {
+                .property-fund-item {
+                    padding-bottom: 10px;
+                    margin-bottom: 20px;
+                    border-bottom: 1px solid #f5f5f5;
+                    background-color: $color-white;
+
+                    &:nth-child(2n) {
+                        background-color: $color-white;
+                    }
+
+                    .name-wrapper {
+                        padding: 15px;
+                    }
+
+                    .risk-wrapper {
+                        padding: 15px;
+                    }
+
+                    .nav-wrapper {
+                        padding: 15px;
+                    }
+
+                    .check-wrapper {
+                        padding: 15px;
+                    }
+                }
+            }
+
+            @media screen and (max-width: 999px) {
+                .property-fund-item {
+                    padding-bottom: 10px;
+                    margin-bottom: 20px;
+                    border-bottom: 1px solid #f5f5f5;
+                    background-color: $color-white;
+
+                    &:nth-child(2n) {
+                        background-color: $color-white;
+                    }
+
+                    .name-wrapper {
+                        padding: 15px;
+                    }
+
+                    .risk-wrapper {
+                        padding: 15px;
+                    }
+
+                    .nav-wrapper {
+                        padding: 15px;
+                    }
+
+                    .check-wrapper {
+                        padding: 15px;
+                    }
+                }
+            }
+
+            @media screen and (max-width: 767px) {
+                .property-fund-item {
+                    .check-wrapper {
+                        text-align: left;
+
+                        .custom-radio {
+                            display: inline-block;
+                            width: auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .fund-detail-wrapper {
+        .information-wrapper {
+            display: block;
+            max-width: 100%;
+            padding: 0;
+            margin: 0 0 30px 0;
+
+            &.bg-white {
+                padding: 20px;
+                background-color: $color-white;
+            }
+
+            p {
+                font-size: $base-fontsize;
+                line-height: $base-fontsize;
+            }
+
+            h3 {
+                margin: 10px 0;
+            }
+
+            .img-wrapper {
+                max-width: 100%;
+
+                img {
+                    max-width: 100%;
+                }
+            }
+
+            .name-wrapper {
+                padding-top: 10px;
+                padding-bottom: 10px;
+
+                a {
+                    color: $color-primary;
+
+                    &:hover {
+                        color: $color-hover;
+                        text-decoration: none;
+                    }
+                }
+            }
+
+            .risk-wrapper {
+                padding-top: 10px;
+                padding-bottom: 10px;
+
+                .chart {
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+            }
+
+            .nav-wrapper {
+                padding-top: 10px;
+                padding-bottom: 10px;
+                border-right: 5px solid $color-white;
+
+                h3 {
+                    color: $color-primary;
+                }
+            }
+
+            .check-wrapper {
+                padding-top: 10px;
+                padding-bottom: 10px;
+
+                .custom-radio input[type="checkbox"] + label {
+                    float: none;
+                    margin: 20px auto;
+                }
+            }
+
+            @media screen and (max-width: 767px) {
+                .img-wrapper {
+                    img {
+                        min-width: 100%;
+                    }
+                }
+            }
+        }
+        /*.information-detail-wrapper {
+            display: block;
+            max-width: 100%;
+            padding: 0;
+            margin: 0 0 30px 0;
+        }*/
+    }
+    //override style global
+    .fund-table-wrapper {
+        .heading-section {
+            padding: 25px 20px;
+            background-color: $color-white;
+        }
+
+        .table-responsive {
+            .table {
+                &.table-comparison {
+                    > thead {
+                        > tr {
+                            > th {
+                                width: 33.3333%;
+                                text-align: left;
+
+                                &:last-child {
+                                    border-right: none;
+                                }
+                            }
+                        }
+                    }
+
+                    > tbody {
+                        > tr {
+                            > td {
+                                &:last-child {
+                                    .td-chart {
+                                        border-right: none;
+                                    }
+                                }
+                            }
+
+                            &.captions {
+                                td {
+                                    background-color: #f5f5f5;
+                                    border-bottom-color: #f5f5f5;
+                                }
+                            }
+                        }
+                    }
+
+                    .cell-detail {
+                        padding-bottom: 50px;
+                    }
+
+                    .td-chart {
+                        padding: 10px 20px;
+                        padding-bottom: 50px;
+                        border-right: 1px solid #f5f5f5;
+
+                        .chart-block {
+                            padding: 0;
+
+                            h4, p {
+                                font-size: $text-content;
+                                line-height: $text-x-small;
+                            }
+
+                            h4 {
+                                color: $color-primary;
+                            }
+                        }
+                    }
+
+                    .graph-tools {
+                        padding: 20px;
+
+                        .dateinput {
+                            padding-right: 25px;
+                            background-image: url('../../../../Images/icons/datepicker.jpg');
+                            background-repeat: no-repeat;
+                            background-position-y: center;
+                            background-position-x: calc(100% - 10px);
+                        }
+
+                        .nav-chart-tabs {
+                            display: block;
+                            width: 100%;
+                            padding-top: 25px;
+                            overflow: hidden;
+
+                            ul {
+                                list-style: none;
+                                padding: 0;
+                                margin: 0;
+
+                                li {
+                                    float: left;
+                                    width: auto;
+                                    position: relative;
+                                    display: block;
+                                    padding: 9px 15px;
+                                    /*width: 100%;*/
+                                    margin-bottom: 1px;
+                                    border-right: 1px solid $color-white;
+                                    background: #D3D3D3;
+                                    color: $color-text;
+                                    cursor: pointer;
+
+                                    a {
+                                        font-size: $text-content;
+                                        line-height: $text-x-small;
+                                        color: $color-text;
+                                    }
+
+                                    &:hover {
+                                        background-color: $color-primary;
+
+                                        a {
+                                            color: $color-white;
+                                        }
+                                    }
+
+                                    &.active {
+                                        background-color: $color-primary;
+                                        cursor: pointer;
+
+                                        a {
+                                            color: $color-white;
+                                        }
+                                    }
+                                }
+                            }
+
+                            @media screen and (max-width: 1199px) {
+                                margin-bottom: 20px;
+
+                                ul {
+                                    li {
+                                        display: inline-block;
+                                        width: auto;
+
+                                        &.active {
+                                            &:after {
+                                                display: none;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .graph-block {
+                        position: relative;
+
+                        .highcharts {
+                            padding: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .btn-wrapper {
+        display: inline-block;
+        width: auto;
+        margin: 10px auto;
+    }
+    //override
+    .list-group {
+        margin-top: -50px;
+        //home page
+        .list-group-item {
+            padding: 1px 0 1px 0;
+            margin: 0 auto;
+            margin-bottom: 10px;
+            border-bottom: none;
+
+            &:first-child {
+                padding: 0;
+                border-bottom: none;
+            }
+
+            &:last-child {
+                padding: 0;
+                border-bottom: none;
+
+                .list-group-head {
+                    border-bottom: none;
+                }
+            }
+
+            .list-group-head {
+                height: 50px;
+                border-bottom: 1px solid $color-secondary;
+                background-color: transparent;
+                cursor: pointer;
+
+                > div {
+                    height: 50px;
+                    padding: 0 15px;
+                    margin: 0;
+                    line-height: 34px;
+
+                    h3 {
+                        margin: 0 auto;
+                        line-height: 34px;
+                        color: $color-primary;
+                    }
+
+                    .icn-circle {
+                        position: absolute;
+                        top: 0;
+                        right: 20px;
+                        font-size: $text-small;
+                        color: $color-primary;
+                        border-radius: 50%;
+                        background-color: transparent;
+
+                        &.fa-stack {
+                            width: 34px;
+                            height: 34px;
+
+                            .fa-stack-2x {
+                                font-size: $text-small;
+                                line-height: 34px;
+                            }
+                        }
+                    }
+
+                    a {
+                        position: absolute;
+                        top: 0px;
+                        left: 10px;
+                        height: 25px;
+                        color: $color-white;
+                        text-decoration: none;
+                        vertical-align: middle;
+                        line-height: 23px;
+                    }
+                }
+
+                &.active {
+                    border-bottom: none;
+                }
+            }
+
+            .active {
+                > div {
+                    height: 50px;
+                    padding: 0 15px;
+                    margin: 0;
+                    line-height: 50px;
+
+                    .fa-angle-down:before {
+                        content: "\f106";
+                    }
+                }
+            }
+
+            .list-group-content {
+                display: none;
+                height: auto;
+                padding: 0;
+                border: none;
+                /*border-bottom: 1px solid $color-secondary;*/
+                border-top: none;
+                text-align: center;
+                background-color: transparent;
+
+                &.opened {
+                    display: block;
+                }
+            }
+        }
+    }
+}
