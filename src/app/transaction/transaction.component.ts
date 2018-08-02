@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 
 @Component({
     selector: 'app-transaction',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class TransactionComponent implements OnInit {
     page = "purchase-over-view";
 
-    constructor() { }
+    constructor(private route: ActivatedRoute, private router: Router) { }
 
     ngOnInit() {
         $('#bottom-main-nav li').find('a').removeClass('current');
@@ -76,4 +77,9 @@ export class TransactionComponent implements OnInit {
 
 
     }
+    navigate(target){
+        var target = target;
+        console.log(target);
+        this.router.navigate([target], { relativeTo: this.route });
+      }
 }

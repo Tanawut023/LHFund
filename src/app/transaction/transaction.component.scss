@@ -1,91 +1,6 @@
 @import '../../assets/Content/default/sass/variables';
 
-.list-pagination {
-    text-align: right;
-    vertical-align: middle;
-    line-height: 40px;
-    margin-bottom: 20px;
 
-    .page-text {
-        font-size: $text-content;
-    }
-
-    .view-all {
-        font-size: $text-content;
-        cursor: pointer;
-
-        &:hover {
-            color: $color-primary;
-        }
-    }
-
-    .holder {
-        margin-left: 10px;
-        margin-right: 5px;
-        display: inline-block;
-        vertical-align: middle;
-
-        a {
-            width: 30px;
-            height: 28;
-            display: inline-block;
-            font-size: $text-x-small;
-            line-height: 28px;
-            cursor: pointer;
-            margin: 0 5px;
-            color: $color-text;
-            text-align: center;
-
-            &:hover {
-                background-color: $color-primary;
-                color: $color-white;
-            }
-
-            &.jp-previous {
-                text-indent: -9999px;
-                background-image: url('/assets/Images/icons/ico-slideleft2.png');
-                background-position: center center;
-                background-repeat: no-repeat;
-
-                &:hover {
-                    background-color: transparent;
-                    color: $color-white;
-                }
-            }
-
-            &.jp-next {
-                text-indent: -9999px;
-                background-image: url('/assets/Images/icons/ico-slideright2.png');
-                background-position: center center;
-                background-repeat: no-repeat;
-
-                &:hover {
-                    background-color: transparent;
-                    color: $color-white;
-                }
-            }
-
-            &.jp-first, &.jp-last {
-                color: $color-text;
-                background-color: transparent;
-
-                &:hover {
-                    color: $color-text;
-                    background-color: transparent;
-                }
-            }
-
-            &.jp-current {
-                background-color: $color-primary;
-                color: $color-white;
-
-                &:hover {
-                    color: $color-white;
-                }
-            }
-        }
-    }
-}
 .modal-title{
     color: $color-white !important;
 }
@@ -94,4 +9,14 @@
     background-color: $color-red;
     border-radius:0px; 
     // color: $color-white!important;
+    .close{
+        .modal-title{
+            position: absolute;
+            top: 5px;
+            right: 12px;
+        }       
+    }
+}
+.modal-footer{
+    display:block;
 }

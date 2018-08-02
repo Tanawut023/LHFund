@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-rmf-ltf',
@@ -6,46 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rmf-ltf.component.scss']
 })
 export class RmfLtfComponent implements OnInit {
-  page = "ltf-condition-complete";
-
-  constructor() { }
+  
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     $('#bottom-main-nav li').find('a').removeClass('current');
     $('#bottom-main-nav li#rmf-ltf').find('a').addClass('current');
   }
 
-  checkpage(page) {
-    window.scroll(0,0);
-    console.log(page)
+navigate(target){
+    var target = target;
+    console.log(target);
+    this.router.navigate([target], { relativeTo: this.route });
+  }
 
-    switch (page) {
-        case 'conclusion':
-            this.page = "conclusion";
-            break;
-        case 'certificate-rmf':
-            this.page = "certificate-rmf";
-            break;
-        case 'certificate-ltf':
-            this.page = "certificate-ltf";
-            break;
-        case 'ltf-condition-complete':
-            this.page = "ltf-condition-complete";
-            break;
-        case 'signup1':
-            this.page = "signup1";
-            break;
-        case 'signup2':
-            this.page = "signup2";
-            break;
-        default:
-
-            this.page = "ltf-condition-complete";
-            console.log(this.page)
-            break;
-    }
-
-
-}
 
 }

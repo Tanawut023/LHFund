@@ -4588,6 +4588,8 @@ input[type=reset] {
         .table-responsive .table.table-custom tbody tr td.content {
           color: #1CA59B;
           border-left: 1px solid #fff; }
+        .table-responsive .table.table-custom tbody tr td img {
+          cursor: pointer; }
     .table-responsive .table.table-custom-score {
       border-collapse: collapse !important; }
       .table-responsive .table.table-custom-score thead tr th {
@@ -5227,6 +5229,9 @@ input[type=reset] {
             #header .top-menu-wrapper .top-social-nav ul li.current a:hover {
               color: #000;
               text-decoration: none; }
+          #header .top-menu-wrapper .top-social-nav ul li img {
+            height: 15px;
+            vertical-align: initial; }
       @media screen and (max-width: 999px) {
         #header .top-menu-wrapper .top-social-nav {
           text-align: left; }
@@ -8028,7 +8033,8 @@ input[type=reset] {
           opacity: 1;
           cursor: pointer;
           position: absolute;
-          top: -78px;
+          top: -43px;
+          height: 45px;
           right: 0px;
           background-color: #FF4A4A; }
           .modal-custom .modal-dialog .modal-content .modal-header .close span {

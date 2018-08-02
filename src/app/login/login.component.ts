@@ -6,6 +6,7 @@ import { far } from '@fortawesome/free-regular-svg-icons';
 import * as $ from 'jquery-match-height';
 import { Directive, ElementRef, AfterViewChecked, Input, HostListener } from '@angular/core';
 import * as Chart from 'chart.js'
+import { FormBuilder, FormGroup, FormControl, Validators,NgForm } from '@angular/forms';
 
 library.add(fas, far);
 

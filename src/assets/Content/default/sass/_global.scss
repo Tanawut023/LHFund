@@ -474,7 +474,11 @@ input[type=reset] {
                             color: $color-primary;
                             border-left: 1px solid $color-white;
                         }
+                        img{
+                            cursor: pointer;
+                        }
                     }
+
                 }
             }
         }

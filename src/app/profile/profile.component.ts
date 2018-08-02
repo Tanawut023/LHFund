@@ -1,107 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , AfterViewInit} from '@angular/core';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
-  page = "edit-profile";
-  test = "disabled";
-  constructor() { }
+export class ProfileComponent implements OnInit, AfterViewInit{
+
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     
     $('#bottom-main-nav li').find('a').removeClass('current');
     $('#bottom-main-nav li#profile').find('a').addClass('current');
+
+    
   }
-  checkpage(page) {
-    window.scroll(0,0);
-    console.log(page)
-
-    switch (page) {
-      case 'suitability':
-        this.page = "suitability";
-        this.checktype('size10');
-        break;
-      case 'suitability-score':
-        this.page = "suitability-score";
-        break;
-      case 'edit-profile':
-        this.page = "edit-profile";
-        $('#mutual-tab-menu').find('li').removeClass('current');
-        $('#mutual-tab-menu').find('li#menu1').addClass('current');
-        break;
-      case 'over-view':
-        this.page = "over-view";
-        $('#mutual-tab-menu').find('li').removeClass('current');
-        $('#mutual-tab-menu').find('li#menu2').addClass('current');
-        break;
-      case 'change-password':
-        this.page = "change-password";
-        break;
-      case 'setting':
-      this.page = "setting";
-      break;
-      default:
-        this.page = "edit-profile";
-        console.log(this.page)
-        break;
-    }
-
-
+  ngAfterViewInit(){
   }
-
-  checktype(event){
-    // var Id = id;
-    // console.log(event);
-    console.log(event.srcElement.attributes.id);
-    var idAttr = event.srcElement.attributes.id;
-    var value = idAttr.nodeValue;
-    console.log(value);
-    if(value == 'size10') {
-        $('#personal').addClass('active');
-        $('#answerC1').find('input[type="radio"]'). attr("disabled", "disabled");
-        $('#answerC2').find('input[type="radio"]'). attr("disabled", "disabled");
-        $('#answerC2').find('input[type="text"]'). attr("disabled", "disabled");
-        // $('#answerC1').find('input[type="radio"]').removeAttr("checked");
-        // $('#answerC2').find('input[type="radio"]').removeAttr("checked");
-    }
-
-    else {
-        $('#personal').removeClass('active');
-        $('#answerC1').find('input[type="radio"]').removeAttr("disabled");
-        $('#answerC2').find('input[type="radio"]').removeAttr("disabled");
-        $('#answerC2').find('input[type="text"]').removeAttr("disabled");
-        // $('#answerC1').find('input[type="radio"]').removeAttr("checked");
-        // $('#answerC2').find('input[type="radio"]').removeAttr("checked");        
-        // $('#answer').find('input[type="radio"]').removeAttr("checked");
-    }
-
-    if(value == 'size15') {
-        $('#company').addClass('active');
-        $('#answerP1').find('input[type="radio"]'). attr("disabled", "disabled");
-        $('#answerP2').find('input[type="radio"]'). attr("disabled", "disabled");
-        // $('#answerP1').find('input[type="radio"]').removeAttr("checked");
-        // $('#answerP2').find('input[type="radio"]').removeAttr("checked");
-
-        // $('#answer1').find('input[type="radio"]').removeAttr("checked");
-    }
-
-    else {
-        $('#company').removeClass('active');
-        $('#answerP1').find('input[type="radio"]').removeAttr("disabled");
-        $('#answerP2').find('input[type="radio"]').removeAttr("disabled");
-        // $('#answerP1').find('input[type="radio"]').removeAttr("checked");
-        // $('#answerP2').find('input[type="radio"]').removeAttr("checked");
-        
-    }
-  }
-  disable(){
-    console.log("test");
-    $('#answerC1').find('input[type="radio"]').attr("disabled", "disabled");
-    $('#answerC2').find('input[type="radio"]').attr("disabled", "disabled");
-    $('#answerP1').find('input[type="radio"]'). attr("disabled", "disabled");
-    $('#answerP2').find('input[type="radio"]'). attr("disabled", "disabled");
+  navigate(target){
+    var target = target;
+    console.log(target);
+    this.router.navigate([target], { relativeTo: this.route });
   }
 }

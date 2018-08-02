@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 
 @Component({
     selector: 'app-report',
@@ -6,47 +7,17 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./report.component.scss']
 })
 export class ReportComponent implements OnInit {
-    page = "past-events";
-
-    constructor() { }
+    
+    constructor(private route: ActivatedRoute, private router: Router) { }
 
     ngOnInit() {
         $('#bottom-main-nav li').find('a').removeClass('current');
         $('#bottom-main-nav li#report').find('a').addClass('current');
     }
-    checkpage(page) {
-        console.log(page)
-        window.scroll(0,0);
 
-        switch (page) {
-            case 'confirmation':
-                this.page = "confirmation";
-                break;
-            case 'past-events':
-                this.page = "past-events";
-                break;
-            case 'not-available-list':
-                this.page = "not-available-list";
-                break;
-            case 'summary':
-                this.page = "summary";
-                break;
-            case 'receipt-history':
-                this.page = "receipt-history";
-                break;
-            case 'today-list':
-                this.page = "today-list";
-                break;
-            case 'type':
-                this.page = "type";
-                break;
-            default:
-
-                this.page = "past-events";
-                console.log(this.page)
-                break;
-        }
-
-
-    }
+    navigate(target){
+        var target = target;
+        console.log(target);
+        this.router.navigate([target], { relativeTo: this.route });
+      }
 }
