@@ -29,8 +29,14 @@ export class RegularPurchaseComponent implements OnInit {
             console.log(this.page)
             break;
     }
-
+    
 
 }
-
+onGroupChange(c){
+    console.log(c.srcElement.value)
+    var value = c.srcElement.value;
+    if(value=="ทั้งหมด"){
+        return 
+    }
+    }
 }

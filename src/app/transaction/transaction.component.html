@@ -12,33 +12,33 @@
                 </button>
                 <ul class="dropdown-menu">
                   <li>
-                    <a (click)="navigate('purchase')" title="รายการซื้อ">รายการซื้อ</a>
+                    <a (click)="navigate('purchase')" title="{{ 'NAVBAR.subscription' | translate }}">{{ 'NAVBAR.subscription' | translate }}</a>
                   </li>
                   <li>
-                    <a (click)="navigate('sell')" title="รายการขาย">รายการขาย</a>
+                    <a (click)="navigate('sell')" title="{{ 'NAVBAR.redemption' | translate }}">{{ 'NAVBAR.redemption' | translate }}</a>
                   </li>
                   <li>
-                    <a (click)="navigate('exchange')" title="รายการสับเปลี่ยน">รายการสับเปลี่ยน</a>
+                    <a (click)="navigate('exchange')" title="{{ 'NAVBAR.switching' | translate }}">{{ 'NAVBAR.switching' | translate }}</a>
                   </li>                  
-                  <li>
+                  <!-- <li>
                     <a (click)="navigate('purchase-for-sell')" title="รายการซื้อเพื่อขาย">รายการซื้อเพื่อขาย</a>
-                  </li>
+                  </li> -->
                 </ul>
                 <div class="clearfix"></div>
               </div>
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu1">
-                  <a title="รายการซื้อ" (click)="navigate('purchase')">รายการซื้อ</a>
+                  <a title="{{ 'NAVBAR.subscription' | translate }}" (click)="navigate('purchase')">{{ 'NAVBAR.subscription' | translate }}</a>
                 </li>
                 <li role="presentation" id="menu2">
-                  <a title="รายการขาย" (click)="navigate('sell')">รายการขาย</a>
+                  <a title="{{ 'NAVBAR.redemption' | translate }}" (click)="navigate('sell')">{{ 'NAVBAR.redemption' | translate }}</a>
                 </li>
                 <li role="presentation" id="menu3">
-                  <a title="รายการสับเปลี่ยน" (click)="navigate('exchange')">รายการสับเปลี่ยน</a>
+                  <a title="{{ 'NAVBAR.switching' | translate }}" (click)="navigate('exchange')">{{ 'NAVBAR.switching' | translate }}</a>
                 </li>
-                <li role="presentation" id="menu4">
+                <!-- <li role="presentation" id="menu4">
                   <a title="รายการซื้อเพื่อขาย" (click)="navigate('purchase-for-sell')">รายการซื้อเพื่อขาย</a>
-                </li>
+                </li> -->
 
               </ul>
             </div>

@@ -1085,12 +1085,19 @@ background-color: $color-secondary;
                 // line-height: 0px;
             }
         }
-        span{
+        // span{
+        //     color: $color-text;
+        //     display: inline-block;
+        //     font-size: $base-fontsize;
+        //     line-height: 22px;
+        // }
+        label{
             color: $color-text;
             display: inline-block;
             font-size: $base-fontsize;
             line-height: 22px;
         }
+
     }
     
 

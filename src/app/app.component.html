@@ -1,4 +1,15 @@
 <!-- <app-header></app-header> -->
+<!-- <div>
+    <h2>{{ 'HEADER.TITLE' | translate }}</h2>
+    <label>
+      {{ 'HEADER.SELECT' | translate }}
+      <select #langSelect (change)="translate.use(langSelect.value)">
+        <option *ngFor="let lang of translate.getDefaultLang()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+      </select>
+    </label>
+    <button (click)="translate.use('en')">click</button><br>
+    <button (click)="translate.use('th')">กด</button>
+  </div> -->
 <app-canvas-menu></app-canvas-menu>
 <router-outlet (activate)="onActivate($event)" ></router-outlet>
 <!-- <app-footer></app-footer> -->

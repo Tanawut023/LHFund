@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PurchaseComponent implements OnInit {
   page = "purchase";
+  dialog: boolean = false;
+  content = "ท่านยังไม่ได้ทำแบบประเมินความเสี่ยงหรือเคยทำมาแล้วเกิน2ปี หากต้องการดำเนินการต่อกรุณากด ตกลง";
   constructor() { }
 
   ngOnInit() {
@@ -19,10 +21,18 @@ export class PurchaseComponent implements OnInit {
 
     switch (page) {
         case 'purchase':
-            this.page = "purchase";
+            this.dialog = false;
+            this.page = "purchase";            
             break;        
         case 'purchase-step1':
-            this.page = "purchase-step1";
+            // this.page = "purchase-step1";
+            if(this.dialog == false){
+                this.dialog = true;
+            }
+            else{
+                this.dialog = false;
+                this.page = "purchase-step1";
+            }
             break;
         case 'purchase-step2':
             this.page = "purchase-step2";

@@ -800,7 +800,7 @@
       @media screen and (max-width: 767px) {
         .mutual-fund-wrapper .detail-footer-wrapper h4 {
           margin-bottom: 0px; } }
-    .mutual-fund-wrapper .detail-footer-wrapper span {
+    .mutual-fund-wrapper .detail-footer-wrapper label {
       color: #5a5a5a;
       display: inline-block;
       font-size: 20px;

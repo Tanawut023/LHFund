@@ -39,6 +39,10 @@
           <p>ชื่อผู้ถือหน่วยลงทุน</p>
           <span>เนติวัฒน์ โชติกร</span>
         </div>
+        <div class="col-md-6">
+            <p>ที่อยู่</p>
+          <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
+          </div>
       </div>
     </div>
   </div>
@@ -93,11 +97,12 @@
           <div class="col-md-3 col-xs-6">
             <div class="select-wrapper inline-block">
 
-              <select name="ddlLink" id="ddlLink">
-                <option value="0" selected="">บาท</option>
-                <option value="36">เยน</option>
-                <option value="29">ดอลล่า</option>
-              </select>
+                <select name="ddlLink" id="ddlLink">
+                    <option value="0" selected="" disabled>กรุณาเลือก</option>
+                    <option value="บาท">บาท</option>
+                    <option value="หน่วย">หน่วย</option>
+                    <option value="ทั้งหมด">ทั้งหมด</option>
+                  </select>
             </div>
           </div>
 
@@ -152,10 +157,10 @@
   <div class="detail-footer-wrapper">
     <div class="row">
       <div class="col-md-6 text-left">
-        <h4>รายการซื้อหน่วยลงทุน <br class="d-block d-sm-none"/><span>(รายการที่รอดำเนินการ)</span></h4>
+        <h4>รายการซื้อหน่วยลงทุน <br class="d-block d-sm-none"/><label>(รายการที่รอดำเนินการ)</label></h4>
       </div>
       <div class="col-md-6 text-md-right">
-        <i class="fa fa-angle-right mr-1" aria-hidden="true"></i><span>ดูรายการทั้งหมด</span>
+        <i class="fa fa-angle-right mr-1" aria-hidden="true"></i><label>ดูรายการทั้งหมด</label>
       </div>
       <div class="col-md-12 mt-2">
         <div class="table-responsive">
@@ -282,6 +287,10 @@
           <p>ชื่อผู้ถือหน่วยลงทุน</p>
           <span>เนติวัฒน์ โชติกร</span>
         </div>
+        <div class="col-md-6">
+            <p>ที่อยู่</p>
+          <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
+          </div>
       </div>
     </div>
   </div>
@@ -405,6 +414,10 @@
           <p>ชื่อผู้ถือหน่วยลงทุน</p>
           <span>เนติวัฒน์ โชติกร</span>
         </div>
+        <div class="col-md-6">
+            <p>ที่อยู่</p>
+          <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
+          </div>
       </div>
     </div>
   </div>
@@ -534,6 +547,10 @@
           <p>ชื่อผู้ถือหน่วยลงทุน</p>
           <span>เนติวัฒน์ โชติกร</span>
         </div>
+        <div class="col-md-6">
+            <p>ที่อยู่</p>
+          <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
+          </div>
       </div>
     </div>
   </div>
@@ -875,3 +892,39 @@
     </div>
   </div>
 </div>
+<p-dialog  [(visible)]="dialog" [modal]="true" [responsive]="true" [width]="auto" [minWidth]="200" [draggable]="false" [resizable]="false"
+         [baseZIndex]="10000">		
+		 	<p-header>
+				ยืนยันการทำรายการซื้อ
+			</p-header>
+				
+
+				<h3>{{ content }}</h3>
+				
+					
+				
+        <p-footer>
+				
+						<!-- <button type="button" class="btn-med btn-secondary" data-dismiss="modal">Cancel</button> -->
+						<!-- <button type="button" class="btn-med btn-primary" data-dismiss="modal" (click)="checkpage('signin')">ยอมรับ</button> -->
+						<div class="row justify-content-center">
+							<div class="col-sm-6 col-md-4">
+								<button class="btn-med btn-primary" (click)="dialog=false" routerLink="/profile/suitability">
+									<p style="margin-top: 7px;">ตกลง
+										<i class="fa fa-angle-right" aria-hidden="true"></i>
+									</p>
+								</button>
+              </div>
+              <div class="col-sm-6 col-md-4">
+								<button class="btn-med btn-cancel" (click)="checkpage('purchase')">
+									<p style="margin-top: 7px;">ยกเลิก
+										<i class="fa fa-angle-right" aria-hidden="true"></i>
+									</p>
+								</button>
+							</div>
+						</div>
+					
+            <!-- <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
+            <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No" class="ui-button-secondary"></button> -->
+        </p-footer>
+</p-dialog>

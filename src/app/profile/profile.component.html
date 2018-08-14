@@ -13,32 +13,32 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a (click)="navigate('edit-profile')" title="ตรวจสอบ/แก้ไข ข้อมูลส่วนตัว">ตรวจสอบ/แก้ไข ข้อมูลส่วนตัว</a>
+                                        <a (click)="navigate('edit-profile')" title="{{ 'NAVBAR.view-edit-personal-information' | translate }}">{{ 'NAVBAR.view-edit-personal-information' | translate }}</a>
                                     </li>
                                     <li>
-                                        <a (click)="navigate('suitability')" title="แบบประเมินความเสี่ยงในการลงทุนที่เหมาะสม">แบบประเมินความเสี่ยงในการลงทุนที่เหมาะสม</a>
+                                        <a (click)="navigate('suitability')" title="{{ 'NAVBAR.suitability' | translate }}">{{ 'NAVBAR.suitability' | translate }}</a>
                                     </li>
                                     <li>
-                                        <a (click)="navigate('change-password')" title="เปลี่ยนรหัสผ่าน">เปลี่ยนรหัสผ่าน</a>
+                                        <a (click)="navigate('change-password')" title="{{ 'NAVBAR.changepassword' | translate }}">{{ 'NAVBAR.changepassword' | translate }}</a>
                                     </li>
                                     <li>
-                                        <a (click)="navigate('setting')" title="ตั้งค่า">ตั้งค่า</a>
+                                        <a (click)="navigate('setting')" title="{{ 'NAVBAR.setting' | translate }}">{{ 'NAVBAR.setting' | translate }}</a>
                                     </li>
                                 </ul>
                                 <div class="clearfix"></div>
                             </div>
                             <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                                 <li role="presentation" id="menu1" class="current">
-                                    <a title="ตรวจสอบ/แก้ไข ข้อมูลส่วนตัว" (click)="navigate('edit-profile')">ตรวจสอบ/แก้ไข ข้อมูลส่วนตัว</a>
+                                    <a title="{{ 'NAVBAR.view-edit-personal-information' | translate }}" (click)="navigate('edit-profile')">{{ 'NAVBAR.view-edit-personal-information' | translate }}</a>
                                 </li>
                                 <li role="presentation" id="menu2">
-                                    <a title="แบบประเมินความเสี่ยงในการลงทุนที่เหมาะสม" (click)="navigate('suitability')">แบบประเมินความเสี่ยงในการลงทุนที่เหมาะสม</a>
+                                    <a title="{{ 'NAVBAR.suitability' | translate }}" (click)="navigate('suitability')">{{ 'NAVBAR.suitability' | translate }}</a>
                                 </li>
                                 <li role="presentation" id="menu3">
-                                    <a title="เปลี่ยนรหัสผ่าน" (click)="navigate('change-password')">เปลี่ยนรหัสผ่าน</a>
+                                    <a title="{{ 'NAVBAR.changepassword' | translate }}" (click)="navigate('change-password')">{{ 'NAVBAR.changepassword' | translate }}</a>
                                 </li>
                                 <li role="presentation" id="menu4">
-                                    <a title="ตั้งค่า" (click)="navigate('setting')">ตั้งค่า</a>
+                                    <a title="{{ 'NAVBAR.setting' | translate }}" (click)="navigate('setting')">{{ 'NAVBAR.setting' | translate }}</a>
                                 </li>
 
                             </ul>
@@ -123,4 +123,5 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
 <app-footer></app-footer>

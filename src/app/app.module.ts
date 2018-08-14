@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule }          from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import {HttpClientModule, HttpClient} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -19,7 +20,6 @@ import { TransactionComponent } from './transaction/transaction.component';
 import { RmfLtfComponent } from './rmf-ltf/rmf-ltf.component';
 import { RegularListComponent } from './regular-list/regular-list.component';
 import { ReportComponent } from './report/report.component';
-import { MyportMenuComponent } from './myport/myport-menu/myport-menu.component';
 
 import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
@@ -53,8 +53,21 @@ import { SellComponent } from './transaction/sell/sell.component';
 import { ExchangeComponent } from './transaction/exchange/exchange.component';
 import { PurchaseForSellComponent } from './transaction/purchase-for-sell/purchase-for-sell.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+// import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab 
+// import { PanelModule } from 'primeng/primeng';
+// import { ButtonModule } from 'primeng/primeng';
+// import { RadioButtonModule } from 'primeng/primeng';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
  
-
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -69,7 +82,6 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     RegularListComponent,
     ReportComponent,
     ProfileComponent,
-    MyportMenuComponent,
     CanvasMenuComponent,
     EditProfileComponent,
     SuitabilityComponent,
@@ -94,7 +106,12 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     SellComponent,
     ExchangeComponent,
     PurchaseForSellComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    // AccordionModule,
+    // PanelModule,
+    // ButtonModule,
+    // RadioButtonModule,
+    
 
   ],
   imports: [
@@ -103,7 +120,22 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     AppRoutingModule,    
     FontAwesomeModule,
     ChartModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DialogModule,
+    TableModule,
+    InputTextModule,
+    DialogModule,
+    ButtonModule,
+    BrowserAnimationsModule,    
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+  })
+
     // ProfileModule
   ],
   providers: [],

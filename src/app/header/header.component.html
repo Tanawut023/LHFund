@@ -8,34 +8,34 @@
                     <ul class="">
                         <li class="ico-fb">
                             <a href="#" title="บัญชีผู้ใช้">
-                                บัญชีผู้ใช้ : 
+                               {{ 'HEADER.Account' | translate }} : 
                             </a>
                         </li>
                         <li class="ico-line">
                             <a href="#" title="เนติวัฒน์">
-                                <img src="/assets/Images/icons/icon-login-white.png" />
+                                <img src="./assets/Images/icons/icon-login-white.png" />
                                 เนติวัฒน์
-                                <!-- <img src="/assets/Images/icons/p_dropdown_select.png" /> -->
+                                <!-- <img src="./assets/Images/icons/p_dropdown_select.png" /> -->
                             </a>
                         </li>
                         <li class="ico-yt">
                             <a href="#" title="ออกจากระบบ">
-                                <img src="/assets/Images/icons/ico-forgot.png" />
-                                ออกจากระบบ
+                                <img src="./assets/Images/icons/ico-forgot.png" />
+                                {{ 'HEADER.logout' | translate }}
                             </a>
                         </li>
                         <!-- <li class="ico-ig">
                             <a href="#" title="">
-                                <img src="/assets/Images/icons/ico-ig-white.png" />
+                                <img src="./assets/Images/icons/ico-ig-white.png" />
                             </a>
                         </li> -->
                     </ul>
                     <ul class="sw-lang">
-                        <li class="th current">
-                            <a href="#" title="ไทย">ไทย</a>
+                        <li class="th current" (click)="translate.use('th')">
+                            <a  title="ไทย">ไทย</a>
                         </li>
-                        <li class="en">
-                            <a href="#" title="Eng">Eng</a>
+                        <li class="en" (click)="translate.use('en')">
+                            <a  title="Eng">Eng</a>
                         </li>
                         <!-- <li class="ch">
                             <a href="#" title="Chi">Chi</a>
@@ -52,7 +52,7 @@
               <div class="col-lg-3 col-sm-4 col-xs-4">
                   <h1 class="logo">
                       <a href="/">
-                            <img src="/assets/Images/logos/logo-m-post.jpg" />
+                            <img src="./assets/Images/logos/logo-m-post.jpg" />
                       </a>
                   </h1>
               </div>
@@ -62,11 +62,11 @@
                         <div id="menu" class="main-nav-list hidden-sm hidden-xs">
                             <ul id="bottom-main-nav" >
                                 <li id="myport"><a routerLink="/myport" title="My Port">My Port <span class="icon"></span></a></li>
-                                <li id="transaction"><a routerLink="/transaction" title="ทำรายการ">ทำรายการ<span class="icon"></span></a></li>
+                                <li id="transaction"><a routerLink="/transaction" title="{{ 'HEADER.transaction' | translate }}">{{ 'HEADER.transaction' | translate }}<span class="icon"></span></a></li>
                                 <li id="rmf-ltf"><a routerLink="/rmf-ltf" title="RMF/LTF">RMF/LTF<span class="icon"></span></a></li>
-                                <li id="report"><a routerLink="/report" title="รายงาน">รายงาน<span class="icon"></span></a></li>
-                                <li id="regular-list"><a routerLink="/regular-list" title="รายการแบบประจำ">รายการแบบประจำ <span class="icon"></span></a></li>
-                                <li id="profile"><a routerLink="/profile" title="ข้อมูลส่วนตัว">ข้อมูลส่วนตัว <span class="icon"></span></a></li>
+                                <li id="report"><a routerLink="/report" title="{{ 'HEADER.report' | translate }}">{{ 'HEADER.report' | translate }}<span class="icon"></span></a></li>
+                                <li id="regular-list"><a routerLink="/regular-list" title="{{ 'HEADER.regular' | translate }} ">{{ 'HEADER.regular' | translate }} <span class="icon"></span></a></li>
+                                <li id="profile"><a routerLink="/profile" title="{{ 'HEADER.profile' | translate }}">{{ 'HEADER.profile' | translate }} <span class="icon"></span></a></li>
                             </ul>                           
                         </div>
                   </nav>                    

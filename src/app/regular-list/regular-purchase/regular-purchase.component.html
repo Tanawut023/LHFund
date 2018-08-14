@@ -38,6 +38,10 @@
           <p>ชื่อผู้ถือหน่วยลงทุน</p>
           <span>เนติวัฒน์ โชติกร</span>
         </div>
+        <div class="col-sm-6 col-md-6">
+          <p>ที่อยู่</p>
+          <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
+        </div>
       </div>
     </div>
   </div>
@@ -84,12 +88,13 @@
           </div>
           <div class="col-md-3 col-xs-6">
             <div class="select-wrapper inline-block">
-
-              <select name="ddlLink" id="ddlLink">
-                <option value="0" selected="">บาท</option>
-                <option value="36">เยน</option>
-                <option value="29">ดอลล่า</option>
-              </select>
+ <!-- (change)='onGroupChange($event)' -->
+                <select name="ddlLink" id="ddlLink">
+                    <option value="0" selected="" disabled>กรุณาเลือก</option>
+                    <option value="บาท">บาท</option>
+                    <option value="หน่วย">หน่วย</option>
+                    <option value="ทั้งหมด">ทั้งหมด</option>
+                  </select>
             </div>
           </div>
 
@@ -106,16 +111,26 @@
               <label for="101"></label>
               <p>รายเดือน</p>
             </div>
+
+
           </div>
           <div class="col-md-3 col-xs-6">
-            <div class="select-wrapper inline-block">
+            <div class="row">
+              <div class="col-md-6 col-xs-6">
+                <span>วันที่</span>
+              </div>
+              <div class="col-md-6 col-xs-6">
+                <div class="select-wrapper inline-block">
 
-              <select name="ddlLink" id="ddlLink">
-                <option value="0" selected="">วันที่1</option>
-                <option value="36">วันที่2</option>
-                <option value="29">วันที่3</option>
-              </select>
+                  <select name="ddlLink" id="ddlLink">
+                    <option value="0" selected="">1</option>
+                    <option value="36">2</option>
+                    <option value="29">3</option>
+                  </select>
+                </div>
+              </div>
             </div>
+
           </div>
         </div>
         <div class="row">
@@ -159,10 +174,14 @@
   <div class="detail-footer-wrapper">
     <div class="row">
       <div class="col-md-6 text-left">
-        <h4>รายการซื้อหน่วยลงทุน <br class="d-block d-sm-none"/><span>(รายการที่รอดำเนินการ)</span></h4>
+        <h4>รายการซื้อหน่วยลงทุน
+          <br class="d-block d-sm-none" />
+          <label>(รายการที่รอดำเนินการ)</label>
+        </h4>
       </div>
       <div class="col-md-6 text-md-right">
-        <i class="fa fa-angle-right mr-1" aria-hidden="true"></i><span>ดูรายการทั้งหมด</span>
+        <i class="fa fa-angle-right mr-1" aria-hidden="true"></i>
+        <label>ดูรายการทั้งหมด</label>
       </div>
       <div class="col-md-12 mt-5 text-center">
         <p>ไม่มีรายการที่รอดำเนินงาน</p>
@@ -210,6 +229,10 @@
           <p>ชื่อผู้ถือหน่วยลงทุน</p>
           <span>เนติวัฒน์ โชติกร</span>
         </div>
+        <div class="col-sm-6 col-md-6">
+          <p>ที่อยู่</p>
+          <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
+        </div>
       </div>
     </div>
   </div>
@@ -237,7 +260,7 @@
           </div>
           <div class="col-md-6">
             <span>3,000 บาท</span>
-          </div>                     
+          </div>
 
         </div>
       </div>
@@ -263,7 +286,7 @@
             <p>ระยะเวลาสิ้นสุด</p>
           </div>
           <div class="col-md-6">
-              <span>10 มิถุนายน 2561</span>
+            <span>10 มิถุนายน 2561</span>
           </div>
         </div>
 
@@ -282,8 +305,8 @@
           </div>
 
           <div class="col-md-12 mt-4">
-              <p class="color-red no-margin">*ถ้าวันที่ทำรายการซื้อนั้นตรงกับวันหยุดทำการ บริษัทจะดำเนินการทำรายการซื้อให้ในวันทำการถัดไป</p>
-            </div>
+            <p class="color-red no-margin">*ถ้าวันที่ทำรายการซื้อนั้นตรงกับวันหยุดทำการ บริษัทจะดำเนินการทำรายการซื้อให้ในวันทำการถัดไป</p>
+          </div>
         </div>
       </div>
     </div>

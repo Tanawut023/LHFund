@@ -1,17 +1,17 @@
 <app-header-login></app-header-login>
-<div id="main-wrapper" class="main-login-wrapper">	
-	<div class="contact-wrapper" *ngIf="page == 'signin'">
+<div id="main-wrapper" class="main-login-wrapper">
+	<div class="contact-wrapper">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-6">
-					<div class="contact-popup active">
+					<div class="contact-popup active" *ngIf="page == 'signin'">
 
 						<div class="popup-content">
 							<div class="contact-title">
 								<div class="row">
 									<div class="col ">
 										<div class="login-icon">
-												<img src="/assets/Images/icons/icon-login-white.png" />
+											<img src="/assets/Images/icons/icon-login-white.png" />
 										</div>
 										<p>
 											เข้าสู่ระบบ
@@ -30,77 +30,83 @@
 								</div>
 							</div>
 							<div class="contact-form-wrapper">
-								<form>
+								<form [formGroup]="formsighin">
 									<div class="detail-login-wrapper">
-									<div class="row">
-										<div class="col-sm-12">
-											<p>ชื่อผู้เข้าระบบ
-											</p>
-											<div class="input-wrapper">
-												<input id="name" name="name" maxlength="15" type="text">
+										<div class="row">
+											<div class="col-sm-12 form-group" [ngClass]="ValidatorDisplayCss1('username')">
+												<p>ชื่อผู้เข้าระบบ
+												</p>
+												<div class="input-wrapper">
+													<input id="name" name="name" maxlength="15" type="text" formControlName="username">
+													<div class="form-control-feedback" *ngIf="this.formsighin.controls.username.errors && (this.formsighin.controls.username.touched)">
+														<p *ngIf="this.formsighin.controls.username.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+														<!-- <p *ngIf="this.form.controls.username.errors.pattern">ข้อมูลไม่ถูกต้อง</p> -->
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-12 form-group" [ngClass]="ValidatorDisplayCss1('password')">
+												<p>รหัสผ่าน
+												</p>
+												<div class="input-wrapper ">
+													<input id="password" name="password" maxlength="15" type="password" formControlName="password">
+													<div class="form-control-feedback" *ngIf="this.formsighin.controls.password.errors && (this.formsighin.controls.password.touched)">
+														<p *ngIf="this.formsighin.controls.password.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+														<!-- <p *ngIf="this.form.controls.password.errors.pattern">อย่างน้อย 6 ตัวอักษร รวมทั้งตัวเลข</p> -->
+													</div>
+												</div>
 											</div>
 										</div>
-										<div class="col-sm-12">
-											<p>รหัสผ่าน
-											</p>
-											<div class="input-wrapper ">
-												<input id="password" name="password" maxlength="15" type="password">
+
+										<div class="row">
+											<div class="col-md-12">
+												<p class="mb-3" (click)="checkpage('forgotpassword')" style="cursor: pointer;">ลืมรหัสผ่าน
+													<a style="cursor: pointer;">
+														<i class="fa fa-question-circle" aria-hidden="true"></i>
+													</a>
+												</p>
+											</div>
+										</div>
+
+										<div class="row justify-content-center mb-3">
+											<div class="col-md-12">
+												<div class="btn-wrapper-left">
+													<button class="btn-med btn-confirm-login"  (click)="checkpage('myport')">
+														<!-- (click)="checkpage('submit')" [routerLink]="['/myport']" -->
+														<p>
+															เข้าสู่ระบบ
+															<i class="fa fa-angle-right" aria-hidden="true"></i>
+														</p>
+													</button>
+												</div>
+											</div>
+										</div>
+
+										<div class="row justify-content-center">
+											<div class="col-md-12">
+												<div class="btn-wrapper-left">
+													<button class="btn-med btn-next-login" (click)="checkpage('signup1')">
+														<p>ลงทะเบียน
+															<i class="fa fa-angle-right" aria-hidden="true"></i>
+														</p>
+													</button>
+												</div>
 											</div>
 										</div>
 									</div>
 
-									<div class="row">
-										<div class="col-md-12" >
-											<p class="mb-3" (click)="checkpage('forgotpassword')" style="cursor: pointer;">ลืมรหัสผ่าน
-												<a  style="cursor: pointer;">
-													<i class="fa fa-question-circle" aria-hidden="true"></i>
-												</a>
-											</p>
-										</div>
-									</div>
-								</div>
-									<div class="row">
-										<div class="col-md-6">
-											<div class="btn-wrapper-left">
-												<button class="btn-med btn-confirm-login" (click)="checkpage('submit')" [routerLink]="['/myport']">
-													<p>
-														เข้าสู่ระบบ
-														<i class="fa fa-angle-right" aria-hidden="true"></i>
-													</p>
-												</button>
-											</div>
-										</div>
-
-										<div class="col-md-6 ">
-											<div class="btn-wrapper-left">
-												<button class="btn-med btn-next-login" (click)="checkpage('signup1')" >
-													<p>ลงทะเบียน
-														<i class="fa fa-angle-right" aria-hidden="true"></i>
-													</p>
-												</button>
-											</div>
-										</div>
-									</div>
 								</form>
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="contact-wrapper" *ngIf="page == 'forgotpassword'">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-6">
-					<div class="contact-popup active">
+					<div class="contact-popup active" *ngIf="page == 'forgotpassword'">
 						<div class="popup-content">
 							<div class="contact-title">
 								<div class="row">
 									<div class="col">
-										<p><i class="fas fa-unlock-alt mr-2"></i>
+										<p>
+											<i class="fas fa-unlock-alt mr-2"></i>
 											ลืมรหัสผ่าน
-											
+
 										</p>
 									</div>
 									<div class="col d-flex justify-content-end">
@@ -116,86 +122,185 @@
 								</div>
 							</div>
 							<div class="contact-form-wrapper">
-								<form>
+								<form [formGroup]="formforgot">
 									<div class="detail-login-wrapper">
-									<div class="row">
-										<div class="col-sm-12">
+										<div class="row">
+											<!-- <div class="col-sm-12">
 											<p>ชื่อผู้เข้าระบบ
 											</p>
 											<div class="input-wrapper">
 												<input id="name" name="name" maxlength="30" type="text">
 											</div>
-										</div>
-										<div class="col-sm-12">
-											<p>เลขบัตรประจำตัว
-											</p>
-											<div class="input-wrapper ">
-												<input id="userid" name="userid" maxlength="30" type="text">
+										</div> -->
+											<div class="col-sm-12 form-group" [ngClass]="ValidatorDisplayCss3('IDcard')">
+												<p>เลขบัตรประชาชน/หนังสือเดินทาง
+												</p>
+												<div class="input-wrapper ">
+													<input id="IDcard" name="IDcard" maxlength="13" type="text" formControlName="IDcard" required>
+													<div class="form-control-feedback" *ngIf="this.formforgot.controls.IDcard.errors && ( this.formforgot.controls.IDcard.touched)">
+														<p *ngIf="this.formforgot.controls.IDcard.errors.required || this.formforgot.controls.IDcard.errors?.minlength">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+														<p *ngIf="this.formforgot.controls.IDcard.errors.pattern">ข้อมูลไม่ถูกต้อง</p>																								
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-12 form-group" [ngClass]="ValidatorDisplayCss3('email')">
+												<p>อีเมล์
+												</p>
+												<div class="input-wrapper ">
+													<input id="email" name="email" maxlength="30" type="text" formControlName="email" required>
+													<div class="form-control-feedback" *ngIf="this.formforgot.controls.email.errors && ( this.formforgot.controls.email.touched)">
+														<p *ngIf="this.formforgot.controls.email.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+														<p *ngIf="this.formforgot.controls.email.errors.pattern">ข้อมูลไม่ถูกต้อง</p>																								
+													</div>
+												</div>
 											</div>
 										</div>
-										<div class="col-sm-12">
-											<p>อีเมล์
-											</p>
-											<div class="input-wrapper ">
-												<input id="email" name="email" maxlength="30" type="text">
-											</div>
-										</div>
-									</div>
 									</div>
 
 									<div class="row">
-											<div class="col-md-6">															
-												<div class="btn-wrapper-left">
-													<div class="row">
-														<div class="col-md-10">
-															<button class="btn-med btn-back-login" (click)="checkpage('signin')">
-																<p>ย้อนกลับ
-																	<i class="fa fa-angle-right" aria-hidden="true"></i>
-																</p>
-															</button>
-														</div>
+										<div class="col-md-6">
+											<div class="btn-wrapper-left">
+												<div class="row">
+													<div class="col-md-10">
+														<button class="btn-med btn-back-login" (click)="checkpage('signin')">
+															<p>ย้อนกลับ
+																<i class="fa fa-angle-right" aria-hidden="true"></i>
+															</p>
+														</button>
 													</div>
-												</div>
-											</div>
-
-											<div class="col-md-6 ">
-												<div class="btn-wrapper-right">
-													<div class="row justify-content-end">
-														<div class="col-md-10">
-															<button class="btn-med btn-confirm-login" (click)="checkpage('otp-forgot')">
-																<p>ตกลง
-																	<i class="fa fa-angle-right" aria-hidden="true"></i>
-																</p>
-															</button>
-														</div>
-													</div>
-													
 												</div>
 											</div>
 										</div>
+
+										<div class="col-md-6 ">
+											<div class="btn-wrapper-right">
+												<div class="row justify-content-end">
+													<div class="col-md-10">
+														<button class="btn-med btn-confirm-login" (click)="checkpage('otp-forgot')">
+															<p>ตกลง
+																<i class="fa fa-angle-right" aria-hidden="true"></i>
+															</p>
+														</button>
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</div>
 
 								</form>
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="contact-wrapper" *ngIf="page == 'otp'">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-6">
-					<div class="contact-popup active">
+					<div class="contact-popup active" *ngIf="page == 'changepassword'">
+						<div class="popup-content">
+							<div class="contact-title">
+								<div class="row">
+									<div class="col">
+										<p>
+											<i class="fas fa-unlock-alt mr-2"></i>
+											เปลี่ยนรหัสผ่าน
+
+										</p>
+									</div>
+									<div class="col d-flex justify-content-end">
+										<ul>
+											<li class="th current">
+												<a href="#" title="ไทย">Thai</a>
+											</li>
+											<li class="en">
+												<a href="#" title="Eng">Eng</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="contact-form-wrapper">
+								<form [formGroup]="formchange">
+									<div class="detail-login-wrapper">
+										<div class="row">
+											<!-- <div class="col-sm-12">
+											<p>ชื่อผู้เข้าระบบ
+											</p>
+											<div class="input-wrapper">
+												<input id="name" name="name" maxlength="30" type="text">
+											</div>
+										</div> -->
+											<div class="col-sm-12 form-group" [ngClass]="ValidatorDisplayCss5('password')">
+												<p>สร้างรหัสผ่าน
+												</p>
+												<div class="input-wrapper ">
+													<input id="password" name="password" maxlength="13" type="password" formControlName="password" required>
+													<div class="form-control-feedback" *ngIf="this.formchange.controls.password.errors && ( this.formchange.controls.password.touched)">
+														<p *ngIf="this.formchange.controls.password.errors.required || this.formchange.controls.password.errors?.minlength">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+														<p *ngIf="this.formchange.controls.password.errors.pattern">ข้อมูลไม่ถูกต้อง</p>																								
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-12 form-group" [ngClass]="ValidatorDisplayCss5('repeatPassword')">
+												<p>ยืนยันรหัสผ่าน
+												</p>
+												<div class="input-wrapper ">
+													<input id="repeatPassword" name="repeatPassword" maxlength="30" type="password" formControlName="repeatPassword" required>
+													<div class="form-control-feedback" *ngIf="this.formchange.controls.repeatPassword.errors && ( this.formchange.controls.repeatPassword.touched)">
+														<p *ngIf="this.formchange.controls.repeatPassword.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+														<p *ngIf="this.formchange.controls.repeatPassword.errors.pattern">ข้อมูลไม่ถูกต้อง</p>																								
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-6">
+											<div class="btn-wrapper-left">
+												<div class="row">
+													<div class="col-md-10">
+														<button class="btn-med btn-back-login" (click)="checkpage('forgotpassword')">
+															<p>ย้อนกลับ
+																<i class="fa fa-angle-right" aria-hidden="true"></i>
+															</p>
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-md-6 ">
+											<div class="btn-wrapper-right">
+												<div class="row justify-content-end">
+													<div class="col-md-10">
+														<button class="btn-med btn-confirm-login" data-toggle="modal" (click)="checkpage('confirm-change')">
+																	<p>ตกลง
+																		<i class="fa fa-angle-right" aria-hidden="true"></i>
+																	</p>
+														</button>
+														<!-- <button class="btn-med btn-confirm-login" data-toggle="modal" data-target="#confirm" data-backdrop="static"	data-keyboard="false"  *ngIf="changepassword == 'modal'">
+															<p>ตกลง
+																<i class="fa fa-angle-right" aria-hidden="true"></i>
+															</p>
+														</button> -->
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</div>
+
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="contact-popup active" *ngIf="page == 'otp'">
 
 						<div class="popup-content">
 							<div class="contact-title">
 								<div class="row">
 									<div class="col">
-											<div class="login-icon">
-													<img src="/assets/Images/icons/icon-otp-white.png" />
-											</div>
-										<p>														
+										<div class="login-icon">
+											<img src="/assets/Images/icons/icon-otp-white.png" />
+										</div>
+										<p>
 											ระบบความปลอดภัย OTP
 										</p>
 									</div>
@@ -212,7 +317,7 @@
 								</div>
 							</div>
 							<div class="contact-form-wrapper">
-								<form>
+								<form [formGroup]="formotp">
 									<div class="row">
 										<div class="col-sm-12">
 											<p>ระบบจะส่งรหัส OTP ไปยังเบอร์โทรศัพท์มือถือ
@@ -220,18 +325,18 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-md-8">
+										<div class="col-md-7">
 											<div class="input-wrapper">
-												<input id="email-or-tel" name="email-or-tel" maxlength="30" type="text" placeholder="085XXXXXXX">
+												<input id="tel" name="tel" maxlength="30" type="text" [value]="blind" disabled>
 											</div>
 										</div>
-										<div class="col-md-4">
-												<div class="btn-wrapper">
-													<button class="btn-med btn-blue" (click)="checkpage()">
-														ส่งรหัส OTP
-														<i class="fa fa-angle-right" aria-hidden="true"></i>
-													</button>
-												</div>
+										<div class="col-md-5">
+											<div class="btn-wrapper">
+												<button class="btn-med btn-blue" (click)="checkpage()">
+													ขอรหัส OTP อีกครั้ง
+													<i class="fa fa-angle-right" aria-hidden="true"></i>
+												</button>
+											</div>
 										</div>
 									</div>
 									<div class="row">
@@ -240,11 +345,16 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-md-6">
+										<div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss4('otp')">
 											<div class="input-wrapper">
-												<input id="name" name="name" maxlength="30" type="text">
+												<input id="otp" name="otp" maxlength="6" type="text" formControlName="otp">
+												<div class="form-control-feedback" *ngIf="this.formotp.controls.otp.errors && ( this.formotp.controls.otp.touched)">
+													<p *ngIf="this.formotp.controls.otp.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+													<!-- <p *ngIf="this.form.controls.otp.errors.pattern">ข้อมูลไม่ถูกต้อง</p> -->
+
+												</div>
 											</div>
-										</div>										
+										</div>
 									</div>
 									<div class="row pb-4">
 										<div class="col-md-12">
@@ -253,7 +363,7 @@
 									</div>
 
 									<div class="row mt-3">
-										<div class="col-md-6">															
+										<div class="col-md-6">
 											<div class="btn-wrapper-left">
 												<div class="row">
 													<div class="col-md-10">
@@ -272,19 +382,19 @@
 											<div class="btn-wrapper-right">
 												<div class="row justify-content-end">
 													<div class="col-md-10">
-														<button class="btn-med btn-confirm-login" (click)="checkpage('signin')" *ngIf="otp == 'forgot'">
+														<button class="btn-med btn-confirm-login" (click)="checkpage('changepassword')" *ngIf="buttonotp == 'forgot'">
 															<p>ยืนยัน
 																<i class="fa fa-angle-right" aria-hidden="true"></i>
 															</p>
 														</button>
-														<button class="btn-med btn-confirm-login" (click)="checkpage('signup2')" *ngIf="otp == 'signup'">
-																<p>ยืนยัน
-																	<i class="fa fa-angle-right" aria-hidden="true"></i>
-																</p>
+														<button class="btn-med btn-confirm-login" (click)="checkpage('check-otp')" *ngIf="buttonotp == 'signup'">
+															<p>ยืนยัน
+																<i class="fa fa-angle-right" aria-hidden="true"></i>
+															</p>
 														</button>
 													</div>
 												</div>
-												
+
 											</div>
 										</div>
 									</div>
@@ -292,67 +402,72 @@
 							</div>
 						</div>
 					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-	<div class="contact-wrapper" *ngIf="page == 'signup2'">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-6">
-					<div class="contact-popup active">
-						<div class="popup-content item">
+					<div class="contact-popup active" *ngIf="page == 'signup2'">
+						<div class="popup-content">
 							<!-- <div class="row">
 							<div class="col-md-6 col-xs-12"> -->
-									<div class="contact-title">
-											<div class="row">
-												<div class="col">
-														<div class="login-icon">
-																<img src="/assets/Images/icons/icon-register.png" />
-														</div>
-													<p>															
-														ลงทะเบียนเข้าใช้ระบบ
-													</p>
-												</div>
-												<div class="col d-flex justify-content-end">
-													<ul>
-														<li class="th current">
-															<a href="#" title="ไทย">Thai</a>
-														</li>
-														<li class="en ">
-															<a href="#" title="Eng">Eng</a>
-														</li>
-													</ul>
+							<div class="contact-title">
+								<div class="row">
+									<div class="col">
+										<div class="login-icon">
+											<img src="/assets/Images/icons/icon-register.png" />
+										</div>
+										<p>
+											ตั้งค่าชื่อผู้ใช้เข้าระบบและรหัสผ่าน
+										</p>
+									</div>
+									<div class="col d-flex justify-content-end">
+										<ul>
+											<li class="th current">
+												<a href="#" title="ไทย">Thai</a>
+											</li>
+											<li class="en ">
+												<a href="#" title="Eng">Eng</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="contact-form-wrapper">
+								<form [formGroup]="formstep2">
+									<div class="detail-login-wrapper">
+										<div class="row">
+											<div class="col-sm-12 form-group" [ngClass]="ValidatorDisplayCss2('username')">
+												<p>ชื่อผู้ใช้งาน
+												</p>
+												<div class="input-wrapper">
+													<input id="username" name="username" maxlength="15" type="text" formControlName="username">
+													<div class="form-control-feedback" *ngIf="this.formstep2.controls.username.errors && (this.formstep2.controls.username.touched)">
+														<p *ngIf="this.formstep2.controls.username.errors.required || this.formstep2.controls.username.errors?.minlength">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+														<p *ngIf="this.formstep2.controls.username.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
+													</div>
 												</div>
 											</div>
-										</div>
-										<div class="contact-form-wrapper">
-											<form>
-												<div class="detail-login-wrapper">
-												<div class="row">
-													<div class="col-sm-12">
-														<p>ชื่อผู้เข้าระบบ
-														</p>
-														<div class="input-wrapper">
-															<input id="name" name="name" maxlength="30" type="text">
-														</div>
+											<div class="col-sm-12 form-group" [ngClass]="ValidatorDisplayCss2('password')">
+												<p>รหัสผ่าน
+												</p>
+												<div class="input-wrapper ">
+													<input id="password" name="password" maxlength="15" type="password" formControlName="password">
+													<div class="form-control-feedback" *ngIf="this.formstep2.controls.password.errors && (this.formstep2.controls.password.touched)">
+														<p *ngIf="this.formstep2.controls.password.errors.required || this.formstep2.controls.username.errors?.minlength">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+														<p *ngIf="this.formstep2.controls.password.errors.pattern">อย่างน้อย 6 ตัวอักษร รวมทั้งตัวเลข</p>
 													</div>
-													<div class="col-sm-12">
-														<p>รหัสผ่าน
-														</p>
-														<div class="input-wrapper ">
-															<input id="password" name="password" maxlength="30" type="password">
-														</div>
+												</div>
+											</div>
+											<div class="col-sm-12 form-group" [ngClass]="ValidatorDisplayCss2('repeatPassword')">
+												<p>ยืนยันรหัสผ่าน
+												</p>
+												<div class="input-wrapper ">
+													<input id="repeatPassword" name="repeatPassword" maxlength="15" type="password" formControlName="repeatPassword">
+													<div class="form-control-feedback" *ngIf="this.formstep2.controls.repeatPassword.errors && (this.formstep2.controls.repeatPassword.touched)">
+														<p *ngIf="this.formstep2.controls.repeatPassword.errors.required || this.formstep2.controls.username.errors?.minlength">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+														<p *ngIf="this.formstep2.controls.repeatPassword.errors.pattern">อย่างน้อย 6 ตัวอักษร รวมทั้งตัวเลข</p>
+														<!-- <p *ngIf="form.passwordMatchValidator">รหัสไม่ตรงกัน</p> -->
+
 													</div>
-													<div class="col-sm-12">
-														<p>ยืนยันรหัสผ่าน
-														</p>
-														<div class="input-wrapper ">
-															<input id="confirmpassword" name="confirmpassword" maxlength="30" type="password">
-														</div>
-													</div>			
-													<!-- <div class="col-sm-12 mt-3">
+												</div>
+											</div>
+											<!-- <div class="col-sm-12 mt-3">
 														<div class="btn-wrapper-left">
 															<button class="btn-med btn-next-login" (click)="checkpage('signin')">
 																<p class="pl-1 ">ลงทะเบียน
@@ -361,33 +476,33 @@
 															</button>
 														</div>
 													</div> -->
-												</div>
-											</div>
-										
-												<div class="row">
-														<div class="col-md-6">
-															<div class="btn-wrapper-left">
-																<button class="btn-med btn-back-login" (click)="checkpage('signup1')">
-																	<p>
-																		ย้อนกลับ
-																		<i class="fa fa-angle-right" aria-hidden="true"></i>
-																	</p>
-																</button>
-															</div>
-														</div>
-				
-														<div class="col-md-6 ">
-															<div class="btn-wrapper-left">
-																<button class="btn-med btn-next-login" (click)="checkpage('signin')" >
-																	<p>ลงทะเบียน
-																		<i class="fa fa-angle-right" aria-hidden="true"></i>
-																	</p>
-																</button>
-															</div>
-														</div>
-												</div>
-											</form>
 										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-6">
+											<div class="btn-wrapper-left">
+												<button class="btn-med btn-back-login" (click)="checkpage('signup1')">
+													<p>
+														ย้อนกลับ
+														<i class="fa fa-angle-right" aria-hidden="true"></i>
+													</p>
+												</button>
+											</div>
+										</div>
+
+										<div class="col-md-6 ">
+											<div class="btn-wrapper-left">
+												<button class="btn-med btn-next-login" (click)="checkpage('otp-signup')">
+													<p>ลงทะเบียน
+														<i class="fa fa-angle-right" aria-hidden="true"></i>
+													</p>
+												</button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
 							<!-- </div>
 						</div> -->
 							<!-- <div class="col-md-6 col-xs-12">
@@ -434,76 +549,19 @@
 											</div>
 										</div>
 							</div> -->
-							
-							
+
+
 						</div>
 					</div>
-				</div>
-				<!-- <div class="col-md-3">
-					<div class="contact-popup active">
-
-						<div class="popup-side-content-right item">
-							<div class="contact-title">
-								<div class="row ">
-									<div class="col-md-10 col-md-offset-8 xs-hide">
-										<ul>
-											<li class="th current">
-												<a href="#" title="ไทย">Thai</a>
-											</li>
-											<li class="en">
-												<a href="#" title="Eng">Eng</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="contact-form-wrapper">
-								<div class="row mt-5">
-									<div class="col-md-12 mb-2">
-										<h3>ทำความเข้าใจลักษณะสินค้า,</h3>
-										<h3>เงื่อนไข,ผลตอบแทน</h3>
-										<h3>และความเสี่ยงก่อนตัดสินใจ</h3>
-									</div>
-									<div class="col-md-12 text-center mt-3">
-										<div class="btn-wrapper">
-											<div class="row justify-content-center">
-												<div class="col-md-8">
-													<button class="btn-med btn-light" (click)="checkpage('signin')">
-													<div class="login-icon ml-2 mt-1">
-															<img src="/assets/Images/icons/icon-login-white.png" class="visible-lg-block" />
-															  <img src="/assets/Images/icons/icon-login-white.png" class="visible-md-block visible-sm-block visible-xs-block" />
-													</div>
-													เข้าสู่ระบบ
-													</button>
-
-												</div>
-											</div>
-											
-										</div>
-									</div>
-
-									
-								</div>
-							</div>
-						</div>
-					</div>
-				</div> -->
-			</div>
-		</div>
-	</div>
-	<div class="contact-wrapper" *ngIf="page == 'signup1'">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-6">
-					<div class="contact-popup active">
+					<div class="contact-popup active" *ngIf="page == 'signup1'">
 						<div class="popup-content">
 							<div class="contact-title">
 								<div class="row">
 									<div class="col">
-											<div class="login-icon">
-													<img src="/assets/Images/icons/icon-register.png" />
-											</div>
-										<p>															
+										<div class="login-icon">
+											<img src="/assets/Images/icons/icon-register.png" />
+										</div>
+										<p>
 											ลงทะเบียนเข้าใช้ระบบ
 										</p>
 									</div>
@@ -516,62 +574,94 @@
 												<a href="#" title="Eng">Eng</a>
 											</li>
 										</ul>
-									</div>													
-								</div>												
+									</div>
+								</div>
 							</div>
 							<div class="contact-form-wrapper">
-								<form>
+								<form [formGroup]="form">
 									<div class="row">
-										<div class="col-md-3">
-													<p>คำนำหน้า
-													</p>
-													<div class="select-wrapper inline-block">
-															<select name="ddlLink" id="ddlLink">
+										<div class="col-md-3 form-group" [ngClass]="ValidatorDisplayCss('prefix')">
+											<p>คำนำหน้า
+											</p>
+											<div class="input-wrapper">
+												<input id="prefix" name="prefix" maxlength="15" type="text" formControlName="prefix" required>
+												<div class="form-control-feedback" *ngIf="this.form.controls.prefix.errors && ( this.form.controls.prefix.touched)">
+													<p *ngIf="this.form.controls.prefix.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+													<p *ngIf="this.form.controls.prefix.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
+
+												</div>
+											</div>
+											<!-- <div class="select-wrapper inline-block">
+															<select name="ddlLink" id="ddlLink" required>
 																<option value="นาย" selected="">นาย</option>
 																<option value="นางสาว">นางสาว</option>
 																<option value="นาง">นาง</option>
 															</select>
-														</div>
+														</div> -->
 										</div>
-										<div class="col-md-4">
+										<div class="col-md-4 form-group" [ngClass]="ValidatorDisplayCss('firstname')">
 											<p>ชื่อ
 											</p>
 											<div class="input-wrapper">
-												<input id="firstname" name="firstname" maxlength="30" type="text">
+												<input id="firstname" name="firstname" maxlength="15" type="text" formControlName="firstname" required>
+												<div class="form-control-feedback" *ngIf="this.form.controls.firstname.errors && ( this.form.controls.firstname.touched)">
+													<p *ngIf="this.form.controls.firstname.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+													<p *ngIf="this.form.controls.firstname.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
+													<p *ngIf="checkFirstname">รูปแบบของข้อมูลไม่ถูกต้อง</p>
+												</div>
 											</div>
+
 										</div>
-										<div class="col-md-5">
+										<div class="col-md-5 form-group" [ngClass]="ValidatorDisplayCss('lastname')">
 											<p>นามสกุล
 											</p>
 											<div class="input-wrapper ">
-												<input id="lastname" name="lastname" maxlength="30" type="text">
+												<input id="lastname" name="lastname" maxlength="15" type="text" formControlName="lastname" required>
+												<div class="form-control-feedback" *ngIf="this.form.controls.lastname.errors && ( this.form.controls.lastname.touched)">
+													<p *ngIf="this.form.controls.lastname.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+													<p *ngIf="this.form.controls.lastname.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
+
+												</div>
 											</div>
 										</div>
 									</div>
 
 									<div class="row">
-										<div class="col-md-6">
-											<p>เลขบัตรประชาชน
+										<div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss('IDcard')">
+											<p>เลขบัตรประชาชน/หนังสือเดินทาง
 											</p>
 											<div class="input-wrapper ">
-												<input id="IDcard" name="IDcard" maxlength="30" type="text">
+												<input id="IDcard" name="IDcard" maxlength="13" type="text" formControlName="IDcard" required>
+												<div class="form-control-feedback" *ngIf="this.form.controls.IDcard.errors && ( this.form.controls.IDcard.touched)">
+													<p *ngIf="this.form.controls.IDcard.errors.required || this.form.controls.IDcard.errors?.minlength">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+													<p *ngIf="this.form.controls.IDcard.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
+												</div>
 											</div>
 										</div>
-										<div class="col-md-6">
+										<div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss('tel')">
 											<p>เบอร์โทรศัพท์มือถือ
 											</p>
 											<div class="input-wrapper ">
-												<input id="tel" name="tel" maxlength="30" type="text">
+												<input id="tel" name="tel" maxlength="10" type="text" formControlName="tel" required>
+												<div class="form-control-feedback" *ngIf="this.form.controls.tel.errors && ( this.form.controls.tel.touched)">
+													<p *ngIf="this.form.controls.tel.errors.required || this.form.controls.tel.errors?.minlength">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+													<p *ngIf="this.form.controls.tel.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
+													<!-- <p *ngIf="this.form.controls.tel.errors?.minlength">ข้อมูลไม่ครบ</p>																							 -->
+												</div>
 											</div>
 										</div>
 									</div>
 
 									<div class="row">
-										<div class="col-md-6 col-xs-12">
+										<div class="col-md-6 col-xs-12 form-group" [ngClass]="ValidatorDisplayCss('email')">
 											<p>อีเมล์
 											</p>
 											<div class="input-wrapper ">
-												<input id="email" name="email" maxlength="30" type="text">
+												<input id="email" name="email" maxlength="30" type="text" formControlName="email" required>
+												<div class="form-control-feedback" *ngIf="this.form.controls.email.errors && ( this.form.controls.email.touched)">
+													<p *ngIf="this.form.controls.email.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+													<p *ngIf="this.form.controls.email.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
+												</div>
 											</div>
 										</div>
 										<div class="col-md-6 col-xs-12">
@@ -580,24 +670,24 @@
 											<div class="row">
 												<div class="col-md-5 col-sm-6 col-xs-6">
 
-														<div class="captcha">
-															<img src="/assets/Images/icons/captcha.png"/>
-														</div>
+													<div class="captcha">
+														<img src="/assets/Images/icons/captcha.png" />
 													</div>
-													<div class="col-md-1 col-sm-6 col-xs-2">
-														<i class="fas fa-sync-alt refresh" aria-hidden="true"></i>
-													</div>
-													<div class="col-md-5 col-sm-6 col-xs-6">
+												</div>
+												<div class="col-md-1 col-sm-6 col-xs-2">
+													<i class="fas fa-sync-alt refresh" aria-hidden="true"></i>
+												</div>
+												<div class="col-md-5 col-sm-6 col-xs-6">
 
-														<div class="input-wrapper">
-															<input id="tel" name="tel" maxlength="30" type="text">
-														</div>
+													<div class="input-wrapper">
+														<input id="tel" name="tel" maxlength="30" type="text">
 													</div>
+												</div>
 											</div>
 										</div>
 									</div>
 
-									<div class="row justify-content-start">
+									<!-- <div class="row justify-content-start">
 											<div class="col-md-12">
 													<div class="custom-radio-login">
 															<input value="101" id="101" name="rad1" type="radio">
@@ -605,123 +695,51 @@
 															<span >ยอมรับ</span>
 													</div>
 											</div>
-									</div>
+									</div> -->
 									<div class="row">
-											<div class="col-md-6">															
-												<div class="btn-wrapper-left">
-													<div class="row">
-														<div class="col-md-6">
-															<button class="btn-med btn-back-login" (click)="checkpage('signin')">
-																<p>
-																	ย้อนกลับ
-																	<i class="fa fa-angle-right" aria-hidden="true"></i>
-																</p>
-															</button>
-														</div>
+										<div class="col-md-6">
+											<div class="btn-wrapper-left">
+												<div class="row">
+													<div class="col-md-6">
+														<button class="btn-med btn-back-login" (click)="checkpage('signin')">
+															<p>
+																ย้อนกลับ
+																<i class="fa fa-angle-right" aria-hidden="true"></i>
+															</p>
+														</button>
 													</div>
-												</div>
-											</div>
-
-											<div class="col-md-6">
-												<div class="btn-wrapper-right">
-													<div class="row justify-content-end">
-														<div class="col-md-12">
-															<button class="btn-med btn-confirm-login" (click)="checkpage('otp-signup')">
-																<p>ถัดไป
-																	<i class="fa fa-angle-right" aria-hidden="true"></i>
-																</p>
-															</button>
-														</div>
-													</div>
-													
 												</div>
 											</div>
 										</div>
+
+										<div class="col-md-6">
+											<div class="btn-wrapper-right">
+												<div class="row justify-content-end">
+													<div class="col-md-12">
+														<button class="btn-med btn-confirm-login" (click)="checkpage('signup2')">
+															<p>ถัดไป
+																<i class="fa fa-angle-right" aria-hidden="true"></i>
+															</p>
+														</button>
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</div>
 
 								</form>
 							</div>
 						</div>
 					</div>
+
 				</div>
-				<!-- <div class="col-md-3">
-					<div class="contact-popup active">
-
-						<div class="popup-side-content-right">
-							<div class="contact-title">
-								<div class="row ">
-									<div class="col-md-10 col-md-offset-8 xs-hide">
-										<ul>
-											<li class="th current">
-												<a href="#" title="ไทย" class="active">Thai</a>
-											</li>
-											<li class="en">
-												<a href="#" title="Eng">Eng</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="contact-form-wrapper">
-								<div class="row mt-5">
-									<div class="col-md-12 mb-2">
-										<h3>ทำความเข้าใจลักษณะสินค้า,</h3>
-										<h3>เงื่อนไข,ผลตอบแทน</h3>
-										<h3>และความเสี่ยงก่อนตัดสินใจ</h3>
-									</div>
-									<div class="col-md-12 mb-4">
-										<div class="btn-wrapper">
-											<button class="btn-signin" (click)="checkpage('signin')">
-													<div class="login-icon ml-2">
-															<img src="/assets/Images/icons/icon-login-green.png" class="visible-lg-block" />
-															  <img src="/assets/Images/icons/icon-login-white.png" class="visible-md-block visible-sm-block visible-xs-block" />
-													</div>
-												<p>
-													เข้าสู่ระบบ
-												</p>
-											</button>
-										</div>
-									</div>
-								</div>
-								<div class="row mt-4">
-										<div class="col-md-6">
-												<div class="custom-radio-between">
-														<input value="101" id="101" name="rad1" type="radio" checked>
-														<label for="101"></label>
-														<span >ยอมรับ</span>
-													</div>
-
-											</div>
-									</div>
-								<div class="row">													
-									<div class="col-md-6">														
-										<div class="btn-wrapper-left">
-											<button class="btn-red" (click)="checkpage('signup1')">
-												<p class="pl-1 ">ย้อนกลับ
-													<i class="fa fa-angle-right pl-4" aria-hidden="true"></i>
-												</p>
-											</button>
-										</div>
-									</div>
-									<div class="col-md-6">														
-											<div class="btn-wrapper-left">
-												<button class="btn-next" (click)="checkpage('otp')">
-													<p class="pl-1 ">ลงทะเบียน
-														<i class="fa fa-angle-right pl-4" aria-hidden="true"></i>
-													</p>
-												</button>
-											</div>
-										</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div> -->
 			</div>
 		</div>
 	</div>
 	<div class="clearfix"></div>
 	<div class="copyright .d-none .d-sm-block">
-		<h5 class="mt-5">ต้องการสอบถามข้อมูล ติดต่อผ่ายทะเบียนกองทุนสำรองเลี้ยงชีพ
+		<h5>ต้องการสอบถามข้อมูล ติดต่อผ่ายทะเบียนกองทุนสำรองเลี้ยงชีพ
 			<span>บลจ.แลนด์ แอนด์ เฮาส์ จำกัด</span>
 		</h5>
 		<p>Tel. 02-286-3484 ต่อ 335 - 336 หรือ E-mail : registrar_pvd@lhfund.co.th</p>
@@ -730,10 +748,189 @@
 <div class="clearfix"></div>
 <footer id="footer-wrapper" class="footer-wrapper">
 	<div class="copyright-footer mb-2">
-		<p >ต้องการสอบถามข้อมูล</p> 
+		<p>ต้องการสอบถามข้อมูล</p>
 		<p>ติดต่อผ่ายทะเบียนกองทุนสำรองเลี้ยงชีพ</p>
-		<p><span>บลจ.แลนด์ แอนด์ เฮาส์ จำกัด</span></p>
+		<p>
+			<span>บลจ.แลนด์ แอนด์ เฮาส์ จำกัด</span>
+		</p>
 		<p>Tel. 02-286-3484 ต่อ 335 - 336 </p>
 		<p>หรือ E-mail : registrar_pvd@lhfund.co.th</p>
 	</div>
 </footer>
+<!-- 
+<ng-template #template>
+		<div class="modal-header">
+		  <h4 class="modal-title pull-left">Modal</h4>
+		  <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+		  Just a modal with a bunch of words inside, nothing serious.
+		</div>
+</ng-template> -->
+
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="disclaimer">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">ข้อตกลงและเงื่อนไขในการใช้บริการ</h4>
+			</div>
+			<div class="modal-body" id="content-scroll-1">
+				<p>
+					บริษัทหลักทรัพย์จัดการกองทุน แลนด์ แอนด์ เฮ้าส์ จำกัด (ในข้อตกลงนี้เรียกว่า “บริษัท”) เป็นเจ้าของและผู้ดูแลจัดการเว็บไซต์นี้
+					เพื่อให้ข้อมูลเกี่ยวกับผลิตภัณฑ์และบริการต่างๆของบริษัท และความสะดวกในการติดต่อสื่อสารระหว่างท่านกับบริษัท การใช้เว็บไซต์นี้จึงต้องเป็นไปตามข้อตกลงและเงื่อนไขการใช้บริการเว็บไซต์ของบริษัท
+					ซึ่งท่านควรอ่านข้อกำหนดและเงื่อนไขต่างๆเหล่านี้โดยละเอียด ในการเข้าถึงเว็บไซต์ของบริษัทและหน้าจอใดๆของเว็บไซต์ หมายถึง
+					ท่านตกลงผูกพันทางกฎหมายตามข้อกำหนดและเงื่อนไขการใช้บริการนี้ โปรดอย่าเข้าใช้เว็บไซต์นี้ หากท่านไม่ยอมรับข้อตกลงและเงื่อนไขของบริษัท
+				</p>
+
+				<h3>ลิขสิทธิ์</h3>
+				<p>
+					บริษัทเป็นเจ้าของลิขสิทธิ์ใน ภาพ ข้อความ การแสดงผล รูปแบบนำเสนอ เครื่องหมายการค้า และส่วนประกอบอื่นๆที่ปรากฏในเว็บไซต์ของบริษัท
+					เว้นแต่จะมีการระบุบอย่างชัดเจนเป็นอย่างอื่น ห้ามทำการดัดแปลง จัดเก็บในระบบที่สามารถนำมาใช้งานได้ ถ่ายโอน ลอกเลียนแบบ
+					เผยแพร่หรือใช้ข้อมูลและส่วนประกอบนั้นโดยวิธีอื่นใด เพื่อวัตถุประสงค์ทางการค้า โดยมิได้รับความยินยอมล่วงหน้าเป็นลายลักษณ์อักษรจากบริษัท
+				</p>
+
+				<h3>การใช้ข้อมูลและส่วนประกอบต่างๆ</h3>
+				<p>
+					ผลิตภัณฑ์ การบริการต่างๆ ข้อมูล และส่วนประกอบต่างๆ ที่ปรากฏอยู่บนเว็บไซต์ของบริษัท อาจมีการเปลี่ยนแปลงได้โดยดุลพินิจของบริษัท
+					โดยไม่ต้องแจ้งให้ท่านทราบล่วงหน้า บริษัทสงวนสิทธิ์ในการกลั่นกรองและคัดเลือกผู้ประสงค์ขอใช้บริการต่างๆที่ปรากฏบนเว็บไซต์นี้ตามหลักเกณฑ์ของบริษัท
+					บริษัทจะดำเนินการปรับปรุงข้อมูล ผลิตภัณฑ์และบริการต่างๆของบริษัท ที่ปรากฏในเว็บไซต์ให้ถูกต้องและทันสมัยอยู่เสมอ การเชื่อมต่อเข้าสู่แหล่งอินเตอร์เน็ตอื่นผ่านเว็บไซต์ของบริษัท
+					เป็นความเสี่ยงของท่านเอง และท่านยอมรับว่าบริษัทไม่ต้องรับผิดชอบต่อความเสียหายที่อาจเกิดขึ้นจากการใช้บริการผ่านเว็บไซต์ของบริษัท
+					ไม่ว่าทางตรงหรือทางอ้อม ความบกพร่อง ความล่าช้าในการดำเนินการ การถ่ายโอนข้อมูล หรือความเสียหายที่เกิดจากไวรัสคอมพิวเตอร์
+					การไม่ทำงานของเครือข่ายหรือระบบ ระหว่างการใช้งานเว็บไซต์ของบริษัท หากมีผลิตภัณฑ์อื่นใดที่มีการนำเสนอผ่านเว็บไซต์ของบริษัท
+					บริษัทไม่รับผิดชอบต่อการรับประกันความพึงพอใจในผลิตภัณฑ์และบริการนั้นๆ
+				</p>
+
+				<h3>การเชื่อมโยงกับเว็บไซต์อื่นๆ</h3>
+				<p>
+					เว็บไซต์นี้อาจมีการเชื่อมโยงกับเว็บไซต์อื่นๆ ซึ่งอยู่ภายใต้การให้บริการและดูแลจัดการโดยบุคคลที่สาม บริษัทมิได้ให้การรับรองหรือยืนยันความถูกต้องในเนื้อหาของเว็บไซต์เหล่านั้น
+					รวมทั้ง มิได้สื่อโดยนัยว่าบริษัทให้การรับรองหรือแนะนำข้อมูลในเว็บไซต์เหล่านั้น การที่ท่านเลือกเข้าเยื่ยมชมเว็บไซต์ที่ให้บริการดาวน์โหลดซอฟแวร์
+					เพื่อวัตถุประสงค์ในการให้ข้อมูลและเพื่อความสะดวกของท่าน ถือว่าท่านยอมรับความเสี่ยงแต่เพียงผู้เดียว หากมีความสูญเสียหรือความเสียหายที่เกิดจากการที่ท่านดาวน์โหลดซอฟแวร์ดังกล่าว
+					บริษัทไม่ต้องรับผิดชอบ บริษัทขอแนะนำให้ท่านอ่านรายละเอียดข้อตกลงและเงื่อนไขการใช้บริการ ตลอดจนนโยบายการรักษาความปลอดภัยของเว็บไซต์ที่เชื่อมโยงนั้นก่อนเข้าใช้เว็บไซต์ดังกล่าว
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn-med btn-secondary" data-dismiss="modal">Cancel</button>
+				<button type="button" class="btn-med btn-primary" data-dismiss="modal">ยอมรับ</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="confirm" style="z-index: 9999;">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">ยืนยันการเปลี่ยนรหัสผ่าน</h4>
+			</div>
+			<div class="modal-body" id="content-scroll-1">	
+				<h3>ท่านได้ทำการเปลี่ยนรหัสผ่านเรียบร้อยแล้ว</h3>				
+			</div>
+			<div class="modal-footer" style="display: block;">
+				<!-- <button type="button" class="btn-med btn-secondary" data-dismiss="modal">Cancel</button> -->
+				<!-- <button type="button" class="btn-med btn-primary" data-dismiss="modal" (click)="checkpage('signin')">ยอมรับ</button> -->
+				<div class="row justify-content-end">
+					<div class="col-sm-6">
+						<button class="btn-med btn-confirm-login" data-dismiss="modal" (click)="checkpage('signin')">
+							<p style="margin-top: 7px;">ตกลง
+								<i class="fa fa-angle-right" aria-hidden="true"></i>
+							</p>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<p-dialog  [(visible)]="display" [modal]="true" [responsive]="true" [width]="750"  [minWidth]="200" [draggable]="false" [resizable]="false"
+         [baseZIndex]="10000">		
+		 	<p-header>
+					ข้อตกลงและเงื่อนไขในการใช้บริการ
+			</p-header>
+				
+					บริษัทหลักทรัพย์จัดการกองทุน แลนด์ แอนด์ เฮ้าส์ จำกัด (ในข้อตกลงนี้เรียกว่า “บริษัท”) เป็นเจ้าของและผู้ดูแลจัดการเว็บไซต์นี้
+					เพื่อให้ข้อมูลเกี่ยวกับผลิตภัณฑ์และบริการต่างๆของบริษัท และความสะดวกในการติดต่อสื่อสารระหว่างท่านกับบริษัท การใช้เว็บไซต์นี้จึงต้องเป็นไปตามข้อตกลงและเงื่อนไขการใช้บริการเว็บไซต์ของบริษัท
+					ซึ่งท่านควรอ่านข้อกำหนดและเงื่อนไขต่างๆเหล่านี้โดยละเอียด ในการเข้าถึงเว็บไซต์ของบริษัทและหน้าจอใดๆของเว็บไซต์ หมายถึง
+					ท่านตกลงผูกพันทางกฎหมายตามข้อกำหนดและเงื่อนไขการใช้บริการนี้ โปรดอย่าเข้าใช้เว็บไซต์นี้ หากท่านไม่ยอมรับข้อตกลงและเงื่อนไขของบริษัท
+				
+
+				<h3>ลิขสิทธิ์</h3>
+				
+					บริษัทเป็นเจ้าของลิขสิทธิ์ใน ภาพ ข้อความ การแสดงผล รูปแบบนำเสนอ เครื่องหมายการค้า และส่วนประกอบอื่นๆที่ปรากฏในเว็บไซต์ของบริษัท
+					เว้นแต่จะมีการระบุบอย่างชัดเจนเป็นอย่างอื่น ห้ามทำการดัดแปลง จัดเก็บในระบบที่สามารถนำมาใช้งานได้ ถ่ายโอน ลอกเลียนแบบ
+					เผยแพร่หรือใช้ข้อมูลและส่วนประกอบนั้นโดยวิธีอื่นใด เพื่อวัตถุประสงค์ทางการค้า โดยมิได้รับความยินยอมล่วงหน้าเป็นลายลักษณ์อักษรจากบริษัท
+				
+
+				<h3>การใช้ข้อมูลและส่วนประกอบต่างๆ</h3>
+				
+					ผลิตภัณฑ์ การบริการต่างๆ ข้อมูล และส่วนประกอบต่างๆ ที่ปรากฏอยู่บนเว็บไซต์ของบริษัท อาจมีการเปลี่ยนแปลงได้โดยดุลพินิจของบริษัท
+					โดยไม่ต้องแจ้งให้ท่านทราบล่วงหน้า บริษัทสงวนสิทธิ์ในการกลั่นกรองและคัดเลือกผู้ประสงค์ขอใช้บริการต่างๆที่ปรากฏบนเว็บไซต์นี้ตามหลักเกณฑ์ของบริษัท
+					บริษัทจะดำเนินการปรับปรุงข้อมูล ผลิตภัณฑ์และบริการต่างๆของบริษัท ที่ปรากฏในเว็บไซต์ให้ถูกต้องและทันสมัยอยู่เสมอ การเชื่อมต่อเข้าสู่แหล่งอินเตอร์เน็ตอื่นผ่านเว็บไซต์ของบริษัท
+					เป็นความเสี่ยงของท่านเอง และท่านยอมรับว่าบริษัทไม่ต้องรับผิดชอบต่อความเสียหายที่อาจเกิดขึ้นจากการใช้บริการผ่านเว็บไซต์ของบริษัท
+					ไม่ว่าทางตรงหรือทางอ้อม ความบกพร่อง ความล่าช้าในการดำเนินการ การถ่ายโอนข้อมูล หรือความเสียหายที่เกิดจากไวรัสคอมพิวเตอร์
+					การไม่ทำงานของเครือข่ายหรือระบบ ระหว่างการใช้งานเว็บไซต์ของบริษัท หากมีผลิตภัณฑ์อื่นใดที่มีการนำเสนอผ่านเว็บไซต์ของบริษัท
+					บริษัทไม่รับผิดชอบต่อการรับประกันความพึงพอใจในผลิตภัณฑ์และบริการนั้นๆ
+				
+
+				<h3>การเชื่อมโยงกับเว็บไซต์อื่นๆ</h3>
+				
+					เว็บไซต์นี้อาจมีการเชื่อมโยงกับเว็บไซต์อื่นๆ ซึ่งอยู่ภายใต้การให้บริการและดูแลจัดการโดยบุคคลที่สาม บริษัทมิได้ให้การรับรองหรือยืนยันความถูกต้องในเนื้อหาของเว็บไซต์เหล่านั้น
+					รวมทั้ง มิได้สื่อโดยนัยว่าบริษัทให้การรับรองหรือแนะนำข้อมูลในเว็บไซต์เหล่านั้น การที่ท่านเลือกเข้าเยื่ยมชมเว็บไซต์ที่ให้บริการดาวน์โหลดซอฟแวร์
+					เพื่อวัตถุประสงค์ในการให้ข้อมูลและเพื่อความสะดวกของท่าน ถือว่าท่านยอมรับความเสี่ยงแต่เพียงผู้เดียว หากมีความสูญเสียหรือความเสียหายที่เกิดจากการที่ท่านดาวน์โหลดซอฟแวร์ดังกล่าว
+					บริษัทไม่ต้องรับผิดชอบ บริษัทขอแนะนำให้ท่านอ่านรายละเอียดข้อตกลงและเงื่อนไขการใช้บริการ ตลอดจนนโยบายการรักษาความปลอดภัยของเว็บไซต์ที่เชื่อมโยงนั้นก่อนเข้าใช้เว็บไซต์ดังกล่าว
+				
+        <p-footer>
+				
+						<!-- <button type="button" class="btn-med btn-secondary" data-dismiss="modal">Cancel</button> -->
+						<!-- <button type="button" class="btn-med btn-primary" data-dismiss="modal" (click)="checkpage('signin')">ยอมรับ</button> -->
+						<div class="row justify-content-end">
+							<div class="col-sm-3">
+								<button class="btn-med btn-primary" (click)="display=false">
+									<p style="margin-top: 7px;">ยอมรับ
+										<i class="fa fa-angle-right" aria-hidden="true"></i>
+									</p>
+								</button>
+							</div>
+						</div>
+					
+            <!-- <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
+            <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No" class="ui-button-secondary"></button> -->
+        </p-footer>
+</p-dialog>
+<p-dialog  [(visible)]="comfirmchange" [modal]="true" [responsive]="true" [width]="auto" [minWidth]="200" [draggable]="false" [resizable]="false"
+         [baseZIndex]="10000">		
+		 	<p-header>
+				ยืนยันการเปลี่ยนรหัสผ่าน
+			</p-header>
+				
+
+				<h3>ท่านได้ทำการเปลี่ยนรหัสผ่านเรียบร้อยแล้ว</h3>
+				
+					
+				
+        <p-footer>
+				
+						<!-- <button type="button" class="btn-med btn-secondary" data-dismiss="modal">Cancel</button> -->
+						<!-- <button type="button" class="btn-med btn-primary" data-dismiss="modal" (click)="checkpage('signin')">ยอมรับ</button> -->
+						<div class="row justify-content-end">
+							<div class="col-sm-6">
+								<button class="btn-med btn-primary" (click)="checkpage('signin')">
+									<p style="margin-top: 7px;">ตกลง
+										<i class="fa fa-angle-right" aria-hidden="true"></i>
+									</p>
+								</button>
+							</div>
+						</div>
+					
+            <!-- <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
+            <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No" class="ui-button-secondary"></button> -->
+        </p-footer>
+</p-dialog>
+	
+	<!-- <button type="text" (click)="showDialog()" pButton icon="pi pi-info-circle" label="Show"></button> -->

@@ -13,11 +13,11 @@
                             </ul> -->
                             <div class="dropdown dropdown-content">
                                     <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                        หน้ารวม Port
+                                        {{ 'NAVBAR.dashboard' | translate }}
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a (click)="checkpage('dashboard')" title="ตรวจสอบ/แก้ไข ข้อมูลส่วนตัว">หน้ารวม Port</a>
+                                            <a (click)="checkpage('dashboard')" title="{{ 'NAVBAR.dashboard' | translate }}">{{ 'NAVBAR.dashboard' | translate }}</a>
                                         </li>
                                         <!-- <li>
                                             <a (click)="checkpage('over-view')" title="แบบประเมินความเสี่ยงในการลงทุนที่เหมาะสม">แบบประเมินความเสี่ยงในการลงทุนที่เหมาะสม</a>
@@ -31,12 +31,19 @@
                                     </ul>
                                     <div class="clearfix"></div>
                                 </div>
+                                <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
+                                    <li role="presentation" id="menu1" class="current">
+                                      <a title="{{ 'NAVBAR.dashboard' | translate }}" >{{ 'NAVBAR.dashboard' | translate }}</a>
+                                    </li>
+                                    
+                    
+                                  </ul>
                         </div>
-                        <app-myport-menu></app-myport-menu>
+                        <!-- <app-myport-menu></app-myport-menu> -->
 
                         <div class="fund-table-wrapper">
                             <div class="heading-section">
-                                <div class="detail-head-wrapper">
+                                <div class="detail-head-wrapper" style="border:unset;">
                                 <div class="row">
                                     
                                     <div class="col-sm-12 col-md-12 col-xs-12 icon-option mb-3">
@@ -64,7 +71,7 @@
                                         <p>เลขที่ผู้ถือหน่วยลงทุน</p>
                                         <div class="select-wrapper inline-block pb-3">
                                             <select name="ddlLink" id="ddlLink">
-                                                <option value="0" selected="">9990244757</option>
+                                                <option value="0" selected="">แสดงบัญชีทั้งหมด</option>
                                                 <option value="36">9990244757</option>
                                                 <option value="29">9990244757</option>
                                             </select>
@@ -77,7 +84,7 @@
                                     <div class="col-sm-6 col-md-3">
 
                                         <p>วันที่ออกรายงาน</p>
-                                        <span>7 มิถุนายน 2561</span>
+                                        <span> {{ dateformat }}</span>
                                     </div>
                                     
                                 </div>
@@ -115,7 +122,7 @@
                                     <div class="col-sm">
                                         <div class="table-responsive">
                                             <table class="table table-performance">
-                                                <tbody>
+                                                <thead>
                                                     <tr class="captions">
                                                         <td colspan="11">
                                                             <h3>
@@ -140,9 +147,12 @@
                                                             Current Amount <br/>(Bath)
                                                         </th>
                                                         <th class="bg-blue">
-                                                            Unrealize<br/>(Gain/Loss)
+                                                            Unrealize<br/>(Gain/Loss) (บาท)
                                                         </th>
                                                     </tr>
+                                                </thead>
+                                                <tbody>
+                                                    
                                                     <tr class="line">
                                                         <td>
                                                             Long Term Equity
@@ -352,7 +362,7 @@
                                 <div class="row">
                                 <div class="col-md-12">
                                     <div class="row">
-                                        <div class="col-sm-12 mt-3"> <h4>Unrealize Gain/Loss</h4></div>
+                                        <div class="col-sm-12 mt-3"> <h4>สัดส่วนการลงทุน (Asset Alloction)</h4></div>
                                         <div class="col-sm-12"><div [chart]="chart"></div></div>
                                     </div>
                                    

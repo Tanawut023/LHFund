@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-transaction',
@@ -9,7 +10,9 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 export class TransactionComponent implements OnInit {
     page = "purchase-over-view";
 
-    constructor(private route: ActivatedRoute, private router: Router) { }
+    constructor(private route: ActivatedRoute, private router: Router,private translate: TranslateService) { 
+        translate.addLangs(["th", "en"]);
+    }
 
     ngOnInit() {
         $('#bottom-main-nav li').find('a').removeClass('current');

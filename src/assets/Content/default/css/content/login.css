@@ -47,7 +47,8 @@
   padding: 0;
   background-image: url("/assets/Images/banners/banner-login.png");
   background-size: cover;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  background-position: center; }
   @media screen and (max-width: 767px) {
     #main-wrapper {
       background-image: url("/assets/Images/banners/banner-login-m.png");
@@ -59,7 +60,6 @@
   width: 100%;
   z-index: 1;
   text-decoration: none;
-  margin-top: 100px;
   position: relative; }
   @media screen and (max-width: 767px) {
     .copyright {
@@ -132,11 +132,11 @@
   max-width: 100%;
   padding: 0;
   margin: 0 auto;
-  margin-top: 240px; }
+  margin-top: 160px; }
   .contact-wrapper .detail-login-wrapper {
     position: relative;
     max-width: 100%;
-    padding: 30px 40px 20px 40px;
+    padding: 10px 40px 20px 40px;
     margin: 0 auto;
     width: 100%; }
     .contact-wrapper .detail-login-wrapper h4 {
@@ -188,7 +188,6 @@
     background-image: url("/assets/Images/bg/bg-login-box.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    min-height: 460px;
     min-width: 100%;
     opacity: 1;
     z-index: 1;
@@ -573,7 +572,7 @@
   .contact-wrapper .active .popup-content {
     opacity: 1;
     z-index: 98;
-    margin-top: 0;
+    margin-top: -30px;
     visibility: visible;
     overflow: visible !important; }
   @media screen and (max-width: 767px) {

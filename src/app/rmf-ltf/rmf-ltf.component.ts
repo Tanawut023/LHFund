@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-rmf-ltf',
@@ -8,7 +9,9 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 })
 export class RmfLtfComponent implements OnInit {
   
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router,private translate: TranslateService) {
+    translate.addLangs(["th", "en"]);
+   }
 
   ngOnInit() {
     $('#bottom-main-nav li').find('a').removeClass('current');

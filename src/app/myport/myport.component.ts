@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 // import { Highcharts } from 'highcharts';
 import { Chart } from 'angular-highcharts';
-
+import { datethai} from '../Share/dateformat'
+import {TranslateService} from '@ngx-translate/core';
 @Component({
     selector: 'app-myport',
     templateUrl: './myport.component.html',
@@ -12,8 +13,12 @@ export class MyportComponent implements OnInit {
     Highcharts: any;
     chart: any;
     page = "dashboard";
+    dateformat = datethai;
 
-    constructor() { }
+    constructor(private translate: TranslateService) {
+        translate.addLangs(["th", "en"]);
+        // translate.setDefaultLang('th');
+       }
 
     ngOnInit() {
 
@@ -24,14 +29,14 @@ export class MyportComponent implements OnInit {
             chart: {
                 type: 'pie',
             },
-            legend: {
-                align: 'right',
-                verticalAlign:'middle',
-                width: 200,
-                itemWidth: 100,
-                y: 0,
-                x: 0
-            },
+            // legend: {
+            //     align: 'right',
+            //     verticalAlign:'middle',
+            //     width: 200,
+            //     itemWidth: 100,
+            //     y: 0,
+            //     x: 0
+            // },
             title: {
                 text: ''
             },

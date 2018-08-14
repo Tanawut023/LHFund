@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
 
 
 @Component({
@@ -9,6 +10,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class AppComponent {
   title = 'app';
+
+  constructor(private translate: TranslateService) {
+    translate.addLangs(["th", "en"]);
+    translate.setDefaultLang('th');
+
+    // let browserLang = translate.getBrowserLang();
+    // translate.use(browserLang.match(/th|en/) ? browserLang : 'en');
+}
   onActivate(event) {
     // let scrollToTop = window.setInterval(() => {
     //     let pos = window.pageYOffset;

@@ -12,50 +12,50 @@
                 </button>
                 <ul class="dropdown-menu">
                   <li>
-                    <a (click)="navigate('receipt-history')" title="ประวัติการรับเงินปันผล">ประวัติการรับเงินปันผล</a>
+                    <a (click)="navigate('receipt-history')" title="{{ 'NAVBAR.dividend-detail' | translate }}">{{ 'NAVBAR.dividend-detail' | translate }}</a>
                   </li>
                   <li>
-                    <a (click)="navigate('past-events')" title="รายการเคลื่อนไหวที่ผ่านมา">รายการเคลื่อนไหวที่ผ่านมา</a>
+                    <a (click)="navigate('past-events')" title="{{ 'NAVBAR.statement' | translate }}">{{ 'NAVBAR.statement' | translate }}</a>
                   </li>
-                  <li>
+                  <!-- <li>
                     <a (click)="navigate('summary')" title="สรุปกำไร/ขาดทุน">สรุปกำไร/ขาดทุน</a>
+                  </li> -->
+                  <li>
+                    <a (click)="navigate('today-list')" title="{{ 'NAVBAR.today-input' | translate }}">{{ 'NAVBAR.today-input' | translate }}</a>
                   </li>
                   <li>
-                    <a (click)="navigate('today-list')" title="รายการวันนี้">รายการวันนี้</a>
+                    <a (click)="navigate('not-available-list')" title="{{ 'NAVBAR.unalloted-transaction' | translate }}">{{ 'NAVBAR.unalloted-transaction' | translate }}</a>
                   </li>
                   <li>
-                    <a (click)="navigate('not-available-list')" title="รายการที่ยังไม่มีผล">รายการที่ยังไม่มีผล</a>
+                    <a (click)="navigate('confirmation')" title="{{ 'NAVBAR.transaction-comfirmmation' | translate }}">{{ 'NAVBAR.transaction-comfirmmation' | translate }}</a>
                   </li>
                   <li>
-                    <a (click)="navigate('confirmation')" title="ใบยืนยันการทำรายการ">ใบยืนยันการทำรายการ</a>
-                  </li>
-                  <li>
-                    <a (click)="navigate('type')" title="ประเภทรายการ">ประเภทรายการ</a>
+                    <a (click)="navigate('type')" title="{{ 'NAVBAR.type' | translate }}">{{ 'NAVBAR.type' | translate }}</a>
                   </li>
                 </ul>
                 <div class="clearfix"></div>
               </div>
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu3">
-                  <a title="ประวัติการรับเงินปันผล" (click)="navigate('receipt-history')">ประวัติการรับเงินปันผล</a>
+                  <a title="{{ 'NAVBAR.dividend-detail' | translate }}" (click)="navigate('receipt-history')">{{ 'NAVBAR.dividend-detail' | translate }}</a>
                 </li>
                 <li role="presentation" id="menu4">
-                  <a title="รายการเคลื่อนไหวที่ผ่านมา" (click)="navigate('past-events')">รายการเคลื่อนไหวที่ผ่านมา</a>
+                  <a title="{{ 'NAVBAR.statement' | translate }}" (click)="navigate('past-events')">{{ 'NAVBAR.statement' | translate }}</a>
                 </li>
-                <li role="presentation" id="menu5">
+                <!-- <li role="presentation" id="menu5">
                   <a title="สรุปกำไร/ขาดทุน" (click)="navigate('summary')">สรุปกำไร/ขาดทุน</a>
-                </li>
+                </li> -->
                 <li role="presentation" id="menu6">
-                  <a title="รายการวันนี้" (click)="navigate('today-list')">รายการวันนี้</a>
+                  <a title="{{ 'NAVBAR.today-input' | translate }}" (click)="navigate('today-list')">{{ 'NAVBAR.today-input' | translate }}</a>
                 </li>
                 <li role="presentation" id="menu7">
-                  <a title="รายการที่ยังไม่มีผล" (click)="navigate('not-available-list')">รายการที่ยังไม่มีผล</a>
+                  <a title="{{ 'NAVBAR.unalloted-transaction' | translate }}" (click)="navigate('not-available-list')">{{ 'NAVBAR.unalloted-transaction' | translate }}</a>
                 </li>
                 <li role="presentation" id="menu8">
-                  <a title="ใบยืนยันการทำรายการ" (click)="navigate('confirmation')">ใบยืนยันการทำรายการ</a>
+                  <a title="{{ 'NAVBAR.transaction-comfirmmation' | translate }}" (click)="navigate('confirmation')">{{ 'NAVBAR.transaction-comfirmmation' | translate }}</a>
                 </li>
                 <li role="presentation" id="menu9">
-                  <a title="ประเภทรายการ" (click)="navigate('type')">ประเภทรายการ</a>
+                  <a title="{{ 'NAVBAR.type' | translate }}" (click)="navigate('type')">{{ 'NAVBAR.type' | translate }}</a>
                 </li>
 
               </ul>

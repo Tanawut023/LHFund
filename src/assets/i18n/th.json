@@ -1,0 +1,36 @@
+{
+  "HEADER": {
+    "Account": "บัญชีผู้ใช้",
+    "logout": "ออกจากระบบ",
+    "transaction": "ทำรายการ",
+    "report": "รายงาน",
+    "profile": "ข้อมูลส่วนตัว",
+    "regular": "รายการแบบประจำ"
+    
+  },
+  "NAVBAR": {
+    "dashboard": "หน้ารวม Port",
+    "subscription": "รายการซื้อ",
+    "redemption": "รายการ",
+    "switching": "รายการซื้อ",
+    "ltf-for-re": "หน่วยลงทุน LTF ที่ครบตามเงื่อนไข",
+    "rmf-ltf-sub": "สรุปยอดซื้อ RMF & LTF ในรอบปี",
+    "rmf-cer": "หนังสือรับรองฯ RMF",
+    "ltf-cer": "หนังสือรับรองฯ LTF",
+    "dividend-detail": "ประวัติการรับเงินปันผล",
+    "statement": "รายการเคลื่อนไหวที่ผ่านมา",
+    "today-input": "รายการวันนี้",
+    "unalloted-transaction": "รายการที่ยังไม่มีผล",
+    "transaction-comfirmmation": "ใบยืนยันการทำรายการ",
+    "type": "ประเภทรายการ",
+    "regular-subscription-order": "รายการซื้อแบบประจำ",
+    "regular-redemption-order": "รายการขายคืนแบบประจำ",
+    "regular-switching-order": "รายการสับเปลี่ยนแบบประจำ",
+    "view-plan": "ดูรายการทั้งหมด",
+    "view-edit-personal-information": "ตรวจสอบ/แก้ไข ข้อมูลส่วนตัว",
+    "suitability": "แบบประเมินความเสี่ยงในการลงทุนที่เหมาะสม",
+    "changepassword": "เปลี่ยนรหัสผ่าน",
+    "setting": "ตั้งค่า"
+    
+  }
+}

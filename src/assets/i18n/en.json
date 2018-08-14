@@ -1,0 +1,34 @@
+{
+  "HEADER": {
+    "Account": "Account",
+    "logout": "Logout",
+    "transaction": "Transaction",
+    "report": "Report",
+    "profile": "Personal Information",
+    "regular": "Regular Saving Plan"
+  },
+  "NAVBAR": {
+    "dashboard": "dashboard",
+    "subscription": "Subscription Order",
+    "redemption": "Redemption Order",
+    "switching": "Switching Order",
+    "ltf-for-re": "LTF For Redemption",
+    "rmf-ltf-sub": "RMF & LTF Annual Subscription",
+    "rmf-cer": "RMF Investment Certificate",
+    "ltf-cer": "LTF Investment Certificate",
+    "dividend-detail": "Dividend Detail",
+    "statement": "Statement",
+    "today-input": "Today's Input",
+    "unalloted-transaction": "Unalloted Transaction",
+    "transaction-comfirmmation": "Transaction Comfirmmation",
+    "type": "Type",
+    "regular-subscription-order": "Regular Subscription Order",
+    "regular-redemption-order": "Regular Redemption Order",
+    "regular-switching-order": "Regular Switching Order",
+    "view-plan": "View Plan",
+    "view-edit-personal-information": "View/Edit Personal Information",
+    "suitability": "Suitability (Risk Profile Assessment)",
+    "changepassword": "Change Password",
+    "setting": "Setting"
+  }
+}
