@@ -172,7 +172,7 @@
           <div class="col-md-3">
 
             <div class="input-wrapper">
-              <input class="form-control textinput dateinput bg-gray" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text">
+              <input class=" textinput dateinput bg-gray" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text" (click)="d.toggle()">
             </div>
 
           </div>

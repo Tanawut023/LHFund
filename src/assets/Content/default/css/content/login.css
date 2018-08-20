@@ -51,8 +51,7 @@
   background-position: center; }
   @media screen and (max-width: 767px) {
     #main-wrapper {
-      background-image: url("/assets/Images/banners/banner-login-m.png");
-      background-size: 100% auto; } }
+      background-image: url("/assets/Images/banners/banner-login-m.png"); } }
 
 .copyright {
   display: block;
@@ -122,10 +121,6 @@
   float: left;
   padding: 0;
   margin-right: 10px; }
-  @media screen and (max-width: 767px) {
-    .login-icon img {
-      width: 28px !important;
-      height: 28px !important; } }
 
 .contact-wrapper {
   position: relative;
@@ -217,7 +212,8 @@
       float: left; }
       .contact-wrapper .popup-content ul li {
         display: inline-block;
-        margin: 0 5px; }
+        margin: 0 5px;
+        cursor: pointer; }
         .contact-wrapper .popup-content ul li a {
           font-size: 22px;
           line-height: 28px;

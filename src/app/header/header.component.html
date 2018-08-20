@@ -31,10 +31,10 @@
                         </li> -->
                     </ul>
                     <ul class="sw-lang">
-                        <li class="th current" (click)="translate.use('th')">
+                        <li class="th" (click)="switchlang('th')" [ngClass]="{'current': langth}">
                             <a  title="ไทย">ไทย</a>
                         </li>
-                        <li class="en" (click)="translate.use('en')">
+                        <li class="en" (click)="switchlang('en')" [ngClass]="{'current': langen}">
                             <a  title="Eng">Eng</a>
                         </li>
                         <!-- <li class="ch">

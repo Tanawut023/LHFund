@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -6,10 +6,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: [],
 })
 export class FooterComponent implements OnInit {
-
-  constructor() { }
+  @HostListener("window:scroll", []) onWindowScroll() {
+    this.scrollFunction();
+  }
+  constructor() {
+    
+   }
 
   ngOnInit() {
   }
+
+  scrollFunction() {
+    if ($(window).scrollTop() > 50) {
+      $('.backtotop .totop').addClass('show');
+  } else {
+      $('.backtotop .totop').removeClass('show');
+  }
+}
+uptotop(){
+  // window.scroll(0,0);
+  window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
+
+}
+
 
 }

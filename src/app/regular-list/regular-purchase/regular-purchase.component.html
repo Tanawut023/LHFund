@@ -139,8 +139,8 @@
           </div>
           <div class="col-md-3">
             <div class="input-wrapper">
-              <input class="form-control textinput dateinput bg-gray" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text">
-            </div>
+                <input class=" textinput dateinput bg-gray" [(ngModel)]="model.startDate" ngbDatepicker #d1="ngbDatepicker" id="startDate" placeholder="วว/ดด/ปปปป" name="startDate" type="text" (click)="d1.toggle()">
+              </div>
           </div>
         </div>
         <div class="row">
@@ -149,7 +149,7 @@
           </div>
           <div class="col-md-3">
             <div class="input-wrapper">
-              <input class="form-control textinput dateinput bg-gray" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text">
+              <input class=" textinput dateinput bg-gray" [(ngModel)]="model.endDate" ngbDatepicker #d2="ngbDatepicker" id="endDate" placeholder="วว/ดด/ปปปป" name="endDate" type="text" (click)="d2.toggle()">
             </div>
           </div>
         </div>

@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-purchase',
   templateUrl: './purchase.component.html',
-  styleUrls: ['./purchase.component.scss']
+  styleUrls: ['./purchase.component.scss'],
 })
 export class PurchaseComponent implements OnInit {
   page = "purchase";
   dialog: boolean = false;
+  model;
   content = "ท่านยังไม่ได้ทำแบบประเมินความเสี่ยงหรือเคยทำมาแล้วเกิน2ปี หากต้องการดำเนินการต่อกรุณากด ตกลง";
-  constructor() { }
+  constructor(private translate: TranslateService) { 
+    translate.addLangs(["th", "en"]);
+}
 
   ngOnInit() {
     $('#mutual-tab-menu').find('li').removeClass('current');

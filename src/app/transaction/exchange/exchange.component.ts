@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExchangeComponent implements OnInit {
   page = "exchange";
+  model;
   constructor() { }
 
   ngOnInit() {

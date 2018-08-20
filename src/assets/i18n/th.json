@@ -11,8 +11,8 @@
   "NAVBAR": {
     "dashboard": "หน้ารวม Port",
     "subscription": "รายการซื้อ",
-    "redemption": "รายการ",
-    "switching": "รายการซื้อ",
+    "redemption": "รายการขาย",
+    "switching": "รายการสับเปลี่ยน",
     "ltf-for-re": "หน่วยลงทุน LTF ที่ครบตามเงื่อนไข",
     "rmf-ltf-sub": "สรุปยอดซื้อ RMF & LTF ในรอบปี",
     "rmf-cer": "หนังสือรับรองฯ RMF",
@@ -32,5 +32,19 @@
     "changepassword": "เปลี่ยนรหัสผ่าน",
     "setting": "ตั้งค่า"
     
+  },
+  "CONTENT": {
+    "unit-holder-num": "เลขที่ผู้ถือหน่วยลงทุน",
+    "unit-holder-name": "ชื่อผู้ถือหน่วยลงทุน",
+    "report-date": "วันที่ออกรายงาน",
+    "address": "ที่อยู่",
+    "asset-alloction": "สัดส่วนเงินลงทุน",
+    "purchase": "ซื้อหน่วยลงทุน",
+    "input-date": "วันที่ทำรายการ",
+    "payment": "เลือกวิธีชำระเงิน",
+    "fund-name": "กองทุน",
+    "amount": "จำนวน",
+    "debit-from-acc": "หักบัญชีธนาคาร",
+    "Advance-s-date": "วันที่ทำรายการซื้อล่วงหน้า"
   }
 }

@@ -77,7 +77,7 @@
     }
 }
 .dateinput {
-    margin-bottom: 30px !important;
+    // margin-bottom: 30px !important;
     padding-right: 25px;
     background-image: url('/assets/Images/icons/ico-date-green.png');
     background-repeat: no-repeat;
@@ -268,7 +268,7 @@
 }
 
 .sprite {
-    background-image: url('/assets/images/spritesheet.png');
+    background-image: url('/assets/Images/spritesheet.png');
     background-repeat: no-repeat;
     display: inline-block;
 
@@ -2596,6 +2596,10 @@
                 color: $color-text;
                 font-family: $default-font;
                 text-align: left;
+                // @media screen and (min-width: 767px){
+                //     height: 500px;
+                // }  
+
 
                 h3 {
                     font-size: $text-small;

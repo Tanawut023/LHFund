@@ -1,0 +1,22 @@
+.close {
+  float: left;
+  margin-right: 0;
+  background: none;
+  /*font-family: $default-font;*/
+  font-size: unset;
+  line-height: unset;
+  opacity: 1;
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  height: 48px;
+  right: 0px;
+  left: -49px;
+  width: 50px;
+  background-color: #FF4A4A;
+  z-index: 2000; }
+  .close span {
+    font-size: unset;
+    line-height: unset; }
+  .close h4 {
+    color: white; }

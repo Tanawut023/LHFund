@@ -1,31 +1,22 @@
-import { Component, OnInit, TemplateRef, AfterContentInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, AfterContentInit, ViewChild, AfterViewInit ,} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { far } from '@fortawesome/free-regular-svg-icons';
 import { Directive, ElementRef, AfterViewChecked, Input, HostListener } from '@angular/core';
-import * as Chart from 'chart.js';
 import { FormBuilder, FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
-import { datethai } from '../Share/dateformat'
+import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {TranslateService} from '@ngx-translate/core';
 // import {DialogModule} from 'primeng/dialog';
 // import {AccordionModule} from 'primeng/accordion';
 // import {MenuItem} from 'primeng/api'; 
-
-// import { BsModalService } from 'ngx-bootstrap/modal';
-// import { ModalDirective } from 'ngx-bootstrap';
-// import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 // import { RegistrationValidator } from './register.validator';
 
-library.add(fas, far);
 declare var $: any;
 
 
 // declare var $:any;
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.scss'],
 })
 // ,'../../assets/Content/default/css/content/login.css'
 @Directive({
@@ -33,7 +24,7 @@ declare var $: any;
 })
 
 
-export class LoginComponent implements AfterViewInit {
+export class LoginComponent implements OnInit {
   @ViewChild('disclaimer')
   private elName: ElementRef;
   page = "signin";
@@ -51,12 +42,13 @@ export class LoginComponent implements AfterViewInit {
   isNotValid = false;
   UserDetails: Object;
   formstep2: FormGroup;
-  dateformat = datethai;
   profile: any = {};
   blind: any = "";
   changepassword: any ="check";
   display: boolean = false;
   comfirmchange: boolean = false;
+  langth: boolean;
+  langen: boolean;
 
     
   // modalRef: BsModalRef;
@@ -68,7 +60,14 @@ export class LoginComponent implements AfterViewInit {
 
   // public isModalShown: boolean = true;
 
-  constructor(private el: ElementRef, private fb: FormBuilder, private router: Router) { }
+  constructor(
+    private el: ElementRef, 
+    private fb: FormBuilder, 
+    private router: Router,
+    private modalService: NgbModal,
+    private translate: TranslateService) {
+      translate.addLangs(["th", "en"]);
+     }
   //   ngOnInit() {  
 
   //   }
@@ -77,11 +76,34 @@ export class LoginComponent implements AfterViewInit {
     this.page = "signin";
     // this.comfirmchange =true;
     this.display = true;
+    this.langth =true;
+    // this.open();
+    // $("#disclaimer").modal('show');
+    // $("#disclaimer").addClass('in');
     // this.comfirmchange = true;
   }
   ngAfterViewInit() {
     // this.el.modal('show');
+  //   $('#disclaimer').modal({
+  //     backdrop: 'static',
+  //     keyboard: false,
+  //     show: true
+  // });
+  }
+  switchlang(lang){
+    if(lang=='th'){
+      this.translate.use('th');
+      this.langen = false;
+      this.langth = true;
+      
+    }
+    else if(lang=='en'){
+      this.translate.use('en');
+      this.langth = false;
+      this.langen = true;
+  }
     
+
   }
 
   checkpage(page) {
@@ -246,6 +268,14 @@ export class LoginComponent implements AfterViewInit {
       'has-danger': this.isFieldNotValid5(field)
     };
   }
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+
+  }
 
   // validatorInputCss(field: string){
   //   return{
@@ -303,6 +333,12 @@ export class LoginComponent implements AfterViewInit {
         [
           Validators.required,
           Validators.pattern(/^[A-Za-zก-๗]{3,15}$/)
+        ]
+      ],      
+      recaptcha: [null,
+        [
+          Validators.required,
+          // Validators.pattern(/^[A-Za-zก-๗]{3,15}$/)
         ]
       ]
     })

@@ -68,7 +68,7 @@
                                     </div>
                                     <div class="col-sm-6 col-md-3">
 
-                                        <p>เลขที่ผู้ถือหน่วยลงทุน</p>
+                                        <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
                                         <div class="select-wrapper inline-block pb-3">
                                             <select name="ddlLink" id="ddlLink">
                                                 <option value="0" selected="">แสดงบัญชีทั้งหมด</option>
@@ -78,12 +78,12 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
-                                        <p>ชื่อผู้ถือหน่วยลงทุน</p>
+                                        <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
                                         <span>เนติวัฒน์ โชติกร</span>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
 
-                                        <p>วันที่ออกรายงาน</p>
+                                        <p>{{ 'CONTENT.report-date' | translate }}</p>
                                         <span> {{ dateformat }}</span>
                                     </div>
                                     
@@ -91,7 +91,7 @@
                                 <div class="row">
                                     <div class="col-sm-6 col-md-6">
 
-                                        <p>ที่อยู่</p>
+                                        <p>{{ 'CONTENT.address' | translate }}</p>
                                         <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
                                     </div>
                                 </div>
@@ -126,7 +126,7 @@
                                                     <tr class="captions">
                                                         <td colspan="11">
                                                             <h3>
-                                                                สัดส่วนเงินลงทุน
+                                                                {{ 'CONTENT.asset-alloction' | translate }}
                                                             </h3>
                                                         </td>
                                                     </tr>
@@ -362,7 +362,7 @@
                                 <div class="row">
                                 <div class="col-md-12">
                                     <div class="row">
-                                        <div class="col-sm-12 mt-3"> <h4>สัดส่วนการลงทุน (Asset Alloction)</h4></div>
+                                        <div class="col-sm-12 mt-3"> <h4>{{ 'CONTENT.asset-alloction' | translate }}</h4></div>
                                         <div class="col-sm-12"><div [chart]="chart"></div></div>
                                     </div>
                                    

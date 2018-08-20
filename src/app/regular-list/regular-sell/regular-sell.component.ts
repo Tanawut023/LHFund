@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegularSellComponent implements OnInit {
   page = "regular-sell";
+  model :any={};
   constructor() { }
 
   ngOnInit() {

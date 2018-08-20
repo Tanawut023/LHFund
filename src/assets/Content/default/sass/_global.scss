@@ -107,6 +107,11 @@ if it's not present, don't show loader */
     background: unset;
     background-color: white;
     border: 1px solid #ffffff;
+    max-width: 750px;
+    @media screen and (max-width: 767px) {
+         width: 100% !important;
+    }
+    
 }
 .ui-dialog .ui-dialog-titlebar-icon{
     display:none;
@@ -126,6 +131,9 @@ if it's not present, don't show loader */
     font-size: 22px;
     line-height: 28px;
     color: $color-text;
+    @media screen and (max-width: 767px) {
+    max-height: 430px !important;
+    }
 }     
         
             

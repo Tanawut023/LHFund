@@ -30,5 +30,12 @@
     "suitability": "Suitability (Risk Profile Assessment)",
     "changepassword": "Change Password",
     "setting": "Setting"
+  },
+  "CONTENT": {
+    "unit-holder-num": "Unit Holder Number",
+    "unit-holder-name": "Unit Holder Name",
+    "report-date": "Reporting Date",
+    "address": "Address",
+    "asset-alloction": "Asset Alloction"
   }
 }

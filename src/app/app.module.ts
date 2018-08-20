@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule }          from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
+import { routes } from './app-routing';
+import { RouterModule } from '@angular/router'
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -64,9 +65,16 @@ import { DialogModule } from 'primeng/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { NgxCaptchaModule } from 'ngx-captcha';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateCustomParserFormatter} from './Share/dateformat';
+import { NgbDatepickerConfig, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { RegisterComponent } from './login/register/register.component';
+// import { NgbDateFRParserFormatter } from "./ngb-date-fr-parser-formatter"
  
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  
 }
 
 @NgModule({
@@ -107,6 +115,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ExchangeComponent,
     PurchaseForSellComponent,
     PagenotfoundComponent,
+    RegisterComponent,
     // AccordionModule,
     // PanelModule,
     // ButtonModule,
@@ -116,8 +125,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    AppRoutingModule,    
+    FormsModule,    
     FontAwesomeModule,
     ChartModule,
     ReactiveFormsModule,
@@ -128,17 +136,23 @@ export function HttpLoaderFactory(http: HttpClient) {
     ButtonModule,
     BrowserAnimationsModule,    
     HttpClientModule,
+    NgbModule.forRoot(),
+    RouterModule.forRoot(routes),
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,
           useFactory: HttpLoaderFactory,
           deps: [HttpClient]
       }
-  })
+  }),
+  NgxCaptchaModule.forRoot({
+    reCaptcha2SiteKey: '6Lfl4mkUAAAAAOTJ-H2mB4-PfSPLMLSsI2OCMivg',
+    invisibleCaptchaSiteKey: '6Lfl4mkUAAAAAOTJ-H2mB4-PfSPLMLSsI2OCMivg'
+  }),
 
     // ProfileModule
   ],
-  providers: [],
+  providers: [{provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

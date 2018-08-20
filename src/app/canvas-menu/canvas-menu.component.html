@@ -4,23 +4,58 @@
 
 <div class="canvas-menu-wrapper">
   <nav class="canvas-menu">
-    <ul class="list-unstyled main-menu">
-      <li class="text-right">
-        <div class="close" id="nav-close" (click)="hidenav()">
-          <i class="sprite sprite-p_search_off"></i>
-          <span>Close</span>
-        </div>
-      </li>
-    </ul>
-
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hidenav()">
+          <h4 class="modal-title">X</h4>
+        </button>
+      <div class="top-menu-wrapper" id="top-menu-wrapper">
+          <div class="wrapper">
+              <div class="row">
+                  <div class="col-md-12 top-social-nav">
+                      <ul class="">
+                          <li class="ico-fb">
+                              <a href="#" title="บัญชีผู้ใช้">
+                                 {{ 'HEADER.Account' | translate }} : 
+                              </a>
+                          </li>
+                          <li class="ico-line">
+                              <a href="#" title="เนติวัฒน์">
+                                  <img src="./assets/Images/icons/icon-login-white.png" />
+                                  เนติวัฒน์
+                                  <!-- <img src="./assets/Images/icons/p_dropdown_select.png" /> -->
+                              </a>
+                          </li>
+                          <li class="th current" (click)="translate.use('th')">
+                              <a  title="ไทย">ไทย</a>
+                          </li>
+                          <li class="en" (click)="translate.use('en')">
+                              <a  title="Eng">Eng</a>
+                          </li>
+                          <!-- <li class="ico-ig">
+                              <a href="#" title="">
+                                  <img src="./assets/Images/icons/ico-ig-white.png" />
+                              </a>
+                          </li> -->
+                      </ul>
+                      <ul class="sw-lang">
+                          
+                          <!-- <li class="ch">
+                              <a href="#" title="Chi">Chi</a>
+                          </li> -->
+                      </ul>
+                  </div>
+              </div>
+          </div>
+    </div>
+ 
+<!-- 
     <div id="top-canvas-menu" class="header_tools">
-      <!--Include your top navigation here-->
-    </div>
-
-    <div id="top-canvas-search" class="header_search">
-      <!-- clone element form header_search -->
-    </div>
-
+      
+    </div> -->
+<!--Include your top navigation here-->
+    <!-- <div id="top-canvas-search" class="header_search">
+      
+    </div> -->
+<!-- clone element form header_search -->
     <ul id="canvas_mainnav" class="list-unstyled main-menu">
       <li id="myport"><a routerLink="/myport" title="My Port">My Port <span class="icon"></span></a></li>
                                 <li id="transaction"><a routerLink="/transaction" title="{{ 'HEADER.transaction' | translate }}">{{ 'HEADER.transaction' | translate }}<span class="icon"></span></a></li>
@@ -28,8 +63,25 @@
                                 <li id="report"><a routerLink="/report" title="{{ 'HEADER.report' | translate }}">{{ 'HEADER.report' | translate }}<span class="icon"></span></a></li>
                                 <li id="regular-list"><a routerLink="/regular-list" title="{{ 'HEADER.regular' | translate }} ">{{ 'HEADER.regular' | translate }} <span class="icon"></span></a></li>
                                 <li id="profile"><a routerLink="/profile" title="{{ 'HEADER.profile' | translate }}">{{ 'HEADER.profile' | translate }} <span class="icon"></span></a></li>
+                                <li >&nbsp;</li>
     </ul>
+    <div class="row justify-content-center ">
+        <div class="col-md-6 col-xs-10 col-sm-6">
+          <button class="btn-med btn-primary text-center" routerLink="/">
+                <img style="vertical-align: sub;" src="./assets/Images/icons/ico-forgot.png" />
+            ออกจากระบบ
+            <!-- <i class="fa fa-angle-right" aria-hidden="true"></i> -->
+
+          </button>
+        </div>
+      </div>
   </nav>
+  <!-- <li class="ico-yt">
+      <a href="#" title="ออกจากระบบ">
+          <img src="./assets/Images/icons/ico-forgot.png" />
+          {{ 'HEADER.logout' | translate }}
+      </a>
+  </li> -->
 
   <!-- <div class="navbar navbar-inverse navbar-fixed-top">
       Include your brand here

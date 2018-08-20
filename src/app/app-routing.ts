@@ -46,9 +46,20 @@ import { SettingComponent } from './profile/setting/setting.component';
 
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
-const routes: Routes = [
+import { RegisterComponent } from './login/register/register.component';
+
+export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  {
+    path: 'login', component: LoginComponent,
+    // children: [
+    //   { path: '', component: RegisterComponent, pathMatch: 'full' },
+    //   { path: 'sell', component: SellComponent },
+    //   { path: 'exchange', component: ExchangeComponent },
+    //   { path: 'purchase-for-sell', component: PurchaseForSellComponent },
+    //   { path: '**', component: PurchaseComponent },
+    // ]
+  },
   { path: 'myport', component: MyportComponent },
   {
     path: 'transaction', component: TransactionComponent,
@@ -106,16 +117,16 @@ const routes: Routes = [
   { path: '**', component: PagenotfoundComponent }
 ];
 
-@NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forRoot(routes)
-  ],
-  exports: [RouterModule],
-  declarations: []
-})
+// @NgModule({
+//   imports: [
+//     CommonModule,
+//     RouterModule.forRoot(routes)
+//   ],
+//   exports: [RouterModule],
+//   declarations: []
+// })
 
-export class AppRoutingModule {
+// export class AppRoutingModule {
 
 
-}
+// }

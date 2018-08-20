@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./receipt-history.component.scss']
 })
 export class ReceiptHistoryComponent implements OnInit {
-
+  model: any = {};
   constructor() { }
 
   ngOnInit() {

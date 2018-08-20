@@ -1,0 +1,187 @@
+@import '../../assets/Content/default/sass/variables';
+.test {
+    color: red;
+}
+#header .top-menu-wrapper{
+    display: none !important;
+}
+#header .bottom-menu-wrapper{
+    display: none !important;
+}
+.footer_sub{
+    display: none !important;
+}
+input[type="text"],input[type="password"]{
+    height: 42px !important;
+}
+/* form-control-feedback p{
+    color: red !important;
+} */
+.has-danger .form-control-feedback p{
+    color: #FF4A4A !important;
+    margin:  0;
+    
+}
+.form-group{
+    margin: 0;
+}
+.ui-widget-header,{
+    background-color: white;
+    background: unset;
+}
+.ui-widget{
+    font-family: "KitithadaBold" !important;
+}
+#recaptcha2{
+    transform: scale(0.82) !important;
+    transform-origin: 0 0 !important;
+    margin: 14px 0 !important;
+}
+/* .rc-anchor-light{
+    background: white !important;
+} */
+
+/* .modal-body {
+        height: 380px;
+    }
+
+    .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+        background-color: #999;
+    }
+
+    @media screen and (min-width: 767px) {
+        .modal-body {
+            height: 500px;
+        }
+    } */
+
+    .modal-custom {
+        z-index: 2001;
+    
+        .modal-dialog {
+            width: 50%;
+            margin-top: 82px;
+    
+            .modal-content {
+                border-radius: 0px;
+    
+                .modal-header {
+                    border-bottom: 0;
+                    overflow: hidden;
+                    
+    
+                    .modal-title {
+                        float: left;
+                        max-width: 90%;
+                        color: $color-hover;
+                        font-family: $default-font;
+                        font-size: $text-large;
+                        line-height: $text-large;
+                        text-overflow: ellipsis;
+                        word-wrap: break-word;
+                        text-transform: uppercase;
+                    }
+    
+                    .close {
+                        float: right;
+                        margin-right: 0;
+                        background: none;
+                        color: $color-hover;
+                        /*font-family: $default-font;*/
+                        font-size: unset;
+                        line-height: unset;
+                        opacity: 1;
+                        cursor: pointer;
+                        position: absolute;
+                        top:-43px;
+                        height:45px;
+                        right:0px;
+                        background-color: $color-red;
+    
+                        span {
+                            font-size: unset;
+                            line-height: unset;
+                        }
+    
+                        &:hover {
+                        }
+                    }
+                }
+    
+                .modal-body {
+                    padding-top: 0;
+                    color: $color-text;
+                    font-family: $default-font;
+                    text-align: left;
+    
+                    h3 {
+                        font-size: $text-small;
+                        font-family: $default-font;
+                        font-weight: 400;
+                        line-height: $text-large;
+                        margin: 11px 0;
+                    }
+    
+                    p {
+                        // font-size: $text-content;
+                        // line-height: $text-small;
+    
+    
+                        &.note {
+                            color: $color-primary;
+                            margin-bottom: 10px;
+                        }
+                    }
+                    span{
+                        color: $color-primary;
+                    }
+    
+                    label {
+                        line-height: $text-small;
+                    }
+    
+                    img {
+                        max-width: 100%;
+                    }
+                }
+    
+                .modal-footer {
+                    border-top: 1px solid transparent;
+                    text-align: right;
+    
+                    p {
+                        font-size: $text-content;
+                        line-height: $text-small;
+    
+    
+                        &.note {
+                            color: $color-primary;
+                            margin-bottom: 10px;
+                        }
+                    }
+                }
+            }
+    
+            @media screen and (max-width: 767px) {
+                width: 95%;
+    
+                .modal-content {
+                    .modal-body {
+                        padding: 15px;
+                    }
+    
+                    .modal-footer {
+                    }
+                }
+            }
+        }
+    
+        &.lg {
+            .modal-dialog {
+                width: 80%;
+                height: auto;
+            }
+        }
+    }
+
+

@@ -2655,7 +2655,8 @@ html:not(.lt-ie9) .visible-print {
 html,
 body {
   font-family: "KitithadaBold";
-  font-weight: normal; }
+  font-weight: normal;
+  overflow-x: hidden; }
 
 .clearfix {
   clear: both;
@@ -2856,20 +2857,11 @@ html.expanded-right, body.expanded-right {
   #exit-canvas.expanded {
     position: fixed;
     visibility: visible;
-    right: 240px;
+    right: 0;
     -webkit-transition: all 0.3s linear;
     -o-transition: all 0.3s linear;
     transition: all 0.3s linear;
-    background: white;
-    background: transparent\9;
-    background: rgba(255, 255, 255, 0.5); }
-  #exit-canvas:hover {
-    background: white;
-    background: transparent\9;
-    background: rgba(255, 255, 255, 0.1);
-    -webkit-transition: all 0.3s linear;
-    -o-transition: all 0.3s linear;
-    transition: all 0.3s linear; }
+    background: rgba(0, 0, 0, 0.5); }
 
 #canvas-menu-section {
   position: fixed;
@@ -3424,25 +3416,141 @@ html.expanded-right, body.expanded-right {
     -o-transition-duration: 700ms;
     transition-duration: 700ms; }
   .canvas-menu {
-    background-color: rgba(0, 0, 0, 0.95);
+    background-color: white;
     display: block;
     height: 100%;
-    overflow: auto;
     position: fixed;
     right: -100%;
     font-size: 15px;
     top: 0;
-    width: 100%;
+    width: 85%;
     z-index: 2000;
     transition: right 0.5s ease-in-out 0s;
     -webkit-transition: right 0.5s ease-in-out 0s;
     -moz-transition: right 0.5s ease-in-out 0s;
     -o-transition: right 0.5s ease-in-out 0s; }
+    .canvas-menu .top-menu-wrapper {
+      display: block;
+      width: 100%;
+      height: auto;
+      padding: 0;
+      margin: 0;
+      background-color: #1CA59B; }
+      .canvas-menu .top-menu-wrapper .wrapper {
+        margin: 0 auto; }
+      .canvas-menu .top-menu-wrapper .top-main-nav {
+        text-align: left; }
+        .canvas-menu .top-menu-wrapper .top-main-nav ul {
+          list-style: none;
+          padding: 0;
+          margin: 0; }
+          .canvas-menu .top-menu-wrapper .top-main-nav ul li {
+            position: relative;
+            display: inline-block;
+            padding: 10px 0;
+            margin: 0 5px;
+            -webkit-transition: all 0.2s;
+            -moz-transition: all 0.2s;
+            -ms-transition: all 0.2s;
+            -o-transition: all 0.2s;
+            transition: all 0.2s; }
+            .canvas-menu .top-menu-wrapper .top-main-nav ul li a {
+              font-size: 22px;
+              line-height: 28px;
+              color: #fff; }
+              .canvas-menu .top-menu-wrapper .top-main-nav ul li a:hover {
+                color: #000;
+                text-decoration: none; }
+            .canvas-menu .top-menu-wrapper .top-main-nav ul li:hover ul {
+              display: block;
+              opacity: 1;
+              visibility: visible; }
+            .canvas-menu .top-menu-wrapper .top-main-nav ul li.current a {
+              color: #000; }
+              .canvas-menu .top-menu-wrapper .top-main-nav ul li.current a:hover {
+                color: #000;
+                text-decoration: none; }
+            .canvas-menu .top-menu-wrapper .top-main-nav ul li ul {
+              padding: 0;
+              position: absolute;
+              top: 100%;
+              left: 0;
+              min-width: 240px;
+              -webkit-box-shadow: none;
+              -moz-box-shadow: none;
+              box-shadow: none;
+              display: none;
+              opacity: 0;
+              visibility: hidden;
+              -webkit-transiton: opacity 0.2s;
+              -moz-transition: opacity 0.2s;
+              -ms-transition: opacity 0.2s;
+              -o-transition: opacity 0.2s;
+              -transition: opacity 0.2s;
+              z-index: 99; }
+              .canvas-menu .top-menu-wrapper .top-main-nav ul li ul li {
+                display: block;
+                padding: 10px;
+                margin: 0;
+                color: #fff;
+                background-color: #1CA59B; }
+                .canvas-menu .top-menu-wrapper .top-main-nav ul li ul li a {
+                  display: block;
+                  font-size: 22px;
+                  line-height: 22px;
+                  color: #fff; }
+                  .canvas-menu .top-menu-wrapper .top-main-nav ul li ul li a:hover {
+                    color: #000;
+                    text-decoration: none; }
+                .canvas-menu .top-menu-wrapper .top-main-nav ul li ul li:hover {
+                  color: #000;
+                  background-color: #1CA59B; }
+                  .canvas-menu .top-menu-wrapper .top-main-nav ul li ul li:hover a {
+                    color: #000; }
+      .canvas-menu .top-menu-wrapper .top-social-nav {
+        text-align: right;
+        padding-right: 25px; }
+        .canvas-menu .top-menu-wrapper .top-social-nav ul {
+          display: inline-block;
+          list-style: none;
+          padding: 0;
+          margin: 0; }
+          .canvas-menu .top-menu-wrapper .top-social-nav ul li {
+            display: inline-block;
+            padding: 10px 0;
+            margin: 0 5px;
+            cursor: pointer; }
+            .canvas-menu .top-menu-wrapper .top-social-nav ul li a {
+              font-size: 22px;
+              line-height: 28px;
+              color: #fff; }
+              .canvas-menu .top-menu-wrapper .top-social-nav ul li a:hover {
+                color: #000;
+                text-decoration: none; }
+            .canvas-menu .top-menu-wrapper .top-social-nav ul li.current a {
+              color: #000; }
+              .canvas-menu .top-menu-wrapper .top-social-nav ul li.current a:hover {
+                color: #000;
+                text-decoration: none; }
+            .canvas-menu .top-menu-wrapper .top-social-nav ul li img {
+              height: 15px;
+              vertical-align: initial; } }
+      @media screen and (max-width: 999px) and (max-width: 999px) {
+        .canvas-menu .top-menu-wrapper .top-social-nav {
+          text-align: left; }
+          .canvas-menu .top-menu-wrapper .top-social-nav ul {
+            float: left; }
+            .canvas-menu .top-menu-wrapper .top-social-nav ul.sw-lang {
+              float: right; } }
+    @media screen and (max-width: 999px) and (max-width: 1199px) {
+      .canvas-menu .top-menu-wrapper .wrapper {
+        padding: 0 10px; } }
+
+@media screen and (max-width: 999px) {
     .canvas-menu .main-menu {
-      padding-top: 12px;
       list-style: none; }
       .canvas-menu .main-menu li {
-        border-bottom: 1px solid #323949;
+        border-bottom: 1px solid #cdcdcd;
         /*margin-left: 10px;
                 margin-right: 10px;*/
         padding: 12px 20px; }
@@ -3454,12 +3562,12 @@ html.expanded-right, body.expanded-right {
           font-size: 28px;
           line-height: 1em;
           text-transform: uppercase;
-          color: #fff; }
+          color: #1CA59B; }
           .canvas-menu .main-menu li a:hover {
-            color: #fff;
+            color: #1CA59B;
             text-decoration: none; }
             .canvas-menu .main-menu li a:hover .caret {
-              border-top-color: #fff; }
+              border-top-color: #1CA59B; }
           .canvas-menu .main-menu li a .caret {
             width: 0;
             height: 0;
@@ -4177,7 +4285,11 @@ if it's not present, don't show loader */
 .ui-widget-content {
   background: unset;
   background-color: white;
-  border: 1px solid #ffffff; }
+  border: 1px solid #ffffff;
+  max-width: 750px; }
+  @media screen and (max-width: 767px) {
+    .ui-widget-content {
+      width: 100% !important; } }
 
 .ui-dialog .ui-dialog-titlebar-icon {
   display: none; }
@@ -4197,6 +4309,9 @@ if it's not present, don't show loader */
   font-size: 22px;
   line-height: 28px;
   color: #5a5a5a; }
+  @media screen and (max-width: 767px) {
+    .ui-dialog-content {
+      max-height: 430px !important; } }
 
 #header-wrapper {
   width: 100%;
@@ -6407,7 +6522,6 @@ input[type=reset] {
           line-height: 40px; } }
 
 .dateinput {
-  margin-bottom: 30px !important;
   padding-right: 25px;
   background-image: url("/assets/Images/icons/ico-date-green.png");
   background-repeat: no-repeat;
@@ -6536,7 +6650,7 @@ input[type=reset] {
         background-color: transparent; }
 
 .sprite {
-  background-image: url("/assets/images/spritesheet.png");
+  background-image: url("/assets/Images/spritesheet.png");
   background-repeat: no-repeat;
   display: inline-block; }
   .sprite.sprite-p_back_to_top {

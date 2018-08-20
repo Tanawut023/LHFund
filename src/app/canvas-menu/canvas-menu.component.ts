@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-canvas-menu',
   templateUrl: './canvas-menu.component.html',
@@ -7,11 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CanvasMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private translate: TranslateService) {
+    translate.addLangs(["th", "en"]);
+   }
 
   ngOnInit() {
   }
   hidenav(){
     $('body').removeClass('nav-expanded');
+    $('#exit-canvas').removeClass('expanded');
   }
 }

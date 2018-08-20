@@ -13,7 +13,7 @@ export class AppComponent {
 
   constructor(private translate: TranslateService) {
     translate.addLangs(["th", "en"]);
-    translate.setDefaultLang('th');
+    translate.use('th');
 
     // let browserLang = translate.getBrowserLang();
     // translate.use(browserLang.match(/th|en/) ? browserLang : 'en');
@@ -27,6 +27,9 @@ export class AppComponent {
     //         window.clearInterval(scrollToTop);
     //     }
     // }, 16);
+    $(".se-pre-con").fadeOut("slow");;
+    $('body').removeClass('nav-expanded');
+    $('#exit-canvas').removeClass('expanded');
     window.scroll(0,0);
     //or document.body.scrollTop = 0;
     //or document.querySelector('body').scrollTo(0,0)

@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./past-events.component.scss']
 })
 export class PastEventsComponent implements OnInit {
-
+  model: any ={};
   constructor() { }
 
   ngOnInit() {
