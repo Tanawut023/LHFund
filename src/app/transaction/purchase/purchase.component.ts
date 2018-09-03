@@ -28,14 +28,14 @@ export class PurchaseComponent implements OnInit {
             this.page = "purchase";            
             break;        
         case 'purchase-step1':
-            // this.page = "purchase-step1";
-            if(this.dialog == false){
-                this.dialog = true;
-            }
-            else{
-                this.dialog = false;
-                this.page = "purchase-step1";
-            }
+            this.page = "purchase-step1";
+            // if(this.dialog == false){
+            //     this.dialog = true;
+            // }
+            // else{
+            //     this.dialog = false;
+            //     this.page = "purchase-step1";
+            // }
             break;
         case 'purchase-step2':
             this.page = "purchase-step2";

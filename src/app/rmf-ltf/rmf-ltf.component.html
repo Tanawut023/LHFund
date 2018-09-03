@@ -7,24 +7,16 @@
           <div class="col-md-12">
             <div class="tabs-menu-wrapper">
               <div class="dropdown dropdown-content">
-                <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                <button class="btn-med btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">
                   เมนูกองทุน
                 </button>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a (click)="navigate('ltf-condition-complete')" title="{{ 'NAVBAR.ltf-for-re' | translate }}">{{ 'NAVBAR.ltf-for-re' | translate }}</a>
-                  </li>
-                  <li>
-                    <a (click)="navigate('conclusion')" title="{{ 'NAVBAR.rmf-ltf-sub' | translate }}">{{ 'NAVBAR.rmf-ltf-sub' | translate }}</a>
-                  </li>
-                  <li>
-                    <a (click)="navigate('certificate-rmf')" title="{{ 'NAVBAR.rmf-cer' | translate }}">{{ 'NAVBAR.rmf-cer' | translate }}</a>
-                  </li>
-                  <li>
-                    <a (click)="navigate('certificate-ltf')" title="{{ 'NAVBAR.ltf-cer' | translate }}">{{ 'NAVBAR.ltf-cer' | translate }}</a>
-                  </li>
-                </ul>
-                <div class="clearfix"></div>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" (click)="navigate('ltf-condition-complete')" title="{{ 'NAVBAR.ltf-for-re' | translate }}">{{ 'NAVBAR.ltf-for-re' | translate }}</a>
+                  <a class="dropdown-item" (click)="navigate('conclusion')" title="{{ 'NAVBAR.rmf-ltf-sub' | translate }}">{{ 'NAVBAR.rmf-ltf-sub' | translate }}</a>
+                  <a class="dropdown-item" (click)="navigate('certificate-rmf')" title="{{ 'NAVBAR.rmf-cer' | translate }}">{{ 'NAVBAR.rmf-cer' | translate }}</a>
+                  <a class="dropdown-item" (click)="navigate('certificate-ltf')" title="{{ 'NAVBAR.ltf-cer' | translate }}">{{ 'NAVBAR.ltf-cer' | translate }}</a>
+                </div>
               </div>
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu1">

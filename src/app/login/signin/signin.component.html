@@ -1,0 +1,95 @@
+<div class="contact-popup active">
+
+  <div class="popup-content">
+    <div class="contact-title">
+      <div class="row">
+        <div class="col ">
+          <div class="login-icon">
+            <img src="/assets/Images/icons/icon-login-white.png" />
+          </div>
+          <p>
+            {{ 'LOGIN.signin' | translate }}
+          </p>
+        </div>
+        <div class="col d-flex justify-content-end">
+          <ul>
+            <li class="th" (click)="switchlang('th')" [ngClass]="{'current': langth}">
+              <a  title="Thai">Thai</a>
+          </li>
+          <li class="en" (click)="switchlang('en')" [ngClass]="{'current': langen}">
+              <a  title="Eng">Eng</a>
+          </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form-wrapper">
+      <form [formGroup]="formsighin" (ngSubmit)="onSubmit()">
+        <div class="detail-login-wrapper">
+          <div class="row">
+            <div class="col-sm-12 form-group" [ngClass]="ValidatorDisplayCss1('username')">
+              <p>{{ 'LOGIN.username' | translate }}
+              </p>
+              <div class="input-wrapper">
+                <input id="name" name="name" maxlength="15" type="text" formControlName="username">
+                <div class="form-control-feedback" *ngIf="this.formsighin.controls.username.errors && (this.formsighin.controls.username.touched)">
+                  <p *ngIf="this.formsighin.controls.username.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                  <!-- <p *ngIf="this.form.controls.username.errors.pattern">ข้อมูลไม่ถูกต้อง</p> -->
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 form-group" [ngClass]="ValidatorDisplayCss1('password')">
+              <p>{{ 'LOGIN.password' | translate }}
+              </p>
+              <div class="input-wrapper ">
+                <input id="password" name="password" maxlength="15" type="password" formControlName="password">
+                <div class="form-control-feedback" *ngIf="this.formsighin.controls.password.errors && (this.formsighin.controls.password.touched)">
+                  <p *ngIf="this.formsighin.controls.password.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                  <!-- <p *ngIf="this.form.controls.password.errors.pattern">อย่างน้อย 6 ตัวอักษร รวมทั้งตัวเลข</p> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6">
+              <p class="mb-3" (click)="navigate('forgotpassword')" style="cursor: pointer; display: inline-block;">{{ 'LOGIN.forgot' | translate }}
+                <a style="cursor: pointer;">
+                  <i class="fa fa-question-circle" aria-hidden="true"></i>
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <div class="row justify-content-center mb-md-3" >
+            <div class="col-md-12">
+              <div class="btn-wrapper-left">
+                <button class="btn-med btn-confirm-login" type="submit">
+                  <!-- (click)="checkpage('submit')" [routerLink]="['/myport']" -->
+                  <p>
+                    {{ 'BUTTON.signin' | translate }}
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  </p>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row justify-content-center">
+            <div class="col-md-12">
+              <div class="btn-wrapper-left">
+                  <!-- (click)="navigate('./register')" -->
+                <button class="btn-med btn-next-login" (click)="navigate('register')">
+                  <p>{{ 'BUTTON.signup' | translate }}
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  </p>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,405 +1,5 @@
-<div class="contact-popup active" *ngIf="page == 'signin'">
-
+<div class="contact-popup active" *ngIf="page == 'signup1'">
   <div class="popup-content">
-    <div class="contact-title">
-      <div class="row">
-        <div class="col ">
-          <div class="login-icon">
-            <img src="/assets/Images/icons/icon-login-white.png" />
-          </div>
-          <p>
-            เข้าสู่ระบบ
-          </p>
-        </div>
-        <div class="col d-flex justify-content-end">
-          <ul>
-            <li class="th current">
-              <a href="#" title="ไทย">Thai</a>
-            </li>
-            <li class="en ">
-              <a href="#" title="Eng">Eng</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="contact-form-wrapper">
-      <form [formGroup]="formsighin">
-        <div class="detail-login-wrapper">
-          <div class="row">
-            <div class="col-sm-12 form-group" [ngClass]="ValidatorDisplayCss1('username')">
-              <p>ชื่อผู้เข้าระบบ
-              </p>
-              <div class="input-wrapper">
-                <input id="name" name="name" maxlength="15" type="text" formControlName="username">
-                <div class="form-control-feedback" *ngIf="this.formsighin.controls.username.errors && (this.formsighin.controls.username.touched)">
-                  <p *ngIf="this.formsighin.controls.username.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                  <!-- <p *ngIf="this.form.controls.username.errors.pattern">ข้อมูลไม่ถูกต้อง</p> -->
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 form-group" [ngClass]="ValidatorDisplayCss1('password')">
-              <p>รหัสผ่าน
-              </p>
-              <div class="input-wrapper ">
-                <input id="password" name="password" maxlength="15" type="password" formControlName="password">
-                <div class="form-control-feedback" *ngIf="this.formsighin.controls.password.errors && (this.formsighin.controls.password.touched)">
-                  <p *ngIf="this.formsighin.controls.password.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                  <!-- <p *ngIf="this.form.controls.password.errors.pattern">อย่างน้อย 6 ตัวอักษร รวมทั้งตัวเลข</p> -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12">
-              <p class="mb-3" (click)="checkpage('forgotpassword')" style="cursor: pointer;">ลืมรหัสผ่าน
-                <a style="cursor: pointer;">
-                  <i class="fa fa-question-circle" aria-hidden="true"></i>
-                </a>
-              </p>
-            </div>
-          </div>
-
-          <div class="row justify-content-center mb-3">
-            <div class="col-md-12">
-              <div class="btn-wrapper-left">
-                <button class="btn-med btn-confirm-login"  (click)="checkpage('myport')">
-                  <!-- (click)="checkpage('submit')" [routerLink]="['/myport']" -->
-                  <p>
-                    เข้าสู่ระบบ
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                  </p>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="row justify-content-center">
-            <div class="col-md-12">
-              <div class="btn-wrapper-left">
-                <button class="btn-med btn-next-login" (click)="checkpage('signup1')">
-                  <p>ลงทะเบียน
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                  </p>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </form>
-    </div>
-  </div>
-</div>
-<div class="contact-popup active" *ngIf="page == 'forgotpassword'">
-  <div class="popup-content">
-    <div class="contact-title">
-      <div class="row">
-        <div class="col">
-          <p>
-            <i class="fas fa-unlock-alt mr-2"></i>
-            ลืมรหัสผ่าน
-
-          </p>
-        </div>
-        <div class="col d-flex justify-content-end">
-          <ul>
-            <li class="th current">
-              <a href="#" title="ไทย">Thai</a>
-            </li>
-            <li class="en">
-              <a href="#" title="Eng">Eng</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="contact-form-wrapper">
-      <form [formGroup]="formforgot">
-        <div class="detail-login-wrapper">
-          <div class="row">
-            <!-- <div class="col-sm-12">
-            <p>ชื่อผู้เข้าระบบ
-            </p>
-            <div class="input-wrapper">
-              <input id="name" name="name" maxlength="30" type="text">
-            </div>
-          </div> -->
-            <div class="col-sm-12 form-group" [ngClass]="ValidatorDisplayCss3('IDcard')">
-              <p>เลขบัตรประชาชน/หนังสือเดินทาง
-              </p>
-              <div class="input-wrapper ">
-                <input id="IDcard" name="IDcard" maxlength="13" type="text" formControlName="IDcard" required>
-                <div class="form-control-feedback" *ngIf="this.formforgot.controls.IDcard.errors && ( this.formforgot.controls.IDcard.touched)">
-                  <p *ngIf="this.formforgot.controls.IDcard.errors.required || this.formforgot.controls.IDcard.errors?.minlength">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                  <p *ngIf="this.formforgot.controls.IDcard.errors.pattern">ข้อมูลไม่ถูกต้อง</p>																								
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 form-group" [ngClass]="ValidatorDisplayCss3('email')">
-              <p>อีเมล์
-              </p>
-              <div class="input-wrapper ">
-                <input id="email" name="email" maxlength="30" type="text" formControlName="email" required>
-                <div class="form-control-feedback" *ngIf="this.formforgot.controls.email.errors && ( this.formforgot.controls.email.touched)">
-                  <p *ngIf="this.formforgot.controls.email.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                  <p *ngIf="this.formforgot.controls.email.errors.pattern">ข้อมูลไม่ถูกต้อง</p>																								
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <div class="btn-wrapper-left">
-              <div class="row">
-                <div class="col-md-10">
-                  <button class="btn-med btn-back-login" (click)="checkpage('signin')">
-                    <p>ย้อนกลับ
-                      <i class="fa fa-angle-right" aria-hidden="true"></i>
-                    </p>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 ">
-            <div class="btn-wrapper-right">
-              <div class="row justify-content-end">
-                <div class="col-md-10">
-                  <button class="btn-med btn-confirm-login" (click)="checkpage('otp-forgot')">
-                    <p>ตกลง
-                      <i class="fa fa-angle-right" aria-hidden="true"></i>
-                    </p>
-                  </button>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-      </form>
-    </div>
-  </div>
-</div>
-<div class="contact-popup active" *ngIf="page == 'changepassword'">
-  <div class="popup-content">
-    <div class="contact-title">
-      <div class="row">
-        <div class="col">
-          <p>
-            <i class="fas fa-unlock-alt mr-2"></i>
-            เปลี่ยนรหัสผ่าน
-
-          </p>
-        </div>
-        <div class="col d-flex justify-content-end">
-          <ul>
-            <li class="th current">
-              <a href="#" title="ไทย">Thai</a>
-            </li>
-            <li class="en">
-              <a href="#" title="Eng">Eng</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="contact-form-wrapper">
-      <form [formGroup]="formchange">
-        <div class="detail-login-wrapper">
-          <div class="row">
-            <!-- <div class="col-sm-12">
-            <p>ชื่อผู้เข้าระบบ
-            </p>
-            <div class="input-wrapper">
-              <input id="name" name="name" maxlength="30" type="text">
-            </div>
-          </div> -->
-            <div class="col-sm-12 form-group" [ngClass]="ValidatorDisplayCss5('password')">
-              <p>สร้างรหัสผ่าน
-              </p>
-              <div class="input-wrapper ">
-                <input id="password" name="password" maxlength="13" type="password" formControlName="password" required>
-                <div class="form-control-feedback" *ngIf="this.formchange.controls.password.errors && ( this.formchange.controls.password.touched)">
-                  <p *ngIf="this.formchange.controls.password.errors.required || this.formchange.controls.password.errors?.minlength">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                  <p *ngIf="this.formchange.controls.password.errors.pattern">ข้อมูลไม่ถูกต้อง</p>																								
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 form-group" [ngClass]="ValidatorDisplayCss5('repeatPassword')">
-              <p>ยืนยันรหัสผ่าน
-              </p>
-              <div class="input-wrapper ">
-                <input id="repeatPassword" name="repeatPassword" maxlength="30" type="password" formControlName="repeatPassword" required>
-                <div class="form-control-feedback" *ngIf="this.formchange.controls.repeatPassword.errors && ( this.formchange.controls.repeatPassword.touched)">
-                  <p *ngIf="this.formchange.controls.repeatPassword.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                  <p *ngIf="this.formchange.controls.repeatPassword.errors.pattern">ข้อมูลไม่ถูกต้อง</p>																								
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <div class="btn-wrapper-left">
-              <div class="row">
-                <div class="col-md-10">
-                  <button class="btn-med btn-back-login" (click)="checkpage('forgotpassword')">
-                    <p>ย้อนกลับ
-                      <i class="fa fa-angle-right" aria-hidden="true"></i>
-                    </p>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 ">
-            <div class="btn-wrapper-right">
-              <div class="row justify-content-end">
-                <div class="col-md-10">
-                  <button class="btn-med btn-confirm-login" data-toggle="modal" (click)="checkpage('confirm-change')">
-                        <p>ตกลง
-                          <i class="fa fa-angle-right" aria-hidden="true"></i>
-                        </p>
-                  </button>
-                  <!-- <button class="btn-med btn-confirm-login" data-toggle="modal" data-target="#confirm" data-backdrop="static"	data-keyboard="false"  *ngIf="changepassword == 'modal'">
-                    <p>ตกลง
-                      <i class="fa fa-angle-right" aria-hidden="true"></i>
-                    </p>
-                  </button> -->
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-      </form>
-    </div>
-  </div>
-</div>
-<div class="contact-popup active" *ngIf="page == 'otp'">
-
-  <div class="popup-content">
-    <div class="contact-title">
-      <div class="row">
-        <div class="col">
-          <div class="login-icon">
-            <img src="/assets/Images/icons/icon-otp-white.png" />
-          </div>
-          <p>
-            ระบบความปลอดภัย OTP
-          </p>
-        </div>
-        <div class="col d-flex justify-content-end">
-          <ul>
-            <li class="th current">
-              <a href="#" title="ไทย">Thai</a>
-            </li>
-            <li class="en">
-              <a href="#" title="Eng">Eng</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="contact-form-wrapper">
-      <form [formGroup]="formotp">
-        <div class="row">
-          <div class="col-sm-12">
-            <p>ระบบจะส่งรหัส OTP ไปยังเบอร์โทรศัพท์มือถือ
-            </p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-7">
-            <div class="input-wrapper">
-              <input id="tel" name="tel" maxlength="30" type="text" [value]="blind" disabled>
-            </div>
-          </div>
-          <div class="col-md-5">
-            <div class="btn-wrapper">
-              <button class="btn-med btn-blue" (click)="checkpage()">
-                ขอรหัส OTP อีกครั้ง
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <p>ระบุรหัส OTP ที่ได้รับ</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss4('otp')">
-            <div class="input-wrapper">
-              <input id="otp" name="otp" maxlength="6" type="text" formControlName="otp" (keypress)="numberOnly($event)">
-              <div class="form-control-feedback" *ngIf="this.formotp.controls.otp.errors && ( this.formotp.controls.otp.touched)">
-                <p *ngIf="this.formotp.controls.otp.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                <!-- <p *ngIf="this.form.controls.otp.errors.pattern">ข้อมูลไม่ถูกต้อง</p> -->
-
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row pb-4">
-          <div class="col-md-12">
-            <p>กรุณากดปุ่ม "Request OTP" เพื่อรับรหัสรักษาความปลอดภัย</p>
-          </div>
-        </div>
-
-        <div class="row mt-3">
-          <div class="col-md-6">
-            <div class="btn-wrapper-left">
-              <div class="row">
-                <div class="col-md-10">
-                  <button class="btn-med btn-cancel" (click)="checkpage('signin')">
-                    <p>
-                      ยกเลิก
-                      <i class="fa fa-angle-right" aria-hidden="true"></i>
-                    </p>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 ">
-            <div class="btn-wrapper-right">
-              <div class="row justify-content-end">
-                <div class="col-md-10">
-                  <button class="btn-med btn-confirm-login" (click)="checkpage('changepassword')" *ngIf="buttonotp == 'forgot'">
-                    <p>ยืนยัน
-                      <i class="fa fa-angle-right" aria-hidden="true"></i>
-                    </p>
-                  </button>
-                  <button class="btn-med btn-confirm-login" (click)="checkpage('check-otp')" *ngIf="buttonotp == 'signup'">
-                    <p>ยืนยัน
-                      <i class="fa fa-angle-right" aria-hidden="true"></i>
-                    </p>
-                  </button>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-<div class="contact-popup active" *ngIf="page == 'signup2'">
-  <div class="popup-content">
-    <!-- <div class="row">
-    <div class="col-md-6 col-xs-12"> -->
     <div class="contact-title">
       <div class="row">
         <div class="col">
@@ -407,17 +7,202 @@
             <img src="/assets/Images/icons/icon-register.png" />
           </div>
           <p>
-            ตั้งค่าชื่อผู้ใช้เข้าระบบและรหัสผ่าน
+            {{ 'LOGIN.register1' | translate }}
           </p>
         </div>
         <div class="col d-flex justify-content-end">
           <ul>
-            <li class="th current">
-              <a href="#" title="ไทย">Thai</a>
-            </li>
-            <li class="en ">
-              <a href="#" title="Eng">Eng</a>
-            </li>
+            <li class="th" (click)="switchlang('th')" [ngClass]="{'current': langth}">
+              <a  title="Thai">Thai</a>
+          </li>
+          <li class="en" (click)="switchlang('en')" [ngClass]="{'current': langen}">
+              <a  title="Eng">Eng</a>
+          </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form-wrapper">
+      <form [formGroup]="form">
+        <div class="row">
+          <div class="col-lg-3 form-group" [ngClass]="ValidatorDisplayCss('prefix')">
+            <p>{{ 'LOGIN.prefix' | translate }}
+            </p>
+            <div class="input-wrapper">
+              <input id="prefix" name="prefix" maxlength="15" type="text" formControlName="prefix" required>
+              <div class="form-control-feedback" *ngIf="this.form.controls.prefix.errors && ( this.form.controls.prefix.touched)">
+                <p *ngIf="this.form.controls.prefix.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                <p *ngIf="this.form.controls.prefix.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
+
+              </div>
+            </div>
+            <!-- <div class="select-wrapper inline-block">
+                    <select name="ddlLink" id="ddlLink" required>
+                      <option value="นาย" selected="">นาย</option>
+                      <option value="นางสาว">นางสาว</option>
+                      <option value="นาง">นาง</option>
+                    </select>
+                  </div> -->
+          </div>
+          <div class="col-lg-4 form-group" [ngClass]="ValidatorDisplayCss('firstname')">
+            <p>{{ 'LOGIN.firstname' | translate }}
+            </p>
+            <div class="input-wrapper">
+              <input id="firstname" name="firstname" maxlength="15" type="text" formControlName="firstname" required>
+              <div class="form-control-feedback" *ngIf="this.form.controls.firstname.errors && ( this.form.controls.firstname.touched)">
+                <p *ngIf="this.form.controls.firstname.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                <p *ngIf="this.form.controls.firstname.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
+                <p *ngIf="checkFirstname">รูปแบบของข้อมูลไม่ถูกต้อง</p>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-lg-5 form-group" [ngClass]="ValidatorDisplayCss('lastname')">
+            <p>{{ 'LOGIN.lastname' | translate }}
+            </p>
+            <div class="input-wrapper ">
+              <input id="lastname" name="lastname" maxlength="15" type="text" formControlName="lastname" required>
+              <div class="form-control-feedback" *ngIf="this.form.controls.lastname.errors && ( this.form.controls.lastname.touched)">
+                <p *ngIf="this.form.controls.lastname.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                <p *ngIf="this.form.controls.lastname.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-7 form-group" [ngClass]="ValidatorDisplayCss('IDcard')">
+            <p>{{ 'LOGIN.id-password' | translate }}
+            </p>
+            <div class="input-wrapper ">
+              <input id="IDcard" name="IDcard" maxlength="13" type="text" formControlName="IDcard" required>
+              <div class="form-control-feedback" *ngIf="this.form.controls.IDcard.errors && ( this.form.controls.IDcard.touched)">
+                <p *ngIf="this.form.controls.IDcard.errors.required || this.form.controls.IDcard.errors?.minlength">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                <!-- <p *ngIf="this.form.controls.IDcard.errors.pattern">ข้อมูลไม่ถูกต้อง</p> -->
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5 form-group" [ngClass]="ValidatorDisplayCss('tel')">
+            <p>{{ 'LOGIN.tel' | translate }}
+            </p>
+            <div class="input-wrapper ">
+              <input id="tel" name="tel" maxlength="10" type="text" formControlName="tel" required (keypress)="numberOnly($event)">
+              <div class="form-control-feedback" *ngIf="this.form.controls.tel.errors && ( this.form.controls.tel.touched)">
+                <p *ngIf="this.form.controls.tel.errors.required || this.form.controls.tel.errors?.minlength">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                <p *ngIf="this.form.controls.tel.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
+                <!-- <p *ngIf="this.form.controls.tel.errors?.minlength">ข้อมูลไม่ครบ</p>																							 -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6 col-12 form-group" [ngClass]="ValidatorDisplayCss('email')">
+            <p>{{ 'LOGIN.email' | translate }}
+            </p>
+            <div class="input-wrapper ">
+              <input id="email" name="email" maxlength="30" type="text" formControlName="email" required>
+              <div class="form-control-feedback" *ngIf="this.form.controls.email.errors && ( this.form.controls.email.touched)">
+                <p *ngIf="this.form.controls.email.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                <p *ngIf="this.form.controls.email.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 form-group" id="recaptcha2" [ngClass]="ValidatorDisplayCss('recaptcha')">
+            <!-- <p>กรุณากรอกรหัสเพื่อยืนยันตัวตน
+            </p>
+            <div class="row">
+              <div class="col-md-5 col-sm-6 col-xs-6">
+
+                <div class="captcha">
+                  <img src="/assets/Images/icons/captcha.png" />
+                </div>
+              </div>
+              <div class="col-md-1 col-sm-6 col-xs-2">
+                <i class="fas fa-sync-alt refresh" aria-hidden="true"></i>
+              </div>
+              <div class="col-md-5 col-sm-6 col-xs-6">
+
+                <div class="input-wrapper">
+                  <input id="tel" name="tel" maxlength="30" type="text">
+                </div>
+              </div>
+            </div> -->
+            <ngx-recaptcha2 [size]="size" [hl]="lang" [theme]="theme" [type]="type" (expire)="handleExpire()" (load)="handleLoad()" (success)="handleSuccess($event)"
+              formControlName="recaptcha">
+            </ngx-recaptcha2>
+            <div class="form-control-feedback" *ngIf="this.form.controls.recaptcha.errors && ( this.form.controls.recaptcha.touched)">
+              <p *ngIf="this.form.controls.recaptcha.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="row justify-content-start">
+            <div class="col-md-12">
+                <div class="custom-radio-login">
+                    <input value="101" id="101" name="rad1" type="radio">
+                    <label for="101"></label>
+                    <span >ยอมรับ</span>
+                </div>
+            </div>
+        </div> -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="btn-wrapper-left">
+              <div class="row">
+                <div class="col-xl-6 col-12">
+                  <button class="btn-med btn-back-login" (click)="navigate('')">
+                    <p>
+                      {{ 'BUTTON.back' | translate }}
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </p>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="btn-wrapper-right">
+              <div class="row justify-content-end">
+                <div class="col-md-12">
+                  <button class="btn-med btn-confirm-login" (click)="checkpage('signup2')">
+                    <p>{{ 'BUTTON.next' | translate }}
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </p>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+<div class="contact-popup active" *ngIf="page == 'signup2'">
+  <div class="popup-content">
+    <div class="contact-title">
+      <div class="row">
+        <div class="col">
+          <div class="login-icon">
+            <img src="/assets/Images/icons/icon-register.png" />
+          </div>
+          <p>
+            {{ 'LOGIN.register2' | translate }}
+          </p>
+        </div>
+        <div class="col d-flex justify-content-end">
+          <ul>
+            <li class="th" (click)="switchlang('th')" [ngClass]="{'current': langth}">
+              <a  title="Thai">Thai</a>
+          </li>
+          <li class="en" (click)="switchlang('en')" [ngClass]="{'current': langen}">
+              <a  title="Eng">Eng</a>
+          </li>
           </ul>
         </div>
       </div>
@@ -427,36 +212,39 @@
         <div class="detail-login-wrapper">
           <div class="row">
             <div class="col-sm-12 form-group" [ngClass]="ValidatorDisplayCss2('username')">
-              <p>ชื่อผู้ใช้งาน
+              <p><p>{{ 'LOGIN.username' | translate }}
               </p>
               <div class="input-wrapper">
                 <input id="username" name="username" maxlength="15" type="text" formControlName="username">
                 <div class="form-control-feedback" *ngIf="this.formstep2.controls.username.errors && (this.formstep2.controls.username.touched)">
-                  <p *ngIf="this.formstep2.controls.username.errors.required || this.formstep2.controls.username.errors?.minlength">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                  <p *ngIf="this.formstep2.controls.username.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
+                  <p *ngIf="this.formstep2.controls.username.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                  <p *ngIf="this.formstep2.controls.username.errors.pattern">อย่างน้อย 8 ตัวอักษร รวมทั้งตัวเลข</p>
+                  <!-- <p *ngIf="this.formstep2.controls.username.errors?.minlength">อย่างน้อย 8 ตัวอักษร </p> -->
                 </div>
               </div>
             </div>
             <div class="col-sm-12 form-group" [ngClass]="ValidatorDisplayCss2('password')">
-              <p>รหัสผ่าน
+              <p><p>{{ 'LOGIN.password' | translate }}
               </p>
               <div class="input-wrapper ">
                 <input id="password" name="password" maxlength="15" type="password" formControlName="password">
                 <div class="form-control-feedback" *ngIf="this.formstep2.controls.password.errors && (this.formstep2.controls.password.touched)">
-                  <p *ngIf="this.formstep2.controls.password.errors.required || this.formstep2.controls.username.errors?.minlength">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                  <p *ngIf="this.formstep2.controls.password.errors.pattern">อย่างน้อย 6 ตัวอักษร รวมทั้งตัวเลข</p>
+                  <p *ngIf="this.formstep2.controls.password.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                  <p *ngIf="this.formstep2.controls.password.errors.pattern">อย่างน้อย 8 ตัวอักษร รวมทั้งตัวเลข</p>
                 </div>
               </div>
             </div>
             <div class="col-sm-12 form-group" [ngClass]="ValidatorDisplayCss2('repeatPassword')">
-              <p>ยืนยันรหัสผ่าน
+              <p><p>{{ 'LOGIN.comfirm-p' | translate }}
               </p>
               <div class="input-wrapper ">
                 <input id="repeatPassword" name="repeatPassword" maxlength="15" type="password" formControlName="repeatPassword">
+                <!-- <span *ngIf="cpwd.hasError('invalid')"> Invalid Password </span> -->
                 <div class="form-control-feedback" *ngIf="this.formstep2.controls.repeatPassword.errors && (this.formstep2.controls.repeatPassword.touched)">
-                  <p *ngIf="this.formstep2.controls.repeatPassword.errors.required || this.formstep2.controls.username.errors?.minlength">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                  <p *ngIf="this.formstep2.controls.repeatPassword.errors.pattern">อย่างน้อย 6 ตัวอักษร รวมทั้งตัวเลข</p>
-                  <!-- <p *ngIf="form.passwordMatchValidator">รหัสไม่ตรงกัน</p> -->
+                  <p *ngIf="this.formstep2.controls.repeatPassword.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                  <p *ngIf="this.formstep2.controls.repeatPassword.errors.pattern">อย่างน้อย 8 ตัวอักษร รวมทั้งตัวเลข</p>
+                  <!-- <p *ngIf="this.formstep2.controls.password.value !== this.formstep2.controls.repeatPassword.value">mismatch</p> -->
+                  <p *ngIf="cpwd.hasError('invalid')">รหัสไม่ตรงกัน</p>
 
                 </div>
               </div>
@@ -478,7 +266,7 @@
             <div class="btn-wrapper-left">
               <button class="btn-med btn-back-login" (click)="checkpage('signup1')">
                 <p>
-                  ย้อนกลับ
+                  {{ 'BUTTON.back' | translate }}
                   <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </p>
               </button>
@@ -487,8 +275,8 @@
 
           <div class="col-md-6 ">
             <div class="btn-wrapper-left">
-              <button class="btn-med btn-next-login" (click)="checkpage('otp-signup')">
-                <p>ลงทะเบียน
+              <button class="btn-med btn-next-login" (click)="checkpage('otp')">
+                <p>{{ 'BUTTON.signup' | translate }}
                   <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </p>
               </button>
@@ -547,171 +335,84 @@
 
   </div>
 </div>
-<div class="contact-popup active" *ngIf="page == 'signup1'">
+<div class="contact-popup active" *ngIf="page == 'otp'">
+
   <div class="popup-content">
     <div class="contact-title">
       <div class="row">
         <div class="col">
           <div class="login-icon">
-            <img src="/assets/Images/icons/icon-register.png" />
+            <img src="/assets/Images/icons/icon-otp-white.png" />
           </div>
           <p>
-            ลงทะเบียนเข้าใช้ระบบ
+            {{ 'LOGIN.otp' | translate }}
           </p>
         </div>
         <div class="col d-flex justify-content-end">
           <ul>
-            <li class="th current">
-              <a href="#" title="ไทย">Thai</a>
-            </li>
-            <li class="en ">
-              <a href="#" title="Eng">Eng</a>
-            </li>
+            <li class="th" (click)="switchlang('th')" [ngClass]="{'current': langth}">
+              <a  title="Thai">Thai</a>
+          </li>
+          <li class="en" (click)="switchlang('en')" [ngClass]="{'current': langen}">
+              <a  title="Eng">Eng</a>
+          </li>
           </ul>
         </div>
       </div>
     </div>
     <div class="contact-form-wrapper">
-      <form [formGroup]="form">
+      <form [formGroup]="formotp">
         <div class="row">
-          <div class="col-md-3 form-group" [ngClass]="ValidatorDisplayCss('prefix')">
-            <p>คำนำหน้า
+          <div class="col-sm-12">
+            <p> {{ 'LOGIN.otp-send' | translate }}
             </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-7">
             <div class="input-wrapper">
-              <input id="prefix" name="prefix" maxlength="15" type="text" formControlName="prefix" required>
-              <div class="form-control-feedback" *ngIf="this.form.controls.prefix.errors && ( this.form.controls.prefix.touched)">
-                <p *ngIf="this.form.controls.prefix.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                <p *ngIf="this.form.controls.prefix.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
-
-              </div>
+              <input id="tel" name="tel" maxlength="30" type="text" [value]="blind" disabled>
             </div>
-            <!-- <div class="select-wrapper inline-block">
-                    <select name="ddlLink" id="ddlLink" required>
-                      <option value="นาย" selected="">นาย</option>
-                      <option value="นางสาว">นางสาว</option>
-                      <option value="นาง">นาง</option>
-                    </select>
-                  </div> -->
           </div>
-          <div class="col-md-4 form-group" [ngClass]="ValidatorDisplayCss('firstname')">
-            <p>ชื่อ
-            </p>
+          <div class="col-md-5">
+            <div class="btn-wrapper">
+              <button class="btn-med btn-blue" (click)="requestotp()">
+                {{ 'BUTTON.otp' | translate }}
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <p> {{ 'LOGIN.otp-receive' | translate }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss4('otp')">
             <div class="input-wrapper">
-              <input id="firstname" name="firstname" maxlength="15" type="text" formControlName="firstname" required>
-              <div class="form-control-feedback" *ngIf="this.form.controls.firstname.errors && ( this.form.controls.firstname.touched)">
-                <p *ngIf="this.form.controls.firstname.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                <p *ngIf="this.form.controls.firstname.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
-                <p *ngIf="checkFirstname">รูปแบบของข้อมูลไม่ถูกต้อง</p>
-              </div>
-            </div>
-
-          </div>
-          <div class="col-md-5 form-group" [ngClass]="ValidatorDisplayCss('lastname')">
-            <p>นามสกุล
-            </p>
-            <div class="input-wrapper ">
-              <input id="lastname" name="lastname" maxlength="15" type="text" formControlName="lastname" required>
-              <div class="form-control-feedback" *ngIf="this.form.controls.lastname.errors && ( this.form.controls.lastname.touched)">
-                <p *ngIf="this.form.controls.lastname.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                <p *ngIf="this.form.controls.lastname.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
+              <input id="otp" name="otp" maxlength="6" type="text" formControlName="otp" (keypress)="numberOnly($event)">
+              <div class="form-control-feedback" *ngIf="this.formotp.controls.otp.errors && ( this.formotp.controls.otp.touched)">
+                <p *ngIf="this.formotp.controls.otp.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
 
               </div>
             </div>
           </div>
         </div>
-
-        <div class="row">
-          <div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss('IDcard')">
-            <p>เลขบัตรประชาชน/หนังสือเดินทาง
-            </p>
-            <div class="input-wrapper ">
-              <input id="IDcard" name="IDcard" maxlength="13" type="text" formControlName="IDcard" required>
-              <div class="form-control-feedback" *ngIf="this.form.controls.IDcard.errors && ( this.form.controls.IDcard.touched)">
-                <p *ngIf="this.form.controls.IDcard.errors.required || this.form.controls.IDcard.errors?.minlength">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                <p *ngIf="this.form.controls.IDcard.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss('tel')">
-            <p>เบอร์โทรศัพท์มือถือ
-            </p>
-            <div class="input-wrapper ">
-              <input id="tel" name="tel" maxlength="10" type="text" formControlName="tel" required (keypress)="numberOnly($event)" placeholder="0123456789">
-              <div class="form-control-feedback" *ngIf="this.form.controls.tel.errors && ( this.form.controls.tel.touched)">
-                <p *ngIf="this.form.controls.tel.errors.required || this.form.controls.tel.errors?.minlength">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                <p *ngIf="this.form.controls.tel.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
-                <!-- <p *ngIf="this.form.controls.tel.errors?.minlength">ข้อมูลไม่ครบ</p>																							 -->
-              </div>
-            </div>
+        <div class="row pb-4">
+          <div class="col-md-12">
+            <p> {{ 'LOGIN.otp-request' | translate }}</p>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-md-6 col-xs-12 form-group" [ngClass]="ValidatorDisplayCss('email')">
-            <p>อีเมล์
-            </p>
-            <div class="input-wrapper ">
-              <input id="email" name="email" maxlength="30" type="text" formControlName="email" required>
-              <div class="form-control-feedback" *ngIf="this.form.controls.email.errors && ( this.form.controls.email.touched)">
-                <p *ngIf="this.form.controls.email.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                <p *ngIf="this.form.controls.email.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6 form-group" id="recaptcha2" [ngClass]="ValidatorDisplayCss('recaptcha')">
-            <!-- <p>กรุณากรอกรหัสเพื่อยืนยันตัวตน
-            </p>
-            <div class="row">
-              <div class="col-md-5 col-sm-6 col-xs-6">
-
-                <div class="captcha">
-                  <img src="/assets/Images/icons/captcha.png" />
-                </div>
-              </div>
-              <div class="col-md-1 col-sm-6 col-xs-2">
-                <i class="fas fa-sync-alt refresh" aria-hidden="true"></i>
-              </div>
-              <div class="col-md-5 col-sm-6 col-xs-6">
-
-                <div class="input-wrapper">
-                  <input id="tel" name="tel" maxlength="30" type="text">
-                </div>
-              </div>
-            </div> -->
-            <ngx-recaptcha2
-              [size]="size"
-              [hl]="lang"
-              [theme]="theme"
-              [type]="type"
-              (expire)="handleExpire()"
-              (load)="handleLoad()"
-              (success)="handleSuccess($event)"
-              formControlName="recaptcha">
-            </ngx-recaptcha2>
-            <div class="form-control-feedback" *ngIf="this.form.controls.recaptcha.errors && ( this.form.controls.recaptcha.touched)">
-              <p *ngIf="this.form.controls.recaptcha.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-              <!-- <p *ngIf="this.form.controls.recaptcha.errors.pattern">ข้อมูลไม่ถูกต้อง</p> -->
-            </div>
-          </div>
-        </div>
-
-        <!-- <div class="row justify-content-start">
-            <div class="col-md-12">
-                <div class="custom-radio-login">
-                    <input value="101" id="101" name="rad1" type="radio">
-                    <label for="101"></label>
-                    <span >ยอมรับ</span>
-                </div>
-            </div>
-        </div> -->
-        <div class="row">
+        <div class="row mt-3">
           <div class="col-md-6">
             <div class="btn-wrapper-left">
               <div class="row">
-                <div class="col-lg-6">
-                  <button class="btn-med btn-back-login" (click)="checkpage('signin')">
+                <div class="col-md-10">
+                  <button class="btn-med btn-cancel" (click)="navigate('')">
                     <p>
-                      ย้อนกลับ
+                      {{ 'BUTTON.cancel' | translate }}
                       <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </p>
                   </button>
@@ -720,12 +421,13 @@
             </div>
           </div>
 
-          <div class="col-md-6">
+          <div class="col-md-6 ">
             <div class="btn-wrapper-right">
               <div class="row justify-content-end">
-                <div class="col-md-12">
-                  <button class="btn-med btn-confirm-login" (click)="checkpage('signup2')">
-                    <p>ถัดไป
+                <div class="col-md-10">
+                  
+                  <button class="btn-med btn-confirm-login" (click)="checkpage('complete')">
+                    <p>{{ 'BUTTON.otp' | translate }}
                       <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </p>
                   </button>
@@ -735,7 +437,6 @@
             </div>
           </div>
         </div>
-
       </form>
     </div>
   </div>

@@ -1,10 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/dist/css/bootstrap.css";
-/* @import "~assets/fonts/fonts"; */
 
+
+/* @import "~assets/fonts/fonts"; */
+@import "~bootstrap/dist/css/bootstrap.min.css";
 @import "/assets/Content/default/css/main.css";
 @import "/assets/Content/default/css/content/login.css";
 @import "/assets/Content/default/css/content/myport.css";
+
+
 /* @font-face {
     font-family: 'KitithadaRegular';
     src: url("/assets/fonts/PSL094PRO.eot");

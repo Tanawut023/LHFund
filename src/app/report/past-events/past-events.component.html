@@ -1,8 +1,8 @@
 <div class="fund-table-wrapper">
   <div class="heading-section">
-    <div class="row">
-      <div class="detail-head-wrapper">
-        <div class="col-md-12 col-xs-12 icon-option mb-3">
+    <div class="detail-head-wrapper">
+      <div class="row">
+        <div class="col-md-12 col-12 icon-option mb-3">
 
           <ul class="">
             <!-- <li class="ico-fb">
@@ -25,7 +25,7 @@
         </div>
         <div class="col-md-3">
 
-          <p>เลขที่ผู้ถือหน่วยลงทุน</p>
+          <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
             <select name="ddlLink" id="ddlLink">
               <option value="0" selected="">9990244757</option>
@@ -35,12 +35,12 @@
           </div>
         </div>
         <div class="col-md-3">
-          <p>ชื่อผู้ถือหน่วยลงทุน</p>
+          <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
           <span>เนติวัฒน์ โชติกร</span>
         </div>
         <div class="col-sm-6 col-md-6">
 
-            <p>ที่อยู่</p>
+            <p>{{ 'CONTENT.address' | translate }}</p>
             <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
         </div>
       </div>
@@ -49,12 +49,12 @@
   <div class="detail-body-wrapper">
     <div class="row">
       <div class="col-md-12">
-        <p>กรุณาเลือกกองทุนและวันที่ต้องการดูรายการ</p>
+        <p>{{ 'CONTENT.select-date-fund' | translate }}</p>
       </div>
       <div class="col-md-9">
         <div class="row">
           <div class="col-md-4">
-            <span>กลุ่มกองทุน</span>
+            <span>{{ 'CONTENT.fund-group' | translate }}</span>
           </div>
           <div class="col-md-6">
             <div class="select-wrapper inline-block">
@@ -69,7 +69,7 @@
         <div class="row">
 
           <div class="col-md-4">
-            <span>กองทุน</span>
+            <span>{{ 'CONTENT.fund-name' | translate }}</span>
           </div>
           <div class="col-md-6">
             <div class="select-wrapper inline-block">
@@ -86,7 +86,7 @@
 
         <div class="row">
           <div class="col-md-4">
-            <span>จากวันที่</span>
+            <span>{{ 'CONTENT.from-date' | translate }}</span>
           </div>
           <div class="col-md-6">
             <div class="input-wrapper">
@@ -94,7 +94,7 @@
             </div>
           </div>
           <div class="col-md-4">
-            <span>ถึงวันที่</span>
+            <span>{{ 'CONTENT.to-date' | translate }}</span>
           </div>
           <div class="col-md-6">
             <div class="input-wrapper">
@@ -105,16 +105,16 @@
         </div>
 
         <div class="row">
-          <div class="col-md-3 col-xs-6 offset-md-4">
+          <div class="col-md-3 col-6 offset-md-4">
             <button class="btn-med btn-primary">
-              ตกลง
+              {{ 'BUTTON.ok' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
 
             </button>
           </div>
-          <div class="col-md-3 col-xs-6">
+          <div class="col-md-3 col-6">
             <button class="btn-med btn-cancel">
-              คืนค่า
+              {{ 'BUTTON.restore' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
 
             </button>
@@ -146,7 +146,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="summary">
+          <tr class="topic">
             <th colspan="4">
               กองทุนรวมหุ้นระยะยาว
             </th>

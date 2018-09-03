@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { datethai} from '../../Share/dateformat'
+declare var $: any;
 @Component({
   selector: 'app-suitability',
   templateUrl: './suitability.component.html',
@@ -7,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SuitabilityComponent implements OnInit {
   page = "over-view";
+  currentdate;
 
   constructor() { }
 
   ngOnInit() {
+    this.currentdate = datethai;
 
     $('#mutual-tab-menu').find('li').removeClass('current');
     $('#mutual-tab-menu').find('li#menu2').addClass('current');      
@@ -91,5 +94,12 @@ export class SuitabilityComponent implements OnInit {
     $('#answerP1').find('input[type="radio"]'). attr("disabled", "disabled");
     $('#answerP2').find('input[type="radio"]'). attr("disabled", "disabled");
   }
+  openmodal(){
+    $('#disclaimer').modal({
+      backdrop: 'static',
+      keyboard: false,
+      show: true
+  });
+    }
 
 }

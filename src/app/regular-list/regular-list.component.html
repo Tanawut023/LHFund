@@ -8,24 +8,16 @@
           <div class="col-md-12">
             <div class="tabs-menu-wrapper">
               <div class="dropdown dropdown-content">
-                <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                <button class="btn-med btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">
                   เมนูกองทุน
                 </button>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a (click)="navigate('regular-purchase')" title="{{ 'NAVBAR.regular-subscription-order' | translate }}">{{ 'NAVBAR.regular-subscription-order' | translate }}</a>
-                  </li>
-                  <!-- <li>
-                    <a (click)="navigate('regular-sell')" title="{{ 'NAVBAR.regular-redemption-order' | translate }}">{{ 'NAVBAR.regular-redemption-order' | translate }}</a>
-                  </li>
-                  <li>
-                    <a (click)="navigate('regular-exchange')" title="{{ 'NAVBAR.regular-switching-order' | translate }}">{{ 'NAVBAR.regular-switching-order' | translate }}</a>
-                  </li> -->
-                  <li>
-                    <a (click)="navigate('all-list')" title="{{ 'NAVBAR.view-plan' | translate }}">{{ 'NAVBAR.view-plan' | translate }}</a>
-                  </li>
-                </ul>
-                <div class="clearfix"></div>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" (click)="navigate('regular-purchase')" title="{{ 'NAVBAR.regular-subscription-order' | translate }}">{{ 'NAVBAR.regular-subscription-order' | translate }}</a>
+                  <!-- <a class="dropdown-item" (click)="navigate('regular-sell')" title="{{ 'NAVBAR.regular-redemption-order' | translate }}">{{ 'NAVBAR.regular-redemption-order' | translate }}</a>
+                        <a class="dropdown-item" (click)="navigate('regular-exchange')" title="{{ 'NAVBAR.regular-switching-order' | translate }}">{{ 'NAVBAR.regular-switching-order' | translate }}</a> -->
+                  <a class="dropdown-item" (click)="navigate('all-list')" title="{{ 'NAVBAR.view-plan' | translate }}">{{ 'NAVBAR.view-plan' | translate }}</a>
+                </div>
               </div>
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu1">
@@ -42,7 +34,7 @@
                 </li>
               </ul>
             </div>
-            
+
             <router-outlet></router-outlet>
 
           </div>

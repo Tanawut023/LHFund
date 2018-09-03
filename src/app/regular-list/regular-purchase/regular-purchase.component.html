@@ -1,8 +1,8 @@
 <div class="fund-table-wrapper" *ngIf="page == 'regular-purchase'">
   <div class="heading-section">
-    <div class="row">
-      <div class="detail-head-wrapper">
-        <div class="col-md-12 col-xs-12 icon-option mb-3">
+    <div class="detail-head-wrapper">
+      <div class="row">
+        <div class="col-md-12 col-12 icon-option mb-3">
 
           <ul class="">
             <!-- <li class="ico-fb">
@@ -25,7 +25,7 @@
         </div>
         <div class="col-md-3">
 
-          <p>เลขที่ผู้ถือหน่วยลงทุน</p>
+          <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
             <select name="ddlLink" id="ddlLink">
               <option value="0" selected="">9990244757</option>
@@ -35,11 +35,11 @@
           </div>
         </div>
         <div class="col-md-3">
-          <p>ชื่อผู้ถือหน่วยลงทุน</p>
+          <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
           <span>เนติวัฒน์ โชติกร</span>
         </div>
         <div class="col-sm-6 col-md-6">
-          <p>ที่อยู่</p>
+          <p>{{ 'CONTENT.address' | translate }}</p>
           <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
         </div>
       </div>
@@ -48,12 +48,12 @@
   <div class="detail-body-wrapper">
     <div class="row">
       <div class="col-md-12">
-        <H4 class="text-left">ซื้อหน่วยลงทุนแบบประจำ</H4>
+        <H4 class="text-left">{{ 'CONTENT.regular-purchase' | translate }}</H4>
       </div>
       <div class="col-md-9">
         <div class="row">
           <div class="col-md-4">
-            <span>กองทุน</span>
+            <span>{{ 'CONTENT.fund-name' | translate }}</span>
           </div>
           <div class="col-md-6">
             <div class="select-wrapper inline-block">
@@ -65,7 +65,7 @@
             </div>
           </div>
           <div class="col-md-4">
-            <span>หักบัญชีธนาคาร</span>
+            <span>{{ 'CONTENT.debit-from-acc' | translate }}</span>
           </div>
           <div class="col-md-6">
             <div class="select-wrapper inline-block">
@@ -79,14 +79,14 @@
             </div>
           </div>
           <div class="col-md-4">
-            <span>จำนวน(บาท)</span>
+            <span>{{ 'CONTENT.amount' | translate }}</span>
           </div>
-          <div class="col-md-3 col-xs-6">
+          <div class="col-md-3 col-6">
             <div class="input-wrapper ">
               <input id="name" name="name" maxlength="30" type="text" class="bg-gray" placeholder="0">
             </div>
           </div>
-          <div class="col-md-3 col-xs-6">
+          <div class="col-md-3 col-6">
             <div class="select-wrapper inline-block">
  <!-- (change)='onGroupChange($event)' -->
                 <select name="ddlLink" id="ddlLink">
@@ -103,23 +103,23 @@
       <div class="col-md-9">
         <div class="row">
           <div class="col-md-4">
-            <span>เงื่อนไข</span>
+            <span>{{ 'CONTENT.condition' | translate }}</span>
           </div>
-          <div class="col-md-3  col-xs-6">
+          <div class="col-md-3  col-6">
             <div class="custom-radio-between">
               <input value="101" id="101" name="rad1" type="radio" checked>
               <label for="101"></label>
-              <p>รายเดือน</p>
+              <p>{{ 'CONTENT.monthly' | translate }}</p>
             </div>
 
 
           </div>
-          <div class="col-md-3 col-xs-6">
+          <div class="col-md-3 col-6">
             <div class="row">
-              <div class="col-md-6 col-xs-6">
-                <span>วันที่</span>
+              <div class="col-md-6 col-6">
+                <span>{{ 'CONTENT.day' | translate }}</span>
               </div>
-              <div class="col-md-6 col-xs-6">
+              <div class="col-md-6 col-6" style="padding-left:0px;">
                 <div class="select-wrapper inline-block">
 
                   <select name="ddlLink" id="ddlLink">
@@ -135,9 +135,9 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            <span>ระยะเวลาเริ่มต้น</span>
+            <span>{{ 'CONTENT.start-date' | translate }}</span>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-6 col-lg-3">
             <div class="input-wrapper">
                 <input class=" textinput dateinput bg-gray" [(ngModel)]="model.startDate" ngbDatepicker #d1="ngbDatepicker" id="startDate" placeholder="วว/ดด/ปปปป" name="startDate" type="text" (click)="d1.toggle()">
               </div>
@@ -145,9 +145,9 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            <span>ระยะเวลาสิ้นสุด</span>
+            <span>{{ 'CONTENT.end-date' | translate }}</span>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-6 col-lg-3">
             <div class="input-wrapper">
               <input class=" textinput dateinput bg-gray" [(ngModel)]="model.endDate" ngbDatepicker #d2="ngbDatepicker" id="endDate" placeholder="วว/ดด/ปปปป" name="endDate" type="text" (click)="d2.toggle()">
             </div>
@@ -155,15 +155,15 @@
         </div>
 
         <div class="row">
-          <div class="col-md-3  col-xs-6 offset-md-4">
+          <div class="col-md-3  col-6 offset-md-4">
             <button class="btn-med btn-primary" (click)="checkpage('regular-purchase-step1')">
-              ตกลง
+              {{ 'BUTTON.ok' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
-          <div class="col-md-3 col-xs-6">
+          <div class="col-md-3 col-6">
             <button class="btn-med btn-cancel" (click)="checkpage('')">
-              ยกเลิก
+              {{ 'BUTTON.cancel' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
@@ -174,14 +174,14 @@
   <div class="detail-footer-wrapper">
     <div class="row">
       <div class="col-md-6 text-left">
-        <h4>รายการซื้อหน่วยลงทุน
+        <h4>{{ 'CONTENT.regular-purchase-list' | translate }}
           <br class="d-block d-sm-none" />
-          <label>(รายการที่รอดำเนินการ)</label>
+          <label>{{ 'CONTENT.order-to-be' | translate }}</label>
         </h4>
       </div>
       <div class="col-md-6 text-md-right">
         <i class="fa fa-angle-right mr-1" aria-hidden="true"></i>
-        <label>ดูรายการทั้งหมด</label>
+        <label>{{ 'CONTENT.view-all' | translate }}</label>
       </div>
       <div class="col-md-12 mt-5 text-center">
         <p>ไม่มีรายการที่รอดำเนินงาน</p>
@@ -189,11 +189,12 @@
     </div>
   </div>
 </div>
+<!-- regular-purchase -->
 <div class="fund-table-wrapper" *ngIf="page == 'regular-purchase-step1'">
   <div class="heading-section">
-    <div class="row">
-      <div class="detail-head-wrapper">
-        <div class="col-md-12 col-xs-12 icon-option mb-3">
+    <div class="detail-head-wrapper">
+      <div class="row">
+        <div class="col-md-12 col-12 icon-option mb-3">
 
           <ul class="">
             <!-- <li class="ico-fb">
@@ -216,7 +217,7 @@
         </div>
         <div class="col-md-3">
 
-          <p>เลขที่ผู้ถือหน่วยลงทุน</p>
+          <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
             <select name="ddlLink" id="ddlLink">
               <option value="0" selected="">9990244757</option>
@@ -226,11 +227,11 @@
           </div>
         </div>
         <div class="col-md-3">
-          <p>ชื่อผู้ถือหน่วยลงทุน</p>
+          <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
           <span>เนติวัฒน์ โชติกร</span>
         </div>
         <div class="col-sm-6 col-md-6">
-          <p>ที่อยู่</p>
+          <p>{{ 'CONTENT.address' | translate }}</p>
           <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
         </div>
       </div>
@@ -239,24 +240,24 @@
   <div class="detail-body-wrapper">
     <div class="row">
       <div class="col-md-12">
-        <H4 class="text-left">ซื้อหน่วยลงทุนแบบประจำ</H4>
+        <H4 class="text-left">{{ 'CONTENT.regular-purchase' | translate }}</H4>
       </div>
       <div class="col-md-9">
         <div class="row">
           <div class="col-md-4">
-            <p>กองทุน</p>
+            <p>{{ 'CONTENT.fund-name' | translate }}</p>
           </div>
           <div class="col-md-6">
             <span>KFCRASH - กองทุนกรุงศรีตราสารเงิน</span>
           </div>
           <div class="col-md-4">
-            <p>หักบัญชีธนาคาร</p>
+            <p>{{ 'CONTENT.debit-from-acc' | translate }}</p>
           </div>
           <div class="col-md-6">
             <span>ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</span>
           </div>
           <div class="col-md-4">
-            <p>จำนวน(บาท)</p>
+            <p>{{ 'CONTENT.amount' | translate }}</p>
           </div>
           <div class="col-md-6">
             <span>3,000 บาท</span>
@@ -267,7 +268,7 @@
       <div class="col-md-9">
         <div class="row">
           <div class="col-md-4">
-            <p>เงื่อนไข</p>
+            <p>{{ 'CONTENT.condition' | translate }}</p>
           </div>
           <div class="col-md-6">
             <span>รายเดือน : วันที่1</span>
@@ -275,7 +276,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            <p>ระยะเวลาเริ่มต้น</p>
+            <p>{{ 'CONTENT.start-date' | translate }}</p>
           </div>
           <div class="col-md-6">
             <span>07 มิถุนายน 2561</span>
@@ -283,7 +284,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            <p>ระยะเวลาสิ้นสุด</p>
+            <p>{{ 'CONTENT.end-date' | translate }}</p>
           </div>
           <div class="col-md-6">
             <span>10 มิถุนายน 2561</span>
@@ -291,15 +292,15 @@
         </div>
 
         <div class="row">
-          <div class="col-md-3  col-xs-6 offset-md-4">
+          <div class="col-md-3  col-6 offset-md-4">
             <button class="btn-med btn-primary" (click)="checkpage('signup1')">
-              พิมพ์
+              {{ 'BUTTON.print' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
-          <div class="col-md-3 col-xs-6">
+          <div class="col-md-3 col-6">
             <button class="btn-med btn-blue" (click)="checkpage('signup1')">
-              ดูรายการ
+              {{ 'BUTTON.view-list' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
@@ -312,3 +313,4 @@
     </div>
   </div>
 </div>
+<!-- regular-purchase-step1 -->

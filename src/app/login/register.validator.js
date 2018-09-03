@@ -1,1 +1,0 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var RegistrationValidator=function(){function t(){}return t.validate=function(t){var r=t.controls.password.value,e=t.controls.repeatPassword.value;return e.length<=0?null:e!==r?{doesMatchPassword:!0}:null},t}();exports.RegistrationValidator=RegistrationValidator;

@@ -57,92 +57,15 @@ input[type="text"], input[type="password"] {
 /* .rc-anchor-light{
     background: white !important;
 } */
-/* .modal-body {
-        height: 380px;
-    }
+.modal-body {
+  height: 380px; }
 
-    .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
-        background-color: #999;
-    }
+@media screen and (min-width: 767px) {
+  .modal-body {
+    height: 500px; } }
 
-    @media screen and (min-width: 767px) {
-        .modal-body {
-            height: 500px;
-        }
-    } */
-.modal-custom {
-  z-index: 2001; }
-  .modal-custom .modal-dialog {
-    width: 50%;
-    margin-top: 82px; }
-    .modal-custom .modal-dialog .modal-content {
-      border-radius: 0px; }
-      .modal-custom .modal-dialog .modal-content .modal-header {
-        border-bottom: 0;
-        overflow: hidden; }
-        .modal-custom .modal-dialog .modal-content .modal-header .modal-title {
-          float: left;
-          max-width: 90%;
-          color: #000;
-          font-family: "KitithadaBold";
-          font-size: 40px;
-          line-height: 40px;
-          -o-text-overflow: ellipsis;
-          text-overflow: ellipsis;
-          word-wrap: break-word;
-          text-transform: uppercase; }
-        .modal-custom .modal-dialog .modal-content .modal-header .close {
-          float: right;
-          margin-right: 0;
-          background: none;
-          color: #000;
-          /*font-family: $default-font;*/
-          font-size: unset;
-          line-height: unset;
-          opacity: 1;
-          cursor: pointer;
-          position: absolute;
-          top: -43px;
-          height: 45px;
-          right: 0px;
-          background-color: #FF4A4A; }
-          .modal-custom .modal-dialog .modal-content .modal-header .close span {
-            font-size: unset;
-            line-height: unset; }
-      .modal-custom .modal-dialog .modal-content .modal-body {
-        padding-top: 0;
-        color: #5a5a5a;
-        font-family: "KitithadaBold";
-        text-align: left; }
-        .modal-custom .modal-dialog .modal-content .modal-body h3 {
-          font-size: 28px;
-          font-family: "KitithadaBold";
-          font-weight: 400;
-          line-height: 40px;
-          margin: 11px 0; }
-        .modal-custom .modal-dialog .modal-content .modal-body p.note {
-          color: #1CA59B;
-          margin-bottom: 10px; }
-        .modal-custom .modal-dialog .modal-content .modal-body span {
-          color: #1CA59B; }
-        .modal-custom .modal-dialog .modal-content .modal-body label {
-          line-height: 28px; }
-        .modal-custom .modal-dialog .modal-content .modal-body img {
-          max-width: 100%; }
-      .modal-custom .modal-dialog .modal-content .modal-footer {
-        border-top: 1px solid transparent;
-        text-align: right; }
-        .modal-custom .modal-dialog .modal-content .modal-footer p {
-          font-size: 22px;
-          line-height: 28px; }
-          .modal-custom .modal-dialog .modal-content .modal-footer p.note {
-            color: #1CA59B;
-            margin-bottom: 10px; }
-    @media screen and (max-width: 767px) {
-      .modal-custom .modal-dialog {
-        width: 95%; }
-        .modal-custom .modal-dialog .modal-content .modal-body {
-          padding: 15px; } }
-  .modal-custom.lg .modal-dialog {
-    width: 80%;
-    height: auto; }
+.modal-dialog {
+  max-width: none; }
+  .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+    background-color: #999;
+}

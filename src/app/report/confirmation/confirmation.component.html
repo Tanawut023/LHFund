@@ -1,8 +1,8 @@
 <div class="fund-table-wrapper">
   <div class="heading-section">
-    <div class="row">
-      <div class="detail-head-wrapper">
-        <div class="col-md-12 col-xs-12 icon-option mb-3">
+    <div class="detail-head-wrapper">
+      <div class="row">
+        <div class="col-md-12 col-12 icon-option mb-3">
 
           <ul class="">
             <!-- <li class="ico-fb">
@@ -25,7 +25,7 @@
         </div>
         <div class="col-md-3">
 
-          <p>เลขที่ผู้ถือหน่วยลงทุน</p>
+          <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block ">
             <select name="ddlLink" id="ddlLink">
               <option value="0" selected="">9990244757</option>
@@ -35,11 +35,11 @@
           </div>
         </div>
         <div class="col-md-3">
-          <p>ชื่อผู้ถือหน่วยลงทุน</p>
+          <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
           <span>เนติวัฒน์ โชติกร</span>
         </div>
         <div class="col-sm-6 col-md-6">
-            <p>ที่อยู่</p>
+            <p>{{ 'CONTENT.address' | translate }}</p>
           <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
           </div>
       </div>
@@ -47,22 +47,23 @@
   </div>
   <div class="detail-body-wrapper">
     <div class="row">
+        <div class="col-md-12">
+            <H4 class="text-left">{{ 'CONTENT.select-date-t' | translate }}</H4>
+          </div>
       <div class="col-md-6">
         <div class="row">
-          <div class="col-md-12">
-            <H4 class="text-left">เลือกวันที่ต้องการยืนยันการทำรายการ</H4>
-          </div>
+          
           <div class="col-md-3">
-            <span>วันที่ทำรายการ</span>
+            <span>{{ 'CONTENT.transaction-date' | translate }}</span>
           </div>
           <div class="col-md-6">
             <div class="input-wrapper">
               <input class=" textinput dateinput bg-gray" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text" (click)="d.toggle()">
             </div>
           </div>
-          <div class="col-md-3 col-xs-6">
+          <div class="col-md-3 col-6">
             <button class="btn-med btn-primary" >
-              ตกลง
+              {{ 'BUTTON.ok' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
@@ -78,17 +79,17 @@
     <div class="sidenav-left">
       <div class="vertical-menu-wrapper">
         <h3>
-          ใบยืนยันการทำรายการ
+          {{ 'NAVBAR.transaction-comfirmmation' | translate }}
         </h3>
         <ul>
           <li>
             <div class="row">
-              <div class="col-md-10 col-xs-9">
+              <div class="col-md-10 col-9">
                 <a href="#" title="ชื่อเมนู">
                   (ชื่อ) ใบยืนยันการทำรายการ
                 </a>
               </div>
-              <div class="col-md-2 col-xs-3">
+              <div class="col-md-2 col-3">
                 <button class="btn-sm btn-download width50 " >
                   <p>Download</p>
                   <img src="/assets/Images/icons/ico-download-white.png">
@@ -98,12 +99,12 @@
           </li>
           <li>
             <div class="row">
-              <div class="col-md-10 col-xs-9">
+              <div class="col-md-10 col-9">
                 <a href="#" title="ชื่อเมนู">
                   (ชื่อ) ใบยืนยันการทำรายการ
                 </a>
               </div>
-              <div class="col-md-2 col-xs-3">
+              <div class="col-md-2 col-3">
                 <button class="btn-sm btn-download width50 ">
                   <p>Download</p>
                   <img src="/assets/Images/icons/ico-download-white.png">
@@ -113,12 +114,12 @@
           </li>
           <li>
             <div class="row">
-              <div class="col-md-10 col-xs-9">
+              <div class="col-md-10 col-9">
                 <a href="#" title="ชื่อเมนู">
                   (ชื่อ) ใบยืนยันการทำรายการ
                 </a>
               </div>
-              <div class="col-md-2 col-xs-3">
+              <div class="col-md-2 col-3">
                 <button class="btn-sm btn-download width50 ">
                   <p>Download</p>
                   <img src="/assets/Images/icons/ico-download-white.png">

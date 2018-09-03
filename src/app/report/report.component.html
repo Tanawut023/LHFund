@@ -7,33 +7,19 @@
           <div class="col-md-12">
             <div class="tabs-menu-wrapper">
               <div class="dropdown dropdown-content">
-                <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                <button class="btn-med btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">
                   เมนูกองทุน
                 </button>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a (click)="navigate('receipt-history')" title="{{ 'NAVBAR.dividend-detail' | translate }}">{{ 'NAVBAR.dividend-detail' | translate }}</a>
-                  </li>
-                  <li>
-                    <a (click)="navigate('past-events')" title="{{ 'NAVBAR.statement' | translate }}">{{ 'NAVBAR.statement' | translate }}</a>
-                  </li>
-                  <!-- <li>
-                    <a (click)="navigate('summary')" title="สรุปกำไร/ขาดทุน">สรุปกำไร/ขาดทุน</a>
-                  </li> -->
-                  <li>
-                    <a (click)="navigate('today-list')" title="{{ 'NAVBAR.today-input' | translate }}">{{ 'NAVBAR.today-input' | translate }}</a>
-                  </li>
-                  <li>
-                    <a (click)="navigate('not-available-list')" title="{{ 'NAVBAR.unalloted-transaction' | translate }}">{{ 'NAVBAR.unalloted-transaction' | translate }}</a>
-                  </li>
-                  <li>
-                    <a (click)="navigate('confirmation')" title="{{ 'NAVBAR.transaction-comfirmmation' | translate }}">{{ 'NAVBAR.transaction-comfirmmation' | translate }}</a>
-                  </li>
-                  <li>
-                    <a (click)="navigate('type')" title="{{ 'NAVBAR.type' | translate }}">{{ 'NAVBAR.type' | translate }}</a>
-                  </li>
-                </ul>
-                <div class="clearfix"></div>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" (click)="navigate('receipt-history')" title="{{ 'NAVBAR.dividend-detail' | translate }}">{{ 'NAVBAR.dividend-detail' | translate }}</a>
+                  <a class="dropdown-item" (click)="navigate('past-events')" title="{{ 'NAVBAR.statement' | translate }}">{{ 'NAVBAR.statement' | translate }}</a>
+                  <!-- <a class="dropdown-item" (click)="navigate('summary')" title="สรุปกำไร/ขาดทุน">สรุปกำไร/ขาดทุน</a> -->
+                  <a class="dropdown-item" (click)="navigate('today-list')" title="{{ 'NAVBAR.today-input' | translate }}">{{ 'NAVBAR.today-input' | translate }}</a>
+                  <a class="dropdown-item" (click)="navigate('not-available-list')" title="{{ 'NAVBAR.unalloted-transaction' | translate }}">{{ 'NAVBAR.unalloted-transaction' | translate }}</a>
+                  <a class="dropdown-item" (click)="navigate('confirmation')" title="{{ 'NAVBAR.transaction-comfirmmation' | translate }}">{{ 'NAVBAR.transaction-comfirmmation' | translate }}</a>
+                  <a class="dropdown-item" (click)="navigate('type')" title="{{ 'NAVBAR.type' | translate }}">{{ 'NAVBAR.type' | translate }}</a>
+                </div>
               </div>
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu3">
@@ -63,7 +49,7 @@
 
             <router-outlet></router-outlet>
 
-            
+
           </div>
         </div>
       </div>

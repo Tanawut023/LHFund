@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-ltf-condition-complete',
   templateUrl: './ltf-condition-complete.component.html',

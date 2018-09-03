@@ -151,7 +151,7 @@
                     }
                 }
             }
-            /*@media screen and (max-width: $screen-xs-max) {
+            /*@media screen and (max-width: 768px) {
                 h4 {
                     margin-bottom: 22px;
                 }
@@ -291,7 +291,7 @@
             }
         }
 
-        @media screen and (max-width: $screen-sm-min) {
+        @media screen and (max-width: 768px) {
             .social-network-list {
                 width: 320px !important;
 
@@ -310,7 +310,7 @@
             font-size: $text-large;
         }
 
-        @media screen and (max-width: $screen-xs-max) {
+        @media screen and (max-width: 768px) {
             h2 {
                 font-size: 19px;
             }
@@ -398,7 +398,7 @@
                 display: block;
             }
 
-            @media screen and (max-width: $screen-sm-min) {
+            @media screen and (max-width: 768px) {
                 ul {
                     li {
                         border-bottom: 1px solid #626262;
@@ -446,7 +446,7 @@
                 }
             }
 
-            @media screen and (max-width: $screen-sm-min) {
+            @media screen and (max-width: 768px) {
                 ul {
                     li {
                         float: left;
@@ -601,7 +601,7 @@
                 }
             }
 
-            @media screen and (max-width: $screen-sm-max) {
+            @media screen and (max-width: 992px) {
                 padding: 0 15px;
                 margin-bottom: 40px;
 
@@ -616,7 +616,7 @@
         }
     }
 
-    @media screen and (max-width: $screen-sm-min) {
+    @media screen and (max-width: 768px) {
         .contact-mobile .call-center {
             background: url('/assets/images/more-info-tablet.png') no-repeat scroll 35px center;
             border-top: 1px solid #626262;
@@ -638,7 +638,7 @@
         }
     }
 
-    @media screen and (min-width: 480px) and (max-width: $screen-sm-max) {
+    @media screen and (min-width: 480px) and (max-width: 992px) {
         .contact-mobile .call-center {
             background: url('/assets/images/more-info-tablet.png') no-repeat scroll 224px center;
             border-top: 1px solid #626262;
@@ -891,7 +891,7 @@
                 // padding-bottom: 20px;
             }
 
-            @media screen and (max-width: $screen-xs-max) {
+            @media screen and (max-width: 768px) {
             }
         }
     }
@@ -925,7 +925,7 @@
       cursor:pointer;
       opacity: 1.0;
     }
-    @media screen and (max-width: $screen-sm-min) {
+    @media screen and (max-width: 768px) {
       position: static;
       margin-top: 25px;
       margin-bottom: 25px;

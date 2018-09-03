@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+//myport
 import { MyportComponent } from './myport/myport.component';
 
 //transaction
@@ -44,35 +44,44 @@ import { SuitabilityComponent } from './profile/suitability/suitability.componen
 import { ChangepasswordComponent } from './profile/changepassword/changepassword.component';
 import { SettingComponent } from './profile/setting/setting.component';
 
+//pagenotfound
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
+//login
+import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register/register.component';
+import { SigninComponent } from './login/signin/signin.component';
+import { ForgotpasswordComponent } from './login/forgotpassword/forgotpassword.component';
+import { ChangepasswordloginComponent } from './login/changepasswordlogin/changepasswordlogin.component';
+
+import { AuthGuard } from './service/auth.guard'
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/myport', pathMatch: 'full' },
   {
     path: 'login', component: LoginComponent,
-    // children: [
-    //   { path: '', component: RegisterComponent, pathMatch: 'full' },
-    //   { path: 'sell', component: SellComponent },
-    //   { path: 'exchange', component: ExchangeComponent },
-    //   { path: 'purchase-for-sell', component: PurchaseForSellComponent },
-    //   { path: '**', component: PurchaseComponent },
-    // ]
+    children: [
+      { path: '', component: SigninComponent, pathMatch: 'full' },
+      { path: 'register', component: RegisterComponent },
+      { path: 'forgotpassword', component: ForgotpasswordComponent },
+      { path: 'changepassword/refcode/:refcode', component: ChangepasswordloginComponent },
+      // { path: 'signin', component: SigninComponent },
+      { path: '**', component: SigninComponent },
+    ]
   },
-  { path: 'myport', component: MyportComponent },
+  { path: 'myport', component: MyportComponent, canActivate: [AuthGuard]},
   {
-    path: 'transaction', component: TransactionComponent,
+    path: 'transaction', component: TransactionComponent, canActivate: [AuthGuard],
     children: [
       { path: '', component: PurchaseComponent, pathMatch: 'full' },
-      { path: 'sell', component: SellComponent },
-      { path: 'exchange', component: ExchangeComponent },
-      { path: 'purchase-for-sell', component: PurchaseForSellComponent },
-      { path: '**', component: PurchaseComponent },
+      { path: 'sell', component: SellComponent , },
+      { path: 'exchange', component: ExchangeComponent , },
+      { path: 'purchase-for-sell', component: PurchaseForSellComponent, },
+      { path: '**', component: PurchaseComponent, },
     ]
   },
   {
-    path: 'rmf-ltf', component: RmfLtfComponent,
+    path: 'rmf-ltf', component: RmfLtfComponent, canActivate: [AuthGuard],
     children: [
       { path: '', component: LtfConditionCompleteComponent, pathMatch: 'full' },
       { path: 'conclusion', component: ConclusionComponent },
@@ -82,7 +91,7 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'regular-list', component: RegularListComponent,
+    path: 'regular-list', component: RegularListComponent, canActivate: [AuthGuard],
     children: [
       { path: '', component: RegularPurchaseComponent, pathMatch: 'full' },
       { path: 'regular-sell', component: RegularSellComponent },
@@ -92,7 +101,7 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'report', component: ReportComponent,
+    path: 'report', component: ReportComponent, canActivate: [AuthGuard],
     children: [
       { path: '', component: ReceiptHistoryComponent, pathMatch: 'full' },
       { path: 'confirmation', component: ConfirmationComponent },
@@ -105,7 +114,7 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'profile', component: ProfileComponent,
+    path: 'profile', component: ProfileComponent, canActivate: [AuthGuard],
     children: [
       { path: '', component: EditProfileComponent, pathMatch: 'full' },
       { path: 'suitability', component: SuitabilityComponent },

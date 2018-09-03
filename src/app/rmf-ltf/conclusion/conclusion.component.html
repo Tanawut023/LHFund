@@ -1,8 +1,8 @@
 <div class="fund-table-wrapper">
   <div class="heading-section">
-    <div class="row">
-      <div class="detail-head-wrapper">
-        <div class="col-md-12 col-xs-12 icon-option mb-3">
+    <div class="detail-head-wrapper">
+      <div class="row">
+        <div class="col-md-12 col-12 icon-option mb-3">
 
           <ul class="">
             <!-- <li class="ico-fb">
@@ -25,7 +25,7 @@
         </div>
         <div class="col-md-3">
 
-          <p>เลขที่ผู้ถือหน่วยลงทุน</p>
+          <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
             <select name="ddlLink" id="ddlLink">
               <option value="0" selected="">9990244757</option>
@@ -37,12 +37,12 @@
 
 
         <div class="col-md-3">
-          <p>ชื่อผู้ถือหน่วยลงทุน</p>
+          <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
           <span>เนติวัฒน์ โชติกร</span>
         </div>
         <div class="col-sm-6 col-md-6">
 
-            <p>ที่อยู่</p>
+            <p>{{ 'CONTENT.address' | translate }}</p>
             <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
         </div>
       </div>
@@ -64,7 +64,7 @@
       </div>
       <div class="col-md-3">
         <button class="btn-med btn-primary width50">
-          ตกลง
+          {{ 'BUTTON.ok' | translate }}
           <i class="fa fa-angle-right" aria-hidden="true"></i>
         </button>
       </div>
@@ -72,12 +72,12 @@
       <div class="col-md-12">
         <div class="fund-list-wrapper">
           <div class="row">
-            <div class="col-md-6 col-xs-12 no-padding">
+            <div class="col-md-6 col-12 no-padding">
               <div class="title-heading-blue">
                 <div class="row">
                   <!-- <div class="col-md-2"><img src="/assets/Images/icons/ico-asset.png"></div> -->
                   <div class="col-md-12">
-                    <h1 class="no-margin">มูลค่าการลงทุน RMF & LTF</h1>
+                    <h3 class="no-margin">{{ 'CONTENT.sub' | translate }}</h3>
                   </div>
                   <div class="col-md-12">
                     <h3 class="no-margin">จาก 1 มกราคม 2561 ถึง 12 มิถุนายน 2561</h3>
@@ -85,16 +85,16 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-3 col-xs-12 no-padding">
+            <div class="col-md-3 col-12 no-padding">
               <div class="title-heading">
                 <div class="row">
-                  <div class="col-md-3 col-xs-3">
+                  <div class="col-md-3 col-3">
                     <img src="/assets/Images/icons/ico-rmf.png">
                   </div>
-                  <div class="col-md-9 col-xs-9">
+                  <div class="col-md-9 col-9">
                     <div class="row">
                       <div class="col-sm-12">
-                        <p>มูลค่าการลงทุน RMF (บาท)</p>
+                        <p class="no-margin">{{ 'CONTENT.sub-r-total' | translate }}</p>
                       </div>
                       <div class="col-sm-12">
                         <h3 class="no-margin">฿ 669,638.80</h3>
@@ -105,16 +105,16 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-3 col-xs-12 no-padding">
+            <div class="col-md-3 col-12 no-padding">
               <div class="title-heading bg-sea">
                 <div class="row">
-                  <div class="col-md-3 col-xs-3">
+                  <div class="col-md-3 col-3">
                     <img src="/assets/Images/icons/ico-ltf.png">
                   </div>
-                  <div class="col-md-9 col-xs-9">
+                  <div class="col-md-9 col-9">
                     <div class="row">
                       <div class="col-sm-12">
-                        <p>มูลค่าการลงทุน LTF (บาท)</p>
+                        <p class="no-margin">{{ 'CONTENT.sub-l-total' | translate }}</p>
                       </div>
                       <div class="col-sm-12">
                         <h3 class="no-margin">฿ 669,638.80</h3>
@@ -271,9 +271,9 @@
 
       <div class="col-md-12  mt-3">
           <div class="row justify-content-center">
-            <div class="col-md-2 col-xs-6 col-sm-4">
+            <div class="col-md-2 col-6 col-sm-4">
               <button class="btn-med btn-primary">
-                พิมพ์
+                {{ 'BUTTON.print' | translate }}
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
 
               </button>

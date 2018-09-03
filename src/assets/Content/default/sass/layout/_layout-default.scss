@@ -58,7 +58,7 @@
         }
     }
 
-    @media screen and (max-width: $screen-xs-max) {
+    @media screen and (max-width: 768px) {
         top: auto;
         position: relative;
         width: 100%;
@@ -404,7 +404,7 @@
         }
     }
 
-    @media screen and (max-width: $screen-md-max) {
+    @media screen and (max-width: 1200px) {
         .foo-item {
             .caption {
                 .title-wrapper {
@@ -414,7 +414,7 @@
         }
     }
 
-    @media screen and (max-width: $screen-sm-max) {
+    @media screen and (max-width: 992px) {
         .foo-item {
             .caption {
                 .title-wrapper {
@@ -423,7 +423,7 @@
         }
     }
 
-    @media screen and (max-width: $screen-xs-max) {
+    @media screen and (max-width: 768px) {
         .foo-item {
             .caption {
                 padding: 0 20px;
@@ -522,7 +522,7 @@
         }
     }
 
-    @media screen and (max-width: $screen-sm-max) {
+    @media screen and (max-width: 992px) {
         /*position: relative;
         top: auto;
         left: auto;
@@ -630,7 +630,7 @@
                         }  
                         img{
                             margin-left: 20px;
-                            @media screen and (max-width: 767px) {                                
+                            @media screen and (max-width: 1024px) {                                
                                     margin-left: 0px;                                 
                             }
                         }
@@ -759,7 +759,7 @@
             }
         }
 
-        @media screen and (max-width: $screen-sm-max) {
+        @media screen and (max-width: 992px) {
             text-align: right;
 
 
@@ -881,7 +881,7 @@
             /*float: right;*/
             max-width: 50%;
 
-            @media screen and (max-width: $screen-xs-max) {
+            @media screen and (max-width: 768px) {
                 max-width: unset;
                 width: 100%;
                 margin: 0 auto !important;
@@ -1208,7 +1208,7 @@
 
         
 
-        @media screen and (max-width: $screen-xs-max) {
+        @media screen and (max-width: 768px) {
             .add-print, .add-download {
                 text-align: left;
                 margin-bottom: 20px;
@@ -1405,7 +1405,7 @@
             }
         }
 
-        @media screen and (max-width: $screen-sm-max) {
+        @media screen and (max-width: 992px) {
             .title-heading {
                 // height: auto;
                 // padding: 10px 20px;
@@ -1562,7 +1562,7 @@
                         }
                     }
 
-                    @media screen and (max-width: $screen-xs-max) {
+                    @media screen and (max-width: 768px) {
                         .date {
                             text-align: left;
                         }
@@ -1734,19 +1734,19 @@
                         text-decoration: none;
                     }
 
-                    @media screen and (max-width: $screen-md-max) {
+                    @media screen and (max-width: 1200px) {
                         .item {
                             width: 49%;
                         }
                     }
 
-                    @media screen and (max-width: $screen-sm-max) {
+                    @media screen and (max-width: 992px) {
                         .item {
                             width: 19%;
                         }
                     }
 
-                    @media screen and (max-width: $screen-xs-max) {
+                    @media screen and (max-width: 768px) {
                         .item {
                             width: 49%;
                         }
@@ -1913,7 +1913,7 @@
                         }
                     }
 
-                    @media screen and (max-width: $screen-sm-max) {
+                    @media screen and (max-width: 992px) {
                         margin-bottom: 20px;
 
                         ul {
@@ -1982,6 +1982,7 @@
                 border: 0;
                 padding: 15px;
                 margin-right: 0;
+                display: block;
                 @include round-corner(0);
 
                 &:hover {
@@ -2001,7 +2002,7 @@
             }
         }
 
-        @media screen and (max-width: $screen-md-max) {
+        @media screen and (max-width: 1200px) {
             > li {
                 a {
                     padding-left: 10px;
@@ -2010,7 +2011,7 @@
             }
         }
 
-        @media screen and (max-width: $screen-sm-max) {
+        @media screen and (max-width: 992px) {
             display: none;
         }
     }
@@ -2038,11 +2039,11 @@
             border-radius: 0;
         }
 
-        @media screen and (max-width: $screen-sm-max) {
+        @media screen and (max-width: 992px) {
             display: block;
         }
 
-        @media screen and (max-width: $screen-xs-max) {
+        @media screen and (max-width: 768px) {
             .btn-med, .dropdown-menu {
                 max-width: unset;
                 width: 100%;
@@ -2063,7 +2064,7 @@
         border-color: $color-primary;
         background-color: $color-primary;
 
-        @media screen and (max-width: $screen-xs-max) {
+        @media screen and (max-width: 768px) {
             border-color: $color-primary;
             background-color: $color-primary;
         }
@@ -2081,7 +2082,7 @@
         border-color: $color-primary;
         background-color: $color-primary;
 
-        @media screen and (max-width: $screen-xs-max) {
+        @media screen and (max-width: 768px) {
             border-color: $color-primary;
             background-color: $color-primary;
         }
@@ -2166,7 +2167,7 @@
             }
         }
 
-        @media screen and (max-width: $screen-sm-max) {
+        @media screen and (max-width: 992px) {
             .date-wrapper {
                 margin-bottom: 10px;
                 background-image: none;
@@ -2395,7 +2396,7 @@
       }
     }
 
-    @media screen and (max-width: $screen-xs-max) {
+    @media screen and (max-width: 768px) {
       span{
         display: block;
         margin-bottom: 15px;
@@ -2539,7 +2540,7 @@
 }
 
 .modal-custom {
-    z-index: 2001;
+    z-index: 9999;
 
     .modal-dialog {
         width: 50%;
@@ -2576,7 +2577,7 @@
                     opacity: 1;
                     cursor: pointer;
                     position: absolute;
-                    top:-43px;
+                    top:-25px;
                     height:45px;
                     right:0px;
                     background-color: $color-red;
@@ -2596,6 +2597,7 @@
                 color: $color-text;
                 font-family: $default-font;
                 text-align: left;
+                overflow-y: auto;
                 // @media screen and (min-width: 767px){
                 //     height: 500px;
                 // }  
@@ -2635,6 +2637,7 @@
             .modal-footer {
                 border-top: 1px solid transparent;
                 text-align: right;
+                display: block;
 
                 p {
                     font-size: $text-content;
@@ -2705,24 +2708,24 @@
 /* ------------------------------------------------------ */
 /*              media screen min width 768                */
 /* ------------------------------------------------------ */
-@media (min-width: $screen-sm-min) {
+// @media (min-width: $screen-sm-min) {
 
 
-}// media sm min768
+// }// media sm min768
 
 /* ------------------------------------------------------ */
 /*             media screen min width 1000                */
 /* ------------------------------------------------------ */
-@media (min-width: $screen-md-min) {
+// @media (min-width: $screen-md-min) {
 
-}// media sm min1000
+// }// media sm min1000
 
 /* ------------------------------------------------------ */
 /* screen lg  apply to screen  min-width 1200px and above */
 /* note: desktop and FullHD screen tablet use this style  */
 /* ------------------------------------------------------ */
 
-@media (min-width: $screen-lg-min) {
+// @media (min-width: $screen-lg-min) {
 
-}// media min1200
+// }// media min1200
 

@@ -1,0 +1,23 @@
+/* *************************************************************** */
+/* ************** ksec css media query breakpoint  *************** */
+/* *************************************************************** */
+/* note : use bootstrap custom breakpoint                          */
+/* *************************************************************** */
+.style {
+  property: mobile-first-value; }
+
+@media (min-width: 480px) {
+  .style {
+    property: value; } }
+
+@media (min-width: 768px) {
+  .style {
+    property: value; } }
+
+@media (min-width: 1000px) {
+  .style {
+    property: value; } }
+
+@media (min-width: 1200px) {
+  .style {
+    property: value; } }

@@ -3,7 +3,7 @@
     <div class="detail-head-wrapper">
       <div class="row">
       
-        <div class="col-md-12 col-xs-12 icon-option mb-3">
+        <div class="col-md-12 col-12 icon-option mb-3">
 
           <ul class="">
             <!-- <li class="ico-fb">
@@ -25,7 +25,7 @@
           </ul>
         </div>
         <div class="col-md-3">
-          <p>เลขที่ผู้ถือหน่วยลงทุน</p>
+          <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block pb-3">
             <select name="ddlLink" id="ddlLink">
               <option value="0" selected="">9990244757</option>
@@ -36,12 +36,12 @@
         </div>
 
         <div class="col-md-3">
-          <p>ชื่อผู้ถือหน่วยลงทุน</p>
+          <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
           <span>เนติวัฒน์ โชติกร</span>
         </div>
 
         <div class="col-md-3">
-          <p>วันที่ออกรายการ</p>
+          <p>{{ 'CONTENT.report-date' | translate }}</p>
           <span>7 มิถุนายน 2561</span>
         </div>
         
@@ -49,7 +49,7 @@
       <div class="row">
         <div class="col-sm-6 col-md-6">
 
-            <p>ที่อยู่</p>
+            <p>{{ 'CONTENT.address' | translate }}</p>
             <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
         </div>
     </div>
@@ -60,7 +60,7 @@
   <div class="detail-body-wrapper">
     <div class="row">
       <div class="col-md-12">
-        <h4>ดูรายการทั้งหมด</h4>
+        <h4>{{ 'NAVBAR.view-plan' | translate }}</h4>
       </div>
       <div class="col-md-12">
         <div class="table-responsive">
@@ -102,7 +102,7 @@
                   </tr>
             </thead>
             <tbody>                          
-              <tr class="summary">
+              <tr class="topic">
                 <th colspan="10">
                   กองทุนรวมหุ้นระยะยาว
                 </th>
@@ -200,9 +200,9 @@
       </div>
       <div class="col-md-12">
         <div class="row justify-content-center">
-          <div class="col-md-2 col-xs-6 col-sm-4">
+          <div class="col-md-2 col-6 col-sm-4">
             <button class="btn-med btn-primary">
-              พิมพ์
+              {{ 'BUTTON.print' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
 
             </button>

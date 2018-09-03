@@ -124,7 +124,7 @@
 
 .contact-wrapper {
   position: relative;
-  max-width: 100%;
+  width: 100%;
   padding: 0;
   margin: 0 auto;
   margin-top: 160px; }
@@ -219,14 +219,11 @@
           line-height: 28px;
           color: #333; }
           .contact-wrapper .popup-content ul li a:hover {
-            color: #000;
+            color: #fff;
             text-decoration: none; }
         .contact-wrapper .popup-content ul li.current a {
           color: #fff;
           text-decoration: underline; }
-          .contact-wrapper .popup-content ul li.current a:hover {
-            color: #000;
-            text-decoration: none; }
     .contact-wrapper .popup-content .btn-blue {
       position: relative;
       color: #fff;

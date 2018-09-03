@@ -790,7 +790,7 @@ html,body{
   display: none;
 }
 
-@media screen and (max-width: $screen-sm-max) {
+@media screen and (max-width: 992px) {
       .canvas-menu-wrapper{
         display: block;
       }
@@ -977,9 +977,41 @@ html,body{
                           vertical-align: initial;
                       }
                   }
+
+                  &.sw-lang {
+                    li {
+                      display: inline-block;
+                      padding: 10px 0;
+                      margin: 0 5px;
+                      cursor: pointer;
+  
+                      a {
+                          font-size: $text-content;
+                          line-height: $text-small;
+                          color: $color-hover;
+  
+                          &:hover {
+                              color: $color-white;
+                              text-decoration: none;
+                          }
+                      }
+  
+                      &.current {
+                          a {
+                              color: $color-white;
+  
+                              // &:hover {
+                              //     color: $color-hover;
+                              //     text-decoration: none;
+                              // }
+                          }
+                      }
+                  }
+                
+                  }
               }
   
-              @media screen and (max-width: $screen-sm-max) {
+              @media screen and (max-width: 992px) {
                   text-align: left;
   
   
@@ -993,7 +1025,7 @@ html,body{
               }
           }
   
-          @media screen and (max-width: $screen-md-max) {
+          @media screen and (max-width: 1200px) {
               .wrapper {
                   padding: 0 10px;
               }

@@ -8,24 +8,16 @@
                     <div class="col-md-12">
                         <div class="tabs-menu-wrapper">
                             <div class="dropdown dropdown-content">
-                                <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                <button class="btn-med btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
                                     เมนูกองทุน
                                 </button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a (click)="navigate('edit-profile')" title="{{ 'NAVBAR.view-edit-personal-information' | translate }}">{{ 'NAVBAR.view-edit-personal-information' | translate }}</a>
-                                    </li>
-                                    <li>
-                                        <a (click)="navigate('suitability')" title="{{ 'NAVBAR.suitability' | translate }}">{{ 'NAVBAR.suitability' | translate }}</a>
-                                    </li>
-                                    <li>
-                                        <a (click)="navigate('change-password')" title="{{ 'NAVBAR.changepassword' | translate }}">{{ 'NAVBAR.changepassword' | translate }}</a>
-                                    </li>
-                                    <li>
-                                        <a (click)="navigate('setting')" title="{{ 'NAVBAR.setting' | translate }}">{{ 'NAVBAR.setting' | translate }}</a>
-                                    </li>
-                                </ul>
-                                <div class="clearfix"></div>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" (click)="navigate('edit-profile')" title="{{ 'NAVBAR.view-edit-personal-information' | translate }}">{{ 'NAVBAR.view-edit-personal-information' | translate }}</a>
+                                    <a class="dropdown-item" (click)="navigate('suitability')" title="{{ 'NAVBAR.suitability' | translate }}">{{ 'NAVBAR.suitability' | translate }}</a>
+                                    <a class="dropdown-item" (click)="navigate('change-password')" title="{{ 'NAVBAR.changepassword' | translate }}">{{ 'NAVBAR.changepassword' | translate }}</a>
+                                    <a class="dropdown-item" (click)="navigate('setting')" title="{{ 'NAVBAR.setting' | translate }}">{{ 'NAVBAR.setting' | translate }}</a>
+                                </div>
                             </div>
                             <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                                 <li role="presentation" id="menu1" class="current">
@@ -57,13 +49,13 @@
         <div class="modal-content">
             <div class="modal-header">
 
-                <h4 class="modal-title">ระบบความปลอดภัย OTP</h4>
+                <h4 class="modal-title">{{ 'LOGIN.otp' | translate }}</h4>
             </div>
             <div class="modal-body" id="content-scroll-1">
                 <form>
                     <div class="row">
                         <div class="col-sm-12">
-                            <p>ระบบจะส่งรหัส OTP ไปยังเบอร์โทรศัพท์มือถือ
+                            <p>{{ 'LOGIN.otp-send' | translate }}
                             </p>
                         </div>
                     </div>
@@ -76,7 +68,7 @@
                         <div class="col-md-4">
                             <div class="btn-wrapper">
                                 <button class="btn-med btn-blue">
-                                    ส่งรหัส OTP
+                                    {{ 'BUTTON.otp' | translate }}
                                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                                 </button>
                             </div>
@@ -84,7 +76,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <p>ระบุรหัส OTP ที่ได้รับ</p>
+                            <p>{{ 'LOGIN.otp-receive' | translate }}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -96,20 +88,20 @@
                     </div>
                     <div class="row pb-4">
                         <div class="col-md-12">
-                            <p>กรุณากดปุ่ม "Request OTP" เพื่อรับรหัสรักษาความปลอดภัย</p>
+                            <p>{{ 'LOGIN.otp-request' | translate }}</p>
                         </div>
                     </div>
 
                     <div class="row mt-3 justify-content-center">
-                        <div class="col-md-4 col-xs-6">
+                        <div class="col-md-4 col-6">
                             <button class="btn-med btn-primary">
-                                ยืนยัน
+                                {{ 'BUTTON.confirm' | translate }}
                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                             </button>
                         </div>
-                        <div class="col-md-4 col-xs-6">
+                        <div class="col-md-4 col-6">
                             <button class="btn-med btn-cancel" data-dismiss="modal">
-                                ยกเลิก
+                                {{ 'BUTTON.cancel' | translate }}
                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                             </button>
                         </div>

@@ -1,8 +1,8 @@
 <div class="fund-table-wrapper" *ngIf="page == 'regular-sell'">
   <div class="heading-section">
-    <div class="row">
-      <div class="detail-head-wrapper">
-        <div class="col-md-12 col-xs-12 icon-option mb-3">
+    <div class="detail-head-wrapper">
+      <div class="row">
+        <div class="col-md-12 col-12 icon-option mb-3">
 
           <ul class="">
             <!-- <li class="ico-fb">
@@ -124,12 +124,12 @@
           <div class="col-md-4">
             <span>จำนวนที่ขายคืน</span>
           </div>
-          <div class="col-md-3 col-xs-6">
+          <div class="col-md-3 col-6">
             <div class="input-wrapper ">
               <input id="name" name="name" maxlength="30" type="text" class="bg-gray" placeholder="0">
             </div>
           </div>
-          <div class="col-md-3 col-xs-6">
+          <div class="col-md-3 col-6">
             <div class="select-wrapper inline-block">
 
                 <select name="ddlLink" id="ddlLink">
@@ -160,19 +160,19 @@
           <div class="col-md-4">
             <span>เงื่อนไข</span>
           </div>
-          <div class="col-md-3 col-xs-6">
+          <div class="col-md-3 col-6">
             <div class="custom-radio-between">
               <input value="101" id="101" name="rad1" type="radio" checked>
               <label for="101"></label>
               <p>รายเดือน</p>
             </div>
           </div>
-          <div class="col-md-3 col-xs-6">
+          <div class="col-md-3 col-6">
               <div class="row">
-                <div class="col-md-6 col-xs-6">
+                <div class="col-md-6 col-6">
                   <span>วันที่</span>
                 </div>
-                <div class="col-md-6 col-xs-6">
+                <div class="col-md-6 col-6">
                   <div class="select-wrapper inline-block">
   
                     <select name="ddlLink" id="ddlLink">
@@ -209,13 +209,13 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-3  col-xs-6 offset-md-4">
+          <div class="col-md-3  col-6 offset-md-4">
             <button class="btn-med btn-primary" (click)="checkpage('regular-sell-step1')">
               ตกลง
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
-          <div class="col-md-3 col-xs-6">
+          <div class="col-md-3 col-6">
             <button class="btn-med btn-cancel" (click)="checkpage('')">
               ยกเลิก
               <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -248,11 +248,12 @@
     </div>
   </div>
 </div>
+<!-- regular-sell -->
 <div class="fund-table-wrapper" *ngIf="page == 'regular-sell-step1'">
   <div class="heading-section">
-    <div class="row">
-      <div class="detail-head-wrapper">
-        <div class="col-md-12 col-xs-12 icon-option mb-3">
+    <div class="detail-head-wrapper">
+      <div class="row">
+        <div class="col-md-12 col-12 icon-option mb-3">
 
           <ul class="">
             <!-- <li class="ico-fb">
@@ -404,13 +405,13 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-3  col-xs-6 offset-md-4">
+          <div class="col-md-3  col-6 offset-md-4">
             <button class="btn-med btn-primary" (click)="checkpage('signup1')">
               พิมพ์
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
-          <div class="col-md-3 col-xs-6">
+          <div class="col-md-3 col-6">
             <button class="btn-med btn-blue" (click)="checkpage('signup1')">
               ดูรายการ
               <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -426,3 +427,4 @@
 
   </div>
 </div>
+<!-- regular-sell-step1 -->

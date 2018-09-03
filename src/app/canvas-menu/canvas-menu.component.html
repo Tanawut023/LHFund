@@ -24,12 +24,7 @@
                                   <!-- <img src="./assets/Images/icons/p_dropdown_select.png" /> -->
                               </a>
                           </li>
-                          <li class="th current" (click)="translate.use('th')">
-                              <a  title="ไทย">ไทย</a>
-                          </li>
-                          <li class="en" (click)="translate.use('en')">
-                              <a  title="Eng">Eng</a>
-                          </li>
+                         
                           <!-- <li class="ico-ig">
                               <a href="#" title="">
                                   <img src="./assets/Images/icons/ico-ig-white.png" />
@@ -37,7 +32,12 @@
                           </li> -->
                       </ul>
                       <ul class="sw-lang">
-                          
+                           <li class="th" (click)="switchlang('th')" [ngClass]="{'current': langth}">
+                              <a  title="ไทย">Thai</a>
+                          </li>
+                          <li class="en" (click)="switchlang('en')" [ngClass]="{'current': langen}">
+                              <a  title="Eng">Eng</a>
+                          </li>
                           <!-- <li class="ch">
                               <a href="#" title="Chi">Chi</a>
                           </li> -->
@@ -66,8 +66,8 @@
                                 <li >&nbsp;</li>
     </ul>
     <div class="row justify-content-center ">
-        <div class="col-md-6 col-xs-10 col-sm-6">
-          <button class="btn-med btn-primary text-center" routerLink="/">
+        <div class="col-md-6 col-10 col-sm-6">
+          <button class="btn-med btn-primary text-center" [routerLink]="['/login']">
                 <img style="vertical-align: sub;" src="./assets/Images/icons/ico-forgot.png" />
             ออกจากระบบ
             <!-- <i class="fa fa-angle-right" aria-hidden="true"></i> -->

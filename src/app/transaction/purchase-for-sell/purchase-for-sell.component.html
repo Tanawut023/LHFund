@@ -1,8 +1,8 @@
 <div class="fund-table-wrapper" *ngIf="page == 'purchase-for-sell'">
   <div class="heading-section">
-    <div class="row">
-      <div class="detail-head-wrapper">
-        <div class="col-md-12 col-xs-12 icon-option mb-3">
+    <div class="detail-head-wrapper">
+      <div class="row">
+        <div class="col-md-12 col-12 icon-option mb-3">
 
           <ul class="">
             <!-- <li class="ico-fb">
@@ -128,20 +128,20 @@
           <div class="col-md-4">
             <span>ซื้อเพื่อขายจำนวน</span>
           </div>
-          <div class="col-md-3 col-xs-6">
+          <div class="col-md-3 col-6">
             <div class="input-wrapper ">
               <input id="name" name="name" maxlength="30" type="text" class="bg-gray" placeholder="0">
             </div>
           </div>
-          <div class="col-md-3 col-xs-6">
+          <div class="col-md-3 col-6">
             <div class="select-wrapper inline-block">
 
-                <select name="ddlLink" id="ddlLink">
-                    <option value="0" selected="" disabled>กรุณาเลือก</option>
-                    <option value="บาท">บาท</option>
-                    <option value="หน่วย">หน่วย</option>
-                    <option value="ทั้งหมด">ทั้งหมด</option>
-                  </select>
+              <select name="ddlLink" id="ddlLink">
+                <option value="0" selected="" disabled>กรุณาเลือก</option>
+                <option value="บาท">บาท</option>
+                <option value="หน่วย">หน่วย</option>
+                <option value="ทั้งหมด">ทั้งหมด</option>
+              </select>
             </div>
           </div>
         </div>
@@ -168,20 +168,21 @@
           <div class="col-md-3">
 
             <div class="input-wrapper">
-              <input class=" textinput dateinput bg-gray" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text" (click)="d.toggle()">
+              <input class=" textinput dateinput bg-gray" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" id="startDate" placeholder="วว/ดด/ปปปป"
+                name="date" type="text" (click)="d.toggle()">
             </div>
 
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-3 col-xs-6 offset-md-4">
+          <div class="col-md-3 col-6 offset-md-4">
             <button class="btn-med btn-primary" (click)="checkpage('purchase-for-sell-step1')">
               ตกลง
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
-          <div class="col-md-3 col-xs-6">
+          <div class="col-md-3 col-6">
             <button class="btn-med btn-cancel" (click)="checkpage('purchase-for-sell')">
               ยกเลิก
               <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -199,10 +200,14 @@
   <div class="detail-footer-wrapper">
     <div class="row">
       <div class="col-md-6 text-left">
-        <h4>รายการซื้อเพื่อขายหน่วยลงทุน <br class="d-block d-sm-none"/><label>(รายการที่รอดำเนินการ)</label></h4>
+        <h4>รายการซื้อเพื่อขายหน่วยลงทุน
+          <br class="d-block d-sm-none" />
+          <label>(รายการที่รอดำเนินการ)</label>
+        </h4>
       </div>
       <div class="col-md-6 text-md-right">
-        <i class="fa fa-angle-right mr-1" aria-hidden="true"></i><label>ดูรายการทั้งหมด</label>
+        <i class="fa fa-angle-right mr-1" aria-hidden="true"></i>
+        <label>ดูรายการทั้งหมด</label>
       </div>
       <div class="col-md-12 mt-5 text-center">
         <p>ไม่มีรายการที่รอดำเนินงาน</p>
@@ -210,11 +215,12 @@
     </div>
   </div>
 </div>
+<!-- purchase-for-sell -->
 <div class="fund-table-wrapper" *ngIf="page == 'purchase-for-sell-step1'">
   <div class="heading-section">
-    <div class="row">
-      <div class="detail-head-wrapper">
-        <div class="col-md-12 col-xs-12 icon-option mb-3">
+    <div class="detail-head-wrapper">
+      <div class="row">
+        <div class="col-md-12 col-12 icon-option mb-3">
 
           <ul class="">
             <!-- <li class="ico-fb">
@@ -349,13 +355,13 @@
         </div>
 
         <div class="row mt-2">
-          <div class="col-md-3 col-xs-6 offset-md-4">
+          <div class="col-md-3 col-6 offset-md-4">
             <button class="btn-med btn-primary" (click)="checkpage('purchase-for-sell-step2')">
               ยืนยัน
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
-          <div class="col-md-3 col-xs-6 ">
+          <div class="col-md-3 col-6 ">
             <button class="btn-med btn-back-login" (click)="checkpage('purchase-for-sell-step1')">
               ย้อนกลับ
               <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -367,11 +373,12 @@
 
   </div>
 </div>
+<!-- purchase-for-sell-step1 -->
 <div class="fund-table-wrapper" *ngIf="page == 'purchase-for-sell-step2'">
   <div class="heading-section">
-    <div class="row">
-      <div class="detail-head-wrapper">
-        <div class="col-md-12 col-xs-12 icon-option mb-3">
+    <div class="detail-head-wrapper">
+      <div class="row">
+        <div class="col-md-12 col-12 icon-option mb-3">
 
           <ul class="">
             <!-- <li class="ico-fb">
@@ -506,13 +513,13 @@
         </div>
 
         <div class="row mt-2">
-          <div class="col-md-3 col-xs-6  offset-md-4">
+          <div class="col-md-3 col-6  offset-md-4">
             <button class="btn-med btn-primary" (click)="checkpage('sell-step2')">
               พิมพ์
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
-          <div class="col-md-3 col-xs-6 ">
+          <div class="col-md-3 col-6 ">
             <button class="btn-med btn-blue" (click)="checkpage('purchase-for-sell-view-list')">
               ดูรายการ
               <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -531,11 +538,12 @@
 
   </div>
 </div>
+<!-- purchase-for-sell-step2 -->
 <div class="fund-table-wrapper" *ngIf="page == 'purchase-for-sell-view-list'">
   <div class="heading-section">
-    <div class="row">
-      <div class="detail-head-wrapper">
-        <div class="col-md-12 col-xs-12 icon-option mb-3">
+    <div class="detail-head-wrapper">
+      <div class="row">
+        <div class="col-md-12 col-12 icon-option mb-3">
 
           <ul class="">
             <!-- <li class="ico-fb">
@@ -913,3 +921,4 @@
     </div>
   </div>
 </div>
+<!-- purchase-for-sell-view-list -->

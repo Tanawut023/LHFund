@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule }          from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { routes } from './app-routing';
 import { RouterModule } from '@angular/router'
-import {HttpClientModule, HttpClient} from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -54,27 +54,33 @@ import { SellComponent } from './transaction/sell/sell.component';
 import { ExchangeComponent } from './transaction/exchange/exchange.component';
 import { PurchaseForSellComponent } from './transaction/purchase-for-sell/purchase-for-sell.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-// import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab 
-// import { PanelModule } from 'primeng/primeng';
-// import { ButtonModule } from 'primeng/primeng';
-// import { RadioButtonModule } from 'primeng/primeng';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxCaptchaModule } from 'ngx-captcha';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { NgbDateCustomParserFormatter} from './Share/dateformat';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateCustomParserFormatter } from './Share/dateformat';
 import { NgbDatepickerConfig, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './login/register/register.component';
+import { SigninComponent } from './login/signin/signin.component';
+import { ForgotpasswordComponent } from './login/forgotpassword/forgotpassword.component';
+import { ChangepasswordloginComponent } from './login/changepasswordlogin/changepasswordlogin.component';
+
+import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
+import { AuthenticationService } from './service/authentication.service';
+import { ToastrModule } from 'ngx-toastr';
+import { AuthGuard } from './service/auth.guard';
+import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+
+
 // import { NgbDateFRParserFormatter } from "./ngb-date-fr-parser-formatter"
- 
+
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-  
+  return new TranslateHttpLoader(http);
 }
 
 @NgModule({
@@ -116,16 +122,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     PurchaseForSellComponent,
     PagenotfoundComponent,
     RegisterComponent,
-    // AccordionModule,
-    // PanelModule,
-    // ButtonModule,
-    // RadioButtonModule,
-    
+    SigninComponent,
+    ForgotpasswordComponent,
+    ChangepasswordloginComponent,
 
   ],
   imports: [
     BrowserModule,
-    FormsModule,    
+    FormsModule,
     FontAwesomeModule,
     ChartModule,
     ReactiveFormsModule,
@@ -134,25 +138,32 @@ export function HttpLoaderFactory(http: HttpClient) {
     InputTextModule,
     DialogModule,
     ButtonModule,
-    BrowserAnimationsModule,    
+    BrowserAnimationsModule,
     HttpClientModule,
     NgbModule.forRoot(),
-    RouterModule.forRoot(routes),
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+    }),
+    RouterModule.forRoot(routes, { useHash: true }),
+    MalihuScrollbarModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
       }
-  }),
-  NgxCaptchaModule.forRoot({
-    reCaptcha2SiteKey: '6Lfl4mkUAAAAAOTJ-H2mB4-PfSPLMLSsI2OCMivg',
-    invisibleCaptchaSiteKey: '6Lfl4mkUAAAAAOTJ-H2mB4-PfSPLMLSsI2OCMivg'
-  }),
-
-    // ProfileModule
+    }),
+    NgxCaptchaModule.forRoot({
+      reCaptcha2SiteKey: '6Lfl4mkUAAAAAOTJ-H2mB4-PfSPLMLSsI2OCMivg',
+      invisibleCaptchaSiteKey: '6Lfl4mkUAAAAAOTJ-H2mB4-PfSPLMLSsI2OCMivg'
+    }),
   ],
-  providers: [{provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter}],
+  providers: [
+    { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter },
+    AuthenticationService, AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

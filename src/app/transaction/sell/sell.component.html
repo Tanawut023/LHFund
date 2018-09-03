@@ -1,8 +1,8 @@
 <div class="fund-table-wrapper" *ngIf="page == 'sell'">
   <div class="heading-section">
-    <div class="row">
-      <div class="detail-head-wrapper">
-        <div class="col-md-12 col-xs-12 icon-option mb-3">
+    <div class="detail-head-wrapper">
+      <div class="row">
+        <div class="col-md-12 col-12 icon-option mb-3">
 
           <ul class="">
             <!-- <li class="ico-fb">
@@ -40,9 +40,9 @@
           <span>เนติวัฒน์ โชติกร</span>
         </div>
         <div class="col-md-6">
-            <p>ที่อยู่</p>
+          <p>ที่อยู่</p>
           <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
-          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -132,12 +132,12 @@
           <div class="col-md-4">
             <span>จำนวนที่ขายคืน</span>
           </div>
-          <div class="col-md-3 col-xs-6">
+          <div class="col-md-3 col-6">
             <div class="input-wrapper ">
               <input id="name" name="name" maxlength="30" type="text" class="bg-gray" placeholder="0">
             </div>
           </div>
-          <div class="col-md-3 col-xs-6">
+          <div class="col-md-3 col-6">
             <div class="select-wrapper inline-block">
 
               <select name="ddlLink" id="ddlLink">
@@ -169,23 +169,24 @@
           <div class="col-md-4">
             <span>วันที่ทำรายการขายคืนล่วงหน้า</span>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-6 col-lg-3">
 
             <div class="input-wrapper">
-              <input class=" textinput dateinput bg-gray" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text" (click)="d.toggle()">
+              <input class=" textinput dateinput bg-gray" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" id="startDate" placeholder="วว/ดด/ปปปป"
+                name="date" type="text" (click)="d.toggle()">
             </div>
 
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-3 col-xs-6 offset-md-4">
+          <div class="col-md-3 col-6 offset-md-4">
             <button class="btn-med btn-primary" (click)="checkpage('sell-step1')">
               ตกลง
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
-          <div class="col-md-3 col-xs-6">
+          <div class="col-md-3 col-6">
             <button class="btn-med btn-cancel" (click)="checkpage('signup1')">
               ยกเลิก
               <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -203,10 +204,14 @@
   <div class="detail-footer-wrapper">
     <div class="row">
       <div class="col-md-6 text-left">
-        <h4>รายการขายคืนหน่วยลงทุน <br class="d-block d-sm-none"/><label>(รายการที่รอดำเนินการ)</label></h4>
+        <h4>รายการขายคืนหน่วยลงทุน
+          <br class="d-block d-sm-none" />
+          <label>(รายการที่รอดำเนินการ)</label>
+        </h4>
       </div>
       <div class="col-md-6 text-md-right">
-        <i class="fa fa-angle-right mr-1" aria-hidden="true"></i><label>ดูรายการทั้งหมด</label>
+        <i class="fa fa-angle-right mr-1" aria-hidden="true"></i>
+        <label>ดูรายการทั้งหมด</label>
       </div>
       <div class="col-md-12 mt-5 text-center">
         <p>ไม่มีรายการที่รอดำเนินงาน</p>
@@ -214,11 +219,12 @@
     </div>
   </div>
 </div>
+<!-- sell -->
 <div class="fund-table-wrapper" *ngIf="page == 'sell-step1'">
   <div class="heading-section">
-    <div class="row">
-      <div class="detail-head-wrapper">
-        <div class="col-md-12 col-xs-12 icon-option mb-3">
+    <div class="detail-head-wrapper">
+      <div class="row">
+        <div class="col-md-12 col-12 icon-option mb-3">
 
           <ul class="">
             <!-- <li class="ico-fb">
@@ -248,9 +254,9 @@
           <span>เนติวัฒน์ โชติกร</span>
         </div>
         <div class="col-md-6">
-            <p>ที่อยู่</p>
+          <p>ที่อยู่</p>
           <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
-          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -357,13 +363,13 @@
         </div>
 
         <div class="row mt-2">
-          <div class="col-md-3 col-xs-6 offset-md-4">
+          <div class="col-md-3 col-6 offset-md-4">
             <button class="btn-med btn-primary" (click)="checkpage('sell-step2')">
               ยืนยัน
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
-          <div class="col-md-3 col-xs-6 ">
+          <div class="col-md-3 col-6 ">
             <button class="btn-med btn-back-login" (click)="checkpage('sell')">
               ย้อนกลับ
               <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -375,11 +381,12 @@
 
   </div>
 </div>
+<!-- sell-step1 -->
 <div class="fund-table-wrapper" *ngIf="page == 'sell-step2'">
   <div class="heading-section">
-    <div class="row">
-      <div class="detail-head-wrapper">
-        <div class="col-md-12 col-xs-12 icon-option mb-3">
+    <div class="detail-head-wrapper">
+      <div class="row">
+        <div class="col-md-12 col-12 icon-option mb-3">
 
           <ul class="">
             <!-- <li class="ico-fb">
@@ -409,9 +416,9 @@
           <span>เนติวัฒน์ โชติกร</span>
         </div>
         <div class="col-md-6">
-            <p>ที่อยู่</p>
+          <p>ที่อยู่</p>
           <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
-          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -518,13 +525,13 @@
         </div>
 
         <div class="row mt-2">
-          <div class="col-md-3 col-xs-6  offset-md-4">
+          <div class="col-md-3 col-6  offset-md-4">
             <button class="btn-med btn-primary" (click)="checkpage('sell-step2')">
               พิมพ์
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
-          <div class="col-md-3 col-xs-6 ">
+          <div class="col-md-3 col-6 ">
             <button class="btn-med btn-blue" (click)="checkpage('sell-view-list')">
               ดูรายการ
               <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -543,11 +550,12 @@
 
   </div>
 </div>
+<!-- sell-step2 -->
 <div class="fund-table-wrapper" *ngIf="page == 'sell-view-list'">
   <div class="heading-section">
-    <div class="row">
-      <div class="detail-head-wrapper">
-        <div class="col-md-12 col-xs-12 icon-option mb-3">
+    <div class="detail-head-wrapper">
+      <div class="row">
+        <div class="col-md-12 col-12 icon-option mb-3">
 
           <ul class="">
             <!-- <li class="ico-fb">
@@ -585,9 +593,9 @@
           <span>เนติวัฒน์ โชติกร</span>
         </div>
         <div class="col-md-6">
-            <p>ที่อยู่</p>
+          <p>ที่อยู่</p>
           <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
-          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -929,3 +937,4 @@
     </div>
   </div>
 </div>
+<!-- sell-view-list -->

@@ -6,31 +6,15 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="tabs-menu-wrapper">
-                            <!-- <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
-                                <li role="presentation" id="menu1" class="current">
-                                    <a (click)="checkpage('dashboard')" title="หน้ารวม Port">หน้ารวม Port</a>
-                                </li>
-                            </ul> -->
                             <div class="dropdown dropdown-content">
-                                    <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                        {{ 'NAVBAR.dashboard' | translate }}
+                                    <button class="btn-med btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                      aria-expanded="false">
+                                      เมนูกองทุน
                                     </button>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a (click)="checkpage('dashboard')" title="{{ 'NAVBAR.dashboard' | translate }}">{{ 'NAVBAR.dashboard' | translate }}</a>
-                                        </li>
-                                        <!-- <li>
-                                            <a (click)="checkpage('over-view')" title="แบบประเมินความเสี่ยงในการลงทุนที่เหมาะสม">แบบประเมินความเสี่ยงในการลงทุนที่เหมาะสม</a>
-                                        </li>
-                                        <li>
-                                            <a (click)="checkpage('change-password')" title="เปลี่ยนรหัสผ่าน">เปลี่ยนรหัสผ่าน</a>
-                                        </li>
-                                        <li>
-                                            <a (click)="checkpage('setting')" title="ตั้งค่า">ตั้งค่า</a>
-                                        </li> -->
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" (click)="checkpage('dashboard')" title="{{ 'NAVBAR.dashboard' | translate }}">{{ 'NAVBAR.dashboard' | translate }}</a>
+                                    </div>
+                                  </div>
                                 <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                                     <li role="presentation" id="menu1" class="current">
                                       <a title="{{ 'NAVBAR.dashboard' | translate }}" >{{ 'NAVBAR.dashboard' | translate }}</a>
@@ -39,14 +23,12 @@
                     
                                   </ul>
                         </div>
-                        <!-- <app-myport-menu></app-myport-menu> -->
-
                         <div class="fund-table-wrapper">
                             <div class="heading-section">
                                 <div class="detail-head-wrapper" style="border:unset;">
                                 <div class="row">
                                     
-                                    <div class="col-sm-12 col-md-12 col-xs-12 icon-option mb-3">
+                                    <div class="col-sm-12 col-md-12 col-12 icon-option mb-3">
                                         <ul class="">
                                             <!-- <li class="ico-fb">
                                                 <a href="#" title="facebook">
@@ -100,13 +82,13 @@
                                 
                                         <div class="title-heading">
                                             <div class="row">
-                                                <div class="col-md-1 col-xs-4">
+                                                <div class="col-md-2 col-lg-1 col-4">
                                                     <img src="/assets/Images/icons/ico-asset.png">
                                                 </div>
-                                                <div class="col-md-11 col-xs-8">
+                                                <div class="col-md-10 col-lg-11 col-8">
                                                     <div class="row">
                                                         <div class="col-md-6 text-md-left">
-                                                        <h3>มูลค่าทรัพย์สินสุทธ(บาท)</h3>
+                                                        <h3>{{ 'CONTENT.net-asset-value' | translate }}</h3>
                                                         </div>
                                                         <div class="col-md-6 text-md-right">
                                                         <h1>฿ 70,474,729.91</h1>
@@ -119,7 +101,7 @@
                                 
                             </div>
                             <div class="row">
-                                    <div class="col-sm">
+                                    <div class="col">
                                         <div class="table-responsive">
                                             <table class="table table-performance">
                                                 <thead>
@@ -135,13 +117,13 @@
                                                             Fund Type
                                                         </th>
                                                         <th>
-                                                            วันที่
+                                                            {{ 'TABLE.date' | translate }}
                                                         </th>
                                                         <th>
-                                                            หน่วยคงเหลือ
+                                                            {{ 'TABLE.unit-balance' | translate }}
                                                         </th>
                                                         <th>
-                                                            มูลค่าต่อหน่วย
+                                                            {{ 'TABLE.nav-unit' | translate }}
                                                         </th>
                                                         <th class="bg-primary">
                                                             Current Amount <br/>(Bath)
@@ -343,13 +325,13 @@
                             <div class="fund-list-wrapper">                                
                                     <div class="title-heading bg-blue">
                                         <div class="row">
-                                            <div class="col-md-1 col-xs-4">
+                                            <div class="col-md-2 col-lg-1 col-4">
                                                 <img src="/assets/Images/icons/ico-income.png">
                                             </div>
-                                            <div class="col-md-11 col-xs-8">
+                                            <div class="col-md-10 col-lg-11 col-8">
                                                     <div class="row">
                                                         <div class="col-md-6 text-md-left">
-                                                        <h3>กำไร/ขาดทุน (บาท)</h3>
+                                                        <h3>{{ 'CONTENT.profit-loss' | translate }}</h3>
                                                         </div>
                                                         <div class="col-md-6 text-md-right">
                                                         <h1>฿ 669,638.80</h1>

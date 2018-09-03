@@ -17,6 +17,8 @@ export class MyportComponent implements OnInit {
 
     constructor(private translate: TranslateService) {
         translate.addLangs(["th", "en"]);
+        // let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        // console.log(currentUser+currentUser.token)
         // translate.setDefaultLang('th');
        }
 
