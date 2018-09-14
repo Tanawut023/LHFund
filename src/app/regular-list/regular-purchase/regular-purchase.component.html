@@ -23,25 +23,30 @@
 
           </ul>
         </div>
-        <div class="col-md-3">
 
+        <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
-            <select name="ddlLink" id="ddlLink">
-              <option value="0" selected="">9990244757</option>
-              <option value="36">9990244757</option>
-              <option value="29">9990244757</option>
+            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
+              <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderList; let i = index">{{ unitholder.Text
+                }}
+              </option>
             </select>
           </div>
         </div>
+
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-          <span>เนติวัฒน์ โชติกร</span>
+          <span class="txt-middle" *ngIf="userselect.UnitholderInfo">{{ userselect?.UnitholderInfo?.UnitHolderName}}</span>
+          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
         </div>
+
         <div class="col-sm-6 col-md-6">
           <p>{{ 'CONTENT.address' | translate }}</p>
-          <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
+          <span class="txt-middle" *ngIf="userselect.Address">{{ userselect?.Address?.ContactAddress}}</span>
+          <span class="txt-middle">{{ userselect?.address?.ContactAddress}}</span>
         </div>
+
       </div>
     </div>
   </div>
@@ -53,7 +58,7 @@
       <div class="col-md-9">
         <div class="row">
           <div class="col-md-4">
-            <span>{{ 'CONTENT.fund-name' | translate }}</span>
+            <span class="txt-middle">{{ 'CONTENT.fund-name' | translate }}</span>
           </div>
           <div class="col-md-6">
             <div class="select-wrapper inline-block">
@@ -65,7 +70,7 @@
             </div>
           </div>
           <div class="col-md-4">
-            <span>{{ 'CONTENT.debit-from-acc' | translate }}</span>
+            <span class="txt-middle">{{ 'CONTENT.debit-from-acc' | translate }}</span>
           </div>
           <div class="col-md-6">
             <div class="select-wrapper inline-block">
@@ -79,7 +84,7 @@
             </div>
           </div>
           <div class="col-md-4">
-            <span>{{ 'CONTENT.amount' | translate }}</span>
+            <span class="txt-middle">{{ 'CONTENT.amount' | translate }}</span>
           </div>
           <div class="col-md-3 col-6">
             <div class="input-wrapper ">
@@ -88,13 +93,13 @@
           </div>
           <div class="col-md-3 col-6">
             <div class="select-wrapper inline-block">
- <!-- (change)='onGroupChange($event)' -->
-                <select name="ddlLink" id="ddlLink">
-                    <option value="0" selected="" disabled>กรุณาเลือก</option>
-                    <option value="บาท">บาท</option>
-                    <option value="หน่วย">หน่วย</option>
-                    <option value="ทั้งหมด">ทั้งหมด</option>
-                  </select>
+              <!-- (change)='onGroupChange($event)' -->
+              <select name="ddlLink" id="ddlLink">
+                <option value="0" selected="" disabled>กรุณาเลือก</option>
+                <option value="บาท">บาท</option>
+                <option value="หน่วย">หน่วย</option>
+                <option value="ทั้งหมด">ทั้งหมด</option>
+              </select>
             </div>
           </div>
 
@@ -103,10 +108,10 @@
       <div class="col-md-9">
         <div class="row">
           <div class="col-md-4">
-            <span>{{ 'CONTENT.condition' | translate }}</span>
+            <span class="txt-middle">{{ 'CONTENT.condition' | translate }}</span>
           </div>
           <div class="col-md-3  col-6">
-            <div class="custom-radio-between">
+            <div class="custom-radio-between  txt-middle">
               <input value="101" id="101" name="rad1" type="radio" checked>
               <label for="101"></label>
               <p>{{ 'CONTENT.monthly' | translate }}</p>
@@ -117,7 +122,7 @@
           <div class="col-md-3 col-6">
             <div class="row">
               <div class="col-md-6 col-6">
-                <span>{{ 'CONTENT.day' | translate }}</span>
+                <span class="txt-middle">{{ 'CONTENT.day' | translate }}</span>
               </div>
               <div class="col-md-6 col-6" style="padding-left:0px;">
                 <div class="select-wrapper inline-block">
@@ -135,21 +140,23 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            <span>{{ 'CONTENT.start-date' | translate }}</span>
+            <span class="txt-middle">{{ 'CONTENT.start-date' | translate }}</span>
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="input-wrapper">
-                <input class=" textinput dateinput bg-gray" [(ngModel)]="model.startDate" ngbDatepicker #d1="ngbDatepicker" id="startDate" placeholder="วว/ดด/ปปปป" name="startDate" type="text" (click)="d1.toggle()">
-              </div>
+              <input class=" textinput dateinput bg-gray" [(ngModel)]="model.startDate" ngbDatepicker #d1="ngbDatepicker" id="startDate"
+                placeholder="วว/ดด/ปปปป" name="startDate" type="text" (click)="d1.toggle()">
+            </div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-4">
-            <span>{{ 'CONTENT.end-date' | translate }}</span>
+            <span class="txt-middle">{{ 'CONTENT.end-date' | translate }}</span>
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="input-wrapper">
-              <input class=" textinput dateinput bg-gray" [(ngModel)]="model.endDate" ngbDatepicker #d2="ngbDatepicker" id="endDate" placeholder="วว/ดด/ปปปป" name="endDate" type="text" (click)="d2.toggle()">
+              <input class=" textinput dateinput bg-gray" [(ngModel)]="model.endDate" ngbDatepicker #d2="ngbDatepicker" id="endDate" placeholder="วว/ดด/ปปปป"
+                name="endDate" type="text" (click)="d2.toggle()">
             </div>
           </div>
         </div>
@@ -215,25 +222,30 @@
 
           </ul>
         </div>
-        <div class="col-md-3">
 
+        <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
-            <select name="ddlLink" id="ddlLink">
-              <option value="0" selected="">9990244757</option>
-              <option value="36">9990244757</option>
-              <option value="29">9990244757</option>
+            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
+              <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderList; let i = index">{{ unitholder.Text
+                }}
+              </option>
             </select>
           </div>
         </div>
+
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-          <span>เนติวัฒน์ โชติกร</span>
+          <span class="txt-middle" *ngIf="userselect.UnitholderInfo">{{ userselect?.UnitholderInfo?.UnitHolderName}}</span>
+          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
         </div>
+
         <div class="col-sm-6 col-md-6">
           <p>{{ 'CONTENT.address' | translate }}</p>
-          <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
+          <span class="txt-middle" *ngIf="userselect.Address">{{ userselect?.Address?.ContactAddress}}</span>
+          <span class="txt-middle">{{ userselect?.address?.ContactAddress}}</span>
         </div>
+        
       </div>
     </div>
   </div>

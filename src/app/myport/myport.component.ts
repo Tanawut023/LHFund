@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-// import { Highcharts } from 'highcharts';
 import { Chart } from 'angular-highcharts';
-import { datethai} from '../Share/dateformat'
-import {TranslateService} from '@ngx-translate/core';
+import { datethai } from '../Share/dateformat'
+import { TranslateService } from '@ngx-translate/core';
+import { BaseApplicationDataService } from '../service/base-application-data.service'
+import { first, count } from 'rxjs/operators';
+import { async } from 'rxjs/internal/scheduler/async';
+import { HttpParams } from '@angular/common/http';
 @Component({
     selector: 'app-myport',
     templateUrl: './myport.component.html',
@@ -14,15 +17,34 @@ export class MyportComponent implements OnInit {
     chart: any;
     page = "dashboard";
     dateformat = datethai;
+    userall: any = {};
+    userselect: any = {};
+    unitholderno: any = "init";
+    // userinfo: any = {};
 
-    constructor(private translate: TranslateService) {
+
+    constructor(
+        private translate: TranslateService,
+        private basedataservice: BaseApplicationDataService
+    ) {
         translate.addLangs(["th", "en"]);
-        // let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        // console.log(currentUser+currentUser.token)
-        // translate.setDefaultLang('th');
-       }
+
+    }
 
     ngOnInit() {
+
+        this.basedataservice.getSelectListUnitholder()
+            .pipe(first())
+            .subscribe(
+                data => {
+                    this.userall = data;
+                    this.unitholderno = this.userall.unitholderlist[0];
+                    this.userselect = this.userall;
+                },
+                error => {
+                    console.log(error)
+
+                });
 
         $('#bottom-main-nav li').find('a').removeClass('current');
         $('#bottom-main-nav li#myport').find('a').addClass('current');
@@ -90,41 +112,29 @@ export class MyportComponent implements OnInit {
                     name: 'Long Term Equity Fund',
                     y: 0.71
                 }
-            ]
+                ]
             }]
         });
 
     }
-    checkpage(page) {
-        console.log(page)
-        window.scroll(0,0);
-        switch (page) {
-            case 'suitability':
-                this.page = "suitability";
-                break;
-            case 'suitability-score':
-                this.page = "suitability-score";
-                break;
-            case 'otp':
-                this.page = "otp";
-                break;
-            case 'signup1':
-                this.page = "signup1";
-                break;
-            case 'signup2':
-                this.page = "signup2";
-                break;
-            default:
+    onChange() {
+        
+        let params = new HttpParams().set('unitholderid', this.unitholderno.Value);
+        this.basedataservice.getUnitholder(params)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    // console.log(data)
+                    this.userselect = data;
 
-                this.page = "dashboard";
-                console.log(this.page)
-                break;
-        }
+                },
+                error => {
+                    console.log(error)
 
-
+                });
     }
-    print(){
+    print() {
         window.focus();
-window.print();
+        window.print();
     }
 }

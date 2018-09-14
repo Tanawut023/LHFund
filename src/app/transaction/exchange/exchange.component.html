@@ -23,39 +23,39 @@
 
           </ul>
         </div>
+
         <div class="col-md-3">
-
-          <p>เลขที่ผู้ถือหน่วยลงทุน</p>
-
+          <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
-            <select name="ddlLink" id="ddlLink">
-              <option value="0" selected="">9990244757</option>
-              <option value="36">9990244757</option>
-              <option value="29">9990244757</option>
+            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
+              <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholder; let i = index" >{{ unitholder.Text }}</option>
             </select>
           </div>
         </div>
+
         <div class="col-md-3">
-          <p>ชื่อผู้ถือหน่วยลงทุน</p>
-          <span>เนติวัฒน์ โชติกร</span>
+          <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
+          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
         </div>
+
         <div class="col-md-6">
-          <p>ที่อยู่</p>
-          <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
+          <p>{{ 'CONTENT.address' | translate }}</p>
+          <span class="txt-middle">{{ userselect?.address?.ContactAddress1}}  {{ userselect?.address?.ContactAddress2}} {{ userselect?.address?.ContactProvince}} {{ userselect?.address?.ContactZipCode}}</span>
         </div>
+
       </div>
     </div>
   </div>
   <div class="detail-body-wrapper">
     <div class="row">
       <div class="col-md-12">
-        <H4 class="text-left">สับเปลี่ยนหน่วยลงทุน</H4>
+        <H4 class="text-left">{{ 'CONTENT.switching' | translate }}</H4>
         <!-- <p>ขั้นตอนที่ 1 เลือกลงทุนและใส่จำนวนที่ต้องการ</p> -->
       </div>
       <div class="col-md-9">
         <div class="row">
           <div class="col-md-4">
-            <p>วันที่ทำรายการ</p>
+            <p>{{ 'CONTENT.input-date' | translate }}</p>
           </div>
           <div class="col-md-6">
             <span>7 มิถุนายน 2561</span>
@@ -63,7 +63,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            <span>กองทุนต้นทาง</span>
+            <span class="txt-middle">{{ 'CONTENT.fund-name-r' | translate }}</span>
           </div>
           <div class="col-md-6">
             <div class="select-wrapper inline-block">
@@ -130,7 +130,7 @@
       <div class="col-md-9">
         <div class="row">
           <div class="col-md-4">
-            <span>สับเปลี่ยนจำนวน</span>
+            <span class="txt-middle">{{ 'CONTENT.switching-amount' | translate }}</span>
           </div>
           <div class="col-md-3 col-6">
             <div class="input-wrapper ">
@@ -151,7 +151,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            <span>กองทุนปลายทาง</span>
+            <span class="txt-middle">{{ 'CONTENT.switching-to' | translate }}</span>
           </div>
           <div class="col-md-6">
             <div class="select-wrapper inline-block">
@@ -167,7 +167,7 @@
 
         <div class="row">
           <div class="col-md-4">
-            <span>วันที่ทำรายการสับเปลี่ยนล่วงหน้า</span>
+            <span class="txt-middle">{{ 'CONTENT.Advance-sw-date' | translate }}</span>
           </div>
           <div class="col-md-6 col-lg-3">
 
@@ -182,13 +182,13 @@
         <div class="row">
           <div class="col-md-3 col-6 offset-md-4">
             <button class="btn-med btn-primary" (click)="checkpage('exchange-step1')">
-              ตกลง
+              {{ 'BUTTON.ok' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
           <div class="col-md-3 col-6">
             <button class="btn-med btn-cancel" (click)="checkpage('')">
-              ยกเลิก
+              {{ 'BUTTON.cancel' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
@@ -204,17 +204,17 @@
   <div class="detail-footer-wrapper">
     <div class="row">
       <div class="col-md-6 text-left">
-        <h4>รายการสับเปลี่ยนหน่วยลงทุน
+        <h4>{{ 'CONTENT.sw-order' | translate }}
           <br class="d-block d-sm-none" />
-          <label>(รายการที่รอดำเนินการ)</label>
+          <label>{{ 'CONTENT.order-to-be' | translate }}</label>
         </h4>
       </div>
       <div class="col-md-6 text-md-right">
         <i class="fa fa-angle-right mr-1" aria-hidden="true"></i>
-        <label>ดูรายการทั้งหมด</label>
+        <label>{{ 'CONTENT.view-all' | translate }}</label>
       </div>
       <div class="col-md-12 mt-5 text-center">
-        <p>ไม่มีรายการที่รอดำเนินงาน</p>
+        <p>{{ 'CONTENT.no-list' | translate }}</p>
       </div>
     </div>
   </div>
@@ -245,31 +245,35 @@
 
           </ul>
         </div>
+
         <div class="col-md-3">
-          <p>เลขที่ผู้ถือหน่วยลงทุน</p>
-          <span>9990244757</span>
+          <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
+          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderNo}}</span>
         </div>
+
         <div class="col-md-3">
-          <p>ชื่อผู้ถือหน่วยลงทุน</p>
-          <span>เนติวัฒน์ โชติกร</span>
+          <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
+          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
         </div>
+
         <div class="col-md-6">
-          <p>ที่อยู่</p>
-          <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
+          <p>{{ 'CONTENT.address' | translate }}</p>
+          <span class="txt-middle">{{ userselect?.address?.ContactAddress1}}  {{ userselect?.address?.ContactAddress2}} {{ userselect?.address?.ContactProvince}} {{ userselect?.address?.ContactZipCode}}</span>
         </div>
+
       </div>
     </div>
   </div>
   <div class="detail-body-wrapper">
     <div class="row">
       <div class="col-md-12">
-        <H4 class="text-left">สับเปลี่ยนหน่วยลงทุน</H4>
+        <H4 class="text-left">{{ 'CONTENT.switching' | translate }}</H4>
         <!-- <p>ขั้นตอนที่ 1 เลือกลงทุนและใส่จำนวนที่ต้องการ</p> -->
       </div>
       <div class="col-md-9">
         <div class="row">
           <div class="col-md-4">
-            <p>วันที่ทำรายการ</p>
+            <p>{{ 'CONTENT.input-date' | translate }}</p>
           </div>
           <div class="col-md-6">
             <span>7 มิถุนายน 2561</span>
@@ -277,7 +281,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            <p>กองทุนต้นทาง</p>
+            <p>{{ 'CONTENT.fund-name-r' | translate }}</p>
           </div>
           <div class="col-md-6">
             <span>KFCRASH - กองทุนกรุงศรีตราสารเงิน</span>
@@ -337,7 +341,7 @@
       <div class="col-md-9">
         <div class="row">
           <div class="col-md-4">
-            <p>สับเปลี่ยนจำนวน</p>
+            <p>{{ 'CONTENT.switching-amount' | translate }}</p>
           </div>
           <div class="col-md-6">
             <span>30 หน่วย</span>
@@ -345,7 +349,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            <p>กองทุนปลายทาง</p>
+            <p>{{ 'CONTENT.switching-to' | translate }}</p>
           </div>
           <div class="col-md-6">
             <span>ธนคารกรุงศรีอยุธยา จำกัด (มหาชน)</span>
@@ -354,24 +358,23 @@
 
         <div class="row">
           <div class="col-md-4">
-            <p>วันที่รายการมีผล</p>
+            <p>{{ 'CONTENT.Advance-sw-date' | translate }}</p>
           </div>
           <div class="col-md-3">
             <span>10 มิถุนายน 2561</span>
-
           </div>
         </div>
 
         <div class="row mt-2">
           <div class="col-md-3 col-6 offset-md-4">
             <button class="btn-med btn-primary" (click)="checkpage('exchange-step2')">
-              ยืนยัน
+              {{ 'BUTTON.confirm' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
           <div class="col-md-3 col-6">
             <button class="btn-med btn-back-login" (click)="checkpage('exchange')">
-              ย้อนกลับ
+              {{ 'BUTTON.cancel' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
@@ -407,31 +410,35 @@
 
           </ul>
         </div>
+
         <div class="col-md-3">
-          <p>เลขที่ผู้ถือหน่วยลงทุน</p>
-          <span>9990244757</span>
+          <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
+          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderNo}}</span>
         </div>
+
         <div class="col-md-3">
-          <p>ชื่อผู้ถือหน่วยลงทุน</p>
-          <span>เนติวัฒน์ โชติกร</span>
+          <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
+          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
         </div>
+
         <div class="col-md-6">
-          <p>ที่อยู่</p>
-          <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
+          <p>{{ 'CONTENT.address' | translate }}</p>
+          <span class="txt-middle">{{ userselect?.address?.ContactAddress1}}  {{ userselect?.address?.ContactAddress2}} {{ userselect?.address?.ContactProvince}} {{ userselect?.address?.ContactZipCode}}</span>
         </div>
+
       </div>
     </div>
   </div>
   <div class="detail-body-wrapper">
     <div class="row">
       <div class="col-md-12">
-        <H4 class="text-left">สับเปลี่ยนหน่วยลงทุน</H4>
+        <H4 class="text-left">{{ 'CONTENT.switching' | translate }}</H4>
         <!-- <p>ขั้นตอนที่ 1 เลือกลงทุนและใส่จำนวนที่ต้องการ</p> -->
       </div>
       <div class="col-md-9">
         <div class="row">
           <div class="col-md-4">
-            <p>วันที่ทำรายการ</p>
+            <p>{{ 'CONTENT.input-date' | translate }}</p>
           </div>
           <div class="col-md-6">
             <span>7 มิถุนายน 2561</span>
@@ -439,7 +446,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            <p>กองทุนต้นทาง</p>
+            <p>{{ 'CONTENT.fund-name-r' | translate }}</p>
           </div>
           <div class="col-md-6">
             <span>KFCRASH - กองทุนกรุงศรีตราสารเงิน</span>
@@ -499,7 +506,7 @@
       <div class="col-md-9">
         <div class="row">
           <div class="col-md-4">
-            <p>สับเปลี่ยนจำนวน</p>
+            <p>{{ 'CONTENT.switching-amount' | translate }}</p>
           </div>
           <div class="col-md-6">
             <span>30 หน่วย</span>
@@ -507,7 +514,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            <p>รับเงินค่าขายคืน</p>
+            <p>{{ 'CONTENT.switching-to' | translate }}</p>
           </div>
           <div class="col-md-6">
             <span>ธนคารกรุงศรีอยุธยา จำกัด (มหาชน)</span>
@@ -516,7 +523,7 @@
 
         <div class="row">
           <div class="col-md-4">
-            <p>วันที่ทำรายการสับเปลี่ยนล่วงหน้า</p>
+            <p>{{ 'CONTENT.Advance-sw-date' | translate }}</p>
           </div>
           <div class="col-md-3">
             <span>10 มิถุนายน 2561</span>
@@ -527,13 +534,13 @@
         <div class="row mt-2">
           <div class="col-md-3 col-6 offset-md-4">
             <button class="btn-med btn-primary" (click)="checkpage('exchange-step2')">
-              พิมพ์
+              {{ 'BUTTON.print' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
           <div class="col-md-3 col-6">
             <button class="btn-med btn-blue" (click)="checkpage('exchange-view-list')">
-              ดูรายการ
+              {{ 'BUTTON.view-list' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
@@ -576,34 +583,34 @@
 
           </ul>
         </div>
+
         <div class="col-md-3">
-
-          <p>เลขที่ผู้ถือหน่วยลงทุน</p>
-
+          <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
-            <select name="ddlLink" id="ddlLink">
-              <option value="0" selected="">9990244757</option>
-              <option value="36">9990244757</option>
-              <option value="29">9990244757</option>
+            <select  [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
+              <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholder; let i = index" >{{ unitholder.Text }}</option>
             </select>
           </div>
         </div>
+
         <div class="col-md-3">
-          <p>ชื่อผู้ถือหน่วยลงทุน</p>
-          <span>เนติวัฒน์ โชติกร</span>
+          <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
+          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
         </div>
+
         <div class="col-md-6">
-          <p>ที่อยู่</p>
-          <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
+          <p>{{ 'CONTENT.address' | translate }}</p>
+          <span class="txt-middle">{{ userselect?.address?.ContactAddress1}}  {{ userselect?.address?.ContactAddress2}} {{ userselect?.address?.ContactProvince}} {{ userselect?.address?.ContactZipCode}}</span>
         </div>
+
       </div>
     </div>
   </div>
   <div class="detail-body-wrapper">
     <div class="row">
       <div class="col-md-12 mb-3">
-        <H4 class="text-left" style="display: unset;">รายการสับเปลี่ยนหน่วยลงทุนทั้งหมด </H4>
-        <p style="display: unset;">(รายการที่รอดำเนินการ)</p>
+        <H4 class="text-left" style="display: unset;">{{ 'CONTENT.sw-all-order' | translate }} </H4>
+        <p style="display: unset;">{{ 'CONTENT.order-to-be' | translate }}</p>
       </div>
       <div class="col-md-12">
         <div class="table-responsive">

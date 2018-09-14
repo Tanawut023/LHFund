@@ -23,35 +23,36 @@
 
           </ul>
         </div>
+        
         <div class="col-md-3">
-
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
-            <select name="ddlLink" id="ddlLink">
-              <option value="0" selected="">9990244757</option>
-              <option value="36">9990244757</option>
-              <option value="29">9990244757</option>
+            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
+              <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderList; let i = index">{{ unitholder.Text
+                }}</option>
             </select>
           </div>
         </div>
 
-
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-          <span>เนติวัฒน์ โชติกร</span>
+          <span class="txt-middle" *ngIf="userselect.UnitholderInfo">{{ userselect?.UnitholderInfo?.UnitHolderName}}</span>
+          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
         </div>
-        <div class="col-sm-6 col-md-6">
 
-            <p>{{ 'CONTENT.address' | translate }}</p>
-            <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
+        <div class="col-sm-6 col-md-6">
+          <p>{{ 'CONTENT.address' | translate }}</p>
+          <span class="txt-middle" *ngIf="userselect.Address">{{ userselect?.Address?.ContactAddress}}</span>
+          <span class="txt-middle">{{ userselect?.address?.ContactAddress}}</span>
         </div>
+
       </div>
     </div>
   </div>
   <div class="detail-body-wrapper">
     <div class="row">
       <div class="col-md-2">
-        <p>RMF & LTF ปี พ.ศ.</p>
+        <p class="txt-middle">RMF & LTF ปี พ.ศ.</p>
       </div>
       <div class="col-md-3">
         <div class="select-wrapper inline-block">
@@ -133,25 +134,25 @@
       <div class="table-responsive">
         <table class="table table-nav">
           <thead>
-              <tr>
-                  <th>
-                    วันที่ทำรายการ
-                  </th>
-                  <th>
-                    ประเภทหน่วยลงทุน
-                  </th>
-                  <th>
-                    มูลค่าต่อหน่วย
-                  </th>
-                  <th>
-                    หน่วย
-                  </th>
-                  <th>
-                    มูลค่าการลงทุน
-                  </th>
-                </tr>
+            <tr>
+              <th>
+                วันที่ทำรายการ
+              </th>
+              <th>
+                ประเภทหน่วยลงทุน
+              </th>
+              <th>
+                มูลค่าต่อหน่วย
+              </th>
+              <th>
+                หน่วย
+              </th>
+              <th>
+                มูลค่าการลงทุน
+              </th>
+            </tr>
           </thead>
-          <tbody>                        
+          <tbody>
             <tr class="line">
               <td colspan="5">
                 KFHCARERMF : กองทุนเปิดกรุงศรีโกลบอลเฮลธ์แคร์อควิตี้เพื่อการเลี้ยงชีพ
@@ -266,21 +267,22 @@
         <p class="color-red no-margin">1. เงินลงทุนที่รับโอนมาจากหรือโอนออกไปยังบลจ.อื่น</p>
         <p class="color-red no-margin">2. รายการสับเปลี่ยนระหว่าง RMF ด้วยกันหรือ LTF ด้วยกัน</p>
         <p class="color-red no-margin">3. จำนวนเงินที่ขายคืนระหว่างปี</p>
-        <p class="color-red no-margin">4. เงินลงทุนใน RMF/LTF ของผู้ถือหน่วยท่านเดียวกัน แต่อยู่ในบัญชีผู้ถือลงทุนหมายเลขอื่นกับ บลจ.กรุงศรี</p>
+        <p class="color-red no-margin">4. เงินลงทุนใน RMF/LTF ของผู้ถือหน่วยท่านเดียวกัน แต่อยู่ในบัญชีผู้ถือลงทุนหมายเลขอื่นกับ
+          บลจ.กรุงศรี</p>
       </div>
 
       <div class="col-md-12  mt-3">
-          <div class="row justify-content-center">
-            <div class="col-md-2 col-6 col-sm-4">
-              <button class="btn-med btn-primary">
-                {{ 'BUTTON.print' | translate }}
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
+        <div class="row justify-content-center">
+          <div class="col-md-2 col-6 col-sm-4">
+            <button class="btn-med btn-primary">
+              {{ 'BUTTON.print' | translate }}
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
 
-              </button>
-            </div>
+            </button>
           </div>
-
         </div>
+
+      </div>
 
     </div>
 

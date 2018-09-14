@@ -56,7 +56,7 @@ import { ChangepasswordloginComponent } from './login/changepasswordlogin/change
 
 import { AuthGuard } from './service/auth.guard'
 
-export const routes: Routes = [
+const routes: Routes = [
   { path: '', redirectTo: '/myport', pathMatch: 'full' },
   {
     path: 'login', component: LoginComponent,
@@ -126,16 +126,5 @@ export const routes: Routes = [
   { path: '**', component: PagenotfoundComponent }
 ];
 
-// @NgModule({
-//   imports: [
-//     CommonModule,
-//     RouterModule.forRoot(routes)
-//   ],
-//   exports: [RouterModule],
-//   declarations: []
-// })
+export const routing = RouterModule.forRoot(routes, { useHash: true });
 
-// export class AppRoutingModule {
-
-
-// }

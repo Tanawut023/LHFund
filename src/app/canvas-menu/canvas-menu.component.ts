@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
+import { BaseApplicationDataService } from '../service/base-application-data.service';
 @Component({
   selector: 'app-canvas-menu',
   templateUrl: './canvas-menu.component.html',
@@ -9,14 +10,20 @@ export class CanvasMenuComponent implements OnInit {
   foo1: any;
   langth: boolean;
   langen: boolean;
+  userdetail: any = {};
 
-  constructor(private translate: TranslateService) {
+  constructor(
+    private translate: TranslateService,
+    private basedataservice: BaseApplicationDataService
+  ) {
     translate.addLangs(["th", "en"]);
    }
 
   ngOnInit() {
     // this.translate.use('')
     this.foo1 = this.translate.currentLang;
+    this.userdetail = this.basedataservice.getCurrentUser();
+    console.log(this.userdetail)
     if(this.foo1 == 'th'){
       
       this.langth = true;
@@ -34,13 +41,17 @@ export class CanvasMenuComponent implements OnInit {
       this.translate.use('th');
       this.langen = false;
       this.langth = true;
+      localStorage.setItem('lang', lang );
+
       
     }
     else if(lang=='en'){
       this.translate.use('en');
       this.langth = false;
       this.langen = true;
-      console.log(navigator.language);
+      localStorage.setItem('lang', lang );
+
+      // console.log(navigator.language);
   }
     
 

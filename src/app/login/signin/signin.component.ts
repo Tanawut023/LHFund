@@ -54,12 +54,14 @@ export class SigninComponent implements OnInit {
       this.translate.use('th');
       this.langen = false;
       this.langth = true;
+      localStorage.setItem('lang', lang );
 
     }
     else if (lang == 'en') {
       this.translate.use('en');
       this.langth = false;
       this.langen = true;
+      localStorage.setItem('lang', lang );
     }
 
 

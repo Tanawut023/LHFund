@@ -1,5 +1,3 @@
-<app-header></app-header>
-
 <div class="" id="maincontainer-wrapper">
   <div class="page-content-wrapper">
     <div class="mutual-fund-wrapper">
@@ -13,15 +11,18 @@
                   เมนูกองทุน
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" (click)="navigate('regular-purchase')" title="{{ 'NAVBAR.regular-subscription-order' | translate }}">{{ 'NAVBAR.regular-subscription-order' | translate }}</a>
+                  <a class="dropdown-item" (click)="navigate('regular-purchase')" title="{{ 'NAVBAR.regular-subscription-order' | translate }}">{{
+                    'NAVBAR.regular-subscription-order' | translate }}</a>
                   <!-- <a class="dropdown-item" (click)="navigate('regular-sell')" title="{{ 'NAVBAR.regular-redemption-order' | translate }}">{{ 'NAVBAR.regular-redemption-order' | translate }}</a>
                         <a class="dropdown-item" (click)="navigate('regular-exchange')" title="{{ 'NAVBAR.regular-switching-order' | translate }}">{{ 'NAVBAR.regular-switching-order' | translate }}</a> -->
-                  <a class="dropdown-item" (click)="navigate('all-list')" title="{{ 'NAVBAR.view-plan' | translate }}">{{ 'NAVBAR.view-plan' | translate }}</a>
+                  <a class="dropdown-item" (click)="navigate('all-list')" title="{{ 'NAVBAR.view-plan' | translate }}">{{
+                    'NAVBAR.view-plan' | translate }}</a>
                 </div>
               </div>
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu1">
-                  <a title="{{ 'NAVBAR.regular-subscription-order' | translate }}" (click)="navigate('regular-purchase')">{{ 'NAVBAR.regular-subscription-order' | translate }}</a>
+                  <a title="{{ 'NAVBAR.regular-subscription-order' | translate }}" (click)="navigate('regular-purchase')">{{
+                    'NAVBAR.regular-subscription-order' | translate }}</a>
                 </li>
                 <!-- <li role="presentation" id="menu2">
                   <a title="{{ 'NAVBAR.regular-redemption-order' | translate }}" (click)="navigate('regular-sell')">{{ 'NAVBAR.regular-redemption-order' | translate }}</a>
@@ -42,4 +43,3 @@
       </div>
     </div>
   </div>
-  <app-footer></app-footer>

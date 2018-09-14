@@ -2,28 +2,7 @@
 @import "../helpers/fontface";
 @import "../helpers/mixin_css3";
 
-#main-wrapper{  
-    width: 100%;  
-    min-height: 100vh;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    background-image: url("/assets/Images/banners/banner-login.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
 
-    @media screen and (max-width: 767px){
-        background-image: url("/assets/Images/banners/banner-login-m.png");
-        // background-size: 100% auto;
-    }  
-}
 .copyright {
     display: block;
     text-align: center;
@@ -226,7 +205,8 @@
         padding: 20px;
 
         @media screen and (max-width: 767px){    
-            position: relative;     
+            position: relative;
+
         }
 
         h1, h2, h3 {
@@ -798,6 +778,10 @@
             margin-top: -30px;
             visibility: visible;
             overflow: visible !important;
+
+            @media screen and (max-width: 767px){
+                margin-top: 50px;
+            }
         }
     }
 

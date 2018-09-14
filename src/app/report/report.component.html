@@ -1,4 +1,3 @@
-<app-header></app-header>
 <div class="" id="maincontainer-wrapper">
   <div class="page-content-wrapper">
     <div class="mutual-fund-wrapper">
@@ -12,33 +11,44 @@
                   เมนูกองทุน
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" (click)="navigate('receipt-history')" title="{{ 'NAVBAR.dividend-detail' | translate }}">{{ 'NAVBAR.dividend-detail' | translate }}</a>
-                  <a class="dropdown-item" (click)="navigate('past-events')" title="{{ 'NAVBAR.statement' | translate }}">{{ 'NAVBAR.statement' | translate }}</a>
+                  <a class="dropdown-item" (click)="navigate('receipt-history')" title="{{ 'NAVBAR.dividend-detail' | translate }}">{{
+                    'NAVBAR.dividend-detail' | translate }}</a>
+                  <a class="dropdown-item" (click)="navigate('past-events')" title="{{ 'NAVBAR.statement' | translate }}">{{
+                    'NAVBAR.statement' | translate }}</a>
                   <!-- <a class="dropdown-item" (click)="navigate('summary')" title="สรุปกำไร/ขาดทุน">สรุปกำไร/ขาดทุน</a> -->
-                  <a class="dropdown-item" (click)="navigate('today-list')" title="{{ 'NAVBAR.today-input' | translate }}">{{ 'NAVBAR.today-input' | translate }}</a>
-                  <a class="dropdown-item" (click)="navigate('not-available-list')" title="{{ 'NAVBAR.unalloted-transaction' | translate }}">{{ 'NAVBAR.unalloted-transaction' | translate }}</a>
-                  <a class="dropdown-item" (click)="navigate('confirmation')" title="{{ 'NAVBAR.transaction-comfirmmation' | translate }}">{{ 'NAVBAR.transaction-comfirmmation' | translate }}</a>
-                  <a class="dropdown-item" (click)="navigate('type')" title="{{ 'NAVBAR.type' | translate }}">{{ 'NAVBAR.type' | translate }}</a>
+                  <a class="dropdown-item" (click)="navigate('today-list')" title="{{ 'NAVBAR.today-input' | translate }}">{{
+                    'NAVBAR.today-input' | translate }}</a>
+                  <a class="dropdown-item" (click)="navigate('not-available-list')" title="{{ 'NAVBAR.unalloted-transaction' | translate }}">{{
+                    'NAVBAR.unalloted-transaction' | translate }}</a>
+                  <a class="dropdown-item" (click)="navigate('confirmation')" title="{{ 'NAVBAR.transaction-comfirmmation' | translate }}">{{
+                    'NAVBAR.transaction-comfirmmation' | translate }}</a>
+                  <a class="dropdown-item" (click)="navigate('type')" title="{{ 'NAVBAR.type' | translate }}">{{ 'NAVBAR.type'
+                    | translate }}</a>
                 </div>
               </div>
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu3">
-                  <a title="{{ 'NAVBAR.dividend-detail' | translate }}" (click)="navigate('receipt-history')">{{ 'NAVBAR.dividend-detail' | translate }}</a>
+                  <a title="{{ 'NAVBAR.dividend-detail' | translate }}" (click)="navigate('receipt-history')">{{ 'NAVBAR.dividend-detail'
+                    | translate }}</a>
                 </li>
                 <li role="presentation" id="menu4">
-                  <a title="{{ 'NAVBAR.statement' | translate }}" (click)="navigate('past-events')">{{ 'NAVBAR.statement' | translate }}</a>
+                  <a title="{{ 'NAVBAR.statement' | translate }}" (click)="navigate('past-events')">{{ 'NAVBAR.statement'
+                    | translate }}</a>
                 </li>
                 <!-- <li role="presentation" id="menu5">
                   <a title="สรุปกำไร/ขาดทุน" (click)="navigate('summary')">สรุปกำไร/ขาดทุน</a>
                 </li> -->
                 <li role="presentation" id="menu6">
-                  <a title="{{ 'NAVBAR.today-input' | translate }}" (click)="navigate('today-list')">{{ 'NAVBAR.today-input' | translate }}</a>
+                  <a title="{{ 'NAVBAR.today-input' | translate }}" (click)="navigate('today-list')">{{ 'NAVBAR.today-input'
+                    | translate }}</a>
                 </li>
                 <li role="presentation" id="menu7">
-                  <a title="{{ 'NAVBAR.unalloted-transaction' | translate }}" (click)="navigate('not-available-list')">{{ 'NAVBAR.unalloted-transaction' | translate }}</a>
+                  <a title="{{ 'NAVBAR.unalloted-transaction' | translate }}" (click)="navigate('not-available-list')">{{
+                    'NAVBAR.unalloted-transaction' | translate }}</a>
                 </li>
                 <li role="presentation" id="menu8">
-                  <a title="{{ 'NAVBAR.transaction-comfirmmation' | translate }}" (click)="navigate('confirmation')">{{ 'NAVBAR.transaction-comfirmmation' | translate }}</a>
+                  <a title="{{ 'NAVBAR.transaction-comfirmmation' | translate }}" (click)="navigate('confirmation')">{{ 'NAVBAR.transaction-comfirmmation'
+                    | translate }}</a>
                 </li>
                 <li role="presentation" id="menu9">
                   <a title="{{ 'NAVBAR.type' | translate }}" (click)="navigate('type')">{{ 'NAVBAR.type' | translate }}</a>
@@ -56,4 +66,3 @@
     </div>
 
   </div>
-  <app-footer></app-footer>

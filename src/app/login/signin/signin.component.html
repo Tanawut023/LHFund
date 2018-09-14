@@ -34,7 +34,7 @@
                 <input id="name" name="name" maxlength="15" type="text" formControlName="username">
                 <div class="form-control-feedback" *ngIf="this.formsighin.controls.username.errors && (this.formsighin.controls.username.touched)">
                   <p *ngIf="this.formsighin.controls.username.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                  <!-- <p *ngIf="this.form.controls.username.errors.pattern">ข้อมูลไม่ถูกต้อง</p> -->
+                  <p *ngIf="this.formsighin.controls.username.errors.pattern">อย่างน้อย 8 ตัวอักษร รวมทั้งตัวเลข</p>
                 </div>
               </div>
             </div>
@@ -45,7 +45,7 @@
                 <input id="password" name="password" maxlength="15" type="password" formControlName="password">
                 <div class="form-control-feedback" *ngIf="this.formsighin.controls.password.errors && (this.formsighin.controls.password.touched)">
                   <p *ngIf="this.formsighin.controls.password.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                  <!-- <p *ngIf="this.form.controls.password.errors.pattern">อย่างน้อย 6 ตัวอักษร รวมทั้งตัวเลข</p> -->
+                  <p *ngIf="this.formsighin.controls.password.errors.pattern">(UpperCase, LowerCase, Number/SpecialChar and min 8 Chars)</p>
                 </div>
               </div>
             </div>

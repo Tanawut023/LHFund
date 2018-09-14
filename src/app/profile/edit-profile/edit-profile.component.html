@@ -23,22 +23,22 @@
 
                     </ul>
                 </div>
+
                 <div class="col-md-3">
-
                     <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
-
                     <div class="select-wrapper inline-block">
-                        <select name="ddlLink" id="ddlLink">
-                            <option value="0" selected="">9990244757</option>
-                            <option value="36">9990244757</option>
-                            <option value="29">9990244757</option>
+                        <select  [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
+                            <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index" >{{ unitholder.Text }}</option>
                         </select>
                     </div>
                 </div>
+
                 <div class="col-md-3">
                     <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-                    <span>เนติวัฒน์ โชติกร</span>
+                    <span class="txt-middle" *ngIf="userselect.unitholderinfo">{{ userselect?.unitholderinfo?.UnitHolderName}}</span>
+                    <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
                 </div>
+                
             </div>
         </div>
     </div>
@@ -54,69 +54,69 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-3">
+                <div class="row ">
+                    <div class="col-md-3 form-group">
                         <p>{{ 'CONTENT.add-no' | translate }}</p>
                         <div class="input-wrapper ">
-                            <input id="password" name="password" maxlength="30" type="text" value="9/259">
+                            <input id="add-no" name="add-no" maxlength="30" type="text" value="9/259">
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-3 form-group">
                         <p>{{ 'CONTENT.moo-no' | translate }}</p>
                         <div class="input-wrapper ">
-                            <input id="password" name="password" maxlength="30" type="text" value="">
+                            <input id="moo-no" name="moo-no" maxlength="30" type="text" value="">
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-3 form-group">
                         <p>{{ 'CONTENT.mooban' | translate }}</p>
                         <div class="input-wrapper ">
-                            <input id="password" name="password" maxlength="30" type="text" value="">
+                            <input id="mooban" name="mooban" maxlength="30" type="text" value="">
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-3 form-group">
                         <p>{{ 'CONTENT.floor' | translate }}</p>
                         <div class="input-wrapper ">
-                            <input id="password" name="password" maxlength="30" type="text" value="">
+                            <input id="floor" name="floor" maxlength="30" type="text" value="">
                         </div>
                     </div>
 
                 </div>
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-3 form-group">
                         <p>{{ 'CONTENT.soi' | translate }}</p>
                         <div class="input-wrapper ">
-                            <input id="password" name="password" maxlength="30" type="text" value="จุลดิส">
+                            <input id="soi" name="soi" maxlength="30" type="text" value="จุลดิส">
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-3 form-group">
                         <p>{{ 'CONTENT.road' | translate }}</p>
                         <div class="input-wrapper ">
-                            <input id="password" name="password" maxlength="30" type="text" value="">
+                            <input id="road" name="road" maxlength="30" type="text" value="">
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-3 form-group">
                         <p>{{ 'CONTENT.tambon' | translate }}</p>
                         <div class="input-wrapper ">
-                            <input id="password" name="password" maxlength="30" type="text" value="พญาไท">
+                            <input id="tambon" name="tambon" maxlength="30" type="text" value="พญาไท">
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-3 form-group">
                         <p>{{ 'CONTENT.amphur' | translate }}</p>
                         <div class="input-wrapper ">
-                            <input id="password" name="password" maxlength="30" type="text" value="ราชเทวี">
+                            <input id="amphur" name="amphur" maxlength="30" type="text" value="ราชเทวี">
                         </div>
                     </div>
 
                 </div>
 
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-3 form-group">
                         <p>{{ 'CONTENT.province' | translate }}</p>
                         <div class="select-wrapper inline-block">
 
@@ -128,14 +128,15 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-3 form-group">
                         <p>{{ 'CONTENT.post-code' | translate }}</p>
                         <div class="input-wrapper ">
-                            <input id="password" name="password" maxlength="30" type="text" value="10400">
+                            <input id="post-code" maxlength="30" type="text" [(ngModel)]="userselect.addressunitholder.ContactZipCode" name="ContactZipCode" *ngIf="userselect.addressunitholder">
+                            <input id="post-code" maxlength="30" type="text" [(ngModel)]="userselect.address.ContactZipCode" name="ContactZipCode" *ngIf="userselect.address">
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-3 form-group">
                         <p>{{ 'CONTENT.country' | translate }}</p>
                         <div class="select-wrapper inline-block">
 
@@ -154,17 +155,17 @@
             <div class="detail-footer-wrapper">
                 <div class="row">
                     <div class="col-md-3">
-                        <span>{{ 'CONTENT.m-phone' | translate }}</span>
+                        <span class="txt-middle">{{ 'CONTENT.m-phone' | translate }}</span>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 form-group">
                         <div class="input-wrapper ">
                             <input id="password" name="password" maxlength="30" type="text" value="">
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <span>{{ 'CONTENT.w-phone' | translate }}</span>
+                        <span class="txt-middle">{{ 'CONTENT.w-phone' | translate }}</span>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 form-group">
                         <div class="input-wrapper ">
                             <input id="password" name="password" maxlength="30" type="text" value="">
                         </div>
@@ -188,7 +189,7 @@
 
                 <div class="row">
                     <div class="col-md-3">
-                        <span>{{ 'CONTENT.f-num' | translate }}</span>
+                        <span class="txt-middle">{{ 'CONTENT.f-num' | translate }}</span>
                     </div>
 
                     <div class="col-md-3">
@@ -205,11 +206,11 @@
                         </div>
                     </div> -->
 
-                    <div class="col-md-3">
+                    <div class="col-md-3 txt-middle">
                         <span>{{ 'CONTENT.tax' | translate }}</span>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-3 txt-middle">
                         <div class="row">
                             <div class="col-md-6 col-6">
                                 <div class="custom-radio-between">

@@ -15,90 +15,93 @@
                 <img src="/assets/Images/icons/ico-download.png" />
               </a>
             </li> -->
-            <li class="ico-yt">
-              <a href="#" title="youtube">
+            <li class="ico-print">
+              <a href="#" title="print">
                 <img src="/assets/Images/icons/ico-print.png" />
               </a>
             </li>
 
           </ul>
         </div>
+
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block  pb-3">
-            <select name="ddlLink" id="ddlLink">
-              <option value="0" selected="">9990244757</option>
-              <option value="36">9990244757</option>
-              <option value="29">9990244757</option>
+            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
+              <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderList; let i = index">{{ unitholder.Text
+                }}</option>
             </select>
           </div>
         </div>
 
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-          <span>เนติวัฒน์ โชติกร</span>
+          <span class="txt-middle" *ngIf="userselect.UnitholderInfo">{{ userselect?.UnitholderInfo?.UnitHolderName}}</span>
+          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
         </div>
 
         <div class="col-md-3">
           <p>{{ 'CONTENT.report-date' | translate }}</p>
-          <span>7 มิถุนายน 2561</span>
+          <span class="txt-middle">{{ dateformat }}</span>
         </div>
+
         <div class="col-sm-6 col-md-12">
           <div class="row">
             <div class="col-md-6">
               <p>{{ 'CONTENT.address' | translate }}</p>
-            <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
+              <span class="txt-middle" *ngIf="userselect.Address">{{ userselect?.Address?.ContactAddress}}</span>
+              <span class="txt-middle">{{ userselect?.address?.ContactAddress}}</span>
             </div>
           </div>
-            
+
         </div>
         <div class="col-md-12">
           <div class="table-responsive">
             <table class="table table-nav">
               <thead>
-                  <tr>
-                      <th>
-                        ชื่อกองทุน
-                      </th>
-                      <th>
-                        วันและเวลา
-                        <br/>ที่ทำการ
-                      </th>
-                      <th>
-                        วันที่มีผล
-                      </th>
-                      <th>
-                        ประเภท
-                      </th>
-                      <th>
-                        รายการ
-                      </th>
-                      <th>
-                        บาท (THB)
-                      </th>
-                      <th>
-                        หน่วย (Unit)
-                      </th>
-                      <th>
-                        กองทุน
-                        <br/>ปลายทาง
-                      </th>
-                      <th>
-                        วันที่มีผล
-                      </th>
-                      <th>
-                        แก้ไข
-                      </th>
-                      <th>
-                        ยกเลิก
-                      </th>
+                <tr>
+                  <th>
+                    ชื่อกองทุน
+                  </th>
+                  <th>
+                    วันและเวลา
+                    <br/>ที่ทำการ
+                  </th>
+                  <th>
+                    วันที่มีผล
+                  </th>
+                  <th>
+                    ประเภท
+                  </th>
+                  <th>
+                    รายการ
+                  </th>
+                  <th>
+                    บาท (THB)
+                  </th>
+                  <th>
+                    หน่วย (Unit)
+                  </th>
+                  <th>
+                    กองทุน
+                    <br/>ปลายทาง
+                  </th>
+                  <th>
+                    วันที่มีผล
+                  </th>
+                  <th>
+                    แก้ไข
+                  </th>
+                  <th>
+                    ยกเลิก
+                  </th>
 
-                    </tr>
+                </tr>
               </thead>
-              <tbody>                           
+              <tbody>
                 <tr class="topic">
                   <th colspan="11">
-                      9990244757
+                    9990244757
                   </th>
                 </tr>
                 <tr class="line">
@@ -109,7 +112,7 @@
                 </tr>
                 <tr>
                   <td class="text-left">
-                      &nbsp;
+                    &nbsp;
                   </td>
                   <td class="">
                     07/06/2561, 11:25
@@ -148,7 +151,7 @@
                 </tr>
                 <tr>
                   <td class="text-left">
-                   &nbsp;
+                    &nbsp;
                   </td>
                   <td class="">
                     07/06/2561, 11:25
@@ -281,8 +284,8 @@
 
         </div>
         <div class="col-md-12 mb-5">
-          <p class="color-red no-margin">ข้อมูลที่แสดงข้างต้นนี้อาจมีการเปลี่ยนแปลงแก้ไขได้ หากเป็นรายการซื้อที่เรียกเก็บเงินไม่ได้ หรือรายการผิดพลาดใดๆ
-            ทั้งนี้การเปลี่ยนแปลงแก้ไขจะเป็นไปตามวิธี และข้อกำหนดที่ระบุไว้ในโครงการจัดการกองทุนที่ท่านลงทุนรายงานนี้แสดงรายการที่ท่านทำผ่านระบบ
+          <p class="color-red no-margin">ข้อมูลที่แสดงข้างต้นนี้อาจมีการเปลี่ยนแปลงแก้ไขได้ หากเป็นรายการซื้อที่เรียกเก็บเงินไม่ได้
+            หรือรายการผิดพลาดใดๆ ทั้งนี้การเปลี่ยนแปลงแก้ไขจะเป็นไปตามวิธี และข้อกำหนดที่ระบุไว้ในโครงการจัดการกองทุนที่ท่านลงทุนรายงานนี้แสดงรายการที่ท่านทำผ่านระบบ
             @ccess ที่ยังไม่มีผลเท่านั้น</p>
         </div>
 

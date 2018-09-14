@@ -25,37 +25,38 @@
               <div class="col-md-3">
                   <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
                   <div class="select-wrapper inline-block">
-                      <select name="ddlLink" id="ddlLink">
-                          <option value="0" selected="">9990244757</option>
-                          <option value="36">9990244757</option>
-                          <option value="29">9990244757</option>
+                      <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
+                        <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderList; let i = index" >{{ unitholder.Text }}</option>
                       </select>
                   </div>
               </div>
               <div class="col-md-3">
                   <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-                  <span>เนติวัฒน์ โชติกร</span>
+                  <span class="txt-middle" *ngIf="userselect.UnitholderInfo">{{ userselect?.UnitholderInfo?.UnitHolderName}}</span>
+                  <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
               </div>
               <div class="col-md-3">
                   <p>{{ 'CONTENT.eval-date' | translate }}</p>
-                  <span>7 มิถุนายน 2561</span>
+                  <span class="txt-middle" *ngIf="userselect.UnitholderInfo">{{ userselect?.UnitholderInfo?.RiskLevel1LastUpdated}}</span>
+                  <span class="txt-middle">{{ userselect?.unitholder?.RiskLevel1LastUpdated}}</span>
               </div>
               <div class="col-md-3">
                   <p>{{ 'CONTENT.expired-date' | translate }}</p>
-                  <span>7 มิถุนายน 2561</span>
+                  <span class="txt-middle">7 มิถุนายน 2561</span>
               </div>
           </div>
           <div class="row mt-md-3">
               <div class="col-md-3">
                   <p>{{ 'CONTENT.your-risk-socre' | translate }}</p>
-                  <span>-</span>
+                  <span class="txt-middle">-</span>
               </div>
               <div class="col-md-3">
                   <p>{{ 'CONTENT.your-investor-level' | translate }}</p>
-                  <span>3</span>
+                  <span class="txt-middle" *ngIf="userselect.UnitholderInfo">{{ userselect?.UnitholderInfo?.RiskLevel1}}</span>
+                  <span class="txt-middle">{{ userselect?.unitholder?.RiskLevel1}}</span>
               </div>
           </div>
-          <div class="row justify-content-center mb-3">
+          <div class="row justify-content-center mb-3 mt-lg-4">
               <div class="col-md-2 col-6 col-sm-4">
                   <button class="btn-med btn-primary" (click)="checkpage('suitability-test')">
                     {{ 'BUTTON.edit' | translate }}
@@ -96,16 +97,15 @@
 
                     <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
                     <div class="select-wrapper inline-block">
-                        <select name="ddlLink" id="ddlLink">
-                            <option value="0" selected="">9990244757</option>
-                            <option value="36">9990244757</option>
-                            <option value="29">9990244757</option>
+                        <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
+                            <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderList; let i = index" >{{ unitholder.Text }}</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">
                     <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-                    <span>เนติวัฒน์ โชติกร</span>
+                    <span class="txt-middle" *ngIf="userselect.UnitholderInfo">{{ userselect?.UnitholderInfo?.UnitHolderName}}</span>
+                    <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
                 </div>
                 <div class="col-sm-6 col-md-3">
 
@@ -116,7 +116,8 @@
                 </div>
                 <div class="col-sm-12 col-md-12 mt-md-3">
                     <p>{{ 'CONTENT.address' | translate }}</p>
-                    <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
+                    <span class="txt-middle" *ngIf="userselect.Address">{{ userselect?.Address?.ContactAddress}}</span>
+                    <span class="txt-middle">{{ userselect?.address?.ContactAddress}}</span>
                 </div>
             </div>
         </div>
@@ -125,7 +126,7 @@
                 <div class="row">
                     <div class="col-md-6 text-left">
                         <p class="no-margin">{{ 'CONTENT.eval-date' | translate }}
-                            <span> 03/03/2561</span>
+                            <span> {{ dateformat }}</span>
                         </p>
                     </div>
                     <div class="col-md-6 text-md-right">

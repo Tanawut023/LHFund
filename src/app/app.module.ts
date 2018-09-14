@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { routes } from './app-routing';
+import { routing } from './app-routing';
 import { RouterModule } from '@angular/router'
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -75,12 +75,14 @@ import { AuthenticationService } from './service/authentication.service';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthGuard } from './service/auth.guard';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import {BaseApplicationDataService} from './service/base-application-data.service';
+import { UserIdleModule } from 'angular-user-idle';
 
 
 // import { NgbDateFRParserFormatter } from "./ngb-date-fr-parser-formatter"
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, './App/assets/i18n/', '.json');
 }
 
 @NgModule({
@@ -146,7 +148,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       positionClass: 'toast-top-center',
       preventDuplicates: true,
     }),
-    RouterModule.forRoot(routes, { useHash: true }),
+    routing,
     MalihuScrollbarModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
@@ -159,10 +161,13 @@ export function HttpLoaderFactory(http: HttpClient) {
       reCaptcha2SiteKey: '6Lfl4mkUAAAAAOTJ-H2mB4-PfSPLMLSsI2OCMivg',
       invisibleCaptchaSiteKey: '6Lfl4mkUAAAAAOTJ-H2mB4-PfSPLMLSsI2OCMivg'
     }),
+    UserIdleModule.forRoot({idle: 600, timeout: 300, ping: 120})
   ],
   providers: [
     { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter },
-    AuthenticationService, AuthGuard
+    AuthenticationService, AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    BaseApplicationDataService
   ],
   bootstrap: [AppComponent]
 })

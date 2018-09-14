@@ -1,17 +1,7 @@
-<!-- <app-header></app-header> -->
-<!-- <div>
-    <h2>{{ 'HEADER.TITLE' | translate }}</h2>
-    <label>
-      {{ 'HEADER.SELECT' | translate }}
-      <select #langSelect (change)="translate.use(langSelect.value)">
-        <option *ngFor="let lang of translate.getDefaultLang()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
-      </select>
-    </label>
-    <button (click)="translate.use('en')">click</button><br>
-    <button (click)="translate.use('th')">กด</button>
-  </div> -->
-  
-<app-canvas-menu></app-canvas-menu>
+<app-canvas-menu *ngIf="(isLoggedIn | async)"></app-canvas-menu>
+<app-header-login *ngIf="!(isLoggedIn | async)"></app-header-login>
+<app-header *ngIf="(isLoggedIn | async)"></app-header>
 <router-outlet (activate)="onActivate($event)" ><div class="se-pre-con"></div></router-outlet>
-<div id="exit-canvas" class=""></div>
+<app-footer *ngIf="(isLoggedIn | async)"></app-footer>
+<div id="exit-canvas" class=""  *ngIf="(isLoggedIn | async)"></div>
 <!-- <app-footer></app-footer> -->

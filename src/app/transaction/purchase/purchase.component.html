@@ -26,22 +26,19 @@
         <div class="col-md-3">
 
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
-
           <div class="select-wrapper inline-block">
-            <select name="ddlLink" id="ddlLink">
-              <option value="0" selected="">9990244757</option>
-              <option value="36">9990244757</option>
-              <option value="29">9990244757</option>
+              <select id="ddlLink" [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()">
+              <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index" >{{ unitholder.Text }}</option>
             </select>
           </div>
         </div>
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-          <span>เนติวัฒน์ โชติกร</span>
+          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
         </div>
         <div class="col-md-6">
           <p>{{ 'CONTENT.address' | translate }}</p>
-          <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
+          <span class="txt-middle">{{ userselect?.address?.ContactAddress}}</span>
         </div>
       </div>
     </div>
@@ -70,7 +67,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            <span>{{ 'CONTENT.fund-name' | translate }}</span>
+            <span class="txt-middle">{{ 'CONTENT.fund-name' | translate }}</span>
           </div>
           <div class="col-md-6">
             <div class="select-wrapper inline-block">
@@ -86,7 +83,7 @@
 
         <div class="row">
           <div class="col-md-4">
-            <span>{{ 'CONTENT.amount' | translate }}</span>
+            <span class="txt-middle">{{ 'CONTENT.amount' | translate }}</span>
           </div>
 
           <div class="col-md-3 col-6">
@@ -110,7 +107,7 @@
 
         <div class="row">
           <div class="col-md-4">
-            <span>{{ 'CONTENT.debit-from-acc' | translate }}</span>
+            <span class="txt-middle">{{ 'CONTENT.debit-from-acc' | translate }}</span>
           </div>
           <div class="col-md-6">
             <div class="select-wrapper inline-block">
@@ -126,7 +123,7 @@
 
         <div class="row">
           <div class="col-md-4">
-            <span>{{ 'CONTENT.Advance-s-date' | translate }}</span>
+            <span class="txt-middle">{{ 'CONTENT.Advance-s-date' | translate }}</span>
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="input-wrapper">
@@ -287,15 +284,15 @@
         </div>
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
-          <span>9990244757</span>
+          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderNo}}</span>
         </div>
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-          <span>เนติวัฒน์ โชติกร</span>
+          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
         </div>
         <div class="col-md-6">
           <p>{{ 'CONTENT.address' | translate }}</p>
-          <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
+          <span class="txt-middle">{{ userselect?.address?.ContactAddress1}}  {{ userselect?.address?.ContactAddress2}} {{ userselect?.address?.ContactProvince}} {{ userselect?.address?.ContactZipCode}}</span>
         </div>
       </div>
     </div>
@@ -363,7 +360,7 @@
         <div class="row">
           <div class="col-md-3 col-6 offset-md-4">
             <button class="btn-med btn-primary" (click)="checkpage('purchase-step2')">
-              {{ 'BUTTON.ok' | translate }}
+              {{ 'BUTTON.confirm' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
@@ -415,15 +412,15 @@
         </div>
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
-          <span>9990244757</span>
+          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderNo}}</span>
         </div>
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-          <span>เนติวัฒน์ โชติกร</span>
+          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
         </div>
         <div class="col-md-6">
           <p>{{ 'CONTENT.address' | translate }}</p>
-          <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
+          <span class="txt-middle">{{ userselect?.address?.ContactAddress1}}  {{ userselect?.address?.ContactAddress2}} {{ userselect?.address?.ContactProvince}} {{ userselect?.address?.ContactZipCode}}</span>
         </div>
       </div>
     </div>
@@ -544,20 +541,18 @@
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
 
           <div class="select-wrapper inline-block">
-            <select name="ddlLink" id="ddlLink">
-              <option value="0" selected="">9990244757</option>
-              <option value="36">9990244757</option>
-              <option value="29">9990244757</option>
+            <select name="ddlLink"  [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()">
+              <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholder; let i = index" >{{ unitholder.Text }}</option>
             </select>
           </div>
         </div>
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-          <span>เนติวัฒน์ โชติกร</span>
+          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
         </div>
         <div class="col-md-6">
           <p>{{ 'CONTENT.address' | translate }}</p>
-          <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
+          <span class="txt-middle">{{ userselect?.address?.ContactAddress1}}  {{ userselect?.address?.ContactAddress2}} {{ userselect?.address?.ContactProvince}} {{ userselect?.address?.ContactZipCode}}</span>
         </div>
       </div>
     </div>
@@ -565,7 +560,7 @@
   <div class="detail-body-wrapper">
     <div class="row">
       <div class="col-md-12 mb-3">
-        <H4 class="text-left" style="display: unset;">{{ 'CONTENT.sub-all-order' | translate }} </H4>
+        <H4 class="text-left" style="display: unset;">{{ 'CONTENT.sub-all-order' | translate }}</H4>
         <p style="display: unset;">{{ 'CONTENT.order-to-be' | translate }}</p>
       </div>
       <div class="col-md-12">
@@ -901,7 +896,7 @@
   </div>
 </div>
 <!-- purchase-view-list -->
-<p-dialog [(visible)]="dialog" [modal]="true" [responsive]="true" [width]="auto" [minWidth]="200" [draggable]="false" [resizable]="false"
+<!-- <p-dialog [(visible)]="dialog" [modal]="true" [responsive]="true" [width]="auto" [minWidth]="200" [draggable]="false" [resizable]="false"
   [baseZIndex]="10000">
   <p-header>
     ยืนยันการทำรายการซื้อ
@@ -913,9 +908,6 @@
 
 
   <p-footer>
-
-    <!-- <button type="button" class="btn-med btn-secondary" data-dismiss="modal">Cancel</button> -->
-    <!-- <button type="button" class="btn-med btn-primary" data-dismiss="modal" (click)="checkpage('signin')">ยอมรับ</button> -->
     <div class="row justify-content-center">
       <div class="col-6 col-md-4">
         <button class="btn-med btn-primary" (click)="dialog=false" routerLink="/profile/suitability">
@@ -932,9 +924,6 @@
         </button>
       </div>
     </div>
-
-    <!-- <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
-            <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No" class="ui-button-secondary"></button> -->
   </p-footer>
-</p-dialog>
+</p-dialog> -->
 <!-- dialog -->

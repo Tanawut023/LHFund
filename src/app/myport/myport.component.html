@@ -1,4 +1,3 @@
-<app-header></app-header>
 <div class="" id="maincontainer-wrapper">
     <div class="page-content-wrapper">
         <div class="mutual-fund-wrapper" *ngIf="page == 'dashboard'">
@@ -49,24 +48,22 @@
                                         </ul>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
-
                                         <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
-                                        <div class="select-wrapper inline-block pb-3">
-                                            <select name="ddlLink" id="ddlLink">
-                                                <option value="0" selected="">แสดงบัญชีทั้งหมด</option>
-                                                <option value="36">9990244757</option>
-                                                <option value="29">9990244757</option>
+                                        <div class="select-wrapper inline-block pb-3" >
+                                            <select id="ddlLink" [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()">
+                                                <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index" >{{ unitholder.Text }}</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
                                         <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-                                        <span>เนติวัฒน์ โชติกร</span>
+                                        <span class="txt-middle" *ngIf="userselect.unitholderinfo">{{ userselect?.unitholderinfo?.UnitHolderName}}</span>
+                                        <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
 
                                         <p>{{ 'CONTENT.report-date' | translate }}</p>
-                                        <span> {{ dateformat }}</span>
+                                        <span class="txt-middle">{{ dateformat }}</span>
                                     </div>
                                     
                                 </div>
@@ -74,7 +71,8 @@
                                     <div class="col-sm-6 col-md-6">
 
                                         <p>{{ 'CONTENT.address' | translate }}</p>
-                                        <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
+                                        <span class="txt-middle" *ngIf="userselect.addressunitholder">{{ userselect?.addressunitholder?.ContactAddress}}</span>
+                                        <span class="txt-middle">{{ userselect?.address?.ContactAddress}}</span>
                                     </div>
                                 </div>
 
@@ -371,4 +369,3 @@
         
     </div>
 </div>
-<app-footer></app-footer>

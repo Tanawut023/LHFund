@@ -23,46 +23,51 @@
 
           </ul>
         </div>
-        <div class="col-md-3">
 
+        <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block ">
-            <select name="ddlLink" id="ddlLink">
-              <option value="0" selected="">9990244757</option>
-              <option value="36">9990244757</option>
-              <option value="29">9990244757</option>
+            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
+              <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderList; let i = index">{{ unitholder.Text
+                }}</option>
             </select>
           </div>
         </div>
+
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-          <span>เนติวัฒน์ โชติกร</span>
+          <span class="txt-middle" *ngIf="userselect.UnitholderInfo">{{ userselect?.UnitholderInfo?.UnitHolderName}}</span>
+          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
         </div>
+
         <div class="col-sm-6 col-md-6">
-            <p>{{ 'CONTENT.address' | translate }}</p>
-          <span>19/259 ซ.จุลดิส แขวงพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span>
-          </div>
+          <p>{{ 'CONTENT.address' | translate }}</p>
+          <span class="txt-middle" *ngIf="userselect.Address">{{ userselect?.Address?.ContactAddress}}</span>
+          <span class="txt-middle">{{ userselect?.address?.ContactAddress}}</span>
+        </div>
+        
       </div>
     </div>
   </div>
   <div class="detail-body-wrapper">
     <div class="row">
-        <div class="col-md-12">
-            <H4 class="text-left">{{ 'CONTENT.select-date-t' | translate }}</H4>
-          </div>
+      <div class="col-md-12">
+        <H4 class="text-left">{{ 'CONTENT.select-date-t' | translate }}</H4>
+      </div>
       <div class="col-md-6">
         <div class="row">
-          
+
           <div class="col-md-3">
-            <span>{{ 'CONTENT.transaction-date' | translate }}</span>
+            <span class="txt-middle">{{ 'CONTENT.transaction-date' | translate }}</span>
           </div>
           <div class="col-md-6">
             <div class="input-wrapper">
-              <input class=" textinput dateinput bg-gray" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" id="startDate" placeholder="วว/ดด/ปปปป" name="date" type="text" (click)="d.toggle()">
+              <input class=" textinput dateinput bg-gray" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" id="startDate" placeholder="วว/ดด/ปปปป"
+                name="date" type="text" (click)="d.toggle()">
             </div>
           </div>
           <div class="col-md-3 col-6">
-            <button class="btn-med btn-primary" >
+            <button class="btn-med btn-primary">
               {{ 'BUTTON.ok' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
@@ -90,7 +95,7 @@
                 </a>
               </div>
               <div class="col-md-2 col-3">
-                <button class="btn-sm btn-download width50 " >
+                <button class="btn-sm btn-download width50 ">
                   <p>Download</p>
                   <img src="/assets/Images/icons/ico-download-white.png">
                 </button>
