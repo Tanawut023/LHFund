@@ -10,15 +10,15 @@ import { ToastrService } from 'ngx-toastr';
 declare var $: any;
 
 function passwordConfirming(c: AbstractControl): any {
-  if(!c.parent || !c) return;
+  if (!c.parent || !c) return;
   const pwd = c.parent.get('password');
-  const cpwd= c.parent.get('repeatPassword')
+  const cpwd = c.parent.get('repeatPassword')
 
-  if(!pwd || !cpwd) return ;
+  if (!pwd || !cpwd) return;
   if (pwd.value !== cpwd.value) {
-      return { invalid: true };
+    return { invalid: true };
 
-}
+  }
 }
 
 @Component({
@@ -34,25 +34,26 @@ export class ChangepasswordloginComponent implements OnInit {
   langen: boolean;
   comfirmchange: boolean = false;
   page = 'changepassword';
-  blind ='';
+  blind = '';
   foo1: string;
   refcode: any = {};
   activate: any = {};
-  message: any ='';
+  message: any = '';
   User: any = {}
   mobile;
+  exit: boolean = false;
 
   get cpwd() {
     return this.formchange.get('repeatPassword');
-   }
-  
+  }
+
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService,
-    private authenticationService : AuthenticationService,
+    private authenticationService: AuthenticationService,
     private toastr: ToastrService) {
     translate.addLangs(["th", "en"]);
   }
@@ -60,62 +61,53 @@ export class ChangepasswordloginComponent implements OnInit {
   ngOnInit() {
     this.createFormValidate();
     this.foo1 = this.translate.currentLang;
-    if(this.foo1 == 'th'){
-      
+    if (this.foo1 == 'th') {
+
       this.langth = true;
     }
-    else if(this.foo1 == 'en'){
-      this.langen =true;
+    else if (this.foo1 == 'en') {
+      this.langen = true;
     }
-    // this.refcode = this.route.snapshot.queryParamMap.get('refcode');
-    // console.log(this.refcode)
 
-     this.route.params.subscribe(refcode => {
-      // const data = {
-      //   id : id.roommateId
-      // }
+    this.route.params.subscribe(refcode => {
       this.refcode = refcode
       let params = new HttpParams().set('refcode', this.refcode.refcode);
       this.authenticationService.validateActivateCode(params)
-          .subscribe( (data) => {
-            console.log(data);
-
-          },
+        .subscribe((data) => {
+          console.log(data);
+        },
           (error) => {
+            console.log(error);
+            this.exit = true;
             this.activate = error;
-            if(this.activate.error.success == false){
+            if (this.activate.error.success == false) {
               this.message = this.activate.error.messages;
-              $('#activate').modal({
+              $('#dialog').modal({
                 backdrop: 'static',
                 keyboard: false,
                 show: true
-            });
+              });
             }
-            // this.toastr.error('', error.error.messages);
-            console.log(error)
-            // console.log("messages :"+error.error.messages);
-            // console.log("success :"+error.error.success);
-            // console.log("data :"+error.error.data);
           });
       console.log(refcode)
     })
-    
+
   }
-  switchlang(lang){
-    if(lang=='th'){
+  switchlang(lang) {
+    if (lang == 'th') {
       this.translate.use('th');
       this.langen = false;
       this.langth = true;
-      localStorage.setItem('lang', lang );
-      
+      localStorage.setItem('lang', lang);
+
     }
-    else if(lang=='en'){
+    else if (lang == 'en') {
       this.translate.use('en');
       this.langth = false;
       this.langen = true;
-      localStorage.setItem('lang', lang );
-  }
-    
+      localStorage.setItem('lang', lang);
+    }
+
 
   }
 
@@ -124,83 +116,83 @@ export class ChangepasswordloginComponent implements OnInit {
 
     switch (page) {
       case 'otp':
-      console.log(this.formchange)
+        console.log(this.formchange)
         if (this.formchange.valid) {
-          
+
           this.isNotValid = false;
 
           let params = new HttpParams().set('refcode', this.refcode.refcode);
 
           const user = {
-            Password : this.formchange.controls.password.value,
-            ConfirmPassword : this.formchange.controls.repeatPassword.value
+            Password: this.formchange.controls.password.value,
+            ConfirmPassword: this.formchange.controls.repeatPassword.value
           }
-          this.authenticationService.confirmForgotPassword(user,params)
-            .subscribe( (data) => {
+          console.log(user);
+          
+          this.authenticationService.confirmForgotPassword(user, params)
+            .subscribe((data) => {
               console.log(data);
               this.User = data;
-              console.log( this.User.refcode)
               this.page = "otp";
-              this.mobile = this.User.Mobile;
+              this.mobile = this.User.mobile;
             },
-            (error) => {
-              this.toastr.error('', error.error.messages);
-              console.log(error)
-              console.log("messages :"+error.error.messages);
-              console.log("success :"+error.error.success);
-              console.log("data :"+error.error.data);
-            });
+              (error) => {
+                console.log(error);
+                this.message = error.error.messages;
+                $('#dialog').modal({
+                  backdrop: 'static',
+                  keyboard: false,
+                  show: true
+                });
+              });
         }
-        else if(this.formchange.invalid){
+        else if (this.formchange.invalid) {
           this.isNotValid = true;
-          this.validateAllFormFields(this.formchange);          
+          this.validateAllFormFields(this.formchange);
         }
-        break; 
-     
+        break;
+
       case 'complete':
-      if (this.formotp.valid) {
-        // this.navigate('');
-        // this.comfirmchange = true;
-    
+        if (this.formotp.valid) {
+          this.isNotValid = false;
 
-        this.isNotValid = false;
-
-        let Params = new HttpParams();
-
-        Params = Params.append('otp', this.formotp.controls.otp.value);
-        Params = Params.append('refcode', this.User.refcode);
+          let Params = new HttpParams();
+          Params = Params.append('otp', this.formotp.controls.otp.value);
+          Params = Params.append('refcode', this.User.refcode);
 
           const user = {
-            Password : this.formchange.controls.password.value,
-            ConfirmPassword : this.formchange.controls.repeatPassword.value
+            Password: this.formchange.controls.password.value,
+            ConfirmPassword: this.formchange.controls.repeatPassword.value
           }
-          this.authenticationService.OTPForgotPassword(user,Params)
-            .subscribe( (data) => {
+          this.authenticationService.OTPForgotPassword(user, Params)
+            .subscribe((data) => {
               console.log(data);
-              $('#confirm').modal({
+              this.User = data;
+              this.message = "ท่านได้ทำการเปลี่ยนรหัสผ่านเรียบร้อยแล้ว";
+              this.exit = true;
+              $('#dialog').modal({
                 backdrop: 'static',
                 keyboard: false,
                 show: true
-            });
-              // this.User = data;
-              // console.log( this.User.refcode)
-              // this.page = "otp";
+              });
             },
-            (error) => {
-              this.toastr.error('', error.error.messages);
-              console.log(error)
-              console.log("messages :"+error.error.messages);
-              console.log("success :"+error.error.success);
-              console.log("data :"+error.error.data);
-            });
-        
-      }
-      else if(this.formotp.invalid){
-        this.isNotValid = true;
-        this.validateAllFormFields(this.formotp);          
-      }
+              (error) => {
+                console.log(error);
+                this.message = error.error.messages;
+                $('#dialog').modal({
+                  backdrop: 'static',
+                  keyboard: false,
+                  show: true
+                });
+              });
+
+        }
+        else if (this.formotp.invalid) {
+          this.isNotValid = true;
+          this.validateAllFormFields(this.formotp);
+        }
         break;
-      
+
       default:
 
         this.page = "changepassword";
@@ -211,20 +203,20 @@ export class ChangepasswordloginComponent implements OnInit {
 
   }
   createFormValidate() {
-    this.formchange = this.fb.group({      
+    this.formchange = this.fb.group({
       password: [null,
         [
           Validators.required,
           Validators.minLength(8),
-          Validators.pattern(/^(?=.*[A-Z])(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/)
+          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{8,16}$/)
         ]
       ],
       repeatPassword: [null,
         [
           Validators.required,
-          passwordConfirming, 
+          passwordConfirming,
           Validators.minLength(8),
-          Validators.pattern(/^(?=.*[A-Z])(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/)
+          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{8,16}$/)
           // Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)
         ]
       ],
@@ -239,7 +231,7 @@ export class ChangepasswordloginComponent implements OnInit {
         ]
       ]
     })
-    
+
 
   }
 
@@ -253,7 +245,7 @@ export class ChangepasswordloginComponent implements OnInit {
       }
     })
   }
-  
+
   isFieldNotValid5(field: string) {
     return !this.formchange.get(field).valid && this.formchange.get(field).touched
 
@@ -274,7 +266,7 @@ export class ChangepasswordloginComponent implements OnInit {
       'has-danger': this.isFieldNotValid4(field)
     };
   }
-  navigate(target){
+  navigate(target) {
     var target = target;
     console.log(target);
     this.router.navigate([target], { relativeTo: this.route });
@@ -287,24 +279,23 @@ export class ChangepasswordloginComponent implements OnInit {
     return true;
 
   }
-  requestotp(){
+  requestotp() {
     let params = new HttpParams().set('refcode', this.User.refcode);
 
-    // this.http.post('http://fundchoiceuat.lhfund.co.th/api/member/requestOTP', { params: params })
     this.authenticationService.requestOTP(params)
-    .subscribe( (data) => {
-      console.log(data);
-      this.User = data;
-      // this.page = "otp";
-
-    },
-    (error) => {
-      this.toastr.error('', error.error.messages);
-      console.log(error)
-      console.log("messages :"+error.error.messages);
-      console.log("success :"+error.error.success);
-      console.log("data :"+error.error.data);
-    });
+      .subscribe((data) => {
+        console.log(data);
+        this.User = data;
+      },
+        (error) => {
+          console.log(error);
+          this.message = error.error.messages;
+          $('#dialog').modal({
+            backdrop: 'static',
+            keyboard: false,
+            show: true
+          });
+        });
   }
 
 }

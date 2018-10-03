@@ -36,4 +36,13 @@ export var datethai;
     datethai = now.getDate()+ " " + thmonth[now.getMonth()]+ " " + (0+now.getFullYear()+543);
 
     
- 
+ export function formatdatethai(d){
+  var date = new Date(d);
+  var thday = new Array ("อาทิตย์","จันทร์",
+    "อังคาร","พุธ","พฤหัส","ศุกร์","เสาร์"); 
+    var thmonth = new Array ("มกราคม","กุมภาพันธ์","มีนาคม",
+    "เมษายน","พฤษภาคม","มิถุนายน", "กรกฎาคม","สิงหาคม","กันยายน",
+    "ตุลาคม","พฤศจิกายน","ธันวาคม"); 
+  var datefor = date.getDate()+" "+thmonth[date.getMonth()]+" "+(0+date.getFullYear()+543);
+  return datefor;
+ }

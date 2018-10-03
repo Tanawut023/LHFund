@@ -28,15 +28,14 @@
                     <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
                     <div class="select-wrapper inline-block">
                         <select  [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
-                            <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index" >{{ unitholder.Text }}</option>
+                            <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index" >{{ unitholder.UnitholderNo }}</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="col-md-3">
                     <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-                    <span class="txt-middle" *ngIf="userselect.unitholderinfo">{{ userselect?.unitholderinfo?.UnitHolderName}}</span>
-                    <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
+                    <span class="txt-middle">{{ userselect.FirstName}} {{ userselect.LastName}}</span>
                 </div>
                 
             </div>
@@ -55,14 +54,14 @@
                 </div>
 
                 <div class="row ">
-                    <div class="col-md-3 form-group">
-                        <p>{{ 'CONTENT.add-no' | translate }}</p>
+                    <div class="col-12 form-group">
+                        <p>{{ 'CONTENT.address' | translate }}</p>
                         <div class="input-wrapper ">
-                            <input id="add-no" name="add-no" maxlength="30" type="text" value="9/259">
+                            <input id="add-no" name="add-no" maxlength="30" type="text"  [(ngModel)]="profile.unitholderinfo.ContactAddress1" required  *ngIf="profile">
                         </div>
                     </div>
 
-                    <div class="col-md-3 form-group">
+                    <!-- <div class="col-md-3 form-group">
                         <p>{{ 'CONTENT.moo-no' | translate }}</p>
                         <div class="input-wrapper ">
                             <input id="moo-no" name="moo-no" maxlength="30" type="text" value="">
@@ -81,11 +80,11 @@
                         <div class="input-wrapper ">
                             <input id="floor" name="floor" maxlength="30" type="text" value="">
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
                 <div class="row">
-                    <div class="col-md-3 form-group">
+                    <!-- <div class="col-md-3 form-group">
                         <p>{{ 'CONTENT.soi' | translate }}</p>
                         <div class="input-wrapper ">
                             <input id="soi" name="soi" maxlength="30" type="text" value="จุลดิส">
@@ -97,7 +96,7 @@
                         <div class="input-wrapper ">
                             <input id="road" name="road" maxlength="30" type="text" value="">
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="col-md-3 form-group">
                         <p>{{ 'CONTENT.tambon' | translate }}</p>
@@ -113,28 +112,28 @@
                         </div>
                     </div>
 
+                    <div class="col-md-3 form-group">
+                            <p>{{ 'CONTENT.province' | translate }}</p>
+                            <div class="select-wrapper inline-block">
+    
+                                <select name="ddlLink" id="ddlLink">
+                                    <option value="0" selected="">กรุงเทพมหานคร</option>
+                                    <option value="36">กรุงเทพมหานคร</option>
+                                    <option value="29">กรุงเทพมหานคร</option>
+                                </select>
+                            </div>
+                        </div>
+    
+                        <div class="col-md-3 form-group">
+                            <p>{{ 'CONTENT.post-code' | translate }}</p>
+                            <div class="input-wrapper ">
+                                <input id="post-code" maxlength="30" type="text" [(ngModel)]="profile.unitholderinfo.ContactZipCode" name="ContactZipCode" *ngIf="profile">
+                            </div>
+                        </div>
+
                 </div>
 
-                <div class="row">
-                    <div class="col-md-3 form-group">
-                        <p>{{ 'CONTENT.province' | translate }}</p>
-                        <div class="select-wrapper inline-block">
-
-                            <select name="ddlLink" id="ddlLink">
-                                <option value="0" selected="">กรุงเทพมหานคร</option>
-                                <option value="36">กรุงเทพมหานคร</option>
-                                <option value="29">กรุงเทพมหานคร</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 form-group">
-                        <p>{{ 'CONTENT.post-code' | translate }}</p>
-                        <div class="input-wrapper ">
-                            <input id="post-code" maxlength="30" type="text" [(ngModel)]="userselect.addressunitholder.ContactZipCode" name="ContactZipCode" *ngIf="userselect.addressunitholder">
-                            <input id="post-code" maxlength="30" type="text" [(ngModel)]="userselect.address.ContactZipCode" name="ContactZipCode" *ngIf="userselect.address">
-                        </div>
-                    </div>
+                <div class="row">                    
 
                     <div class="col-md-3 form-group">
                         <p>{{ 'CONTENT.country' | translate }}</p>

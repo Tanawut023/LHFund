@@ -138,7 +138,15 @@ if it's not present, don't show loader */
     @media screen and (max-width: 767px) {
     max-height: 430px !important;
     }
-}     
+}
+.has-danger .form-control-feedback p{
+    color: #FF4A4A !important;
+    margin:  0;
+    
+}
+.form-group{
+    margin: 0;
+}   
         
             
 
@@ -716,6 +724,9 @@ input[type=reset] {
 
                         &:first-child {
                             max-width: 340px;
+                            @media screen and (max-width: 767px){                            
+                                max-width: unset;
+                            }
                         }                       
 
                         
@@ -878,7 +889,8 @@ input[type=reset] {
 
             > tbody {
                 // border: 2px solid black;
-                // border-collapse: separate;
+                border: none;
+                border-collapse: separate;
                 // border-spacing: 4px;
 
                 
@@ -927,6 +939,9 @@ input[type=reset] {
 
                         &:first-child {
                             max-width: 200px;
+                            @media screen and (max-width: 767px){                            
+                                max-width: unset;
+                            }
                         }
 
                         a {

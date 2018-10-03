@@ -1,12 +1,21 @@
-import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable, Injector } from '@angular/core';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpHeaders, HttpSentEvent, HttpHeaderResponse, HttpProgressEvent, HttpResponse, HttpUserEvent, HttpErrorResponse } from '@angular/common/http';
+import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs/operators';
+import { tap, count, switchMap, catchError, finalize, filter, take } from 'rxjs/operators';
+import { AuthenticationService } from '../service/authentication.service'
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-    constructor(private router: Router) { }
+    test;
+    test2: any;
+    isRefreshingToken: boolean = false;
+    tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+    constructor(
+        private router: Router,
+        private injector: Injector,
+        private authservice: AuthenticationService
+    ) { }
 
     // intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     //     // add authorization header with jwt token if available
@@ -22,35 +31,141 @@ export class JwtInterceptor implements HttpInterceptor {
 
     //     return next.handle(request);
     // }
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    private generateAuthHeaders = function (req) {
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (currentUser && currentUser.token) {            
-            const headers = new HttpHeaders({
-                'Authorization': currentUser.token,
-                'x-Language': (localStorage.getItem('lang'))?localStorage.getItem('lang'):"en",
+        return req.clone({
+            setHeaders: {
+                'Authorization': `Bearer ${currentUser.access_token}`,
+                'Accept-Language': (localStorage.getItem('lang')) ? localStorage.getItem('lang') : "en",
                 'Content-Type': 'application/json'
-              });
+            }
+        })
+    }
+    private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
+        request = this.generateAuthHeaders(request)
 
-            const clonedreq = req.clone({headers});
-
-            console.log('Intercepted HTTP call', clonedreq);
-
-            return next.handle(clonedreq)
-                .pipe(tap(
-                succ => { },
-                err => {
-                    if (err.status === 401)
-                        this.router.navigateByUrl('/login');                    
-                    }
-                ));
+        if(!this.isRefreshingToken) {
+          this.isRefreshingToken = true;
+    
+          // Reset here so that the following requests wait until the token
+          // comes back from the refreshToken call.
+          this.tokenSubject.next(null);
+          console.log('here');
+    
+          return this.authservice.refreshToken()
+            .pipe(
+              switchMap((user) => {
+                if(user) {
+                    console.log('sdsd')
+                    console.log(user)
+                  this.tokenSubject.next(user.access_token);;
+                  localStorage.setItem('currentUser', JSON.stringify(user));
+                  return next.handle(request);
+                }
+    
+                // return <any>this.authservice.logout();
+              }),
+              catchError(err => {
+                  console.log(err)
+                return <any>this.authservice.logout();
+              }),
+              finalize(() => {
+                this.isRefreshingToken = false;
+              })
+            );
+        } else {
+          this.isRefreshingToken = false;
+    
+          return this.tokenSubject
+            .pipe(filter(token => token != null),
+              take(1),
+              switchMap(token => {
+                //   request = this.generateAuthHeaders(request)
+              return next.handle(request);
+            }));
         }
-        // else {
-        //     this.router.navigateByUrl('/login');
-        // }
+      }
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpSentEvent | HttpHeaderResponse | HttpProgressEvent | HttpResponse<any> | HttpUserEvent<any> | any> {
+        const clonedRequest = req.clone();
+        
+
+        this.authservice = this.injector.get(AuthenticationService)
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser && currentUser.access_token) {
+          // req = this.generateAuthHeaders(req)
+            // const headers = new HttpHeaders({
+            //     'Authorization': `Bearer ${currentUser.access_token}`,
+            //     'Accept-Language': (localStorage.getItem('lang'))?localStorage.getItem('lang'):"en",
+            //     'Content-Type': 'application/json'
+            //   });
+            // this.authservice.refreshToken()
+            // .subscribe(
+            //   data => {
+            //     localStorage.setItem('currentUser', JSON.stringify(data));
+            //   },
+            //   error => {
+            //     console.log(error)            
+            //   });
+            
+
+            // const clonedreq = req.clone({headers});
+
+            // console.log('Intercepted HTTP call', clonedreq);
+            
+            req = this.generateAuthHeaders(req)
+
+            return next.handle(req)
+
+            .pipe(
+                catchError(err => {
+                  if (err instanceof HttpErrorResponse) {
+                    this.router.navigateByUrl('/login');
+                    // switch ((<HttpErrorResponse>err).status) {
+                    //   case 401:
+                    //     return this.handle401Error(req, next);
+                    //   case 400:
+                    //     return <any>this.authservice.logout();
+                    // }
+                  } else {
+                    return throwError(err);
+                  }
+                }));
+                // .pipe(tap(
+                //     succ => {
+                //         this.test = succ
+                //         console.log(this.test);
+                //     },
+                //     err => {
+
+                //         this.test2 = err
+                //         console.log(this.test2);
+                //         if (err.status === 401)
+
+                //             return this.authservice.refreshToken().pipe(
+                //                 switchMap((res: any) => {
+                //                     console.log('here' + res);
+                //                     localStorage.removeItem('token');
+                //                     localStorage.setItem('token', res['access_token']);
+
+                //                     req = this.generateAuthHeaders(req)
+                //                     return next.handle(req);
+                //                 }),
+                //                 // catchError((err) => {
+                //                 //     console.log(err)
+                //                 //     this.authservice.logout();
+                //                 //     return Observable.empty()
+                //                 // })
+                //             )
+                //         // this.router.navigateByUrl('/login');                    
+                //     }
+                // ));
+        }
         const headers = new HttpHeaders({
-            'x-Language': (localStorage.getItem('lang'))?localStorage.getItem('lang'):"en",
-          });
-        return next.handle(req.clone({headers}));
+            'Accept-Language': (localStorage.getItem('lang')) ? localStorage.getItem('lang') : "en",
+            // 'Content-Type': 'application/x-www-form-urlencoded'
+        });
+        return next.handle(req.clone({ headers }));
     }
 
 }

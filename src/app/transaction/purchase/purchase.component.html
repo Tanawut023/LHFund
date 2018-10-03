@@ -24,21 +24,22 @@
           </ul>
         </div>
         <div class="col-md-3">
-
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
-              <select id="ddlLink" [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()">
-              <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index" >{{ unitholder.Text }}</option>
+            <select id="unitholderno" [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()">
+              <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
+                }}
+              </option>
             </select>
           </div>
         </div>
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
+          <span class="txt-middle">{{ userselect.FirstName}} {{ userselect.LastName}}</span>
         </div>
         <div class="col-md-6">
           <p>{{ 'CONTENT.address' | translate }}</p>
-          <span class="txt-middle">{{ userselect?.address?.ContactAddress}}</span>
+          <span class="txt-middle">{{ userselect.ContactAddress}}</span>
         </div>
       </div>
     </div>
@@ -54,7 +55,7 @@
             <p>{{ 'CONTENT.input-date' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>7 มิถุนายน 2561</span>
+            <span>{{ currentdate }}</span>
           </div>
         </div>
         <div class="row">
@@ -66,18 +67,21 @@
           </div>
         </div>
         <div class="row">
+
           <div class="col-md-4">
             <span class="txt-middle">{{ 'CONTENT.fund-name' | translate }}</span>
           </div>
+
           <div class="col-md-6">
             <div class="select-wrapper inline-block">
-              <select name="ddlLink" id="ddlLink">
-                <option value="0" selected="">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
-                <option value="36">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
-                <option value="29">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
+              <select id="fundlist" [(ngModel)]="fundlist" name="fundlist" (ngModelChange)="fundlistonChange()">
+                <option [ngValue]="fundlist" *ngFor="let fundlist of unitholdersubscription.fundlist; let i = index">
+                  {{ fundlist.FundName }}
+                </option>
               </select>
             </div>
           </div>
+
         </div>
 
 
@@ -88,13 +92,13 @@
 
           <div class="col-md-3 col-6">
             <div class="input-wrapper ">
-              <input id="name" name="name" maxlength="30" type="text" class="bg-gray" value="80,000">
+              <input id="amount" name="amount" maxlength="30" type="text" class="bg-gray" value="80,000">
             </div>
           </div>
           <div class="col-md-3 col-6">
             <div class="select-wrapper inline-block">
 
-              <select name="ddlLink" id="ddlLink">
+              <select name="type" id="type">
                 <option value="0" selected="" disabled>กรุณาเลือก</option>
                 <option value="บาท">บาท</option>
                 <option value="หน่วย">หน่วย</option>
@@ -111,12 +115,11 @@
           </div>
           <div class="col-md-6">
             <div class="select-wrapper inline-block">
-
-              <select name="ddlLink" id="ddlLink">
-                <option value="0" selected="">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
-                <option value="36">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
-                <option value="29">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
-              </select>
+                <select id="banklist" [(ngModel)]="banklist" name="banklist" (ngModelChange)="banklistonChange()">
+                    <option [ngValue]="banklist" *ngFor="let banklist of unitholdersubscription.bankaccountlist; let i = index">
+                      {{ banklist.BankName }}
+                    </option>
+                </select>
             </div>
           </div>
         </div>
@@ -127,8 +130,8 @@
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="input-wrapper">
-              <input class=" textinput dateinput bg-gray" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" id="startDate" placeholder="วว/ดด/ปปปป"
-                name="date" type="text" (click)="d.toggle()">
+              <input class=" textinput dateinput bg-gray" [(ngModel)]="datepick" ngbDatepicker #d="ngbDatepicker" id="startDate" placeholder="วว/ดด/ปปปป"
+                name="startDate" type="text" (click)="d.toggle()">
             </div>
           </div>
         </div>
@@ -284,15 +287,15 @@
         </div>
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
-          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderNo}}</span>
+          <span class="txt-middle">{{ userselect.UnitholderNo}}</span>
         </div>
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
+          <span class="txt-middle">{{ userselect.FirstName}} {{ userselect.LastName}}</span>
         </div>
         <div class="col-md-6">
           <p>{{ 'CONTENT.address' | translate }}</p>
-          <span class="txt-middle">{{ userselect?.address?.ContactAddress1}}  {{ userselect?.address?.ContactAddress2}} {{ userselect?.address?.ContactProvince}} {{ userselect?.address?.ContactZipCode}}</span>
+          <span class="txt-middle">{{ userselect.ContactAddress}}</span>
         </div>
       </div>
     </div>
@@ -309,7 +312,7 @@
             <p>{{ 'CONTENT.input-date' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>7 มิถุนายน 2561</span>
+            <span>{{ currentdate }}</span>
           </div>
         </div>
         <div class="row">
@@ -326,7 +329,7 @@
             <p>{{ 'CONTENT.fund-name' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>KFCASH - กองทุนเปิดกรุงศรีตราสารเงิน</span>
+            <span>{{ fundlist.FundName }}</span>
           </div>
         </div>
 
@@ -344,7 +347,7 @@
             <p>{{ 'CONTENT.debit-from-acc' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>ธนคารกรุงศรีอยุธยา จำกัด (มหาชน)</span>
+            <span>{{ banklist.BankName }}</span>
           </div>
         </div>
 
@@ -353,7 +356,7 @@
             <p>{{ 'CONTENT.Advance-s-date' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>7 มิถุนายน 2561</span>
+            <span>{{date}}</span>
           </div>
         </div>
 
@@ -375,7 +378,9 @@
       </div>
       <div class="col-md-12 mt-5">
         <p class="color-red no-margin">- ข้าพเจ้าตกลงซื้อหน่วยลงทุนตามที่ระบุไว้ในคำสั่งซื้อนี้</p>
-        <p class="color-red no-margin">- ข้าพเจ้ารับทราบว่าการสั่งซื้อหน่วยลงทุนทางระบบ internet นี้อาจไม่ได้รับการทำรายการ หากมีความขัดข้องทางเทคนิคเกิดขึ้น</p>
+        <p class="color-red no-margin">- ข้าพเจ้ารับทราบว่าการสั่งซื้อหน่วยลงทุนทางระบบ internet นี้อาจไม่ได้รับการทำรายการ
+          หากมีความขัดข้องทางเทคนิคเกิดขึ้น
+        </p>
         <p class="color-red no-margin">- ทั้งนี้ข้าพเจ้ายินยอมที่จะเสียค่าธรรมเนียมในการสั่งซื้อ และปฏิบัติตามข้อกำหนด และเงื่อนไขทั้งหมดที่ระบุไว้ในหนังสือชี้ชวนเสนอขายหน่วยลงทุนทุกประการ</p>
         <h5 class=" no-margin" style="color: #C90A11;">- ในกรณีที่คำสั่งซื้อนี้ถูกปฏิเสธข้าพเจ้าตกลงที่จะรับเงินที่ได้ชำระแล้วคืนโดยไม่มีดอกเบี้ย</h5>
         <p class="color-red no-margin">- การลงทุนในหน่วยลงทุนมิใช่การฝากเงินและมีความเสี่ยงของการลงทุน ผู้ถือหน่วยลงทุนอาจได้รับเงินลงทุนคืนมากกว่าหรือน้อยกว่าเงินลงทุน</p>
@@ -412,15 +417,15 @@
         </div>
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
-          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderNo}}</span>
+          <span class="txt-middle">{{ userselect.UnitholderNo}}</span>
         </div>
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
+          <span class="txt-middle">{{ userselect.FirstName}} {{ userselect.LastName}}</span>
         </div>
         <div class="col-md-6">
           <p>{{ 'CONTENT.address' | translate }}</p>
-          <span class="txt-middle">{{ userselect?.address?.ContactAddress1}}  {{ userselect?.address?.ContactAddress2}} {{ userselect?.address?.ContactProvince}} {{ userselect?.address?.ContactZipCode}}</span>
+          <span class="txt-middle">{{ userselect.ContactAddress}}</span>
         </div>
       </div>
     </div>
@@ -437,7 +442,7 @@
             <p>{{ 'CONTENT.input-date' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>7 มิถุนายน 2561</span>
+            <span>{{ currentdate }}</span>
           </div>
         </div>
         <div class="row">
@@ -454,7 +459,7 @@
             <p>{{ 'CONTENT.fund-name' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>KFCASH - กองทุนเปิดกรุงศรีตราสารเงิน</span>
+            <span>{{ fundlist.FundName }}</span>
           </div>
         </div>
 
@@ -472,7 +477,7 @@
             <p>{{ 'CONTENT.debit-from-acc' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>ธนคารกรุงศรีอยุธยา จำกัด (มหาชน)</span>
+            <span>{{ banklist.BankName }}</span>
           </div>
         </div>
 
@@ -481,7 +486,7 @@
             <p>{{ 'CONTENT.Advance-s-date' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>7 มิถุนายน 2561</span>
+            <span>{{ date }}</span>
           </div>
         </div>
 
@@ -541,18 +546,20 @@
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
 
           <div class="select-wrapper inline-block">
-            <select name="ddlLink"  [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()">
-              <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholder; let i = index" >{{ unitholder.Text }}</option>
+            <select name="unitholderno" [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()">
+              <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
+                }}
+              </option>
             </select>
           </div>
         </div>
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
+          <span class="txt-middle">{{ userselect.FirstName}} {{ userselect.LastName}}</span>
         </div>
         <div class="col-md-6">
           <p>{{ 'CONTENT.address' | translate }}</p>
-          <span class="txt-middle">{{ userselect?.address?.ContactAddress1}}  {{ userselect?.address?.ContactAddress2}} {{ userselect?.address?.ContactProvince}} {{ userselect?.address?.ContactZipCode}}</span>
+          <span class="txt-middle">{{ userselect.ContactAddress}}</span>
         </div>
       </div>
     </div>
@@ -895,35 +902,3 @@
     </div>
   </div>
 </div>
-<!-- purchase-view-list -->
-<!-- <p-dialog [(visible)]="dialog" [modal]="true" [responsive]="true" [width]="auto" [minWidth]="200" [draggable]="false" [resizable]="false"
-  [baseZIndex]="10000">
-  <p-header>
-    ยืนยันการทำรายการซื้อ
-  </p-header>
-
-
-  <h3>{{ content }}</h3>
-
-
-
-  <p-footer>
-    <div class="row justify-content-center">
-      <div class="col-6 col-md-4">
-        <button class="btn-med btn-primary" (click)="dialog=false" routerLink="/profile/suitability">
-          <p style="margin-top: 7px;">ตกลง
-            <i class="fa fa-angle-right" aria-hidden="true"></i>
-          </p>
-        </button>
-      </div>
-      <div class="col-6 col-md-4">
-        <button class="btn-med btn-cancel" (click)="checkpage('purchase')">
-          <p style="margin-top: 7px;">ยกเลิก
-            <i class="fa fa-angle-right" aria-hidden="true"></i>
-          </p>
-        </button>
-      </div>
-    </div>
-  </p-footer>
-</p-dialog> -->
-<!-- dialog -->

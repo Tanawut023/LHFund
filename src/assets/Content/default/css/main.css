@@ -1686,6 +1686,13 @@ if it's not present, don't show loader */
     .ui-dialog-content {
       max-height: 430px !important; } }
 
+.has-danger .form-control-feedback p {
+  color: #FF4A4A !important;
+  margin: 0; }
+
+.form-group {
+  margin: 0; }
+
 #header-wrapper {
   width: 100%;
   height: auto;
@@ -2250,6 +2257,9 @@ input[type=reset] {
             color: #FF4A4A; }
           .table-responsive .table.table-nav > tbody > tr > td:first-child {
             max-width: 340px; }
+            @media screen and (max-width: 767px) {
+              .table-responsive .table.table-nav > tbody > tr > td:first-child {
+                max-width: unset; } }
           .table-responsive .table.table-nav > tbody > tr > td a {
             font-size: 24px;
             line-height: 24px;
@@ -2340,58 +2350,64 @@ input[type=reset] {
         .table-responsive .table.table-performance > thead > tr.captions > td p {
           margin: 0;
           color: #1CA59B; }
-      .table-responsive .table.table-performance > tbody > tr > th {
-        font-size: 24px;
-        line-height: 26px;
-        font-weight: normal;
+      .table-responsive .table.table-performance > tbody {
         border: none;
-        text-align: center;
-        border-right: 1px solid #fff;
-        background-color: #5a5a5a;
-        color: #fff; }
-        @media screen and (max-width: 767px) {
-          .table-responsive .table.table-performance > tbody > tr > th {
-            white-space: nowrap; } }
-        .table-responsive .table.table-performance > tbody > tr > th:last-child {
-          border-right: none; }
-      .table-responsive .table.table-performance > tbody > tr > td {
-        padding: 15px 10px;
-        font-size: 22px;
-        line-height: 24px;
-        font-weight: normal;
-        border: none;
-        text-align: left; }
-        @media screen and (max-width: 767px) {
-          .table-responsive .table.table-performance > tbody > tr > td {
-            white-space: nowrap; } }
-        .table-responsive .table.table-performance > tbody > tr > td.txt-right {
-          text-align: right; }
-        .table-responsive .table.table-performance > tbody > tr > td.up {
-          color: #1CA59B; }
-        .table-responsive .table.table-performance > tbody > tr > td.down {
-          color: #FF4A4A; }
-        .table-responsive .table.table-performance > tbody > tr > td:first-child {
-          max-width: 200px; }
-        .table-responsive .table.table-performance > tbody > tr > td a {
+        border-collapse: separate; }
+        .table-responsive .table.table-performance > tbody > tr > th {
           font-size: 24px;
+          line-height: 26px;
+          font-weight: normal;
+          border: none;
+          text-align: center;
+          border-right: 1px solid #fff;
+          background-color: #5a5a5a;
+          color: #fff; }
+          @media screen and (max-width: 767px) {
+            .table-responsive .table.table-performance > tbody > tr > th {
+              white-space: nowrap; } }
+          .table-responsive .table.table-performance > tbody > tr > th:last-child {
+            border-right: none; }
+        .table-responsive .table.table-performance > tbody > tr > td {
+          padding: 15px 10px;
+          font-size: 22px;
           line-height: 24px;
-          color: #1CA59B; }
-          .table-responsive .table.table-performance > tbody > tr > td a:hover {
-            color: #000;
-            text-decoration: none; }
-      .table-responsive .table.table-performance > tbody > tr.captions > td {
-        padding: 20px 0px;
-        text-align: left; }
-        .table-responsive .table.table-performance > tbody > tr.captions > td h3 {
-          margin: 0;
-          font-size: 28px;
-          line-height: 28px;
-          color: #1CA59B; }
-        .table-responsive .table.table-performance > tbody > tr.captions > td p {
-          margin: 0;
-          color: #1CA59B; }
-      .table-responsive .table.table-performance > tbody tr.line {
-        background: #f5f5f5; }
+          font-weight: normal;
+          border: none;
+          text-align: left; }
+          @media screen and (max-width: 767px) {
+            .table-responsive .table.table-performance > tbody > tr > td {
+              white-space: nowrap; } }
+          .table-responsive .table.table-performance > tbody > tr > td.txt-right {
+            text-align: right; }
+          .table-responsive .table.table-performance > tbody > tr > td.up {
+            color: #1CA59B; }
+          .table-responsive .table.table-performance > tbody > tr > td.down {
+            color: #FF4A4A; }
+          .table-responsive .table.table-performance > tbody > tr > td:first-child {
+            max-width: 200px; }
+            @media screen and (max-width: 767px) {
+              .table-responsive .table.table-performance > tbody > tr > td:first-child {
+                max-width: unset; } }
+          .table-responsive .table.table-performance > tbody > tr > td a {
+            font-size: 24px;
+            line-height: 24px;
+            color: #1CA59B; }
+            .table-responsive .table.table-performance > tbody > tr > td a:hover {
+              color: #000;
+              text-decoration: none; }
+        .table-responsive .table.table-performance > tbody > tr.captions > td {
+          padding: 20px 0px;
+          text-align: left; }
+          .table-responsive .table.table-performance > tbody > tr.captions > td h3 {
+            margin: 0;
+            font-size: 28px;
+            line-height: 28px;
+            color: #1CA59B; }
+          .table-responsive .table.table-performance > tbody > tr.captions > td p {
+            margin: 0;
+            color: #1CA59B; }
+        .table-responsive .table.table-performance > tbody tr.line {
+          background: #f5f5f5; }
     .table-responsive .table.table-comparison {
       padding: 0; }
       .table-responsive .table.table-comparison h3 {

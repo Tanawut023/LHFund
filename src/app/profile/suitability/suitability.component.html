@@ -1,10 +1,10 @@
 <div class="fund-table-wrapper" *ngIf="page == 'over-view'">
-  <div class="heading-section">
-      <div class="detail-head-wrapper" style="border:unset;">
-          <div class="row">
-              <div class="col-md-12 col-12 icon-option mb-3">
-                  <ul class="">
-                      <!-- <li class="ico-fb">
+    <div class="heading-section">
+        <div class="detail-head-wrapper" style="border:unset;">
+            <div class="row">
+                <div class="col-md-12 col-12 icon-option mb-3">
+                    <ul class="">
+                        <!-- <li class="ico-fb">
                           <a href="#" title="facebook">
                               <img src="/assets/Images/icons/ico-pipe.png" />
                           </a>
@@ -14,58 +14,57 @@
                               <img src="/assets/Images/icons/ico-download.png" />
                           </a>
                       </li> -->
-                      <li class="ico-yt">
-                          <a href="#" title="youtube">
-                              <img src="/assets/Images/icons/ico-print.png" />
-                          </a>
-                      </li>
+                        <li class="ico-yt">
+                            <a href="#" title="youtube">
+                                <img src="/assets/Images/icons/ico-print.png" />
+                            </a>
+                        </li>
 
-                  </ul>
-              </div>
-              <div class="col-md-3">
-                  <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
-                  <div class="select-wrapper inline-block">
-                      <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
-                        <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderList; let i = index" >{{ unitholder.Text }}</option>
-                      </select>
-                  </div>
-              </div>
-              <div class="col-md-3">
-                  <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-                  <span class="txt-middle" *ngIf="userselect.UnitholderInfo">{{ userselect?.UnitholderInfo?.UnitHolderName}}</span>
-                  <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
-              </div>
-              <div class="col-md-3">
-                  <p>{{ 'CONTENT.eval-date' | translate }}</p>
-                  <span class="txt-middle" *ngIf="userselect.UnitholderInfo">{{ userselect?.UnitholderInfo?.RiskLevel1LastUpdated}}</span>
-                  <span class="txt-middle">{{ userselect?.unitholder?.RiskLevel1LastUpdated}}</span>
-              </div>
-              <div class="col-md-3">
-                  <p>{{ 'CONTENT.expired-date' | translate }}</p>
-                  <span class="txt-middle">7 มิถุนายน 2561</span>
-              </div>
-          </div>
-          <div class="row mt-md-3">
-              <div class="col-md-3">
-                  <p>{{ 'CONTENT.your-risk-socre' | translate }}</p>
-                  <span class="txt-middle">-</span>
-              </div>
-              <div class="col-md-3">
-                  <p>{{ 'CONTENT.your-investor-level' | translate }}</p>
-                  <span class="txt-middle" *ngIf="userselect.UnitholderInfo">{{ userselect?.UnitholderInfo?.RiskLevel1}}</span>
-                  <span class="txt-middle">{{ userselect?.unitholder?.RiskLevel1}}</span>
-              </div>
-          </div>
-          <div class="row justify-content-center mb-3 mt-lg-4">
-              <div class="col-md-2 col-6 col-sm-4">
-                  <button class="btn-med btn-primary" (click)="checkpage('suitability-test')">
-                    {{ 'BUTTON.edit' | translate }}
-                      <i class="fa fa-angle-right" aria-hidden="true"></i>
-                  </button>
-              </div>
-          </div>
-      </div>
-  </div>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
+                    <div class="select-wrapper inline-block">
+                        <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
+                            <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{
+                                unitholder.UnitholderNo }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
+                    <span class="txt-middle">{{ userselect.FirstName}} {{ userselect.LastName}}</span>
+                </div>
+                <div class="col-md-3">
+                    <p>{{ 'CONTENT.eval-date' | translate }}</p>
+                    <span class="txt-middle">{{ userselect?.unitholder?.RiskLevel1LastUpdated}}</span>
+                </div>
+                <div class="col-md-3">
+                    <p>{{ 'CONTENT.expired-date' | translate }}</p>
+                    <span class="txt-middle">7 มิถุนายน 2561</span>
+                </div>
+            </div>
+            <div class="row mt-md-3">
+                <div class="col-md-3">
+                    <p>{{ 'CONTENT.your-risk-socre' | translate }}</p>
+                    <span class="txt-middle">-</span>
+                </div>
+                <div class="col-md-3">
+                    <p>{{ 'CONTENT.your-investor-level' | translate }}</p>
+                    <span class="txt-middle" *ngIf="userselect.UnitholderInfo">{{ userselect?.UnitholderInfo?.RiskLevel1}}</span>
+                    <span class="txt-middle">{{ userselect?.unitholder?.RiskLevel1}}</span>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-3 mt-lg-4">
+                <div class="col-md-2 col-6 col-sm-4">
+                    <button class="btn-med btn-primary" (click)="checkpage('suitability-test')">
+                        {{ 'BUTTON.edit' | translate }}
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- over-view -->
 <div class="fund-table-wrapper" *ngIf="page == 'suitability-test'">
@@ -98,14 +97,14 @@
                     <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
                     <div class="select-wrapper inline-block">
                         <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
-                            <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderList; let i = index" >{{ unitholder.Text }}</option>
+                            <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{
+                                unitholder.UnitholderNo }}</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">
                     <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-                    <span class="txt-middle" *ngIf="userselect.UnitholderInfo">{{ userselect?.UnitholderInfo?.UnitHolderName}}</span>
-                    <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
+                    <span class="txt-middle">{{ userselect.FirstName}} {{ userselect.LastName}}</span>
                 </div>
                 <div class="col-sm-6 col-md-3">
 
@@ -116,27 +115,26 @@
                 </div>
                 <div class="col-sm-12 col-md-12 mt-md-3">
                     <p>{{ 'CONTENT.address' | translate }}</p>
-                    <span class="txt-middle" *ngIf="userselect.Address">{{ userselect?.Address?.ContactAddress}}</span>
-                    <span class="txt-middle">{{ userselect?.address?.ContactAddress}}</span>
+                    <span class="txt-middle">{{ userselect.ContactAddress}}</span>
                 </div>
             </div>
         </div>
 
-            <div class="detail-head-wrapper" style="padding-bottom:10px;">
-                <div class="row">
-                    <div class="col-md-6 text-left">
-                        <p class="no-margin">{{ 'CONTENT.eval-date' | translate }}
-                            <span> {{ dateformat }}</span>
-                        </p>
-                    </div>
-                    <div class="col-md-6 text-md-right">
-                        <p class="no-margin">NO.
-                            <span>01</span>
-                        </p>
-                    </div>
+        <div class="detail-head-wrapper" style="padding-bottom:10px;">
+            <div class="row">
+                <div class="col-md-6 text-left">
+                    <p class="no-margin">{{ 'CONTENT.eval-date' | translate }}
+                        <span> {{ dateformat }}</span>
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-right">
+                    <p class="no-margin">NO.
+                        <span>01</span>
+                    </p>
                 </div>
             </div>
-        
+        </div>
+
     </div>
     <div class="open-account-wrapper">
         <form name="form2" data-toggle="validator" role="form" method="post">
@@ -191,7 +189,8 @@
                                                         <div class="custom-radio-between">
                                                             <input id="b_1" type="radio" name="q_1" value="b_1" required class="form-check-input rdo_custom" />
                                                             <label for="b_1"></label>
-                                                            <label for="b_1" class="title-fill control-label lbl_custom">50 - 60 ปี</label>
+                                                            <label for="b_1" class="title-fill control-label lbl_custom">50
+                                                                - 60 ปี</label>
 
                                                         </div>
 
@@ -202,7 +201,8 @@
                                                         <div class="custom-radio-between">
                                                             <input id="c_1" type="radio" name="q_1" value="c_1" required class="form-check-input rdo_custom" />
                                                             <label for="c_1"></label>
-                                                            <label for="c_1" class="title-fill control-label lbl_custom">35 - 49 ปี</label>
+                                                            <label for="c_1" class="title-fill control-label lbl_custom">35
+                                                                - 49 ปี</label>
 
                                                         </div>
                                                     </div>
@@ -211,7 +211,8 @@
                                                         <div class="custom-radio-between">
                                                             <input id="d_1" type="radio" name="q_1" value="d_1" required class="form-check-input rdo_custom" />
                                                             <label for="d_1"></label>
-                                                            <label for="d_1" class="title-fill control-label lbl_custom">ต่ำกว่า 35 ปี</label>
+                                                            <label for="d_1" class="title-fill control-label lbl_custom">ต่ำกว่า
+                                                                35 ปี</label>
 
                                                         </div>
                                                     </div>
@@ -288,7 +289,8 @@
                                                         <div class="custom-radio-between">
                                                             <input id="qcb_1" type="radio" name="qc1" value="qcb_1" required class="form-check-input rdo_custom" />
                                                             <label for="qcb_1"></label>
-                                                            <label for="qcb_1" class="title-fill control-label lbl_custom">2 - 6 ปี</label>
+                                                            <label for="qcb_1" class="title-fill control-label lbl_custom">2
+                                                                - 6 ปี</label>
 
                                                         </div>
 
@@ -299,7 +301,8 @@
                                                         <div class="custom-radio-between">
                                                             <input id="qcc_1" type="radio" name="qc1" value="qcc_1" required class="form-check-input rdo_custom" />
                                                             <label for="qcc_1"></label>
-                                                            <label for="qcc_1" class="title-fill control-label lbl_custom">7 - 10 ปี</label>
+                                                            <label for="qcc_1" class="title-fill control-label lbl_custom">7
+                                                                - 10 ปี</label>
 
                                                         </div>
                                                     </div>
@@ -308,7 +311,9 @@
                                                         <div class="custom-radio-between">
                                                             <input id="qcd_1" type="radio" name="qc1" value="qcd_1" required class="form-check-input rdo_custom" />
                                                             <label for="qcd_1"></label>
-                                                            <label for="qcd_1" class="title-fill control-label lbl_custom">10 ปีขึ้นไป</label>
+                                                            <label for="qcd_1" class="title-fill control-label lbl_custom">10
+                                                                ปีขึ้นไป
+                                                            </label>
 
                                                         </div>
                                                     </div>
@@ -362,8 +367,8 @@
                             <div class="choice-wrap">
                                 <div class="col-md-12">
                                     <div class="question-wrapper">
-                                        <span>3. ประสบการณ์การลงทุนในหลักทรัพย์ของท่าน (หลักทรัพย์ หมายถึง
-                                            หน่วยลงทุน, หุ้นกู้, หุ้น, พันธบัตรรัฐบาล และตราสารอนุพันธ์)</span>
+                                        <span>3. ประสบการณ์การลงทุนในหลักทรัพย์ของท่าน (หลักทรัพย์ หมายถึง หน่วยลงทุน, หุ้นกู้,
+                                            หุ้น, พันธบัตรรัฐบาล และตราสารอนุพันธ์)</span>
                                     </div>
                                     <div class="answer-wrapper">
                                         <div class="row">
@@ -588,7 +593,9 @@
                                                 <div class="custom-radio-between">
                                                     <input id="a_7" type="radio" name="q_7" value="a_7" required class="form-check-input rdo_custom" />
                                                     <label for="a_7"></label>
-                                                    <label for="a_7" class="title-fill control-label lbl_custom">ไม่สามารถทนต่อการขาดทุนเงินต้นได้เลย แม้ว่าจะมีโอกาสได้รับผลตอบแทนที่สูงขึ้นบ้าง</label>
+                                                    <label for="a_7" class="title-fill control-label lbl_custom">ไม่สามารถทนต่อการขาดทุนเงินต้นได้เลย
+                                                        แม้ว่าจะมีโอกาสได้รับผลตอบแทนที่สูงขึ้นบ้าง
+                                                    </label>
                                                     <!-- <div class="check"></div> -->
                                                 </div>
                                             </div>
@@ -597,7 +604,9 @@
                                                 <div class="custom-radio-between">
                                                     <input id="b_7" type="radio" name="q_7" value="b_7" required class="form-check-input rdo_custom" />
                                                     <label for="b_7"></label>
-                                                    <label for="b_7" class="title-fill control-label lbl_custom">สามารถทนต่อการขาดทุนเงินต้นได้เล็กน้อย เพื่อมีโอกาสได้รับผลตอบแทนที่สูงขึ้นบ้าง</label>
+                                                    <label for="b_7" class="title-fill control-label lbl_custom">สามารถทนต่อการขาดทุนเงินต้นได้เล็กน้อย
+                                                        เพื่อมีโอกาสได้รับผลตอบแทนที่สูงขึ้นบ้าง
+                                                    </label>
                                                     <!-- <div class="check"></div> -->
                                                 </div>
                                             </div>
@@ -606,7 +615,9 @@
                                                 <div class="custom-radio-between">
                                                     <input id="c_7" type="radio" name="q_7" value="c_7" required class="form-check-input rdo_custom" />
                                                     <label for="c_7"></label>
-                                                    <label for="c_7" class="title-fill control-label lbl_custom">สามารถทนต่อการขาดทุนเงินต้นได้ เพื่อมีโอกาสได้รับผลตอบแทนที่สูงขึ้น</label>
+                                                    <label for="c_7" class="title-fill control-label lbl_custom">สามารถทนต่อการขาดทุนเงินต้นได้
+                                                        เพื่อมีโอกาสได้รับผลตอบแทนที่สูงขึ้น
+                                                    </label>
                                                     <!-- <div class="check"></div> -->
                                                 </div>
                                             </div>
@@ -615,7 +626,9 @@
                                                 <div class="custom-radio-between">
                                                     <input id="d_7" type="radio" name="q_7" value="d_7" required class="form-check-input rdo_custom" />
                                                     <label for="d_7"></label>
-                                                    <label for="d_7" class="title-fill control-label lbl_custom">อยากได้ผลตอบแทนที่สูง โดยไม่มีข้อจำกัดในการลงทุน</label>
+                                                    <label for="d_7" class="title-fill control-label lbl_custom">อยากได้ผลตอบแทนที่สูง
+                                                        โดยไม่มีข้อจำกัดในการลงทุน
+                                                    </label>
                                                     <!-- <div class="check"></div> -->
                                                 </div>
                                             </div>
@@ -687,8 +700,7 @@
                                 <div class="col-md-12">
                                     <div class="question-wrapper">
                                         <span>9. ในบางช่วงเวลา การลงทุนโดยเน้นความปลอดภัยของเงินลงทุนจะให้ผลตอบแทนในระดับที่ต่ำกว่าเงินเฟ้อ
-                                            ซึ่งอาจจะทำให้อำนวจในการซื้อลดลงได้เมื่อพิจารณาถึงเป้าหมายในการลงทุนของท่าน
-                                            ข้อใดต่อไปนี้ตรงกับท่านมากที่สุด
+                                            ซึ่งอาจจะทำให้อำนวจในการซื้อลดลงได้เมื่อพิจารณาถึงเป้าหมายในการลงทุนของท่าน ข้อใดต่อไปนี้ตรงกับท่านมากที่สุด
                                         </span>
                                     </div>
                                     <div class="answer-wrapper">
@@ -827,29 +839,68 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-12  mt-5 ">
-                                        <div class="row justify-content-center">
-                                            <div class="col-md-2 col-6">
-                                                <button class="btn-med btn-back-login" (click)="checkpage('over-view')">
-                                                    {{ 'BUTTON.back' | translate }}
-                                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
 
-                                                </button>
-                                            </div>
-                                            <div class="col-md-2 col-6">
-                                                <button class="btn-med btn-primary" (click)="checkpage('suitability-score')">
-                                                    {{ 'BUTTON.cal' | translate }}
-                                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                    </div>
                                 </div>
                             </div>
                         </div>
                         <!-- 11 -->
+
+                        <div class="row" *ngFor="let question of suitest.question; let y = index" >
+                                <div class="choice-wrap" *ngIf="suitest">
+                                    <div class="col-md-12">
+                                        <div class="question-wrapper">
+                                            <span class="color-red"  *ngIf="y == 10">คำถามข้อ 11 ใช้เป็นข้อมูลเพิ่มเติมเพื่อประกอบการให้คำแนะนำ</span>
+                                            <br/>
+                                            <span>{{y+1}}. {{ question.Name }}</span>
+                                        </div>
+                                        <div class="answer-wrapper">
+                                            <div class="row" >
+                                                <div class="col-12 col-lg-6" *ngFor="let Answers of question.Answers; let i = index" >
+                                                    <div class="custom-radio-between">
+                                                        <input id="{{y}}-{{i}}" type="radio" name="{{y}}"  required class="form-check-input rdo_custom" />
+                                                        <label for="{{y}}-{{i}}"></label>
+                                                        <label for="{{y}}-{{i}}" class="title-fill control-label lbl_custom">
+                                                            {{Answers.Name}}</label>
+                                                        <!-- <div class="check"></div> -->
+                                                    </div>
+                                                </div>
+    
+                                                <!-- <div class="col-6 col-md-3">
+                                                    <div class="custom-radio-between">
+                                                        <input id="b_11" type="radio" name="q_11" value="b_11" required class="form-check-input rdo_custom" />
+                                                        <label for="b_11"></label>
+                                                        <label for="b_11" class="title-fill control-label lbl_custom">
+                                                            ไม่ได้</label>
+                                                    </div>
+                                                </div> -->
+    
+                                            </div>
+                                        </div>
+    
+    
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- for -->
+
+
+                        <div class="row justify-content-center">
+                            <div class="col-md-2 col-6">
+                                <button class="btn-med btn-back-login" (click)="checkpage('over-view')">
+                                    {{ 'BUTTON.back' | translate }}
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+
+                                </button>
+                            </div>
+                            <div class="col-md-2 col-6">
+                                <button class="btn-med btn-primary" (click)="checkpage('suitability-score')">
+                                    {{ 'BUTTON.cal' | translate }}
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+
+                                </button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -860,8 +911,8 @@
 <!-- suitability-test -->
 <div class="fund-table-wrapper" *ngIf="page == 'suitability-score'">
     <div class="heading-section">
-       <div class="detail-head-wrapper"> 
-           <div class="row">            
+        <div class="detail-head-wrapper">
+            <div class="row">
                 <div class="col-md-12 icon-option mb-3">
 
                     <ul class="">
@@ -964,15 +1015,15 @@
                             <button class="btn-med btn-primary" (click)="openmodal()">
                                 {{ 'BUTTON.accept' | translate }}
                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
-    
+
                             </button>
-    
+
                         </div>
                         <div class="col-md-2 col-6">
                             <button class="btn-med btn-back-login" (click)="checkpage('suitability-test')">
                                 {{ 'BUTTON.edit' | translate }}
                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
-    
+
                             </button>
                         </div>
                     </div>

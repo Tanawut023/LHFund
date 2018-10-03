@@ -23,6 +23,7 @@ export class ForgotpasswordComponent implements OnInit {
   langth: boolean;
   langen: boolean;
   User: any = {}
+  message: any;
 
   constructor(
     private fb: FormBuilder,
@@ -85,8 +86,13 @@ export class ForgotpasswordComponent implements OnInit {
             // this.router.navigate(['/login/changepassword/' + this.User.refcode], { relativeTo: this.route })
           },
           error => {
-            this.toastr.error('', error.error.messages);
-            // this.loading = false;
+            console.log(error);
+            this.message = error.error.messages;
+            $('#message').modal({
+              backdrop: 'static',
+              keyboard: false,
+              show: true
+            });
           });
 
 

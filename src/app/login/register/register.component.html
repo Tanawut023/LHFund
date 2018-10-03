@@ -13,11 +13,11 @@
         <div class="col d-flex justify-content-end">
           <ul>
             <li class="th" (click)="switchlang('th')" [ngClass]="{'current': langth}">
-              <a  title="Thai">Thai</a>
-          </li>
-          <li class="en" (click)="switchlang('en')" [ngClass]="{'current': langen}">
-              <a  title="Eng">Eng</a>
-          </li>
+              <a title="Thai">Thai</a>
+            </li>
+            <li class="en" (click)="switchlang('en')" [ngClass]="{'current': langen}">
+              <a title="Eng">Eng</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -179,11 +179,11 @@
         <div class="col d-flex justify-content-end">
           <ul>
             <li class="th" (click)="switchlang('th')" [ngClass]="{'current': langth}">
-              <a  title="Thai">Thai</a>
-          </li>
-          <li class="en" (click)="switchlang('en')" [ngClass]="{'current': langen}">
-              <a  title="Eng">Eng</a>
-          </li>
+              <a title="Thai">Thai</a>
+            </li>
+            <li class="en" (click)="switchlang('en')" [ngClass]="{'current': langen}">
+              <a title="Eng">Eng</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -193,42 +193,53 @@
         <div class="detail-login-wrapper">
           <div class="row">
             <div class="col-sm-12 form-group" [ngClass]="ValidatorDisplayCss2('username')">
-              <p><p>{{ 'LOGIN.username' | translate }}
-              </p>
-              <div class="input-wrapper">
-                <input id="username" name="username" maxlength="15" type="text" formControlName="username">
-                <div class="form-control-feedback" *ngIf="this.formstep2.controls.username.errors && (this.formstep2.controls.username.touched)">
-                  <p *ngIf="this.formstep2.controls.username.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                  <p *ngIf="this.formstep2.controls.username.errors.pattern">อย่างน้อย 8 ตัวอักษร รวมทั้งตัวเลข</p>
-                  <!-- <p *ngIf="this.formstep2.controls.username.errors?.minlength">อย่างน้อย 8 ตัวอักษร </p> -->
+              <p>
+                <p>{{ 'LOGIN.username' | translate }}
+                </p>
+                <div class="input-wrapper">
+                  <input id="username" name="username" maxlength="15" type="text" formControlName="username">
+                  <div class="form-control-feedback" *ngIf="this.formstep2.controls.username.errors && (this.formstep2.controls.username.touched)">
+                    <p *ngIf="this.formstep2.controls.username.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                    <p *ngIf="this.formstep2.controls.username.errors.pattern">อย่างน้อย 8 ตัวอักษร รวมทั้งตัวเลข</p>
+                    <!-- <p *ngIf="this.formstep2.controls.username.errors?.minlength">อย่างน้อย 8 ตัวอักษร </p> -->
+                  </div>
                 </div>
-              </div>
             </div>
             <div class="col-sm-12 form-group" [ngClass]="ValidatorDisplayCss2('password')">
-              <p><p>{{ 'LOGIN.password' | translate }}
-              </p>
-              <div class="input-wrapper ">
-                <input id="password" name="password" maxlength="15" type="password" formControlName="password">
-                <div class="form-control-feedback" *ngIf="this.formstep2.controls.password.errors && (this.formstep2.controls.password.touched)">
-                  <p *ngIf="this.formstep2.controls.password.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                  <p *ngIf="this.formstep2.controls.password.errors.pattern">(UpperCase, LowerCase, Number/SpecialChar and min 8 Chars)</p>
+              <p>
+                <p>{{ 'LOGIN.password' | translate }}
+                  <a style="cursor: pointer;">
+                    <i class="fa fa-question-circle" aria-hidden="true" placement="top" ngbTooltip="รหัสผ่านอย่างน้อย 8 ตัวอักษร ต้องประกอบด้วยข้อมูลต่อไปนี้ ตัวพิมพ์เล็ก พิมพ์ใหญ่ อักษระพิเศษ รวมทั้งตัวเลข "></i>
+                  </a>
+                </p>
+                <div class="input-wrapper ">
+                  <input id="password" name="password" maxlength="15" type="password" formControlName="password">
+                  <div class="form-control-feedback" *ngIf="this.formstep2.controls.password.errors && (this.formstep2.controls.password.touched)">
+                    <p *ngIf="this.formstep2.controls.password.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                    <p *ngIf="this.formstep2.controls.password.errors.pattern">รหัสผ่านอย่างน้อย 8 ตัวอักษร ต้องประกอบด้วยข้อมูลต่อไปนี้
+                      ตัวพิมพ์เล็ก พิมพ์ใหญ่ อักษระพิเศษ รวมทั้งตัวเลข </p>
+                  </div>
                 </div>
-              </div>
             </div>
             <div class="col-sm-12 form-group" [ngClass]="ValidatorDisplayCss2('repeatPassword')">
-              <p><p>{{ 'LOGIN.comfirm-p' | translate }}
-              </p>
-              <div class="input-wrapper ">
-                <input id="repeatPassword" name="repeatPassword" maxlength="15" type="password" formControlName="repeatPassword">
-                <!-- <span *ngIf="cpwd.hasError('invalid')"> Invalid Password </span> -->
-                <div class="form-control-feedback" *ngIf="this.formstep2.controls.repeatPassword.errors && (this.formstep2.controls.repeatPassword.touched)">
-                  <p *ngIf="this.formstep2.controls.repeatPassword.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                  <p *ngIf="this.formstep2.controls.repeatPassword.errors.pattern">อย่างน้อย 8 ตัวอักษร รวมทั้งตัวเลข</p>
-                  <!-- <p *ngIf="this.formstep2.controls.password.value !== this.formstep2.controls.repeatPassword.value">mismatch</p> -->
-                  <p *ngIf="cpwd.hasError('invalid')">รหัสไม่ตรงกัน</p>
+              <p>
+                <p>{{ 'LOGIN.comfirm-p' | translate }}
+                  <a style="cursor: pointer;">
+                    <i class="fa fa-question-circle" aria-hidden="true" placement="top" ngbTooltip="รหัสผ่านอย่างน้อย 8 ตัวอักษร ต้องประกอบด้วยข้อมูลต่อไปนี้ ตัวพิมพ์เล็ก พิมพ์ใหญ่ อักษระพิเศษ รวมทั้งตัวเลข "></i>
+                  </a>
+                </p>
+                <div class="input-wrapper ">
+                  <input id="repeatPassword" name="repeatPassword" maxlength="15" type="password" formControlName="repeatPassword">
+                  <!-- <span *ngIf="cpwd.hasError('invalid')"> Invalid Password </span> -->
+                  <div class="form-control-feedback" *ngIf="this.formstep2.controls.repeatPassword.errors && (this.formstep2.controls.repeatPassword.touched)">
+                    <p *ngIf="this.formstep2.controls.repeatPassword.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                    <p *ngIf="this.formstep2.controls.repeatPassword.errors.pattern">รหัสผ่านอย่างน้อย 8 ตัวอักษร ต้องประกอบด้วยข้อมูลต่อไปนี้
+                      ตัวพิมพ์เล็ก พิมพ์ใหญ่ อักษระพิเศษ รวมทั้งตัวเลข </p>
+                    <!-- <p *ngIf="this.formstep2.controls.password.value !== this.formstep2.controls.repeatPassword.value">mismatch</p> -->
+                    <p *ngIf="cpwd.hasError('invalid')">รหัสไม่ตรงกัน</p>
 
+                  </div>
                 </div>
-              </div>
             </div>
             <!-- <div class="col-sm-12 mt-3">
                   <div class="btn-wrapper-left">
@@ -332,11 +343,11 @@
         <div class="col d-flex justify-content-end">
           <ul>
             <li class="th" (click)="switchlang('th')" [ngClass]="{'current': langth}">
-              <a  title="Thai">Thai</a>
-          </li>
-          <li class="en" (click)="switchlang('en')" [ngClass]="{'current': langen}">
-              <a  title="Eng">Eng</a>
-          </li>
+              <a title="Thai">Thai</a>
+            </li>
+            <li class="en" (click)="switchlang('en')" [ngClass]="{'current': langen}">
+              <a title="Eng">Eng</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -406,7 +417,7 @@
             <div class="btn-wrapper-right">
               <div class="row justify-content-end">
                 <div class="col-md-10">
-                  
+
                   <button class="btn-med btn-confirm-login" (click)="checkpage('complete')">
                     <p>{{ 'BUTTON.confirm' | translate }}
                       <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -419,6 +430,30 @@
           </div>
         </div>
       </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="message" style="z-index: 9999;" *ngIf="message">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">สมัครสมาชิคล้มเหลว</h4>
+      </div>
+      <div class="modal-body" id="content-scroll-1">
+        <h3>{{ message }}</h3>
+      </div>
+      <div class="modal-footer" style="display: block;">
+        <div class="row justify-content-end">
+          <div class="col-sm-6">
+            <button class="btn-med btn-primary" data-dismiss="modal">
+              <p style="margin-top: 7px;">ตกลง
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </p>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

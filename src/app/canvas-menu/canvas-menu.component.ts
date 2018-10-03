@@ -22,8 +22,8 @@ export class CanvasMenuComponent implements OnInit {
   ngOnInit() {
     // this.translate.use('')
     this.foo1 = this.translate.currentLang;
-    this.userdetail = this.basedataservice.getCurrentUser();
-    console.log(this.userdetail)
+    this.userdetail = this.basedataservice.getmemberInfo();
+    // console.log(this.userdetail)
     if(this.foo1 == 'th'){
       
       this.langth = true;

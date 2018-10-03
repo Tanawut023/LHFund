@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   readonly googlePlayLink: string;
   readonly appStoreLink: string;
   param: any;
+  test: any;
 
   constructor(
     private translate: TranslateService,
@@ -36,7 +37,17 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.foo1 = this.translate.currentLang;
-    this.userdetail = this.basedataservice.getCurrentUser();
+    this.userdetail = this.basedataservice.getmemberInfo();
+    
+    // JSON.parse(localStorage.getItem('currentUser'))
+    // this.test = localStorage.getItem('userInfo');
+    // this.test = JSON.parse(this.test);
+    // console.log(this.test);
+    // console.log(this.test.UserName);
+    // console.log(JSON.parse(localStorage.getItem('currentUser.memberInfo.UserName')));
+    // console.log(this.userdetail.memberInfo['UserName']);
+    // console.log(this.userdetail);
+    // console.log(this.userdetail.FirstName);
     
     if (this.foo1 == 'th') {
 

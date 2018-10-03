@@ -14,11 +14,11 @@
         <div class="col d-flex justify-content-end">
           <ul>
             <li class="th" (click)="switchlang('th')" [ngClass]="{'current': langth}">
-              <a  title="Thai">Thai</a>
-          </li>
-          <li class="en" (click)="switchlang('en')" [ngClass]="{'current': langen}">
-              <a  title="Eng">Eng</a>
-          </li>
+              <a title="Thai">Thai</a>
+            </li>
+            <li class="en" (click)="switchlang('en')" [ngClass]="{'current': langen}">
+              <a title="Eng">Eng</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -34,7 +34,7 @@
                 <input id="name" name="name" maxlength="15" type="text" formControlName="username">
                 <div class="form-control-feedback" *ngIf="this.formsighin.controls.username.errors && (this.formsighin.controls.username.touched)">
                   <p *ngIf="this.formsighin.controls.username.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                  <p *ngIf="this.formsighin.controls.username.errors.pattern">อย่างน้อย 8 ตัวอักษร รวมทั้งตัวเลข</p>
+                  <!-- <p *ngIf="this.formsighin.controls.username.errors.pattern">อย่างน้อย 8 ตัวอักษร รวมทั้งตัวเลข</p> -->
                 </div>
               </div>
             </div>
@@ -45,7 +45,8 @@
                 <input id="password" name="password" maxlength="15" type="password" formControlName="password">
                 <div class="form-control-feedback" *ngIf="this.formsighin.controls.password.errors && (this.formsighin.controls.password.touched)">
                   <p *ngIf="this.formsighin.controls.password.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                  <p *ngIf="this.formsighin.controls.password.errors.pattern">(UpperCase, LowerCase, Number/SpecialChar and min 8 Chars)</p>
+                  <!-- <p *ngIf="this.formsighin.controls.password.errors.pattern">(UpperCase, LowerCase, Number/SpecialChar and
+                    min 8 Chars)</p> -->
                 </div>
               </div>
             </div>
@@ -53,7 +54,8 @@
 
           <div class="row">
             <div class="col-lg-6">
-              <p class="mb-3" (click)="navigate('forgotpassword')" style="cursor: pointer; display: inline-block;">{{ 'LOGIN.forgot' | translate }}
+              <p class="mb-3" (click)="navigate('forgotpassword')" style="cursor: pointer; display: inline-block;">{{ 'LOGIN.forgot'
+                | translate }}
                 <a style="cursor: pointer;">
                   <i class="fa fa-question-circle" aria-hidden="true"></i>
                 </a>
@@ -61,7 +63,7 @@
             </div>
           </div>
 
-          <div class="row justify-content-center mb-md-3" >
+          <div class="row justify-content-center mb-md-3">
             <div class="col-md-12">
               <div class="btn-wrapper-left">
                 <button class="btn-med btn-confirm-login" type="submit">
@@ -78,7 +80,7 @@
           <div class="row justify-content-center">
             <div class="col-md-12">
               <div class="btn-wrapper-left">
-                  <!-- (click)="navigate('./register')" -->
+                <!-- (click)="navigate('./register')" -->
                 <button class="btn-med btn-next-login" (click)="navigate('register')">
                   <p>{{ 'BUTTON.signup' | translate }}
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -90,6 +92,30 @@
         </div>
 
       </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="message" style="z-index: 9999;" *ngIf="message">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">เข้าสู่ระบบล้มเหลว</h4>
+      </div>
+      <div class="modal-body" id="content-scroll-1">
+        <h3>{{ message }}</h3>
+      </div>
+      <div class="modal-footer" style="display: block;">
+        <div class="row justify-content-end">
+          <div class="col-sm-6">
+            <button class="btn-med btn-primary" data-dismiss="modal">
+              <p style="margin-top: 7px;">ตกลง
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </p>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

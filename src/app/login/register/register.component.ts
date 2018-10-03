@@ -1,23 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AbstractControl,FormBuilder, FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
-import {TranslateService} from '@ngx-translate/core';
+import { AbstractControl, FormBuilder, FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from '../../service/authentication.service'
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { first } from 'rxjs/operators';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
+declare var $: any;
+
 function passwordConfirming(c: AbstractControl): any {
-  if(!c.parent || !c) return;
+  if (!c.parent || !c) return;
   const pwd = c.parent.get('password');
-  const cpwd= c.parent.get('repeatPassword')
+  const cpwd = c.parent.get('repeatPassword')
 
-  if(!pwd || !cpwd) return ;
+  if (!pwd || !cpwd) return;
   if (pwd.value !== cpwd.value) {
-      return { invalid: true };
+    return { invalid: true };
 
-}
+  }
 }
 
 @Component({
@@ -38,48 +40,49 @@ export class RegisterComponent implements OnInit {
   errorMessage: Object;
   customer: Object;
   User: any = {}
+  message: any;
 
   get cpwd() {
     return this.formstep2.get('repeatPassword');
-   }
+  }
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService,
-    private authenticationService : AuthenticationService,
+    private authenticationService: AuthenticationService,
     private http: HttpClient,
     private toastr: ToastrService) {
-      translate.addLangs(["th", "en"]);
-     }
+    translate.addLangs(["th", "en"]);
+  }
 
   ngOnInit() {
     this.createFormValidate();
     this.foo1 = this.translate.currentLang;
-    if(this.foo1 == 'th'){
-      
+    if (this.foo1 == 'th') {
+
       this.langth = true;
     }
-    else if(this.foo1 == 'en'){
-      this.langen =true;
+    else if (this.foo1 == 'en') {
+      this.langen = true;
     }
   }
-  switchlang(lang){
-    if(lang=='th'){
+  switchlang(lang) {
+    if (lang == 'th') {
       this.translate.use('th');
       this.langen = false;
       this.langth = true;
-      localStorage.setItem('lang', lang );
-      
+      localStorage.setItem('lang', lang);
+
     }
-    else if(lang=='en'){
+    else if (lang == 'en') {
       this.translate.use('en');
       this.langth = false;
       this.langen = true;
-      localStorage.setItem('lang', lang );
-  }
-    
+      localStorage.setItem('lang', lang);
+    }
+
 
   }
   async checkpage(page) {
@@ -87,115 +90,121 @@ export class RegisterComponent implements OnInit {
 
     switch (page) {
       case 'otp':
-      console.log(this.formstep2)
+        console.log(this.formstep2)
         if (this.formstep2.valid) {
           // var refcode = this.User[0]
           let params = new HttpParams().set('refcode', this.User.refcode);
-          
+
           const user = {
-            UserName : this.formstep2.controls.username.value,
-            Password : this.formstep2.controls.password.value,
-            ConfirmPassword : this.formstep2.controls.repeatPassword.value
+            UserName: this.formstep2.controls.username.value,
+            Password: this.formstep2.controls.password.value,
+            ConfirmPassword: this.formstep2.controls.repeatPassword.value
           }
 
 
           // await this.http.post('http://fundchoiceuat.lhfund.co.th/api/member/validateUserName', user, { params: params })
-          await this.authenticationService.validateUserName(user,params)
-          .subscribe( (data) => {
-            console.log(data);
-            this.User = data;
-            this.page = "otp";
+          await this.authenticationService.validateUserName(user, params)
+            .subscribe((data) => {
+              console.log(data);
+              this.User = data;
+              this.page = "otp";
 
-          },
-          (error) => {
-            this.toastr.error('', error.error.messages);
-            console.log(error)
-            console.log("messages :"+error.error.messages);
-            console.log("success :"+error.error.success);
-            console.log("data :"+error.error.data);
-          });
+            },
+              (error) => {
+                console.log(error);
+                this.message = error.error.messages;
+                $('#message').modal({
+                  backdrop: 'static',
+                  keyboard: false,
+                  show: true
+                });
+              });
         }
-        else if(this.formstep2.invalid){
+        else if (this.formstep2.invalid) {
           this.isNotValid = true;
-          this.validateAllFormFields(this.formstep2);          
+          this.validateAllFormFields(this.formstep2);
         }
-        break; 
-     
+        break;
+
       case 'complete':
-      if (this.formotp.valid) {
-        let Params = new HttpParams();
+        if (this.formotp.valid) {
+          let Params = new HttpParams();
 
-        Params = Params.append('otp', this.formotp.controls.otp.value);
-        Params = Params.append('refcode', this.User.refcode);
+          Params = Params.append('otp', this.formotp.controls.otp.value);
+          Params = Params.append('refcode', this.User.refcode);
 
-        const user = {
-          UserName : this.formstep2.controls.username.value,
-          Password : this.formstep2.controls.password.value,
-          ConfirmPassword : this.formstep2.controls.repeatPassword.value
+          const user = {
+            UserName: this.formstep2.controls.username.value,
+            Password: this.formstep2.controls.password.value,
+            ConfirmPassword: this.formstep2.controls.repeatPassword.value
+          }
+
+          await this.authenticationService.OTPRegister(user, Params)
+            .subscribe((data) => {
+              console.log(data);
+              this.toastr.success('', 'Register Success');
+              this.navigate('');
+            },
+              (error) => {
+                console.log(error);
+                this.message = error.error.messages;
+                $('#message').modal({
+                  backdrop: 'static',
+                  keyboard: false,
+                  show: true
+                });
+              });
+
+
         }
-
-        await this.authenticationService.OTPRegister(user,Params)
-          .subscribe( (data) => {
-            console.log(data);
-            this.toastr.success('', 'Register Success');
-            this.navigate('');
-          },
-          (error) => {
-            this.toastr.error('', error.error.messages);
-            console.log(error)
-            console.log("messages :"+error.error.messages);
-            console.log("success :"+error.error.success);
-            console.log("data :"+error.error.data);
-          });
-
-        
-      }
-      else if(this.formotp.invalid){
-        this.isNotValid = true;
-        this.validateAllFormFields(this.formotp);          
-      }
+        else if (this.formotp.invalid) {
+          this.isNotValid = true;
+          this.validateAllFormFields(this.formotp);
+        }
         break;
       case 'signup2':
-      console.log(this.form)
-      
+        console.log(this.form)
+
         if (this.form.valid) {
           // let daylist = await this.authenticationService.validateMember();
 
-          
-            this.isNotValid = false;
-            var telephone = this.form.controls.tel.value;
-                telephone = telephone.slice(1,10);
-                telephone = "66" + telephone;
-            const user = {
-              PreName : this.form.controls.prefix.value,
-              FirstName : this.form.controls.firstname.value,
-              LastName : this.form.controls.lastname.value,
-              IDCardNo : this.form.controls.IDcard.value,
-              Email : this.form.controls.email.value,
-              Mobile : this.form.controls.tel.value
-            }
-            // let res = await this.authenticationService.validateMember2(user);
-            // console.log(res);
-            
+
+          this.isNotValid = false;
+          var telephone = this.form.controls.tel.value;
+          telephone = telephone.slice(1, 10);
+          telephone = "66" + telephone;
+          const user = {
+            PreName: this.form.controls.prefix.value,
+            FirstName: this.form.controls.firstname.value,
+            LastName: this.form.controls.lastname.value,
+            IDCardNo: this.form.controls.IDcard.value,
+            Email: this.form.controls.email.value,
+            Mobile: this.form.controls.tel.value
+          }
+          // let res = await this.authenticationService.validateMember2(user);
+          // console.log(res);
 
 
-            await this.authenticationService.validateMember(user)
+
+          await this.authenticationService.validateMember(user)
             .pipe(first())
-            .subscribe( (data: any) => {
+            .subscribe((data: any) => {
               console.log(data);
               this.User = data;
-              console.log( this.User.refcode);
+              console.log(this.User.refcode);
               this.page = "signup2";
             },
-            (error: any) => {
-              this.toastr.error('', error.error.messages);
-              console.log(JSON.stringify(error));
-              console.log("messages :"+error.error.messages);
-              console.log("success :"+error.error.success);
-              console.log("data :"+error.error.data);
-            });
+              (error: any) => {
+                console.log(error);
+                this.message = error.error.messages;
+                $('#message').modal({
+                  backdrop: 'static',
+                  keyboard: false,
+                  show: true
+                });
+              });
 
-          
+
           var s = this.form.controls.tel.value;
           this.blind = s[0] + s[1] + s[2] + "-XXXXX" + s[8] + s[9]
           console.log(this.blind);
@@ -258,7 +267,7 @@ export class RegisterComponent implements OnInit {
           Validators.required,
           Validators.pattern(/^[A-Za-zก-๗]{3,15}$/)
         ]
-      ],      
+      ],
       recaptcha: [null,
         [
           Validators.required,
@@ -278,15 +287,15 @@ export class RegisterComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(8),
-          Validators.pattern(/^(?=.*[A-Z])(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/)
+          Validators.pattern(/^(?=.*[0-9])(?=.*[A-Z])(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/)
         ]
       ],
       repeatPassword: [null,
         [
           Validators.required,
-          passwordConfirming, 
+          passwordConfirming,
           Validators.minLength(8),
-          Validators.pattern(/^(?=.*[A-Z])(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/)
+          Validators.pattern(/^(?=.*[0-9])(?=.*[A-Z])(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/)
           // Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)
         ]
       ],
@@ -303,7 +312,7 @@ export class RegisterComponent implements OnInit {
     })
 
   }
-  
+
 
   isFieldNotValid(field: string) {
     return !this.form.get(field).valid && this.form.get(field).touched
@@ -315,7 +324,7 @@ export class RegisterComponent implements OnInit {
       'has-danger': this.isFieldNotValid(field)
     };
   }
- 
+
   isFieldNotValid2(field: string) {
     return !this.formstep2.get(field).valid && this.formstep2.get(field).touched
 
@@ -346,7 +355,7 @@ export class RegisterComponent implements OnInit {
       }
     })
   }
-  navigate(target){
+  navigate(target) {
     var target = target;
     console.log(target);
     this.router.navigate([target], { relativeTo: this.route });
@@ -359,23 +368,25 @@ export class RegisterComponent implements OnInit {
     return true;
 
   }
-  requestotp(){
+  requestotp() {
     let params = new HttpParams().set('refcode', this.User.refcode);
 
     // this.http.post('http://fundchoiceuat.lhfund.co.th/api/member/requestOTP', { params: params })
     this.authenticationService.requestOTP(params)
-    .subscribe( (data) => {
-      console.log(data);
-      this.User = data;
-      // this.page = "otp";
+      .subscribe((data) => {
+        console.log(data);
+        this.User = data;
+        // this.page = "otp";
 
-    },
-    (error) => {
-      this.toastr.error('', error.error.messages);
-      console.log(error)
-      console.log("messages :"+error.error.messages);
-      console.log("success :"+error.error.success);
-      console.log("data :"+error.error.data);
-    });
+      },
+        (error) => {
+          console.log(error);
+          this.message = error.error.messages;
+          $('#message').modal({
+            backdrop: 'static',
+            keyboard: false,
+            show: true
+          });
+        });
   }
 }

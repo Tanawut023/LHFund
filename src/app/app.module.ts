@@ -77,6 +77,8 @@ import { AuthGuard } from './service/auth.guard';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import {BaseApplicationDataService} from './service/base-application-data.service';
 import { UserIdleModule } from 'angular-user-idle';
+import { toFixed,toFixed4 } from './Share/tofix.pipe'
+import { DateThai} from './Share/datethai.pipe';
 
 
 // import { NgbDateFRParserFormatter } from "./ngb-date-fr-parser-formatter"
@@ -127,6 +129,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     SigninComponent,
     ForgotpasswordComponent,
     ChangepasswordloginComponent,
+    toFixed,
+    toFixed4,
+    DateThai,
 
   ],
   imports: [

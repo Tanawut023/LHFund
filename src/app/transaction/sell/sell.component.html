@@ -27,21 +27,20 @@
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
-            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
-              <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholder; let i = index">{{ unitholder.Text }}</option>
+            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno">
+              <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo }}</option>
             </select>
           </div>
         </div>
 
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
+          <span class="txt-middle">{{ userselect.FirstName}} {{ userselect.LastName}}</span>
         </div>
 
         <div class="col-md-6">
           <p>{{ 'CONTENT.address' | translate }}</p>
-          <span class="txt-middle">{{ userselect?.address?.ContactAddress1}} {{ userselect?.address?.ContactAddress2}} {{
-            userselect?.address?.ContactProvince}} {{ userselect?.address?.ContactZipCode}}</span>
+          <span class="txt-middle">{{ userselect.ContactAddress}}</span>
         </div>
 
       </div>
@@ -59,7 +58,7 @@
             <p>{{ 'CONTENT.input-date' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>7 มิถุนายน 2561</span>
+            <span>{{ currentdate }}</span>
           </div>
         </div>
         <div class="row">
@@ -68,12 +67,11 @@
           </div>
           <div class="col-md-6">
             <div class="select-wrapper inline-block">
-
-              <select name="ddlLink" id="ddlLink">
-                <option value="0" selected="">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
-                <option value="36">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
-                <option value="29">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
-              </select>
+                <select id="fundlist" [(ngModel)]="fundlist" name="fundlist" (ngModelChange)="fundlistonChange()">
+                    <option [ngValue]="fundlist" *ngFor="let fundlist of unitholderredemption.fundlist; let i = index">
+                      {{ fundlist.FundName }}
+                    </option>
+                  </select>
             </div>
           </div>
         </div>
@@ -135,13 +133,13 @@
           </div>
           <div class="col-md-3 col-6">
             <div class="input-wrapper ">
-              <input id="name" name="name" maxlength="30" type="text" class="bg-gray" placeholder="0">
+              <input id="amount" name="amount" maxlength="30" type="text" class="bg-gray" placeholder="0">
             </div>
           </div>
           <div class="col-md-3 col-6">
             <div class="select-wrapper inline-block">
 
-              <select name="ddlLink" id="ddlLink">
+              <select name="type" id="type">
                 <option value="0" selected="" disabled>กรุณาเลือก</option>
                 <option value="บาท">บาท</option>
                 <option value="หน่วย">หน่วย</option>
@@ -157,11 +155,11 @@
           <div class="col-md-6">
             <div class="select-wrapper inline-block">
 
-              <select name="ddlLink" id="ddlLink">
-                <option value="0" selected="">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
-                <option value="36">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
-                <option value="29">ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)</option>
-              </select>
+                <select id="banklist" [(ngModel)]="banklist" name="banklist" (ngModelChange)="banklistonChange()">
+                    <option [ngValue]="banklist" *ngFor="let banklist of unitholderredemption.bankaccountlist; let i = index">
+                      {{ banklist.BankName }}
+                    </option>
+                </select>
             </div>
           </div>
         </div>
@@ -173,7 +171,7 @@
           <div class="col-md-6 col-lg-3">
 
             <div class="input-wrapper">
-              <input class=" textinput dateinput bg-gray" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" id="startDate" placeholder="วว/ดด/ปปปป"
+              <input class=" textinput dateinput bg-gray" [(ngModel)]="datepick" ngbDatepicker #d="ngbDatepicker" id="startDate" placeholder="วว/ดด/ปปปป"
                 name="date" type="text" (click)="d.toggle()">
             </div>
 
@@ -248,16 +246,15 @@
         </div>
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
-          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderNo}}</span>
+          <span class="txt-middle">{{ userselect.UnitholderNo}}</span>
         </div>
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
+          <span class="txt-middle">{{ userselect.FirstName}} {{ userselect.LastName}}</span>
         </div>
         <div class="col-md-6">
           <p>{{ 'CONTENT.address' | translate }}</p>
-          <span class="txt-middle">{{ userselect?.address?.ContactAddress1}} {{ userselect?.address?.ContactAddress2}} {{
-            userselect?.address?.ContactProvince}} {{ userselect?.address?.ContactZipCode}}</span>
+          <span class="txt-middle">{{ userselect.ContactAddress}}</span>
         </div>
       </div>
     </div>
@@ -274,7 +271,7 @@
             <p>{{ 'CONTENT.input-date' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>7 มิถุนายน 2561</span>
+            <span>{{ currentdate }}</span>
           </div>
         </div>
         <div class="row">
@@ -282,7 +279,7 @@
             <p>{{ 'CONTENT.fund-name-r' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>KFCRASH - กองทุนกรุงศรีตราสารเงิน</span>
+            <span>{{ fundlist.FundName }}</span>
           </div>
         </div>
       </div>
@@ -350,7 +347,7 @@
             <p>{{ 'CONTENT.redeem-to' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>ธนคารกรุงศรีอยุธยา จำกัด (มหาชน)</span>
+            <span>{{ banklist.BankName }}</span>
           </div>
         </div>
 
@@ -359,7 +356,7 @@
             <p>{{ 'CONTENT.Advance-r-date' | translate }}</p>
           </div>
           <div class="col-md-3">
-            <span>10 มิถุนายน 2561</span>
+            <span>{{date}}</span>
 
           </div>
         </div>
@@ -411,16 +408,15 @@
         </div>
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
-          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderNo}}</span>
+          <span class="txt-middle">{{ userselect.UnitholderNo}}</span>
         </div>
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
+          <span class="txt-middle">{{ userselect.FirstName}} {{ userselect.LastName}}</span>
         </div>
         <div class="col-md-6">
           <p>{{ 'CONTENT.address' | translate }}</p>
-          <span class="txt-middle">{{ userselect?.address?.ContactAddress1}} {{ userselect?.address?.ContactAddress2}} {{
-            userselect?.address?.ContactProvince}} {{ userselect?.address?.ContactZipCode}}</span>
+          <span class="txt-middle">{{ userselect.ContactAddress}}</span>
         </div>
       </div>
     </div>
@@ -437,7 +433,7 @@
             <p>{{ 'CONTENT.input-date' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>7 มิถุนายน 2561</span>
+            <span>{{ currentdate }}</span>
           </div>
         </div>
         <div class="row">
@@ -445,7 +441,7 @@
             <p>{{ 'CONTENT.fund-name-r' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>KFCRASH - กองทุนกรุงศรีตราสารเงิน</span>
+            <span>{{ fundlist.FundName }}</span>
           </div>
         </div>
       </div>
@@ -513,7 +509,7 @@
             <p>{{ 'CONTENT.redeem-to' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>ธนคารกรุงศรีอยุธยา จำกัด (มหาชน)</span>
+            <span>{{ banklist.BankName }}</span>
           </div>
         </div>
 
@@ -522,7 +518,7 @@
             <p>{{ 'CONTENT.Advance-r-date' | translate }}</p>
           </div>
           <div class="col-md-3">
-            <span>10 มิถุนายน 2561</span>
+            <span>{{date}}</span>
 
           </div>
         </div>
@@ -583,8 +579,8 @@
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
-            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
-              <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholder; let i = index">{{ unitholder.Text
+            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno">
+              <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
                 }}</option>
             </select>
           </div>
@@ -592,13 +588,12 @@
 
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
+          <span class="txt-middle">{{ userselect.FirstName}} {{ userselect.LastName}}</span>
         </div>
 
         <div class="col-md-6">
           <p>{{ 'CONTENT.address' | translate }}</p>
-          <span class="txt-middle">{{ userselect?.address?.ContactAddress1}} {{ userselect?.address?.ContactAddress2}} {{
-            userselect?.address?.ContactProvince}} {{ userselect?.address?.ContactZipCode}}</span>
+          <span class="txt-middle">{{ userselect.ContactAddress}}</span>
         </div>
 
       </div>

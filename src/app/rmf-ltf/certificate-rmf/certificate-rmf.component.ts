@@ -19,39 +19,32 @@ export class CertificateRmfComponent implements OnInit {
 
   ngOnInit() {
 
+    this.getSelectListUnitholder();
+
+    $('#mutual-tab-menu').find('li').removeClass('current');
+    $('#mutual-tab-menu').find('li#menu3').addClass('current');
+  }
+  onChange() {
+
+    for (let i = 0; i < this.userall.unitholderlist.length; i++) {
+      if (this.userall.unitholderlist[i].UnitholderId == this.unitholderno.UnitholderId) {
+        this.userselect = this.userall.unitholderlist[i];
+      }
+    }
+  }
+  getSelectListUnitholder() {
     this.basedataservice.getSelectListUnitholder()
       .pipe(first())
       .subscribe(
         data => {
           this.userall = data;
-          this.unitholderno = this.userall.unitholderList[0];
-          this.userselect = this.userall;
+          this.unitholderno = this.userall.unitholderlist[0];
+          this.userselect = this.userall.unitholderlist[0];
         },
         error => {
           console.log(error)
 
         });
-    $('#mutual-tab-menu').find('li').removeClass('current');
-    $('#mutual-tab-menu').find('li#menu3').addClass('current');
-  }
-  onChange() {
-    // console.log(newValue);
-
-    let params = new HttpParams().set('unitholderid', this.unitholderno.Value);
-    this.basedataservice.getUnitholder(params)
-      .pipe(first())
-      .subscribe(
-        data => {
-          // console.log(data)
-          this.userselect = data;
-
-        },
-        error => {
-          console.log(error)
-
-        });
-    // this.selectedDevice = newValue;
-    // ... do other stuff here ...
   }
 
 }

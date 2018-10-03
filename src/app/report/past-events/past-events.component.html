@@ -27,8 +27,8 @@
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
-            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
-              <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderList; let i = index">{{ unitholder.Text
+            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno">
+              <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
                 }}</option>
             </select>
           </div>
@@ -36,14 +36,12 @@
 
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-          <span class="txt-middle" *ngIf="userselect.UnitholderInfo">{{ userselect?.UnitholderInfo?.UnitHolderName}}</span>
-          <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
+          <span class="txt-middle">{{ userselect.FirstName}} {{ userselect.LastName}}</span>
         </div>
 
         <div class="col-sm-6 col-md-6">
           <p>{{ 'CONTENT.address' | translate }}</p>
-          <span class="txt-middle" *ngIf="userselect.Address">{{ userselect?.Address?.ContactAddress}}</span>
-          <span class="txt-middle">{{ userselect?.address?.ContactAddress}}</span>
+          <span class="txt-middle">{{ userselect.ContactAddress}}</span>
         </div>
         
       </div>

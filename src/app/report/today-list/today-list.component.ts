@@ -21,32 +21,28 @@ export class TodayListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.basedataservice.getSelectListUnitholder()
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.userall = data;
-          this.unitholderno = this.userall.unitholderList[0];
-          this.userselect = this.userall;
-        },
-        error => {
-          console.log(error)
-
-        });
+    this.getSelectListUnitholder();
 
     $('#mutual-tab-menu').find('li').removeClass('current');
     $('#mutual-tab-menu').find('li#menu6').addClass('current');
   }
   onChange() {
 
-    let params = new HttpParams().set('unitholderid', this.unitholderno.Value);
-    this.basedataservice.getUnitholder(params)
+    for (let i = 0; i < this.userall.unitholderlist.length; i++) {
+      if (this.userall.unitholderlist[i].UnitholderId == this.unitholderno.UnitholderId) {
+        this.userselect = this.userall.unitholderlist[i];
+      }
+    }
+  }
+
+  getSelectListUnitholder() {
+    this.basedataservice.getSelectListUnitholder()
       .pipe(first())
       .subscribe(
         data => {
-          // console.log(data)
-          this.userselect = data;
-
+          this.userall = data;
+          this.unitholderno = this.userall.unitholderlist[0];
+          this.userselect = this.userall.unitholderlist[0];
         },
         error => {
           console.log(error)

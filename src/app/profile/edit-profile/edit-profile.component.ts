@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { BaseApplicationDataService } from '../../service/base-application-data.service';
 import { first } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
+import { ProfileService } from '../../service/profile.service'
 // declare let $: any;
 declare var $: any;
 
@@ -15,26 +16,17 @@ export class EditProfileComponent implements OnInit {
   userall: any = {};
   userselect: any = {};
   unitholderno: any = "init";
+  profile: any = {};
 
 
   constructor(
-    private basedataservice: BaseApplicationDataService
+    private basedataservice: BaseApplicationDataService,
+    private profileserice: ProfileService
   ) { }
 
   ngOnInit() {
 
-    this.basedataservice.getSelectListUnitholder()
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.userall = data;
-          this.unitholderno = this.userall.unitholderlist[0];
-          this.userselect = this.userall;
-        },
-        error => {
-          console.log(error)
-
-        });
+    this.getSelectListUnitholder();
 
     // $('#modal').modal('show');
     $('#mutual-tab-menu').find('li').removeClass('current');
@@ -51,18 +43,45 @@ export class EditProfileComponent implements OnInit {
   }
   onChange() {
 
-    let params = new HttpParams().set('unitholderid', this.unitholderno.Value);
-    this.basedataservice.getUnitholder(params)
+    for (let i = 0; i < this.userall.unitholderlist.length; i++) {
+      if (this.userall.unitholderlist[i].UnitholderId == this.unitholderno.UnitholderId) {
+        this.userselect = this.userall.unitholderlist[i];
+      }
+    }
+
+  }
+
+  getSelectListUnitholder() {
+    this.basedataservice.getSelectListUnitholder()
       .pipe(first())
       .subscribe(
         data => {
-          // console.log(data)
-          this.userselect = data;
-
+          this.userall = data;
+          this.unitholderno = this.userall.unitholderlist[0];
+          this.userselect = this.userall.unitholderlist[0];
+          this.getprofileinfo();
         },
         error => {
           console.log(error)
 
         });
   }
+  getprofileinfo() {
+    let params = new HttpParams().set('unitholderid', this.userselect.UnitholderId);
+
+    this.profileserice.getprofileinfo(params)
+    .pipe(first())
+      .subscribe(
+        data => {
+                   
+          this.profile = data;
+          console.log(this.profile); 
+        },
+        error => {
+          console.log(error)
+
+        });
+  }
+
+
 }

@@ -5,6 +5,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication.service'
 import { first } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment.prod';
+
+declare var $: any;
 
 
 
@@ -21,6 +25,7 @@ export class SigninComponent implements OnInit {
   foo1: string;
   returnUrl: any;
   User: any = {}
+  message: any;
 
   constructor(
     private fb: FormBuilder,
@@ -28,7 +33,8 @@ export class SigninComponent implements OnInit {
     private router: Router,
     private translate: TranslateService,
     private authenticationService: AuthenticationService,
-    private toastr: ToastrService) {
+    private toastr: ToastrService,
+    private http: HttpClient) {
     translate.addLangs(["th", "en"]);
   }
 
@@ -48,20 +54,21 @@ export class SigninComponent implements OnInit {
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    
   }
   switchlang(lang) {
     if (lang == 'th') {
       this.translate.use('th');
       this.langen = false;
       this.langth = true;
-      localStorage.setItem('lang', lang );
+      localStorage.setItem('lang', lang);
 
     }
     else if (lang == 'en') {
       this.translate.use('en');
       this.langth = false;
       this.langen = true;
-      localStorage.setItem('lang', lang );
+      localStorage.setItem('lang', lang);
     }
 
 
@@ -72,14 +79,15 @@ export class SigninComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(8),
-          Validators.pattern(/^[A-Za-z0-9]{8,16}$/)
+          // Validators.pattern(/^[A-Za-z0-9]{8,16}$/)
         ]
       ],
       password: [null,
         [
           Validators.required,
           Validators.minLength(8),
-          Validators.pattern(/^(?=.*[A-Z])(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/)]
+          // Validators.pattern(/^(?=.*[0-9])(?=.*[A-Z])(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/)
+        ]
       ]
     })
   }
@@ -98,20 +106,32 @@ export class SigninComponent implements OnInit {
     if (this.formsighin.valid) {
       this.isNotValid = false;
 
-      const user = {
-        UserName: this.formsighin.controls.username.value,
-        Password: this.formsighin.controls.password.value
-      }
-      this.authenticationService.login(user)
+      let body = new URLSearchParams();
+      body.set('username', this.formsighin.controls.username.value);
+      body.set('password', this.formsighin.controls.password.value);
+      body.set('grant_type', 'password');
+
+      let data = body.toString();
+      console.log(data)
+
+      this.authenticationService.login(data)
         .pipe(first())
         .subscribe(
           data => {
-            console.log(data)
+            localStorage.setItem('userInfo', data['memberInfo']);
+            localStorage.setItem('token', data['access_token']);
+            localStorage.setItem('refresh_token', data['refresh_token']);
             this.router.navigate([this.returnUrl]);
           },
           error => {
-            console.log(error)
-            this.toastr.error('', error.error.messages);            
+            console.log(error);
+            console.log(error.error.error_description);
+            this.message = error.error.error_description;
+            $('#message').modal({
+              backdrop: 'static',
+              keyboard: false,
+              show: true
+            });            
           });
 
     } else {

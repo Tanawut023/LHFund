@@ -6,30 +6,31 @@
                     <div class="col-md-12">
                         <div class="tabs-menu-wrapper">
                             <div class="dropdown dropdown-content">
-                                    <button class="btn-med btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                      aria-expanded="false">
-                                      เมนูกองทุน
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                      <a class="dropdown-item" (click)="checkpage('dashboard')" title="{{ 'NAVBAR.dashboard' | translate }}">{{ 'NAVBAR.dashboard' | translate }}</a>
-                                    </div>
-                                  </div>
-                                <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
-                                    <li role="presentation" id="menu1" class="current">
-                                      <a title="{{ 'NAVBAR.dashboard' | translate }}" >{{ 'NAVBAR.dashboard' | translate }}</a>
-                                    </li>
-                                    
-                    
-                                  </ul>
+                                <button class="btn-med btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    เมนูกองทุน
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" (click)="checkpage('dashboard')" title="{{ 'NAVBAR.dashboard' | translate }}">{{
+                                        'NAVBAR.dashboard' | translate }}</a>
+                                </div>
+                            </div>
+                            <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
+                                <li role="presentation" id="menu1" class="current">
+                                    <a title="{{ 'NAVBAR.dashboard' | translate }}">{{ 'NAVBAR.dashboard' | translate }}</a>
+                                </li>
+
+
+                            </ul>
                         </div>
                         <div class="fund-table-wrapper">
                             <div class="heading-section">
                                 <div class="detail-head-wrapper" style="border:unset;">
-                                <div class="row">
-                                    
-                                    <div class="col-sm-12 col-md-12 col-12 icon-option mb-3">
-                                        <ul class="">
-                                            <!-- <li class="ico-fb">
+                                    <div class="row">
+
+                                        <div class="col-sm-12 col-md-12 col-12 icon-option mb-3">
+                                            <ul class="">
+                                                <!-- <li class="ico-fb">
                                                 <a href="#" title="facebook">
                                                     <img src="/assets/Images/icons/ico-pipe.png" />
                                                 </a>
@@ -39,45 +40,49 @@
                                                     <img src="/assets/Images/icons/ico-download.png" />
                                                 </a>
                                             </li> -->
-                                            <li class="ico-yt">
-                                                <a title="youtube">
-                                                    <img src="/assets/Images/icons/ico-print.png" (click)="print()"/>
-                                                </a>
-                                            </li>
+                                                <li class="ico-yt">
+                                                    <a title="youtube">
+                                                        <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
+                                                    </a>
+                                                </li>
 
-                                        </ul>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
+                                            <div class="select-wrapper inline-block pb-3">
+                                                <select id="unitholderno" name="unitholderno" (change)="onChange($event.target.value)">
+                                                    <option [value]="0" selected *ngIf="allunit">แสดงทุกบัญชีผู้ถือหน่วย</option>
+                                                    <option *ngFor="let unitholder of userall.unitholderlist; let i = index" [value]="unitholder.UnitholderId">{{
+                                                        unitholder.UnitholderNo }}</option>
+                                                    <!-- <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index"  (change)="onChange(i)">{{ unitholder.UnitholderNo }}</option> -->
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
+                                            <span class="txt-middle" *ngIf="useralluniholder">{{ useralluniholder?.FirstName}}
+                                                {{ useralluniholder?.LastName}}</span>
+                                            <span class="txt-middle">{{ userselect.FirstName}} {{ userselect.LastName}}</span>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+
+                                            <p>{{ 'CONTENT.report-date' | translate }}</p>
+                                            <span class="txt-middle">{{ dateformat }}</span>
+                                        </div>
+
                                     </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
-                                        <div class="select-wrapper inline-block pb-3" >
-                                            <select id="ddlLink" [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()">
-                                                <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index" >{{ unitholder.Text }}</option>
-                                            </select>
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-6">
+
+                                            <p>{{ 'CONTENT.address' | translate }}</p>
+                                            <!-- <span class="txt-middle" *ngIf="userselect.addressunitholder">{{ userselect?.addressunitholder?.ContactAddress}}</span> -->
+                                            <span class="txt-middle">{{ userselect.ContactAddress}}</span>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-                                        <span class="txt-middle" *ngIf="userselect.unitholderinfo">{{ userselect?.unitholderinfo?.UnitHolderName}}</span>
-                                        <span class="txt-middle">{{ userselect?.unitholder?.UnitHolderName}}</span>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
 
-                                        <p>{{ 'CONTENT.report-date' | translate }}</p>
-                                        <span class="txt-middle">{{ dateformat }}</span>
-                                    </div>
-                                    
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 col-md-6">
+                                    <div class="fund-list-wrapper">
 
-                                        <p>{{ 'CONTENT.address' | translate }}</p>
-                                        <span class="txt-middle" *ngIf="userselect.addressunitholder">{{ userselect?.addressunitholder?.ContactAddress}}</span>
-                                        <span class="txt-middle">{{ userselect?.address?.ContactAddress}}</span>
-                                    </div>
-                                </div>
-
-                                <div class="fund-list-wrapper">
-                                
                                         <div class="title-heading">
                                             <div class="row">
                                                 <div class="col-md-2 col-lg-1 col-4">
@@ -86,279 +91,145 @@
                                                 <div class="col-md-10 col-lg-11 col-8">
                                                     <div class="row">
                                                         <div class="col-md-6 text-md-left">
-                                                        <h3>{{ 'CONTENT.net-asset-value' | translate }}</h3>
+                                                            <h3>{{ 'CONTENT.net-asset-value' | translate }}</h3>
                                                         </div>
                                                         <div class="col-md-6 text-md-right">
-                                                        <h1>฿ 70,474,729.91</h1>
+                                                            <h1>฿ {{NAV | tofix}}</h1>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
                                         </div>
-                                
-                            </div>
-                            <div class="row">
-                                    <div class="col">
-                                        <div class="table-responsive">
-                                            <table class="table table-performance">
-                                                <thead>
-                                                    <tr class="captions">
-                                                        <td colspan="11">
-                                                            <h3>
-                                                                {{ 'CONTENT.asset-alloction' | translate }}
-                                                            </h3>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>
-                                                            Fund Type
-                                                        </th>
-                                                        <th>
-                                                            {{ 'TABLE.date' | translate }}
-                                                        </th>
-                                                        <th>
-                                                            {{ 'TABLE.unit-balance' | translate }}
-                                                        </th>
-                                                        <th>
-                                                            {{ 'TABLE.nav-unit' | translate }}
-                                                        </th>
-                                                        <th class="bg-primary">
-                                                            Current Amount <br/>(Bath)
-                                                        </th>
-                                                        <th class="bg-blue">
-                                                            Unrealize<br/>(Gain/Loss) (บาท)
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    
-                                                    <tr class="line">
-                                                        <td>
-                                                            Long Term Equity
-                                                        </td>
-                                                        <td class="txt-right">
-                                                            &nbsp;
-                                                        </td>
-                                                        <td class="txt-right">
-                                                            &nbsp;
-                                                        </td>
-                                                        <td class="txt-right">
-                                                             &nbsp;
-                                                        </td>
-                                                        <td class="txt-right">
-                                                            498,756.44
-                                                        </td>
-                                                        <td class="txt-right">
-                                                                0.71
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            - LHSMART-LTF
-                                                        </td>
-                                                        <td class="txt-right">
-                                                            03/03/2561
-                                                        </td>
-                                                        <td class="txt-right">
-                                                            498,756.44
-                                                        </td>
-                                                        <td class="txt-right">
-                                                            498,756.44
-                                                        </td>
-                                                        <td class="txt-right">
-                                                            498,756.44
-                                                        </td>
-                                                        <td class="txt-right">
-                                                             &nbsp;
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                            <td>
-                                                                - LHSMART-LTF
-                                                            </td>
-                                                            <td class="txt-right">
-                                                                03/03/2561
-                                                            </td>
-                                                            <td class="txt-right">
-                                                                498,756.44
-                                                            </td>
-                                                            <td class="txt-right">
-                                                                498,756.44
-                                                            </td>
-                                                            <td class="txt-right">
-                                                                498,756.44
-                                                            </td>
-                                                            <td class="txt-right">
-                                                                 &nbsp;
-                                                            </td>
-                                                        </tr>
-                                                    <tr class="line">
-                                                            <td>
-                                                                Long Term Equity
-                                                            </td>
-                                                            <td class="txt-right">
-                                                                &nbsp;
-                                                            </td>
-                                                            <td class="txt-right">
-                                                                &nbsp;
-                                                            </td>
-                                                            <td class="txt-right">
-                                                                 &nbsp;
-                                                            </td>
-                                                            <td class="txt-right">
-                                                                498,756.44
-                                                            </td>
-                                                            <td class="txt-right">
-                                                                    0.71
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="table-responsive">
+                                                <table class="table table-performance">
+                                                    <thead>
+                                                        <tr class="captions">
+                                                            <td colspan="11">
+                                                                <h3>
+                                                                    {{ 'CONTENT.asset-alloction' | translate }}
+                                                                </h3>
                                                             </td>
                                                         </tr>
                                                         <tr>
+                                                            <th>
+                                                                Fund Type
+                                                            </th>
+                                                            <th>
+                                                                {{ 'TABLE.date' | translate }}
+                                                            </th>
+                                                            <th>
+                                                                {{ 'TABLE.unit-balance' | translate }}
+                                                            </th>
+                                                            <th>
+                                                                {{ 'TABLE.nav-unit' | translate }}
+                                                            </th>
+                                                            <th class="bg-primary">
+                                                                Current Amount <br/>(Bath)
+                                                            </th>
+                                                            <th class="bg-blue">
+                                                                Unrealize<br/>(Gain/Loss) (บาท)
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody *ngFor="let group of balancedetail.holdingbalance">
+
+                                                        <tr class="line">
                                                             <td>
-                                                                - LHSMART-LTF
+                                                                {{group.FundType}}
                                                             </td>
                                                             <td class="txt-right">
-                                                                03/03/2561
+                                                                &nbsp;
                                                             </td>
                                                             <td class="txt-right">
-                                                                498,756.44
+                                                                &nbsp;
                                                             </td>
                                                             <td class="txt-right">
-                                                                498,756.44
+                                                                &nbsp;
                                                             </td>
                                                             <td class="txt-right">
-                                                                498,756.44
+                                                                {{group.BalanceAmountTotal | tofix}}
                                                             </td>
                                                             <td class="txt-right">
-                                                                 &nbsp;
+                                                                {{group.GainLossTotal | tofix}}
                                                             </td>
                                                         </tr>
-                                                        <tr class="line">
-                                                                <td>
-                                                                    Long Term Equity
-                                                                </td>
-                                                                <td class="txt-right">
-                                                                    &nbsp;
-                                                                </td>
-                                                                <td class="txt-right">
-                                                                    &nbsp;
-                                                                </td>
-                                                                <td class="txt-right">
-                                                                     &nbsp;
-                                                                </td>
-                                                                <td class="txt-right">
-                                                                    498,756.44
-                                                                </td>
-                                                                <td class="txt-right">
-                                                                        0.71
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    - LHSMART-LTF
-                                                                </td>
-                                                                <td class="txt-right">
-                                                                    03/03/2561
-                                                                </td>
-                                                                <td class="txt-right">
-                                                                    498,756.44
-                                                                </td>
-                                                                <td class="txt-right">
-                                                                    498,756.44
-                                                                </td>
-                                                                <td class="txt-right">
-                                                                    498,756.44
-                                                                </td>
-                                                                <td class="txt-right">
-                                                                     &nbsp;
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="line">
-                                                                    <td>
-                                                                        Long Term Equity
-                                                                    </td>
-                                                                    <td class="txt-right">
-                                                                        &nbsp;
-                                                                    </td>
-                                                                    <td class="txt-right">
-                                                                        &nbsp;
-                                                                    </td>
-                                                                    <td class="txt-right">
-                                                                         &nbsp;
-                                                                    </td>
-                                                                    <td class="txt-right">
-                                                                        498,756.44
-                                                                    </td>
-                                                                    <td class="txt-right">
-                                                                            0.71
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        - LHSMART-LTF
-                                                                    </td>
-                                                                    <td class="txt-right">
-                                                                        03/03/2561
-                                                                    </td>
-                                                                    <td class="txt-right">
-                                                                        498,756.44
-                                                                    </td>
-                                                                    <td class="txt-right">
-                                                                        498,756.44
-                                                                    </td>
-                                                                    <td class="txt-right">
-                                                                        498,756.44
-                                                                    </td>
-                                                                    <td class="txt-right">
-                                                                         &nbsp;
-                                                                    </td>
-                                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    
-    
-                            </div>
-                            <div class="fund-list-wrapper">                                
-                                    <div class="title-heading bg-blue">
-                                        <div class="row">
-                                            <div class="col-md-2 col-lg-1 col-4">
-                                                <img src="/assets/Images/icons/ico-income.png">
+                                                        <tr *ngFor="let list of group.HoldingBalanceDetail">
+                                                            <td>
+                                                                - {{list.FundName}}
+                                                            </td>
+                                                            <td class="txt-right">
+                                                                {{list.BalanceDate | datethai}}
+                                                            </td>
+                                                            <td class="txt-right">
+                                                                {{list.Unit | tofix4}}
+                                                            </td>
+                                                            <td class="txt-right">
+                                                                {{list.NAV | tofix4}}
+                                                            </td>
+                                                            <td class="txt-right">
+                                                                {{list.BalanceAmount | tofix}}
+                                                            </td>
+                                                            <td class="txt-right">
+                                                                &nbsp;
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
-                                            <div class="col-md-10 col-lg-11 col-8">
+                                        </div>
+
+
+                                    </div>
+                                    <div class="fund-list-wrapper">
+                                        <div class="title-heading bg-blue">
+                                            <div class="row">
+                                                <div class="col-md-2 col-lg-1 col-4">
+                                                    <img src="/assets/Images/icons/ico-income.png">
+                                                </div>
+                                                <div class="col-md-10 col-lg-11 col-8">
                                                     <div class="row">
                                                         <div class="col-md-6 text-md-left">
-                                                        <h3>{{ 'CONTENT.profit-loss' | translate }}</h3>
+                                                            <h3>{{ 'CONTENT.profit-loss' | translate }}</h3>
                                                         </div>
                                                         <div class="col-md-6 text-md-right">
-                                                        <h1>฿ 669,638.80</h1>
+                                                            <h1>฿ {{ProfitLoss | tofix}}</h1>
                                                         </div>
                                                     </div>
+                                                </div>
                                             </div>
                                         </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-sm-12 mt-3">
+                                                        <h4>{{ 'CONTENT.asset-alloction' | translate }}</h4>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div [chart]="chart"></div>
+
+                                                        
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                            <div class="col-md-6">
+                                            </div>
+                                        </div>
+
                                     </div>
-                                    
-                                <div class="row">
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-sm-12 mt-3"> <h4>{{ 'CONTENT.asset-alloction' | translate }}</h4></div>
-                                        <div class="col-sm-12"><div [chart]="chart"></div></div>
-                                    </div>
-                                   
-                                    
-                               </div> 
-                               <div class="col-md-6">                                      
                                 </div>
-                                </div>
-                            
-                        </div>
-                        </div>
                             </div>
-                            
 
 
-                            
+
+
 
 
                         </div>
@@ -366,6 +237,6 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </div>

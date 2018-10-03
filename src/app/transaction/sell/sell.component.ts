@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { BaseApplicationDataService } from '../../service/base-application-data.service';
 import { first } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
+import { datethai, formatdatethai } from '../../Share/dateformat';
+import { OrderService } from '../../service/order.service'
+import { HttpParams } from '@angular/common/http';
+
 
 @Component({
     selector: 'app-sell',
@@ -10,50 +14,26 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class SellComponent implements OnInit {
     page = "sell";
-    model;
+    datepick;
     userall: any = {};
     userselect: any = {};
-    unitholderno: any = "init";
+    unitholderno: any = "N/A";
+    currentdate = datethai;
+    unitholderredemption: any = {};
+    fundlist: any = 'N/A';
+    banklist: any = 'N/A';
+    holdingbalancelist: any = 'N/A';
+    date: any;
 
     constructor(
         private translate: TranslateService,
-        private basedataservice: BaseApplicationDataService
+        private basedataservice: BaseApplicationDataService,
+        private orderservice: OrderService
     ) { }
 
     ngOnInit() {
 
-        this.basedataservice.getSelectListUnitholder()
-            .pipe(first())
-            .subscribe(
-                data => {
-                    // console.log(data)
-                    this.userall = data;
-                    // console.log(this.userall)
-                    this.unitholderno = this.userall.unitholder[0];
-                    // console.log(this.unitholderno)
-                    const userselected = {
-                        UnitholderId: this.userall.unitholder[0].Value,
-                        UnitholderNo: this.userall.unitholder[0].Text
-                    }
-                    this.basedataservice.getUnitholder(userselected)
-                        .pipe(first())
-                        .subscribe(
-                            data => {
-                                // console.log(data)
-                                this.userselect = data;
-
-                            },
-                            error => {
-                                console.log(error)
-
-                            });
-
-
-                },
-                error => {
-                    console.log(error)
-
-                });
+        this.getSelectListUnitholder();
 
 
         $('#mutual-tab-menu').find('li').removeClass('current');
@@ -68,6 +48,8 @@ export class SellComponent implements OnInit {
                 this.page = "sell";
                 break;
             case 'sell-step1':
+                this.date = this.datepick.year + "-" + this.datepick.month + "-" + this.datepick.day;
+                this.date = formatdatethai(this.date);
                 this.page = "sell-step1";
                 break;
             case 'sell-step2':
@@ -87,21 +69,58 @@ export class SellComponent implements OnInit {
     }
     onChange() {
 
-        const userselected = {
-            UnitholderId: this.unitholderno.Value,
-            UnitholderNo: this.unitholderno.Text
+        for (let i = 0; i < this.userall.unitholderlist.length; i++) {
+            if (this.userall.unitholderlist[i].UnitholderId == this.unitholderno.UnitholderId) {
+                this.userselect = this.userall.unitholderlist[i];
+                this.getselectlistfundlistandbankaccount();
+
+            }
         }
-        this.basedataservice.getUnitholder(userselected)
+    }
+
+    getSelectListUnitholder() {
+        this.basedataservice.getSelectListUnitholder()
             .pipe(first())
             .subscribe(
                 data => {
-                    // console.log(data)
-                    this.userselect = data;
+                    if (data) {
+                        this.userall = data;
+                        this.unitholderno = this.userall.unitholderlist[0];
+                        this.userselect = this.userall.unitholderlist[0];
+                        this.getselectlistfundlistandbankaccount();
+                    }
 
                 },
                 error => {
                     console.log(error)
 
                 });
+    }
+    getselectlistfundlistandbankaccount() {
+        let params = new HttpParams().set('unitholderid', this.userselect.UnitholderId);
+        this.orderservice.changeunitholderredemption(params)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    console.log(data)
+                    if (data) {
+                        this.unitholderredemption = data;
+                        if (this.unitholderredemption.fundlist[0]) {
+                            this.fundlist = this.unitholderredemption.fundlist[0];
+                        }
+                        if (this.unitholderredemption.bankaccountlist[0]) {
+                            this.banklist = this.unitholderredemption.bankaccountlist[0];
+                        }
+                        if (this.unitholderredemption.holdingbalance[0]) {
+                            this.holdingbalancelist = this.unitholderredemption.holdingbalancelist[0];
+                        }
+
+                    }
+                },
+                error => {
+                    console.log(error)
+
+                });
+
     }
 }
