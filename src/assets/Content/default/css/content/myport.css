@@ -676,7 +676,7 @@
     display: block; }
   .mutual-fund-wrapper span {
     color: #1CA59B;
-    display: block; }
+    display: inline-block; }
     @media screen and (max-width: 767px) {
       .mutual-fund-wrapper span {
         margin-bottom: 20px; } }

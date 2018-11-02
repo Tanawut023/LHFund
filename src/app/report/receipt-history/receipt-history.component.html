@@ -1,3 +1,11 @@
+<style>
+  tbody tr.bgforlhfund:nth-child(even) {
+    background: #fafafa
+  }
+
+  /* tbody tr.bgforlhfund:nth-child(odd) {background: #FFF} */
+</style>
+
 <div class="fund-table-wrapper">
   <div class="heading-section">
     <div class="detail-head-wrapper">
@@ -16,20 +24,21 @@
               </a>
             </li> -->
             <li class="ico-yt">
-              <a href="#" title="youtube">
+              <a href="#" title="print">
                 <img src="/assets/Images/icons/ico-print.png" />
               </a>
             </li>
 
           </ul>
         </div>
-        
+
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
-            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
+            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno">
               <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
-                }}</option>
+                }}
+              </option>
             </select>
           </div>
         </div>
@@ -48,55 +57,6 @@
       </div>
     </div>
   </div>
-  <!-- <div class="detail-body-wrapper">
-    <div class="row">
-      <div class="col-md-12">
-        <p>กรุณาเลือกกองทุนที่ทำรายการ</p>
-      </div>
-      <div class="col-md-3">
-        <div class="row">
-          <div class="col-md-2">
-            <span>ปี</span>
-          </div>
-          <div class="col-md-10">
-            <div class="select-wrapper inline-block">
-              <select name="ddlLink" id="ddlLink">
-                <option value="0" selected="">ทุกปี</option>
-                <option value="36">ทุกปี</option>
-                <option value="29">ทุกปี</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-9">
-        <div class="row">
-          <div class="col-md-4">
-            <span>กองทุน: วันจ่ายเงินปันผลเพื่อพิมพ์หนังสือรับรองฯ</span>
-          </div>
-          <div class="col-md-4">
-            <div class="select-wrapper inline-block">
-              <select name="ddlLink" id="ddlLink">
-                <option value="0" selected="">ทุกกองทุน</option>
-                <option value="36">ทุกปี</option>
-                <option value="29">ทุกปี</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <button class="btn-med btn-primary width50">
-              ตกลง
-              <i class="fa fa-angle-right" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-  </div> -->
   <div class="detail-body-wrapper">
     <div class="row">
       <div class="col-md-12">
@@ -109,10 +69,11 @@
           </div>
           <div class="col-md-6">
             <div class="select-wrapper inline-block">
-              <select name="ddlLink" id="ddlLink">
-                <option value="0" selected="">แสดงทุกกลุ่ม</option>
-                <option value="36">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
-                <option value="29">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
+              <select id="fundtype" name="fundtype" (change)="changefundtype()" [(ngModel)]="fundtype">
+                <option [value]="0">แสดงทุกกลุ่ม</option>
+                <option *ngFor="let fundtypelist of Fundtypelist; let i = index" [value]="fundtypelist.Id">{{ fundtypelist.Name
+                  }}
+                </option>
               </select>
             </div>
           </div>
@@ -125,10 +86,11 @@
           <div class="col-md-6">
             <div class="select-wrapper inline-block">
 
-              <select name="ddlLink" id="ddlLink">
-                <option value="0" selected="">แสดงทุกกองทุน</option>
-                <option value="36">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
-                <option value="29">KFCRASH - กองทุนกรุงศรีตราสารเงิน</option>
+              <select id="fundname" name="fundname" [(ngModel)]="fundname">
+                <option [value]="0">แสดงทุกกองทุน</option>
+                <option *ngFor="let fundnamelist of Fundnamelist; let i = index" [ngValue]="fundnamelist">{{ fundnamelist.FundName
+                  }}
+                </option>
               </select>
             </div>
           </div>
@@ -159,14 +121,14 @@
 
         <div class="row">
           <div class="col-md-3 col-6 offset-md-4">
-            <button class="btn-med btn-primary">
+            <button class="btn-med btn-primary" (click)="OnSubmitd()">
               {{ 'BUTTON.ok' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
 
             </button>
           </div>
           <div class="col-md-3 col-6">
-            <button class="btn-med btn-cancel">
+            <button class="btn-med btn-cancel" (click)="reset()">
               {{ 'BUTTON.restore' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
 
@@ -186,7 +148,7 @@
             <h4>
               {{ 'CONTENT.div-cer' | translate }}
             </h4>
-            <ul>
+            <!-- <ul>
               <li>
                 <div class="row mt-3">
                   <div class="col-md-10 col-9">
@@ -203,7 +165,7 @@
                 </div>
               </li>
 
-            </ul>
+            </ul> -->
             <div class="clearfix"></div>
           </div>
         </div>
@@ -243,192 +205,74 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="line">
+          <!-- <tr class="line">
             <td colspan="8">
-              KFHEALTH-D กองทุนเปิดกรุงศรีโกลบอลเฮลธ์แคร์อิควิตี้ปันผล
+              {{ group.FundName}}
             </td>
-            <!-- <td colspan="6">&nbsp;</td> -->
-          </tr>
-          <tr>
-            <td class="text-left">
-              04/03/2557
-            </td>
-            <td class="">
-              1.0000
-            </td>
-            <td class="">
-              336,452.8539
-            </td>
-            <td class="txt-right">
-              336,452.85
-            </td>
-            <td class="txt-right">
-              หัก
-            </td>
-            <td class="txt-right">
-              336,452.85
-            </td>
-            <td class="txt-right">
-              24,111,336,452.85
-            </td>
-            <td class="txt-right">
-              15/03/2557
-            </td>
-          </tr>
-          <tr>
-            <td class="text-left">
-              04/03/2557
-            </td>
-            <td class="">
-              1.0000
-            </td>
-            <td class="">
-              336,452.8539
-            </td>
-            <td class="txt-right">
-              336,452.85
-            </td>
-            <td class="txt-right">
-              หัก
-            </td>
-            <td class="txt-right">
-              336,452.85
-            </td>
-            <td class="txt-right">
-              336,452.85
-            </td>
-            <td class="txt-right">
-              15/03/2557
-            </td>
-          </tr>
-          <tr>
-            <td class="text-left">
-              04/03/2557
-            </td>
-            <td class="">
-              1.0000
-            </td>
-            <td class="">
-              336,452.8539
-            </td>
-            <td class="txt-right">
-              336,452.85
-            </td>
-            <td class="txt-right">
-              หัก
-            </td>
-            <td class="txt-right">
-              336,452.85
-            </td>
-            <td class="txt-right">
-              336,452.85
-            </td>
-            <td class="txt-right">
-              15/03/2557
-            </td>
-          </tr>
-          <tr>
-            <td class="text-left">
-              04/03/2557
-            </td>
-            <td class="">
-              1.0000
-            </td>
-            <td class="">
-              336,452.8539
-            </td>
-            <td class="txt-right">
-              336,452.85
-            </td>
-            <td class="txt-right">
-              หัก
-            </td>
-            <td class="txt-right">
-              336,452.85
-            </td>
-            <td class="txt-right">
-              336,452.85
-            </td>
-            <td class="txt-right">
-              15/03/2557
-            </td>
-          </tr>
-          <tr>
-            <td class="text-left">
-              04/03/2557
-            </td>
-            <td class="">
-              1.0000
-            </td>
-            <td class="">
-              336,452.8539
-            </td>
-            <td class="txt-right">
-              336,452.85
-            </td>
-            <td class="txt-right">
-              หัก
-            </td>
-            <td class="txt-right">
-              336,452.85
-            </td>
-            <td class="txt-right">
-              336,452.85
-            </td>
-            <td class="txt-right">
-              15/03/2557
-            </td>
-          </tr>
-          <tr>
-            <td class="text-left">
-              04/03/2557
-            </td>
-            <td class="">
-              1.0000
-            </td>
-            <td class="">
-              336,452.8539
-            </td>
-            <td class="txt-right">
-              336,452.85
-            </td>
-            <td class="txt-right">
-              หัก
-            </td>
-            <td class="txt-right">
-              336,452.85
-            </td>
-            <td class="txt-right">
-              336,452.85
-            </td>
-            <td class="txt-right">
-              15/03/2557
-            </td>
-          </tr>
-          <tr class="summary">
-            <th colspan="3">
-              รวม : KFHEALTH-D
-            </th>
-            <th class="text-right">
-              689,748.84
-            </th>
-            <th class="text-right">
-              &nbsp;
-            </th>
-            <th class="text-right">
-              689,748.84
-            </th>
-            <th class="text-right">
-              689,748.84
-            </th>
-            <th class="text-right">
-              &nbsp;
-            </th>
-          </tr>
+          </tr> -->
+          <ng-container *ngFor="let list of reportlist | paginate: { itemsPerPage: 10, currentPage: p } ; let y = index">
+            <tr class="line" *ngIf="list.FundName">
+              <td colspan="8">
+                {{ list.FundName}}
+              </td>
+            </tr>
+            <tr class="bgforlhfund">
+              <td class="text-left">
+                {{list.XDDate | datethai}}
+              </td>
+              <td class="">
+                {{list.DividendPerUnit | tofix}}
+              </td>
+              <td class="txt-right">
+                {{list.BalanceUnit | tofix4}}
+              </td>
+              <td class="txt-right">
+                {{list.DividendAmount | tofix}}
+              </td>
+              <td class="txt-right">
+                <div *ngIf="list.DividendWithHoldingTax">หัก</div>
+                <div *ngIf="!list.DividendWithHoldingTax">ไม่หัก</div>
+              </td>
+              <td class="txt-right">
+                {{list.DividendWithHoldingTax | tofix}}
+              </td>
+              <td class="txt-right">
+                {{list.NetDividendAmount | tofix}}
+              </td>
+              <td class="txt-right">
+                {{list.PaymentDate | datethai}}
+              </td>
+            </tr>
+            <tr class="summary" *ngIf="list.balance">
+              <th colspan="3">
+                รวม : {{list.FundCode}}
+              </th>
+              <th class="text-right">
+                {{list.balance | tofix}}
+              </th>
+              <!-- <th class="text-right">
+                &nbsp;
+              </th> -->
+              <th class="text-right">
+                &nbsp;
+              </th>
+              <th class="text-right">
+                {{list.tax | tofix}}
+              </th>
+              <th class="text-right">
+                {{list.net | tofix}}
+              </th>
+              <th class="text-right">
+                &nbsp;
+              </th>
+            </tr>
 
-
+          </ng-container>
         </tbody>
       </table>
     </div>
+    <pagination-controls [autoHide]="true" (pageChange)="p = $event" *ngIf="reportlist"></pagination-controls>
+
+
   </div>
 </div>

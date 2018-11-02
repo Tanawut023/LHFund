@@ -29,7 +29,8 @@
           <div class="select-wrapper inline-block ">
             <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno">
               <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
-                }}</option>
+                }}
+              </option>
             </select>
           </div>
         </div>
@@ -43,7 +44,7 @@
           <p>{{ 'CONTENT.address' | translate }}</p>
           <span class="txt-middle">{{ userselect.ContactAddress}}</span>
         </div>
-        
+
       </div>
     </div>
   </div>
@@ -65,7 +66,7 @@
             </div>
           </div>
           <div class="col-md-3 col-6">
-            <button class="btn-med btn-primary">
+            <button class="btn-med btn-primary" [disabled]="loading" (click)="OnSubmitd()">
               {{ 'BUTTON.ok' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
@@ -85,7 +86,22 @@
           {{ 'NAVBAR.transaction-comfirmmation' | translate }}
         </h3>
         <ul>
-          <li>
+          <li *ngFor="let list of confirmlist; let i = index">
+            <div class="row">
+              <div class="col-md-10 col-9">
+                <a title="{{list.ConfirmationName}}">
+                  {{list.ConfirmationName}}
+                </a>
+              </div>
+              <div class="col-md-2 col-3">
+                <button class="btn-sm btn-download width50 " [disabled]="loading" (click)="download(i)">
+                  <p>Download</p>
+                  <img src="/assets/Images/icons/ico-download-white.png">
+                </button>
+              </div>
+            </div>
+          </li>
+          <!-- <li>
             <div class="row">
               <div class="col-md-10 col-9">
                 <a href="#" title="ชื่อเมนู">
@@ -114,25 +130,39 @@
                 </button>
               </div>
             </div>
-          </li>
-          <li>
-            <div class="row">
-              <div class="col-md-10 col-9">
-                <a href="#" title="ชื่อเมนู">
-                  (ชื่อ) ใบยืนยันการทำรายการ
-                </a>
-              </div>
-              <div class="col-md-2 col-3">
-                <button class="btn-sm btn-download width50 ">
-                  <p>Download</p>
-                  <img src="/assets/Images/icons/ico-download-white.png">
-                </button>
-              </div>
-            </div>
-          </li>
+          </li> -->
 
         </ul>
         <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <select class="selectpicker" data-live-search="true" title="กรุณาเลือก">
+  <option >Hot Dog, Fries and a Soda</option>
+  <option>Burger, Shake and a Smile</option>
+  <option>Sugar, Spice and all things nice</option>
+</select> -->
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="message" style="z-index: 9999;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">ดาวน์โหลดล้มเหลว</h4>
+      </div>
+      <div class="modal-body" id="content-scroll-1">
+        <h3>ไฟล์ไม่พร้อมใช้งาน</h3>
+      </div>
+      <div class="modal-footer" style="display: block;">
+        <div class="row justify-content-end">
+          <div class="col-sm-6">
+            <button class="btn-med btn-primary" data-dismiss="modal">
+              <p style="margin-top: 7px;">ตกลง
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </p>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

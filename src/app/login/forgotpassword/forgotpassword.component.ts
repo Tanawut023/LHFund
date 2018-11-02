@@ -88,11 +88,13 @@ export class ForgotpasswordComponent implements OnInit {
           error => {
             console.log(error);
             this.message = error.error.messages;
-            $('#message').modal({
-              backdrop: 'static',
-              keyboard: false,
-              show: true
-            });
+            setTimeout(() => {
+              $('#message').modal({
+                backdrop: 'static',
+                keyboard: false,
+                show: true
+              });
+            }, 100);
           });
 
 

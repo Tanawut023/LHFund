@@ -20,5 +20,21 @@ export class OrderService {
   changeunitholderswitching(params){
     return this.http.post(environment.serverUrl + '/api/order/changeunitholderswitching', null,{ params: params });
   }
+  
+  changefundsubscription(data){
+    return this.http.post(environment.serverUrl + '/api/order/changefundsubscription', data);
+  }
+
+  changefundredemption(data){
+    return this.http.post(environment.serverUrl + '/api/order/changefundredemption', data);
+  }
+
+  changefundswitchingsource(data){
+    return this.http.post(environment.serverUrl + '/api/order/changefundswitchingsource', data);
+  }
+
+  changefundswitchingdestination(data){
+    return this.http.post(environment.serverUrl + '/api/order/changefundswitchingdestination', data);
+  }
 
 }

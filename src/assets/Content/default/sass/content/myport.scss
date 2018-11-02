@@ -918,7 +918,7 @@ background-color: $color-secondary;
     }
     span{
         color: $color-primary;
-        display: block;
+        display: inline-block;
         @media screen and (max-width: 767px) {
             margin-bottom: 20px;
           }

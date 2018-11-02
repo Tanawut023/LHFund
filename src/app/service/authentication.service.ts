@@ -3,22 +3,21 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../environments/environment.prod';
+import { Router } from '@angular/router';
+import {AuthGuard} from './auth.guard'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  loggedIn = new BehaviorSubject<boolean>(false);
   public authTokenStale: string = 'stale_auth_token';
   public authTokenNew: string = 'new_auth_token';
   public currentToken: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+    private router: Router) {
     this.currentToken = this.authTokenStale;
 
-  }
-  isLoggedIn(): Observable<boolean> {
-    return this.loggedIn.asObservable();
   }
 
   login(data) {
@@ -33,7 +32,6 @@ export class AuthenticationService {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
           // localStorage.setItem('userInfo',  user['userInfo']);
-          this.loggedIn.next(true);
         }
         return user;
       }));
@@ -51,6 +49,7 @@ export class AuthenticationService {
 
     body.set('grant_type', 'refresh_token');
     body.set('refresh_token', this.getRefreshToken());
+    body.set('client_id', 'WebApp');
     const data = body.toString();
 
     const headers = new HttpHeaders();
@@ -58,17 +57,21 @@ export class AuthenticationService {
     
     console.log('test '+data)
     return this.http.post<any>(environment.serverUrl + '/authorize', data, { headers: headers })
-    // .pipe(map(user => {
-    //   console.log(user)
-    //   return user;
-    // }));
+    .pipe(map(user => {
+      if (user) {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('currentUser', JSON.stringify(user));
+      }
+      return user;
+    }));
   }
 
 
   logout() {
     // remove user from local storage to log user out
-    localStorage.clear();
-    this.loggedIn.next(false);
+    // this.loggedIn.next(false);
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('userInfo');
 
   }
 

@@ -82,6 +82,13 @@
             </div>
           </div>
 
+          <!-- <select class="selectpicker" data-live-search="true" title="กรุณาเลือก">
+            <option >Hot Dog, Fries and a Soda</option>
+            <option>Burger, Shake and a Smile</option>
+            <option>Sugar, Spice and all things nice</option>
+          </select> -->
+          
+
         </div>
 
 
@@ -98,7 +105,7 @@
           <div class="col-md-3 col-6">
             <div class="select-wrapper inline-block">
 
-              <select name="type" id="type">
+              <select name="type" id="type" title="กรุณาเลือก">
                 <option value="0" selected="" disabled>กรุณาเลือก</option>
                 <option value="บาท">บาท</option>
                 <option value="หน่วย">หน่วย</option>
@@ -115,11 +122,11 @@
           </div>
           <div class="col-md-6">
             <div class="select-wrapper inline-block">
-                <select id="banklist" [(ngModel)]="banklist" name="banklist" (ngModelChange)="banklistonChange()">
-                    <option [ngValue]="banklist" *ngFor="let banklist of unitholdersubscription.bankaccountlist; let i = index">
-                      {{ banklist.BankName }}
-                    </option>
-                </select>
+              <select id="banklist" [(ngModel)]="banklist" name="banklist" (ngModelChange)="banklistonChange()">
+                <option [ngValue]="banklist" *ngFor="let banklist of unitholdersubscription.bankaccountlist; let i = index">
+                  {{ banklist.BankName }}
+                </option>
+              </select>
             </div>
           </div>
         </div>
@@ -130,8 +137,16 @@
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="input-wrapper">
-              <input class=" textinput dateinput bg-gray" [(ngModel)]="datepick" ngbDatepicker #d="ngbDatepicker" id="startDate" placeholder="วว/ดด/ปปปป"
-                name="startDate" type="text" (click)="d.toggle()">
+              <input class=" textinput dateinput bg-gray" 
+              [(ngModel)]="datepick" 
+              [minDate]="minDate" 
+              ngbDatepicker 
+              #d="ngbDatepicker" 
+              id="startDate" 
+              placeholder="วว/ดด/ปปปป"
+              name="startDate" 
+              type="text" 
+              (click)="d.toggle()">
             </div>
           </div>
         </div>
@@ -139,7 +154,7 @@
 
         <div class="row">
           <div class="col-md-3 col-6 offset-md-4">
-            <button class="btn-med btn-primary" (click)="checkpage('purchase-step1')">
+            <button class="btn-med btn-primary" (click)="onSubmit()">
               {{ 'BUTTON.ok' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
@@ -899,6 +914,31 @@
           </div>
         </div>
       </div>
+      
     </div>
   </div>
 </div>
+
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="message" style="z-index: 9999;">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">คำเตือน</h4>
+        </div>
+        <div class="modal-body" id="content-scroll-1">
+          <h3>{{ message }}</h3>
+        </div>
+        <div class="modal-footer" style="display: block;">
+          <div class="row justify-content-end">
+            <div class="col-sm-6">
+              <button class="btn-med btn-primary" data-dismiss="modal" (click)="checkpage('purchase-step1')" >
+                <p style="margin-top: 7px;">ตกลง
+                  <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </p>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

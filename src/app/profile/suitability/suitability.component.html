@@ -37,22 +37,21 @@
                 </div>
                 <div class="col-md-3">
                     <p>{{ 'CONTENT.eval-date' | translate }}</p>
-                    <span class="txt-middle">{{ userselect?.unitholder?.RiskLevel1LastUpdated}}</span>
+                    <span class="txt-middle">{{ riskprofile?.RiskProfileDate | datethai}}</span>
                 </div>
                 <div class="col-md-3">
                     <p>{{ 'CONTENT.expired-date' | translate }}</p>
-                    <span class="txt-middle">7 มิถุนายน 2561</span>
+                    <span class="txt-middle">{{ riskprofile?.CreateDate | expiresdatethai}}</span>                    
                 </div>
             </div>
             <div class="row mt-md-3">
                 <div class="col-md-3">
                     <p>{{ 'CONTENT.your-risk-socre' | translate }}</p>
-                    <span class="txt-middle">-</span>
+                    <span class="txt-middle">{{ riskprofile?.RiskProfileScore}}</span>
                 </div>
                 <div class="col-md-3">
                     <p>{{ 'CONTENT.your-investor-level' | translate }}</p>
-                    <span class="txt-middle" *ngIf="userselect.UnitholderInfo">{{ userselect?.UnitholderInfo?.RiskLevel1}}</span>
-                    <span class="txt-middle">{{ userselect?.unitholder?.RiskLevel1}}</span>
+                    <span class="txt-middle">{{ riskprofile?.RiskProfileLevel}}</span>
                 </div>
             </div>
             <div class="row justify-content-center mb-3 mt-lg-4">
@@ -137,8 +136,7 @@
 
     </div>
     <div class="open-account-wrapper">
-        <form name="form2" data-toggle="validator" role="form" method="post">
-            <!-- -->
+        <form [formGroup]="form">
             <div class="open-account-box">
                 <div class="title-box">
                     <h3 class="sub-title -main-color">มีคำถามทั้งหมด 11 ข้อ
@@ -147,741 +145,32 @@
                 </div>
                 <div class="wrap-container">
                     <div class="wrap-suitability">
-                        <div class="choice-wrap -select-type">
-                            <div class="row">
-                                <div class="col-md-6 active" id="personal">
-                                    <div class="form-group">
-                                        <div class="label-txt">
-                                            <div class="form-check">
-                                                <!--RADIO 1-->
-                                                <div class="custom-radio-between">
-                                                    <input value="10" id="size10" name="account-type" type="radio" checked (click)="checktype($event)">
-                                                    <label for="size10" class="mt-2"></label>
-                                                    <label for="size10" class="item">
-                                                        <img src="/assets/Images/icons/Person-icon.png">
-                                                        <!-- <img src="/assets/Images/icons/person-active.png"> -->
-                                                        <span>บุคคลธรรมดา</span>
-                                                    </label>
-                                                </div>
-                                                <!-- <input type="radio" value="10" id="size10" name="account-type" checked="checked" (click)="checktype($event)"/> -->
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="question-wrapper">
-                                                <span>1. ปัจจุบันท่านอายุเท่าไร</span>
-                                            </div>
-                                            <div class="answer-wrapper" id="answerP1">
-                                                <div class="row">
-                                                    <div class="col-sm-6 col-md-6">
-                                                        <div class="custom-radio-between">
-                                                            <input value="a_1" id="a_1" name="q_1" type="radio">
-                                                            <!-- <input id="b_1" type="radio" name="q_1" value="b_1" required class="form-check-input rdo_custom" /> -->
-                                                            <label for="a_1"></label>
-                                                            <!-- <p >หนังสือรับรองฯ ขายคืน RMF</p> -->
-                                                            <label for="a_1" class="control-label">เกิน 60 ปี</label>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-sm-6 col-md-6">
-                                                        <div class="custom-radio-between">
-                                                            <input id="b_1" type="radio" name="q_1" value="b_1" required class="form-check-input rdo_custom" />
-                                                            <label for="b_1"></label>
-                                                            <label for="b_1" class="title-fill control-label lbl_custom">50
-                                                                - 60 ปี</label>
-
-                                                        </div>
-
-
-                                                    </div>
-
-                                                    <div class="col-sm-6 col-md-6">
-                                                        <div class="custom-radio-between">
-                                                            <input id="c_1" type="radio" name="q_1" value="c_1" required class="form-check-input rdo_custom" />
-                                                            <label for="c_1"></label>
-                                                            <label for="c_1" class="title-fill control-label lbl_custom">35
-                                                                - 49 ปี</label>
-
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-sm-6 col-md-6">
-                                                        <div class="custom-radio-between">
-                                                            <input id="d_1" type="radio" name="q_1" value="d_1" required class="form-check-input rdo_custom" />
-                                                            <label for="d_1"></label>
-                                                            <label for="d_1" class="title-fill control-label lbl_custom">ต่ำกว่า
-                                                                35 ปี</label>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-12">
-                                            <div class="question-wrapper">
-                                                <span>2. ระดับการศึกษาของท่าน</span>
-                                            </div>
-                                            <div class="answer-wrapper" id="answerP2">
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <div class="custom-radio-between">
-                                                            <input id="a_2" type="radio" name="q_2" value="a_2" required class="form-check-input rdo_custom" />
-                                                            <label for="a_2"></label>
-                                                            <label for="a_2" class="title-fill control-label lbl_custom">น้อยกว่าปริญญาตรี</label>
-
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-sm-12">
-                                                        <div class="custom-radio-between">
-                                                            <input id="b_2" type="radio" name="q_2" value="b_2" required class="form-check-input rdo_custom" />
-                                                            <label for="b_2"></label>
-                                                            <label for="b_2" class="title-fill control-label lbl_custom">ตั้งแต่ปริญญาตรีขึ้นไป</label>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6" id="company">
-                                    <div class="form-group">
-                                        <div class="label-txt">
-                                            <div class="form-check">
-                                                <!--RADIO 2-->
-                                                <div class="custom-radio-between">
-                                                    <input value="15" id="size15" name="account-type" type="radio" (click)="checktype($event)">
-                                                    <label for="size15" class="mt-2"></label>
-                                                    <label for="size15" class="item">
-                                                        <img src="/assets/Images/icons/juristic person icon.png">
-                                                        <!-- <img src="/assets/Images/icons/person-active.png"> -->
-                                                        <span>นิติบุคคล</span>
-                                                    </label>
-                                                </div>
-                                                <!-- <input type="radio" value="15" id="size15" name="account-type" (click)="checktype($event)" />
-                                            <label for="size15" class="item">
-                                                <img src="/assets/Images/icons/juristic person icon.png">
-                                                <span>นิติบุคคล</span>
-                                            </label> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="question-wrapper">
-                                                <span>1. ธุรกิจก่อตั้งขึ้นมาเป็นระยะเวลาเท่าไหร่</span>
-                                            </div>
-                                            <div class="answer-wrapper" id="answerC1">
-                                                <div class="row">
-                                                    <div class="col-sm-6 col-md-6">
-                                                        <div class="custom-radio-between">
-                                                            <input value="qca_1" id="qca_1" name="qc1" type="radio">
-                                                            <label for="qca_1"></label>
-                                                            <label for="qca_1" class="control-label">1 - 3 ปี</label>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-sm-6 col-md-6">
-                                                        <div class="custom-radio-between">
-                                                            <input id="qcb_1" type="radio" name="qc1" value="qcb_1" required class="form-check-input rdo_custom" />
-                                                            <label for="qcb_1"></label>
-                                                            <label for="qcb_1" class="title-fill control-label lbl_custom">2
-                                                                - 6 ปี</label>
-
-                                                        </div>
-
-
-                                                    </div>
-
-                                                    <div class="col-sm-6 col-md-6">
-                                                        <div class="custom-radio-between">
-                                                            <input id="qcc_1" type="radio" name="qc1" value="qcc_1" required class="form-check-input rdo_custom" />
-                                                            <label for="qcc_1"></label>
-                                                            <label for="qcc_1" class="title-fill control-label lbl_custom">7
-                                                                - 10 ปี</label>
-
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-sm-6 col-md-6">
-                                                        <div class="custom-radio-between">
-                                                            <input id="qcd_1" type="radio" name="qc1" value="qcd_1" required class="form-check-input rdo_custom" />
-                                                            <label for="qcd_1"></label>
-                                                            <label for="qcd_1" class="title-fill control-label lbl_custom">10
-                                                                ปีขึ้นไป
-                                                            </label>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-12">
-                                            <div class="question-wrapper">
-                                                <span>2. ประเภทธุรกิจ</span>
-                                            </div>
-                                            <div class="answer-wrapper" id="answerC2">
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <div class="custom-radio-between">
-                                                            <input id="qca_2" type="radio" name="qc2" value="qca_2" required class="form-check-input rdo_custom" />
-                                                            <label for="qca_2"></label>
-                                                            <label for="qca_2" class="title-fill control-label lbl_custom">สถาบันการเงิน</label>
-
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-sm-12">
-                                                        <div class="row">
-                                                            <div class="col-md-2">
-                                                                <div class="custom-radio-between">
-                                                                    <input id="qcb_2" type="radio" name="qc2" value="qcb_2" required class="form-check-input rdo_custom" />
-                                                                    <label for="qcb_2"></label>
-                                                                    <label for="qcb_2" class="title-fill control-label lbl_custom">อื่นๆ</label>
-                                                                </div>
-
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="input-wrapper ">
-                                                                    <input id="name" name="name" maxlength="30" type="text" class="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="choice-wrap">
+                        <div class="row" *ngFor="let question of suitest.question; let y = index">
+                            <div class="choice-wrap" *ngIf="suitest">
                                 <div class="col-md-12">
                                     <div class="question-wrapper">
-                                        <span>3. ประสบการณ์การลงทุนในหลักทรัพย์ของท่าน (หลักทรัพย์ หมายถึง หน่วยลงทุน, หุ้นกู้,
-                                            หุ้น, พันธบัตรรัฐบาล และตราสารอนุพันธ์)</span>
-                                    </div>
-                                    <div class="answer-wrapper">
-                                        <div class="row">
-                                            <div class="col-sm-12 col-md-3">
-                                                <div class="custom-radio-between">
-                                                    <input id="a_3" type="radio" name="q_3" value="a_3" required class="form-check-input rdo_custom" />
-                                                    <label for="a_3"></label>
-                                                    <label for="a_3" class="title-fill control-label lbl_custom">
-                                                        ไม่มี</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-12 col-md-3">
-                                                <div class="custom-radio-between">
-                                                    <input id="b_3" type="radio" name="q_3" value="b_3" required class="form-check-input rdo_custom" />
-                                                    <label for="b_3"></label>
-                                                    <label for="b_3" class="title-fill control-label lbl_custom">
-                                                        น้อยกว่า 1 ปี</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-12 col-md-3">
-                                                <div class="custom-radio-between">
-                                                    <input id="c_3" type="radio" name="q_3" value="c_3" required class="form-check-input rdo_custom" />
-                                                    <label for="c_3"></label>
-                                                    <label for="c_3" class="title-fill control-label lbl_custom">
-                                                        1 - 5 ปี</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-12 col-md-3">
-                                                <div class="custom-radio-between">
-                                                    <input id="d_3" type="radio" name="q_3" value="d_3" required class="form-check-input rdo_custom" />
-                                                    <label for="d_3"></label>
-                                                    <label for="d_3" class="title-fill control-label lbl_custom">
-                                                        มากกว่า 5 ปี</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 3 -->
-
-                        <div class="row">
-                            <div class="choice-wrap">
-                                <div class="col-md-12">
-                                    <div class="question-wrapper">
-                                        <span>4. ระยะเวลาที่ท่านคาดว่าไม่จำเป็นต้องใช้เงินลงทุนในส่วนนี้</span>
-                                    </div>
-                                    <div class="answer-wrapper">
-                                        <div class="row">
-                                            <div class="col-sm-12 col-md-3">
-                                                <div class="custom-radio-between">
-                                                    <input id="a_4" type="radio" name="q_4" value="a_4" required class="form-check-input rdo_custom" />
-                                                    <label for="a_4"></label>
-                                                    <label for="a_4" class="title-fill control-label lbl_custom">
-                                                        น้อยกว่า 1 ปี</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-12 col-md-3">
-                                                <div class="custom-radio-between">
-                                                    <input id="b_4" type="radio" name="q_4" value="b_4" required class="form-check-input rdo_custom" />
-                                                    <label for="b_4"></label>
-                                                    <label for="b_4" class="title-fill control-label lbl_custom">
-                                                        1 - 3 ปีี</label>
-                                                    <div class="check"></div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-12 col-md-3">
-                                                <div class="custom-radio-between">
-                                                    <input id="c_4" type="radio" name="q_4" value="c_4" required class="form-check-input rdo_custom" />
-                                                    <label for="c_4"></label>
-                                                    <label for="c_4" class="title-fill control-label lbl_custom">
-                                                        3 - 7 ปี</label>
-                                                    <div class="check"></div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-12 col-md-3">
-                                                <div class="custom-radio-between">
-                                                    <input id="d_4" type="radio" name="q_4" value="d_4" required class="form-check-input rdo_custom" />
-                                                    <label for="d_4"></label>
-                                                    <label for="d_4" class="title-fill control-label lbl_custom">
-                                                        มากกว่า 7 ปี</label>
-                                                    <div class="check"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 4 -->
-
-                        <div class="row">
-                            <div class="choice-wrap">
-
-                                <div class="col-md-12">
-                                    <div class="question-wrapper">
-                                        <span>5. ท่านต้องการรายได้จากเงินลงทุนในส่วนนี้เพื่อเป็นค่าใช้จ่ายประจำหรือไม่</span>
-                                    </div>
-                                    <div class="answer-wrapper">
-                                        <div class="row">
-                                            <div class="col-sm-12 col-md-3">
-                                                <div class="custom-radio-between">
-                                                    <input id="a_5" type="radio" name="q_5" value="a_5" required class="form-check-input rdo_custom" />
-                                                    <label for="a_5"></label>
-                                                    <label for="a_5" class="title-fill control-label lbl_custom">
-                                                        ต้องการมากที่สุด</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-12 col-md-3">
-                                                <div class="custom-radio-between">
-                                                    <input id="b_5" type="radio" name="q_5" value="b_5" required class="form-check-input rdo_custom" />
-                                                    <label for="b_5"></label>
-                                                    <label for="b_5" class="title-fill control-label lbl_custom">
-                                                        ต้องการบ้าง</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-12 col-md-3">
-                                                <div class="custom-radio-between">
-                                                    <input id="c_5" type="radio" name="q_5" value="c_5" required class="form-check-input rdo_custom" />
-                                                    <label for="c_5"></label>
-                                                    <label for="c_5" class="title-fill control-label lbl_custom">
-                                                        ต้องการเพียงเล็กน้อย</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-12 col-md-3">
-                                                <div class="custom-radio-between">
-                                                    <input id="d_5" type="radio" name="q_5" value="d_5" required class="form-check-input rdo_custom" />
-                                                    <label for="d_5"></label>
-                                                    <label for="d_5" class="title-fill control-label lbl_custom">
-                                                        ไม่มีความต้องการ</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 5 -->
-
-                        <div class="row">
-                            <div class="choice-wrap">
-                                <div class="col-md-12">
-                                    <div class="question-wrapper">
-                                        <span>6. สัดส่วนเงินลงทุนในส่วนนี้เมื่อเทียบกับทรัพย์สินของท่าน</span>
-                                    </div>
-                                    <div class="answer-wrapper">
-                                        <div class="row">
-                                            <div class="col-sm-12 col-md-3">
-                                                <div class="custom-radio-between">
-                                                    <input id="a_6" type="radio" name="q_6" value="a_6" required class="form-check-input rdo_custom" />
-                                                    <label for="a_6"></label>
-                                                    <label for="a_6" class="title-fill control-label lbl_custom">
-                                                        มากกว่าร้อยละ 60</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-12 col-md-3">
-                                                <div class="custom-radio-between">
-                                                    <input id="b_6" type="radio" name="q_6" value="b_6" required class="form-check-input rdo_custom" />
-                                                    <label for="b_6"></label>
-                                                    <label for="b_6" class="title-fill control-label lbl_custom">
-                                                        ร้อยละ 30 - 60 ปี</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-12 col-md-3">
-                                                <div class="custom-radio-between">
-                                                    <input id="c_6" type="radio" name="q_6" value="c_6" required class="form-check-input rdo_custom" />
-                                                    <label for="c_6"></label>
-                                                    <label for="c_6" class="title-fill control-label lbl_custom">
-                                                        ร้อยละ 10 - 30 ปี</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-12 col-md-3">
-                                                <div class="custom-radio-between">
-                                                    <input id="d_6" type="radio" name="q_6" value="d_6" required class="form-check-input rdo_custom" />
-                                                    <label for="d_6"></label>
-                                                    <label for="d_6" class="title-fill control-label lbl_custom">
-                                                        น้อยกว่าร้อยละ 10</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 6 -->
-
-                        <div class="row">
-                            <div class="choice-wrap">
-                                <div class="col-md-12">
-                                    <div class="question-wrapper">
-                                        <span>7. ทัศนคติเกี่ยวกับการลงทุนของท่าน</span>
-                                    </div>
-                                    <div class="answer-wrapper">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-md-6">
-                                                <div class="custom-radio-between">
-                                                    <input id="a_7" type="radio" name="q_7" value="a_7" required class="form-check-input rdo_custom" />
-                                                    <label for="a_7"></label>
-                                                    <label for="a_7" class="title-fill control-label lbl_custom">ไม่สามารถทนต่อการขาดทุนเงินต้นได้เลย
-                                                        แม้ว่าจะมีโอกาสได้รับผลตอบแทนที่สูงขึ้นบ้าง
-                                                    </label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-6 col-md-6">
-                                                <div class="custom-radio-between">
-                                                    <input id="b_7" type="radio" name="q_7" value="b_7" required class="form-check-input rdo_custom" />
-                                                    <label for="b_7"></label>
-                                                    <label for="b_7" class="title-fill control-label lbl_custom">สามารถทนต่อการขาดทุนเงินต้นได้เล็กน้อย
-                                                        เพื่อมีโอกาสได้รับผลตอบแทนที่สูงขึ้นบ้าง
-                                                    </label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-6 col-md-6">
-                                                <div class="custom-radio-between">
-                                                    <input id="c_7" type="radio" name="q_7" value="c_7" required class="form-check-input rdo_custom" />
-                                                    <label for="c_7"></label>
-                                                    <label for="c_7" class="title-fill control-label lbl_custom">สามารถทนต่อการขาดทุนเงินต้นได้
-                                                        เพื่อมีโอกาสได้รับผลตอบแทนที่สูงขึ้น
-                                                    </label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-6 col-md-6">
-                                                <div class="custom-radio-between">
-                                                    <input id="d_7" type="radio" name="q_7" value="d_7" required class="form-check-input rdo_custom" />
-                                                    <label for="d_7"></label>
-                                                    <label for="d_7" class="title-fill control-label lbl_custom">อยากได้ผลตอบแทนที่สูง
-                                                        โดยไม่มีข้อจำกัดในการลงทุน
-                                                    </label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 7 -->
-
-                        <div class="row">
-                            <div class="choice-wrap">
-                                <div class="col-md-12">
-                                    <div class="question-wrapper">
-                                        <span>8. การลงทุนในหลักทรัพย์ที่มีความผันผวนสูง มักให้ผลตอบแทนที่สูงในระยะยาวแต่มีความเสี่ยงที่จะทำให้ขาดทุนได้มากขึ้นได้เช่นกัน
-                                            ท่านสามารถรับความเสี่ยงจากการลงทุนได้ในระดับใด
-                                        </span>
-                                    </div>
-                                    <div class="answer-wrapper">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-md-6">
-                                                <div class="custom-radio-between">
-                                                    <input id="a_8" type="radio" name="q_8" value="a_8" required class="form-check-input rdo_custom" />
-                                                    <label for="a_8"></label>
-                                                    <label for="a_8" class="title-fill control-label lbl_custom">
-                                                        น้อยที่สุด โดยต้องการเน้นการลงทุนที่สร้างกระแสรายได้ประจำและให้ความปลอดภัยในการลงทุนสูงสุด แม้ว่าจะได้รับผลตอบแทนในระดับต่ำที่สุด</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-6 col-md-6">
-                                                <div class="custom-radio-between">
-                                                    <input id="b_8" type="radio" name="q_8" value="b_8" required class="form-check-input rdo_custom" />
-                                                    <label for="b_8"></label>
-                                                    <label for="b_8" class="title-fill control-label lbl_custom">
-                                                        รับได้ในระดับหนึ่ง โดยสามารถรับความเสี่ยงในการขาดทุนจากการลงทุนได้บ้างเพื่อเพิ่มโอกาสที่จะได้รับผลตอบแทนที่สูงขึ้นในระยะยาว</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-6 col-md-6">
-                                                <div class="custom-radio-between">
-                                                    <input id="c_8" type="radio" name="q_8" value="c_8" required class="form-check-input rdo_custom" />
-                                                    <label for="c_8"></label>
-                                                    <label for="c_8" class="title-fill control-label lbl_custom">
-                                                        ปานกลาง โดยสามารถรับความเสี่ยงได้พอสมควรเพื่อสร้างโอกาสในการได้รับผลตอบแทนที่สูงกว่าในระยะยาว</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-6 col-md-6">
-                                                <div class="custom-radio-between">
-                                                    <input id="d_8" type="radio" name="q_8" value="d_8" required class="form-check-input rdo_custom" />
-                                                    <label for="d_8"></label>
-                                                    <label for="d_8" class="title-fill control-label lbl_custom">
-                                                        มาก โดยสามารถรับความเสี่ยงได้สูงสุดเพื่อสร้างโอกาสในการได้รับผลตอบแทนที่สูงสุดในระยะยาว</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 8 -->
-
-                        <div class="row">
-                            <div class="choice-wrap">
-                                <div class="col-md-12">
-                                    <div class="question-wrapper">
-                                        <span>9. ในบางช่วงเวลา การลงทุนโดยเน้นความปลอดภัยของเงินลงทุนจะให้ผลตอบแทนในระดับที่ต่ำกว่าเงินเฟ้อ
-                                            ซึ่งอาจจะทำให้อำนวจในการซื้อลดลงได้เมื่อพิจารณาถึงเป้าหมายในการลงทุนของท่าน ข้อใดต่อไปนี้ตรงกับท่านมากที่สุด
-                                        </span>
-                                    </div>
-                                    <div class="answer-wrapper">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-md-6">
-                                                <div class="custom-radio-between">
-                                                    <input id="a_9" type="radio" name="q_9" value="a_9" required class="form-check-input rdo_custom" />
-                                                    <label for="a_9"></label>
-                                                    <label for="a_9" class="title-fill control-label lbl_custom">
-                                                        เงินต้นสำหรับการลงทุนต้องปลอดภัย แม้ว่าจะได้รับผลตอบแทนต่ำกว่าอัตราเงินเฟ้อ</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-6 col-md-6">
-                                                <div class="custom-radio-between">
-                                                    <input id="b_9" type="radio" name="q_9" value="b_9" required class="form-check-input rdo_custom" />
-                                                    <label for="b_9"></label>
-                                                    <label for="b_9" class="title-fill control-label lbl_custom">
-                                                        รับความเสี่ยงในการสูญเสียเงินต้นได้บ้าง เพื่นคงระดับอัตราผลตอบแทนจากการลงทุนให้สูงกว่าอัตราเงินเฟ้อ</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-6 col-md-6">
-                                                <div class="custom-radio-between">
-                                                    <input id="c_9" type="radio" name="q_9" value="c_9" required class="form-check-input rdo_custom" />
-                                                    <label for="c_9"></label>
-                                                    <label for="c_9" class="title-fill control-label lbl_custom">
-                                                        เน้นสร้างผลตอบแทนให้สูงกว่าระดับเงินเฟ้อในระดับหนึ่ง โดยสามารถรับความเสี่ยงได้</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-6 col-md-6">
-                                                <div class="custom-radio-between">
-                                                    <input id="d_9" type="radio" name="q_9" value="d_9" required class="form-check-input rdo_custom" />
-                                                    <label for="d_9"></label>
-                                                    <label for="d_9" class="title-fill control-label lbl_custom">
-                                                        ต้องการให้ผลตอบแทนสูงกว่าระดับเงินเฟ้อมากที่สุด โดยสามารถรับความเสี่ยงได้เต็มที่</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 9 -->
-
-                        <div class="row">
-                            <div class="choice-wrap">
-                                <div class="col-md-12">
-                                    <div class="question-wrapper">
-                                        <span>10. ท่านคิดว่าท่านจะยอมรับผลขาดทุน จากการลงทุนในกองทุนรวมได้มากเพียงใด</span>
-                                    </div>
-                                    <div class="answer-wrapper">
-                                        <div class="row">
-                                            <div class="col-sm-12 col-md-3">
-                                                <div class="custom-radio-between">
-                                                    <input id="a_10" type="radio" name="q_10" value="a_10" required class="form-check-input rdo_custom" />
-                                                    <label for="a_10"></label>
-                                                    <label for="a_10" class="title-fill control-label lbl_custom">
-                                                        ต่ำกว่าร้อยละ 10</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-12 col-md-3">
-                                                <div class="custom-radio-between">
-                                                    <input id="b_10" type="radio" name="q_10" value="b_10" required class="form-check-input rdo_custom" />
-                                                    <label for="b_10"></label>
-                                                    <label for="b_10" class="title-fill control-label lbl_custom">
-                                                        ร้อยละ 10 - 20</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-12 col-md-3">
-                                                <div class="custom-radio-between">
-                                                    <input id="c_10" type="radio" name="q_10" value="c_10" required class="form-check-input rdo_custom" />
-                                                    <label for="c_10"></label>
-                                                    <label for="c_10" class="title-fill control-label lbl_custom">
-                                                        ร้อยละ 20 - 50</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-12 col-md-3">
-                                                <div class="custom-radio-between">
-                                                    <input id="d_10" type="radio" name="q_10" value="d_10" required class="form-check-input rdo_custom" />
-                                                    <label for="d_10"></label>
-                                                    <label for="d_10" class="title-fill control-label lbl_custom">
-                                                        มากกว่าร้อยละ 50</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 10 -->
-
-                        <div class="row">
-                            <div class="choice-wrap">
-                                <div class="col-md-12">
-                                    <div class="question-wrapper">
-                                        <span class="color-red">คำถามข้อ 11 ใช้เป็นข้อมูลเพิ่มเติมเพื่อประกอบการให้คำแนะนำ</span>
+                                        <span class="color-red" *ngIf="y == 10">คำถามข้อ 11 ใช้เป็นข้อมูลเพิ่มเติมเพื่อประกอบการให้คำแนะนำ</span>
                                         <br/>
-                                        <span>11. สำหรับการลงทุน ในกองทุนรวมที่มีนโยบายการลงทุนในต่างประเทศตั้งแต่ร้อยละ
-                                            20 ของ NAV ท่านสามารถรับความเสี่ยงด้านอัตราแลกเปลี่ยนได้หรือไม่</span>
+                                        <span>{{y+1}}. {{ question.Name }}</span>
                                     </div>
                                     <div class="answer-wrapper">
                                         <div class="row">
-                                            <div class="col-6 col-md-3">
+                                            <div class="col-12 col-lg-6 form-group" *ngFor="let Answers of question.Answers; let i = index">
                                                 <div class="custom-radio-between">
-                                                    <input id="a_11" type="radio" name="q_11" value="a_11" required class="form-check-input rdo_custom" />
-                                                    <label for="a_11"></label>
-                                                    <label for="a_11" class="title-fill control-label lbl_custom">
-                                                        ได้</label>
-                                                    <!-- <div class="check"></div> -->
+                                                    <input id="{{y}}-{{i}}" type="radio" [value]="Answers" name="choice{{y}}" formControlName="choice{{y}}" required class="form-check-input rdo_custom"
+                                                    />
+                                                    <label for="{{y}}-{{i}}"></label>
+                                                    <label for="{{y}}-{{i}}" class="title-fill control-label lbl_custom">
+                                                        {{Answers.Name}}</label>
                                                 </div>
                                             </div>
-
-                                            <div class="col-6 col-md-3">
-                                                <div class="custom-radio-between">
-                                                    <input id="b_11" type="radio" name="q_11" value="b_11" required class="form-check-input rdo_custom" />
-                                                    <label for="b_11"></label>
-                                                    <label for="b_11" class="title-fill control-label lbl_custom">
-                                                        ไม่ได้</label>
-                                                    <!-- <div class="check"></div> -->
-                                                </div>
-                                            </div>
-
                                         </div>
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
-                        <!-- 11 -->
-
-                        <div class="row" *ngFor="let question of suitest.question; let y = index" >
-                                <div class="choice-wrap" *ngIf="suitest">
-                                    <div class="col-md-12">
-                                        <div class="question-wrapper">
-                                            <span class="color-red"  *ngIf="y == 10">คำถามข้อ 11 ใช้เป็นข้อมูลเพิ่มเติมเพื่อประกอบการให้คำแนะนำ</span>
-                                            <br/>
-                                            <span>{{y+1}}. {{ question.Name }}</span>
-                                        </div>
-                                        <div class="answer-wrapper">
-                                            <div class="row" >
-                                                <div class="col-12 col-lg-6" *ngFor="let Answers of question.Answers; let i = index" >
-                                                    <div class="custom-radio-between">
-                                                        <input id="{{y}}-{{i}}" type="radio" name="{{y}}"  required class="form-check-input rdo_custom" />
-                                                        <label for="{{y}}-{{i}}"></label>
-                                                        <label for="{{y}}-{{i}}" class="title-fill control-label lbl_custom">
-                                                            {{Answers.Name}}</label>
-                                                        <!-- <div class="check"></div> -->
-                                                    </div>
-                                                </div>
-    
-                                                <!-- <div class="col-6 col-md-3">
-                                                    <div class="custom-radio-between">
-                                                        <input id="b_11" type="radio" name="q_11" value="b_11" required class="form-check-input rdo_custom" />
-                                                        <label for="b_11"></label>
-                                                        <label for="b_11" class="title-fill control-label lbl_custom">
-                                                            ไม่ได้</label>
-                                                    </div>
-                                                </div> -->
-    
-                                            </div>
-                                        </div>
-    
-    
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- for -->
+                        <!-- for -->
 
 
                         <div class="row justify-content-center">
@@ -947,7 +236,7 @@
 
                             <div class="col-sm-12">
                                 <div class="score-content">
-                                    <div class="score-display">27</div>
+                                    <div class="score-display">{{ resulttest.Score }}</div>
                                 </div>
                             </div>
 
@@ -973,7 +262,7 @@
                                     </div>
                                     <div class="col-md-4 col-4 no-padding">
                                         <div class="title-heading bg-green">
-                                            <h3 class="text-center">3</h3>
+                                            <h3 class="text-center">{{ resulttest.RiskProfile }}</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -987,7 +276,7 @@
                                     </div>
                                     <div class="col-md-4 col-4 no-padding">
                                         <div class="title-heading">
-                                            <h3 class="text-center">1-5</h3>
+                                            <h3 class="text-center">{{ resulttest.RiskCriteria }}</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -1001,7 +290,8 @@
                                     </div>
                                     <div class="col-md-4 col-4 no-padding">
                                         <div class="title-heading bg-blue">
-                                            <h3 class="text-center">ได้</h3>
+                                            <h3 class="text-center" *ngIf="resulttest.IsAcceptRisk">ได้</h3>
+                                            <h3 class="text-center" *ngIf="!resulttest.IsAcceptRisk">ไม่ได้</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -1009,10 +299,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12">
+                <div class="col-sm-12" *ngIf="show">
                     <div class="row mt-3 justify-content-center">
                         <div class="col-md-2 col-6">
-                            <button class="btn-med btn-primary" (click)="openmodal()">
+                            <button class="btn-med btn-primary" (click)="summitriskprofile()">
                                 {{ 'BUTTON.accept' | translate }}
                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
 
@@ -1299,3 +589,80 @@
 
 </div>
 <!-- suitability-score -->
+
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" style="z-index: 9999;" id="otpsuitest">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title">{{ 'LOGIN.otp' | translate }}</h4>
+            </div>
+            <div class="modal-body" id="content-scroll-1">
+                <form [formGroup]="formotp">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p>{{ 'LOGIN.otp-send' | translate }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="input-wrapper">
+                                <input id="tel" name="tel" maxlength="30" type="text" [value]="resultsubmit?.mobile" disabled class="bg-gray">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="btn-wrapper" style="margin: 0;">
+                                <button class="btn-med btn-blue" (click)="requestotp()">
+                                    {{ 'BUTTON.otp' | translate }}
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>{{ 'LOGIN.otp-receive' | translate }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss1('otp')">
+                            <div class="input-wrapper">
+                                <input class="bg-gray" id="otp" name="otp" maxlength="6" type="text" formControlName="otp" (keypress)="numberOnly($event)">
+                                <div class="form-control-feedback" *ngIf="this.formotp.controls.otp.errors && ( this.formotp.controls.otp.touched)">
+                                    <p *ngIf="this.formotp.controls.otp.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                                    <!-- <p *ngIf="this.form.controls.otp.errors.pattern">ข้อมูลไม่ถูกต้อง</p> -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pb-4">
+                        <div class="col-md-12">
+                            <p>{{ 'LOGIN.otp-request' | translate }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3 justify-content-center">
+                        <div class="col-md-4 col-6">
+                            <button class="btn-med btn-primary" (click)="updatesuitest()">
+                                {{ 'BUTTON.confirm' | translate }}
+                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div class="col-md-4 col-6">
+                            <button class="btn-med btn-cancel" data-dismiss="modal">
+                                {{ 'BUTTON.cancel' | translate }}
+                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

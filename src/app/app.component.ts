@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import {TranslateService} from '@ngx-translate/core';
-import { Observable } from 'rxjs';
-import { AuthenticationService } from './service/authentication.service';
+import { TranslateService } from '@ngx-translate/core';
+import { Observable, Subscription } from 'rxjs';
+import { AuthGuard } from './service/auth.guard';
 
 
 @Component({
@@ -13,23 +13,27 @@ import { AuthenticationService } from './service/authentication.service';
 export class AppComponent implements OnInit {
   title = 'app';
   isLoggedIn: Observable<boolean>;
+  supscription: Subscription
 
   constructor(
     private translate: TranslateService,
-    private authenticationService: AuthenticationService
+    private AuthGuard: AuthGuard
   ) {
-    translate.addLangs(["th", "en"]);
-    translate.use('th');
-    translate.setDefaultLang('en');
-    localStorage.setItem('lang', 'th' );
+
+    
 
     // let browserLang = translate.getBrowserLang();
     // translate.use(browserLang.match(/th|en/) ? browserLang : 'en');
-}
-ngOnInit() {
-  this.isLoggedIn = this.authenticationService.isLoggedIn();
-  console.log(this.isLoggedIn);
-}
+  }
+  ngOnInit() {
+    this.translate.addLangs(["th", "en"]);
+    this.translate.setDefaultLang('th');
+    this.translate.use('th');
+    localStorage.setItem('lang', 'th');
+    this.isLoggedIn = this.AuthGuard.isLoggedIn();
+
+    console.log(this.isLoggedIn);
+  }
   onActivate(event) {
     // let scrollToTop = window.setInterval(() => {
     //     let pos = window.pageYOffset;
@@ -42,8 +46,8 @@ ngOnInit() {
     $(".se-pre-con").fadeOut("slow");;
     $('body').removeClass('nav-expanded');
     $('#exit-canvas').removeClass('expanded');
-    window.scroll(0,0);
+    window.scroll(0, 0);
     //or document.body.scrollTop = 0;
     //or document.querySelector('body').scrollTo(0,0)
-}
+  }
 }

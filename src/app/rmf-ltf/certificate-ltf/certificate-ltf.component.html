@@ -63,18 +63,16 @@
               </div>
               <div class="col-md-12">
                 <div class="select-wrapper inline-block">
-                  <select name="ddlLink" id="ddlLink">
-                    <option value="0" selected="">2561</option>
-                    <option value="36">2560</option>
-                    <option value="29">2559</option>
+                  <select [(ngModel)]="years" name="years" id="years">
+                    <option [ngValue]="years" *ngFor="let years of yearlist; let i = index">{{ years | yearthai
+                      }}</option>
                   </select>
                 </div>
               </div>
               <div class="col-md-6 offset-6 mb-md-0 mb-3">
-                <button class="btn-med btn-primary">
+                <button class="btn-med btn-primary" [disabled]="loading" (click)="OnSubmit()">
                   {{ 'BUTTON.ok' | translate }}
                   <i class="fa fa-angle-right" aria-hidden="true"></i>
-
                 </button>
               </div>
             </div>
@@ -101,45 +99,15 @@
           {{ 'CONTENT.l-i-cer' | translate }}
         </h3>
         <ul>
-          <li>
+          <li *ngFor="let list of ltffilelist?.filenamelist; let i = index">
             <div class="row">
               <div class="col-md-10 col-9">
-                <a href="#" title="ชื่อเมนู">
-                  (ชื่อ) หนังสือรับรองฯ LTF
+                <a title="{{list}}">
+                  {{list}}
                 </a>
               </div>
               <div class="col-md-2 col-3">
-                <button class="btn-sm btn-download width50 ">
-                  <p>Download</p>
-                  <img src="/assets/Images/icons/ico-download-white.png">
-                </button>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="row">
-              <div class="col-md-10 col-9">
-                <a href="#" title="ชื่อเมนู">
-                  (ชื่อ) หนังสือรับรองฯ LTF
-                </a>
-              </div>
-              <div class="col-md-2 col-3">
-                <button class="btn-sm btn-download width50 ">
-                  <p>Download</p>
-                  <img src="/assets/Images/icons/ico-download-white.png">
-                </button>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="row">
-              <div class="col-md-10 col-9">
-                <a href="#" title="ชื่อเมนู">
-                  (ชื่อ) หนังสือรับรองฯ LTF
-                </a>
-              </div>
-              <div class="col-md-2 col-3">
-                <button class="btn-sm btn-download width50 ">
+                <button class="btn-sm btn-download width50 " [disabled]="loading" (click)="download(i)">
                   <p>Download</p>
                   <img src="/assets/Images/icons/ico-download-white.png">
                 </button>
@@ -149,6 +117,30 @@
 
         </ul>
         <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="message" style="z-index: 9999;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">ดาวน์โหลดล้มเหลว</h4>
+      </div>
+      <div class="modal-body" id="content-scroll-1">
+        <h3>ไฟล์ไม่พร้อมใช้งาน</h3>
+      </div>
+      <div class="modal-footer" style="display: block;">
+        <div class="row justify-content-end">
+          <div class="col-sm-6">
+            <button class="btn-med btn-primary" data-dismiss="modal">
+              <p style="margin-top: 7px;">ตกลง
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </p>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

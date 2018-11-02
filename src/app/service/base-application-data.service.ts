@@ -26,9 +26,6 @@ export class BaseApplicationDataService {
   getUnitholder(params){
     return this.http.post(environment.serverUrl + '/api/profile/getProfileInfo', null ,{ params: params });
   }
-  getUnitholderSubscription(params){
-    return this.http.post(environment.serverUrl + '/api/order/getUnitholderSubscription', null ,{ params: params });
-  }
   requestotp(){
     return this.http.post(environment.serverUrl + '/api/application/requestotp', null);
   }

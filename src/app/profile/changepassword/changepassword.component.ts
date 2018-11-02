@@ -33,6 +33,7 @@ export class ChangepasswordComponent implements OnInit {
   isNotValid = false;
   res: any = {};
   formotp: FormGroup;
+  message: any;
 
   get cpwd() {
     return this.formchangepass.get('confirmpassword');
@@ -116,7 +117,13 @@ export class ChangepasswordComponent implements OnInit {
     if (this.formchangepass.valid) {
       this.isNotValid = false;
 
-      this.profileservice.submitchangepassword()
+      const user = {
+        CurrentPassword: this.formchangepass.controls.currentpassword.value,
+        NewPassword: this.formchangepass.controls.newpassword.value,
+        ConfirmPassword: this.formchangepass.controls.confirmpassword.value
+      }
+
+      this.profileservice.submitchangepassword(user)
         .pipe(first())
         .subscribe(
           data => {
@@ -131,7 +138,15 @@ export class ChangepasswordComponent implements OnInit {
           },
           error => {
             console.log(error)
-            this.toastr.error('', error.error.messages);
+            this.message = error.error.messages;
+
+            setTimeout(() => {
+              $('#message').modal({
+                backdrop: 'static',
+                keyboard: false,
+                show: true
+              });
+            }, 100);
           });
 
     } else {
@@ -230,11 +245,7 @@ export class ChangepasswordComponent implements OnInit {
 
       },
         (error) => {
-          this.toastr.error('', error.error.messages);
           console.log(error)
-          console.log("messages :" + error.error.messages);
-          console.log("success :" + error.error.success);
-          console.log("data :" + error.error.data);
         });
   }
 

@@ -38,7 +38,7 @@ export class ChangepasswordloginComponent implements OnInit {
   foo1: string;
   refcode: any = {};
   activate: any = {};
-  message: any = '';
+  message: any;
   User: any = {}
   mobile;
   exit: boolean = false;
@@ -75,19 +75,22 @@ export class ChangepasswordloginComponent implements OnInit {
       this.authenticationService.validateActivateCode(params)
         .subscribe((data) => {
           console.log(data);
+          
         },
           (error) => {
+            
             console.log(error);
             this.exit = true;
-            this.activate = error;
-            if (this.activate.error.success == false) {
-              this.message = this.activate.error.messages;
-              $('#dialog').modal({
-                backdrop: 'static',
-                keyboard: false,
-                show: true
-              });
-            }
+
+            this.message = error.error.messages[0];
+            console.log(this.message);
+            
+            $('#dialog').modal({
+              backdrop: 'static',
+              keyboard: false,
+              show: true
+            });
+
           });
       console.log(refcode)
     })
@@ -128,7 +131,7 @@ export class ChangepasswordloginComponent implements OnInit {
             ConfirmPassword: this.formchange.controls.repeatPassword.value
           }
           console.log(user);
-          
+
           this.authenticationService.confirmForgotPassword(user, params)
             .subscribe((data) => {
               console.log(data);
@@ -167,9 +170,9 @@ export class ChangepasswordloginComponent implements OnInit {
           this.authenticationService.OTPForgotPassword(user, Params)
             .subscribe((data) => {
               console.log(data);
-              this.User = data;
-              this.message = "ท่านได้ทำการเปลี่ยนรหัสผ่านเรียบร้อยแล้ว";
               this.exit = true;
+              this.message = "ท่านได้ทำการเปลี่ยนรหัสผ่านเรียบร้อยแล้ว";
+
               $('#dialog').modal({
                 backdrop: 'static',
                 keyboard: false,

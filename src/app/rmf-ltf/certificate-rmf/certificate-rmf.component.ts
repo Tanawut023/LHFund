@@ -3,6 +3,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { BaseApplicationDataService } from '../../service/base-application-data.service';
 import { first } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
+import { RmfLtfService } from '../../service/rmf-ltf.service';
+import { saveAs } from 'file-saver'
+
+declare var $: any;
 @Component({
   selector: 'app-certificate-rmf',
   templateUrl: './certificate-rmf.component.html',
@@ -12,14 +16,20 @@ export class CertificateRmfComponent implements OnInit {
   userall: any = {};
   userselect: any = {};
   unitholderno: any = "init";
+  yearlist: any;
+  years;
+  loading: boolean;
+  rmffilelist: any;
 
   constructor(
-    private basedataservice: BaseApplicationDataService
+    private basedataservice: BaseApplicationDataService,
+    private rmfltfservice: RmfLtfService
   ) { }
 
   ngOnInit() {
 
     this.getSelectListUnitholder();
+    this.getyearlist();
 
     $('#mutual-tab-menu').find('li').removeClass('current');
     $('#mutual-tab-menu').find('li#menu3').addClass('current');
@@ -46,5 +56,89 @@ export class CertificateRmfComponent implements OnInit {
 
         });
   }
+  getyearlist() {
+    this.rmfltfservice.getyearlist()
+      .pipe(first())
+      .subscribe(
+        data => {
+          console.log(data);
+          this.yearlist = data['yearlist'];
+          this.years = this.yearlist[0];
+        },
+        error => {
+          console.log(error)
+
+        });
+  }
+
+  OnSubmit() {
+
+    this.loading = true;
+    var user;
+    user = {
+        UnitholderID: this.userselect.UnitholderId,
+        CertificateType: 'RMF',
+        Year: this.years
+    }
+
+    console.log(user);
+
+    this.rmfltfservice.getcertificate(user)
+        .subscribe(
+            data => {
+                console.log(data);
+                this.rmffilelist = data;
+                this.loading = false;
+            },
+            error => {
+                console.log(error)
+                this.loading = false;
+
+            });
+
+
+}
+download(arr) {
+    this.loading = true;
+    var i = arr;
+    var filename = this.rmffilelist.filenamelist[i];
+
+    var user = {
+        UnitholderID: this.userselect.UnitholderId,
+        CertificateType: 'RMF',
+        Year: this.years,
+        FileName: filename
+    }
+    console.log(user);
+
+    if (user instanceof HttpParams) {
+        return 'application/x-www-form-urlencoded;charset=UTF-8';
+    }
+
+
+    this.rmfltfservice.downloadcertificate(user)
+        .subscribe(
+            data => {
+                console.log(data);
+                saveAs(data, filename);
+                this.loading = false;
+            },
+            error => {
+                console.log(error)
+
+                // setTimeout(() => {
+                $('#message').modal({
+                    backdrop: 'static',
+                    keyboard: false,
+                    show: true
+                });
+                // }, 100);
+
+                this.loading = false;
+
+            });
+
+
+}
 
 }

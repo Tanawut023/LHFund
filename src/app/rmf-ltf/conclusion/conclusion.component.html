@@ -23,13 +23,14 @@
 
           </ul>
         </div>
-        
+
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
             <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno">
               <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
-                }}</option>
+                }}
+              </option>
             </select>
           </div>
         </div>
@@ -54,15 +55,14 @@
       </div>
       <div class="col-md-3">
         <div class="select-wrapper inline-block">
-          <select name="ddlLink" id="ddlLink">
-            <option value="0" selected="">2561</option>
-            <option value="36">2560</option>
-            <option value="29">2559</option>
+          <select [(ngModel)]="years" name="years" id="years">
+            <option [ngValue]="years" *ngFor="let years of yearlist; let i = index">{{ years | yearthai }}
+            </option>
           </select>
         </div>
       </div>
       <div class="col-md-3">
-        <button class="btn-med btn-primary width50">
+        <button class="btn-med btn-primary width50" (click)="Onclick()">
           {{ 'BUTTON.ok' | translate }}
           <i class="fa fa-angle-right" aria-hidden="true"></i>
         </button>
@@ -96,7 +96,7 @@
                         <p class="no-margin">{{ 'CONTENT.sub-r-total' | translate }}</p>
                       </div>
                       <div class="col-sm-12">
-                        <h3 class="no-margin">฿ 669,638.80</h3>
+                        <h3 class="no-margin">฿ {{balancermf | tofix}}</h3>
                       </div>
                     </div>
                   </div>
@@ -116,7 +116,7 @@
                         <p class="no-margin">{{ 'CONTENT.sub-l-total' | translate }}</p>
                       </div>
                       <div class="col-sm-12">
-                        <h3 class="no-margin">฿ 669,638.80</h3>
+                        <h3 class="no-margin">฿ {{balanceltf | tofix}}</h3>
                       </div>
                     </div>
                   </div>
@@ -150,112 +150,94 @@
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody *ngFor="let list of rmflist; let i = index">
+            <tr class="topic" *ngIf="list.FundNameGroup">
+              <th colspan="9">
+                {{list.FundNameGroup}}
+              </th>
+            </tr>
             <tr class="line">
               <td colspan="5">
-                KFHCARERMF : กองทุนเปิดกรุงศรีโกลบอลเฮลธ์แคร์อควิตี้เพื่อการเลี้ยงชีพ
+                {{list.FundCode}} : {{list.FundName}}
               </td>
             </tr>
             <tr>
               <td class="text-center">
-                03/03/2561
+                {{list.OrderDate | datethai}}
               </td>
               <td class="text-center">
-                DE
+                {{list.FundSubType}}
               </td>
               <td class="txt-right">
-                11.1500
+                {{list.AllotedNAV | tofix4}}
               </td>
               <td class="txt-right">
-                17,055.4525
+                {{list.AllotedUnit | tofix4}}
               </td>
               <td class="txt-right">
-                200.000
+                {{list.AllotedAmount | tofix}}
               </td>
             </tr>
-            <tr>
-              <td class="text-center">
-                03/03/2561
-              </td>
-              <td class="text-center">
-                DE
-              </td>
-              <td class="txt-right">
-                11.1500
-              </td>
-              <td class="txt-right">
-                17,055.4525
-              </td>
-              <td class="txt-right">
-                200.000
-              </td>
-            </tr>
-            <tr class="summary">
+            <tr class="summary" *ngIf="list.unit || list.amount">
               <th colspan="2">
-                รวม KFHCARERMF
+                รวม {{list.FundCode}}
               </th>
               <th class="text-right">
                 &nbsp;
               </th>
               <th class="text-right">
-                51,116.3575
+                {{list.unit | tofix4 }}
               </th>
               <th class="text-right">
-                400.000
+                {{list.amount | tofix }}
+              </th>
+
+            </tr>
+          </tbody>
+
+          <tbody *ngFor="let list of ltflist; let i = index">
+            <tr class="topic" *ngIf="list.FundNameGroup">
+              <th colspan="9">
+                {{list.FundNameGroup}}
               </th>
             </tr>
             <tr class="line">
               <td colspan="5">
-                KFHCARERMF : กองทุนเปิดกรุงศรีโกลบอลเฮลธ์แคร์อควิตี้เพื่อการเลี้ยงชีพ
+                {{list.FundCode}} : {{list.FundName}}
               </td>
             </tr>
             <tr>
               <td class="text-center">
-                03/03/2561
+                {{list.OrderDate | datethai}}
               </td>
               <td class="text-center">
-                DE
+                {{list.FundSubType}}
               </td>
               <td class="txt-right">
-                11.1500
+                {{list.AllotedNAV | tofix4}}
               </td>
               <td class="txt-right">
-                17,055.4525
+                {{list.AllotedUnit | tofix4}}
               </td>
               <td class="txt-right">
-                200.000
+                {{list.AllotedAmount | tofix}}
               </td>
             </tr>
-            <tr>
-              <td class="text-center">
-                03/03/2561
-              </td>
-              <td class="text-center">
-                DE
-              </td>
-              <td class="txt-right">
-                11.1500
-              </td>
-              <td class="txt-right">
-                17,055.4525
-              </td>
-              <td class="txt-right">
-                200.000
-              </td>
-            </tr>
-            <tr class="summary">
+            <tr class="summary" *ngIf="list.unit || list.amount">
+
               <th colspan="2">
-                รวม KFHCARERMF
+                รวม {{list.FundCode}}
               </th>
               <th class="text-right">
                 &nbsp;
               </th>
               <th class="text-right">
-                51,116.3575
+                {{list.unit | tofix4}}
               </th>
               <th class="text-right">
-                400.000
+                {{list.amount | tofix}}
               </th>
+
             </tr>
           </tbody>
         </table>
@@ -266,7 +248,8 @@
         <p class="color-red no-margin">2. รายการสับเปลี่ยนระหว่าง RMF ด้วยกันหรือ LTF ด้วยกัน</p>
         <p class="color-red no-margin">3. จำนวนเงินที่ขายคืนระหว่างปี</p>
         <p class="color-red no-margin">4. เงินลงทุนใน RMF/LTF ของผู้ถือหน่วยท่านเดียวกัน แต่อยู่ในบัญชีผู้ถือลงทุนหมายเลขอื่นกับ
-          บลจ.กรุงศรี</p>
+          บลจ.กรุงศรี
+        </p>
       </div>
 
       <div class="col-md-12  mt-3">

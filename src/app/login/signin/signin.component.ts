@@ -25,7 +25,8 @@ export class SigninComponent implements OnInit {
   foo1: string;
   returnUrl: any;
   User: any = {}
-  message: any;
+  message: any = "";  
+  loading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -54,7 +55,7 @@ export class SigninComponent implements OnInit {
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    
+
   }
   switchlang(lang) {
     if (lang == 'th') {
@@ -102,14 +103,18 @@ export class SigninComponent implements OnInit {
     })
   }
   onSubmit() {
+    
+    
     console.log(this.formsighin)
     if (this.formsighin.valid) {
+      this.loading = true;
       this.isNotValid = false;
 
       let body = new URLSearchParams();
       body.set('username', this.formsighin.controls.username.value);
       body.set('password', this.formsighin.controls.password.value);
       body.set('grant_type', 'password');
+      body.set('client_id', 'WebApp');
 
       let data = body.toString();
       console.log(data)
@@ -119,19 +124,27 @@ export class SigninComponent implements OnInit {
         .subscribe(
           data => {
             localStorage.setItem('userInfo', data['memberInfo']);
-            localStorage.setItem('token', data['access_token']);
-            localStorage.setItem('refresh_token', data['refresh_token']);
+            // localStorage.setItem('token', data['access_token']);
+            // localStorage.setItem('refresh_token', data['refresh_token']);
             this.router.navigate([this.returnUrl]);
           },
           error => {
+            
             console.log(error);
             console.log(error.error.error_description);
             this.message = error.error.error_description;
-            $('#message').modal({
-              backdrop: 'static',
-              keyboard: false,
-              show: true
-            });            
+            this.loading = false;
+
+            setTimeout(() => {
+              $('#message').modal({
+                backdrop: 'static',
+                keyboard: false,
+                show: true
+              });
+            }, 100);
+
+            
+
           });
 
     } else {

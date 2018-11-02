@@ -78,7 +78,9 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import {BaseApplicationDataService} from './service/base-application-data.service';
 import { UserIdleModule } from 'angular-user-idle';
 import { toFixed,toFixed4 } from './Share/tofix.pipe'
-import { DateThai} from './Share/datethai.pipe';
+import { DateThai,YearThai,Time,ExpiresDateThai} from './Share/datethai.pipe';
+import { Type } from './Share/allpipe.pipe'
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 // import { NgbDateFRParserFormatter } from "./ngb-date-fr-parser-formatter"
@@ -129,9 +131,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SigninComponent,
     ForgotpasswordComponent,
     ChangepasswordloginComponent,
-    toFixed,
-    toFixed4,
-    DateThai,
+    toFixed,toFixed4,DateThai,YearThai,Type,Time,ExpiresDateThai
 
   ],
   imports: [
@@ -166,7 +166,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       reCaptcha2SiteKey: '6Lfl4mkUAAAAAOTJ-H2mB4-PfSPLMLSsI2OCMivg',
       invisibleCaptchaSiteKey: '6Lfl4mkUAAAAAOTJ-H2mB4-PfSPLMLSsI2OCMivg'
     }),
-    UserIdleModule.forRoot({idle: 600, timeout: 300, ping: 120})
+    UserIdleModule.forRoot({idle: 600, timeout: 10, ping: 480}),
+    NgxPaginationModule
   ],
   providers: [
     { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter },

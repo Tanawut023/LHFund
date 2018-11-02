@@ -121,11 +121,12 @@ export class MyportComponent implements OnInit {
     }
     calchart(){
         var array = new Array();
+        var arr  = ["#ED2B34","#00698C","#189D8C","#E99C92","#EFE5E4","#D5DF30","#7B99CF"];
 
         for (let i = 0; i < this.balancedetail.holdingbalance.length; i++) {
             var percent = 0;
             percent = (this.balancedetail.holdingbalance[i].BalanceAmountTotal * 100) / this.NAV;
-            array.push({name: this.balancedetail.holdingbalance[i].FundTypeEng ,y: percent,color: this.balancedetail.holdingbalance[i].FundTypeColor});
+            array.push({name: this.balancedetail.holdingbalance[i].FundTypeEng ,y: percent,color: arr[i]});
         }
         this.chartdetail = array;
         console.log(this.chartdetail);

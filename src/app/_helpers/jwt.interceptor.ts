@@ -117,30 +117,35 @@ export class JwtInterceptor implements HttpInterceptor {
 
             return next.handle(req)
 
-            .pipe(
-                catchError(err => {
-                  if (err instanceof HttpErrorResponse) {
-                    this.router.navigateByUrl('/login');
-                    // switch ((<HttpErrorResponse>err).status) {
-                    //   case 401:
-                    //     return this.handle401Error(req, next);
-                    //   case 400:
-                    //     return <any>this.authservice.logout();
-                    // }
-                  } else {
-                    return throwError(err);
-                  }
-                }));
-                // .pipe(tap(
-                //     succ => {
-                //         this.test = succ
-                //         console.log(this.test);
-                //     },
-                //     err => {
-
-                //         this.test2 = err
-                //         console.log(this.test2);
-                //         if (err.status === 401)
+            // .pipe(
+            //     catchError(err => {
+            //       if (err instanceof HttpErrorResponse) {
+            //         if (err.status === 401){
+            //           this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.url } });
+            //         }
+            //         else return err;
+                    
+            //         // switch ((<HttpErrorResponse>err).status) {
+            //         //   case 401:
+            //         //     return this.handle401Error(req, next);
+            //         //   case 400:
+            //         //     return <any>this.authservice.logout();
+            //         // }
+            //       } else {
+            //         return (err);
+            //       }
+            //     }));
+                .pipe(tap(
+                    succ => {
+                        console.log(succ);
+                    },
+                    err => {
+                        console.log(err);
+                        if (err.status === 401){
+                          this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.url } });
+                        }
+                      }
+                    ));
 
                 //             return this.authservice.refreshToken().pipe(
                 //                 switchMap((res: any) => {

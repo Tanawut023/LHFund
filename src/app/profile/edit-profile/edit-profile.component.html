@@ -27,8 +27,9 @@
                 <div class="col-md-3">
                     <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
                     <div class="select-wrapper inline-block">
-                        <select  [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
-                            <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index" >{{ unitholder.UnitholderNo }}</option>
+                        <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
+                            <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{
+                                unitholder.UnitholderNo }}</option>
                         </select>
                     </div>
                 </div>
@@ -37,7 +38,7 @@
                     <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
                     <span class="txt-middle">{{ userselect.FirstName}} {{ userselect.LastName}}</span>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -45,7 +46,7 @@
 
     <!-- <div class="col-md-6"> -->
     <div class="form-profile-wrapper">
-        <form>
+        <form [formGroup]="form" (ngSubmit)="onSubmited()">
             <div class="detail-body-wrapper">
                 <div class="row">
                     <div class="col-md-12">
@@ -53,13 +54,53 @@
                     </div>
                 </div>
 
+
                 <div class="row ">
-                    <div class="col-12 form-group">
+
+                    <div class="col-12 col-md-6 form-group" [ngClass]="ValidatorDisplayCss('address')">
                         <p>{{ 'CONTENT.address' | translate }}</p>
-                        <div class="input-wrapper ">
-                            <input id="add-no" name="add-no" maxlength="30" type="text"  [(ngModel)]="profile.unitholderinfo.ContactAddress1" required  *ngIf="profile">
+                        <div class="input-wrapper">
+                            <input id="address" name="address" maxlength="30" type="text" formControlName="address" required *ngIf="profile">
+                            <div class="form-control-feedback" *ngIf="this.form.controls.address.errors && (this.form.controls.address.touched)">
+                                <p *ngIf="this.form.controls.address.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="col-md-3 form-group" [ngClass]="ValidatorDisplayCss('province')">
+                        <p>{{ 'CONTENT.province' | translate }}</p>
+                        <div class="select-wrapper inline-block">
+
+                            <select name="province" id="province" formControlName="province" required (change)="onprovincechange()">
+                                <option [ngValue]="province" *ngFor="let province of provincelist; let i = index">{{ province.ProvinceName
+                                    }}
+                                </option>
+                            </select>
+                            <div class="form-control-feedback" *ngIf="this.form.controls.province.errors && (this.form.controls.province.touched)">
+                                <p *ngIf="this.form.controls.province.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 form-group" [ngClass]="ValidatorDisplayCss('amphur')">
+                        <p>{{ 'CONTENT.amphur' | translate }}</p>
+                        <div class="input-wrapper ">
+                            <!-- <input id="amphur" name="amphur" maxlength="30" type="text" formControlName="amphur"> -->
+                            <select name="amphur" id="amphur" formControlName="amphur" required (change)="onamphurchange()">
+                                <option selected disabled *ngIf="show">เขต / อำเภอ</option>
+                                <option [ngValue]="amphur" *ngFor="let amphur of amphurlist; let i = index">{{ amphur.UmpurName
+                                    }}
+                                </option>
+                            </select>
+                            <div class="form-control-feedback" *ngIf="this.form.controls.amphur.errors && (this.form.controls.amphur.touched)">
+                                <p *ngIf="this.form.controls.amphur.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
 
                     <!-- <div class="col-md-3 form-group">
                         <p>{{ 'CONTENT.moo-no' | translate }}</p>
@@ -81,8 +122,10 @@
                             <input id="floor" name="floor" maxlength="30" type="text" value="">
                         </div>
                     </div> -->
+                    <!-- <button (click)="onSubmited()">submit</button> -->
 
                 </div>
+
                 <div class="row">
                     <!-- <div class="col-md-3 form-group">
                         <p>{{ 'CONTENT.soi' | translate }}</p>
@@ -98,56 +141,54 @@
                         </div>
                     </div> -->
 
-                    <div class="col-md-3 form-group">
+                    <div class="col-md-3 form-group" [ngClass]="ValidatorDisplayCss('tambon')">
                         <p>{{ 'CONTENT.tambon' | translate }}</p>
                         <div class="input-wrapper ">
-                            <input id="tambon" name="tambon" maxlength="30" type="text" value="พญาไท">
+                            <!-- <input id="tambon" name="tambon" maxlength="30" type="text" formControlName="tambon"> -->
+                            <select name="tambon" id="tambon" formControlName="tambon" required (change)="ontambonchange()">
+                                <option [selected]="show" disabled *ngIf="show">แขวง / ตำบล</option>
+                                <option [ngValue]="tambon" *ngFor="let tambon of tambonlist; let i = index">{{ tambon.TumbolName
+                                    }}
+                                </option>
+                            </select>
+                            <div class="form-control-feedback" *ngIf="this.form.controls.tambon.errors && (this.form.controls.tambon.touched)">
+                                <p *ngIf="this.form.controls.tambon.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="col-md-3 form-group">
-                        <p>{{ 'CONTENT.amphur' | translate }}</p>
+
+                    <div class="col-md-3 form-group" [ngClass]="ValidatorDisplayCss('postcode')">
+                        <p>{{ 'CONTENT.post-code' | translate }}</p>
                         <div class="input-wrapper ">
-                            <input id="amphur" name="amphur" maxlength="30" type="text" value="ราชเทวี">
+                            <input id="post-code" maxlength="30" type="text" name="ContactZipCode" formControlName="postcode" required (change)="autoselected()">
+                            <div class="form-control-feedback" *ngIf="this.form.controls.postcode.errors && (this.form.controls.postcode.touched)">
+                                <p *ngIf="this.form.controls.postcode.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="col-md-3 form-group">
-                            <p>{{ 'CONTENT.province' | translate }}</p>
-                            <div class="select-wrapper inline-block">
-    
-                                <select name="ddlLink" id="ddlLink">
-                                    <option value="0" selected="">กรุงเทพมหานคร</option>
-                                    <option value="36">กรุงเทพมหานคร</option>
-                                    <option value="29">กรุงเทพมหานคร</option>
-                                </select>
-                            </div>
-                        </div>
-    
-                        <div class="col-md-3 form-group">
-                            <p>{{ 'CONTENT.post-code' | translate }}</p>
-                            <div class="input-wrapper ">
-                                <input id="post-code" maxlength="30" type="text" [(ngModel)]="profile.unitholderinfo.ContactZipCode" name="ContactZipCode" *ngIf="profile">
-                            </div>
-                        </div>
-
-                </div>
-
-                <div class="row">                    
-
-                    <div class="col-md-3 form-group">
+                    <div class="col-md-3 form-group" [ngClass]="ValidatorDisplayCss('country')">
                         <p>{{ 'CONTENT.country' | translate }}</p>
                         <div class="select-wrapper inline-block">
-
-                            <select name="ddlLink" id="ddlLink">
-                                <option value="0" selected="">ประเทศไทย</option>
-                                <option value="36">ประเทศลาว</option>
-                                <option value="29">ประเทศพม่า</option>
+                            <select name="ContactCountry" id="country" formControlName="country" required>
+                                <option [ngValue]="country" *ngFor="let country of countrylist; let i = index">{{ country.CountryName
+                                    }}
+                                </option>
                             </select>
+                            <div class="form-control-feedback" *ngIf="this.form.controls.country.errors && (this.form.controls.country.touched)">
+                                <p *ngIf="this.form.controls.country.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                            </div>
                         </div>
                     </div>
 
                 </div>
+
+                <!-- <div class="row">                    
+
+                    
+
+                </div> -->
 
 
             </div>
@@ -156,17 +197,23 @@
                     <div class="col-md-3">
                         <span class="txt-middle">{{ 'CONTENT.m-phone' | translate }}</span>
                     </div>
-                    <div class="col-md-3 form-group">
+                    <div class="col-md-3 form-group" [ngClass]="ValidatorDisplayCss('Mphone')">
                         <div class="input-wrapper ">
-                            <input id="password" name="password" maxlength="30" type="text" value="">
+                            <input id="m-phone" name="m-phone" maxlength="30" type="text" formControlName="Mphone" required (keypress)="numberOnly($event)">
+                            <div class="form-control-feedback" *ngIf="this.form.controls.Mphone.errors && (this.form.controls.Mphone.touched)">
+                                <p *ngIf="this.form.controls.Mphone.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <span class="txt-middle">{{ 'CONTENT.w-phone' | translate }}</span>
                     </div>
-                    <div class="col-md-3 form-group">
+                    <div class="col-md-3 form-group" [ngClass]="ValidatorDisplayCss('Ophone')">
                         <div class="input-wrapper ">
-                            <input id="password" name="password" maxlength="30" type="text" value="">
+                            <input id="w-phone" name="w-phone" maxlength="30" type="text" formControlName="Ophone" required (keypress)="numberOnly($event)">
+                            <div class="form-control-feedback" *ngIf="this.form.controls.Ophone.errors && (this.form.controls.Ophone.touched)">
+                                <p *ngIf="this.form.controls.Ophone.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                            </div>
                         </div>
                     </div>
                     <!-- 
@@ -191,11 +238,15 @@
                         <span class="txt-middle">{{ 'CONTENT.f-num' | translate }}</span>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-3 form-group" [ngClass]="ValidatorDisplayCss('Faxno')">
                         <div class="input-wrapper ">
-                            <input id="password" name="password" maxlength="30" type="text" value="">
+                            <input id="f-num" name="f-num" maxlength="30" type="text" formControlName="Faxno" required (keypress)="numberOnly($event)">
+                            <div class="form-control-feedback" *ngIf="this.form.controls.Faxno.errors && (this.form.controls.Faxno.touched)">
+                                <p *ngIf="this.form.controls.Faxno.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                            </div>
                         </div>
                     </div>
+
                     <!-- <div class="col-md-3">
                         <span>อีเมล</span>
                     </div>
@@ -213,14 +264,14 @@
                         <div class="row">
                             <div class="col-md-6 col-6">
                                 <div class="custom-radio-between">
-                                    <input value="101" id="101" name="rad1" type="radio">
+                                    <input [value]="true" id="101" name="allowtax" type="radio" formControlName="allowtax" required>
                                     <label for="101"></label>
                                     <p>หัก</p>
                                 </div>
                             </div>
                             <div class="col-md-6 col-6">
                                 <div class="custom-radio-between">
-                                    <input value="102" id="102" name="rad1" type="radio">
+                                    <input [value]="false" id="102" name="allowtax" type="radio" formControlName="allowtax" required>
                                     <label for="102"></label>
                                     <p>ไม่หัก</p>
                                 </div>
@@ -233,7 +284,7 @@
                             data-keyboard="false" -->
                 <div class="row mt-3 justify-content-center">
                     <div class="col-md-2 col-6">
-                        <button class="btn-med btn-primary" (click)="openmodal()">
+                        <button class="btn-med btn-primary">
                             {{ 'BUTTON.ok' | translate }}
                             <i class="fa fa-angle-right" aria-hidden="true"></i>
 
@@ -250,10 +301,107 @@
                 </div>
 
             </div>
-
-
         </form>
+    </div>
+</div>
 
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" style="z-index: 9999;" id="otpprofile" *ngIf="res">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
 
+                <h4 class="modal-title">{{ 'LOGIN.otp' | translate }}</h4>
+            </div>
+            <div class="modal-body" id="content-scroll-1">
+                <form [formGroup]="formotp">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p>{{ 'LOGIN.otp-send' | translate }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="input-wrapper">
+                                <input id="tel" name="tel" maxlength="30" type="text" [value]="res.mobile" disabled class="bg-gray">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="btn-wrapper" style="margin: 0;">
+                                <button class="btn-med btn-blue" (click)="requestotp()">
+                                    {{ 'BUTTON.otp' | translate }}
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>{{ 'LOGIN.otp-receive' | translate }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss1('otp')">
+                            <div class="input-wrapper">
+                                <input class="bg-gray" id="otp" name="otp" maxlength="6" type="text" formControlName="otp" (keypress)="numberOnly($event)">
+                                <div class="form-control-feedback" *ngIf="this.formotp.controls.otp.errors && ( this.formotp.controls.otp.touched)">
+                                    <p *ngIf="this.formotp.controls.otp.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                                    <!-- <p *ngIf="this.form.controls.otp.errors.pattern">ข้อมูลไม่ถูกต้อง</p> -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pb-4">
+                        <div class="col-md-12">
+                            <p>{{ 'LOGIN.otp-request' | translate }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3 justify-content-center">
+                        <div class="col-md-4 col-6">
+                            <button class="btn-med btn-primary" (click)="updateprofile()">
+                                {{ 'BUTTON.confirm' | translate }}
+                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div class="col-md-4 col-6">
+                            <button class="btn-med btn-cancel" data-dismiss="modal">
+                                {{ 'BUTTON.cancel' | translate }}
+                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="message" style="z-index: 9999;" *ngIf="message">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">เข้าสู่ระบบล้มเหลว</h4>
+            </div>
+            <div class="modal-body" id="content-scroll-1">
+                <h3>{{ message }}</h3>
+            </div>
+            <div class="modal-footer" style="display: block;">
+                <div class="row justify-content-end">
+                    <div class="col-sm-6">
+                        <button class="btn-med btn-primary" data-dismiss="modal">
+                            <p style="margin-top: 7px;">ตกลง
+                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            </p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

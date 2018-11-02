@@ -29,11 +29,12 @@
           <div class="select-wrapper inline-block">
             <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno">
               <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
-                }}</option>
+                }}
+              </option>
             </select>
           </div>
         </div>
-        
+
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
           <span class="txt-middle">{{ userselect.FirstName}} {{ userselect.LastName}}</span>
@@ -63,15 +64,14 @@
               </div>
               <div class="col-md-12">
                 <div class="select-wrapper inline-block">
-                  <select name="ddlLink" id="ddlLink">
-                    <option value="0" selected="">2561</option>
-                    <option value="36">2560</option>
-                    <option value="29">2559</option>
+                  <select [(ngModel)]="years" name="years" id="years">
+                    <option [ngValue]="years" *ngFor="let years of yearlist; let i = index">{{ years | yearthai }}
+                    </option>
                   </select>
                 </div>
               </div>
               <div class="col-md-6 offset-6 mb-md-0 mb-3">
-                <button class="btn-med btn-primary">
+                <button class="btn-med btn-primary" [disabled]="loading" (click)="OnSubmit()">
                   {{ 'BUTTON.ok' | translate }}
                   <i class="fa fa-angle-right" aria-hidden="true"></i>
 
@@ -87,33 +87,6 @@
               <p>{{ 'CONTENT.r-r-cer' | translate }}</p>
             </div>
           </div>
-
-          <!-- <div class="col-md-6">
-            <div class="row">
-              <div class="col-md-12">
-                <p>ปี</p>
-              </div>
-              <div class="col-md-12">
-                <div class="select-wrapper inline-block">
-                  <select name="ddlLink" id="ddlLink">
-                    <option value="0" selected="">2561</option>
-                    <option value="36">2560</option>
-                    <option value="29">2559</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-6 offset-6">
-                <button class="btn-med btn-primary" (click)="checkpage('signup1')">
-                  ตกลง
-                  <i class="fa fa-angle-right" aria-hidden="true"></i>
-
-                </button>
-              </div>
-            </div>
-
-          </div> -->
-
-
         </div>
       </div>
     </div>
@@ -127,45 +100,15 @@
           {{ 'CONTENT.r-i-cer' | translate }}
         </h3>
         <ul>
-          <li>
+          <li *ngFor="let list of rmffilelist?.filenamelist; let i = index">
             <div class="row">
               <div class="col-md-10 col-9">
-                <a href="#" title="ชื่อเมนู">
-                  (ชื่อ) หนังสือรับรองฯ RMF
+                <a title="{{list}}">
+                  {{list}}
                 </a>
               </div>
               <div class="col-md-2 col-3">
-                <button class="btn-sm btn-download width50 ">
-                  <p>Download</p>
-                  <img src="/assets/Images/icons/ico-download-white.png">
-                </button>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="row">
-              <div class="col-md-10 col-9">
-                <a href="#" title="ชื่อเมนู">
-                  (ชื่อ) หนังสือรับรองฯ RMF
-                </a>
-              </div>
-              <div class="col-md-2 col-3">
-                <button class="btn-sm btn-download width50 ">
-                  <p>Download</p>
-                  <img src="/assets/Images/icons/ico-download-white.png">
-                </button>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="row">
-              <div class="col-md-10 col-9">
-                <a href="#" title="ชื่อเมนู">
-                  (ชื่อ) หนังสือรับรองฯ RMF
-                </a>
-              </div>
-              <div class="col-md-2 col-3">
-                <button class="btn-sm btn-download width50 ">
+                <button class="btn-sm btn-download width50 " [disabled]="loading" (click)="download(i)">
                   <p>Download</p>
                   <img src="/assets/Images/icons/ico-download-white.png">
                 </button>
@@ -176,49 +119,31 @@
         </ul>
         <div class="clearfix"></div>
       </div>
-      <!-- Nav tabs For Mobile -->
-      <!-- <div class="dropdown dropdown-content">
-        <button class="btn-med btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-          ข้อมูลเบื้องต้น
-        </button>
-        <ul class="dropdown-menu">
-          <li class="current">
-            <a href="#" title="ชื่อเมนู">กองทุนส่วนบุคคลคือ?
-            </a>
-          </li>
-          <li>
-            <a href="#" title="ชื่อเมนู">จุดเด่นของการลงทุน
-            </a>
-
-          </li>
-          <li>
-            <a href="#" title="ชื่อเมนู">เกี่ยวกับ LH Fund
-            </a>
-          </li>
-          <li>
-            <a href="#" title="ชื่อเมนู">นโยบายการลงทุน
-            </a>
-          </li>
-          <li>
-            <a href="#" title="ชื่อเมนู">สิ่งที่ควนพิจารณา
-            </a>
-          </li>
-        </ul>
-      </div> -->
     </div>
+  </div>
+</div>
 
-    <!-- <div class="row">
-          <div class="col-md-6 text-left">
-           <h4>รายการซื้อหน่วยลงทุน</h4> (รายการที่รอดำเนินการ)
-            
+
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="message" style="z-index: 9999;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">ดาวน์โหลดล้มเหลว</h4>
+      </div>
+      <div class="modal-body" id="content-scroll-1">
+        <h3>ไฟล์ไม่พร้อมใช้งาน</h3>
+      </div>
+      <div class="modal-footer" style="display: block;">
+        <div class="row justify-content-end">
+          <div class="col-sm-6">
+            <button class="btn-med btn-primary" data-dismiss="modal">
+              <p style="margin-top: 7px;">ตกลง
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </p>
+            </button>
           </div>
-          <div class="col-md-6 text-right">
-              
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>ดูรายการทั้งหมด
-            </div>
-            <div class="col-md-12 mt-5 text-center">
-              ไม่มีรายการที่รอดำเนินงาน
-            </div>
-        </div> -->
+        </div>
+      </div>
+    </div>
   </div>
 </div>

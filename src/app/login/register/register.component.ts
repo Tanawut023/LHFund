@@ -113,11 +113,13 @@ export class RegisterComponent implements OnInit {
               (error) => {
                 console.log(error);
                 this.message = error.error.messages;
-                $('#message').modal({
-                  backdrop: 'static',
-                  keyboard: false,
-                  show: true
-                });
+                setTimeout(() => {
+                  $('#message').modal({
+                    backdrop: 'static',
+                    keyboard: false,
+                    show: true
+                  });
+                }, 100);
               });
         }
         else if (this.formstep2.invalid) {
@@ -148,11 +150,13 @@ export class RegisterComponent implements OnInit {
               (error) => {
                 console.log(error);
                 this.message = error.error.messages;
-                $('#message').modal({
-                  backdrop: 'static',
-                  keyboard: false,
-                  show: true
-                });
+                setTimeout(() => {
+                  $('#message').modal({
+                    backdrop: 'static',
+                    keyboard: false,
+                    show: true
+                  });
+                }, 100);
               });
 
 
@@ -197,11 +201,13 @@ export class RegisterComponent implements OnInit {
               (error: any) => {
                 console.log(error);
                 this.message = error.error.messages;
-                $('#message').modal({
-                  backdrop: 'static',
-                  keyboard: false,
-                  show: true
-                });
+                setTimeout(() => {
+                  $('#message').modal({
+                    backdrop: 'static',
+                    keyboard: false,
+                    show: true
+                  });
+                }, 100);
               });
 
 

@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BaseApplicationDataService } from '../../service/base-application-data.service';
 import { first } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 import { OrderService } from '../../service/order.service'
 import { datethai, formatdatethai } from '../../Share/dateformat';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+
+declare var $: any;
 
 @Component({
     selector: 'app-purchase',
     templateUrl: './purchase.component.html',
     styleUrls: ['./purchase.component.scss'],
 })
-export class PurchaseComponent implements OnInit {
+export class PurchaseComponent implements OnInit ,AfterViewInit{
     page = "purchase";
     dialog: boolean = false;
     datepick;
@@ -24,6 +27,10 @@ export class PurchaseComponent implements OnInit {
     banklist: any = 'N/A';
     currentdate = datethai;
     date: any;
+    formsubsription: FormGroup;
+    isNotValid = false;
+    message: any;
+    minDate;
 
 
 
@@ -32,7 +39,8 @@ export class PurchaseComponent implements OnInit {
     constructor(
         private translate: TranslateService,
         private basedataservice: BaseApplicationDataService,
-        private orderservice: OrderService
+        private orderservice: OrderService,
+        private fb: FormBuilder
     ) {
         translate.addLangs(["th", "en"]);
     }
@@ -43,7 +51,16 @@ export class PurchaseComponent implements OnInit {
 
         $('#mutual-tab-menu').find('li').removeClass('current');
         $('#mutual-tab-menu').find('li#menu1').addClass('current');
+
+        // $('.selectpicker').selectpicker();
+        var d = new Date();
+        this.minDate = {year: d.getFullYear(), month: d.getMonth()+1, day: d.getDate()};
+        this.datepick = {year: d.getFullYear(), month: d.getMonth()+1, day: d.getDate()};
     }
+    ngAfterViewInit() {
+        document.getElementById('preloader').classList.add('hide');
+        $('.selectpicker').selectpicker();
+      } 
     checkpage(page) {
         window.scroll(0, 0);
         console.log(page)
@@ -56,6 +73,7 @@ export class PurchaseComponent implements OnInit {
             case 'purchase-step1':
                 this.date = this.datepick.year + "-" + this.datepick.month + "-" + this.datepick.day;
                 this.date = formatdatethai(this.date);
+                // this.onSubmit();
                 this.page = "purchase-step1";
 
                 break;
@@ -112,6 +130,10 @@ export class PurchaseComponent implements OnInit {
                     if (data) {
                         console.log(data)
                         this.unitholdersubscription = data;
+                        setTimeout(() => {
+                            $('.selectpicker').selectpicker('refresh');
+                          }, 100);
+                        
                         if (this.unitholdersubscription.fundlist[0]) {
                             this.fundlist = this.unitholdersubscription.fundlist[0];
                         }
@@ -120,7 +142,7 @@ export class PurchaseComponent implements OnInit {
                         }
 
                     }
-                    
+
                 },
                 error => {
                     console.log(error)
@@ -129,4 +151,68 @@ export class PurchaseComponent implements OnInit {
 
     }
 
+    createFormValidate() {
+        this.formsubsription = this.fb.group({
+            username: [null,
+                [
+                    Validators.required
+                ]
+            ],
+            password: [null,
+                [
+                    Validators.required
+                ]
+            ]
+        })
+    }
+    validateAllFormFields(formGroup: FormGroup) {
+        Object.keys(formGroup.controls).forEach(field => {
+            const control = formGroup.get(field);
+            if (control instanceof FormControl) {
+                control.markAsTouched({ onlySelf: true });
+            } else if (control instanceof FormGroup) {
+                this.validateAllFormFields(control);
+            }
+        })
+    }
+    onSubmit() {
+
+        const user = {
+            UnitHolderID: this.userselect.UnitholderId,
+            FundID: this.fundlist.FundID
+        }
+        console.log(user);
+
+        this.orderservice.changefundsubscription(user)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    console.log(data);
+                    if (data['messages']) {
+                        this.message = data['messages'];
+                        $('#message').modal({
+                            backdrop: 'static',
+                            keyboard: false,
+                            show: true
+                        });
+                        // this.page = "purchase-step1";
+                    }
+                    else{
+                        this.page = "purchase-step1";
+                    }
+
+                },
+                error => {
+                    console.log(error);
+                    if (error['messages']) {
+                        this.message = error['messages'];
+                        $('#message').modal({
+                            backdrop: 'static',
+                            keyboard: false,
+                            show: true
+                        });
+                    }
+                });
+
+    }
 }

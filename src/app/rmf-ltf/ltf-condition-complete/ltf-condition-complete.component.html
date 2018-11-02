@@ -72,15 +72,15 @@
             </th>
           </tr>
         </thead>
-        <tbody>
-          <tr class="topic">
+        <tbody *ngFor="let orderltflist of orderltf.ltflist">
+          <!-- <tr class="topic">
             <th colspan="11">
               9990244757
             </th>
-          </tr>
+          </tr> -->
           <tr class="line">
             <td>
-              (KFLTFSTARD) กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+              {{ orderltflist.FundName }}
             </td>
             <td colspan="6">&nbsp;</td>
           </tr>
@@ -89,92 +89,19 @@
               &nbsp;
             </td>
             <td class="">
-              07/06/2561
+                {{ orderltflist.FirstPurchaseDate | datethai }}
             </td>
             <td class="">
-              30
+                {{ orderltflist.Unit | tofix4 }}
             </td>
             <td class="">
-              07/06/2561
+                {{ orderltflist.BalanceDate | datethai }}
             </td>
             <td class="txt-right">
-              11.1500
+                {{ orderltflist.NAV | tofix4 }}
             </td>
             <td class="txt-right">
-              17,055.4525
-            </td>
-          </tr>
-          <tr>
-            <td class="text-left">
-              &nbsp;
-            </td>
-            <td class="">
-              07/06/2561
-            </td>
-            <td class="">
-              30
-            </td>
-            <td class="">
-              07/06/2561
-            </td>
-            <td class="txt-right">
-              11.1500
-            </td>
-            <td class="txt-right">
-              17,055.4525
-            </td>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr class="topic">
-            <th colspan="11">
-              9990244758
-            </th>
-          </tr>
-          <tr class="line">
-            <td>
-              (KFLTFSTARD) กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
-            </td>
-            <td colspan="6">&nbsp;</td>
-          </tr>
-          <tr>
-            <td class="text-left">
-              &nbsp;
-            </td>
-            <td class="">
-              07/06/2561
-            </td>
-            <td class="">
-              30
-            </td>
-            <td class="">
-              07/06/2561
-            </td>
-            <td class="txt-right">
-              11.1500
-            </td>
-            <td class="txt-right">
-              17,055.4525
-            </td>
-          </tr>
-          <tr>
-            <td class="text-left">
-              &nbsp;
-            </td>
-            <td class="">
-              07/06/2561
-            </td>
-            <td class="">
-              30
-            </td>
-            <td class="">
-              07/06/2561
-            </td>
-            <td class="txt-right">
-              11.1500
-            </td>
-            <td class="txt-right">
-              17,055.4525
+                {{ orderltflist.BalanceAmount | tofix }}
             </td>
           </tr>
         </tbody>
