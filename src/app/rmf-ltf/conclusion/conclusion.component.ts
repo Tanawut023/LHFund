@@ -13,13 +13,13 @@ export class ConclusionComponent implements OnInit {
   userall: any = {};
   userselect: any = {};
   unitholderno: any = "init";
-  yearlist: any;
   years;
   rmfltfannual;
   ltflist: any[];
   balanceltf: number = 0;
-  balancermf: number = 0 ;
+  balancermf: number = 0;
   rmflist: any[];
+  Year;
 
   constructor(
     private basedataservice: BaseApplicationDataService,
@@ -29,10 +29,20 @@ export class ConclusionComponent implements OnInit {
   ngOnInit() {
 
     this.getSelectListUnitholder();
-    this.getyearlist();
 
     $('#mutual-tab-menu').find('li').removeClass('current');
     $('#mutual-tab-menu').find('li#menu2').addClass('current');
+
+    var d = new Date();
+
+    var array = new Array();
+    for (var i = (d.getFullYear()); i >= 2011; i--) {
+      array.push(i);
+    }
+    this.Year = array;
+    console.log(this.Year);
+
+    this.years = d.getFullYear();
   }
   onChange() {
 
@@ -57,28 +67,14 @@ export class ConclusionComponent implements OnInit {
 
         });
   }
-  getyearlist() {
-    this.rmfltfservice.getyearlist()
-      .pipe(first())
-      .subscribe(
-        data => {
-          console.log(data);
-          this.yearlist = data['yearlist'];
-          this.years = this.yearlist[0];
-        },
-        error => {
-          console.log(error)
-
-        });
-  }
-  Onclick(){
+  Onclick() {
 
     const user = {
       UnitholderID: this.userselect.UnitholderId,
-      Year: '2016'
+      Year: this.years
     }
     this.rmfltfservice.getorderrmfltfannual(user)
-    .pipe(first())
+      .pipe(first())
       .subscribe(
         data => {
           console.log(data);
@@ -90,21 +86,21 @@ export class ConclusionComponent implements OnInit {
 
         });
   }
-  format(){
+  format() {
     var rmflist = new Array();
     var ltflist = new Array();
 
     console.log('test');
-    
+
     var iRows = 1;
     var SumRows = 0;
     var balanceltf = 0;
     var balancermf = 0;
     for (let i = 0; i < this.rmfltfannual.orderltflist.length; i++) {
       console.log('fori');
-      
+
+      var nav = 0;
       var unit = 0;
-      var amount = 0;
       var count2 = 0;
       var count = 0;
       SumRows = this.rmfltfannual.orderltflist[i].Order.length;
@@ -114,23 +110,27 @@ export class ConclusionComponent implements OnInit {
         var obj;
 
         balanceltf += parseFloat(this.rmfltfannual.orderltflist[i].Order[y].AllotedAmount);
+        nav += parseFloat(this.rmfltfannual.orderltflist[i].Order[y].AllotedNAV);
         unit += parseFloat(this.rmfltfannual.orderltflist[i].Order[y].AllotedUnit);
-        amount += parseFloat(this.rmfltfannual.orderltflist[i].Order[y].AllotedAmount);
         obj = this.rmfltfannual.orderltflist[i].Order[y];
 
         if (count == 0 || count2 == 0) {
-          
+          if (this.rmfltfannual.orderltflist[i].FundID == obj.FundID) {
+            obj.FundName2 = obj.FundName;
             obj.FundNameGroup = this.rmfltfannual.orderltflist[i].FundName;
             obj.FundNameEngGroup = this.rmfltfannual.orderltflist[i].FundNameEng;
-          
+          }
+
+
+
         }
-        if ((y+1) == SumRows) {
+        if ((y + 1) == SumRows || y == 9) {
+          obj.nav = nav;
           obj.unit = unit;
-          obj.amount = amount;
 
 
           unit = 0;
-          amount = 0;
+          nav = 0;
         }
         ltflist.push(obj);
         console.log(obj);
@@ -147,9 +147,9 @@ export class ConclusionComponent implements OnInit {
 
     for (let i = 0; i < this.rmfltfannual.orderrmflist.length; i++) {
       console.log('fori');
-      
+
+      var nav = 0;
       var unit = 0;
-      var amount = 0;
       var count2 = 0;
       var count = 0;
       SumRows = this.rmfltfannual.orderrmflist[i].Order.length;
@@ -159,23 +159,25 @@ export class ConclusionComponent implements OnInit {
         var obj;
 
         balancermf += parseFloat(this.rmfltfannual.orderrmflist[i].Order[y].AllotedAmount);
+        nav += parseFloat(this.rmfltfannual.orderrmflist[i].Order[y].AllotedNAV);
         unit += parseFloat(this.rmfltfannual.orderrmflist[i].Order[y].AllotedUnit);
-        amount += parseFloat(this.rmfltfannual.orderrmflist[i].Order[y].AllotedAmount);
         obj = this.rmfltfannual.orderrmflist[i].Order[y];
 
         if (count == 0 || count2 == 0) {
-          
+          if (this.rmfltfannual.orderrmflist[i].FundID == obj.FundID) {
+            obj.FundName2 = obj.FundName;
             obj.FundNameGroup = this.rmfltfannual.orderrmflist[i].FundName;
             obj.FundNameEngGroup = this.rmfltfannual.orderrmflist[i].FundNameEng;
-          
-        }
-        if ((y+1) == SumRows) {
-          obj.unit = unit;
-          obj.amount = amount;
+          }
 
-          
+        }
+        if ((y + 1) == SumRows || y== 9) {
+          obj.nav = nav;
+          obj.unit = unit;
+
+
           unit = 0;
-          amount = 0;
+          nav = 0;
         }
         rmflist.push(obj);
         console.log(obj);
@@ -198,7 +200,11 @@ export class ConclusionComponent implements OnInit {
     // console.log(this.caltable);
     console.log(this.ltflist);
     console.log(this.balanceltf);
-    
+
   }
+  print() {
+    window.focus();
+    window.print();
+}
 
 }

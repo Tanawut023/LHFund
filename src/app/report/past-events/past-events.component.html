@@ -23,8 +23,8 @@
               </a>
             </li> -->
             <li class="ico-yt">
-              <a href="#" title="youtube">
-                <img src="/assets/Images/icons/ico-print.png" />
+              <a title="print">
+                <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
               </a>
             </li>
 
@@ -56,18 +56,19 @@
     </div>
   </div>
   <div class="detail-body-wrapper">
+      <form [formGroup]="form">
     <div class="row">
       <div class="col-md-12">
-        <p>{{ 'CONTENT.select-date-fund' | translate }}</p>
+        <span>{{ 'CONTENT.select-date-fund' | translate }}</span>
       </div>
       <div class="col-md-9">
         <div class="row">
           <div class="col-md-4">
-            <span class="txt-middle">{{ 'CONTENT.fund-group' | translate }}</span>
+            <p class="txt-middle">{{ 'CONTENT.fund-group' | translate }}</p>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 form-group">
             <div class="select-wrapper inline-block">
-              <select id="fundtype" name="fundtype" (change)="changefundtype()" [(ngModel)]="fundtype">
+              <select id="fundtype" name="fundtype" (change)="changefundtype()" formControlName="fundtype">
                 <option [value]="0">แสดงทุกกลุ่ม</option>
                 <option *ngFor="let fundtypelist of Fundtypelist; let i = index" [value]="fundtypelist.Id">{{ fundtypelist.Name
                   }}
@@ -79,17 +80,20 @@
         <div class="row">
 
           <div class="col-md-4">
-            <span class="txt-middle">{{ 'CONTENT.fund-name' | translate }}</span>
+            <p class="txt-middle">{{ 'CONTENT.fund-name' | translate }}</p>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 form-group has-danger">
             <div class="select-wrapper inline-block">
-
-              <select id="fundname" name="fundname" [(ngModel)]="fundname">
-                <option [value]="0">แสดงทุกกองทุน</option>
+              <select id="fundname" name="fundname"  formControlName="fundname">
+                <option value="0">แสดงทุกกองทุน</option>
                 <option *ngFor="let fundnamelist of Fundnamelist; let i = index" [ngValue]="fundnamelist">{{ fundnamelist.FundName
                   }}
                 </option>
               </select>
+
+              <div class="form-control-feedback" *ngIf="this.form.controls.fundname.invalid">
+                  <p>กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                </div>
 
             </div>
           </div>
@@ -98,20 +102,20 @@
 
         <div class="row">
           <div class="col-md-4">
-            <span class="txt-middle">{{ 'CONTENT.from-date' | translate }}</span>
+            <p class="txt-middle">{{ 'CONTENT.from-date' | translate }}</p>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 form-group">
             <div class="input-wrapper">
-              <input class=" textinput dateinput bg-gray" [(ngModel)]="model.startDate" ngbDatepicker #d1="ngbDatepicker" id="startDate"
-                placeholder="วว/ดด/ปปปป" name="startDate" type="text" (click)="d1.toggle()">
+              <input class=" textinput dateinput bg-gray"  formControlName="startDate" ngbDatepicker #d1="ngbDatepicker" id="startDate"
+                placeholder="วว/ดด/ปปปป" name="startDate" type="text" (click)="d1.toggle()" readonly>
             </div>
           </div>
           <div class="col-md-4">
-            <span class="txt-middle">{{ 'CONTENT.to-date' | translate }}</span>
+            <p class="txt-middle">{{ 'CONTENT.to-date' | translate }}</p>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 form-group">
             <div class="input-wrapper">
-              <input class=" textinput dateinput bg-gray" [(ngModel)]="model.endDate" ngbDatepicker #d2="ngbDatepicker" id="endDate" placeholder="วว/ดด/ปปปป"
+              <input class=" textinput dateinput bg-gray"  formControlName="endDate" ngbDatepicker #d2="ngbDatepicker" id="endDate" placeholder="วว/ดด/ปปปป"
                 name="endDate" type="text" (click)="d2.toggle()">
             </div>
           </div>
@@ -136,7 +140,7 @@
         </div>
       </div>
     </div>
-
+  </form>
 
   </div>
   <div class="detail-footer-wrapper">
@@ -149,7 +153,7 @@
             </th>
             <th>
               วันและเวลา
-              <br/>ที่ทำการ
+              <br/>ที่ทำรายการ
             </th>
             <th>
               วันที่มีผล
@@ -185,7 +189,7 @@
 
             <tr class="line" *ngIf="list.FundName">
               <td colspan="11">
-                {{ list.FundName}} : {{ list.FundCode}} 
+                {{ list.FundName}} : {{ list.FundCode}}
               </td>
             </tr>
             <tr class="bgforlhfund">
@@ -193,7 +197,7 @@
                 &nbsp;
               </td>
               <td class="text-left">
-                {{list.OrderDate | datethai}}, {{list.OrderTime | time}}
+                {{list.OrderTime | datethai}}, {{list.OrderTime | time}}
               </td>
               <td class="text-right">
                 {{list.EffectiveDate | datethai}}
@@ -210,10 +214,13 @@
               <td class="txt-right">
                 {{list.AllotedUnit | tofix4}}
               </td>
-              <td class="txt-right">
-                <ng-container *ngIf="list.SourceFundCode && list.TxType == 'Switching Out' ">
-                  {{list.SourceFundCode}}
+              <td class="">
+                <ng-container *ngIf="list.CounterFundCode">
+                  {{list.CounterFundCode}}
                 </ng-container>
+                <!-- <ng-container *ngIf="list.SourceFundCode">
+                  {{list.SourceFundCode}}
+                </ng-container> -->
               </td>
             </tr>
             <!-- <tr class="summary">
@@ -229,8 +236,10 @@
         </tbody>
       </table>
     </div>
-    <div *ngIf="statementlist"><pagination-controls [autoHide]="true" (pageChange)="p = $event"></pagination-controls></div>
-    
+    <div *ngIf="statementlist">
+      <pagination-controls [autoHide]="true" (pageChange)="p = $event"></pagination-controls>
+    </div>
+
     <div class="row">
       <div class="col-md-12">
         <p class="color-red no-margin">*มูลค่ารอการจัดสรรนี้รวมอยู่ในมูลค่าการลงทุนแล้ว</p>

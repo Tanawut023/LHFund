@@ -54,8 +54,12 @@ h3 {
 }
 
 p, a, span {
-    font-size: $text-x-small;
-    line-height: $text-x-small;
+    font-size: $text-content;
+    line-height: $text-x-small;  
+}
+
+p{
+    margin-bottom: 5px;
 }
 
 a{

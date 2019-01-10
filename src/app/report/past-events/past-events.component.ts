@@ -4,6 +4,7 @@ import { first } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 import { ReportService } from '../../service/report.service';
 import { getDate } from '../../Share/dateformat';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-past-events',
@@ -18,25 +19,34 @@ export class PastEventsComponent implements OnInit {
   Fundtypelist;
   Fundnamelist;
   statementreport;
-  fundtype: any = 0;
-  fundname: any = 0;
+  // fundtype: any = 0;
+  // fundname: any = 0;
   caltable: any;
   loading = false;
   p: number = 1;
   statementlist;
+  minDate;
+  form: FormGroup;
 
   constructor(
     private basedataservice: BaseApplicationDataService,
-    private reportservice: ReportService
+    private reportservice: ReportService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
-
+    this.createFormValidate();
     this.getSelectListUnitholder();
     this.getfundtypelist();
 
     $('#mutual-tab-menu').find('li').removeClass('current');
     $('#mutual-tab-menu').find('li#menu4').addClass('current');
+
+    var d = new Date();
+    var endDate = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
+    console.log(endDate);
+
+    this.minDate = { year: endDate.getFullYear(), month: endDate.getMonth() + 1, day: endDate.getDate() };
   }
   onChange() {
 
@@ -46,11 +56,20 @@ export class PastEventsComponent implements OnInit {
       }
     }
   }
+  createFormValidate() {
+    this.form = this.fb.group({
+
+      fundtype: [0],
+      fundname: [0],
+      startDate: [null],
+      endDate: [null]
+
+    })
+  }
   changefundtype() {
 
-    console.log(this.fundtype);
 
-    var id = this.fundtype;
+    var id = this.form.controls.fundtype.value;
 
     let Params = new HttpParams();
     Params = Params.append('fundtypeid', id);
@@ -68,10 +87,10 @@ export class PastEventsComponent implements OnInit {
   }
 
   getstartdate() {
-    return this.model.startDate.year + "-" + this.model.startDate.month + "-" + this.model.startDate.day;
+    return this.form.controls.startDate.value.year + "-" + this.form.controls.startDate.value.month + "-" + this.form.controls.startDate.value.day;
   }
   getenddate() {
-    return this.model.endDate.year + "-" + this.model.endDate.month + "-" + this.model.endDate.day;
+    return this.form.controls.endDate.value.year + "-" + this.form.controls.endDate.value.month + "-" + this.form.controls.endDate.value.day;
   }
 
   getSelectListUnitholder() {
@@ -100,9 +119,15 @@ export class PastEventsComponent implements OnInit {
           console.log(error)
 
         });
+    
+      this.changefundtype();
+    
+
   }
 
   OnSubmitd() {
+    console.log(this.form);
+
 
     this.loading = true;
     let params = new HttpParams().set('unitholderid', this.userselect.UnitholderId);
@@ -112,58 +137,75 @@ export class PastEventsComponent implements OnInit {
     var user;
     console.log(this.model);
 
-
-    if (this.fundtype == "0" && typeof this.model.startDate == 'undefined') {
-      console.log(this.fundtype);
-      console.log('test');
-      user = {
-        UnitholderID: this.userselect.UnitholderId
-      }
-
-    }
-    // else if (this.fundtype !== "0" && typeof this.model.startDate == 'undefined' && typeof this.fundname.FundCode !== 'undefined') {
-    //   console.log(this.fundtype);
-    //   console.log('test4');
-    //   user = {
-    //     UnitholderID: this.userselect.UnitholderId,
-    //     FundTypeID: this.fundtype
-    //   }
-
-    // }
-    else if (typeof this.model.startDate !== 'undefined' && this.fundtype == "0") {
-      console.log("test3");
-      user = {
-        UnitholderID: this.userselect.UnitholderId,
-        StartOrderDate: this.getstartdate(),
-        EndOrderDate: this.getenddate()
-      }
-
+    if (this.form.controls.fundtype.value != 0 && this.form.controls.fundname.value == 0) {
+      this.form.controls.fundname.setErrors({ 'invalid': true });;
+      this.loading = false;
     } else {
-      console.log('test2');
-      console.log(this.fundname);
+      if (this.form.controls.fundtype.value == "0" && !this.form.controls.startDate.value && !this.form.controls.endDate.value) {
 
-      user = {
-        UnitholderID: this.userselect.UnitholderId,
-        FundID: this.fundname.FundID,
-        StartOrderDate: this.getstartdate(),
-        EndOrderDate: this.getenddate()
+        console.log('test');
+        user = {
+          UnitholderID: this.userselect.UnitholderId
+        }
+
       }
+      // else if (this.fundtype !== "0" && typeof this.model.startDate == 'undefined' && typeof this.fundname.FundCode !== 'undefined') {
+      //   console.log(this.fundtype);
+      //   console.log('test4');
+      //   user = {
+      //     UnitholderID: this.userselect.UnitholderId,
+      //     FundTypeID: this.fundtype
+      //   }
+
+      // }
+      else if (this.form.controls.startDate.value && this.form.controls.fundtype.value == "0" && this.form.controls.endDate.value) {
+        console.log("test3");
+        user = {
+          UnitholderID: this.userselect.UnitholderId,
+          StartOrderDate: this.getstartdate(),
+          EndOrderDate: this.getenddate()
+        }
+
+      }
+      else if (this.form.controls.fundtype.value && this.form.controls.fundname.value && !this.form.controls.startDate.value && !this.form.controls.endDate.value) {
+        console.log('test4');
+
+        user = {
+          UnitholderID: this.userselect.UnitholderId,
+          FundID: this.form.controls.fundname.value.FundID
+        }
+
+      }
+      else {
+        console.log('test2');
+        // console.log(this.fundname);
+
+        user = {
+          UnitholderID: this.userselect.UnitholderId,
+          FundID: this.form.controls.fundname.value.FundID,
+          StartOrderDate: this.getstartdate(),
+          EndOrderDate: this.getenddate()
+        }
+      }
+      console.log(user);
+
+      this.reportservice.statementreport(user, Params)
+        .subscribe(
+          data => {
+            console.log(data);
+            this.statementreport = data;
+            this.calulatetable();
+            this.loading = false;
+          },
+          error => {
+            console.log(error)
+            this.loading = false;
+
+          });
     }
-    console.log(user);
 
-    this.reportservice.statementreport(user,Params)
-      .subscribe(
-        data => {
-          console.log(data);
-          this.statementreport = data;
-          this.calulatetable();
-          this.loading = false;
-        },
-        error => {
-          console.log(error)
-          this.loading = false;
 
-        });
+
 
 
   }
@@ -193,12 +235,12 @@ export class PastEventsComponent implements OnInit {
             }
           }
           array.push(obj);
-        console.log(obj);
-        count++;
-        count2++;
-        if (count == 10) {
-          count = 0;
-        }
+          console.log(obj);
+          count++;
+          count2++;
+          if (count == 10) {
+            count = 0;
+          }
           // balance += parseFloat(this.statementreport.statementreport[i].DividendPayment[y].BalanceUnit);
           // tax += parseFloat(this.statementreport.statementreport[i].DividendPayment[y].DividendWithHoldingTax);
           // net += parseFloat(this.statementreport.statementreport[i].DividendPayment[y].NetDividendAmount);
@@ -216,15 +258,20 @@ export class PastEventsComponent implements OnInit {
   }
   reset() {
     console.log('reset');
-    
-    this.Fundnamelist = [];
-    this.fundtype = 0;
-    this.fundname = 0;
+
+    // this.Fundnamelist = [];
     this.statementreport = '';
-    this.model = {};
-    this.statementlist = [];
+    // this.model = {};
+    this.statementlist = '';
     this.p = 1;
+    this.loading = false;
+    this.createFormValidate();
+    this.getfundtypelist();
     // console.log(this.statementlist);
-    
+
+  }
+  print() {
+    window.focus();
+    window.print();
   }
 }

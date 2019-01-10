@@ -1,3 +1,10 @@
+<style>
+  tbody tr.bgforlhfund:nth-child(even) {
+    background: #fafafa
+  }
+
+  /* tbody tr.bgforlhfund:nth-child(odd) {background: #FFF} */
+</style>
 <div class="fund-table-wrapper" *ngIf="page == 'purchase'">
   <div class="heading-section">
     <div class="detail-head-wrapper">
@@ -16,8 +23,8 @@
               </a>
             </li> -->
             <li class="ico-yt">
-              <a href="#" title="youtube">
-                <img src="/assets/Images/icons/ico-print.png" />
+              <a title="print">
+                <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
               </a>
             </li>
 
@@ -26,7 +33,7 @@
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
-            <select id="unitholderno" [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()">
+            <select id="unitholderno" [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" [ngModelOptions]="{standalone: true}">
               <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
                 }}
               </option>
@@ -45,130 +52,131 @@
     </div>
   </div>
   <div class="detail-body-wrapper">
-    <div class="row">
-      <div class="col-md-12">
-        <H4 class="text-left">{{ 'CONTENT.purchase' | translate }}</H4>
-      </div>
-      <div class="col-md-9">
-        <div class="row">
-          <div class="col-md-4">
-            <p>{{ 'CONTENT.input-date' | translate }}</p>
-          </div>
-          <div class="col-md-6">
-            <span>{{ currentdate }}</span>
-          </div>
+    <form [formGroup]="formsubsription">
+      <div class="row">
+        <div class="col-md-12">
+          <H4 class="text-left">{{ 'CONTENT.purchase' | translate }}</H4>
         </div>
-        <div class="row">
-          <div class="col-md-4">
-            <p>{{ 'CONTENT.payment' | translate }}</p>
-          </div>
-          <div class="col-md-6">
-            <span>หักบัญชีธนาคาร</span>
-          </div>
-        </div>
-        <div class="row">
-
-          <div class="col-md-4">
-            <span class="txt-middle">{{ 'CONTENT.fund-name' | translate }}</span>
-          </div>
-
-          <div class="col-md-6">
-            <div class="select-wrapper inline-block">
-              <select id="fundlist" [(ngModel)]="fundlist" name="fundlist" (ngModelChange)="fundlistonChange()">
-                <option [ngValue]="fundlist" *ngFor="let fundlist of unitholdersubscription.fundlist; let i = index">
-                  {{ fundlist.FundName }}
-                </option>
-              </select>
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-md-4">
+              <p>{{ 'CONTENT.input-date' | translate }}</p>
+            </div>
+            <div class="col-md-6">
+              <span>{{ currentdate }}</span>
             </div>
           </div>
+          <div class="row">
+            <div class="col-md-4">
+              <p>{{ 'CONTENT.payment' | translate }}</p>
+            </div>
+            <div class="col-md-6">
+              <span>หักบัญชีธนาคาร</span>
+            </div>
+          </div>
+          <div class="row">
 
-          <!-- <select class="selectpicker" data-live-search="true" title="กรุณาเลือก">
+            <div class="col-md-4">
+              <p class="txt-middle">{{ 'CONTENT.fund-name' | translate }}</p>
+            </div>
+
+            <div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss('fund')">
+              <div class="select-wrapper inline-block">
+                <select id="fund" formControlName="fund" name="fund" required>
+                  <option value="" selected="" disabled>กรุณาเลือก</option>
+                  <option [ngValue]="fundlist" *ngFor="let fundlist of unitholdersubscription.fundlist; let i = index">
+                    {{ fundlist.FundName }} ({{ fundlist.FundCode }})
+                  </option>
+                </select>
+                <div class="form-control-feedback" *ngIf="this.formsubsription.controls.fund.errors && (this.formsubsription.controls.fund.touched)">
+                  <p *ngIf="this.formsubsription.controls.fund.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                </div>
+                <a href="{{this.formsubsription.controls.fund.value.FundFactSheetEN}}" target="_blank" *ngIf="this.formsubsription.controls.fund.value">ดาวน์โหลดหนังสือชี้ชวน</a>
+              </div>
+            </div>
+
+            <!-- <select class="selectpicker" data-live-search="true" title="กรุณาเลือก">
             <option >Hot Dog, Fries and a Soda</option>
             <option>Burger, Shake and a Smile</option>
             <option>Sugar, Spice and all things nice</option>
           </select> -->
-          
-
-        </div>
 
 
-        <div class="row">
-          <div class="col-md-4">
-            <span class="txt-middle">{{ 'CONTENT.amount' | translate }}</span>
           </div>
 
-          <div class="col-md-3 col-6">
-            <div class="input-wrapper ">
-              <input id="amount" name="amount" maxlength="30" type="text" class="bg-gray" value="80,000">
+
+          <div class="row">
+            <div class="col-md-4">
+              <p class="txt-middle">{{ 'CONTENT.amount' | translate }}</p>
+            </div>
+
+            <div class="col-md-3 col-6 form-group" [ngClass]="ValidatorDisplayCss('amount')">
+              <div class="input-wrapper ">
+                <input id="amount" name="amount" maxlength="30" type="text" class="bg-gray" formControlName="amount" required (keypress)="numberOnly($event)"
+                  (blur)="tofix($event.target.value)">
+                <div class="form-control-feedback" *ngIf="this.formsubsription.controls.amount.errors && (this.formsubsription.controls.amount.touched)">
+                  <p *ngIf="this.formsubsription.controls.amount.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                  <!-- <p *ngIf="cpwd.hasError('invalid')">กรุณากรอกจำนวนขั้นต่ำ 1000 บาท</p> -->
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <span class="txt-middle">บาท</span>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <p class="txt-middle">{{ 'CONTENT.debit-from-acc' | translate }}</p>
+            </div>
+            <div class="col-md-6">
+              <div class="select-wrapper inline-block">
+                <select id="banklist" [(ngModel)]="banklist" name="banklist" (ngModelChange)="banklistonChange()" [ngModelOptions]="{standalone: true}">
+                  <option [ngValue]="banklist" *ngFor="let banklist of unitholdersubscription.bankaccountlist; let i = index">
+                    {{ banklist.BankName }} {{ banklist.BankAccountNo }}
+                  </option>
+                </select>
+              </div>
             </div>
           </div>
-          <div class="col-md-3 col-6">
-            <div class="select-wrapper inline-block">
 
-              <select name="type" id="type" title="กรุณาเลือก">
-                <option value="0" selected="" disabled>กรุณาเลือก</option>
-                <option value="บาท">บาท</option>
-                <option value="หน่วย">หน่วย</option>
-                <option value="ทั้งหมด">ทั้งหมด</option>
-              </select>
+          <div class="row">
+            <div class="col-md-4">
+              <p class="txt-middle">{{ 'CONTENT.Advance-s-date' | translate }}</p>
+            </div>
+            <!-- [markDisabled]="isDisabled" -->
+            <div class="col-md-6 col-lg-3">
+              <div class="input-wrapper">
+                <input class=" textinput dateinput bg-gray" [minDate]="minDate" ngbDatepicker #d="ngbDatepicker" id="startDate" placeholder="วว/ดด/ปปปป"
+                  name="startDate" type="text" (click)="d.toggle()" formControlName="date" readonly>
+              </div>
+            </div>
+            <div class="cleardate">
+              <i class="fa fa-times" aria-hidden="true" (click)="resetdate()" *ngIf="this.formsubsription.controls.date.value"></i>
+            </div>
+
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-3 col-6 offset-md-4">
+              <button class="btn-med btn-primary" (click)="onSubmited()">
+                {{ 'BUTTON.ok' | translate }}
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="col-md-3 col-6">
+              <button class="btn-med btn-cancel" (click)="reset()">
+                {{ 'BUTTON.cancel' | translate }}
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </button>
             </div>
           </div>
 
         </div>
-
-        <div class="row">
-          <div class="col-md-4">
-            <span class="txt-middle">{{ 'CONTENT.debit-from-acc' | translate }}</span>
-          </div>
-          <div class="col-md-6">
-            <div class="select-wrapper inline-block">
-              <select id="banklist" [(ngModel)]="banklist" name="banklist" (ngModelChange)="banklistonChange()">
-                <option [ngValue]="banklist" *ngFor="let banklist of unitholdersubscription.bankaccountlist; let i = index">
-                  {{ banklist.BankName }}
-                </option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-4">
-            <span class="txt-middle">{{ 'CONTENT.Advance-s-date' | translate }}</span>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="input-wrapper">
-              <input class=" textinput dateinput bg-gray" 
-              [(ngModel)]="datepick" 
-              [minDate]="minDate" 
-              ngbDatepicker 
-              #d="ngbDatepicker" 
-              id="startDate" 
-              placeholder="วว/ดด/ปปปป"
-              name="startDate" 
-              type="text" 
-              (click)="d.toggle()">
-            </div>
-          </div>
-        </div>
-
-
-        <div class="row">
-          <div class="col-md-3 col-6 offset-md-4">
-            <button class="btn-med btn-primary" (click)="onSubmit()">
-              {{ 'BUTTON.ok' | translate }}
-              <i class="fa fa-angle-right" aria-hidden="true"></i>
-            </button>
-          </div>
-          <div class="col-md-3 col-6">
-            <button class="btn-med btn-cancel" (click)="checkpage('signup1')">
-              {{ 'BUTTON.cancel' | translate }}
-              <i class="fa fa-angle-right" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
-
       </div>
-    </div>
+    </form>
   </div>
   <div class="detail-footer-wrapper">
     <div class="row">
@@ -178,13 +186,17 @@
           <label>{{ 'CONTENT.order-to-be' | translate }}</label>
         </h4>
       </div>
-      <div class="col-md-6 text-md-right">
+      <div class="col-md-12 mt-5 text-center" *ngIf="!nolist">
+        <p>{{ 'CONTENT.no-list' | translate }}</p>
+      </div>
+
+      <!-- <div class="col-md-6 text-md-right">
         <i class="fa fa-angle-right mr-1" aria-hidden="true"></i>
         <label>{{ 'CONTENT.view-all' | translate }}</label>
-      </div>
-      <div class="col-md-12 mt-2">
+      </div> -->
+      <div class="col-md-12 mt-2" *ngIf="nolist">
         <div class="table-responsive">
-          <table class="table table-custom">
+          <table class="table table-nav">
             <thead>
               <tr>
                 <th>
@@ -202,70 +214,47 @@
                 <th>
                   วันที่มีผล
                 </th>
-                <th>
+                <!-- <th>
                   แก้ไข
-                </th>
+                </th> -->
                 <th>
                   ยกเลิก
                 </th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td class="text-left">
-                  กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
-                </td>
-                <td>
-                  หักบัญชี
-                </td>
-                <td class="text-right">
-                  20,000.00
-                </td>
-                <td>
-                  07/06/2561, 11:25
-                </td>
-                <td>
-                  07/06/2561
-                </td>
-                <td>
-                  <a href="">
-                    <img src="/assets/Images/icons/ico-edit.png">
-                  </a>
-                </td>
-                <td>
-                  <a>
-                    <img src="/assets/Images/icons/ico-delete.png" alt="" data-toggle="modal" data-target="#disclaimer">
-                  </a>
-                </td>
+            <tbody *ngIf="ordersubscriptionlist">
+              <ng-container *ngFor="let list of ordersubscriptionlist?.orderinfolist; let i = index">
+                <ng-container *ngIf="list.OrderStatus == 'Initial' && list.TxType == 'Subscription' ">
+                  <tr class="bgforlhfund">
+                    <td class="text-left">
+                      {{list.FundName}} ({{list.FundCode}})
+                    </td>
+                    <td>
+                      หักบัญชี
+                    </td>
+                    <td class="text-right">
+                      {{list.PaymentAmount | tofix}}
+                    </td>
+                    <td>
+                      {{list.OrderTime | datethai}}, {{list.OrderTime | time}}
+                    </td>
+                    <td>
+                      {{list.EffectiveDate | datethai}}
+                    </td>
+                    <!-- <td>
+                    <a href="">
+                      <img src="/assets/Images/icons/ico-edit.png">
+                    </a>
+                  </td> -->
+                    <td>
+                      <a>
+                        <img src="/assets/Images/icons/ico-delete.png" alt="" (click)="modaldeleteorder(list)">
+                      </a>
+                    </td>
 
-              </tr>
-              <tr>
-                <td class="text-left">
-                  กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
-                </td>
-                <td>
-                  หักบัญชี
-                </td>
-                <td class="text-right">
-                  20,000.00
-                </td>
-                <td>
-                  07/06/2561, 11:25
-                </td>
-                <td>
-                  07/06/2561
-                </td>
-                <td>
-                  <a>
-                    <img src="/assets/Images/icons/ico-edit.png">
-                  </a>
-                </td>
-                <td>
-                  <a>
-                    <img src="/assets/Images/icons/ico-delete.png" alt="" data-toggle="modal" data-target="#disclaimer">
-                  </a>
-                </td>
-              </tr>
+                  </tr>
+                </ng-container>
+              </ng-container>
             </tbody>
 
           </table>
@@ -293,8 +282,8 @@
               </a>
             </li> -->
             <li class="ico-yt">
-              <a href="#" title="youtube">
-                <img src="/assets/Images/icons/ico-print.png" />
+              <a title="print">
+                <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
               </a>
             </li>
 
@@ -344,7 +333,7 @@
             <p>{{ 'CONTENT.fund-name' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>{{ fundlist.FundName }}</span>
+            <span>{{ formsubsription.controls.fund.value.FundName }}</span>
           </div>
         </div>
 
@@ -353,7 +342,7 @@
             <p>{{ 'CONTENT.amount' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>80,000 บาท</span>
+            <span>{{formsubsription.controls.amount.value}} บาท</span>
           </div>
         </div>
 
@@ -362,11 +351,11 @@
             <p>{{ 'CONTENT.debit-from-acc' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>{{ banklist.BankName }}</span>
+            <span>{{ banklist.BankName }} {{ banklist.BankAccountNo }}</span>
           </div>
         </div>
 
-        <div class="row">
+        <div class="row" *ngIf="date">
           <div class="col-md-4">
             <p>{{ 'CONTENT.Advance-s-date' | translate }}</p>
           </div>
@@ -376,14 +365,23 @@
         </div>
 
         <div class="row">
+          <div class="col-md-4">
+            <p>{{ 'CONTENT.effectivedate' | translate }}</p>
+          </div>
+          <div class="col-md-6">
+            <span>{{resultsubmit.data.EffectiveDate | datethaiDM}}</span>
+          </div>
+        </div>
+
+        <div class="row">
           <div class="col-md-3 col-6 offset-md-4">
-            <button class="btn-med btn-primary" (click)="checkpage('purchase-step2')">
+            <button class="btn-med btn-primary" (click)="confirmsubscription()">
               {{ 'BUTTON.confirm' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
           <div class="col-md-3 col-6">
-            <button class="btn-med btn-back-login" (click)="checkpage('purchase-over-view')">
+            <button class="btn-med btn-back-login" (click)="checkpage('purchase')">
               {{ 'BUTTON.cancel' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
@@ -398,8 +396,9 @@
         </p>
         <p class="color-red no-margin">- ทั้งนี้ข้าพเจ้ายินยอมที่จะเสียค่าธรรมเนียมในการสั่งซื้อ และปฏิบัติตามข้อกำหนด และเงื่อนไขทั้งหมดที่ระบุไว้ในหนังสือชี้ชวนเสนอขายหน่วยลงทุนทุกประการ</p>
         <h5 class=" no-margin" style="color: #C90A11;">- ในกรณีที่คำสั่งซื้อนี้ถูกปฏิเสธข้าพเจ้าตกลงที่จะรับเงินที่ได้ชำระแล้วคืนโดยไม่มีดอกเบี้ย</h5>
-        <p class="color-red no-margin">- การลงทุนในหน่วยลงทุนมิใช่การฝากเงินและมีความเสี่ยงของการลงทุน ผู้ถือหน่วยลงทุนอาจได้รับเงินลงทุนคืนมากกว่าหรือน้อยกว่าเงินลงทุน</p>
-        <p class="color-red no-margin">- เริ่มแรกก็ได้ และอาจไม่ได้รับชำระเงินค่าขายคืนหน่วยลงทุนภายในระยะเวลา ที่กำหนดหรืออาจไม่สามารถขายคืนหน่วยลงทุนได้ตามที่มีคำสั่งไว้</p>
+        <p class="color-red no-margin">- การลงทุนในหน่วยลงทุนมิใช่การฝากเงินและมีความเสี่ยงของการลงทุน ผู้ถือหน่วยลงทุนอาจได้รับเงินลงทุนคืนมากกว่าหรือน้อยกว่าเงินลงทุน
+          เริ่มแรกก็ได้ และอาจไม่ได้รับชำระเงินค่าขายคืนหน่วยลงทุนภายในระยะเวลา ที่กำหนดหรืออาจไม่สามารถขายคืนหน่วยลงทุนได้ตามที่มีคำสั่งไว้</p>
+        <!-- <p class="color-red no-margin">- </p> -->
       </div>
     </div>
   </div>
@@ -423,8 +422,8 @@
               </a>
             </li> -->
             <li class="ico-yt">
-              <a href="#" title="youtube">
-                <img src="/assets/Images/icons/ico-print.png" />
+              <a title="print">
+                <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
               </a>
             </li>
 
@@ -474,7 +473,7 @@
             <p>{{ 'CONTENT.fund-name' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>{{ fundlist.FundName }}</span>
+            <span>{{ formsubsription.controls.fund.value.FundName }}</span>
           </div>
         </div>
 
@@ -483,7 +482,7 @@
             <p>{{ 'CONTENT.amount' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>80,000 บาท</span>
+            <span>{{formsubsription.controls.amount.value}} บาท</span>
           </div>
         </div>
 
@@ -492,28 +491,37 @@
             <p>{{ 'CONTENT.debit-from-acc' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>{{ banklist.BankName }}</span>
+            <span>{{ banklist.BankName }} {{ banklist.BankAccountNo }}</span>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="date">
+          <div class="col-md-4">
+            <p>{{ 'CONTENT.Advance-s-date' | translate }}</p>
+          </div>
+          <div class="col-md-6">
+            <span>{{date}}</span>
           </div>
         </div>
 
         <div class="row">
           <div class="col-md-4">
-            <p>{{ 'CONTENT.Advance-s-date' | translate }}</p>
+            <p>{{ 'CONTENT.effectivedate' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>{{ date }}</span>
+            <span>{{resultsubmit.data.EffectiveDate | datethaiDM}}</span>
           </div>
         </div>
 
         <div class="row">
           <div class="col-md-3 col-6 offset-md-4">
-            <button class="btn-med btn-primary" (click)="checkpage('purchase-step2')">
+            <button class="btn-med btn-primary" (click)="print()">
               {{ 'BUTTON.print' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
           <div class="col-md-3 col-6">
-            <button class="btn-med btn-blue" (click)="checkpage('purchase-view-list')">
+            <button class="btn-med btn-blue" (click)="checkpage('purchase')">
               {{ 'BUTTON.view-list' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
@@ -561,7 +569,7 @@
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
 
           <div class="select-wrapper inline-block">
-            <select name="unitholderno" [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()">
+            <select name="unitholderno" [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" [ngModelOptions]="{standalone: true}">
               <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
                 }}
               </option>
@@ -914,31 +922,205 @@
           </div>
         </div>
       </div>
-      
+
     </div>
   </div>
 </div>
 
 <div class="modal fade modal-custom" tabindex="-1" role="dialog" id="message" style="z-index: 9999;">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">คำเตือน</h4>
-        </div>
-        <div class="modal-body" id="content-scroll-1">
-          <h3>{{ message }}</h3>
-        </div>
-        <div class="modal-footer" style="display: block;">
-          <div class="row justify-content-end">
-            <div class="col-sm-6">
-              <button class="btn-med btn-primary" data-dismiss="modal" (click)="checkpage('purchase-step1')" >
-                <p style="margin-top: 7px;">ตกลง
-                  <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </p>
-              </button>
-            </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">คำเตือน</h4>
+      </div>
+      <div class="modal-body" id="content-scroll-1">
+        <h3>{{ message }}</h3>
+      </div>
+      <div class="modal-footer" style="display: block;">
+        <div class="row justify-content-end">
+          <div class="col-sm-6">
+            <button class="btn-med btn-primary" data-dismiss="modal">
+              <p style="margin-top: 7px;">ตกลง
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </p>
+            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="risklevel" style="z-index: 9999;">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">คำเตือน</h4>
+      </div>
+      <div class="modal-body" id="content-scroll-1">
+        <h3 *ngIf="Islevel">- ระดับความเสี่ยงในการลงทุนของท่านน้อยกว่าระดับความเสี่ยงของกองทุน</h3>
+        <h3 *ngIf="Isprotect">- กองทุนที่ท่านเลือกไม่มีนโยบายป้องกันความเสี่ยงอัตราแลกเปลี่ยนเต็มจำนวน</h3>
+      </div>
+      <div class="modal-footer" style="display: block;">
+        <div class="row justify-content-center">
+          <div class="col-4">
+            <button class="btn-med btn-primary" data-dismiss="modal" (click)="checkpage('purchase-step1')">
+              {{ 'BUTTON.acceptrisk' | translate }}
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="col-4">
+            <button class="btn-med btn-cancel" data-dismiss="modal">
+              {{ 'BUTTON.notaccept' | translate }}
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="col-4" *ngIf="Islevel">
+            <button class="btn-med btn-primary" data-dismiss="modal" routerLink="/profile/suitability">
+              <p style="margin-top: 7px;">ทำแบบประเมินความเสี่ยง
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </p>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="expiremodal" style="z-index: 9999;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">คำเตือน</h4>
+      </div>
+      <div class="modal-body" id="content-scroll-1">
+        <h3>แบบประเมินความเสี่ยงของท่านครบกำหนดแล้ว กรุณาปรับปรุงแบบประเมินความเสี่ยง เพื่อให้สามารถทำรายการซื้อ หรือ รายการสับเปลี่ยนเข้า
+          ด้วยค่ะ
+        </h3>
+      </div>
+      <div class="modal-footer" style="display: block;">
+        <div class="row justify-content-center">
+          <!-- <div class="col-4">
+            <button class="btn-med btn-primary" data-dismiss="modal" (click)="checkpage('purchase-step1')">
+              {{ 'BUTTON.confirm' | translate }}
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </button>
+          </div> -->
+          <div class="col-5">
+            <button class="btn-med btn-cancel" data-dismiss="modal" routerLink="">
+              {{ 'BUTTON.cancel' | translate }}
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="col-5">
+            <button class="btn-med btn-primary" data-dismiss="modal" routerLink="/profile/suitability">
+              <p style="margin-top: 7px;">ทำแบบประเมิน
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </p>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="delete">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header warning">
+
+        <h4 class="modal-title warning">คุณต้องการลบรายการที่เลือกหรือไม่</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <h4 class="modal-title warning">X</h4>
+        </button>
+      </div>
+      <div class="modal-body" id="content-scroll-1">
+        <div class="row mt-3">
+          <div class="col-md-6 col-6">
+            <p>เลขที่ผู้ถือหน่วยลงทุน</p>
+            <span>{{ userselect.UnitholderNo }}</span>
+          </div>
+          <div class="col-md-6 col-6">
+            <p>ชื่อผู้ถือหน่วยลงทุน</p>
+            <span>{{ userselect.FirstName}} {{ userselect.LastName}}</span>
+          </div>
+
+          <div class="col-md-12 mt-4">
+            <div class="table-responsive">
+              <table class="table table-custom">
+                <tbody>
+                  <tr>
+                    <td class="text-left">
+                      วันที่ทำรายการ
+                    </td>
+                    <td class="text-left content">
+                      {{deletedOrder?.OrderTime | datethai}}, {{deletedOrder?.OrderTime | time}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      เลือกวิธีชำระเงิน
+                    </td>
+                    <td class="text-left content">
+                      หักบัญชีธนาคาร
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      กองทุน
+                    </td>
+                    <td class="text-left content">
+                      {{deletedOrder?.FundName}} ({{deletedOrder?.FundCode}})
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      จำนวน
+                    </td>
+                    <td class="text-left content">
+                      <ng-container *ngIf="deletedOrder">{{deletedOrder?.PaymentAmount | tofix}} บาท</ng-container>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      หักบัญชีธนาคาร
+                    </td>
+                    <td class="text-left content">
+                      {{deletedOrder?.BankName}} ({{deletedOrder?.OrderBankAccountNo}})
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      วันที่มีผล
+                    </td>
+                    <td class="text-left content">
+                      {{deletedOrder?.EffectiveDate | datethai}}
+                    </td>
+                  </tr>
+
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="row justify-content-center">
+            <div class="col-md-6 col-6 col-sm-6">
+              <button class="btn-med btn-cancel" (click)="deleteorder()">
+                ลบรายการนี้
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+</div>

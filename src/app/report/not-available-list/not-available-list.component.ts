@@ -3,6 +3,7 @@ import { BaseApplicationDataService } from '../../service/base-application-data.
 import { first } from 'rxjs/operators';
 import { datethai } from '../../Share/dateformat';
 import { HttpParams } from '@angular/common/http';
+import { ReportService } from '../../service/report.service';
 
 @Component({
   selector: 'app-not-available-list',
@@ -14,9 +15,12 @@ export class NotAvailableListComponent implements OnInit {
   userselect: any = {};
   unitholderno: any = "init";
   dateformat = datethai;
+  unallocatedreportlist;
+
 
   constructor(
-    private basedataservice: BaseApplicationDataService
+    private basedataservice: BaseApplicationDataService,
+    private reportservice: ReportService
   ) { }
 
   ngOnInit() {
@@ -33,6 +37,7 @@ export class NotAvailableListComponent implements OnInit {
         this.userselect = this.userall.unitholderlist[i];
       }
     }
+    this.getunallocatedreport();
   }
 
   getSelectListUnitholder() {
@@ -43,11 +48,30 @@ export class NotAvailableListComponent implements OnInit {
           this.userall = data;
           this.unitholderno = this.userall.unitholderlist[0];
           this.userselect = this.userall.unitholderlist[0];
+          this.getunallocatedreport();
         },
         error => {
           console.log(error)
 
         });
   }
+  getunallocatedreport() {
+    let params = new HttpParams().set('unitholderid', this.userselect.UnitholderId);
+    this.reportservice.unallocatedreport(params)
+      .pipe(first())
+      .subscribe(
+        data => {
+          console.log(data);          
+          this.unallocatedreportlist = data;
+        },
+        error => {
+          console.log(error)
+
+        });
+  }
+  print() {
+    window.focus();
+    window.print();
+}
 
 }

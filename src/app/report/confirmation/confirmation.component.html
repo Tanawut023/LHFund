@@ -16,8 +16,8 @@
               </a>
             </li> -->
             <li class="ico-yt">
-              <a href="#" title="youtube">
-                <img src="/assets/Images/icons/ico-print.png" />
+              <a title="print">
+                <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
               </a>
             </li>
 
@@ -49,6 +49,7 @@
     </div>
   </div>
   <div class="detail-body-wrapper">
+    <form [formGroup]="formconfirm">
     <div class="row">
       <div class="col-md-12">
         <H4 class="text-left">{{ 'CONTENT.select-date-t' | translate }}</H4>
@@ -57,12 +58,15 @@
         <div class="row">
 
           <div class="col-md-3">
-            <span class="txt-middle">{{ 'CONTENT.transaction-date' | translate }}</span>
+            <p class="txt-middle">{{ 'CONTENT.transaction-date' | translate }}</p>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss('dateorder')">
             <div class="input-wrapper">
-              <input class=" textinput dateinput bg-gray" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" id="startDate" placeholder="วว/ดด/ปปปป"
-                name="date" type="text" (click)="d.toggle()">
+              <input class=" textinput dateinput bg-gray" [minDate]="minDate" formControlName="dateorder" ngbDatepicker #d="ngbDatepicker" id="dateorder" placeholder="วว/ดด/ปปปป"
+                name="dateorder" type="text" (click)="d.toggle()" readonly>
+                <div class="form-control-feedback" *ngIf="this.formconfirm.controls.dateorder.errors && (this.formconfirm.controls.dateorder.touched)">
+                    <p *ngIf="this.formconfirm.controls.dateorder.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                </div>
             </div>
           </div>
           <div class="col-md-3 col-6">
@@ -76,7 +80,7 @@
         </div>
       </div>
     </div>
-
+    </form>
 
   </div>
   <div class="detail-footer-wrapper">
@@ -86,6 +90,7 @@
           {{ 'NAVBAR.transaction-comfirmmation' | translate }}
         </h3>
         <ul>
+          <ng-container *ngIf="confirmlist"></ng-container>
           <li *ngFor="let list of confirmlist; let i = index">
             <div class="row">
               <div class="col-md-10 col-9">
@@ -99,8 +104,13 @@
                   <img src="/assets/Images/icons/ico-download-white.png">
                 </button>
               </div>
+
+              <div class="col-md-12 mt-5 text-center" *ngIf="!nolist">
+                <p>ไม่พบใบยืนยันการทำรายการ</p>
+              </div>
             </div>
           </li>
+        </ng-container>
           <!-- <li>
             <div class="row">
               <div class="col-md-10 col-9">

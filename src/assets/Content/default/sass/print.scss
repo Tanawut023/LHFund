@@ -163,6 +163,7 @@ a[href]:after {
     border: none !important;
 }
 
+
 #header-wrapper, #main-slider {
     display: none;
 }
@@ -171,103 +172,103 @@ a[href]:after {
     display: none;
 }
 
-.footer {
-    .register-wrapper, .contact-wrapper, .footer-menu {
-        display: none !important;
-    }
+// .footer {
+//     .register-wrapper, .contact-wrapper, .footer-menu {
+//         display: none !important;
+//     }
 
-    .footer_sub .footer_sub--block .bottom-menu {
-        display: none !important;
-    }
-}
+//     .footer_sub .footer_sub--block .bottom-menu {
+//         display: none !important;
+//     }
+// }
 
-.backtotop {
-    display: none !important;
-}
+// .backtotop {
+//     display: none !important;
+// }
 
-table {
-    tbody {
-        border: none !important;
+// table {
+//     tbody {
+//         border: none !important;
 
-        tr {
-            td {
-                border: none !important;
-            }
-        }
-    }
-}
+//         tr {
+//             td {
+//                 border: none !important;
+//             }
+//         }
+//     }
+// }
 
-.table-responsive .table.table-nav > tbody > tr > td {
-    padding: 10px;
-}
+// .table-responsive .table.table-nav > tbody > tr > td {
+//     padding: 10px;
+// }
 
-.table-responsive .table.table-nav > tbody > tr > th.icon-graph, .table-responsive .table.table-nav > tbody > tr > th.icon-table{
-    display: none !important;
-}
+// .table-responsive .table.table-nav > tbody > tr > th.icon-graph, .table-responsive .table.table-nav > tbody > tr > th.icon-table{
+//     display: none !important;
+// }
 
-.table-responsive .table.table-nav > tbody > tr > td.icon-graph, .table-responsive .table.table-nav > tbody > tr > td.icon-table {
-    display: none !important;
-}
+// .table-responsive .table.table-nav > tbody > tr > td.icon-graph, .table-responsive .table.table-nav > tbody > tr > td.icon-table {
+//     display: none !important;
+// }
 
-.page-content-wrapper .heading-section {
-    padding: 10px;
-    margin: 0 !important;
-}
+// .page-content-wrapper .heading-section {
+//     padding: 10px;
+//     margin: 0 !important;
+// }
 
-.page-content-wrapper .fund-detail-wrapper .information-section .risk-level-wrapper .risk-level-chart{
-    text-align: left !important;
-}
+// .page-content-wrapper .fund-detail-wrapper .information-section .risk-level-wrapper .risk-level-chart{
+//     text-align: left !important;
+// }
 
-.mutual-fund-wrapper {
-    .heading-section {
-        .select-wrapper, .input-wrapper, .add-print, .add-download {
-            display: none;
-        }
-    }
+// .mutual-fund-wrapper {
+//     // .heading-section {
+//     //     .select-wrapper, .input-wrapper, .add-print, .add-download {
+//     //         display: none;
+//     //     }
+//     // }
 
-    .calendar-wrapper {
-        padding-top: 0 !important;
+//     .calendar-wrapper {
+//         padding-top: 0 !important;
 
-        .date-title, .month-title, .year-title {
-            display: inline-block !important;
-            width: auto !important;
-            margin-right: 10px !important;
-        }
-    }
+//         .date-title, .month-title, .year-title {
+//             display: inline-block !important;
+//             width: auto !important;
+//             margin-right: 10px !important;
+//         }
+//     }
 
-    .dividend-wrapper .list-group .list-group-item .list-group-content {
-        display: block !important;
-    }
+//     .dividend-wrapper .list-group .list-group-item .list-group-content {
+//         display: block !important;
+//     }
 
-    .dividend-wrapper .dividend-tabs-content .table-responsive .table.table-nav > tbody > tr > td:first-child {
-        width: auto !important;
-    }
+//     .dividend-wrapper .dividend-tabs-content .table-responsive .table.table-nav > tbody > tr > td:first-child {
+//         width: auto !important;
+//     }
 
-    .btn-wrapper {
-        display: none;
-    }
-}
+//     .btn-wrapper {
+//         display: none;
+//     }
+// }
 
-.matchHeight{
-    height: auto !important;
-}
+// .matchHeight{
+//     height: auto !important;
+// }
 
-#calendar {
-    /*display: none;*/
-    .fc-header {
-        display: none !important;
-    }
+// #calendar {
+//     /*display: none;*/
+//     .fc-header {
+//         display: none !important;
+//     }
 
-    .fc-widget-content {
-        border: 1px solid #5a5a5a !important;
-    }
-}
+//     .fc-widget-content {
+//         border: 1px solid #5a5a5a !important;
+//     }
+// }
 
-.mutual-fund-wrapper {
-    .calendar-wrapper {
-        .date-title, .month-title, .year-title {
-            font-size: 28px !important;
-            line-height: 30px !important;
-        }
-    }
-}
+// .mutual-fund-wrapper {
+//     .calendar-wrapper {
+//         .date-title, .month-title, .year-title {
+//             font-size: 28px !important;
+//             line-height: 30px !important;
+//         }
+//     }
+// }

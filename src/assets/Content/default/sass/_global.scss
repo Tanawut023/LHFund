@@ -185,11 +185,11 @@ if it's not present, don't show loader */
 input[type="text"] {
     font-family: $default-font;
     width: 100%;
-    height: 40px;
+    height: 30px;
     margin: 0 auto;
     padding: 8px 10px 7px 10px;
-    border: 1px solid $color-little-gray;
-    font-size: $text-content;
+    border: 1px solid #ccc;
+    font-size: $base-fontsize;
 
     @media screen and (max-width: 992px) {
         /*height: 48px;*/
@@ -199,10 +199,10 @@ input[type="text"] {
 input[type="number"] {
     font-family: $default-font;
     width: 100%;
-    height: 42px;
+    height: 30px;
     margin: 0 auto;
     padding: 8px 10px 7px 10px;
-    border: 1px solid $color-little-gray;
+    border: 1px solid #ccc;
     font-size: $text-content;
 
     @media screen and (max-width: 992px) {
@@ -214,11 +214,11 @@ input[type="number"] {
 input[type="password"] {
     font-family: $default-font;
     width: 100%;
-    height: 40px;
+    height: 30px;
     margin: 0 auto;
     padding: 8px 10px 7px 10px;
-    border: 1px solid #f5f5f5;
-    font-size: $text-content;
+    border: 1px solid #ccc;
+    font-size: $base-fontsize;
 
     @media screen and (max-width: 992px) {
         /*height: 48px;*/
@@ -232,7 +232,7 @@ input[type="email"] {
     height: 42px;
     margin: 0 auto;
     padding: 8px 10px 7px 10px;
-    border: 1px solid $color-secondary;
+    border: 1px solid #ccc;
     font-size: $text-content;
 
     @media screen and (max-width: 992px) {
@@ -247,7 +247,7 @@ textarea {
     height: 120px;
     margin: 0 auto;
     padding: 8px 10px 7px 10px;
-    border: 1px solid $color-secondary;
+    border: 1px solid #ccc;
     font-size: $text-content;
     resize: none;
 
@@ -261,20 +261,20 @@ select {
     -webkit-appearance: none;
     -moz-appearance: none;
     width: 100%;
-    height: 42px;
-    line-height: 42px;
+    height: 30px;
+    line-height: 30px;
     margin: 0 auto;
     padding: 0px 10px 0px 10px;
-    border: 1px solid $color-little-gray;
+    border: 1px solid #ccc;
     @include round-corner(0);
-    font-size: $text-content;
+    font-size: $base-fontsize;
     color: $color-primary;
     
     outline: none;
 }
 
 select {
-    margin-bottom: 30px;
+    
     background-image: url('/assets/Images/icons/ico-arrow-down-green.png');
     background-repeat: no-repeat;
     background-position: center right 10px;
@@ -518,7 +518,7 @@ input[type=reset] {
             thead {
                 tr {
                     th {
-                        padding-bottom: 15px;
+                        padding: 5px;
                         font-size: $text-x-small;
                         line-height: $text-x-small;
                         font-weight: normal;
@@ -546,7 +546,7 @@ input[type=reset] {
             tbody {
                 tr {
                     td {
-                        padding-bottom: 15px;
+                        padding: 5px;
                         font-size: $text-content;
                         line-height: $text-x-small;
                         text-align: center;
@@ -582,7 +582,7 @@ input[type=reset] {
             thead {
                 tr {
                     th {
-                        padding-bottom: 15px;                        
+                        padding: 5px;                       
                         font-size: $text-x-small;
                         line-height: $text-x-small;
                         font-weight: normal;
@@ -614,7 +614,7 @@ input[type=reset] {
             tbody {
                 tr {
                     td {
-                        padding-bottom: 15px;
+                        padding: 5px;
                         padding-left: 20px;
                         font-size: $text-content;
                         line-height: $text-x-small;
@@ -670,6 +670,7 @@ input[type=reset] {
                         border-right: 1px solid $color-white;
                         background-color: $color-primary;
                         color: $color-white;
+                        padding: 5px;
                         
                         @media screen and (max-width: 767px){
                             white-space: nowrap;
@@ -701,6 +702,7 @@ input[type=reset] {
                         border-right: 1px solid $color-white;
                         background-color: $color-primary;
                         color: $color-white;
+                        padding: 5px;
                         @media screen and (max-width: 767px){
                             white-space: nowrap;
                         }
@@ -711,12 +713,12 @@ input[type=reset] {
                     }
 
                     > td {
-                        padding: 15px 10px;
                         font-size: $text-content;
                         line-height: $text-x-small;
                         font-weight: normal;
                         border: none;
                         text-align: center;
+                        padding: 5px;
                         @media screen and (max-width: 767px){
                             white-space: nowrap;
                         }
@@ -738,7 +740,10 @@ input[type=reset] {
                             @media screen and (max-width: 767px){                            
                                 max-width: unset;
                             }
-                        }                       
+                        }
+                        img{
+                            cursor: pointer;
+                        }                      
 
                         
 
@@ -819,10 +824,10 @@ input[type=reset] {
                             font-weight: normal;
                             // border: none;
                             text-align: left;
-                            color: $color-primary;
+                            color: $color-white;
                             // border-top: 2px solid #f5f5f5;
                             // border-bottom: 2px solid #f5f5f5;
-                            background-color: #BBEEFF;
+                            background-color: #4BBEC5;
                             
 
                             &.custom-label {
@@ -836,7 +841,7 @@ input[type=reset] {
                 }
                 tr {
                     &.line {
-                        background: #f5f5f5;                        
+                        background: #ddd;                        
                         
                         color: $color-title;
                         td{
@@ -859,9 +864,10 @@ input[type=reset] {
             > thead {
                 > tr {
                     > th {
+                        padding: 5px;
                         vertical-align: middle;
                         font-size: 24px;
-                        line-height: 26px;
+                        line-height: 24px;
                         font-weight: normal;
                         border: none;
                         text-align: center;
@@ -879,7 +885,7 @@ input[type=reset] {
                     }
                     &.captions {
                         > td {
-                            padding: 20px 0px;
+                            padding: 10px 0px;
                             text-align: left;
 
                             h3 {
@@ -908,6 +914,7 @@ input[type=reset] {
 
                 > tr {
                     > th {
+                        padding: 5px;
                         font-size: 24px;
                         line-height: 26px;
                         font-weight: normal;
@@ -926,7 +933,7 @@ input[type=reset] {
                     }
 
                     > td {
-                        padding: 15px 10px;
+                        padding: 5px;
                         font-size: $text-content;
                         line-height: $text-x-small;
                         font-weight: normal;
@@ -949,10 +956,10 @@ input[type=reset] {
                         }
 
                         &:first-child {
-                            max-width: 200px;
-                            @media screen and (max-width: 767px){                            
-                                max-width: unset;
-                            }
+                            // max-width: 200px;
+                            // @media screen and (max-width: 767px){                            
+                            //     max-width: unset;
+                            // }
                         }
 
                         a {
@@ -964,6 +971,9 @@ input[type=reset] {
                                 color: $color-hover;
                                 text-decoration: none;
                             }
+                        }
+                        img {
+                            cursor: pointer;                           
                         }
                     }
                     &.captions {
@@ -988,7 +998,7 @@ input[type=reset] {
 
                 tr {
                     &.line {
-                        background: #f5f5f5;
+                        background: #ddd;
                     }
                 }
             }
@@ -1321,7 +1331,7 @@ input[type=reset] {
     width: 100%;
     position: relative;
     overflow: hidden;
-    margin-bottom: 15px;
+    // margin-bottom: 15px;
     // Radio
     input[type=radio] {
         display: none;

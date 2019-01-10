@@ -1,3 +1,10 @@
+<style>
+  tbody tr.bgforlhfund:nth-child(even) {
+    background: #fafafa
+  }
+
+  /* tbody tr.bgforlhfund:nth-child(odd) {background: #FFF} */
+</style>
 <div class="fund-table-wrapper">
   <div class="heading-section">
     <div class="detail-head-wrapper">
@@ -16,8 +23,8 @@
               </a>
             </li> -->
             <li class="ico-print">
-              <a href="#" title="print">
-                <img src="/assets/Images/icons/ico-print.png" />
+              <a title="print">
+                <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
               </a>
             </li>
 
@@ -29,7 +36,8 @@
           <div class="select-wrapper inline-block  pb-3">
             <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
               <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
-                }}</option>
+                }}
+              </option>
             </select>
           </div>
         </div>
@@ -84,196 +92,76 @@
                     กองทุน
                     <br/>ปลายทาง
                   </th>
-                  <th>
-                    วันที่มีผล
-                  </th>
-                  <th>
+                  <!-- <th>
                     แก้ไข
-                  </th>
-                  <th>
+                  </th> -->
+                  <!-- <th>
                     ยกเลิก
-                  </th>
+                  </th> -->
 
                 </tr>
               </thead>
-              <tbody>
-                <tr class="topic">
-                  <th colspan="11">
-                    9990244757
-                  </th>
-                </tr>
-                <tr class="line">
-                  <td colspan="11">
-                    (KFLTFSTARD) กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
-                  </td>
-                  <!-- <td colspan="6">&nbsp;</td> -->
-                </tr>
-                <tr>
-                  <td class="text-left">
-                    &nbsp;
-                  </td>
-                  <td class="">
-                    07/06/2561, 11:25
-                  </td>
-                  <td class="">
-                    07/06/2561
-                  </td>
-                  <td>
-                    NOR
-                  </td>
-                  <td class="">
-                    DE
-                  </td>
-                  <td class="txt-right">
-                    20,000.00
-                  </td>
-                  <td class="txt-right">
-                    -
-                  </td>
-                  <td class="txt-right">
-                    &nbsp;
-                  </td>
-                  <td class="txt-right">
-                    &nbsp;
-                  </td>
-                  <td>
-                    <a>
-                      <img src="/assets/Images/icons/ico-edit.png">
-                    </a>
-                  </td>
-                  <td>
-                    <a>
-                      <img src="/assets/Images/icons/ico-delete.png" alt="" data-toggle="modal" data-target="#disclaimer">
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-left">
-                    &nbsp;
-                  </td>
-                  <td class="">
-                    07/06/2561, 11:25
-                  </td>
-                  <td class="">
-                    07/06/2561
-                  </td>
-                  <td>
-                    NOR
-                  </td>
-                  <td class="">
-                    DE
-                  </td>
-                  <td class="txt-right">
-                    20,000.00
-                  </td>
-                  <td class="txt-right">
-                    -
-                  </td>
-                  <td class="txt-right">
-                    &nbsp;
-                  </td>
-                  <td class="txt-right">
-                    &nbsp;
-                  </td>
-                  <td>
-                    <a>
-                      <img src="/assets/Images/icons/ico-edit.png">
-                    </a>
-                  </td>
-                  <td>
-                    <a>
-                      <img src="/assets/Images/icons/ico-delete.png" alt="" data-toggle="modal" data-target="#disclaimer">
-                    </a>
-                  </td>
-                </tr>
-                <!-- <tr class="summary">
-                    <th colspan="11">
-                        9990244758
+              <tbody *ngIf="todayreport">
+                <ng-container *ngFor="let unitholder of todayreport?.todayreport; let i = index">
+
+                  <tr class="topic">
+                    <th colspan="9">
+                      {{unitholder.UnitHolderNo}}
                     </th>
                   </tr>
-                <tr class="line">
-                  <td colspan="11">
-                    (KFLTFSTARD) กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-left">
-                    NET
-                  </td>
-                  <td class="">
-                    07/06/2561, 11:25
-                  </td>
-                  <td class="">
-                    07/06/2561
-                  </td>
-                  <td>
-                    NOR
-                  </td>
-                  <td class="">
-                    DE
-                  </td>
-                  <td class="txt-right">
-                    20,000.00
-                  </td>
-                  <td class="txt-right">
-                    -
-                  </td>
-                  <td class="txt-right">
-                    &nbsp;
-                  </td>
-                  <td class="txt-right">
-                    &nbsp;
-                  </td>
-                  <td>
-                    <a>
-                      <img src="/assets/Images/icons/ico-edit.png">
-                    </a>
-                  </td>
-                  <td>
-                    <a>
-                      <img src="/assets/Images/icons/ico-delete.png" alt="" data-toggle="modal" data-target="#disclaimer">
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-left">
-                    NET
-                  </td>
-                  <td class="">
-                    07/06/2561, 11:25
-                  </td>
-                  <td class="">
-                    07/06/2561
-                  </td>
-                  <td>
-                    NOR
-                  </td>
-                  <td class="">
-                    DE
-                  </td>
-                  <td class="txt-right">
-                    20,000.00
-                  </td>
-                  <td class="txt-right">
-                    -
-                  </td>
-                  <td class="txt-right">
-                    &nbsp;
-                  </td>
-                  <td class="txt-right">
-                    &nbsp;
-                  </td>
-                  <td>
-                    <a>
-                      <img src="/assets/Images/icons/ico-edit.png">
-                    </a>
-                  </td>
-                  <td>
-                    <a>
-                      <img src="/assets/Images/icons/ico-delete.png" alt="" data-toggle="modal" data-target="#disclaimer">
-                    </a>
-                  </td>
-                </tr> -->
+
+                  <ng-container *ngFor="let group of unitholder.TodayFunds; let y = index">
+                    <tr class="line">
+                      <td colspan="9">
+                        ({{group.FundCode}}) {{group.FundName}}
+                      </td>
+                    </tr>
+
+                    <ng-container *ngFor="let list of group.TodayDetails; let z = index">
+                      <tr class="bgforlhfund">
+                        <td class="">
+                          &nbsp;
+                        </td>
+                        <td class="">
+                          {{list.OrderTime | datethai}}, {{list.OrderTime | time}}
+                        </td>
+                        <td class="">
+                          {{list.EffectiveDate | datethai}}
+                        </td>
+                        <td>
+                          {{list.OrderUnitType}}
+                        </td>
+                        <td class="">
+                          {{list.TxType | type}}
+                        </td>
+                        <td class="txt-right">
+                          <ng-container *ngIf="list.OrderAmount">
+                            {{list.OrderAmount | tofix}}
+                          </ng-container>
+                        </td>
+                        <td class="txt-right">
+                          <ng-container *ngIf="list.OrderUnit">
+                            {{list.OrderUnit | tofix4}}
+                          </ng-container>
+                        </td>
+                        <td class="">
+                          <ng-container *ngIf="list.CounterFundCode">
+                            {{list.CounterFundCode}}
+                          </ng-container>
+                          <ng-container *ngIf="list.SourceFundCode">
+                            {{list.SourceFundCode}}
+                          </ng-container>
+                        </td>
+                        <!-- <td>
+                          <a>
+                            <img src="/assets/Images/icons/ico-delete.png" alt="" (click)="modaldeleteorder(group,list)">
+                          </a>
+                        </td> -->
+                      </tr>
+
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
               </tbody>
             </table>
           </div>
@@ -290,7 +178,7 @@
         <div class="col-md-12">
           <div class="row justify-content-center">
             <div class="col-md-2 col-6 col-sm-4">
-              <button class="btn-med btn-primary">
+              <button class="btn-med btn-primary" (click)="print()">
                 {{ 'BUTTON.print' | translate }}
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
 
@@ -334,4 +222,138 @@
     </div>
 
   </div> -->
+</div>
+
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="message" style="z-index: 9999;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">คำเตือน</h4>
+      </div>
+      <div class="modal-body" id="content-scroll-1">
+        <h3>{{ message }}</h3>
+      </div>
+      <div class="modal-footer" style="display: block;">
+        <div class="row justify-content-end">
+          <div class="col-sm-6">
+            <button class="btn-med btn-primary" data-dismiss="modal">
+              <p style="margin-top: 7px;">ตกลง
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </p>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="delete">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header warning">
+
+        <h4 class="modal-title warning">คุณต้องการลบรายการที่เลือกหรือไม่</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <h4 class="modal-title warning">X</h4>
+        </button>
+      </div>
+      <div class="modal-body" id="content-scroll-1">
+        <div class="row mt-3">
+          <div class="col-md-6 col-6">
+            <p>เลขที่ผู้ถือหน่วยลงทุน</p>
+            <span>{{ userselect.UnitholderNo }}</span>
+          </div>
+          <div class="col-md-6 col-6">
+            <p>ชื่อผู้ถือหน่วยลงทุน</p>
+            <span>{{ userselect.FirstName}} {{ userselect.LastName}}</span>
+          </div>
+
+          <div class="col-md-12 mt-4">
+            <div class="table-responsive">
+              <table class="table table-custom">
+                <tbody>
+                  <tr>
+                    <td class="text-left">
+                      วันที่ทำรายการ
+                    </td>
+                    <td class="text-left content">
+                      {{deletedOrder?.OrderTime | datethai}}, {{deletedOrder?.OrderTime | time}}
+                    </td>
+                  </tr>
+                  <tr *ngIf="deletedOrder?.OrderBankAccountNo">
+                    <td class="text-left">
+                      เลือกวิธีชำระเงิน
+                    </td>
+                    <td class="text-left content">
+                      หักบัญชีธนาคาร
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      <ng-container *ngIf="deletedOrder?.CounterFundCode || deletedOrder?.SourceFundCode">
+                        กองทุนต้นทาง
+                      </ng-container>
+                      <ng-container *ngIf="!deletedOrder?.CounterFundCode || !deletedOrder?.SourceFundCode">
+                        กองทุน
+                      </ng-container>
+                    </td>
+                    <td class="text-left content">
+                      {{deletedGroup?.FundName}} ({{deletedGroup?.FundCode}})
+                    </td>
+                  </tr>
+                  <tr *ngIf="deletedOrder?.CounterFundCode || deletedOrder?.SourceFundCode">
+                    <td class="text-left">
+                      กองทุนปลายทาง
+                    </td>
+                    <td class="text-left content">
+                      <ng-container *ngIf="deletedOrder?.CounterFundCode">
+                        {{deletedOrder?.CounterFundCode}}
+                      </ng-container>
+                      <ng-container *ngIf="deletedOrder?.SourceFundCode">
+                        {{deletedOrder?.SourceFundCode}}
+                      </ng-container>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      จำนวน
+                    </td>
+                    <td class="text-left content">
+                      <ng-container *ngIf="deletedOrder?.OrderAmount">{{deletedOrder?.OrderAmount | tofix}} บาท</ng-container>
+                      <ng-container *ngIf="deletedOrder?.OrderUnit">{{deletedOrder?.OrderUnit | tofix4}} หน่วย</ng-container>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      วันที่มีผล
+                    </td>
+                    <td class="text-left content">
+                      {{deletedOrder?.EffectiveDate | datethai}}
+                    </td>
+                  </tr>
+
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="row justify-content-center">
+            <div class="col-md-6 col-6 col-sm-6">
+              <button class="btn-med btn-cancel" (click)="deleteorder()">
+                ลบรายการนี้
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
 </div>

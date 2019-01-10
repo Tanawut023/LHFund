@@ -13,7 +13,7 @@ declare var $: any;
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.scss']
 })
-export class EditProfileComponent implements OnInit,OnDestroy {
+export class EditProfileComponent implements OnInit, OnDestroy {
   // @ViewChild('modal') modal:ElementRef;
   userall: any = {};
   userselect: any = {};
@@ -178,14 +178,8 @@ export class EditProfileComponent implements OnInit,OnDestroy {
         [
           Validators.required,
         ]],
-      Ophone: [null,
-        [
-          Validators.required,
-        ]],
-      Faxno: [null,
-        [
-          Validators.required,
-        ]],
+      Ophone: [null],
+      Faxno: [null],
       allowtax: [null,
         [
           Validators.required,
@@ -248,7 +242,7 @@ export class EditProfileComponent implements OnInit,OnDestroy {
           },
           error => {
             console.log(error);
-            this.message = error.error.error_description;
+            this.message = error.error.messages;
             $('#message').modal({
               backdrop: 'static',
               keyboard: false,
@@ -327,7 +321,7 @@ export class EditProfileComponent implements OnInit,OnDestroy {
       }
 
       console.log(user);
-      
+
 
 
 
@@ -339,13 +333,21 @@ export class EditProfileComponent implements OnInit,OnDestroy {
             this.res = data;
             console.log(data);
             $('#otpprofile').modal('toggle');
+            this.message = "บันทึกข้อมูลสำเร็จ";
+            setTimeout(() => {
+              $('#message').modal({
+                backdrop: 'static',
+                keyboard: false,
+                show: true
+              });
+            }, 100);
             this.getprofileinfo();
             this.formotp.reset();
+            
           },
           error => {
-            $('#otpprofile').modal('toggle');
             console.log(error);
-            this.message = error.error.error_description;
+            this.message = error.error.messages;
             $('#message').modal({
               backdrop: 'static',
               keyboard: false,
@@ -357,6 +359,9 @@ export class EditProfileComponent implements OnInit,OnDestroy {
       this.isNotValid = true;
       this.validateAllFormFields(this.formotp);
     }
+  }
+  reset() {
+    this.message = "";
   }
 
   // autoreplaceid() {
@@ -621,8 +626,12 @@ export class EditProfileComponent implements OnInit,OnDestroy {
     };
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     // $('#otpprofile').modal('toggle');
+  }
+  print() {
+    window.focus();
+    window.print();
   }
 
 

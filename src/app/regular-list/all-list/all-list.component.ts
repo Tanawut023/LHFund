@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseApplicationDataService } from '../../service/base-application-data.service';
+import { StandingorderService } from '../../service/standingorder.service'
 import { first } from 'rxjs/operators';
 import { datethai } from '../../Share/dateformat';
 import { HttpParams } from '@angular/common/http';
-
+import { LanguageService } from '../../service/language.service';
+import { Observable } from 'rxjs';
+declare var $: any;
 @Component({
   selector: 'app-all-list',
   templateUrl: './all-list.component.html',
@@ -14,9 +17,16 @@ export class AllListComponent implements OnInit {
   userselect: any = {};
   unitholderno: any = "init";
   dateformat = datethai;
+  standingorder;
+  deletedOrder: any;
+  deletedGroup: any;
+  message: any;
+  lang: Observable<string>;
 
   constructor(
-    private basedataservice: BaseApplicationDataService
+    private basedataservice: BaseApplicationDataService,
+    private standingorderservice: StandingorderService,
+    private langservice: LanguageService
 
   ) { }
 
@@ -26,6 +36,11 @@ export class AllListComponent implements OnInit {
 
     $('#mutual-tab-menu').find('li').removeClass('current');
     $('#mutual-tab-menu').find('li#menu4').addClass('current');
+
+    this.langservice.listen().subscribe((m:any) => {
+      console.log(m);
+      this.lang = m;
+  })
   }
   onChange() {
 
@@ -34,6 +49,7 @@ export class AllListComponent implements OnInit {
         this.userselect = this.userall.unitholderlist[i];
       }
     }
+    this.getstnadingorder();
   }
 
   getSelectListUnitholder() {
@@ -44,11 +60,85 @@ export class AllListComponent implements OnInit {
           this.userall = data;
           this.unitholderno = this.userall.unitholderlist[0];
           this.userselect = this.userall.unitholderlist[0];
+          this.getstnadingorder();
         },
         error => {
           console.log(error)
+          this.message = error.error.messages;
+          $('#message').modal({
+            backdrop: 'static',
+            keyboard: false,
+            show: true
+          });
+          
+        });
+  }
+  getstnadingorder() {
+
+    let params = new HttpParams().set('unitholderid', this.userselect.UnitholderId);
+
+    this.standingorderservice.getstnadingorder(params)
+      .pipe(first())
+      .subscribe(
+        data => {
+          console.log(data);
+          this.standingorder = data;
+
+        },
+        error => {
+          console.log(error)
+          this.message = error.error.messages;
+          $('#message').modal({
+            backdrop: 'static',
+            keyboard: false,
+            show: true
+          });
 
         });
+  }
+  modaldeleteorder(group, order) {
+
+    this.deletedOrder = order;
+    this.deletedGroup = group;
+    // console.log(JSON.stringify(this.deletedOrder)+'index = '+index);
+    $('#delete').modal({
+      backdrop: 'static',
+      keyboard: false,
+      show: true
+    });
+  }
+
+  deleteorder() {
+    const order = {
+      UnitHolderID: this.deletedOrder.StandingUnitHolderID,
+      StandingOrderID: this.deletedOrder.StandingOrderID
+    }
+
+    this.standingorderservice.cancelstnadingorder(order)
+      .pipe(first())
+      .subscribe(
+        data => {
+          console.log(data);
+          this.getstnadingorder();
+          // this.ordersubscriptionlist = data;
+          $('#delete').modal('toggle');
+
+        },
+        error => {
+          console.log(error);
+          $('#delete').modal('toggle');
+          this.message = error.error.messages;
+          $('#message').modal({
+            backdrop: 'static',
+            keyboard: false,
+            show: true
+          });
+
+        });
+  }
+  print() {
+    window.focus();
+    window.print();
   }
 
 }

@@ -16,8 +16,8 @@
                             </a>
                         </li> -->
                         <li class="ico-yt">
-                            <a href="#" title="youtube">
-                                <img src="/assets/Images/icons/ico-print.png" />
+                            <a title="print">
+                                <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
                             </a>
                         </li>
 
@@ -60,7 +60,7 @@
                     <div class="col-12 col-md-6 form-group" [ngClass]="ValidatorDisplayCss('address')">
                         <p>{{ 'CONTENT.address' | translate }}</p>
                         <div class="input-wrapper">
-                            <input id="address" name="address" maxlength="30" type="text" formControlName="address" required *ngIf="profile">
+                            <input id="address" name="address" maxlength="50" type="text" formControlName="address" required *ngIf="profile">
                             <div class="form-control-feedback" *ngIf="this.form.controls.address.errors && (this.form.controls.address.touched)">
                                 <p *ngIf="this.form.controls.address.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
                             </div>
@@ -195,7 +195,7 @@
             <div class="detail-footer-wrapper">
                 <div class="row">
                     <div class="col-md-3">
-                        <span class="txt-middle">{{ 'CONTENT.m-phone' | translate }}</span>
+                        <p class="txt-middle">{{ 'CONTENT.m-phone' | translate }}</p>
                     </div>
                     <div class="col-md-3 form-group" [ngClass]="ValidatorDisplayCss('Mphone')">
                         <div class="input-wrapper ">
@@ -206,14 +206,12 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <span class="txt-middle">{{ 'CONTENT.w-phone' | translate }}</span>
+                        <p class="txt-middle">{{ 'CONTENT.w-phone' | translate }}</p>
                     </div>
-                    <div class="col-md-3 form-group" [ngClass]="ValidatorDisplayCss('Ophone')">
+                    <div class="col-md-3 form-group">
                         <div class="input-wrapper ">
-                            <input id="w-phone" name="w-phone" maxlength="30" type="text" formControlName="Ophone" required (keypress)="numberOnly($event)">
-                            <div class="form-control-feedback" *ngIf="this.form.controls.Ophone.errors && (this.form.controls.Ophone.touched)">
-                                <p *ngIf="this.form.controls.Ophone.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                            </div>
+                            <input id="w-phone" name="w-phone" maxlength="30" type="text" formControlName="Ophone" (keypress)="numberOnly($event)">
+                            
                         </div>
                     </div>
                     <!-- 
@@ -235,15 +233,13 @@
 
                 <div class="row">
                     <div class="col-md-3">
-                        <span class="txt-middle">{{ 'CONTENT.f-num' | translate }}</span>
+                        <p class="txt-middle">{{ 'CONTENT.f-num' | translate }}</p>
                     </div>
 
-                    <div class="col-md-3 form-group" [ngClass]="ValidatorDisplayCss('Faxno')">
+                    <div class="col-md-3 form-group">
                         <div class="input-wrapper ">
-                            <input id="f-num" name="f-num" maxlength="30" type="text" formControlName="Faxno" required (keypress)="numberOnly($event)">
-                            <div class="form-control-feedback" *ngIf="this.form.controls.Faxno.errors && (this.form.controls.Faxno.touched)">
-                                <p *ngIf="this.form.controls.Faxno.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                            </div>
+                            <input id="f-num" name="f-num" maxlength="20" type="text" formControlName="Faxno">
+                           
                         </div>
                     </div>
 
@@ -257,7 +253,7 @@
                     </div> -->
 
                     <div class="col-md-3 txt-middle">
-                        <span>{{ 'CONTENT.tax' | translate }}</span>
+                        <p>{{ 'CONTENT.tax' | translate }}</p>
                     </div>
 
                     <div class="col-md-3 txt-middle">
@@ -352,6 +348,11 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row has-danger">
+                        <div class="col-12 form-control-feedback">
+                            <p>{{message}}</p>
+                        </div>
+                    </div>
                     <div class="row pb-4">
                         <div class="col-md-12">
                             <p>{{ 'LOGIN.otp-request' | translate }}</p>
@@ -386,7 +387,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">เข้าสู่ระบบล้มเหลว</h4>
+                <h4 class="modal-title">แจ้งเตือน</h4>
             </div>
             <div class="modal-body" id="content-scroll-1">
                 <h3>{{ message }}</h3>
@@ -394,7 +395,7 @@
             <div class="modal-footer" style="display: block;">
                 <div class="row justify-content-end">
                     <div class="col-sm-6">
-                        <button class="btn-med btn-primary" data-dismiss="modal">
+                        <button class="btn-med btn-primary" data-dismiss="modal" (click)="reset()">
                             <p style="margin-top: 7px;">ตกลง
                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                             </p>

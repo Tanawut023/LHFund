@@ -1,3 +1,10 @@
+<style>
+    tbody tr.bgforlhfund:nth-child(even) {
+        background: #fafafa
+    }
+
+    /* tbody tr.bgforlhfund:nth-child(odd) {background: #FFF} */
+</style>
 <div class="" id="maincontainer-wrapper">
     <div class="page-content-wrapper">
         <div class="mutual-fund-wrapper" *ngIf="page == 'dashboard'">
@@ -140,7 +147,8 @@
 
                                                         <tr class="line">
                                                             <td>
-                                                                {{group.FundType}}
+                                                                <ng-container *ngIf="lang == 'th' ">{{group.FundType}}</ng-container>
+                                                                <ng-container *ngIf="lang == 'en' ">{{group.FundTypeEng}}</ng-container>
                                                             </td>
                                                             <td class="txt-right">
                                                                 &nbsp;
@@ -158,9 +166,11 @@
                                                                 {{group.GainLossTotal | tofix}}
                                                             </td>
                                                         </tr>
-                                                        <tr *ngFor="let list of group.HoldingBalanceDetail">
+                                                        <tr *ngFor="let list of group.HoldingBalanceDetail" class="bgforlhfund">
                                                             <td>
-                                                                - {{list.FundName}}
+                                                                <ng-container *ngIf="lang == 'th' ">- {{list.FundName}} ({{list.FundCode}})</ng-container>
+                                                                <ng-container *ngIf="lang == 'en' ">- {{list.FundNameEng}} ({{list.FundCode}})</ng-container>
+
                                                             </td>
                                                             <td class="txt-right">
                                                                 {{list.BalanceDate | datethai}}
@@ -213,7 +223,7 @@
                                                     <div class="col-sm-12">
                                                         <div [chart]="chart"></div>
 
-                                                        
+
                                                     </div>
                                                 </div>
 

@@ -16,8 +16,8 @@
               </a>
             </li> -->
             <li class="ico-yt">
-              <a href="#" title="youtube">
-                <img src="/assets/Images/icons/ico-print.png" />
+              <a title="print">
+                <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
               </a>
             </li>
 
@@ -29,7 +29,8 @@
           <div class="select-wrapper inline-block  pb-3">
             <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno">
               <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
-                }}</option>
+                }}
+              </option>
             </select>
           </div>
         </div>
@@ -63,7 +64,7 @@
                   </th>
                   <th>
                     วันและเวลา
-                    <br/>ที่ทำการ
+                    <br/>ที่ทำรายการ
                   </th>
                   <th>
                     วันที่มีผล
@@ -84,146 +85,61 @@
                     กองทุน
                     <br/>ปลายทาง
                   </th>
-                  <th>
-                    วันที่มีผล
-                  </th>
 
                 </tr>
               </thead>
-              <tbody>
-                <tr class="topic">
-                  <th colspan="9">
-                    กองทุนรวมหุ้นระยะยาว
-                  </th>
-                </tr>
-                <tr class="line">
-                  <td colspan="9">
-                    (KFLTFSTARD) กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
-                  </td>
-                  <!-- <td colspan="6">&nbsp;</td> -->
-                </tr>
-                <tr>
-                  <td class="text-left">
-                    NET
-                  </td>
-                  <td class="">
-                    07/06/2561, 11:25
-                  </td>
-                  <td class="">
-                    07/06/2561
-                  </td>
-                  <td>
-                    NOR
-                  </td>
-                  <td class="">
-                    DE
-                  </td>
-                  <td class="txt-right">
-                    20,000.00
-                  </td>
-                  <td class="txt-right">
-                    -
-                  </td>
-                  <td class="txt-right">
-                    &nbsp;
-                  </td>
-                  <td class="txt-right">
-                    &nbsp;
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-left">
-                    NET
-                  </td>
-                  <td class="">
-                    07/06/2561, 11:25
-                  </td>
-                  <td class="">
-                    07/06/2561
-                  </td>
-                  <td>
-                    NOR
-                  </td>
-                  <td class="">
-                    DE
-                  </td>
-                  <td class="txt-right">
-                    20,000.00
-                  </td>
-                  <td class="txt-right">
-                    -
-                  </td>
-                  <td class="txt-right">
-                    &nbsp;
-                  </td>
-                  <td class="txt-right">
-                    &nbsp;
-                  </td>
-                </tr>
-                <tr class="line">
-                  <td colspan="9">
-                    (KFLTFSTARD) กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
-                  </td>
-                  <!-- <td colspan="6">&nbsp;</td> -->
-                </tr>
-                <tr>
-                  <td class="text-left">
-                    NET
-                  </td>
-                  <td class="">
-                    07/06/2561, 11:25
-                  </td>
-                  <td class="">
-                    07/06/2561
-                  </td>
-                  <td>
-                    NOR
-                  </td>
-                  <td class="">
-                    DE
-                  </td>
-                  <td class="txt-right">
-                    20,000.00
-                  </td>
-                  <td class="txt-right">
-                    -
-                  </td>
-                  <td class="txt-right">
-                    &nbsp;
-                  </td>
-                  <td class="txt-right">
-                    &nbsp;
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-left">
-                    NET
-                  </td>
-                  <td class="">
-                    07/06/2561, 11:25
-                  </td>
-                  <td class="">
-                    07/06/2561
-                  </td>
-                  <td>
-                    NOR
-                  </td>
-                  <td class="">
-                    DE
-                  </td>
-                  <td class="txt-right">
-                    20,000.00
-                  </td>
-                  <td class="txt-right">
-                    -
-                  </td>
-                  <td class="txt-right">
-                    &nbsp;
-                  </td>
-                  <td class="txt-right">
-                    &nbsp;
-                  </td>
-                </tr>
+              <tbody *ngIf="unallocatedreportlist">
+                <ng-container *ngFor="let type of unallocatedreportlist?.unallocatedreport; let i = index">
+
+                  <tr class="topic">
+                    <th colspan="9">
+                      {{type.FundTypeName}}
+                    </th>
+                  </tr>
+
+                  <ng-container *ngFor="let group of type.UnallocatedFunds; let y = index">
+                    <tr class="line">
+                      <td colspan="9">
+                        ({{group.FundCode}}) {{group.FundName}}
+                      </td>
+                    </tr>
+
+                    <ng-container *ngFor="let list of group.UnallocatedDetails; let z = index">
+                      <tr class="bgforlhfund">
+                        <td class="">
+                          <!-- {{list.PaymentMethod}} -->
+                          NET
+                        </td>
+                        <td class="">
+                          {{list.OrderTime | datethai}}, {{list.OrderTime | time}}
+                        </td>
+                        <td class="">
+                          {{list.EffectiveDate | datethai}}
+                        </td>
+                        <td>
+                          {{list.OrderUnitType}}
+                        </td>
+                        <td class="">
+                          {{list.TxType | type}}
+                        </td>
+                        <td class="txt-right">
+                          <ng-container *ngIf="list.OrderUnitType == 'Amount'">
+                            {{list.PaymentAmount | tofix}}
+                          </ng-container>
+                        </td>
+                        <td class="txt-right">
+                          <ng-container *ngIf="list.OrderUnitType == 'Unit'">
+                            {{list.PaymentAmount | tofix4}}
+                          </ng-container>
+                        </td>
+                        <td class="txt-right">
+                          &nbsp;
+                        </td>
+                      </tr>
+
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
               </tbody>
             </table>
           </div>
@@ -239,7 +155,7 @@
         <div class="col-md-12">
           <div class="row justify-content-center">
             <div class="col-md-2 col-6 col-sm-4">
-              <button class="btn-med btn-primary">
+              <button class="btn-med btn-primary" (click)="print()">
                 {{ 'BUTTON.print' | translate }}
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
 

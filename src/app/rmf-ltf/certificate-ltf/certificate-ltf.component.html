@@ -16,8 +16,8 @@
               </a>
             </li> -->
             <li class="ico-yt">
-              <a href="#" title="youtube">
-                <img src="/assets/Images/icons/ico-print.png" />
+              <a title="print">
+                <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
               </a>
             </li>
 
@@ -51,17 +51,17 @@
     <div class="row">
       <div class="col-md-6 pull-md-6">
         <div class="row">
-          <div class="col-md-6">
-            <div class="custom-radio-between">
+          <div class="col-md-12">
+            <!-- <div class="custom-radio-between">
               <input value="101" id="101" name="rad1" type="radio" checked>
               <label for="101"></label>
               <p>{{ 'CONTENT.l-i-cer' | translate }}</p>
-            </div>
+            </div> -->
             <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-2">
                 <p>{{ 'CONTENT.year' | translate }}</p>
               </div>
-              <div class="col-md-12">
+              <div class="col-md-6">
                 <div class="select-wrapper inline-block">
                   <select [(ngModel)]="years" name="years" id="years">
                     <option [ngValue]="years" *ngFor="let years of yearlist; let i = index">{{ years | yearthai
@@ -69,7 +69,7 @@
                   </select>
                 </div>
               </div>
-              <div class="col-md-6 offset-6 mb-md-0 mb-3">
+              <div class="col-md-4 col-6 offset-6 offset-md-0">
                 <button class="btn-med btn-primary" [disabled]="loading" (click)="OnSubmit()">
                   {{ 'BUTTON.ok' | translate }}
                   <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -78,13 +78,13 @@
             </div>
 
           </div>
-          <div class="col-md-6">
+          <!-- <div class="col-md-6">
             <div class="custom-radio-between">
               <input value="102" id="102" name="rad1" type="radio">
               <label for="102"></label>
               <p>{{ 'CONTENT.l-r-cer' | translate }}</p>
             </div>
-          </div>
+          </div> -->
 
         </div>
       </div>
@@ -130,6 +130,29 @@
       </div>
       <div class="modal-body" id="content-scroll-1">
         <h3>ไฟล์ไม่พร้อมใช้งาน</h3>
+      </div>
+      <div class="modal-footer" style="display: block;">
+        <div class="row justify-content-end">
+          <div class="col-sm-6">
+            <button class="btn-med btn-primary" data-dismiss="modal">
+              <p style="margin-top: 7px;">ตกลง
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </p>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="message2" style="z-index: 9999;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">แจ้งเตือน</h4>
+      </div>
+      <div class="modal-body" id="content-scroll-1">
+        <h3>ไม่พบหนังสือรับรองฯ LTF</h3>
       </div>
       <div class="modal-footer" style="display: block;">
         <div class="row justify-content-end">

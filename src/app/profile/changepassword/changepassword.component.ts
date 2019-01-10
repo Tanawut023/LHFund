@@ -139,14 +139,12 @@ export class ChangepasswordComponent implements OnInit {
           error => {
             console.log(error)
             this.message = error.error.messages;
+            $('#message').modal({
+              backdrop: 'static',
+              keyboard: false,
+              show: true
+            });
 
-            setTimeout(() => {
-              $('#message').modal({
-                backdrop: 'static',
-                keyboard: false,
-                show: true
-              });
-            }, 100);
           });
 
     } else {
@@ -181,11 +179,16 @@ export class ChangepasswordComponent implements OnInit {
             console.log(data)
             this.res = data;
             $('#otpchangepassword').modal('toggle');
-            this.toastr.success('success');
+            this.message = "เปลี่ยนรหัสผ่านสำเร็จ";
+            $('#message').modal({
+              backdrop: 'static',
+              keyboard: false,
+              show: true
+            });
           },
           error => {
             console.log(error)
-            this.toastr.error('', error.error.messages);
+            this.message = error.error.messages;
           });
 
     } else {
@@ -193,6 +196,9 @@ export class ChangepasswordComponent implements OnInit {
       this.validateAllFormFields(this.formotp);
     }
 
+  }
+  reset(){
+    this.message = "";
   }
 
   validateAllFormFields(formGroup: FormGroup) {
@@ -218,7 +224,7 @@ export class ChangepasswordComponent implements OnInit {
   }
 
   isFieldNotValid4(field: string) {
-    return !this.formchangepass.get(field).valid && this.formchangepass.get(field).touched
+    return !this.formotp.get(field).valid && this.formotp.get(field).touched
 
   }
 
@@ -248,5 +254,9 @@ export class ChangepasswordComponent implements OnInit {
           console.log(error)
         });
   }
+  print() {
+    window.focus();
+    window.print();
+}
 
 }

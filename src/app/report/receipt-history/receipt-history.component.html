@@ -24,8 +24,8 @@
               </a>
             </li> -->
             <li class="ico-yt">
-              <a href="#" title="print">
-                <img src="/assets/Images/icons/ico-print.png" />
+              <a title="print">
+                <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
               </a>
             </li>
 
@@ -60,12 +60,12 @@
   <div class="detail-body-wrapper">
     <div class="row">
       <div class="col-md-12">
-        <p>{{ 'CONTENT.select-date-fund' | translate }}</p>
+        <span>{{ 'CONTENT.select-date-fund' | translate }}</span>
       </div>
       <div class="col-md-9">
         <div class="row">
           <div class="col-md-4">
-            <span class="txt-middle">{{ 'CONTENT.fund-group' | translate }}</span>
+            <p class="txt-middle">{{ 'CONTENT.fund-group' | translate }}</p>
           </div>
           <div class="col-md-6">
             <div class="select-wrapper inline-block">
@@ -81,7 +81,7 @@
         <div class="row">
 
           <div class="col-md-4">
-            <span class="txt-middle">{{ 'CONTENT.fund-name' | translate }}</span>
+            <p class="txt-middle">{{ 'CONTENT.fund-name' | translate }}</p>
           </div>
           <div class="col-md-6">
             <div class="select-wrapper inline-block">
@@ -99,16 +99,16 @@
 
         <div class="row">
           <div class="col-md-4">
-            <span class="txt-middle">{{ 'CONTENT.from-date' | translate }}</span>
+            <p class="txt-middle">{{ 'CONTENT.from-date' | translate }}</p>
           </div>
           <div class="col-md-6">
             <div class="input-wrapper">
-              <input class=" textinput dateinput bg-gray" [(ngModel)]="model.startDate" ngbDatepicker #d1="ngbDatepicker" id="startDate"
+              <input class=" textinput dateinput bg-gray"  [(ngModel)]="model.startDate" ngbDatepicker #d1="ngbDatepicker" id="startDate"
                 placeholder="วว/ดด/ปปปป" name="startDate" type="text" (click)="d1.toggle()">
             </div>
           </div>
           <div class="col-md-4">
-            <span class="txt-middle">{{ 'CONTENT.to-date' | translate }}</span>
+            <p class="txt-middle">{{ 'CONTENT.to-date' | translate }}</p>
           </div>
           <div class="col-md-6">
             <div class="input-wrapper">
@@ -141,14 +141,14 @@
 
   </div>
   <div class="detail-footer-wrapper">
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-md-12 mb-3">
         <div class="sidenav-left">
           <div class="vertical-menu-wrapper">
             <h4>
               {{ 'CONTENT.div-cer' | translate }}
             </h4>
-            <!-- <ul>
+            <ul>
               <li>
                 <div class="row mt-3">
                   <div class="col-md-10 col-9">
@@ -165,12 +165,12 @@
                 </div>
               </li>
 
-            </ul> -->
+            </ul>
             <div class="clearfix"></div>
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="table-responsive">
       <table class="table table-nav">

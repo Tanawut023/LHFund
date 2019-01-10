@@ -5,6 +5,8 @@ import { UserIdleService } from 'angular-user-idle';
 import { Router, CanActivate, ActivatedRouteSnapshot, CanActivateChild, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../service/authentication.service'
+import { BehaviorSubject, Observable } from 'rxjs';
+import { LanguageService } from '../service/language.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -26,7 +28,8 @@ export class HeaderComponent implements OnInit {
     private userIdle: UserIdleService,
     private router: Router,
     private route: ActivatedRoute,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private langservice: LanguageService
   ) {
     // const id: string = route.snapshot.params.id;
     const url: string = route.snapshot.url.join('');
@@ -42,6 +45,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.foo1 = this.translate.currentLang;
     this.userdetail = this.basedataservice.getmemberInfo();
+    
+    var lang = localStorage.getItem('lang');
+    this.langservice.filter(lang);
 
     // JSON.parse(localStorage.getItem('currentUser'))
     // this.test = localStorage.getItem('userInfo');
@@ -80,7 +86,8 @@ export class HeaderComponent implements OnInit {
           return;
         }
         else {
-          this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.url } });
+          // this.router.navigate(['/'], { queryParams: { returnUrl: this.router.url } });
+          window.location.href = "";
           return false;
         }
       }
@@ -126,6 +133,7 @@ export class HeaderComponent implements OnInit {
       this.langen = false;
       this.langth = true;
       localStorage.setItem('lang', lang);
+      this.langservice.filter('th');
 
     }
     else if (lang == 'en') {
@@ -133,7 +141,7 @@ export class HeaderComponent implements OnInit {
       this.langth = false;
       this.langen = true;
       localStorage.setItem('lang', lang);
-
+      this.langservice.filter('en');
       // console.log(navigator.language);
     }
 

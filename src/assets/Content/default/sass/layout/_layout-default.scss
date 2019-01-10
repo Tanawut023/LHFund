@@ -83,6 +83,7 @@
     background-repeat: no-repeat;
     background-position-y: center;
     background-position-x: calc(100% - 10px);
+    background-size: 20px;
     cursor: pointer;
 }
 
@@ -117,7 +118,7 @@
 
 .input-wrapper {
     margin: 0 auto;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     // padding: 40px;
 
     &.inline-block {
@@ -134,7 +135,8 @@
     &.inline-block {
         display: inline-block;
         vertical-align: top;
-        width: 100%;        
+        width: 100%;
+        margin-bottom: 10px;    
     }
 }
 
@@ -570,6 +572,7 @@
                         &:hover {
                             text-decoration: none;
                         }
+                        
                     }
 
                     // &:hover {
@@ -722,6 +725,7 @@
     }
     .icon-option{
         text-align: right;
+        margin-bottom: 10px !important;
 
         
         ul {
@@ -732,17 +736,20 @@
 
             li {
                 display: inline-block;
-                padding: 10px 10px;
+                padding: 0px 10px;
                 margin: 0 5px;
 
                 a {
                     font-size: $text-content;
-                    line-height: $text-small;
+                    line-height: $text-content;
                     color: $color-white;
 
                     &:hover {
                         color: $color-hover;
                         text-decoration: none;
+                    }
+                    img{
+                        cursor: pointer;
                     }
                 }
 
@@ -1124,8 +1131,8 @@
     }
 
     .heading-section {
-        padding: 20px;
-        padding-bottom: 0;
+        padding: 10px 20px;
+        // padding-bottom: 0;
         // margin-bottom: 20px;
         
 
@@ -1980,7 +1987,7 @@
                 line-height: $text-small;
                 background-color: transparent;
                 border: 0;
-                padding: 15px;
+                padding: 10px 15px;
                 margin-right: 0;
                 display: block;
                 @include round-corner(0);
@@ -2552,6 +2559,11 @@
             .modal-header {
                 border-bottom: 0;
                 overflow: hidden;
+
+                &.warning{
+                    background-color: #FF4A4A;
+                    border-radius: 0px;
+                }
                 
 
                 .modal-title {
@@ -2564,6 +2576,10 @@
                     text-overflow: ellipsis;
                     word-wrap: break-word;
                     text-transform: uppercase;
+
+                    &.warning{
+                        color: $color-white !important;
+                    }
                 }
 
                 .close {
@@ -2588,6 +2604,12 @@
                     }
 
                     &:hover {
+                    }
+
+                    .modal-title{
+                        position: absolute;
+                        top: 5px;
+                        right: 12px;
                     }
                 }
             }

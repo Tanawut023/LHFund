@@ -36,5 +36,17 @@ export class OrderService {
   changefundswitchingdestination(data){
     return this.http.post(environment.serverUrl + '/api/order/changefundswitchingdestination', data);
   }
+  submitorder(data){
+    return this.http.post(environment.serverUrl + '/api/order/submitorder', data);
+  }
+  confirmorder(data){
+    return this.http.post(environment.serverUrl + '/api/order/confirmorder', data);
+  }
+  cancelorder(data){
+    return this.http.post(environment.serverUrl + '/api/order/cancelorder', data);
+  }
+  getorderinfolist(data){
+    return this.http.post(environment.serverUrl + '/api/order/getorderinfolist', data);
+  }
 
 }

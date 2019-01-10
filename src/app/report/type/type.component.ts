@@ -13,5 +13,9 @@ export class TypeComponent implements OnInit {
     $('#mutual-tab-menu').find('li').removeClass('current');
     $('#mutual-tab-menu').find('li#menu9').addClass('current');
   }
+  print() {
+    window.focus();
+    window.print();
+}
 
 }

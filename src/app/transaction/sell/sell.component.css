@@ -1,0 +1,28 @@
+/* set global config vars */
+/* defualt page width setting(PC) */
+/* off canvas menu width *eg. 70px or 70% */
+/* main slide margin top */
+/* header height */
+/* footer height */
+/* global body setting */
+/* default font family */
+/*Arial*/
+/* text sizing multiplier */
+/* text sizing */
+/* default theme color */
+/* special theme */
+/* insert special theme for this website */
+/* text sizing */
+.modal-title {
+  color: #fff !important; }
+
+.modal-header {
+  background-color: #FF4A4A;
+  border-radius: 0px; }
+  .modal-header .close .modal-title {
+    position: absolute;
+    top: 5px;
+    right: 12px; }
+
+.modal-footer {
+  display: block; }

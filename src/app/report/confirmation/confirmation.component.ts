@@ -4,6 +4,7 @@ import { first } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 import { ReportService } from '../../service/report.service';
 import { saveAs } from 'file-saver'
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 declare var $: any;
 
@@ -18,20 +19,30 @@ export class ConfirmationComponent implements OnInit {
   userselect: any = {};
   unitholderno: any = "init";
   loading: boolean;
+  nolist: boolean = false;
+  minDate;
   confirmlist
+  formconfirm: FormGroup;
   constructor(
     private basedataservice: BaseApplicationDataService,
-    private reportservice: ReportService
+    private reportservice: ReportService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
-
+    this.createFormValidate();
     this.getSelectListUnitholder();
 
     $('#mutual-tab-menu').find('li').removeClass('current');
     $('#mutual-tab-menu').find('li#menu8').addClass('current');
 
     $('.selectpicker').selectpicker();
+
+    var d = new Date();
+    var endDate = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
+    console.log(endDate);
+
+    this.minDate = { year: endDate.getFullYear(), month: endDate.getMonth() + 1, day: endDate.getDate() };
   }
   onChange() {
 
@@ -40,6 +51,35 @@ export class ConfirmationComponent implements OnInit {
         this.userselect = this.userall.unitholderlist[i];
       }
     }
+  }
+  createFormValidate() {
+    this.formconfirm = this.fb.group({
+      dateorder: [null,
+        [
+          Validators.required
+        ]
+      ]
+    })
+  }
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
+      }
+    })
+  }
+  isFieldNotValid(field: string) {
+    return !this.formconfirm.get(field).valid && this.formconfirm.get(field).touched
+
+  }
+
+  ValidatorDisplayCss(field: string) {
+    return {
+      'has-danger': this.isFieldNotValid(field)
+    };
   }
   getSelectListUnitholder() {
     this.basedataservice.getSelectListUnitholder()
@@ -59,26 +99,50 @@ export class ConfirmationComponent implements OnInit {
     return this.model.year + "-" + this.model.month + "-" + this.model.day;
   }
   OnSubmitd() {
-
+    this.confirmlist = [];
     this.loading = true;
     var user;
     console.log(this.model);
-
-
-    if (typeof this.model == 'undefined') {
-      console.log('test');
-      user = {
-        UnitholderID: this.userselect.UnitholderId
-      }
-
-    }
-    else if (typeof this.model !== 'undefined') {
-      console.log("test3");
+    console.log(this.formconfirm);
+    if(this.formconfirm.valid){
       user = {
         UnitholderID: this.userselect.UnitholderId,
-        EffectiveDate: this.getEffectiveDate()
+        EffectiveDate: this.formconfirm.controls.dateorder.value.year + "-" + this.formconfirm.controls.dateorder.value.month + "-" + this.formconfirm.controls.dateorder.value.day
       }
+
+      console.log(user);
+
+      this.reportservice.confirmation(user)
+        .subscribe(
+          data => {
+            console.log(data);
+            this.confirmlist = data;
+            if(this.confirmlist){
+              this.nolist = true;
+            }
+            this.loading = false;
+          },
+          error => {
+            console.log(error)
+            this.loading = false;
+  
+          });
+    }else{
+        this.loading = false;
+        this.validateAllFormFields(this.formconfirm);
+    
     }
+    // if (typeof this.model == 'undefined') {
+    //   console.log('test');
+    //   user = {
+    //     UnitholderID: this.userselect.UnitholderId
+    //   }
+
+    // }
+    // else if (typeof this.model !== 'undefined') {
+    //   console.log("test3");
+      
+    // }
     // } else {
     //   console.log('test2');
     //   console.log(this.fundname);
@@ -90,20 +154,7 @@ export class ConfirmationComponent implements OnInit {
     //     EndOrderDate: this.getenddate()
     //   }
     // }
-    console.log(user);
-
-    this.reportservice.confirmation(user)
-      .subscribe(
-        data => {
-          console.log(data);
-          this.confirmlist = data;
-          this.loading = false;
-        },
-        error => {
-          console.log(error)
-          this.loading = false;
-
-        });
+   
 
 
   }
@@ -135,13 +186,13 @@ export class ConfirmationComponent implements OnInit {
           console.log('here');
 
           // setTimeout(() => {
-            $('#message').modal({
-              backdrop: 'static',
-              keyboard: false,
-              show: true
-            });
+          $('#message').modal({
+            backdrop: 'static',
+            keyboard: false,
+            show: true
+          });
           // }, 100);
-          
+
           this.loading = false;
 
         });
@@ -168,5 +219,9 @@ export class ConfirmationComponent implements OnInit {
         return retype;
     }
 
+  }
+  print() {
+    window.focus();
+    window.print();
   }
 }

@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { datethai } from '../../Share/dateformat'
 import { BaseApplicationDataService } from '../../service/base-application-data.service';
 import { first } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 import { ProfileService } from '../../service/profile.service'
-import { FormBuilder, FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, NgForm, FormArray } from '@angular/forms';
 import { async } from 'q';
+import { LanguageService } from '../../service/language.service'
+import { Observable } from 'rxjs';
 declare var $: any;
 @Component({
     selector: 'app-suitability',
     templateUrl: './suitability.component.html',
     styleUrls: ['./suitability.component.scss']
 })
-export class SuitabilityComponent implements OnInit {
+export class SuitabilityComponent implements OnInit{
     page = "over-view";
     currentdate;
     dateformat = datethai;
@@ -31,12 +33,14 @@ export class SuitabilityComponent implements OnInit {
     show: boolean;
     answer: any = [];
     riskprofile;
+    lang: Observable<string>;
 
 
     constructor(
         private basedataservice: BaseApplicationDataService,
         private profileserice: ProfileService,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private langservice: LanguageService
     ) { }
 
     ngOnInit() {
@@ -46,7 +50,19 @@ export class SuitabilityComponent implements OnInit {
 
         $('#mutual-tab-menu').find('li').removeClass('current');
         $('#mutual-tab-menu').find('li#menu2').addClass('current');
+
+        this.langservice.listen().subscribe((m:any) => {
+            console.log(m);
+            this.lang = m;
+        })
+        // console.log(this.lang);
+        
     }
+    // ngOnDestroy() {
+    //     $('#otpsuitest').modal('toggle');
+    //     $('#message').modal('toggle');
+    //     $('#messagesuc').modal('toggle');
+    // }
 
     checkpage(page) {
         window.scroll(0, 0);
@@ -165,24 +181,27 @@ export class SuitabilityComponent implements OnInit {
 
                     this.suitest = data;
                     console.log(this.suitest);
-                    for (let y = 0; y < this.suitest.question.length; y++) {
-
-                        console.log(this.suitest.question[y]);
-
-                        for (let i = 0; i < this.suitest.question[y].Answers.length; i++) {
-                            console.log(this.suitest.question[y].Answers[i]);
-
-                            if (this.suitest.question[y].Answers[i].Selected == true) {
-                                this.answer.push(this.suitest.question[y].Answers[i]);
-
-                            }
 
 
-                        }
-                    }
-                    console.log(this.answer);
+                    // for (let y = 0; y < this.suitest.question.length; y++) {
+
+                    //     console.log(this.suitest.question[y]);
+
+                    //     for (let i = 0; i < this.suitest.question[y].Answers.length; i++) {
+                    //         console.log(this.suitest.question[y].Answers[i]);
+
+                    //         if (this.suitest.question[y].Answers[i].Selected == true) {
+                    //             this.answer.push(this.suitest.question[y].Answers[i]);
+
+                    //         }
+
+
+                    //     }
+                    // }
+                    // console.log(this.answer);
                     setTimeout(() => {
-                        this.setdefault();
+                        // this.setdefault();
+                        this.autocreateformcontrol();
                     }, 100);
 
 
@@ -192,6 +211,29 @@ export class SuitabilityComponent implements OnInit {
 
                 });
 
+
+    }
+    autocreateformcontrol() {
+
+        if (this.suitest) {
+            for (let y = 0; y < this.suitest.question.length; y++) {
+
+                this.question.push(
+                    this.fb.control('')
+                )
+
+                for (let i = 0; i < this.suitest.question[y].Answers.length; i++) {
+
+                    if (this.suitest.question[y].Answers[i].Selected == true) {
+                        this.question.controls[y].setValue(this.suitest.question[y].Answers[i], { onlySelf: true })
+                    }
+
+
+                }
+
+            }
+        }
+        console.log(this.form);
 
     }
     getriskprofile() {
@@ -214,53 +256,13 @@ export class SuitabilityComponent implements OnInit {
                     });
                 });
     }
+    get question() {
+        return this.form.get('question') as FormArray;
+    }
     createFormValidate() {
         this.form = this.fb.group({
 
-            choice0: [null,
-                [
-                    Validators.required,
-                ]],
-            choice1: [null,
-                [
-                    Validators.required,
-                ]],
-            choice2: [null,
-                [
-                    Validators.required,
-                ]],
-            choice3: [null,
-                [
-                    Validators.required,
-                ]],
-            choice4: [null,
-                [
-                    Validators.required,
-                ]],
-            choice5: [null,
-                [
-                    Validators.required,
-                ]],
-            choice6: [null,
-                [
-                    Validators.required,
-                ]],
-            choice7: [null,
-                [
-                    Validators.required,
-                ]],
-            choice8: [null,
-                [
-                    Validators.required,
-                ]],
-            choice9: [null,
-                [
-                    Validators.required,
-                ]],
-            choice10: [null,
-                [
-                    Validators.required,
-                ]]
+            question: this.fb.array([])
 
         });
 
@@ -290,209 +292,38 @@ export class SuitabilityComponent implements OnInit {
 
     onsubmit() {
         console.log(this.form);
-        var score = this.form.controls.choice0.value.Score + this.form.controls.choice1.value.Score + this.form.controls.choice2.value.Score + this.form.controls.choice3.value.Score + this.form.controls.choice4.value.Score + this.form.controls.choice5.value.Score + this.form.controls.choice6.value.Score + this.form.controls.choice7.value.Score + this.form.controls.choice8.value.Score + this.form.controls.choice9.value.Score + this.form.controls.choice10.value.Score
-        console.log(score);
-
-        console.log(this.form)
+        var array = new Array();
         if (this.form.valid) {
             this.isNotValid = false;
             this.show = true;
 
+            for (let y = 0; y < this.suitest.question.length; y++) {
+                var item = this.question.at(y);
+                array.push(
+                    {
+                        Id: this.suitest.question[y].Id,
+                        Seq: this.suitest.question[y].Seq,
+                        Name: this.suitest.question[y].Name,
+                        NameEng: this.suitest.question[y].NameEng,
+                        UnitHolderID: this.suitest.question[y].UnitHolderID,
+                        Answers: [
+                            {
+                                Id: item.value.Id,
+                                QuestionId: item.value.QuestionId,
+                                Seq: item.value.Seq,
+                                Score: item.value.Score,
+                                Name: item.value.Name,
+                                NameEng: item.value.NameEng,
+                                Selected: true
+                            }
+                        ]
+                    }
+                )
+            }
+            console.log(array);
 
 
-
-            const suitest = [
-                {
-                    Id: this.suitest.question[0].Id,
-                    Seq: this.suitest.question[0].Seq,
-                    Name: this.suitest.question[0].Name,
-                    NameEng: this.suitest.question[0].NameEng,
-                    UnitHolderID: this.suitest.question[0].UnitHolderID,
-                    Answers: [
-                        {
-                            Id: this.form.controls.choice0.value.Id,
-                            QuestionId: this.form.controls.choice0.value.QuestionId,
-                            Seq: this.form.controls.choice0.value.Seq,
-                            Score: this.form.controls.choice0.value.Score,
-                            Name: this.form.controls.choice0.value.Name,
-                            NameEng: this.form.controls.choice0.value.NameEng,
-                            Selected: true
-                        }
-                    ]
-                }, {
-                    Id: this.suitest.question[1].Id,
-                    Seq: this.suitest.question[1].Seq,
-                    Name: this.suitest.question[1].Name,
-                    NameEng: this.suitest.question[1].NameEng,
-                    UnitHolderID: this.suitest.question[1].UnitHolderID,
-                    Answers: [
-                        {
-                            Id: this.form.controls.choice1.value.Id,
-                            QuestionId: this.form.controls.choice1.value.QuestionId,
-                            Seq: this.form.controls.choice1.value.Seq,
-                            Score: this.form.controls.choice1.value.Score,
-                            Name: this.form.controls.choice1.value.Name,
-                            NameEng: this.form.controls.choice1.value.NameEng,
-                            Selected: true
-                        }
-                    ]
-                }, {
-                    Id: this.suitest.question[2].Id,
-                    Seq: this.suitest.question[2].Seq,
-                    Name: this.suitest.question[2].Name,
-                    NameEng: this.suitest.question[2].NameEng,
-                    UnitHolderID: this.suitest.question[2].UnitHolderID,
-                    Answers: [
-                        {
-                            Id: this.form.controls.choice2.value.Id,
-                            QuestionId: this.form.controls.choice2.value.QuestionId,
-                            Seq: this.form.controls.choice2.value.Seq,
-                            Score: this.form.controls.choice2.value.Score,
-                            Name: this.form.controls.choice2.value.Name,
-                            NameEng: this.form.controls.choice2.value.NameEng,
-                            Selected: true
-                        }
-                    ]
-                }, {
-                    Id: this.suitest.question[3].Id,
-                    Seq: this.suitest.question[3].Seq,
-                    Name: this.suitest.question[3].Name,
-                    NameEng: this.suitest.question[3].NameEng,
-                    UnitHolderID: this.suitest.question[3].UnitHolderID,
-                    Answers: [
-                        {
-                            Id: this.form.controls.choice3.value.Id,
-                            QuestionId: this.form.controls.choice3.value.QuestionId,
-                            Seq: this.form.controls.choice3.value.Seq,
-                            Score: this.form.controls.choice3.value.Score,
-                            Name: this.form.controls.choice3.value.Name,
-                            NameEng: this.form.controls.choice3.value.NameEng,
-                            Selected: true
-                        }
-                    ]
-                }, {
-                    Id: this.suitest.question[4].Id,
-                    Seq: this.suitest.question[4].Seq,
-                    Name: this.suitest.question[4].Name,
-                    NameEng: this.suitest.question[4].NameEng,
-                    UnitHolderID: this.suitest.question[4].UnitHolderID,
-                    Answers: [
-                        {
-                            Id: this.form.controls.choice4.value.Id,
-                            QuestionId: this.form.controls.choice4.value.QuestionId,
-                            Seq: this.form.controls.choice4.value.Seq,
-                            Score: this.form.controls.choice4.value.Score,
-                            Name: this.form.controls.choice4.value.Name,
-                            NameEng: this.form.controls.choice4.value.NameEng,
-                            Selected: true
-                        }
-                    ]
-                }, {
-                    Id: this.suitest.question[5].Id,
-                    Seq: this.suitest.question[5].Seq,
-                    Name: this.suitest.question[5].Name,
-                    NameEng: this.suitest.question[5].NameEng,
-                    UnitHolderID: this.suitest.question[5].UnitHolderID,
-                    Answers: [
-                        {
-                            Id: this.form.controls.choice5.value.Id,
-                            QuestionId: this.form.controls.choice5.value.QuestionId,
-                            Seq: this.form.controls.choice5.value.Seq,
-                            Score: this.form.controls.choice5.value.Score,
-                            Name: this.form.controls.choice5.value.Name,
-                            NameEng: this.form.controls.choice5.value.NameEng,
-                            Selected: true
-                        }
-                    ]
-                }, {
-                    Id: this.suitest.question[6].Id,
-                    Seq: this.suitest.question[6].Seq,
-                    Name: this.suitest.question[6].Name,
-                    NameEng: this.suitest.question[6].NameEng,
-                    UnitHolderID: this.suitest.question[6].UnitHolderID,
-                    Answers: [
-                        {
-                            Id: this.form.controls.choice6.value.Id,
-                            QuestionId: this.form.controls.choice6.value.QuestionId,
-                            Seq: this.form.controls.choice6.value.Seq,
-                            Score: this.form.controls.choice6.value.Score,
-                            Name: this.form.controls.choice6.value.Name,
-                            NameEng: this.form.controls.choice6.value.NameEng,
-                            Selected: true
-                        }
-                    ]
-                }, {
-                    Id: this.suitest.question[7].Id,
-                    Seq: this.suitest.question[7].Seq,
-                    Name: this.suitest.question[7].Name,
-                    NameEng: this.suitest.question[7].NameEng,
-                    UnitHolderID: this.suitest.question[7].UnitHolderID,
-                    Answers: [
-                        {
-                            Id: this.form.controls.choice7.value.Id,
-                            QuestionId: this.form.controls.choice7.value.QuestionId,
-                            Seq: this.form.controls.choice7.value.Seq,
-                            Score: this.form.controls.choice7.value.Score,
-                            Name: this.form.controls.choice7.value.Name,
-                            NameEng: this.form.controls.choice7.value.NameEng,
-                            Selected: true
-                        }
-                    ]
-                }, {
-                    Id: this.suitest.question[8].Id,
-                    Seq: this.suitest.question[8].Seq,
-                    Name: this.suitest.question[8].Name,
-                    NameEng: this.suitest.question[8].NameEng,
-                    UnitHolderID: this.suitest.question[8].UnitHolderID,
-                    Answers: [
-                        {
-                            Id: this.form.controls.choice8.value.Id,
-                            QuestionId: this.form.controls.choice8.value.QuestionId,
-                            Seq: this.form.controls.choice8.value.Seq,
-                            Score: this.form.controls.choice8.value.Score,
-                            Name: this.form.controls.choice8.value.Name,
-                            NameEng: this.form.controls.choice8.value.NameEng,
-                            Selected: true
-                        }
-                    ]
-                }, {
-                    Id: this.suitest.question[9].Id,
-                    Seq: this.suitest.question[9].Seq,
-                    Name: this.suitest.question[9].Name,
-                    NameEng: this.suitest.question[9].NameEng,
-                    UnitHolderID: this.suitest.question[9].UnitHolderID,
-                    Answers: [
-                        {
-                            Id: this.form.controls.choice9.value.Id,
-                            QuestionId: this.form.controls.choice9.value.QuestionId,
-                            Seq: this.form.controls.choice9.value.Seq,
-                            Score: this.form.controls.choice9.value.Score,
-                            Name: this.form.controls.choice9.value.Name,
-                            NameEng: this.form.controls.choice9.value.NameEng,
-                            Selected: true
-                        }
-                    ]
-                }, {
-                    Id: this.suitest.question[10].Id,
-                    Seq: this.suitest.question[10].Seq,
-                    Name: this.suitest.question[10].Name,
-                    NameEng: this.suitest.question[10].NameEng,
-                    UnitHolderID: this.suitest.question[10].UnitHolderID,
-                    Answers: [
-                        {
-                            Id: this.form.controls.choice10.value.Id,
-                            QuestionId: this.form.controls.choice10.value.QuestionId,
-                            Seq: this.form.controls.choice10.value.Seq,
-                            Score: this.form.controls.choice10.value.Score,
-                            Name: this.form.controls.choice10.value.Name,
-                            NameEng: this.form.controls.choice10.value.NameEng,
-                            Selected: true
-                        }
-                    ]
-                }
-            ]
-
-            this.suitestselected = suitest;
+            this.suitestselected = array;
             console.log(this.suitestselected);
 
 
@@ -573,22 +404,24 @@ export class SuitabilityComponent implements OnInit {
                 .subscribe(
                     data => {
                         // this.res = data;
+                        console.log('here1');
+
                         console.log(data);
                         this.show = false;
                         $('#otpsuitest').modal('toggle');
+                        $('#messagesuc').modal({
+                            backdrop: 'static',
+                            keyboard: false,
+                            show: true
+                        });
                         this.reset();
                         this.getsuitest();
 
                     },
                     error => {
-                        $('#otpsuitest').modal('toggle');
+                        console.log('here2');
                         console.log(error);
                         this.message = error.error.messages;
-                        $('#message').modal({
-                            backdrop: 'static',
-                            keyboard: false,
-                            show: true
-                        });
                     });
 
         } else {
@@ -632,7 +465,12 @@ export class SuitabilityComponent implements OnInit {
         this.form.reset();
         this.answer = [];
         this.suitest = {};
+        this.message = "";
 
+    }
+    print() {
+        window.focus();
+        window.print();
     }
 
 

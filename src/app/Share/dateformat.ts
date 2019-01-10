@@ -46,6 +46,16 @@ export var datethai;
   var datefor = date.getDate()+" "+thmonth[date.getMonth()]+" "+(0+date.getFullYear()+543);
   return datefor;
  }
+ export function boostrapdatepicker(d){
+  var date = new Date(d),
+    year = date.getFullYear(),
+    month = (date.getMonth() + 1).toString(),
+    formatedMonth = (month.length === 1) ? ("0" + month) : month,
+    day = date.getDate().toString(),
+    formatedDay = (day.length === 1) ? ("0" + day) : day
+    
+  return year + "-" + formatedMonth + "-" + formatedDay;
+ }
 
  export function getDate() {
   var date = new Date(),

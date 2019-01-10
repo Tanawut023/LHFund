@@ -94,6 +94,11 @@ export class CertificateLtfComponent implements OnInit {
                 error => {
                     console.log(error)
                     this.loading = false;
+                    $('#message2').modal({
+                        backdrop: 'static',
+                        keyboard: false,
+                        show: true
+                    });
 
                 });
 
@@ -140,6 +145,10 @@ export class CertificateLtfComponent implements OnInit {
                 });
 
 
+    }
+    print() {
+        window.focus();
+        window.print();
     }
 
 }

@@ -26,6 +26,7 @@ export class ReceiptHistoryComponent implements OnInit {
   row = 999;
   reportlist;
   p: number = 1;
+  minDate;
   constructor(
     private basedataservice: BaseApplicationDataService,
     private reportservice: ReportService
@@ -36,9 +37,16 @@ export class ReceiptHistoryComponent implements OnInit {
 
     this.getSelectListUnitholder();
     this.getfundtypelist();
+    this.changefundtype();
 
     $('#mutual-tab-menu').find('li').removeClass('current');
     $('#mutual-tab-menu').find('li#menu3').addClass('current');
+
+    var d = new Date();
+    var endDate = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
+    console.log(endDate);
+
+    this.minDate = { year: endDate.getFullYear(), month: endDate.getMonth() + 1, day: endDate.getDate() };
   }
   onChange() {
 
@@ -248,5 +256,10 @@ export class ReceiptHistoryComponent implements OnInit {
     this.reportlist = [];
     this.p = 1;
   }
+  print() {
+    window.focus();
+    window.print();
+  }
+
 
 }

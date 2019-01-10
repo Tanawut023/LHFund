@@ -7,19 +7,19 @@
                 <div class="col-md-6 top-social-nav d-lg-block d-none">
                     <ul class="">
                         <li class="ico-fb">
-                            <a href="#" title="บัญชีผู้ใช้">
+                            <a title="บัญชีผู้ใช้">
                                {{ 'HEADER.Account' | translate }} : 
                             </a>
                         </li>
                         <li class="ico-line">
-                            <a href="#" title="{{ userdetail.FirstName }}">
+                            <a title="{{ userdetail.FirstName }}">
                                 <img src="./assets/Images/icons/icon-login-white.png" />
                                 {{ userdetail.FirstName }}
                                 <!-- <img src="./assets/Images/icons/p_dropdown_select.png" /> -->
                             </a>
                         </li>
                         <li class="ico-yt">
-                            <a [routerLink]="['/login']" title="ออกจากระบบ">
+                            <a href="" title="ออกจากระบบ">
                                 <img src="./assets/Images/icons/ico-forgot.png" />
                                 {{ 'HEADER.logout' | translate }}
                             </a>
@@ -51,7 +51,7 @@
           <div class="row">
               <div class="col-lg-3 col-4 ">
                   <h1 class="logo">
-                      <a href="/">
+                      <a routerLink="/logingin">
                             <img src="./assets/Images/logos/logo-m-post.jpg" />
                       </a>
                   </h1>

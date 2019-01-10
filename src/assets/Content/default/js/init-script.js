@@ -520,39 +520,39 @@ bgslider_init = function(){
   /* bg-slider */
   $('.slider-container').show();
   //console.log('123456');
-  $('#foo').carouFredSel({
-    responsive: true,
-    width: '100%',
-    // height: 'auto',
-    auto: true,
-    prev: '#foo_prev',
-    next: '#foo_next',
-    pagination: "#foo_pager",
-    pagination: {
-      container : "#foo_pager",
-      anchorBuilder : function(item){
-        // var word = [ 'test1','test2','test3','test4' ]
-        return '<span class="pager_list"><a href="#"></a></span>';
-      }
-    },
-    swipe: {
-      onTouch: true
-    },
-    scroll: {
-      fx          : "fade",
-      easing      : "linear",
-      pauseOnHover: true,
-      duration    : 1000
-    },
-    items: {
-      // start       : "random",
-      height: 'auto',		//optionally resize item-height
-      visible: {
-        min:  1,
-        max: 1
-      }
-    }
-  });
+  // $('#foo').carouFredSel({
+  //   responsive: true,
+  //   width: '100%',
+  //   // height: 'auto',
+  //   auto: true,
+  //   prev: '#foo_prev',
+  //   next: '#foo_next',
+  //   pagination: "#foo_pager",
+  //   pagination: {
+  //     container : "#foo_pager",
+  //     anchorBuilder : function(item){
+  //       // var word = [ 'test1','test2','test3','test4' ]
+  //       return '<span class="pager_list"><a href="#"></a></span>';
+  //     }
+  //   },
+  //   swipe: {
+  //     onTouch: true
+  //   },
+  //   scroll: {
+  //     fx          : "fade",
+  //     easing      : "linear",
+  //     pauseOnHover: true,
+  //     duration    : 1000
+  //   },
+  //   items: {
+  //     // start       : "random",
+  //     height: 'auto',		//optionally resize item-height
+  //     visible: {
+  //       min:  1,
+  //       max: 1
+  //     }
+  //   }
+  // });
   /* end bg-slider */
 }
 //fix caroufredsel
@@ -561,61 +561,61 @@ $(window).load( function(){ bgslider_init(); });
 
 /* banner-slide */
  $('.banner-slider-container').show();
- $('#foo1').carouFredSel({
-     responsive: true,
-     infinite: false,
-     circular: false,
-     auto: false,
-     onCreate: null,
-     //width: '100%',
-       scroll: {
-         items   : 1,
-         pauseOnHover: true
-       },
-       swipe: {
-         onTouch: true
-       },
-       items: {
-        //width: 400,
-        height: '50%',  //  optionally resize item-height
-        visible: {
-          min: 1,
-          max: 4
-        }
-       },
-       auto: false,
-       align: "center",
-       prev: '#foo1_prev',
-       next: '#foo1_next'
- });
+//  $('#foo1').carouFredSel({
+//      responsive: true,
+//      infinite: false,
+//      circular: false,
+//      auto: false,
+//      onCreate: null,
+//      //width: '100%',
+//        scroll: {
+//          items   : 1,
+//          pauseOnHover: true
+//        },
+//        swipe: {
+//          onTouch: true
+//        },
+//        items: {
+//         //width: 400,
+//         height: '50%',  //  optionally resize item-height
+//         visible: {
+//           min: 1,
+//           max: 4
+//         }
+//        },
+//        auto: false,
+//        align: "center",
+//        prev: '#foo1_prev',
+//        next: '#foo1_next'
+//  });
 
- $('#foo2').carouFredSel({
-     responsive: true,
-     infinite: false,
-     circular: false,
-     auto: false,
-     onCreate: null,
-     //width: '100%',
-     scroll: {
-         items: 1,
-         pauseOnHover: true
-     },
-     swipe: {
-         onTouch: true
-     },
-     items: {
-         //width: 400,
-         height: '50%',  //  optionally resize item-height
-         visible: {
-             min: 1,
-             max: 1
-         }
-     },
-     auto: false,
-     align: "center",
-     prev: '#foo2_prev',
-     next: '#foo2_next'
- });
+//  $('#foo2').carouFredSel({
+//      responsive: true,
+//      infinite: false,
+//      circular: false,
+//      auto: false,
+//      onCreate: null,
+//      //width: '100%',
+//      scroll: {
+//          items: 1,
+//          pauseOnHover: true
+//      },
+//      swipe: {
+//          onTouch: true
+//      },
+//      items: {
+//          //width: 400,
+//          height: '50%',  //  optionally resize item-height
+//          visible: {
+//              min: 1,
+//              max: 1
+//          }
+//      },
+//      auto: false,
+//      align: "center",
+//      prev: '#foo2_prev',
+//      next: '#foo2_next'
+//  });
 /* end banner-slide */
 
 /* homepage content slide */
@@ -644,7 +644,7 @@ expandable_mainmenu_init();
 /* sidemenu */
 sidemenu_init();
 
-selectric_render();
+// selectric_render();
 
 /* adjust content footer padding */
 // adjustFooter();

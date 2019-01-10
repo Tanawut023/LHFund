@@ -142,7 +142,8 @@ export class JwtInterceptor implements HttpInterceptor {
                     err => {
                         console.log(err);
                         if (err.status === 401){
-                          this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.url } });
+                          // this.router.navigate(['/'], { queryParams: { returnUrl: this.router.url } });
+                          window.location.href = "";
                         }
                       }
                     ));

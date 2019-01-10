@@ -16,8 +16,8 @@
               </a>
             </li> -->
             <li class="ico-yt">
-              <a href="#" title="youtube">
-                <img src="/assets/Images/icons/ico-print.png" />
+              <a title="print">
+                <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
               </a>
             </li>
 
@@ -29,7 +29,8 @@
           <div class="select-wrapper inline-block">
             <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno">
               <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
-                }}</option>
+                }}
+              </option>
             </select>
           </div>
         </div>
@@ -72,38 +73,75 @@
             </th>
           </tr>
         </thead>
-        <tbody *ngFor="let orderltflist of orderltf.ltflist">
-          <!-- <tr class="topic">
+        <tbody>
+          <ng-container *ngFor="let orderltflist of ltflist">
+            <!-- <tr class="topic">
             <th colspan="11">
               9990244757
             </th>
           </tr> -->
-          <tr class="line">
-            <td>
-              {{ orderltflist.FundName }}
-            </td>
-            <td colspan="6">&nbsp;</td>
-          </tr>
-          <tr>
-            <td class="text-left">
-              &nbsp;
-            </td>
-            <td class="">
+          <ng-container *ngIf="!orderltflist.islast">
+            <tr class="line" *ngIf="orderltflist.FundNameGroup || orderltflist.FundCodeGroup">
+              <td colspan="6">
+                {{ orderltflist.FundNameGroup }} ({{orderltflist.FundCodeGroup}})
+                <ng-container *ngIf="lang == 'th' ">{{ orderltflist.FundNameGroup }} ({{orderltflist.FundCodeGroup}})</ng-container>
+                <ng-container *ngIf="lang == 'en' ">{{ orderltflist.FundNameEngGroup }} ({{orderltflist.FundCodeGroup}})</ng-container>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-left">
+                &nbsp;
+              </td>
+              <td class="">
                 {{ orderltflist.FirstPurchaseDate | datethai }}
-            </td>
-            <td class="">
+              </td>
+              <td class="">
                 {{ orderltflist.Unit | tofix4 }}
-            </td>
-            <td class="">
+              </td>
+              <td class="">
                 {{ orderltflist.BalanceDate | datethai }}
-            </td>
-            <td class="txt-right">
+              </td>
+              <td class="txt-right">
                 {{ orderltflist.NAV | tofix4 }}
-            </td>
-            <td class="txt-right">
+              </td>
+              <td class="txt-right">
                 {{ orderltflist.BalanceAmount | tofix }}
-            </td>
+              </td>
+            </tr>
+          </ng-container>
+            <tr class="summary" *ngIf="orderltflist.islast">
+              <th class="text-left" >
+                รวม {{orderltflist.FundCode}}
+              </th>
+              <th class="text-right" colspan="3">
+                &nbsp;
+              </th>
+              <th class="text-right">
+                {{orderltflist.nav | tofix4 }}
+              </th>
+              <th class="text-right">
+                {{orderltflist.unit | tofix }}
+              </th>
+
+            </tr>
+          </ng-container>
+          <tr class="summary" *ngIf="totalnav || totalunit">
+            <th class="text-left custom-label">
+              รวม
+            </th>
+            <th colspan="3" class="custom-label">
+              <!-- รวม {{list.FundCode}} -->
+              &nbsp;
+            </th>
+            <th class="text-right custom-label">
+              {{totalnav | tofix4 }}
+            </th>
+            <th class="text-right custom-label">
+              {{totalunit | tofix }}
+            </th>
+
           </tr>
+
         </tbody>
 
       </table>

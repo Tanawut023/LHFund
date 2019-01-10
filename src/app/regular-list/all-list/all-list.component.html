@@ -1,3 +1,10 @@
+<style>
+  tbody tr.bgforlhfund:nth-child(even) {
+    background: #fafafa
+  }
+
+  /* tbody tr.bgforlhfund:nth-child(odd) {background: #FFF} */
+</style>
 <div class="fund-table-wrapper">
   <div class="heading-section">
     <div class="detail-head-wrapper">
@@ -17,8 +24,8 @@
               </a>
             </li> -->
             <li class="ico-yt">
-              <a href="#" title="youtube">
-                <img src="/assets/Images/icons/ico-print.png" />
+              <a title="print">
+                <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
               </a>
             </li>
 
@@ -29,7 +36,8 @@
           <div class="select-wrapper inline-block pb-3">
             <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
               <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
-                }}</option>
+                }}
+              </option>
             </select>
           </div>
         </div>
@@ -63,13 +71,13 @@
       </div>
       <div class="col-md-12">
         <div class="table-responsive">
-          <table class="table table-nav">
+          <table class="table table-performance">
             <thead>
               <tr>
 
                 <th>
-                  แก้ไข
-                  <br/>ครั้งล่าสุด
+                  วันและเวลา
+                  <br/>ที่ทำรายการ
                 </th>
                 <th>
                   รายการ
@@ -91,101 +99,64 @@
                 <th>
                   ระยะเวลา
                 </th>
-                <th>
+                <!-- <th>
                   แก้ไข
-                </th>
+                </th> -->
                 <th>
                   ยกเลิก
                 </th>
 
               </tr>
             </thead>
-            <tbody>
-              <tr class="topic">
-                <th colspan="10">
-                  กองทุนรวมหุ้นระยะยาว
-                </th>
-              </tr>
+            <tbody *ngFor="let type of standingorder?.standingorderlist; let i = index">
               <tr class="line">
                 <td colspan="10">
-                  (KFLTFSTARD) กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                  <ng-container *ngIf="lang == 'th' ">{{ type.FundTypeName }}</ng-container>
+                  <ng-container *ngIf="lang == 'en' ">{{ type.FundTypeNameEng }}</ng-container>
                 </td>
-                <!-- <td colspan="6">&nbsp;</td> -->
               </tr>
-              <tr>
+              <ng-container *ngFor="let group of type?.StandingOrderFund; let y = index">
+                <!-- <tr class="line">
+                  <td colspan="10">
+                    {{group.FundName}}
+                  </td>
+                </tr> -->
+                <tr *ngFor="let list of group?.StandingOrder; let z = index" class="bgforlhfund">
 
-                <td class="">
-                  07/06/2561, 11:25
-                </td>
-                <td class="">
-                  DE
-                </td>
-                <td>
-                  ธนาคารกรุงศรี อยุธยา จำกัด (มหาชน) (2851332817)
-                </td>
-                <td class="">
-                  &nbsp;
-                </td>
-                <td class="text-left">
-                  รายสัปดาห์ ทุกๆ (วันจันทร์)
-                </td>
-                <td class="txt-right">
-                  20,000.00
-                </td>
-                <td class="text-center">
-                  07/06/2561 - 25/06/2561
-                </td>
-                <td>
-                  <a>
-                    <img src="/assets/Images/icons/ico-edit.png">
-                  </a>
-                </td>
-                <td>
-                  <a>
-                    <img src="/assets/Images/icons/ico-delete.png" alt="" data-toggle="modal" data-target="#disclaimer">
-                  </a>
-                </td>
-              </tr>
-              <tr class="line">
-                <td colspan="10">
-                  (KFLTFSTARD) กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
-                </td>
-                <!-- <td colspan="6">&nbsp;</td> -->
-              </tr>
-              <tr>
+                  <td class="">
+                    {{list.StandingOrderDate | datethai}}, {{list.StandingOrderDate | time}}
+                  </td>
+                  <td class="text-center">
+                    {{list.StandingOrderTxType | type}}
+                  </td>
+                  <td class="text-center">
+                    {{list.IDCardNo}}
+                  </td>
+                  <td class="">
+                    &nbsp;
+                  </td>
+                  <td class="text-center">
+                    รายเดือน ทุกๆวันที่ ({{list.StandingOrderDayNo}})
+                  </td>
+                  <td class="txt-right">
+                    {{list.StandingOrderAmount | tofix}}
+                  </td>
+                  <td class="text-center">
+                    {{list.StandingOrderEffectiveDate | datethai}} - {{list.ExpiryDate | datethai}}
+                  </td>
+                  <!-- <td>
+                    <a>
+                      <img src="/assets/Images/icons/ico-edit.png">
+                    </a>
+                  </td> -->
+                  <td class="text-center">
+                    <a>
+                      <img src="/assets/Images/icons/ico-delete.png" alt="" (click)="modaldeleteorder(group,list)">
+                    </a>
+                  </td>
+                </tr>
+              </ng-container>
 
-                <td class="">
-                  07/06/2561, 11:25
-                </td>
-                <td class="">
-                  DE
-                </td>
-                <td>
-                  ธนาคารกรุงศรี อยุธยา จำกัด (มหาชน) (2851332817)
-                </td>
-                <td class="">
-                  &nbsp;
-                </td>
-                <td class="text-left">
-                  รายสัปดาห์ ทุกๆ (วันจันทร์)
-                </td>
-                <td class="txt-right">
-                  20,000.00
-                </td>
-                <td class="text-center">
-                  07/06/2561 - 25/06/2561
-                </td>
-                <td>
-                  <a>
-                    <img src="/assets/Images/icons/ico-edit.png">
-                  </a>
-                </td>
-                <td>
-                  <a>
-                    <img src="/assets/Images/icons/ico-delete.png" alt="" data-toggle="modal" data-target="#disclaimer">
-                  </a>
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -201,10 +172,126 @@
       <div class="col-md-12">
         <div class="row justify-content-center">
           <div class="col-md-2 col-6 col-sm-4">
-            <button class="btn-med btn-primary">
+            <button class="btn-med btn-primary" (click)="print()">
               {{ 'BUTTON.print' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
 
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="delete">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header warning">
+
+        <h4 class="modal-title warning">คุณต้องการลบรายการที่เลือกหรือไม่</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <h4 class="modal-title warning">X</h4>
+        </button>
+      </div>
+      <div class="modal-body" id="content-scroll-1">
+        <div class="row mt-3">
+          <div class="col-md-6 col-6">
+            <p>เลขที่ผู้ถือหน่วยลงทุน</p>
+            <span>{{ userselect.UnitholderNo }}</span>
+          </div>
+          <div class="col-md-6 col-6">
+            <p>ชื่อผู้ถือหน่วยลงทุน</p>
+            <span>{{ userselect.FirstName}} {{ userselect.LastName}}</span>
+          </div>
+
+          <div class="col-md-12 mt-4">
+            <div class="table-responsive">
+              <table class="table table-custom">
+                <tbody>
+                  <tr>
+                    <td class="text-left">
+                      วันที่ทำรายการ
+                    </td>
+                    <td class="text-left content">
+                      {{deletedOrder?.StandingOrderDate | datethai}}, {{deletedOrder?.StandingOrderDate | time}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      กองทุน
+                    </td>
+                    <td class="text-left content">
+                      <ng-container *ngIf="lang == 'th' ">{{ deletedGroup?.FundName }}</ng-container>
+                      <ng-container *ngIf="lang == 'en' ">{{ deletedGroup?.FundNameEng }}</ng-container>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      บาท (THB)
+                    </td>
+                    <td class="text-left content">
+                      <ng-container *ngIf="deletedOrder">{{deletedOrder?.StandingOrderAmount | tofix}}</ng-container>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      เงื่อนไข
+                    </td>
+                    <td class="text-left content">
+                      รายเดือน ทุกๆวันที่ ({{deletedOrder?.StandingOrderDayNo}})
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      ระยะเวลา
+                    </td>
+                    <td class="text-left content">
+                      {{deletedOrder?.StandingOrderEffectiveDate | datethai}} - {{deletedOrder?.ExpiryDate | datethai}}
+                    </td>
+                  </tr>
+
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="row justify-content-center">
+            <div class="col-md-6 col-6 col-sm-6">
+              <button class="btn-med btn-cancel" (click)="deleteorder()">
+                ลบรายการนี้
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+</div>
+
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="message" style="z-index: 9999;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">คำเตือน</h4>
+      </div>
+      <div class="modal-body" id="content-scroll-1">
+        <h3>{{ message }}</h3>
+      </div>
+      <div class="modal-footer" style="display: block;">
+        <div class="row justify-content-end">
+          <div class="col-sm-6">
+            <button class="btn-med btn-primary" data-dismiss="modal">
+              <p style="margin-top: 7px;">ตกลง
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </p>
             </button>
           </div>
         </div>

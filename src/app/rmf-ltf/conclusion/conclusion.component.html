@@ -16,8 +16,8 @@
               </a>
             </li> -->
             <li class="ico-yt">
-              <a href="#" title="youtube">
-                <img src="/assets/Images/icons/ico-print.png" />
+              <a title="print">
+                <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
               </a>
             </li>
 
@@ -56,7 +56,7 @@
       <div class="col-md-3">
         <div class="select-wrapper inline-block">
           <select [(ngModel)]="years" name="years" id="years">
-            <option [ngValue]="years" *ngFor="let years of yearlist; let i = index">{{ years | yearthai }}
+            <option [ngValue]="years" *ngFor="let years of Year; let i = index">{{ years | yearthai }}
             </option>
           </select>
         </div>
@@ -79,7 +79,7 @@
                     <h3 class="no-margin">{{ 'CONTENT.sub' | translate }}</h3>
                   </div>
                   <div class="col-md-12">
-                    <h3 class="no-margin">จาก 1 มกราคม 2561 ถึง 12 มิถุนายน 2561</h3>
+                    <h3 class="no-margin">จาก 1 มกราคม {{ years | yearthai }} ถึง 31 ธันวาคม {{ years | yearthai }}</h3>
                   </div>
                 </div>
               </div>
@@ -137,6 +137,9 @@
                 วันที่ทำรายการ
               </th>
               <th>
+                เลขที่อ้างอิง
+              </th>
+              <th>
                 ประเภทหน่วยลงทุน
               </th>
               <th>
@@ -156,14 +159,17 @@
                 {{list.FundNameGroup}}
               </th>
             </tr>
-            <tr class="line">
-              <td colspan="5">
+            <tr class="line" *ngIf="list.FundName2">
+              <td colspan="6">
                 {{list.FundCode}} : {{list.FundName}}
               </td>
             </tr>
             <tr>
               <td class="text-center">
                 {{list.OrderDate | datethai}}
+              </td>
+              <td class="text-center">
+                {{list.ReferenceNo}}
               </td>
               <td class="text-center">
                 {{list.FundSubType}}
@@ -186,10 +192,10 @@
                 &nbsp;
               </th>
               <th class="text-right">
-                {{list.unit | tofix4 }}
+                {{list.nav | tofix4 }}
               </th>
               <th class="text-right">
-                {{list.amount | tofix }}
+                {{list.unit | tofix4 }}
               </th>
 
             </tr>
@@ -201,14 +207,17 @@
                 {{list.FundNameGroup}}
               </th>
             </tr>
-            <tr class="line">
-              <td colspan="5">
+            <tr class="line" *ngIf="list.FundName2">
+              <td colspan="6">
                 {{list.FundCode}} : {{list.FundName}}
               </td>
             </tr>
             <tr>
               <td class="text-center">
                 {{list.OrderDate | datethai}}
+              </td>
+              <td class="text-center">
+                {{list.ReferenceNo}}
               </td>
               <td class="text-center">
                 {{list.FundSubType}}
@@ -232,17 +241,17 @@
                 &nbsp;
               </th>
               <th class="text-right">
-                {{list.unit | tofix4}}
+                {{list.nav | tofix4}}
               </th>
               <th class="text-right">
-                {{list.amount | tofix}}
+                {{list.unit | tofix4}}
               </th>
 
             </tr>
           </tbody>
         </table>
       </div>
-      <div class="col-md-6 mt-2">
+      <!-- <div class="col-md-6 mt-2">
         <p class="color-red no-margin">หมายเหตุ: คำนวณจากยอดเงินลงทุนใหม่ในรอบปีทั้งหมด โดยไม่รวมรายการดังต่อไปนี้</p>
         <p class="color-red no-margin">1. เงินลงทุนที่รับโอนมาจากหรือโอนออกไปยังบลจ.อื่น</p>
         <p class="color-red no-margin">2. รายการสับเปลี่ยนระหว่าง RMF ด้วยกันหรือ LTF ด้วยกัน</p>
@@ -250,12 +259,12 @@
         <p class="color-red no-margin">4. เงินลงทุนใน RMF/LTF ของผู้ถือหน่วยท่านเดียวกัน แต่อยู่ในบัญชีผู้ถือลงทุนหมายเลขอื่นกับ
           บลจ.กรุงศรี
         </p>
-      </div>
+      </div> -->
 
       <div class="col-md-12  mt-3">
         <div class="row justify-content-center">
           <div class="col-md-2 col-6 col-sm-4">
-            <button class="btn-med btn-primary">
+            <button class="btn-med btn-primary" (click)="print()">
               {{ 'BUTTON.print' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
 

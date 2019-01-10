@@ -11,8 +11,8 @@
     "content1": "If you have further questions",
     "content2": "please contact the Registrar Provident Fund",
     "content3": "LAND AND HOUSES FUND MANAGEMENT CO.,LTD.",
-    "content4": "Tel. 02-286-3484 To 335 - 336",
-    "content5": "Or E-mail : registrar_pvd@lhfund.co.th"
+    "content4": "Tel. 02-286-3484,02-2679-2155",
+    "content5": "Or E-mail : marketing@lhfund.co.th"
   },
   "NAVBAR": {
     "dashboard": "Total port",
@@ -46,7 +46,8 @@
     "address": "Address",
     "order-to-be": "(Orders to be processed)",
     "view-all": "View all",
-    "no-list": "No orders to be processed",
+    "no-list": "No orders to be processed",    
+    "effectivedate": "Effective Date",
     "//myport": null,   
     "net-asset-value": "Net Asset Value (baht)",
     "profit-loss": "Profit/Loss (baht)",
@@ -165,11 +166,12 @@
     "otp": "Request OTP",
     "confirm": "Confirm",
     "accept": "Accept",
+    "notaccept": "Reject",
     "print": "Print",
     "view-list": "View list",
     "edit": "Edit data",
     "cal": "Calculate",
-    "restore": "Restore"
-    
+    "restore": "Restore",
+    "acceptrisk": "Accept Risk"
   }
 }

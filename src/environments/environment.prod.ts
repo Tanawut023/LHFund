@@ -1,4 +1,6 @@
 export const environment = {
+  
   production: true,
-  serverUrl: 'https://fundchoiceuat.lhfund.co.th'
+  serverUrl: window.location.protocol+"//"+window.location.host
+  // serverUrl: 'https://fundchoiceuat.lhfund.co.th'
 };

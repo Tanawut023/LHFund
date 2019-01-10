@@ -7,6 +7,8 @@ import { async } from 'rxjs/internal/scheduler/async';
 import { HttpParams } from '@angular/common/http';
 import { MyportService } from '../service/myport.service'
 import { Chart } from 'angular-highcharts';
+import { Observable } from 'rxjs';
+import { LanguageService } from '../service/language.service';
 @Component({
     selector: 'app-myport',
     templateUrl: './myport.component.html',
@@ -27,12 +29,14 @@ export class MyportComponent implements OnInit {
     allunit: boolean = false;
     chart: any;
     chartdetail: any;
+    lang: Observable<string>;
 
 
     constructor(
         private translate: TranslateService,
         private basedataservice: BaseApplicationDataService,
-        private myportservice: MyportService
+        private myportservice: MyportService,
+        private langservice: LanguageService
     ) {
         translate.addLangs(["th", "en"]);
 
@@ -42,7 +46,12 @@ export class MyportComponent implements OnInit {
         this.getSelectListUnitholder();
 
         $('#bottom-main-nav li').find('a').removeClass('current');
-        $('#bottom-main-nav li#myport').find('a').addClass('current');       
+        $('#bottom-main-nav li#myport').find('a').addClass('current'); 
+        
+        this.langservice.listen().subscribe((m:any) => {
+            console.log(m);
+            this.lang = m;
+        })
 
     }
     onChange(indexs) {

@@ -15,8 +15,8 @@
                           </a>
                       </li> -->
                         <li class="ico-yt">
-                            <a href="#" title="youtube">
-                                <img src="/assets/Images/icons/ico-print.png" />
+                            <a title="print">
+                                <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
                             </a>
                         </li>
 
@@ -24,6 +24,9 @@
                 </div>
                 <div class="col-md-3">
                     <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
+                    <!-- <p *ngIf="(lang ='th' | async)">th</p>
+                    <p *ngIf="(lang ='en' | async)">th</p> -->
+                    <p>{{lang}}</p>
                     <div class="select-wrapper inline-block">
                         <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
                             <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{
@@ -37,11 +40,11 @@
                 </div>
                 <div class="col-md-3">
                     <p>{{ 'CONTENT.eval-date' | translate }}</p>
-                    <span class="txt-middle">{{ riskprofile?.RiskProfileDate | datethai}}</span>
+                    <span class="txt-middle">{{ userselect.RiskLevel1LastUpdated | datethai}}</span>
                 </div>
                 <div class="col-md-3">
                     <p>{{ 'CONTENT.expired-date' | translate }}</p>
-                    <span class="txt-middle">{{ riskprofile?.CreateDate | expiresdatethai}}</span>                    
+                    <span class="txt-middle">{{ userselect.RiskLevelExpireDate | datethai}}</span>
                 </div>
             </div>
             <div class="row mt-md-3">
@@ -51,7 +54,7 @@
                 </div>
                 <div class="col-md-3">
                     <p>{{ 'CONTENT.your-investor-level' | translate }}</p>
-                    <span class="txt-middle">{{ riskprofile?.RiskProfileLevel}}</span>
+                    <span class="txt-middle">{{ userselect.RiskLevel1}}</span>
                 </div>
             </div>
             <div class="row justify-content-center mb-3 mt-lg-4">
@@ -85,7 +88,7 @@
                         </li> -->
                         <li class="ico-yt">
                             <a href="#" title="youtube">
-                                <img src="/assets/Images/icons/ico-print.png" />
+                                <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
                             </a>
                         </li>
 
@@ -143,7 +146,7 @@
                         <span class="color-red">ให้เลือกคำตอบที่คิดว่าดีที่สุดสำหรับนักลงทุนข้อละ 1 คำตอบ</span>
                     </h3>
                 </div>
-                <div class="wrap-container">
+                <div class="wrap-container" formArrayName="question">
                     <div class="wrap-suitability">
 
                         <div class="row" *ngFor="let question of suitest.question; let y = index">
@@ -152,17 +155,21 @@
                                     <div class="question-wrapper">
                                         <span class="color-red" *ngIf="y == 10">คำถามข้อ 11 ใช้เป็นข้อมูลเพิ่มเติมเพื่อประกอบการให้คำแนะนำ</span>
                                         <br/>
-                                        <span>{{y+1}}. {{ question.Name }}</span>
+                                        <span *ngIf="lang == 'th' ">{{y+1}}. {{ question.Name }}</span>
+                                        <span *ngIf="lang == 'en' ">{{y+1}}. {{ question.NameEng }}</span>
                                     </div>
                                     <div class="answer-wrapper">
                                         <div class="row">
-                                            <div class="col-12 col-lg-6 form-group" *ngFor="let Answers of question.Answers; let i = index">
+                                            <div class="col-12 col-lg-6" *ngFor="let Answers of question.Answers; let i = index">
                                                 <div class="custom-radio-between">
-                                                    <input id="{{y}}-{{i}}" type="radio" [value]="Answers" name="choice{{y}}" formControlName="choice{{y}}" required class="form-check-input rdo_custom"
+                                                    <input id="{{y}}-{{i}}" type="radio" [value]="Answers" [formControlName]="y" required class="form-check-input rdo_custom"
                                                     />
                                                     <label for="{{y}}-{{i}}"></label>
-                                                    <label for="{{y}}-{{i}}" class="title-fill control-label lbl_custom">
+                                                    <label for="{{y}}-{{i}}" class="title-fill control-label lbl_custom" *ngIf="lang == 'th' ">
                                                         {{Answers.Name}}</label>
+                                                    <label for="{{y}}-{{i}}" class="title-fill control-label lbl_custom" *ngIf="lang == 'en' ">
+                                                        {{Answers.NameEng}}</label>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -217,7 +224,7 @@
                         </li> -->
                         <li class="ico-yt">
                             <a href="#" title="print">
-                                <img src="/assets/Images/icons/ico-print.png" />
+                                <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
                             </a>
                         </li>
 
@@ -634,7 +641,13 @@
                                     <!-- <p *ngIf="this.form.controls.otp.errors.pattern">ข้อมูลไม่ถูกต้อง</p> -->
 
                                 </div>
+
                             </div>
+                        </div>
+                    </div>
+                    <div class="row has-danger">
+                        <div class="col-12 form-control-feedback">
+                            <p>{{message}}</p>
                         </div>
                     </div>
                     <div class="row pb-4">
@@ -665,4 +678,52 @@
         <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="messagesuc" style="z-index: 9999;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">แจ้งเตือน</h4>
+            </div>
+            <div class="modal-body" id="content-scroll-1">
+                <h3>บันทึกคะแนนแบบประเมินความเสี่ยงสำเร็จ</h3>
+            </div>
+            <div class="modal-footer" style="display: block;">
+                <div class="row justify-content-end">
+                    <div class="col-sm-6">
+                        <button class="btn-med btn-primary" data-dismiss="modal">
+                            <p style="margin-top: 7px;">ตกลง
+                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            </p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="message" style="z-index: 9999;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">แจ้งเตือน</h4>
+            </div>
+            <div class="modal-body" id="content-scroll-1">
+                <h3>{{message}}</h3>
+            </div>
+            <div class="modal-footer" style="display: block;">
+                <div class="row justify-content-end">
+                    <div class="col-sm-6">
+                        <button class="btn-med btn-primary" data-dismiss="modal">
+                            <p style="margin-top: 7px;">ตกลง
+                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            </p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

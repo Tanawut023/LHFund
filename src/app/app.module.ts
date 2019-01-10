@@ -78,10 +78,25 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import {BaseApplicationDataService} from './service/base-application-data.service';
 import { UserIdleModule } from 'angular-user-idle';
 import { toFixed,toFixed4 } from './Share/tofix.pipe'
-import { DateThai,YearThai,Time,ExpiresDateThai} from './Share/datethai.pipe';
+import { DateThai,YearThai,Time,ExpiresDateThai,DateThaiDM} from './Share/datethai.pipe';
 import { Type } from './Share/allpipe.pipe'
 import { NgxPaginationModule } from 'ngx-pagination';
+import {NgxMaskModule} from 'ngx-mask'
+import { TextMaskModule } from 'angular2-text-mask';
+import { CurrencyMaskModule } from "ng2-currency-mask";
 
+import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from "ng2-currency-mask/src/currency-mask.config";
+import { WINDOW_PROVIDERS } from './_helpers/hostname.interceptor';
+ 
+export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
+    align: "right",
+    allowNegative: false,
+    decimal: ".",
+    precision: 0,
+    prefix: "",
+    suffix: "",
+    thousands: ","
+};
 
 // import { NgbDateFRParserFormatter } from "./ngb-date-fr-parser-formatter"
 
@@ -131,7 +146,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SigninComponent,
     ForgotpasswordComponent,
     ChangepasswordloginComponent,
-    toFixed,toFixed4,DateThai,YearThai,Type,Time,ExpiresDateThai
+    toFixed,toFixed4,DateThai,YearThai,Type,Time,ExpiresDateThai,DateThaiDM
 
   ],
   imports: [
@@ -167,13 +182,19 @@ export function HttpLoaderFactory(http: HttpClient) {
       invisibleCaptchaSiteKey: '6Lfl4mkUAAAAAOTJ-H2mB4-PfSPLMLSsI2OCMivg'
     }),
     UserIdleModule.forRoot({idle: 600, timeout: 10, ping: 480}),
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxMaskModule.forRoot(),
+    TextMaskModule,
+    CurrencyMaskModule
+
   ],
   providers: [
     { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter },
     AuthenticationService, AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    BaseApplicationDataService
+    { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
+    BaseApplicationDataService,
+    WINDOW_PROVIDERS
   ],
   bootstrap: [AppComponent]
 })

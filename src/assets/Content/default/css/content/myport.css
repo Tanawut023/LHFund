@@ -741,29 +741,25 @@
     width: 100%; }
     .mutual-fund-wrapper .form-profile-wrapper input[type="text"], .mutual-fund-wrapper .form-profile-wrapper ::-webkit-input-placeholder {
       color: #1CA59B;
-      background-color: #f5f5f5;
-      border-color: #f5f5f5; }
+      background-color: #f5f5f5; }
     .mutual-fund-wrapper .form-profile-wrapper input[type="text"], .mutual-fund-wrapper .form-profile-wrapper :-ms-input-placeholder {
       color: #1CA59B;
-      background-color: #f5f5f5;
-      border-color: #f5f5f5; }
+      background-color: #f5f5f5; }
     .mutual-fund-wrapper .form-profile-wrapper input[type="text"], .mutual-fund-wrapper .form-profile-wrapper ::-ms-input-placeholder {
       color: #1CA59B;
-      background-color: #f5f5f5;
-      border-color: #f5f5f5; }
+      background-color: #f5f5f5; }
     .mutual-fund-wrapper .form-profile-wrapper input[type="text"], .mutual-fund-wrapper .form-profile-wrapper ::placeholder {
       color: #1CA59B;
-      background-color: #f5f5f5;
-      border-color: #f5f5f5; }
+      background-color: #f5f5f5; }
     .mutual-fund-wrapper .form-profile-wrapper label {
       color: #cdcdcd; }
   .mutual-fund-wrapper .fund-list-wrapper {
-    margin: 20px 0px; }
+    margin: 10px 0px; }
   .mutual-fund-wrapper .detail-head-wrapper {
     position: relative;
     max-width: 100%;
     padding: 10px;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
     margin: 0 auto;
     border-bottom: 5px solid #f5f5f5;
     width: 100%; }
@@ -775,19 +771,21 @@
     .mutual-fund-wrapper .detail-head-wrapper span {
       display: inline-block; }
     .mutual-fund-wrapper .detail-head-wrapper .table-responsive {
-      margin-top: 30px; }
+      margin-top: 10px; }
   .mutual-fund-wrapper .detail-body-wrapper {
     position: relative;
     max-width: 100%;
-    padding: 30px;
+    padding: 20px 30px;
     margin: 0 auto;
     border-bottom: 5px solid #f5f5f5;
     width: 100%; }
     .mutual-fund-wrapper .detail-body-wrapper h4, .mutual-fund-wrapper .detail-body-wrapper span {
       display: inline-block;
       margin-right: 10px; }
-    .mutual-fund-wrapper .detail-body-wrapper p {
-      margin-bottom: 1.5rem; }
+    .mutual-fund-wrapper .detail-body-wrapper .cleardate {
+      margin-top: 5px;
+      color: #FF4A4A;
+      cursor: pointer; }
   .mutual-fund-wrapper .detail-footer-wrapper {
     position: relative;
     max-width: 100%;

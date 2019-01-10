@@ -57,7 +57,8 @@ import { ChangepasswordloginComponent } from './login/changepasswordlogin/change
 import { AuthGuard } from './service/auth.guard'
 
 const routes: Routes = [
-  { path: '', redirectTo: '/myport', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'logingin', redirectTo: '/myport', pathMatch: 'full' },
   {
     path: 'login', component: LoginComponent, canActivate: [AuthGuard],
     children: [
