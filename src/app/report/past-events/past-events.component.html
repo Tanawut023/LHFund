@@ -34,9 +34,9 @@
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
-            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno">
+            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno" class="selectpicker" data-live-search="true">
               <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
-                }}
+                }} <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container>
               </option>
             </select>
           </div>
@@ -56,91 +56,113 @@
     </div>
   </div>
   <div class="detail-body-wrapper">
-      <form [formGroup]="form">
-    <div class="row">
-      <div class="col-md-12">
-        <span>{{ 'CONTENT.select-date-fund' | translate }}</span>
-      </div>
-      <div class="col-md-9">
-        <div class="row">
-          <div class="col-md-4">
-            <p class="txt-middle">{{ 'CONTENT.fund-group' | translate }}</p>
-          </div>
-          <div class="col-md-6 form-group">
-            <div class="select-wrapper inline-block">
-              <select id="fundtype" name="fundtype" (change)="changefundtype()" formControlName="fundtype">
-                <option [value]="0">แสดงทุกกลุ่ม</option>
-                <option *ngFor="let fundtypelist of Fundtypelist; let i = index" [value]="fundtypelist.Id">{{ fundtypelist.Name
-                  }}
-                </option>
-              </select>
-            </div>
-          </div>
+    <form [formGroup]="form">
+      <div class="row">
+        <div class="col-md-12">
+          <span>{{ 'CONTENT.select-date-fund' | translate }}</span>
         </div>
-        <div class="row">
+        <div class="col-md-9">
+          <!-- <div class="row">
+            <div class="col-md-4">
+              <p class="txt-middle">{{ 'CONTENT.fund-group' | translate }}</p>
+            </div>
+            <div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss('fundtype')">
+              <div class="select-wrapper inline-block">
+                <select id="fundtype" name="fundtype" (change)="changefundtype()" formControlName="fundtype">
+                  <option [value]="0">แสดงทุกกลุ่ม</option>
+                  <option *ngFor="let fundtypelist of Fundtypelist; let i = index" [value]="fundtypelist.Id">{{ fundtypelist.Name
+                    }}
+                  </option>
+                </select>
+                <div class="form-control-feedback" *ngIf="this.form.controls.fundtype.errors && (this.form.controls.fundtype.touched)">
+                  <p *ngIf="this.form.controls.fundtype.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <div class="row">
 
-          <div class="col-md-4">
-            <p class="txt-middle">{{ 'CONTENT.fund-name' | translate }}</p>
-          </div>
-          <div class="col-md-6 form-group has-danger">
-            <div class="select-wrapper inline-block">
-              <select id="fundname" name="fundname"  formControlName="fundname">
-                <option value="0">แสดงทุกกองทุน</option>
-                <option *ngFor="let fundnamelist of Fundnamelist; let i = index" [ngValue]="fundnamelist">{{ fundnamelist.FundName
-                  }}
-                </option>
-              </select>
-
-              <div class="form-control-feedback" *ngIf="this.form.controls.fundname.invalid">
-                  <p>กรุณากรอกข้อมูลให้ครบถ้วน</p>
+            <div class="col-md-4">
+              <p class="txt-middle">{{ 'CONTENT.fund-name' | translate }}</p>
+            </div>
+            <div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss('fundname')">
+              <div class="select-wrapper inline-block">
+                <select id="fundname" name="fundname" formControlName="fundname" class="selectpicker" data-live-search="true">
+                  <option value="0">{{ 'CONTENT.all-fund' | translate }}</option>
+                  <option *ngFor="let fundnamelist of Fundnamelist; let i = index" [ngValue]="fundnamelist">
+                    <!-- {{ fundnamelist.FundName }} -->
+                    <ng-container *ngIf="lang == 'th' ">{{ fundnamelist.FundName }}</ng-container>
+                    <ng-container *ngIf="lang == 'en' ">{{ fundnamelist.FundNameEng }}</ng-container>
+                  </option>
+                </select>
+                <div class="form-control-feedback" *ngIf="this.form.controls.fundname.errors && (this.form.controls.fundname.touched)">
+                  <p *ngIf="this.form.controls.fundname.errors.required">{{ 'Validation.required' | translate }}</p>
+                </div>
+                <div class="has-danger">
+                  <div class="form-control-feedback" *ngIf="this.form.controls.fundname.invalid">
+                    <p>{{ 'Validation.required' | translate }}</p>
+                  </div>
                 </div>
 
-            </div>
-          </div>
-        </div>
+                <!-- <div class="form-control-feedback" *ngIf="this.form.controls.fundname.invalid">
+                  <p>กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                </div> -->
 
-
-        <div class="row">
-          <div class="col-md-4">
-            <p class="txt-middle">{{ 'CONTENT.from-date' | translate }}</p>
-          </div>
-          <div class="col-md-6 form-group">
-            <div class="input-wrapper">
-              <input class=" textinput dateinput bg-gray"  formControlName="startDate" ngbDatepicker #d1="ngbDatepicker" id="startDate"
-                placeholder="วว/ดด/ปปปป" name="startDate" type="text" (click)="d1.toggle()" readonly>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <p class="txt-middle">{{ 'CONTENT.to-date' | translate }}</p>
-          </div>
-          <div class="col-md-6 form-group">
-            <div class="input-wrapper">
-              <input class=" textinput dateinput bg-gray"  formControlName="endDate" ngbDatepicker #d2="ngbDatepicker" id="endDate" placeholder="วว/ดด/ปปปป"
-                name="endDate" type="text" (click)="d2.toggle()">
+              </div>
             </div>
           </div>
 
-        </div>
 
-        <div class="row">
-          <div class="col-md-3 col-6 offset-md-4">
-            <button class="btn-med btn-primary btn" [disabled]="loading" (click)="OnSubmitd()">
-              {{ 'BUTTON.ok' | translate }}
-              <i class="fa fa-angle-right" aria-hidden="true"></i>
+          <div class="row">
+            <div class="col-md-4">
+              <p class="txt-middle">{{ 'CONTENT.from-date' | translate }}</p>
+            </div>
+            <div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss('startDate')">
+              <div class="input-wrapper">
+                <input class=" textinput dateinput bg-gray" formControlName="startDate" ngbDatepicker #d1="ngbDatepicker" id="startDate"
+                  placeholder="{{ 'CONTENT.place-holder-date' | translate }}" name="startDate" type="text" (click)="d1.toggle()"
+                  readonly>
+                <div class="form-control-feedback" *ngIf="this.form.controls.startDate.errors && (this.form.controls.startDate.touched)">
+                  <p *ngIf="this.form.controls.startDate.errors.required">{{ 'Validation.required' | translate }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <p class="txt-middle">{{ 'CONTENT.to-date' | translate }}</p>
+            </div>
+            <div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss('endDate')">
+              <div class="input-wrapper">
+                <input class=" textinput dateinput bg-gray" formControlName="endDate" ngbDatepicker #d2="ngbDatepicker" id="endDate" placeholder="{{ 'CONTENT.place-holder-date' | translate }}"
+                  name="endDate" type="text" (click)="d2.toggle()" readonly>
+                <div class="form-control-feedback" *ngIf="this.form.controls.endDate.errors && (this.form.controls.endDate.touched)">
+                  <p *ngIf="this.form.controls.endDate.errors.required">{{ 'Validation.required' | translate }}</p>
+                </div>
 
-            </button>
+
+              </div>
+            </div>
+
           </div>
-          <div class="col-md-3 col-6">
-            <button class="btn-med btn-cancel" (click)="reset()">
-              {{ 'BUTTON.restore' | translate }}
-              <i class="fa fa-angle-right" aria-hidden="true"></i>
 
-            </button>
+          <div class="row">
+            <div class="col-md-3 col-6 offset-md-4">
+              <button class="btn-med btn-primary btn" [disabled]="loading" (click)="OnSubmitd()">
+                {{ 'BUTTON.ok' | translate }}
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+
+              </button>
+            </div>
+            <div class="col-md-3 col-6">
+              <button class="btn-med btn-cancel" (click)="reset()">
+                {{ 'BUTTON.restore' | translate }}
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </form>
+    </form>
 
   </div>
   <div class="detail-footer-wrapper">
@@ -149,47 +171,62 @@
         <thead>
           <tr>
             <th>
-              ชื่อกองทุน
+              <!-- กองทุน -->
+              {{ 'TABLE.fund' | translate }}
             </th>
             <th>
-              วันและเวลา
-              <br/>ที่ทำรายการ
+              <!-- วันและเวลา
+              <br/>ที่ทำรายการ -->
+              {{ 'TABLE.or-date-time' | translate }}
             </th>
             <th>
-              วันที่มีผล
+              <!-- วันที่มีผล -->
+              {{ 'TABLE.ef-date' | translate }}
             </th>
             <th>
-              ประเภท
+              <!-- ประเภท -->
+              {{ 'TABLE.type' | translate }}
             </th>
             <th>
-              รายการ
+              <!-- รายการ -->
+              {{ 'TABLE.transaction' | translate }}
             </th>
             <th>
-              บาท (THB)
+              <!-- บาท (THB) -->
+              {{ 'CONTENT.bath' | translate }} {{ 'TABLE.bath' | translate }}
             </th>
             <th>
-              หน่วย (Unit)
+              <!-- หน่วย (Unit) -->
+              {{ 'CONTENT.unit' | translate }} {{ 'TABLE.unit' | translate }}
             </th>
             <th>
-              กองทุน
-              <br/>ปลายทาง
+              <!-- กองทุน
+              <br/>ปลายทาง -->
+              {{ 'TABLE.des-fund' | translate }}
             </th>
 
           </tr>
         </thead>
-        <tbody *ngIf="statementreport">
+        <tbody>
           <!-- <tr class="topic">
             <th colspan="4">
               {{ group.FundName}}
             </th>
           </tr> -->
+          <tr class="text-center" *ngIf="nolist">
+            <td colspan="11">
+              <p>ไม่พบรายการดังกล่าว</p>
+            </td>
+          </tr>
           <ng-container *ngFor="let list of statementlist | paginate: { itemsPerPage: 10, currentPage: p } ; let i = index">
 
 
 
             <tr class="line" *ngIf="list.FundName">
               <td colspan="11">
-                {{ list.FundName}} : {{ list.FundCode}}
+                <!-- {{ list.FundName}} : {{ list.FundCode}} -->
+                <ng-container *ngIf="lang == 'th' ">{{ list.FundName}} : {{ list.FundCode}}</ng-container>
+                <ng-container *ngIf="lang == 'en' ">{{ list.FundNameEng}} : {{ list.FundCode}}</ng-container>
               </td>
             </tr>
             <tr class="bgforlhfund">
@@ -242,10 +279,23 @@
 
     <div class="row">
       <div class="col-md-12">
-        <p class="color-red no-margin">*มูลค่ารอการจัดสรรนี้รวมอยู่ในมูลค่าการลงทุนแล้ว</p>
+        <!-- <p class="color-red no-margin">*มูลค่ารอการจัดสรรนี้รวมอยู่ในมูลค่าการลงทุนแล้ว</p>
         <p class="color-red no-margin">ข้อมูลที่แสดงข้างต้นอาจมีการเปลี่ยนแปลงแก้ไขได้ หากเป็นรายการซื้อที่เรียกเก็บเงินไม่ได้
           หรือ รายการผิดพลาดใดๆ ทั้งนี้การเปลี่ยนแปลงแก้ไขจะเป็นไปตามวิธีและข้อกำหนดที่ระบุไว้ในโครงการ</p>
-        <p class="color-red no-margin">การจัดการกองทุนที่ท่านลงทุน</p>
+        <p class="color-red no-margin">การจัดการกองทุนที่ท่านลงทุน</p> -->
+        <ng-container *ngIf="lang == 'th' ">
+          <p class="color-red no-margin">
+            มูลค่ารอการจัดสรรนี้รวมอยู่ในมูลค่าการลงทุนแล้ว ข้อมูลที่แสดงข้างต้นอาจมีการเปลี่ยนแปลงแก้ไขได้ หากเป็นรายการซื้อที่เรียกเก็บเงินไม่ได้
+            หรือ รายการผิดพลาดใดๆ ทั้งนี้การเปลี่ยนแปลงแก้ไขจะเป็นไปตามวิธีและข้อกำหนดที่ระบุไว้ในโครงการ การจัดการกองทุนที่ท่านลงทุน
+          </p>
+        </ng-container>
+        <ng-container *ngIf="lang == 'en' ">
+          <p class="color-red no-margin">
+            Allocation value is already included in the investment value. The information shown above may change. if it is an item that
+            cannot be bill or any wrong item The changes will be in accordance with the methods and requirements specified
+            in prospectus.
+          </p>
+        </ng-container>
       </div>
     </div>
   </div>

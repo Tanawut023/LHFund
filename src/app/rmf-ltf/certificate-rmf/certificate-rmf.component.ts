@@ -20,6 +20,7 @@ export class CertificateRmfComponent implements OnInit {
   years;
   loading: boolean;
   rmffilelist: any;
+  nolist: boolean = false;
 
   constructor(
     private basedataservice: BaseApplicationDataService,
@@ -47,6 +48,9 @@ export class CertificateRmfComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          setTimeout(() => {
+            $('.selectpicker').selectpicker('refresh');
+        }, 100);
           this.userall = data;
           this.unitholderno = this.userall.unitholderlist[0];
           this.userselect = this.userall.unitholderlist[0];
@@ -62,6 +66,9 @@ export class CertificateRmfComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
+          setTimeout(() => {
+            $('.selectpicker').selectpicker('refresh');
+        }, 100);
           this.yearlist = data['yearlist'];
           this.years = this.yearlist[0];
         },
@@ -72,7 +79,7 @@ export class CertificateRmfComponent implements OnInit {
   }
 
   OnSubmit() {
-
+    this.nolist = false;
     this.loading = true;
     var user;
     user = {
@@ -88,6 +95,11 @@ export class CertificateRmfComponent implements OnInit {
         data => {
           console.log(data);
           this.rmffilelist = data;
+          if(this.rmffilelist.filenamelist.length == 0){
+            this.nolist = true;
+            console.log('notlist');
+            
+          }
           this.loading = false;
         },
         error => {

@@ -14,22 +14,29 @@ export class AppComponent implements OnInit {
   title = 'app';
   isLoggedIn: Observable<boolean>;
   supscription: Subscription
-
+  HaveLang;
   constructor(
     private translate: TranslateService,
     private AuthGuard: AuthGuard
   ) {
 
-    
+
 
     // let browserLang = translate.getBrowserLang();
     // translate.use(browserLang.match(/th|en/) ? browserLang : 'en');
   }
   ngOnInit() {
-    this.translate.addLangs(["th", "en"]);
-    this.translate.setDefaultLang('th');
-    this.translate.use('th');
-    localStorage.setItem('lang', 'th');
+    this.HaveLang = localStorage.getItem('lang')
+    if (!this.HaveLang) {
+      this.translate.addLangs(["th", "en"]);
+      this.translate.setDefaultLang('th');
+      this.translate.use('th');
+      localStorage.setItem('lang', 'th');
+    }else{
+      this.translate.addLangs(["th", "en"]);
+      this.translate.use(this.HaveLang);
+    }
+
     this.isLoggedIn = this.AuthGuard.isLoggedIn();
 
     console.log(this.isLoggedIn);

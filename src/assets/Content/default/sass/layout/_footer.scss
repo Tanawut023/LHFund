@@ -549,7 +549,7 @@
                     }
                 }
             }*/
-            .copyright {
+            .copyright, .copyright-footer {
                 position: relative;
                 text-align: center;
                 h5{
@@ -566,6 +566,11 @@
                     font-size: $base-fontsize;
                     line-height: $text-content;
                     color: $color-text;
+                }
+                a {
+                    font-size: $text-x-small;
+                    line-height: $text-content;
+                    color: $color-primary;
                 }
             }
 

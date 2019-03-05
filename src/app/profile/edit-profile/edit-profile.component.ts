@@ -37,7 +37,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   addreszipcodeforselect: any = {};
   zipcode;
   show: boolean = false;
-
+  loading = false;
 
   constructor(
     private basedataservice: BaseApplicationDataService,
@@ -46,8 +46,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.createFormValidate();
-    this.getSelectListUnitholder();
+    this.createFormValidate();   
     this.getaddresslist();
 
 
@@ -80,6 +79,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       .pipe(first())
       .subscribe(
         data => {
+          setTimeout(() => {
+            $('.selectpicker').selectpicker('refresh');
+        }, 100);
           this.userall = data;
           this.unitholderno = this.userall.unitholderlist[0];
           this.userselect = this.userall.unitholderlist[0];
@@ -97,7 +99,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       .pipe(first())
       .subscribe(
         data => {
-
+          setTimeout(() => {
+            $('.selectpicker').selectpicker('refresh');
+        }, 100);
           console.log(data);
 
           this.profile = data;
@@ -122,8 +126,11 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           this.changeprovince(this.profile.umpurlist[0].ProvinceID);
           this.changeumpur(this.profile.tumbollist[0].UmpurID);
 
-          setTimeout(() => {
-            this.setdefault();
+
+
+          setTimeout(() => {            
+              this.setdefault();
+                      
           }, 100);
 
         },
@@ -137,8 +144,12 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       .pipe(first())
       .subscribe(
         data => {
+          setTimeout(() => {
+            $('.selectpicker').selectpicker('refresh');
+        }, 100);
           this.countrylist = data['countrylist'];
           this.provincelist = data['provincelist'];
+          this.getSelectListUnitholder();
           console.log(this.countrylist);
           console.log(this.provincelist);
         },
@@ -154,15 +165,15 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         [
           Validators.required,
         ]],
-      tambon: [null,
+      tambon: ["",
         [
           Validators.required,
         ]],
-      amphur: [null,
+      amphur: ["",
         [
           Validators.required,
         ]],
-      province: [null,
+      province: ["",
         [
           Validators.required,
         ]],
@@ -174,10 +185,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         [
           Validators.required,
         ]],
-      Mphone: [null,
-        [
-          Validators.required,
-        ]],
+      Mphone: [null],
       Ophone: [null],
       Faxno: [null],
       allowtax: [null,
@@ -200,7 +208,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     console.log(this.form);
     if (this.form.valid) {
       this.isNotValid = false;
-
+      this.loading = true;
 
 
       const user = {
@@ -233,6 +241,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           data => {
             this.res = data;
             console.log(data);
+            this.loading = false;
             $('#otpprofile').modal({
               backdrop: 'static',
               keyboard: false,
@@ -242,6 +251,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           },
           error => {
             console.log(error);
+            this.loading = false;
             this.message = error.error.messages;
             $('#message').modal({
               backdrop: 'static',
@@ -281,14 +291,16 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   requestotp() {
-
+    this.loading = true;
     this.basedataservice.requestotp()
       .subscribe((data) => {
         console.log(data);
         this.res = data;
+        this.loading = false;
       },
         (error) => {
-          console.log(error)
+          console.log(error);
+          this.loading = false;
         });
   }
   updateprofile() {
@@ -296,7 +308,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     console.log(this.formotp)
     if (this.formotp.valid) {
       this.isNotValid = false;
-
+      this.loading = true;
 
       let Params = new HttpParams();
       Params = Params.append('otp', this.formotp.controls.otp.value);
@@ -331,6 +343,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         .subscribe(
           data => {
             this.res = data;
+            this.loading = false;
             console.log(data);
             $('#otpprofile').modal('toggle');
             this.message = "บันทึกข้อมูลสำเร็จ";
@@ -341,18 +354,19 @@ export class EditProfileComponent implements OnInit, OnDestroy {
                 show: true
               });
             }, 100);
-            this.getprofileinfo();
-            this.formotp.reset();
+            
+            this.resetotp();
             
           },
           error => {
             console.log(error);
+            this.loading = false;
             this.message = error.error.messages;
-            $('#message').modal({
-              backdrop: 'static',
-              keyboard: false,
-              show: true
-            });
+            // $('#message').modal({
+            //   backdrop: 'static',
+            //   keyboard: false,
+            //   show: true
+            // });
           });
 
     } else {
@@ -361,7 +375,14 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     }
   }
   reset() {
+    this.getprofileinfo();
+    this.resetotp();
+    // this.getaddresslist();
+      
     this.message = "";
+  }
+  resetotp(){
+    this.formotp.reset();
   }
 
   // autoreplaceid() {
@@ -443,6 +464,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         .pipe(first())
         .subscribe(
           data => {
+            setTimeout(() => {
+              $('.selectpicker').selectpicker('refresh');
+          }, 100);
             console.log(data);
             this.addreszipcodeforselect = data;
 
@@ -486,6 +510,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       .pipe(first())
       .subscribe(
         data => {
+          setTimeout(() => {
+            $('.selectpicker').selectpicker('refresh');
+        }, 100);
           console.log(data);
           this.amphurlist = data['umpurlist'];
           this.zipcode = data['zipcode'];
@@ -503,7 +530,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
         },
         error => {
-          $('#otpprofile').modal('toggle');
+          // $('#otpprofile').modal('toggle');
           console.log(error);
           this.message = error.error.error_description;
           $('#message').modal({
@@ -522,6 +549,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       .pipe(first())
       .subscribe(
         data => {
+          setTimeout(() => {
+            $('.selectpicker').selectpicker('refresh');
+        }, 100);
           console.log(data);
           this.tambonlist = data['tumbollist'];
           for (var key in this.tambonlist) {
@@ -538,7 +568,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
         },
         error => {
-          $('#otpprofile').modal('toggle');
+          // $('#otpprofile').modal('toggle');
           console.log(error);
           this.message = error.error.error_description;
           $('#message').modal({
@@ -557,12 +587,16 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       .pipe(first())
       .subscribe(
         data => {
+          setTimeout(() => {
+            $('.selectpicker').selectpicker('refresh');
+        }, 100);
           console.log(data);
           this.zipcode = data['zipcode'];
-
+          this.form.controls['postcode'].setValue(this.zipcode, { onlySelf: true });
+          this.form.controls['postcode'].updateValueAndValidity();
         },
         error => {
-          $('#otpprofile').modal('toggle');
+          // $('#otpprofile').modal('toggle');
           console.log(error);
           this.message = error.error.error_description;
           $('#message').modal({
@@ -576,24 +610,25 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.show = true;
     this.tambonlist = [];
     this.changeprovince(this.form.controls.province.value.ProvinceID);
-    setTimeout(() => {
-      this.form.controls['amphur'].setValue(null, { onlySelf: true });
-      this.form.controls['postcode'].setValue(null, { onlySelf: true });
-    }, 100);
+    // setTimeout(() => {
+      this.form.controls['amphur'].reset();
+      this.form.controls['postcode'].reset();
+      this.form.controls['tambon'].reset();
+    // }, 100);
   }
 
   onamphurchange() {
     this.changeumpur(this.form.controls.amphur.value.UmpurID);
-    setTimeout(() => {
-      this.form.controls['tambon'].setValue(null, { onlySelf: true });
-    }, 100);
+    // setTimeout(() => {
+    //   this.form.controls['tambon'].setValue("", { onlySelf: true });
+    // }, 100);
   }
   ontambonchange() {
     this.show = false;
     this.changetambon(this.form.controls.tambon.value.TumbolID);
-    setTimeout(() => {
-      this.form.controls['postcode'].setValue(this.zipcode, { onlySelf: true });
-    }, 100);
+    // setTimeout(() => {
+    //   this.form.controls['postcode'].setValue(this.zipcode, { onlySelf: true });
+    // }, 100);
   }
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(field => {

@@ -27,9 +27,9 @@
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block ">
-            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno">
+            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno" class="selectpicker" data-live-search="true">
               <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
-                }}
+                }} <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container>
               </option>
             </select>
           </div>
@@ -62,15 +62,15 @@
           </div>
           <div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss('dateorder')">
             <div class="input-wrapper">
-              <input class=" textinput dateinput bg-gray" [minDate]="minDate" formControlName="dateorder" ngbDatepicker #d="ngbDatepicker" id="dateorder" placeholder="วว/ดด/ปปปป"
+              <input class=" textinput dateinput bg-gray" formControlName="dateorder" ngbDatepicker #d="ngbDatepicker" id="dateorder" placeholder="{{ 'CONTENT.place-holder-date' | translate }}"
                 name="dateorder" type="text" (click)="d.toggle()" readonly>
                 <div class="form-control-feedback" *ngIf="this.formconfirm.controls.dateorder.errors && (this.formconfirm.controls.dateorder.touched)">
-                    <p *ngIf="this.formconfirm.controls.dateorder.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                    <p *ngIf="this.formconfirm.controls.dateorder.errors.required">{{ 'Validation.required' | translate }}</p>
                 </div>
             </div>
           </div>
           <div class="col-md-3 col-6">
-            <button class="btn-med btn-primary" [disabled]="loading" (click)="OnSubmitd()">
+            <button class="btn-med btn-primary btn" [disabled]="loading" (click)="OnSubmitd()">
               {{ 'BUTTON.ok' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
@@ -90,7 +90,7 @@
           {{ 'NAVBAR.transaction-comfirmmation' | translate }}
         </h3>
         <ul>
-          <ng-container *ngIf="confirmlist"></ng-container>
+          
           <li *ngFor="let list of confirmlist; let i = index">
             <div class="row">
               <div class="col-md-10 col-9">
@@ -99,18 +99,19 @@
                 </a>
               </div>
               <div class="col-md-2 col-3">
-                <button class="btn-sm btn-download width50 " [disabled]="loading" (click)="download(i)">
+                <button class="btn-sm btn-download width50 btn" [disabled]="loading" (click)="download(i)">
                   <p>Download</p>
                   <img src="/assets/Images/icons/ico-download-white.png">
                 </button>
               </div>
 
-              <div class="col-md-12 mt-5 text-center" *ngIf="!nolist">
-                <p>ไม่พบใบยืนยันการทำรายการ</p>
-              </div>
+              
             </div>
           </li>
-        </ng-container>
+
+          <div class="col-md-12 mt-5 text-center" *ngIf="nolist">
+              <p>ไม่พบรายการดังกล่าว</p>
+            </div>
           <!-- <li>
             <div class="row">
               <div class="col-md-10 col-9">
@@ -167,7 +168,7 @@
         <div class="row justify-content-end">
           <div class="col-sm-6">
             <button class="btn-med btn-primary" data-dismiss="modal">
-              <p style="margin-top: 7px;">ตกลง
+              <p style="margin-top: 7px;">{{ 'BUTTON.ok' | translate }}
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </p>
             </button>

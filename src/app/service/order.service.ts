@@ -48,5 +48,11 @@ export class OrderService {
   getorderinfolist(data){
     return this.http.post(environment.serverUrl + '/api/order/getorderinfolist', data);
   }
+  validateorderrmfltf(data){
+    return this.http.post(environment.serverUrl + '/api/order/validateorderrmfltf', data);
+  }
+  getSelectListUnitholder(){
+    return this.http.post(environment.serverUrl + '/api/order/getunitholderlist', null);
+  }
 
 }

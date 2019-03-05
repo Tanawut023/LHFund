@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import { BaseApplicationDataService } from '../service/base-application-data.service';
+import { AuthenticationService } from '../service/authentication.service';
 @Component({
   selector: 'app-canvas-menu',
   templateUrl: './canvas-menu.component.html',
@@ -14,6 +15,7 @@ export class CanvasMenuComponent implements OnInit {
 
   constructor(
     private translate: TranslateService,
+    private authenticationService: AuthenticationService,
     private basedataservice: BaseApplicationDataService
   ) {
     translate.addLangs(["th", "en"]);
@@ -54,6 +56,13 @@ export class CanvasMenuComponent implements OnInit {
       // console.log(navigator.language);
   }
     
+
+  }
+  logout() {
+    this.authenticationService.logout();
+    setTimeout(() => {
+      window.location.href = "";
+    }, 100);
 
   }
 }

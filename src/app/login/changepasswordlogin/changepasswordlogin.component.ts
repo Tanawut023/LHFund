@@ -42,6 +42,7 @@ export class ChangepasswordloginComponent implements OnInit {
   User: any = {}
   mobile;
   exit: boolean = false;
+  loading = false;
 
   get cpwd() {
     return this.formchange.get('repeatPassword');
@@ -123,7 +124,7 @@ export class ChangepasswordloginComponent implements OnInit {
         if (this.formchange.valid) {
 
           this.isNotValid = false;
-
+          this.loading = false;
           let params = new HttpParams().set('refcode', this.refcode.refcode);
 
           const user = {
@@ -138,9 +139,11 @@ export class ChangepasswordloginComponent implements OnInit {
               this.User = data;
               this.page = "otp";
               this.mobile = this.User.mobile;
+              this.loading = false;
             },
               (error) => {
                 console.log(error);
+                this.loading = false;
                 this.message = error.error.messages;
                 $('#dialog').modal({
                   backdrop: 'static',
@@ -149,7 +152,7 @@ export class ChangepasswordloginComponent implements OnInit {
                 });
               });
         }
-        else if (this.formchange.invalid) {
+        else{
           this.isNotValid = true;
           this.validateAllFormFields(this.formchange);
         }
@@ -158,7 +161,7 @@ export class ChangepasswordloginComponent implements OnInit {
       case 'complete':
         if (this.formotp.valid) {
           this.isNotValid = false;
-
+          this.loading = true;
           let Params = new HttpParams();
           Params = Params.append('otp', this.formotp.controls.otp.value);
           Params = Params.append('refcode', this.User.refcode);
@@ -172,7 +175,7 @@ export class ChangepasswordloginComponent implements OnInit {
               console.log(data);
               this.exit = true;
               this.message = "ท่านได้ทำการเปลี่ยนรหัสผ่านเรียบร้อยแล้ว";
-
+              this.loading = false;
               $('#dialog').modal({
                 backdrop: 'static',
                 keyboard: false,
@@ -181,6 +184,7 @@ export class ChangepasswordloginComponent implements OnInit {
             },
               (error) => {
                 console.log(error);
+                this.loading = false;
                 this.message = error.error.messages;
                 $('#dialog').modal({
                   backdrop: 'static',
@@ -190,7 +194,7 @@ export class ChangepasswordloginComponent implements OnInit {
               });
 
         }
-        else if (this.formotp.invalid) {
+        else {
           this.isNotValid = true;
           this.validateAllFormFields(this.formotp);
         }
@@ -284,15 +288,17 @@ export class ChangepasswordloginComponent implements OnInit {
   }
   requestotp() {
     let params = new HttpParams().set('refcode', this.User.refcode);
-
+    this.loading = true;
     this.authenticationService.requestOTP(params)
       .subscribe((data) => {
         console.log(data);
         this.User = data;
+        this.loading = false;
       },
         (error) => {
           console.log(error);
           this.message = error.error.messages;
+          this.loading = false;
           $('#dialog').modal({
             backdrop: 'static',
             keyboard: false,

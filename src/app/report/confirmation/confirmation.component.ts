@@ -21,7 +21,7 @@ export class ConfirmationComponent implements OnInit {
   loading: boolean;
   nolist: boolean = false;
   minDate;
-  confirmlist
+  confirmlist;
   formconfirm: FormGroup;
   constructor(
     private basedataservice: BaseApplicationDataService,
@@ -86,6 +86,9 @@ export class ConfirmationComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          setTimeout(() => {
+            $('.selectpicker').selectpicker('refresh');
+        }, 100);
           this.userall = data;
           this.unitholderno = this.userall.unitholderlist[0];
           this.userselect = this.userall.unitholderlist[0];
@@ -101,6 +104,7 @@ export class ConfirmationComponent implements OnInit {
   OnSubmitd() {
     this.confirmlist = [];
     this.loading = true;
+    this.nolist = false;
     var user;
     console.log(this.model);
     console.log(this.formconfirm);
@@ -117,9 +121,13 @@ export class ConfirmationComponent implements OnInit {
           data => {
             console.log(data);
             this.confirmlist = data;
-            if(this.confirmlist){
+            if(this.confirmlist.length == 0){
               this.nolist = true;
+              console.log('notlist');
+              
             }
+            console.log(this.confirmlist.length);
+            
             this.loading = false;
           },
           error => {

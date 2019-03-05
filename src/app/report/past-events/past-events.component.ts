@@ -5,7 +5,9 @@ import { HttpParams } from '@angular/common/http';
 import { ReportService } from '../../service/report.service';
 import { getDate } from '../../Share/dateformat';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-
+import { Observable } from 'rxjs';
+import { LanguageService } from '../../service/language.service';
+declare var $: any;
 @Component({
   selector: 'app-past-events',
   templateUrl: './past-events.component.html',
@@ -27,11 +29,14 @@ export class PastEventsComponent implements OnInit {
   statementlist;
   minDate;
   form: FormGroup;
+  nolist: boolean = false;
+  lang: Observable<string>;
 
   constructor(
     private basedataservice: BaseApplicationDataService,
     private reportservice: ReportService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private langservice: LanguageService
   ) { }
 
   ngOnInit() {
@@ -47,6 +52,11 @@ export class PastEventsComponent implements OnInit {
     console.log(endDate);
 
     this.minDate = { year: endDate.getFullYear(), month: endDate.getMonth() + 1, day: endDate.getDate() };
+
+    this.langservice.listen().subscribe((m: any) => {
+      console.log(m);
+      this.lang = m;
+    })
   }
   onChange() {
 
@@ -60,25 +70,47 @@ export class PastEventsComponent implements OnInit {
     this.form = this.fb.group({
 
       fundtype: [0],
-      fundname: [0],
-      startDate: [null],
-      endDate: [null]
+      fundname: [0, Validators.required],
+      startDate: [null, Validators.required],
+      endDate: [null, Validators.required]
 
     })
   }
+  isFieldNotValid(field: string) {
+    return !this.form.get(field).valid && this.form.get(field).touched
+
+  }
+
+  ValidatorDisplayCss(field: string) {
+    return {
+      'has-danger': this.isFieldNotValid(field)
+    };
+  }
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
+      }
+    })
+  }
   changefundtype() {
-
-
     var id = this.form.controls.fundtype.value;
-
     let Params = new HttpParams();
     Params = Params.append('fundtypeid', id);
+    Params = Params.append('unitholderid', this.userselect.UnitholderId);
     this.reportservice.changefundtype(Params)
       .pipe(first())
       .subscribe(
         data => {
           console.log(data);
           this.Fundnamelist = data['fundlist'];
+          this.form.controls['fundname'].setValue(0, { onlySelf: true });
+          setTimeout(() => {
+            $('.selectpicker').selectpicker('refresh');
+        }, 100);
         },
         error => {
           console.log(error)
@@ -98,9 +130,13 @@ export class PastEventsComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          setTimeout(() => {
+            $('.selectpicker').selectpicker('refresh');
+        }, 100);
           this.userall = data;
           this.unitholderno = this.userall.unitholderlist[0];
           this.userselect = this.userall.unitholderlist[0];
+          this.changefundtype();
         },
         error => {
           console.log(error)
@@ -119,95 +155,71 @@ export class PastEventsComponent implements OnInit {
           console.log(error)
 
         });
+
     
-      this.changefundtype();
-    
+
 
   }
 
   OnSubmitd() {
     console.log(this.form);
-
-
     this.loading = true;
-    let params = new HttpParams().set('unitholderid', this.userselect.UnitholderId);
+    this.nolist = false;
     let Params = new HttpParams();
     Params = Params.append('currentpage', "1");
     Params = Params.append('rowperpage', "999");
     var user;
-    console.log(this.model);
+
 
     if (this.form.controls.fundtype.value != 0 && this.form.controls.fundname.value == 0) {
-      this.form.controls.fundname.setErrors({ 'invalid': true });;
+      this.form.controls.fundname.setErrors({ 'invalid': true });
       this.loading = false;
     } else {
-      if (this.form.controls.fundtype.value == "0" && !this.form.controls.startDate.value && !this.form.controls.endDate.value) {
+      if (this.form.valid) {
+        this.statementreport = [];
 
-        console.log('test');
-        user = {
-          UnitholderID: this.userselect.UnitholderId
+        if (this.form.controls.fundtype.value == 0 && this.form.controls.fundname.value == 0) {
+          user = {
+            UnitholderID: this.userselect.UnitholderId,
+            FundID: this.form.controls.fundname.value,
+            StartOrderDate: this.getstartdate(),
+            EndOrderDate: this.getenddate()
+          }
+        } else {
+          user = {
+            UnitholderID: this.userselect.UnitholderId,
+            FundID: this.form.controls.fundname.value.FundID,
+            StartOrderDate: this.getstartdate(),
+            EndOrderDate: this.getenddate()
+          }
         }
 
+
+        console.log(user);
+
+        this.reportservice.statementreport(user, Params)
+          .subscribe(
+            data => {
+              console.log(data);
+              this.statementreport = data;
+              if(this.statementreport.statementreport.length == 0){
+                this.nolist = true;
+                console.log('notlist');
+                
+              }
+              this.calulatetable();
+              this.loading = false;
+            },
+            error => {
+              console.log(error)
+              this.loading = false;
+
+            });
+      } else {
+        this.loading = false;
+        this.validateAllFormFields(this.form);
       }
-      // else if (this.fundtype !== "0" && typeof this.model.startDate == 'undefined' && typeof this.fundname.FundCode !== 'undefined') {
-      //   console.log(this.fundtype);
-      //   console.log('test4');
-      //   user = {
-      //     UnitholderID: this.userselect.UnitholderId,
-      //     FundTypeID: this.fundtype
-      //   }
-
-      // }
-      else if (this.form.controls.startDate.value && this.form.controls.fundtype.value == "0" && this.form.controls.endDate.value) {
-        console.log("test3");
-        user = {
-          UnitholderID: this.userselect.UnitholderId,
-          StartOrderDate: this.getstartdate(),
-          EndOrderDate: this.getenddate()
-        }
-
-      }
-      else if (this.form.controls.fundtype.value && this.form.controls.fundname.value && !this.form.controls.startDate.value && !this.form.controls.endDate.value) {
-        console.log('test4');
-
-        user = {
-          UnitholderID: this.userselect.UnitholderId,
-          FundID: this.form.controls.fundname.value.FundID
-        }
-
-      }
-      else {
-        console.log('test2');
-        // console.log(this.fundname);
-
-        user = {
-          UnitholderID: this.userselect.UnitholderId,
-          FundID: this.form.controls.fundname.value.FundID,
-          StartOrderDate: this.getstartdate(),
-          EndOrderDate: this.getenddate()
-        }
-      }
-      console.log(user);
-
-      this.reportservice.statementreport(user, Params)
-        .subscribe(
-          data => {
-            console.log(data);
-            this.statementreport = data;
-            this.calulatetable();
-            this.loading = false;
-          },
-          error => {
-            console.log(error)
-            this.loading = false;
-
-          });
     }
-
-
-
-
-
   }
   calulatetable() {
     var array = new Array();
@@ -262,11 +274,12 @@ export class PastEventsComponent implements OnInit {
     // this.Fundnamelist = [];
     this.statementreport = '';
     // this.model = {};
-    this.statementlist = '';
+    this.statementlist = [];
     this.p = 1;
     this.loading = false;
     this.createFormValidate();
     this.getfundtypelist();
+    this.changefundtype();
     // console.log(this.statementlist);
 
   }

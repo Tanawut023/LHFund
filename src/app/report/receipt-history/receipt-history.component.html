@@ -35,9 +35,9 @@
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
-            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno">
+            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno" class="selectpicker" data-live-search="true">
               <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
-                }}
+                }} <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container>
               </option>
             </select>
           </div>
@@ -58,86 +58,106 @@
     </div>
   </div>
   <div class="detail-body-wrapper">
-    <div class="row">
-      <div class="col-md-12">
-        <span>{{ 'CONTENT.select-date-fund' | translate }}</span>
+    <form [formGroup]="form">
+      <div class="row">
+        <div class="col-md-12">
+          <span>{{ 'CONTENT.select-date-fund' | translate }}</span>
+        </div>
+        <div class="col-md-9">
+          <!-- <div class="row">
+            <div class="col-md-4">
+              <p class="txt-middle">{{ 'CONTENT.fund-group' | translate }}</p>
+            </div>
+            <div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss('fundtype')">
+              <div class="select-wrapper inline-block">
+                <select id="fundtype" name="fundtype" (change)="changefundtype()" formControlName="fundtype">
+                  <option [value]="0">แสดงทุกกลุ่ม</option>
+                  <option *ngFor="let fundtypelist of Fundtypelist; let i = index" [value]="fundtypelist.Id">{{ fundtypelist.Name
+                    }}
+                  </option>
+                </select>
+                <div class="form-control-feedback" *ngIf="this.form.controls.fundtype.errors && (this.form.controls.fundtype.touched)">
+                  <p *ngIf="this.form.controls.fundtype.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <div class="row">
+            <div class="col-md-4">
+              <p class="txt-middle">{{ 'CONTENT.fund-name' | translate }}</p>
+            </div>
+            <div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss('fundname')">
+              <div class="select-wrapper inline-block">
+
+                <select id="fundname" name="fundname" formControlName="fundname" class="selectpicker" data-live-search="true">
+                  <option [value]="0">{{ 'CONTENT.all-fund' | translate }}</option>
+                  <option *ngFor="let fundnamelist of Fundnamelist; let i = index" [ngValue]="fundnamelist">
+                    <!-- {{ fundnamelist.FundName }} -->
+                    <ng-container *ngIf="lang == 'th' ">{{ fundnamelist.FundName }}</ng-container>
+                    <ng-container *ngIf="lang == 'en' ">{{ fundnamelist.FundNameEng }}</ng-container>
+                  </option>
+                </select>
+                <div class="form-control-feedback" *ngIf="this.form.controls.fundname.errors && (this.form.controls.fundname.touched)">
+                  <p *ngIf="this.form.controls.fundname.errors.required">{{ 'Validation.required' | translate }}</p>
+                </div>
+
+                <div class="has-danger">
+                  <div class="form-control-feedback" *ngIf="this.form.controls.fundname.invalid">
+                    <p>{{ 'Validation.required' | translate }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-4">
+              <p class="txt-middle">{{ 'CONTENT.from-date' | translate }}</p>
+            </div>
+            <div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss('startDate')">
+              <div class="input-wrapper">
+                <input class=" textinput dateinput bg-gray" formControlName="startDate" ngbDatepicker #d1="ngbDatepicker" id="startDate"
+                  placeholder="{{ 'CONTENT.place-holder-date' | translate }}" name="startDate" type="text" (click)="d1.toggle()" readonly>
+                  <div class="form-control-feedback" *ngIf="this.form.controls.startDate.errors && (this.form.controls.startDate.touched)">
+                    <p *ngIf="this.form.controls.startDate.errors.required">{{ 'Validation.required' | translate }}</p>
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <p class="txt-middle">{{ 'CONTENT.to-date' | translate }}</p>
+            </div>
+            <div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss('endDate')">
+              <div class="input-wrapper">
+                <input class=" textinput dateinput bg-gray" formControlName="endDate" ngbDatepicker #d2="ngbDatepicker" id="endDate" placeholder="{{ 'CONTENT.place-holder-date' | translate }}"
+                  name="endDate" type="text" (click)="d2.toggle()" readonly>
+                  <div class="form-control-feedback" *ngIf="this.form.controls.endDate.errors && (this.form.controls.endDate.touched)">
+                    <p *ngIf="this.form.controls.endDate.errors.required">{{ 'Validation.required' | translate }}</p>
+                  </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-3 col-6 offset-md-4">
+              <button class="btn-med btn-primary btn" [disabled]="loading" (click)="OnSubmitd()">
+                {{ 'BUTTON.ok' | translate }}
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+
+              </button>
+            </div>
+            <div class="col-md-3 col-6">
+              <button class="btn-med btn-cancel" (click)="reset()">
+                {{ 'BUTTON.restore' | translate }}
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-md-9">
-        <div class="row">
-          <div class="col-md-4">
-            <p class="txt-middle">{{ 'CONTENT.fund-group' | translate }}</p>
-          </div>
-          <div class="col-md-6">
-            <div class="select-wrapper inline-block">
-              <select id="fundtype" name="fundtype" (change)="changefundtype()" [(ngModel)]="fundtype">
-                <option [value]="0">แสดงทุกกลุ่ม</option>
-                <option *ngFor="let fundtypelist of Fundtypelist; let i = index" [value]="fundtypelist.Id">{{ fundtypelist.Name
-                  }}
-                </option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-
-          <div class="col-md-4">
-            <p class="txt-middle">{{ 'CONTENT.fund-name' | translate }}</p>
-          </div>
-          <div class="col-md-6">
-            <div class="select-wrapper inline-block">
-
-              <select id="fundname" name="fundname" [(ngModel)]="fundname">
-                <option [value]="0">แสดงทุกกองทุน</option>
-                <option *ngFor="let fundnamelist of Fundnamelist; let i = index" [ngValue]="fundnamelist">{{ fundnamelist.FundName
-                  }}
-                </option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="row">
-          <div class="col-md-4">
-            <p class="txt-middle">{{ 'CONTENT.from-date' | translate }}</p>
-          </div>
-          <div class="col-md-6">
-            <div class="input-wrapper">
-              <input class=" textinput dateinput bg-gray"  [(ngModel)]="model.startDate" ngbDatepicker #d1="ngbDatepicker" id="startDate"
-                placeholder="วว/ดด/ปปปป" name="startDate" type="text" (click)="d1.toggle()">
-            </div>
-          </div>
-          <div class="col-md-4">
-            <p class="txt-middle">{{ 'CONTENT.to-date' | translate }}</p>
-          </div>
-          <div class="col-md-6">
-            <div class="input-wrapper">
-              <input class=" textinput dateinput bg-gray" [(ngModel)]="model.endDate" ngbDatepicker #d2="ngbDatepicker" id="endDate" placeholder="วว/ดด/ปปปป"
-                name="endDate" type="text" (click)="d2.toggle()">
-            </div>
-          </div>
-
-        </div>
-
-        <div class="row">
-          <div class="col-md-3 col-6 offset-md-4">
-            <button class="btn-med btn-primary" (click)="OnSubmitd()">
-              {{ 'BUTTON.ok' | translate }}
-              <i class="fa fa-angle-right" aria-hidden="true"></i>
-
-            </button>
-          </div>
-          <div class="col-md-3 col-6">
-            <button class="btn-med btn-cancel" (click)="reset()">
-              {{ 'BUTTON.restore' | translate }}
-              <i class="fa fa-angle-right" aria-hidden="true"></i>
-
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    </form>
 
   </div>
   <div class="detail-footer-wrapper">
@@ -177,30 +197,37 @@
         <thead>
           <tr>
             <th>
-              วันที่ XD
+              <!-- วันที่ XD -->
+              {{ 'TABLE.xd-date' | translate }}
             </th>
             <th>
-              เงินปันผล/
-              <br/>หน่วย
+              <!-- เงินปันผล/
+              <br/>หน่วย -->
+              {{ 'TABLE.dividend-unit' | translate }}
+            <th>
+              <!-- หน่วย -->
+              {{ 'CONTENT.unit' | translate }}
             </th>
             <th>
-              หน่วย
+              <!-- มูลค่าเงินปันผล -->
+              {{ 'TABLE.dividend-pay' | translate }}
             </th>
             <th>
-              มูลค่าเงินปันผล
+              <!-- ภาษีหัก
+              <br/>ณ ที่จ่าย -->
+              {{ 'TABLE.with-taxes' | translate }}
             </th>
             <th>
-              ภาษีหัก
-              <br/>ณ ที่จ่าย
+              <!-- มูลค่าที่หักภาษี -->
+              {{ 'TABLE.with-taxes-a' | translate }}
             </th>
             <th>
-              มูลค่าที่หักภาษี
+              <!-- เงินปันผลรับสุทธิ -->
+              {{ 'TABLE.net-dividend' | translate }}
             </th>
             <th>
-              เงินปันผลรับสุทธิ
-            </th>
-            <th>
-              วันจ่ายเงินปันผล
+              <!-- วันจ่ายเงินปันผล -->
+              {{ 'TABLE.dividend-date' | translate }}
             </th>
           </tr>
         </thead>
@@ -210,10 +237,17 @@
               {{ group.FundName}}
             </td>
           </tr> -->
+          <tr class="text-center" *ngIf="nolist">
+            <td colspan="11">
+              <p>ไม่พบรายการดังกล่าว</p>
+            </td>
+          </tr>
           <ng-container *ngFor="let list of reportlist | paginate: { itemsPerPage: 10, currentPage: p } ; let y = index">
             <tr class="line" *ngIf="list.FundName">
               <td colspan="8">
-                {{ list.FundName}}
+                <!-- {{ list.FundName}} -->
+                <ng-container *ngIf="lang == 'th' ">{{ list.FundName }}</ng-container>
+                <ng-container *ngIf="lang == 'en' ">{{ list.FundNameEng }}</ng-container>
               </td>
             </tr>
             <tr class="bgforlhfund">
@@ -230,8 +264,8 @@
                 {{list.DividendAmount | tofix}}
               </td>
               <td class="txt-right">
-                <div *ngIf="list.DividendWithHoldingTax">หัก</div>
-                <div *ngIf="!list.DividendWithHoldingTax">ไม่หัก</div>
+                <div *ngIf="list.DividendWithHoldingTax">{{ 'CONTENT.texs' | translate }}</div>
+                <div *ngIf="!list.DividendWithHoldingTax">{{ 'CONTENT.not-texs' | translate }}</div>
               </td>
               <td class="txt-right">
                 {{list.DividendWithHoldingTax | tofix}}
@@ -245,7 +279,7 @@
             </tr>
             <tr class="summary" *ngIf="list.balance">
               <th colspan="3">
-                รวม : {{list.FundCode}}
+                {{ 'TABLE.total' | translate }} : {{list.FundCode}}
               </th>
               <th class="text-right">
                 {{list.balance | tofix}}

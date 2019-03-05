@@ -11,17 +11,17 @@
                                     เมนูกองทุน
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" (click)="navigate('edit-profile')" title="{{ 'NAVBAR.view-edit-personal-information' | translate }}">{{ 'NAVBAR.view-edit-personal-information' | translate }}</a>
-                                    <a class="dropdown-item" (click)="navigate('suitability')" title="{{ 'NAVBAR.suitability' | translate }}">{{ 'NAVBAR.suitability' | translate }}</a>
+                                    <a class="dropdown-item" (click)="navigate('edit-profile')" title="{{ 'NAVBAR.view-edit-personal-information' | translate }}" *ngIf="userdetail.MemberType != 'Agent'">{{ 'NAVBAR.view-edit-personal-information' | translate }}</a>
+                                    <a class="dropdown-item" (click)="navigate('suitability')" title="{{ 'NAVBAR.suitability' | translate }}" *ngIf="userdetail.MemberType != 'Agent'">{{ 'NAVBAR.suitability' | translate }}</a>
                                     <a class="dropdown-item" (click)="navigate('change-password')" title="{{ 'NAVBAR.changepassword' | translate }}">{{ 'NAVBAR.changepassword' | translate }}</a>
                                     <!-- <a class="dropdown-item" (click)="navigate('setting')" title="{{ 'NAVBAR.setting' | translate }}">{{ 'NAVBAR.setting' | translate }}</a> -->
                                 </div>
                             </div>
                             <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
-                                <li role="presentation" id="menu1" class="current">
+                                <li role="presentation" id="menu1" class="current"  *ngIf="userdetail.MemberType != 'Agent'">
                                     <a title="{{ 'NAVBAR.view-edit-personal-information' | translate }}" (click)="navigate('edit-profile')">{{ 'NAVBAR.view-edit-personal-information' | translate }}</a>
                                 </li>
-                                <li role="presentation" id="menu2">
+                                <li role="presentation" id="menu2"  *ngIf="userdetail.MemberType != 'Agent'">
                                     <a title="{{ 'NAVBAR.suitability' | translate }}" (click)="navigate('suitability')">{{ 'NAVBAR.suitability' | translate }}</a>
                                 </li>
                                 <li role="presentation" id="menu3">

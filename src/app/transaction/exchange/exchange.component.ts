@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseApplicationDataService } from '../../service/base-application-data.service';
 import { first } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { HttpParams } from '@angular/common/http';
 import { OrderService } from '../../service/order.service';
-import { datethai, formatdatethai, boostrapdatepicker, getDate } from '../../Share/dateformat';
+import { datethai, formatdatethai, boostrapdatepicker, getDate, dateeng } from '../../Share/dateformat';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { log } from 'util';
+import { Observable } from 'rxjs';
+import { LanguageService } from '../../service/language.service';
+import { BaseApplicationDataService } from '../../service/base-application-data.service';
 declare var $: any;
 @Component({
     selector: 'app-exchange',
@@ -24,6 +26,7 @@ export class ExchangeComponent implements OnInit {
     banklist: any = 'N/A';
     holdingbalancelist: any = 'N/A';
     currentdate = datethai;
+    currentdateEng = dateeng;
     date: any;
     holdingbalanceselected: any;
     message: any;
@@ -42,13 +45,17 @@ export class ExchangeComponent implements OnInit {
     nolist: boolean = false;
     Islevel: boolean = false;
     Isprotect: boolean = false;
+    loading = false;
+    lang: Observable<string>;
+    userdetail: any;
 
 
     constructor(
         private translate: TranslateService,
-        private basedataservice: BaseApplicationDataService,
         private orderservice: OrderService,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private basedataservice: BaseApplicationDataService,
+        private langservice: LanguageService
 
     ) { }
 
@@ -67,6 +74,12 @@ export class ExchangeComponent implements OnInit {
 
         this.minDate = { year: endDate.getFullYear(), month: endDate.getMonth() + 1, day: endDate.getDate() };
         this.datepick = { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate() };
+
+        this.langservice.listen().subscribe((m: any) => {
+            console.log(m);
+            this.lang = m;
+        })
+        this.userdetail = this.basedataservice.getmemberInfo();
     }
     checkpage(page) {
         window.scroll(0, 0);
@@ -120,17 +133,22 @@ export class ExchangeComponent implements OnInit {
             if (this.userall.unitholderlist[i].UnitholderId == this.unitholderno.UnitholderId) {
                 this.userselect = this.userall.unitholderlist[i];
                 this.getselectlistfundlistandbankaccount();
+                this.getorderinfolist();
             }
         }
+
+
     }
 
     getSelectListUnitholder() {
-        this.basedataservice.getSelectListUnitholder()
+        this.orderservice.getSelectListUnitholder()
             .pipe(first())
             .subscribe(
                 data => {
                     console.log(data);
-
+                    setTimeout(() => {
+                        $('.selectpicker').selectpicker('refresh');
+                    }, 100);
                     if (data) {
                         this.userall = data;
                         this.unitholderno = this.userall.unitholderlist[0];
@@ -154,6 +172,9 @@ export class ExchangeComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
+                    setTimeout(() => {
+                        $('.selectpicker').selectpicker('refresh');
+                    }, 100);
                     if (data) {
                         console.log(data)
                         this.unitholderswitching = data;
@@ -171,19 +192,20 @@ export class ExchangeComponent implements OnInit {
     }
 
     getorderinfolist() {
-
+        this.orderswitchinglist = [];
         const user = {
             UnitHolderID: this.userselect.UnitholderId,
             TxType: "Switching"
         }
-
+        console.log(user);
+        
         this.orderservice.getorderinfolist(user)
             .pipe(first())
             .subscribe(
                 data => {
                     console.log(data);
                     this.orderswitchinglist = data;
-
+                    this.nolist =false;
                     if (this.orderswitchinglist.orderinfolist) {
 
                         var ref;
@@ -194,132 +216,135 @@ export class ExchangeComponent implements OnInit {
                         var fundswitching;
                         var text_refno = "";
                         this.nolist = false;
-                        var i_list = 0;
-                        var getdatain_out = [];
-                        for (let i = 0; i < this.orderswitchinglist.orderinfolist.length; i++) {
-                            if (array.indexOf(this.orderswitchinglist.orderinfolist[i].ReferenceNo) == -1) {
-                                array.push(this.orderswitchinglist.orderinfolist[i].ReferenceNo);
-                                
-
-                                getdatain_out["Data_IN_Out_"+i_list+"_0"] = this.orderswitchinglist.orderinfolist[i];
-
-                                i_list++;
-                            }
-                            else {
-                                getdatain_out["Data_IN_Out_"+i_list+"_1"] = this.orderswitchinglist.orderinfolist[i];
-                            }
-                        }
-                        var i_list2 = 0;
-                        for (let y = 0; y < array.length; y++) {
-                            if (getdatain_out["Data_IN_Out_"+i_list+"_0"].TxType == "Switching In") {
-                                if (getdatain_out["Data_IN_Out_"+i_list+"_1"].TxType == "Switching Out") {
-                                    orderlist.push({
-                                        FundSource: getdatain_out[i_list][1].FundName,
-                                        funddestination: getdatain_out[i_list][0].FundName,
-                                        FundSourceCode: getdatain_out[i_list][1].FundCode,
-                                        funddestinationCode: getdatain_out[i_list][0].FundCode,
-                                        Amount: getdatain_out[i_list][0].OrderAmount,
-                                        Unit: getdatain_out[i_list][0].OrderUnit,
-                                        OrderDate: getdatain_out[i_list][0].OrderDate,
-                                        OrderTime: getdatain_out[i_list][0].OrderTime,
-                                        EffectiveDateSource: getdatain_out[i_list][1].EffectiveDate,
-                                        EffectiveDatedestiantion: getdatain_out[i_list][0].EffectiveDate,
-                                        UnitHolderID: getdatain_out[i_list][1].UnitHolderID,
-                                        OrderID: getdatain_out[i_list][1].OrderID
-
-                                    })
-                                }
-                            }
-                            else if (getdatain_out["Data_IN_Out_"+i_list+"_0"].TxType == "Switching Out") {
-                                if (getdatain_out["Data_IN_Out_"+i_list+"_1"].TxType == "Switching In") {
-                                    orderlist.push({
-                                        FundSource: getdatain_out[i_list][0].FundName,
-                                        funddestination: getdatain_out[i_list][1].FundName,
-                                        FundSourceCode: getdatain_out[i_list][0].FundCode,
-                                        funddestinationCode: getdatain_out[i_list][1].FundCode,
-                                        Amount: getdatain_out[i_list][1].OrderAmount,
-                                        Unit: getdatain_out[i_list][1].OrderUnit,
-                                        OrderDate: getdatain_out[i_list][1].OrderDate,
-                                        OrderTime: getdatain_out[i_list][1].OrderTime,
-                                        EffectiveDateSource: getdatain_out[i_list][0].EffectiveDate,
-                                        EffectiveDatedestiantion: getdatain_out[i_list][1].EffectiveDate,
-                                        UnitHolderID: getdatain_out[i_list][0].UnitHolderID,
-                                        OrderID: getdatain_out[i_list][0].OrderID
-
-                                    })
-                                }
-                            }
-                            i_list2++;
+                        // var i_list = 0;
+                        // var getdatain_out = [];
+                        // for (let i = 0; i < this.orderswitchinglist.orderinfolist.length; i++) {
+                        //     if (array.indexOf(this.orderswitchinglist.orderinfolist[i].ReferenceNo) == -1) {
+                        //         array.push(this.orderswitchinglist.orderinfolist[i].ReferenceNo);
 
 
-                        }
+                        //         getdatain_out["Data_IN_Out_" + i_list + "_0"] = this.orderswitchinglist.orderinfolist[i];
+
+                        //         i_list++;
+                        //     }
+                        //     else {
+                        //         getdatain_out["Data_IN_Out_" + i_list + "_1"] = this.orderswitchinglist.orderinfolist[i];
+                        //     }
+                        // }
+                        // var i_list2 = 0;
+                        // for (let y = 0; y < array.length; y++) {
+                        //     if (getdatain_out["Data_IN_Out_" + i_list + "_0"].TxType == "Switching In") {
+                        //         if (getdatain_out["Data_IN_Out_" + i_list + "_1"].TxType == "Switching Out") {
+                        //             orderlist.push({
+                        //                 FundSource: getdatain_out[i_list][1].FundName,
+                        //                 funddestination: getdatain_out[i_list][0].FundName,
+                        //                 FundSourceCode: getdatain_out[i_list][1].FundCode,
+                        //                 funddestinationCode: getdatain_out[i_list][0].FundCode,
+                        //                 Amount: getdatain_out[i_list][0].OrderAmount,
+                        //                 Unit: getdatain_out[i_list][0].OrderUnit,
+                        //                 OrderDate: getdatain_out[i_list][0].OrderDate,
+                        //                 OrderTime: getdatain_out[i_list][0].OrderTime,
+                        //                 EffectiveDateSource: getdatain_out[i_list][1].EffectiveDate,
+                        //                 EffectiveDatedestiantion: getdatain_out[i_list][0].EffectiveDate,
+                        //                 UnitHolderID: getdatain_out[i_list][1].UnitHolderID,
+                        //                 OrderID: getdatain_out[i_list][1].OrderID
+
+                        //             })
+                        //         }
+                        //     }
+                        //     else if (getdatain_out["Data_IN_Out_" + i_list + "_0"].TxType == "Switching Out") {
+                        //         if (getdatain_out["Data_IN_Out_" + i_list + "_1"].TxType == "Switching In") {
+                        //             orderlist.push({
+                        //                 FundSource: getdatain_out[i_list][0].FundName,
+                        //                 funddestination: getdatain_out[i_list][1].FundName,
+                        //                 FundSourceCode: getdatain_out[i_list][0].FundCode,
+                        //                 funddestinationCode: getdatain_out[i_list][1].FundCode,
+                        //                 Amount: getdatain_out[i_list][1].OrderAmount,
+                        //                 Unit: getdatain_out[i_list][1].OrderUnit,
+                        //                 OrderDate: getdatain_out[i_list][1].OrderDate,
+                        //                 OrderTime: getdatain_out[i_list][1].OrderTime,
+                        //                 EffectiveDateSource: getdatain_out[i_list][0].EffectiveDate,
+                        //                 EffectiveDatedestiantion: getdatain_out[i_list][1].EffectiveDate,
+                        //                 UnitHolderID: getdatain_out[i_list][0].UnitHolderID,
+                        //                 OrderID: getdatain_out[i_list][0].OrderID
+
+                        //             })
+                        //         }
+                        //     }
+                        //     i_list2++;
+
+
+
 
 
                         // console.log(ReferenceNo);
 
-                        // for (let i = 0; i < this.orderswitchinglist.orderinfolist.length; i++) {
+                        for (let i = 0; i < this.orderswitchinglist.orderinfolist.length; i++) {
 
-                        //     if (this.orderswitchinglist.orderinfolist[i].ReferenceNo != text_refno) {
-                        //         var text_switchingIn;
-                        //         var text_switchingOut;
-                        //         var iswitching = 1;
-                        //         var Datahas = 0;
+                            if (this.orderswitchinglist.orderinfolist[i].ReferenceNo != text_refno) {
+                                var text_switchingIn;
+                                var text_switchingOut;
+                                var iswitching = 1;
+                                var Datahas = 0;
 
-                        //         console.log('1');
+                                console.log('1');
 
-                        //     }
+                            }
 
-                        //     if (this.orderswitchinglist.orderinfolist[i].TxType == "Switching In") {
-                        //         text_switchingIn = this.orderswitchinglist.orderinfolist[i];
-                        //         console.log('2');
+                            if (this.orderswitchinglist.orderinfolist[i].TxType == "Switching In") {
+                                text_switchingIn = this.orderswitchinglist.orderinfolist[i];
+                                console.log('2');
 
-                        //     }
-                        //     else if (this.orderswitchinglist.orderinfolist[i].TxType == "Switching Out") {
-                        //         text_switchingOut = this.orderswitchinglist.orderinfolist[i];
-                        //         console.log('3');
+                            }
+                            else if (this.orderswitchinglist.orderinfolist[i].TxType == "Switching Out") {
+                                text_switchingOut = this.orderswitchinglist.orderinfolist[i];
+                                console.log('3');
 
-                        //     }
+                            }
 
-                        //     if ((this.orderswitchinglist.orderinfolist[i].TxType == "Switching In" || this.orderswitchinglist.orderinfolist[i].TxType == "Switching Out") && this.orderswitchinglist.orderinfolist[i].OrderStatus == 'Initial') {
-                        //         Datahas++;
-                        //         this.nolist = true;
-                        //         console.log('4');
+                            if ((this.orderswitchinglist.orderinfolist[i].TxType == "Switching In" || this.orderswitchinglist.orderinfolist[i].TxType == "Switching Out") && this.orderswitchinglist.orderinfolist[i].OrderStatus == 'Initial') {
+                                Datahas++;
+                                this.nolist = true;
+                                console.log('4');
 
-                        //     }
+                            }
 
-                        //     if (iswitching == 2) {
-                        //         console.log('5');
+                            if (iswitching == 2) {
+                                console.log('5');
 
 
-                        //         array.push({
-                        //             FundSource: text_switchingOut.FundName,
-                        //             funddestination: text_switchingIn.FundName,
-                        //             FundSourceCode: text_switchingOut.FundCode,
-                        //             funddestinationCode: text_switchingIn.FundCode,
-                        //             Amount: text_switchingIn.OrderAmount,
-                        //             Unit: text_switchingIn.OrderUnit,
-                        //             OrderDate: text_switchingIn.OrderDate,
-                        //             OrderTime: text_switchingIn.OrderTime,
-                        //             EffectiveDateSource: text_switchingOut.EffectiveDate,
-                        //             EffectiveDatedestiantion: text_switchingIn.EffectiveDate,
-                        //             UnitHolderID: text_switchingOut.UnitHolderID,
-                        //             OrderID: text_switchingOut.OrderID
+                                array.push({
+                                    FundSource: text_switchingOut.FundName,
+                                    funddestination: text_switchingIn.FundName,
+                                    FundSourceEng: text_switchingOut.FundNameEng,
+                                    funddestinationEng: text_switchingIn.FundNameEng,
+                                    FundSourceCode: text_switchingOut.FundCode,
+                                    funddestinationCode: text_switchingIn.FundCode,
+                                    Amount: text_switchingIn.OrderAmount,
+                                    Unit: text_switchingIn.OrderUnit,
+                                    OrderDate: text_switchingIn.OrderDate,
+                                    OrderTime: text_switchingIn.OrderTime,
+                                    EffectiveDateSource: text_switchingOut.EffectiveDate,
+                                    EffectiveDatedestiantion: text_switchingIn.EffectiveDate,
+                                    UnitHolderID: text_switchingOut.UnitHolderID,
+                                    OrderID: text_switchingOut.OrderID
 
-                        //         })
+                                })
 
-                        //     }
-                        //     text_refno = this.orderswitchinglist.orderinfolist[i].ReferenceNo;
-                        //     if (this.orderswitchinglist.orderinfolist[i].TxType == "Switching In" || this.orderswitchinglist.orderinfolist[i].TxType == "Switching Out") {
-                        //         iswitching++;
-                        //         console.log('6');
+                            }
+                            text_refno = this.orderswitchinglist.orderinfolist[i].ReferenceNo;
+                            if (this.orderswitchinglist.orderinfolist[i].TxType == "Switching In" || this.orderswitchinglist.orderinfolist[i].TxType == "Switching Out") {
+                                iswitching++;
+                                console.log('6');
 
-                        //     }
+                            }
 
-                        //     // console.log(array);
-                        // }
-                        this.orderswitchinglist = orderlist;
+                            // console.log(array);
+                        }
+                        this.orderswitchinglist = array;
                         console.log(this.orderswitchinglist);
                     }
+
 
 
 
@@ -352,11 +377,14 @@ export class ExchangeComponent implements OnInit {
                     console.log(data);
                     this.funddestinationlist = data;
 
-                    if (this.formexchange.controls.amount.value && this.page !== "exchange-step2") {
-
+                    if (this.page !== "exchange-step2") {
+                        setTimeout(() => {
+                            $('.selectpicker').selectpicker('refresh');
+                        }, 100);
                         this.Type = "";
-                        this.formexchange.controls['amount'].setValue("", { onlySelf: true });
-                        this.formexchange.controls['type'].setValue("", { onlySelf: true });
+                        this.formexchange.controls['amount'].reset();
+                        this.formexchange.controls['type'].reset();
+                        this.formexchange.controls['type'].updateValueAndValidity();
 
 
                         //     var amount = this.formexchange.controls.amount.value;
@@ -416,7 +444,7 @@ export class ExchangeComponent implements OnInit {
                     if (this.funddestinationlist.fundswitchingdestination && this.page !== "exchange-step2") {
                         // this.funddestination = 0;
                         if (this.formexchange.controls.funddestination.value) {
-                            this.formexchange.controls['funddestination'].setValue("", { onlySelf: true });
+                            this.formexchange.controls['funddestination'].reset();;
                         }
 
                     }
@@ -581,81 +609,153 @@ export class ExchangeComponent implements OnInit {
     onChangeType() {
         console.log(this.formexchange.controls.type.value);
         this.Type = this.formexchange.controls.type.value;
+        this.formexchange.controls.amount.reset();
+        // if (this.formexchange.controls.amount.value) {
+        //     var amount = this.formexchange.controls.amount.value;
+        //     amount = amount.replace(",", "");
+        //     amount = parseFloat(amount);
+
+
+
+        //     if (this.Type == 'Amount') {
+        //         var tofix: any = amount.toFixed(2);
+        //         if (this.formexchange.controls.fundsource.value) {
+
+        //             if (amount > this.funddestinationlist.availablebalance.AvailableAmount) {
+        //                 var n = parseFloat(this.funddestinationlist.availablebalance.AvailableAmount);
+        //                 tofix = n.toFixed(2);
+        //                 tofix = tofix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        //                 this.formexchange.controls['amount'].setValue(tofix, { onlySelf: true });
+        //             } else {
+        //                 this.formexchange.controls['amount'].setValue(tofix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), { onlySelf: true });
+        //             }
+        //         }
+        //         else {
+        //             this.formexchange.controls['amount'].setValue(tofix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), { onlySelf: true });
+        //         }
+
+
+        //     }
+        //     else if (this.Type == 'Unit') {
+        //         var tofix: any = amount.toFixed(4);
+        //         if (this.formexchange.controls.fundsource.value) {
+
+        //             if (amount > this.funddestinationlist.availablebalance.AvailableUnit) {
+        //                 var n = parseFloat(this.funddestinationlist.availablebalance.AvailableUnit);
+        //                 tofix = n.toFixed(4);
+        //                 var parts = tofix.toString().split(".");
+        //                 parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        //                 this.formexchange.controls['amount'].setValue(parts.join("."), { onlySelf: true });
+        //             } else {
+        //                 var parts = tofix.toString().split(".");
+        //                 parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        //                 this.formexchange.controls['amount'].setValue(parts.join("."), { onlySelf: true });
+        //             }
+        //         }
+        //         else {
+        //             var parts = tofix.toString().split(".");
+        //             parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        //             this.formexchange.controls['amount'].setValue(parts.join("."), { onlySelf: true });
+        //         }
+
+
+        //     }
+
+        // } 
+        if (this.Type == 'All' && this.formexchange.controls.fundsource.value) {
+            if (this.funddestinationlist.availablebalance.AvailableUnit != 0) {
+                var n = parseFloat(this.funddestinationlist.availablebalance.AvailableUnit);
+                var tofix = n.toFixed(4);
+                var parts = tofix.toString().split(".");
+                parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                this.formexchange.controls['amount'].setValue(parts.join("."), { onlySelf: true });
+                this.formexchange.controls['amount'].updateValueAndValidity();
+            }else{
+                this.formexchange.controls['amount'].setValue(0, { onlySelf: true });
+                this.formexchange.controls['amount'].updateValueAndValidity();
+            }
+        }
+    }
+
+    onBlurType() {
+        console.log(this.formexchange.controls.type.value);
+        this.Type = this.formexchange.controls.type.value;
+        // this.formexchange.controls.amount.reset();
         if (this.formexchange.controls.amount.value) {
             var amount = this.formexchange.controls.amount.value;
             amount = amount.replace(",", "");
             amount = parseFloat(amount);
 
-        }
 
-        if (this.Type == 'Amount') {
-            var tofix: any = amount.toFixed(2);
-            if (this.formexchange.controls.fundsource.value) {
-                if (amount > this.funddestinationlist.availablebalance.AvailableAmount) {
-                    var n = parseFloat(this.funddestinationlist.availablebalance.AvailableAmount);
-                    tofix = n.toFixed(2);
-                    tofix = tofix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    this.formexchange.controls['amount'].setValue(tofix, { onlySelf: true });
-                } else {
+
+            if (this.Type == 'Amount') {
+                var tofix: any = amount.toFixed(2);
+                if (this.formexchange.controls.fundsource.value) {
+
+                    if (amount > this.funddestinationlist.availablebalance.AvailableAmount) {
+                        var n = parseFloat(this.funddestinationlist.availablebalance.AvailableAmount);
+                        tofix = n.toFixed(2);
+                        tofix = tofix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        this.formexchange.controls['amount'].setValue(tofix, { onlySelf: true });
+                    } else {
+                        this.formexchange.controls['amount'].setValue(tofix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), { onlySelf: true });
+                    }
+                }
+                else {
                     this.formexchange.controls['amount'].setValue(tofix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), { onlySelf: true });
                 }
-            }
-            else {
-                this.formexchange.controls['amount'].setValue(tofix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), { onlySelf: true });
-            }
 
 
-        }
-        else if (this.Type == 'Unit') {
-            var tofix: any = amount.toFixed(4);
-            if (this.formexchange.controls.fundsource.value) {
-                if (amount > this.funddestinationlist.availablebalance.AvailableUnit) {
-                    var n = parseFloat(this.funddestinationlist.availablebalance.AvailableUnit);
-                    tofix = n.toFixed(4);
-                    var parts = tofix.toString().split(".");
-                    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    this.formexchange.controls['amount'].setValue(parts.join("."), { onlySelf: true });
-                } else {
+            }
+            else if (this.Type == 'Unit') {
+                var tofix: any = amount.toFixed(4);
+                if (this.formexchange.controls.fundsource.value) {
+
+                    if (amount > this.funddestinationlist.availablebalance.AvailableUnit) {
+                        var n = parseFloat(this.funddestinationlist.availablebalance.AvailableUnit);
+                        tofix = n.toFixed(4);
+                        var parts = tofix.toString().split(".");
+                        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        this.formexchange.controls['amount'].setValue(parts.join("."), { onlySelf: true });
+                    } else {
+                        var parts = tofix.toString().split(".");
+                        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        this.formexchange.controls['amount'].setValue(parts.join("."), { onlySelf: true });
+                    }
+                }
+                else {
                     var parts = tofix.toString().split(".");
                     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     this.formexchange.controls['amount'].setValue(parts.join("."), { onlySelf: true });
                 }
-            }
-            else {
-                var parts = tofix.toString().split(".");
-                parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                this.formexchange.controls['amount'].setValue(parts.join("."), { onlySelf: true });
-            }
 
 
-        } else if (this.Type == 'All') {
-            if (this.funddestinationlist.availablebalance.AvailableUnit) {
+            }
+
+        } 
+        else if (this.Type == 'All' && this.formexchange.controls.fundsource.value) {
+            if (this.funddestinationlist.availablebalance.AvailableUnit != 0) {
                 var n = parseFloat(this.funddestinationlist.availablebalance.AvailableUnit);
                 tofix = n.toFixed(4);
                 var parts = tofix.toString().split(".");
                 parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 this.formexchange.controls['amount'].setValue(parts.join("."), { onlySelf: true });
+                this.formexchange.controls['amount'].updateValueAndValidity();
+            }else{
+                this.formexchange.controls['amount'].setValue(0, { onlySelf: true });
+                this.formexchange.controls['amount'].updateValueAndValidity();
             }
         }
-        else {
-            if (this.funddestinationlist.availablebalance.AvailableUnit) {
-                var n = parseFloat(this.funddestinationlist.availablebalance.AvailableUnit);
-                tofix = n.toFixed(4);
-                var parts = tofix.toString().split(".");
-                parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                this.formexchange.controls['amount'].setValue(parts.join("."), { onlySelf: true });
-            }
-        }
-
     }
     onSubmited() {
         console.log(this.formexchange);
         this.Islevel = false;
         this.Isprotect = false;
+        this.loading = true;
 
         if (this.userselect.RiskLevelExpire == true) {
             console.log('expire');
-
+            this.loading = false;
             $('#expiremodal').modal({
                 backdrop: 'static',
                 keyboard: false,
@@ -779,11 +879,12 @@ export class ExchangeComponent implements OnInit {
                         data => {
                             console.log(data);
                             this.resultsubmit = data;
+                            this.loading = false;
                             this.checkexpireandlevel();
                         },
                         error => {
                             console.log(error);
-
+                            this.loading = false;
                             this.message = error.error.messages;
                             $('#message').modal({
                                 backdrop: 'static',
@@ -796,6 +897,7 @@ export class ExchangeComponent implements OnInit {
             else {
                 this.isNotValid = true;
                 this.validateAllFormFields(this.formexchange);
+                this.loading = false;
             }
 
         }
@@ -804,18 +906,26 @@ export class ExchangeComponent implements OnInit {
 
     }
     confirmswitching() {
-
+        this.loading = true;
         this.orderservice.confirmorder(this.resultsubmit.data)
             .pipe(first())
             .subscribe(
                 data => {
                     console.log(data);
+                    this.loading = false;
                     this.checkpage("exchange-step2");
+                    this.message = 'ทำรายการสำเร็จ';
+                    $('#message').modal({
+                        backdrop: 'static',
+                        keyboard: false,
+                        show: true
+                    });
+
 
                 },
                 error => {
                     console.log(error);
-
+                    this.loading = false;
                     this.message = error.error.messages;
                     $('#message').modal({
                         backdrop: 'static',
@@ -826,6 +936,7 @@ export class ExchangeComponent implements OnInit {
                 });
     }
     checkexpireandlevel() {
+        this.loading = true;
         const user = {
             UnitHolderID: this.userselect.UnitholderId,
             FundID: this.formexchange.controls.funddestination.value.FundID,
@@ -837,7 +948,8 @@ export class ExchangeComponent implements OnInit {
             .subscribe(
                 data => {
                     console.log(data);
-                    if (data['messages']) {
+                    this.loading = false;
+                    if (data['messages'] != null) {
                         this.message = data['messages'];
                         this.Islevel = true;
                     }
@@ -858,6 +970,7 @@ export class ExchangeComponent implements OnInit {
                 error => {
                     console.log(error);
                     this.message = error.error.messages;
+                    this.loading = false;
                     $('#message').modal({
                         backdrop: 'static',
                         keyboard: false,
@@ -877,7 +990,7 @@ export class ExchangeComponent implements OnInit {
                     show: true
                 });
             }
-            if (this.formexchange.controls.funddestination.value.isFullyHedge == 'N' && this.Islevel) {
+            if (this.formexchange.controls.funddestination.value.isFullyHedge == 'N') {
                 console.log('level+protect');
                 this.Isprotect = true;
                 $('#risklevel').modal({
@@ -922,9 +1035,18 @@ export class ExchangeComponent implements OnInit {
             .subscribe(
                 data => {
                     console.log(data);
+                    this.deletedOrder = [];
                     this.getorderinfolist();
                     // this.ordersubscriptionlist = data;
                     $('#delete').modal('toggle');
+                    this.message = 'ลบรายการสำเร็จ';
+                    $('#message').modal({
+                        backdrop: 'static',
+                        keyboard: false,
+                        show: true
+                    });
+
+                    
 
                 },
                 error => {
@@ -942,5 +1064,8 @@ export class ExchangeComponent implements OnInit {
     print() {
         window.focus();
         window.print();
+    }
+    resetdate(){
+        this.formexchange.controls['date'].reset();
     }
 }

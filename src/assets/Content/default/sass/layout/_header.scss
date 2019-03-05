@@ -261,9 +261,18 @@
         .logo {
             margin: 0 20px;
 
-            img{
-                height: 80px;
+            a{
+                display: block;
+                padding: 10px 0;
+
+                img{
+                    max-width: 100%;
+                }
             }
+
+            // img{
+            //     height: 80px;
+            // }
         }
         
         .main-nav {
@@ -298,9 +307,9 @@
                         a {
                             display: block;
                             height: 100%;
-                            padding: 30px 30px 0 30px;
-                            font-size: 26px;
-                            line-height: 24px;
+                            padding: 30px 20px 0 20px;
+                            font-size: $text-x-small;
+                            line-height: $text-x-small;
                             text-transform: capitalize;
                             color: $color-primary;
                             border-right: 1px solid #f5f5f5;
@@ -640,7 +649,7 @@
         position: absolute;
         text-decoration: none;
         text-transform: uppercase;
-        top: 40px;
+        top: 15px;
         right: 10px;
         transition: right 0.5s ease-in-out 0s;
         -webkit-transition: right 0.5s ease-in-out 0s;
@@ -989,6 +998,12 @@
                 width: 100%;
                 height: auto;
                 z-index: 99;
+            }
+
+            @media all and (-ms-high-contrast:none)
+            {
+                .main-nav { height: 85px } /*IE10*/
+            ::-ms-backdrop, .main-nav { height: 85px } /*IE11*/
             }
     
             @media screen and (max-width: 1200px) {

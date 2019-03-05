@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { datethai } from '../../Share/dateformat'
+import { datethai, dateeng } from '../../Share/dateformat'
 import { BaseApplicationDataService } from '../../service/base-application-data.service';
 import { first } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
@@ -14,10 +14,11 @@ declare var $: any;
     templateUrl: './suitability.component.html',
     styleUrls: ['./suitability.component.scss']
 })
-export class SuitabilityComponent implements OnInit{
+export class SuitabilityComponent implements OnInit {
     page = "over-view";
     currentdate;
     dateformat = datethai;
+    dateformatEng = dateeng;
     userall: any = {};
     userselect: any = {};
     unitholderno: any = "init";
@@ -34,7 +35,8 @@ export class SuitabilityComponent implements OnInit{
     answer: any = [];
     riskprofile;
     lang: Observable<string>;
-
+    loading = false;
+    countquestion = 0;
 
     constructor(
         private basedataservice: BaseApplicationDataService,
@@ -51,12 +53,12 @@ export class SuitabilityComponent implements OnInit{
         $('#mutual-tab-menu').find('li').removeClass('current');
         $('#mutual-tab-menu').find('li#menu2').addClass('current');
 
-        this.langservice.listen().subscribe((m:any) => {
+        this.langservice.listen().subscribe((m: any) => {
             console.log(m);
             this.lang = m;
         })
         // console.log(this.lang);
-        
+
     }
     // ngOnDestroy() {
     //     $('#otpsuitest').modal('toggle');
@@ -67,7 +69,9 @@ export class SuitabilityComponent implements OnInit{
     checkpage(page) {
         window.scroll(0, 0);
         console.log(page)
-
+        setTimeout(() => {
+            $('.selectpicker').selectpicker('refresh');
+        }, 100);
         switch (page) {
             case 'suitability-test':
                 this.page = "suitability-test";
@@ -87,7 +91,9 @@ export class SuitabilityComponent implements OnInit{
 
 
     }
-
+    resetotp() {
+        this.formotp.reset();
+    }
     checktype(event) {
         // var Id = id;
         // console.log(event);
@@ -157,6 +163,9 @@ export class SuitabilityComponent implements OnInit{
             .pipe(first())
             .subscribe(
                 data => {
+                    setTimeout(() => {
+                        $('.selectpicker').selectpicker('refresh');
+                    }, 100);
                     this.userall = data;
                     this.unitholderno = this.userall.unitholderlist[0];
                     this.userselect = this.userall.unitholderlist[0];
@@ -180,6 +189,7 @@ export class SuitabilityComponent implements OnInit{
                     // var array = new Array();
 
                     this.suitest = data;
+                    this.countquestion = this.suitest.question.length;
                     console.log(this.suitest);
 
 
@@ -296,7 +306,7 @@ export class SuitabilityComponent implements OnInit{
         if (this.form.valid) {
             this.isNotValid = false;
             this.show = true;
-
+            this.loading = true;
             for (let y = 0; y < this.suitest.question.length; y++) {
                 var item = this.question.at(y);
                 array.push(
@@ -332,11 +342,13 @@ export class SuitabilityComponent implements OnInit{
                 .subscribe(
                     data => {
                         console.log(data);
+                        this.loading = false;
                         this.resulttest = data['riskprofilerank'];
                         this.page = "suitability-score";
                     },
                     error => {
                         console.log(error);
+                        this.loading = false;
                         this.message = error.error.messages;
                         $('#message').modal({
                             backdrop: 'static',
@@ -367,11 +379,13 @@ export class SuitabilityComponent implements OnInit{
     }
 
     summitriskprofile() {
+        this.loading = true;
         this.profileserice.submiteditriskprofile()
             .pipe(first())
             .subscribe(
                 data => {
                     console.log(data);
+                    this.loading = false;
                     this.resultsubmit = data;
                     $('#otpsuitest').modal({
                         backdrop: 'static',
@@ -381,6 +395,7 @@ export class SuitabilityComponent implements OnInit{
                 },
                 error => {
                     console.log(error);
+                    this.loading = false;
                     this.message = error.error.messages;
                     $('#message').modal({
                         backdrop: 'static',
@@ -393,7 +408,7 @@ export class SuitabilityComponent implements OnInit{
         console.log(this.formotp)
         if (this.formotp.valid) {
             this.isNotValid = false;
-
+            this.loading = true;
             let Params = new HttpParams();
             Params = Params.append('otp', this.formotp.controls.otp.value);
             Params = Params.append('refcode', this.resultsubmit.refcode);
@@ -405,7 +420,7 @@ export class SuitabilityComponent implements OnInit{
                     data => {
                         // this.res = data;
                         console.log('here1');
-
+                        this.loading = false;
                         console.log(data);
                         this.show = false;
                         $('#otpsuitest').modal('toggle');
@@ -421,6 +436,7 @@ export class SuitabilityComponent implements OnInit{
                     error => {
                         console.log('here2');
                         console.log(error);
+                        this.loading = false;
                         this.message = error.error.messages;
                     });
 
@@ -450,14 +466,16 @@ export class SuitabilityComponent implements OnInit{
         };
     }
     requestotp() {
-
+        this.loading = true;
         this.basedataservice.requestotp()
             .subscribe((data) => {
                 console.log(data);
                 this.resultsubmit = data;
+                this.loading = false;
             },
                 (error) => {
-                    console.log(error)
+                    console.log(error);
+                    this.loading = false;
                 });
     }
     reset() {

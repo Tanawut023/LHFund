@@ -34,9 +34,9 @@
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block pb-3">
-            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
+            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink" class="selectpicker" data-live-search="true">
               <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
-                }}
+                }} <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container>
               </option>
             </select>
           </div>
@@ -49,7 +49,9 @@
 
         <div class="col-md-3">
           <p>{{ 'CONTENT.report-date' | translate }}</p>
-          <span class="txt-middle">{{ dateformat }}</span>
+          <!-- <span class="txt-middle">{{ dateformat }}</span> -->
+          <ng-container *ngIf="lang == 'th' "><span class="txt-middle">{{ dateformat }}</span></ng-container>
+          <ng-container *ngIf="lang == 'en' "><span class="txt-middle">{{ dateformatEng }}</span></ng-container>
         </div>
 
       </div>
@@ -76,39 +78,53 @@
               <tr>
 
                 <th>
-                  วันและเวลา
-                  <br/>ที่ทำรายการ
+                  <!-- วันและเวลา
+                  <br/>ที่ทำรายการ -->
+                  {{ 'TABLE.or-date-time' | translate }}
                 </th>
                 <th>
-                  รายการ
+                  <!-- รายการ -->
+                  {{ 'NAVBAR.type' | translate }}
                 </th>
                 <th>
-                  หักบัญชีธนาคาร
+                  <!-- หักบัญชีธนาคาร -->
+                  {{ 'CONTENT.payment-method' | translate }}
                 </th>
                 <th>
-                  กองทุน
-                  <br/> ปลายทาง
+                  <!-- กองทุน
+                  <br/> ปลายทาง -->
+                  {{ 'CONTENT.switching-to' | translate }}
                 </th>
                 <th>
-                  เงื่อนไข
+                  <!-- เงื่อนไข -->
+                  {{ 'CONTENT.condition' | translate }}
                 </th>
                 <th>
-                  จำนวน
-                  <br/> (บาท)
+                  <!-- จำนวน
+                  <br/> (บาท) -->
+                  {{ 'CONTENT.bath' | translate }} (THB)
                 </th>
                 <th>
-                  ระยะเวลา
+                  <!-- ระยะเวลา -->
+                  {{ 'CONTENT.duration' | translate }}
                 </th>
                 <!-- <th>
                   แก้ไข
                 </th> -->
                 <th>
-                  ยกเลิก
+                  <!-- ยกเลิก -->
+                  {{ 'BUTTON.cancel' | translate }}
                 </th>
 
               </tr>
             </thead>
-            <tbody *ngFor="let type of standingorder?.standingorderlist; let i = index">
+            <tbody>
+              <tr *ngIf="nolist">
+                <td colspan="11" class="text-center">
+                  <p>ไม่พบรายการดังกล่าว</p>
+                </td>
+              </tr>
+              <ng-container *ngFor="let type of standingorder?.standingorderlist; let i = index">
               <tr class="line">
                 <td colspan="10">
                   <ng-container *ngIf="lang == 'th' ">{{ type.FundTypeName }}</ng-container>
@@ -136,7 +152,7 @@
                     &nbsp;
                   </td>
                   <td class="text-center">
-                    รายเดือน ทุกๆวันที่ ({{list.StandingOrderDayNo}})
+                    {{ 'CONTENT.monthly' | translate }} {{ 'CONTENT.every-day' | translate }} ({{list.StandingOrderDayNo}})
                   </td>
                   <td class="txt-right">
                     {{list.StandingOrderAmount | tofix}}
@@ -156,7 +172,7 @@
                   </td>
                 </tr>
               </ng-container>
-
+            </ng-container>
             </tbody>
           </table>
         </div>
@@ -189,7 +205,7 @@
     <div class="modal-content">
       <div class="modal-header warning">
 
-        <h4 class="modal-title warning">คุณต้องการลบรายการที่เลือกหรือไม่</h4>
+        <h4 class="modal-title warning">{{ 'Modal.delete' | translate }}</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <h4 class="modal-title warning">X</h4>
         </button>
@@ -197,11 +213,11 @@
       <div class="modal-body" id="content-scroll-1">
         <div class="row mt-3">
           <div class="col-md-6 col-6">
-            <p>เลขที่ผู้ถือหน่วยลงทุน</p>
-            <span>{{ userselect.UnitholderNo }}</span>
+            <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
+            <span>{{ userselect.UnitholderNo }} <ng-container *ngIf="userselect.AgentCode">({{userselect.AgentCode }})</ng-container></span>
           </div>
           <div class="col-md-6 col-6">
-            <p>ชื่อผู้ถือหน่วยลงทุน</p>
+            <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
             <span>{{ userselect.FirstName}} {{ userselect.LastName}}</span>
           </div>
 
@@ -211,15 +227,25 @@
                 <tbody>
                   <tr>
                     <td class="text-left">
-                      วันที่ทำรายการ
+                      <!-- วันที่ทำรายการ -->
+                      {{ 'TABLE.or-date-time' | translate }}
                     </td>
                     <td class="text-left content">
                       {{deletedOrder?.StandingOrderDate | datethai}}, {{deletedOrder?.StandingOrderDate | time}}
                     </td>
                   </tr>
+                  <!-- <tr>
+                    <td class="text-left">
+                      หักบัญชีธนาคาร
+                    </td>
+                    <td class="text-left content">
+                        {{deletedGroup?.StandingOrderDate | datethai}}
+                    </td>
+                  </tr> -->
                   <tr>
                     <td class="text-left">
-                      กองทุน
+                      <!-- กองทุน -->
+                      {{ 'TABLE.fund' | translate }}
                     </td>
                     <td class="text-left content">
                       <ng-container *ngIf="lang == 'th' ">{{ deletedGroup?.FundName }}</ng-container>
@@ -228,23 +254,25 @@
                   </tr>
                   <tr>
                     <td class="text-left">
-                      บาท (THB)
+                      {{ 'CONTENT.amount2' | translate }}
                     </td>
                     <td class="text-left content">
-                      <ng-container *ngIf="deletedOrder">{{deletedOrder?.StandingOrderAmount | tofix}}</ng-container>
+                      <ng-container *ngIf="deletedOrder">{{deletedOrder?.StandingOrderAmount | tofix}} {{ 'CONTENT.bath' | translate }}</ng-container>
                     </td>
                   </tr>
                   <tr>
                     <td class="text-left">
-                      เงื่อนไข
+                      <!-- เงื่อนไข -->
+                      {{ 'CONTENT.condition' | translate }}
                     </td>
                     <td class="text-left content">
-                      รายเดือน ทุกๆวันที่ ({{deletedOrder?.StandingOrderDayNo}})
+                      {{ 'CONTENT.monthly' | translate }} {{ 'CONTENT.every-day' | translate }} ({{deletedOrder?.StandingOrderDayNo}})
                     </td>
                   </tr>
                   <tr>
                     <td class="text-left">
-                      ระยะเวลา
+                      <!-- ระยะเวลา -->
+                      {{ 'CONTENT.duration' | translate }}
                     </td>
                     <td class="text-left content">
                       {{deletedOrder?.StandingOrderEffectiveDate | datethai}} - {{deletedOrder?.ExpiryDate | datethai}}
@@ -261,7 +289,8 @@
           <div class="row justify-content-center">
             <div class="col-md-6 col-6 col-sm-6">
               <button class="btn-med btn-cancel" (click)="deleteorder()">
-                ลบรายการนี้
+                <!-- ลบรายการนี้ -->
+                {{ 'BUTTON.delete' | translate }}
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
 
               </button>
@@ -275,12 +304,11 @@
   </div>
   <!-- /.modal -->
 </div>
-
 <div class="modal fade modal-custom" tabindex="-1" role="dialog" id="message" style="z-index: 9999;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">คำเตือน</h4>
+        <h4 class="modal-title">{{ 'Modal.notifications' | translate }}</h4>
       </div>
       <div class="modal-body" id="content-scroll-1">
         <h3>{{ message }}</h3>
@@ -289,7 +317,7 @@
         <div class="row justify-content-end">
           <div class="col-sm-6">
             <button class="btn-med btn-primary" data-dismiss="modal">
-              <p style="margin-top: 7px;">ตกลง
+              <p style="margin-top: 7px;">{{ 'BUTTON.ok' | translate }}
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </p>
             </button>

@@ -20,6 +20,7 @@ export class CertificateLtfComponent implements OnInit {
     years;
     loading: boolean;
     ltffilelist: any;
+    nolist: boolean = false;
 
     constructor(
         private basedataservice: BaseApplicationDataService,
@@ -48,6 +49,9 @@ export class CertificateLtfComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
+                    setTimeout(() => {
+                        $('.selectpicker').selectpicker('refresh');
+                    }, 100);
                     this.userall = data;
                     this.unitholderno = this.userall.unitholderlist[0];
                     this.userselect = this.userall.unitholderlist[0];
@@ -63,6 +67,9 @@ export class CertificateLtfComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
+                    setTimeout(() => {
+                        $('.selectpicker').selectpicker('refresh');
+                    }, 100);
                     console.log(data);
                     this.yearlist = data['yearlist'];
                     this.years = this.yearlist[0];
@@ -73,7 +80,7 @@ export class CertificateLtfComponent implements OnInit {
                 });
     }
     OnSubmit() {
-
+        this.nolist = false;
         this.loading = true;
         var user;
         user = {
@@ -90,6 +97,11 @@ export class CertificateLtfComponent implements OnInit {
                     console.log(data);
                     this.ltffilelist = data;
                     this.loading = false;
+                    if(this.ltffilelist.filenamelist.length == 0){
+                        this.nolist = true;
+                        console.log('notlist');
+                        
+                      }
                 },
                 error => {
                     console.log(error)

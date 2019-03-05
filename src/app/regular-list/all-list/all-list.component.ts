@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { BaseApplicationDataService } from '../../service/base-application-data.service';
 import { StandingorderService } from '../../service/standingorder.service'
 import { first } from 'rxjs/operators';
-import { datethai } from '../../Share/dateformat';
+import { datethai, dateeng } from '../../Share/dateformat';
 import { HttpParams } from '@angular/common/http';
 import { LanguageService } from '../../service/language.service';
 import { Observable } from 'rxjs';
+import { OrderService } from '../../service/order.service';
 declare var $: any;
 @Component({
   selector: 'app-all-list',
@@ -17,15 +18,18 @@ export class AllListComponent implements OnInit {
   userselect: any = {};
   unitholderno: any = "init";
   dateformat = datethai;
+  dateformatEng = dateeng;
   standingorder;
   deletedOrder: any;
   deletedGroup: any;
   message: any;
   lang: Observable<string>;
+  nolist: boolean;
 
   constructor(
     private basedataservice: BaseApplicationDataService,
     private standingorderservice: StandingorderService,
+    private orderservice: OrderService,
     private langservice: LanguageService
 
   ) { }
@@ -53,10 +57,13 @@ export class AllListComponent implements OnInit {
   }
 
   getSelectListUnitholder() {
-    this.basedataservice.getSelectListUnitholder()
+    this.orderservice.getSelectListUnitholder()
       .pipe(first())
       .subscribe(
         data => {
+          setTimeout(() => {
+            $('.selectpicker').selectpicker('refresh');
+        }, 100);
           this.userall = data;
           this.unitholderno = this.userall.unitholderlist[0];
           this.userselect = this.userall.unitholderlist[0];
@@ -74,7 +81,7 @@ export class AllListComponent implements OnInit {
         });
   }
   getstnadingorder() {
-
+    this.nolist = false;
     let params = new HttpParams().set('unitholderid', this.userselect.UnitholderId);
 
     this.standingorderservice.getstnadingorder(params)
@@ -83,10 +90,13 @@ export class AllListComponent implements OnInit {
         data => {
           console.log(data);
           this.standingorder = data;
-
+          if(!this.standingorder.standingorderlist){
+            this.nolist = true;
+          }
         },
         error => {
           console.log(error)
+          this.nolist = false;
           this.message = error.error.messages;
           $('#message').modal({
             backdrop: 'static',

@@ -27,9 +27,9 @@
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
-            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno">
+            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno" class="selectpicker" data-live-search="true">
               <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
-                }}</option>
+                }} <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container></option>
             </select>
           </div>
         </div>
@@ -63,14 +63,14 @@
               </div>
               <div class="col-md-6">
                 <div class="select-wrapper inline-block">
-                  <select [(ngModel)]="years" name="years" id="years">
+                  <select [(ngModel)]="years" name="years" id="years" class="selectpicker">
                     <option [ngValue]="years" *ngFor="let years of yearlist; let i = index">{{ years | yearthai
                       }}</option>
                   </select>
                 </div>
               </div>
               <div class="col-md-4 col-6 offset-6 offset-md-0">
-                <button class="btn-med btn-primary" [disabled]="loading" (click)="OnSubmit()">
+                <button class="btn-med btn-primary btn" [disabled]="loading" (click)="OnSubmit()">
                   {{ 'BUTTON.ok' | translate }}
                   <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </button>
@@ -107,13 +107,16 @@
                 </a>
               </div>
               <div class="col-md-2 col-3">
-                <button class="btn-sm btn-download width50 " [disabled]="loading" (click)="download(i)">
+                <button class="btn-sm btn-download width50 btn" [disabled]="loading" (click)="download(i)">
                   <p>Download</p>
                   <img src="/assets/Images/icons/ico-download-white.png">
                 </button>
               </div>
             </div>
           </li>
+          <div class="col-md-12 mt-5 text-center" *ngIf="nolist">
+              <p>ไม่พบรายการดังกล่าว</p>
+            </div>
 
         </ul>
         <div class="clearfix"></div>
@@ -126,7 +129,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">ดาวน์โหลดล้มเหลว</h4>
+        <h4 class="modal-title">{{ 'BUTTON.ok' | translate }}</h4>
       </div>
       <div class="modal-body" id="content-scroll-1">
         <h3>ไฟล์ไม่พร้อมใช้งาน</h3>
@@ -135,7 +138,7 @@
         <div class="row justify-content-end">
           <div class="col-sm-6">
             <button class="btn-med btn-primary" data-dismiss="modal">
-              <p style="margin-top: 7px;">ตกลง
+              <p style="margin-top: 7px;">{{ 'BUTTON.ok' | translate }}
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </p>
             </button>
@@ -149,7 +152,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">แจ้งเตือน</h4>
+        <h4 class="modal-title">{{ 'Modal.notifications' | translate }}</h4>
       </div>
       <div class="modal-body" id="content-scroll-1">
         <h3>ไม่พบหนังสือรับรองฯ LTF</h3>
@@ -158,7 +161,7 @@
         <div class="row justify-content-end">
           <div class="col-sm-6">
             <button class="btn-med btn-primary" data-dismiss="modal">
-              <p style="margin-top: 7px;">ตกลง
+              <p style="margin-top: 7px;">{{ 'BUTTON.ok' | translate }}
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </p>
             </button>

@@ -7,6 +7,7 @@ import { FormGroup, FormBuilder, Validators, FormControl, ValidatorFn, AbstractC
 import { getDate, boostrapdatepicker } from '../../Share/dateformat';
 import { Observable } from 'rxjs';
 import { LanguageService } from '../../service/language.service';
+import { OrderService } from '../../service/order.service';
 declare var $: any;
 
 export class customValidationService {
@@ -64,6 +65,9 @@ export class RegularPurchaseComponent implements OnInit {
     IsEdit: boolean = false;
     lang: Observable<string>;
     dateless: boolean = false;
+    loading = false;
+    userdetail: any;
+
     get cpwd() {
         return this.formsubstanding.get('amount');
     }
@@ -72,6 +76,7 @@ export class RegularPurchaseComponent implements OnInit {
         private basedataservice: BaseApplicationDataService,
         private standingorderservice: StandingorderService,
         private fb: FormBuilder,
+        private orderservice: OrderService,
         private langservice: LanguageService
     ) { }
 
@@ -83,7 +88,7 @@ export class RegularPurchaseComponent implements OnInit {
         $('#mutual-tab-menu').find('li').removeClass('current');
         $('#mutual-tab-menu').find('li#menu1').addClass('current');
 
-        this.langservice.listen().subscribe((m:any) => {
+        this.langservice.listen().subscribe((m: any) => {
             console.log(m);
             this.lang = m;
         })
@@ -104,6 +109,8 @@ export class RegularPurchaseComponent implements OnInit {
         var d = new Date();
         this.minDate = { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate() };
         // this.datepick = { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate() };
+
+        this.userdetail = this.basedataservice.getmemberInfo();
     }
     checkpage(page) {
         window.scroll(0, 0);
@@ -186,10 +193,13 @@ export class RegularPurchaseComponent implements OnInit {
     }
 
     getSelectListUnitholder() {
-        this.basedataservice.getSelectListUnitholder()
+        this.orderservice.getSelectListUnitholder()
             .pipe(first())
             .subscribe(
                 data => {
+                    setTimeout(() => {
+                        $('.selectpicker').selectpicker('refresh');
+                    }, 100);
                     this.userall = data;
                     this.unitholderno = this.userall.unitholderlist[0];
                     this.userselect = this.userall.unitholderlist[0];
@@ -211,7 +221,13 @@ export class RegularPurchaseComponent implements OnInit {
                 data => {
                     console.log(data);
                     this.banklist = data['data'];
-                    this.Bank = this.banklist.bankaccountlist[0].BankName;
+                    if (this.banklist.bankaccountlist[0]) {
+                        this.Bank = this.banklist.bankaccountlist[0].BankName + " (" + this.banklist.bankaccountlist[0].BankAccountNo + ")";
+                    }
+                    // else if (this.banklist.bankaccountlist.length == 0) {
+                    //     this.Bank = "ไม่พบบัญชีธนาคาร";
+                    // }
+
                     // setTimeout(() => {
                     //     this.formsubstanding.controls['bank'].setValue(this.banklist.bankaccountlist[0].BankName, { onlySelf: true });
                     // }, 100);
@@ -230,6 +246,9 @@ export class RegularPurchaseComponent implements OnInit {
                 data => {
                     console.log(data);
                     this.fundlist = data;
+                    setTimeout(() => {
+                        $('.selectpicker').selectpicker('refresh');
+                    }, 100);
                 },
                 error => {
                     console.log(error)
@@ -243,21 +262,45 @@ export class RegularPurchaseComponent implements OnInit {
         this.Isprotect = false;
         this.dateless = false;
 
+
         if (this.formsubstanding.valid) {
-            var st = new Date(this.formsubstanding.controls.datestart.value.year,(this.formsubstanding.controls.datestart.value.month - 1),this.formsubstanding.controls.datestart.value.day).getTime(); // 1379392680000
-            var ed = new Date(this.formsubstanding.controls.dateend.value.year,(this.formsubstanding.controls.dateend.value.month - 1),this.formsubstanding.controls.dateend.value.day).getTime();
-            
-            console.log(st, ed);
-            
-            if(st > ed){
-                console.log('less more');
-                this.dateless = true;
-                return;
-            }else {
-                console.log('motto');
-                this.checkexpireandlevel();
+            if (this.userselect.RiskLevelExpire == true) {
+                console.log('expire');
+
+                $('#expiremodal').modal({
+                    backdrop: 'static',
+                    keyboard: false,
+                    show: true
+                });
+            } else if (!this.banklist.bankaccountlist[0] && this.userdetail.MemberType != 'Agent') {
+                this.message = 'ติดต่อเจ้าหน้าที่การตลาด เบอร์ติดต่อ 02-286-3484 หรือ 02-679-2155 เพื่อดำเนินขอเปิดบัญชี ATS';
+
+                setTimeout(() => {
+                    $('#message').modal({
+                        backdrop: 'static',
+                        keyboard: false,
+                        show: true
+                    });
+                }, 100);
+
+
+            } else {
+                var st = new Date(this.formsubstanding.controls.datestart.value.year, (this.formsubstanding.controls.datestart.value.month - 1), this.formsubstanding.controls.datestart.value.day).getTime(); // 1379392680000
+                var ed = new Date(this.formsubstanding.controls.dateend.value.year, (this.formsubstanding.controls.dateend.value.month - 1), this.formsubstanding.controls.dateend.value.day).getTime();
+
+                console.log(st, ed);
+
+                if (st > ed) {
+                    console.log('less more');
+                    this.dateless = true;
+                    return;
+                } else {
+                    console.log('motto');
+                    this.checkexpireandlevel();
+                }
             }
-            
+
+
         }
         else {
             this.isNotValid = true;
@@ -299,7 +342,7 @@ export class RegularPurchaseComponent implements OnInit {
 
     }
     checkexpireandlevel() {
-
+        this.loading = true;
         const user = {
             UnitHolderID: this.userselect.UnitholderId,
             FundID: this.formsubstanding.controls.fund.value.FundID
@@ -311,14 +354,37 @@ export class RegularPurchaseComponent implements OnInit {
             .subscribe(
                 data => {
                     console.log(data);
+                    this.loading = false;
                     if (data['messages']) {
                         this.message = data['messages'];
                         this.Islevel = true;
+
+                        if (this.Islevel) {
+                            console.log('level');
+                            $('#risklevel').modal({
+                                backdrop: 'static',
+                                keyboard: false,
+                                show: true
+                            });
+                        }
+                        if (this.formsubstanding.controls.fund.value.isFullyHedge == 'N') {
+                            console.log('protect');
+                            this.Isprotect = true;
+                            $('#risklevel').modal({
+                                backdrop: 'static',
+                                keyboard: false,
+                                show: true
+                            });
+                        }
+                    } else {
+                        this.confirm();
                     }
+
 
                 },
                 error => {
                     console.log(error);
+                    this.loading = false;
                     this.message = error.error.messages;
                     $('#message').modal({
                         backdrop: 'static',
@@ -329,24 +395,7 @@ export class RegularPurchaseComponent implements OnInit {
                 });
 
         setTimeout(() => {
-            if (this.Islevel) {
-                console.log('level');
 
-                $('#risklevel').modal({
-                    backdrop: 'static',
-                    keyboard: false,
-                    show: true
-                });
-            }
-            if (this.formsubstanding.controls.fund.value.isFullyHedge == 'N' && this.Islevel) {
-                console.log('protect');
-                this.Isprotect = true;
-                $('#risklevel').modal({
-                    backdrop: 'static',
-                    keyboard: false,
-                    show: true
-                });
-            }
             // if (this.formsubstanding.controls.fund.value.isFullyHedge !== 'N' && !this.Islevel) {
             //     console.log('nothing');
             //     this.checkpage('purchase-step1');
@@ -358,36 +407,27 @@ export class RegularPurchaseComponent implements OnInit {
     }
     confirm() {
 
-        if (this.userselect.RiskLevelExpire == true) {
-            console.log('expire');
+        this.loading = true;
+        this.isNotValid = false;
+        var user;
 
-            $('#expiremodal').modal({
-                backdrop: 'static',
-                keyboard: false,
-                show: true
-            });
-        } else if (!this.banklist.bankaccountlist[0]) {
-            this.message = 'ติดต่อเจ้าหน้าที่การตลาด เบอร์ติดต่อ 02-286-3484 หรือ 02-679-2155 เพื่อดำเนินขอเปิดบัญชี ATS';
-
-            setTimeout(() => {
-                $('#message').modal({
-                    backdrop: 'static',
-                    keyboard: false,
-                    show: true
-                });
-            }, 100);
-
-
-        }
-
-        else {
-            this.isNotValid = false;
-            var user;
-
-            this.datestart = this.formsubstanding.controls.datestart.value.year + "-" + this.formsubstanding.controls.datestart.value.month + "-" + this.formsubstanding.controls.datestart.value.day;
-            this.datestart = boostrapdatepicker(this.datestart);
-            this.dateend = this.formsubstanding.controls.dateend.value.year + "-" + this.formsubstanding.controls.dateend.value.month + "-" + this.formsubstanding.controls.dateend.value.day;
-            this.dateend = boostrapdatepicker(this.dateend);
+        this.datestart = this.formsubstanding.controls.datestart.value.year + "-" + this.formsubstanding.controls.datestart.value.month + "-" + this.formsubstanding.controls.datestart.value.day;
+        this.datestart = boostrapdatepicker(this.datestart);
+        this.dateend = this.formsubstanding.controls.dateend.value.year + "-" + this.formsubstanding.controls.dateend.value.month + "-" + this.formsubstanding.controls.dateend.value.day;
+        this.dateend = boostrapdatepicker(this.dateend);
+        if (this.userdetail.MemberType == 'Agent' && this.banklist == "") {
+            user = {
+                StandingOrderDate: getDate(),
+                StandingUnitHolderID: this.userselect.UnitholderId,
+                StandingOrderFundID: this.formsubstanding.controls.fund.value.FundID,
+                StandingOrderTxType: "Subscription",
+                StandingOrderAmount: this.formsubstanding.controls.amount.value,
+                StandingOrderPeriod: "Month",
+                StandingOrderDayNo: this.formsubstanding.controls.day.value,
+                ExpiryDate: this.dateend,
+                StandingOrderEffectiveDate: this.datestart
+            }
+        } else {
             user = {
                 StandingOrderDate: getDate(),
                 StandingUnitHolderID: this.userselect.UnitholderId,
@@ -400,30 +440,42 @@ export class RegularPurchaseComponent implements OnInit {
                 StandingOrderEffectiveDate: this.datestart,
                 IDCardNo: this.banklist.bankaccountlist[0].BankAccountID
             }
+        }
 
 
-            console.log(user);
-            this.standingorderservice.submitstandingorder(user)
-                .pipe(first())
-                .subscribe(
-                    data => {
-                        console.log(data);
-                        this.resultsubmit = data;
-                        this.reset();
-                        // this.checkpage('regular-purchase-step1');
-                        // this.checkexpireandlevel();
-                    },
-                    error => {
-                        console.log(error);
-                        this.message = error.error.messages;
+
+        console.log(user);
+        this.standingorderservice.submitstandingorder(user)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    console.log(data);
+                    this.resultsubmit = data;
+                    this.message = "ทำรายการสำเร็จ";
+                    this.loading = false;
+                    setTimeout(() => {
                         $('#message').modal({
                             backdrop: 'static',
                             keyboard: false,
                             show: true
                         });
-
+                    }, 100);
+                    this.reset();
+                    // this.checkpage('regular-purchase-step1');
+                    // this.checkexpireandlevel();
+                },
+                error => {
+                    console.log(error);
+                    this.loading = false;
+                    this.message = error.error.messages;
+                    $('#message').modal({
+                        backdrop: 'static',
+                        keyboard: false,
+                        show: true
                     });
-        }
+
+                });
+
     }
     getstnadingorder() {
         this.nolist = false;
@@ -435,7 +487,10 @@ export class RegularPurchaseComponent implements OnInit {
                 data => {
                     console.log(data);
                     this.standingorder = data;
-                    this.nolist = true;
+                    if (!this.standingorder.standingorderlist) {
+                        this.nolist = true;
+                    }
+
 
                 },
                 error => {

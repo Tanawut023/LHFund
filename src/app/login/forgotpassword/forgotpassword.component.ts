@@ -24,6 +24,7 @@ export class ForgotpasswordComponent implements OnInit {
   langen: boolean;
   User: any = {}
   message: any;
+  loading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -66,7 +67,7 @@ export class ForgotpasswordComponent implements OnInit {
     console.log(this.formforgot)
     if (this.formforgot.valid) {
       this.isNotValid = false;
-
+      this.loading = true;
       const user = {
         Email: this.formforgot.controls.email.value,
         IDCardNo: this.formforgot.controls.IDcard.value
@@ -77,6 +78,7 @@ export class ForgotpasswordComponent implements OnInit {
           data => {
             console.log(data)
             this.User = data;
+            this.loading = false;
 
             $('#reset').modal({
               backdrop: 'static',
@@ -88,6 +90,7 @@ export class ForgotpasswordComponent implements OnInit {
           error => {
             console.log(error);
             this.message = error.error.messages;
+            this.loading = false;
             setTimeout(() => {
               $('#message').modal({
                 backdrop: 'static',

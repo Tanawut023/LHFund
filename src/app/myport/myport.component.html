@@ -48,7 +48,7 @@
                                                 </a>
                                             </li> -->
                                                 <li class="ico-yt">
-                                                    <a title="youtube">
+                                                    <a title="print">
                                                         <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
                                                     </a>
                                                 </li>
@@ -58,10 +58,10 @@
                                         <div class="col-sm-6 col-md-3">
                                             <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
                                             <div class="select-wrapper inline-block pb-3">
-                                                <select id="unitholderno" name="unitholderno" (change)="onChange($event.target.value)">
-                                                    <option [value]="0" selected *ngIf="allunit">แสดงทุกบัญชีผู้ถือหน่วย</option>
+                                                <select id="unitholderno" name="unitholderno" (change)="onChange($event.target.value)" class="selectpicker" data-live-search="true">
+                                                    <option [value]="0" selected *ngIf="allunit">{{ 'CONTENT.all-unitholder' | translate }}</option>
                                                     <option *ngFor="let unitholder of userall.unitholderlist; let i = index" [value]="unitholder.UnitholderId">{{
-                                                        unitholder.UnitholderNo }}</option>
+                                                        unitholder.UnitholderNo }} <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container></option>
                                                     <!-- <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index"  (change)="onChange(i)">{{ unitholder.UnitholderNo }}</option> -->
                                                 </select>
                                             </div>
@@ -75,7 +75,9 @@
                                         <div class="col-sm-6 col-md-3">
 
                                             <p>{{ 'CONTENT.report-date' | translate }}</p>
-                                            <span class="txt-middle">{{ dateformat }}</span>
+                                            <!-- <span class="txt-middle">{{ dateformat }}</span> -->
+                                            <ng-container *ngIf="lang == 'th' "><span class="txt-middle">{{ dateformat }}</span></ng-container>
+                                            <ng-container *ngIf="lang == 'en' "><span class="txt-middle">{{ dateformatEng }}</span></ng-container>
                                         </div>
 
                                     </div>
@@ -135,11 +137,16 @@
                                                             <th>
                                                                 {{ 'TABLE.nav-unit' | translate }}
                                                             </th>
+                                                            <th>
+                                                                {{ 'TABLE.cost' | translate }}
+                                                            </th>
                                                             <th class="bg-primary">
-                                                                Current Amount <br/>(Bath)
+                                                                {{ 'TABLE.balance-amount' | translate }}<br/>{{ 'TABLE.bath'
+                                                                | translate }}
                                                             </th>
                                                             <th class="bg-blue">
-                                                                Unrealize<br/>(Gain/Loss) (บาท)
+                                                                {{ 'TABLE.unrealize' | translate }}<br/>{{ 'TABLE.bath' |
+                                                                translate }}
                                                             </th>
                                                         </tr>
                                                     </thead>
@@ -160,16 +167,21 @@
                                                                 &nbsp;
                                                             </td>
                                                             <td class="txt-right">
-                                                                {{group.BalanceAmountTotal | tofix}}
+                                                                {{group.CostTotal | tofix}}
                                                             </td>
                                                             <td class="txt-right">
+                                                                {{group.BalanceAmountTotal | tofix}}
+                                                            </td>
+                                                            <!-- [ngClass]="group.BalanceAmountTotal > group.CostTotal ? 'color-primary' : 'color-red' -->
+                                                            <td class="txt-right" [ngClass]="{'color-primary': group.BalanceAmountTotal > group.CostTotal, 'color-red' :group.BalanceAmountTotal < group.CostTotal}">
                                                                 {{group.GainLossTotal | tofix}}
                                                             </td>
                                                         </tr>
                                                         <tr *ngFor="let list of group.HoldingBalanceDetail" class="bgforlhfund">
                                                             <td>
                                                                 <ng-container *ngIf="lang == 'th' ">- {{list.FundName}} ({{list.FundCode}})</ng-container>
-                                                                <ng-container *ngIf="lang == 'en' ">- {{list.FundNameEng}} ({{list.FundCode}})</ng-container>
+                                                                <ng-container *ngIf="lang == 'en' ">- {{list.FundNameEng}}
+                                                                    ({{list.FundCode}})</ng-container>
 
                                                             </td>
                                                             <td class="txt-right">
@@ -182,10 +194,14 @@
                                                                 {{list.NAV | tofix4}}
                                                             </td>
                                                             <td class="txt-right">
-                                                                {{list.BalanceAmount | tofix}}
+                                                                {{list.Cost | tofix}}
                                                             </td>
                                                             <td class="txt-right">
-                                                                &nbsp;
+                                                                {{list.BalanceAmount | tofix}}
+                                                            </td>
+                                                            <!-- [ngClass]="list.BalanceAmount > list.Cost ? 'color-primary' : 'color-red'"                                                             -->
+                                                            <td class="txt-right" [ngClass]="{'color-primary': list.BalanceAmount > list.Cost, 'color-red' :list.BalanceAmount < list.Cost}">
+                                                                {{list.GainLoss | tofix}}
                                                             </td>
                                                         </tr>
                                                     </tbody>

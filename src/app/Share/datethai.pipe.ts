@@ -35,6 +35,22 @@ export class DateThaiDM implements PipeTransform {
   }
 }
 
+@Pipe({ name: 'dateengDM' })
+export class DateEngDM implements PipeTransform {
+  transform(value: any): any {
+    var date = new Date(value);
+    var thday = new Array ("Sunday","Monday",
+    "Tuesday","Wednesday","Thursday","Friday","Saturday"); 
+    var thmonth = new Array ("January","February","March ",
+    "April","May","June", "July","August","September",
+    "October","November","December");  
+    // datethai ="วัน" + thday[now.getDay()]+ "ที่ "+ now.getDate()+ " " + thmonth[now.getMonth()]+ " " + (0+now.getFullYear()+543);
+    var dateeng = date.getDate() + " " + thmonth[date.getMonth()] + " " + (0 + date.getFullYear());
+
+    return dateeng;
+  }
+}
+
 @Pipe({ name: 'expiresdatethai' })
 export class ExpiresDateThai implements PipeTransform {
   transform(value: any): any {

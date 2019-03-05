@@ -34,6 +34,7 @@ export class ChangepasswordComponent implements OnInit {
   res: any = {};
   formotp: FormGroup;
   message: any;
+  loading = false;
 
   get cpwd() {
     return this.formchangepass.get('confirmpassword');
@@ -68,6 +69,9 @@ export class ChangepasswordComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          setTimeout(() => {
+            $('.selectpicker').selectpicker('refresh');
+        }, 100);
           this.userall = data;
           this.unitholderno = this.userall.unitholderlist[0];
           this.userselect = this.userall.unitholderlist[0];
@@ -112,11 +116,14 @@ export class ChangepasswordComponent implements OnInit {
       ]
     })
   }
+  resetotp(){
+    this.formotp.reset();
+  }
   onSubmit() {
     console.log(this.formchangepass)
     if (this.formchangepass.valid) {
       this.isNotValid = false;
-
+      this.loading = true;
       const user = {
         CurrentPassword: this.formchangepass.controls.currentpassword.value,
         NewPassword: this.formchangepass.controls.newpassword.value,
@@ -128,6 +135,7 @@ export class ChangepasswordComponent implements OnInit {
         .subscribe(
           data => {
             console.log(data)
+            this.loading = false;
             this.res = data;
             $('#otpchangepassword').modal({
               backdrop: 'static',
@@ -138,6 +146,7 @@ export class ChangepasswordComponent implements OnInit {
           },
           error => {
             console.log(error)
+            this.loading = false;
             this.message = error.error.messages;
             $('#message').modal({
               backdrop: 'static',
@@ -160,7 +169,7 @@ export class ChangepasswordComponent implements OnInit {
     if (this.formotp.valid) {
       this.isNotValid = false;
       console.log('test')
-
+      this.loading = true;
       let Params = new HttpParams();
       Params = Params.append('otp', this.formotp.controls.otp.value);
       Params = Params.append('refcode', this.res.refcode);
@@ -178,6 +187,7 @@ export class ChangepasswordComponent implements OnInit {
           data => {
             console.log(data)
             this.res = data;
+            this.loading = false;
             $('#otpchangepassword').modal('toggle');
             this.message = "เปลี่ยนรหัสผ่านสำเร็จ";
             $('#message').modal({
@@ -188,6 +198,7 @@ export class ChangepasswordComponent implements OnInit {
           },
           error => {
             console.log(error)
+            this.loading = false;
             this.message = error.error.messages;
           });
 
@@ -199,6 +210,7 @@ export class ChangepasswordComponent implements OnInit {
   }
   reset(){
     this.message = "";
+    this.createFormValidate();
   }
 
   validateAllFormFields(formGroup: FormGroup) {
@@ -243,15 +255,16 @@ export class ChangepasswordComponent implements OnInit {
   }
 
   requestotp() {
-
+    this.loading = true;
     this.basedataservice.requestotp()
       .subscribe((data) => {
         console.log(data);
         this.res = data;
-
+        this.loading = false;
       },
         (error) => {
-          console.log(error)
+          console.log(error);
+          this.loading = false;
         });
   }
   print() {

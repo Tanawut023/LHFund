@@ -4,6 +4,9 @@ import { BaseApplicationDataService } from '../../service/base-application-data.
 import { RmfLtfService } from '../../service/rmf-ltf.service'
 import { first } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { LanguageService } from '../../service/language.service';
+declare var $: any;
 @Component({
   selector: 'app-conclusion',
   templateUrl: './conclusion.component.html',
@@ -20,10 +23,14 @@ export class ConclusionComponent implements OnInit {
   balancermf: number = 0;
   rmflist: any[];
   Year;
+  nolist: boolean = false;
+  lang: Observable<string>;
+  loading = false;
 
   constructor(
     private basedataservice: BaseApplicationDataService,
-    private rmfltfservice: RmfLtfService
+    private rmfltfservice: RmfLtfService,
+    private langservice: LanguageService
   ) { }
 
   ngOnInit() {
@@ -43,6 +50,11 @@ export class ConclusionComponent implements OnInit {
     console.log(this.Year);
 
     this.years = d.getFullYear();
+
+    this.langservice.listen().subscribe((m: any) => {
+      console.log(m);
+      this.lang = m;
+    })
   }
   onChange() {
 
@@ -58,6 +70,9 @@ export class ConclusionComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          setTimeout(() => {
+            $('.selectpicker').selectpicker('refresh');
+        }, 100);
           this.userall = data;
           this.unitholderno = this.userall.unitholderlist[0];
           this.userselect = this.userall.unitholderlist[0];
@@ -68,7 +83,8 @@ export class ConclusionComponent implements OnInit {
         });
   }
   Onclick() {
-
+    this.loading = true;
+    this.nolist = false;
     const user = {
       UnitholderID: this.userselect.UnitholderId,
       Year: this.years
@@ -78,11 +94,18 @@ export class ConclusionComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
+          this.loading = false;
           this.rmfltfannual = data;
+          if(this.rmfltfannual.orderltflist.length == 0 && this.rmfltfannual.orderrmflist.length == 0){
+            this.nolist = true;
+            console.log('notlist');
+            
+          }
           this.format();
         },
         error => {
           console.log(error)
+          this.loading = false;
 
         });
   }
@@ -101,6 +124,7 @@ export class ConclusionComponent implements OnInit {
 
       var nav = 0;
       var unit = 0;
+      var amount = 0;
       var count2 = 0;
       var count = 0;
       SumRows = this.rmfltfannual.orderltflist[i].Order.length;
@@ -112,6 +136,7 @@ export class ConclusionComponent implements OnInit {
         balanceltf += parseFloat(this.rmfltfannual.orderltflist[i].Order[y].AllotedAmount);
         nav += parseFloat(this.rmfltfannual.orderltflist[i].Order[y].AllotedNAV);
         unit += parseFloat(this.rmfltfannual.orderltflist[i].Order[y].AllotedUnit);
+        amount += parseFloat(this.rmfltfannual.orderltflist[i].Order[y].AllotedAmount);
         obj = this.rmfltfannual.orderltflist[i].Order[y];
 
         if (count == 0 || count2 == 0) {
@@ -127,10 +152,12 @@ export class ConclusionComponent implements OnInit {
         if ((y + 1) == SumRows || y == 9) {
           obj.nav = nav;
           obj.unit = unit;
+          obj.amount = amount;
 
 
           unit = 0;
           nav = 0;
+          amount = 0;
         }
         ltflist.push(obj);
         console.log(obj);
@@ -150,6 +177,7 @@ export class ConclusionComponent implements OnInit {
 
       var nav = 0;
       var unit = 0;
+      var amount = 0;
       var count2 = 0;
       var count = 0;
       SumRows = this.rmfltfannual.orderrmflist[i].Order.length;
@@ -161,6 +189,7 @@ export class ConclusionComponent implements OnInit {
         balancermf += parseFloat(this.rmfltfannual.orderrmflist[i].Order[y].AllotedAmount);
         nav += parseFloat(this.rmfltfannual.orderrmflist[i].Order[y].AllotedNAV);
         unit += parseFloat(this.rmfltfannual.orderrmflist[i].Order[y].AllotedUnit);
+        amount += parseFloat(this.rmfltfannual.orderrmflist[i].Order[y].AllotedAmount);
         obj = this.rmfltfannual.orderrmflist[i].Order[y];
 
         if (count == 0 || count2 == 0) {
@@ -174,10 +203,12 @@ export class ConclusionComponent implements OnInit {
         if ((y + 1) == SumRows || y== 9) {
           obj.nav = nav;
           obj.unit = unit;
+          obj.amount = amount;
 
 
           unit = 0;
           nav = 0;
+          amount = 0;
         }
         rmflist.push(obj);
         console.log(obj);

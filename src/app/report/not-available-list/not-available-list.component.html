@@ -27,9 +27,9 @@
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block  pb-3">
-            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno">
+            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno" class="selectpicker" data-live-search="true">
               <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
-                }}
+                }} <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container>
               </option>
             </select>
           </div>
@@ -42,7 +42,9 @@
 
         <div class="col-md-3">
           <p>{{ 'CONTENT.report-date' | translate }}</p>
-          <span class="txt-middle">{{ dateformat }}</span>
+          <!-- <span class="txt-middle">{{ dateformat }}</span> -->
+          <ng-container *ngIf="lang == 'th' "><span class="txt-middle">{{ dateformat }}</span></ng-container>
+          <ng-container *ngIf="lang == 'en' "><span class="txt-middle">{{ dateformatEng }}</span></ng-container>
         </div>
 
         <div class="col-sm-6 col-md-12">
@@ -60,47 +62,64 @@
               <thead>
                 <tr>
                   <th>
-                    ช่องทาง
+                    <!-- ช่องทาง -->
+                    {{ 'CONTENT.tran-way' | translate }}
                   </th>
                   <th>
-                    วันและเวลา
-                    <br/>ที่ทำรายการ
+                    <!-- วันและเวลา
+                    <br/>ที่ทำรายการ -->
+                    {{ 'TABLE.or-date-time' | translate }}
                   </th>
                   <th>
-                    วันที่มีผล
+                    <!-- วันที่มีผล -->
+                    {{ 'TABLE.ef-date' | translate }}
                   </th>
                   <th>
-                    ประเภท
+                    <!-- ประเภท -->
+                    {{ 'TABLE.type' | translate }}
                   </th>
                   <th>
-                    รายการ
+                    <!-- รายการ -->
+                    {{ 'TABLE.transaction' | translate }}
                   </th>
                   <th>
-                    บาท (THB)
+                    <!-- บาท (THB) -->
+                    {{ 'CONTENT.bath' | translate }} {{ 'TABLE.bath' | translate }}
                   </th>
                   <th>
-                    หน่วย (Unit)
+                    <!-- หน่วย (Unit) -->
+                    {{ 'CONTENT.unit' | translate }} {{ 'TABLE.unit' | translate }}
                   </th>
                   <th>
-                    กองทุน
-                    <br/>ปลายทาง
+                    <!-- กองทุน
+                    <br/>ปลายทาง -->
+                    {{ 'TABLE.des-fund' | translate }}
                   </th>
 
                 </tr>
               </thead>
               <tbody *ngIf="unallocatedreportlist">
+                <tr class="text-center" *ngIf="nolist">
+                  <td colspan="11">
+                    <p>ไม่พบรายการดังกล่าว</p>
+                  </td>
+                </tr>
                 <ng-container *ngFor="let type of unallocatedreportlist?.unallocatedreport; let i = index">
 
                   <tr class="topic">
                     <th colspan="9">
-                      {{type.FundTypeName}}
+                      <!-- {{type.FundTypeName}} -->
+                      <ng-container *ngIf="lang == 'th' ">{{type.FundTypeName}}</ng-container>
+                      <ng-container *ngIf="lang == 'en' ">{{type.FundTypeNameEng}}</ng-container>
                     </th>
                   </tr>
 
                   <ng-container *ngFor="let group of type.UnallocatedFunds; let y = index">
                     <tr class="line">
                       <td colspan="9">
-                        ({{group.FundCode}}) {{group.FundName}}
+                        <!-- ({{group.FundCode}}) {{group.FundName}} -->
+                        <ng-container *ngIf="lang == 'th' ">({{group.FundCode}}) {{group.FundName}}</ng-container>
+                        <ng-container *ngIf="lang == 'en' ">({{group.FundCode}}) {{group.FundNameEng}}</ng-container>
                       </td>
                     </tr>
 
@@ -123,13 +142,13 @@
                           {{list.TxType | type}}
                         </td>
                         <td class="txt-right">
-                          <ng-container *ngIf="list.OrderUnitType == 'Amount'">
-                            {{list.PaymentAmount | tofix}}
+                          <ng-container *ngIf="list.OrderAmount">
+                            {{list.OrderAmount | tofix}}
                           </ng-container>
                         </td>
                         <td class="txt-right">
-                          <ng-container *ngIf="list.OrderUnitType == 'Unit'">
-                            {{list.PaymentAmount | tofix4}}
+                          <ng-container *ngIf="list.OrderUnit">
+                            {{list.OrderUnit | tofix4}}
                           </ng-container>
                         </td>
                         <td class="txt-right">
@@ -148,9 +167,15 @@
 
         </div>
         <div class="col-md-12 mb-5">
-          <p class="color-red no-margin">ข้อมูลที่แสดงข้างต้นนี้อาจมีการเปลี่ยนแปลงแก้ไขได้ หากเป็นรายการซื้อที่เรียกเก็บเงินไม่ได้
-            หรือรายการผิดพลาดใดๆ ทั้งนี้การเปลี่ยนแปลงแก้ไขจะเป็นไปตามวิธี และข้อกำหนดที่ระบุไว้ในโครงการจัดการกองทุนที่ท่านลงทุนรายงานนี้แสดงรายการที่ท่านทำผ่านระบบ
-            @ccess ที่ยังไม่มีผลเท่านั้น</p>
+          <ng-container *ngIf="lang == 'th' ">
+            <p class="color-red no-margin">ข้อมูลที่แสดงข้างต้นนี้อาจมีการเปลี่ยนแปลงแก้ไขได้ หากเป็นรายการซื้อที่เรียกเก็บเงินไม่ได้
+              หรือรายการผิดพลาดใดๆ ทั้งนี้การเปลี่ยนแปลงแก้ไขจะเป็นไปตามวิธี และข้อกำหนดที่ระบุไว้ในโครงการจัดการกองทุนที่ท่านลงทุนรายงานนี้แสดงรายการที่ท่านทำผ่านระบบ
+              LHFund Online ที่ยังไม่มีผลเท่านั้น</p>
+          </ng-container>
+          <ng-container *ngIf="lang == 'en' ">
+            <p class="color-red no-margin">The information shown above may change. if it is an item that cannot be bill or any wrong item The changes will be in accordance with the methods and requirements specified in prospectus. This report show only transaction LHFUND Online that invalid only.</p>
+          </ng-container>
+          
         </div>
         <div class="col-md-12">
           <div class="row justify-content-center">

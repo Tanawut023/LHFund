@@ -29,12 +29,12 @@
             <p>{{ 'LOGIN.prefix' | translate }}
             </p>
             <div class="input-wrapper">
-              <input id="prefix" name="prefix" maxlength="15" type="text" formControlName="prefix" required>
-              <div class="form-control-feedback" *ngIf="this.form.controls.prefix.errors && ( this.form.controls.prefix.touched)">
+              <input id="prefix" name="prefix" maxlength="15" type="text" formControlName="prefix">
+              <!-- <div class="form-control-feedback" *ngIf="this.form.controls.prefix.errors && ( this.form.controls.prefix.touched)">
                 <p *ngIf="this.form.controls.prefix.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
                 <p *ngIf="this.form.controls.prefix.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
 
-              </div>
+              </div> -->
             </div>
             <!-- <div class="select-wrapper inline-block">
                     <select name="ddlLink" id="ddlLink" required>
@@ -50,8 +50,8 @@
             <div class="input-wrapper">
               <input id="firstname" name="firstname" maxlength="50" type="text" formControlName="firstname" required>
               <div class="form-control-feedback" *ngIf="this.form.controls.firstname.errors && ( this.form.controls.firstname.touched)">
-                <p *ngIf="this.form.controls.firstname.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                <p *ngIf="this.form.controls.firstname.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
+                <p *ngIf="this.form.controls.firstname.errors.required">{{ 'Validation.required' | translate }}</p>
+                <p *ngIf="this.form.controls.firstname.errors.pattern">{{ 'Validation.incorrect' | translate }}</p>
                 <p *ngIf="checkFirstname">รูปแบบของข้อมูลไม่ถูกต้อง</p>
               </div>
             </div>
@@ -63,8 +63,8 @@
             <div class="input-wrapper ">
               <input id="lastname" name="lastname" maxlength="120" type="text" formControlName="lastname" required>
               <div class="form-control-feedback" *ngIf="this.form.controls.lastname.errors && ( this.form.controls.lastname.touched)">
-                <p *ngIf="this.form.controls.lastname.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                <p *ngIf="this.form.controls.lastname.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
+                <p *ngIf="this.form.controls.lastname.errors.required">{{ 'Validation.required' | translate }}</p>
+                <p *ngIf="this.form.controls.lastname.errors.pattern">{{ 'Validation.incorrect' | translate }}</p>
 
               </div>
             </div>
@@ -78,7 +78,7 @@
             <div class="input-wrapper ">
               <input id="IDcard" name="IDcard" maxlength="13" type="text" formControlName="IDcard" required>
               <div class="form-control-feedback" *ngIf="this.form.controls.IDcard.errors && ( this.form.controls.IDcard.touched)">
-                <p *ngIf="this.form.controls.IDcard.errors.required || this.form.controls.IDcard.errors?.minlength">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                <p *ngIf="this.form.controls.IDcard.errors.required || this.form.controls.IDcard.errors?.minlength">{{ 'Validation.required' | translate }}</p>
                 <!-- <p *ngIf="this.form.controls.IDcard.errors.pattern">ข้อมูลไม่ถูกต้อง</p> -->
               </div>
             </div>
@@ -89,8 +89,8 @@
             <div class="input-wrapper ">
               <input id="tel" name="tel" maxlength="10" type="text" formControlName="tel" required (keypress)="numberOnly($event)">
               <div class="form-control-feedback" *ngIf="this.form.controls.tel.errors && ( this.form.controls.tel.touched)">
-                <p *ngIf="this.form.controls.tel.errors.required || this.form.controls.tel.errors?.minlength">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                <p *ngIf="this.form.controls.tel.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
+                <p *ngIf="this.form.controls.tel.errors.required || this.form.controls.tel.errors?.minlength">{{ 'Validation.required' | translate }}</p>
+                <p *ngIf="this.form.controls.tel.errors.pattern">{{ 'Validation.incorrect' | translate }}</p>
                 <!-- <p *ngIf="this.form.controls.tel.errors?.minlength">ข้อมูลไม่ครบ</p>																							 -->
               </div>
             </div>
@@ -104,8 +104,8 @@
             <div class="input-wrapper ">
               <input id="email" name="email" maxlength="100" type="text" formControlName="email" required>
               <div class="form-control-feedback" *ngIf="this.form.controls.email.errors && ( this.form.controls.email.touched)">
-                <p *ngIf="this.form.controls.email.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                <p *ngIf="this.form.controls.email.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
+                <p *ngIf="this.form.controls.email.errors.required">{{ 'Validation.required' | translate }}</p>
+                <p *ngIf="this.form.controls.email.errors.pattern">{{ 'Validation.incorrect' | translate }}</p>
               </div>
             </div>
           </div>
@@ -114,7 +114,7 @@
               formControlName="recaptcha">
             </ngx-recaptcha2>
             <div class="form-control-feedback" *ngIf="this.form.controls.recaptcha.errors && ( this.form.controls.recaptcha.touched)">
-              <p *ngIf="this.form.controls.recaptcha.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+              <p *ngIf="this.form.controls.recaptcha.errors.required">{{ 'Validation.required' | translate }}</p>
             </div>
           </div>
         </div>
@@ -133,7 +133,7 @@
             <div class="btn-wrapper-left">
               <div class="row">
                 <div class="col-xl-6 col-12">
-                  <button class="btn-med btn-back-login" (click)="navigate('')">
+                  <button class="btn-med btn-back-login" type="button" (click)="navigate('')">
                     <p>
                       {{ 'BUTTON.back' | translate }}
                       <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -148,7 +148,7 @@
             <div class="btn-wrapper-right">
               <div class="row justify-content-end">
                 <div class="col-md-12">
-                  <button class="btn-med btn-confirm-login" (click)="checkpage('signup2')">
+                  <button class="btn-med btn-confirm-login btn" type="submit" (click)="checkpage('signup2')" [disabled]="loading">
                     <p>{{ 'BUTTON.next' | translate }}
                       <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </p>
@@ -199,8 +199,8 @@
                 <div class="input-wrapper">
                   <input id="username" name="username" maxlength="15" type="text" formControlName="username">
                   <div class="form-control-feedback" *ngIf="this.formstep2.controls.username.errors && (this.formstep2.controls.username.touched)">
-                    <p *ngIf="this.formstep2.controls.username.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                    <p *ngIf="this.formstep2.controls.username.errors.pattern">อย่างน้อย 8 ตัวอักษร รวมทั้งตัวเลข</p>
+                    <p *ngIf="this.formstep2.controls.username.errors.required">{{ 'Validation.required' | translate }}</p>
+                    <p *ngIf="this.formstep2.controls.username.errors.pattern">{{ 'Validation.username' | translate }}</p>
                     <!-- <p *ngIf="this.formstep2.controls.username.errors?.minlength">อย่างน้อย 8 ตัวอักษร </p> -->
                   </div>
                 </div>
@@ -215,9 +215,8 @@
                 <div class="input-wrapper ">
                   <input id="password" name="password" maxlength="15" type="password" formControlName="password">
                   <div class="form-control-feedback" *ngIf="this.formstep2.controls.password.errors && (this.formstep2.controls.password.touched)">
-                    <p *ngIf="this.formstep2.controls.password.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                    <p *ngIf="this.formstep2.controls.password.errors.pattern">รหัสผ่านอย่างน้อย 8 ตัวอักษร ต้องประกอบด้วยข้อมูลต่อไปนี้
-                      ตัวพิมพ์เล็ก พิมพ์ใหญ่ อักษระพิเศษ รวมทั้งตัวเลข </p>
+                    <p *ngIf="this.formstep2.controls.password.errors.required ">{{ 'Validation.required' | translate }}</p>
+                    <p *ngIf="this.formstep2.controls.password.errors.pattern">{{ 'Validation.password' | translate }}</p>
                   </div>
                 </div>
             </div>
@@ -232,11 +231,10 @@
                   <input id="repeatPassword" name="repeatPassword" maxlength="15" type="password" formControlName="repeatPassword">
                   <!-- <span *ngIf="cpwd.hasError('invalid')"> Invalid Password </span> -->
                   <div class="form-control-feedback" *ngIf="this.formstep2.controls.repeatPassword.errors && (this.formstep2.controls.repeatPassword.touched)">
-                    <p *ngIf="this.formstep2.controls.repeatPassword.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                    <p *ngIf="this.formstep2.controls.repeatPassword.errors.pattern">รหัสผ่านอย่างน้อย 8 ตัวอักษร ต้องประกอบด้วยข้อมูลต่อไปนี้
-                      ตัวพิมพ์เล็ก พิมพ์ใหญ่ อักษระพิเศษ รวมทั้งตัวเลข </p>
+                    <p *ngIf="this.formstep2.controls.repeatPassword.errors.required">{{ 'Validation.required' | translate }}</p>
+                    <p *ngIf="this.formstep2.controls.repeatPassword.errors.pattern">{{ 'Validation.password' | translate }}</p>
                     <!-- <p *ngIf="this.formstep2.controls.password.value !== this.formstep2.controls.repeatPassword.value">mismatch</p> -->
-                    <p *ngIf="cpwd.hasError('invalid')">รหัสไม่ตรงกัน</p>
+                    <p *ngIf="cpwd.hasError('invalid')">{{ 'Validation.samepassword' | translate }}</p>
 
                   </div>
                 </div>
@@ -256,7 +254,7 @@
         <div class="row">
           <div class="col-md-6">
             <div class="btn-wrapper-left">
-              <button class="btn-med btn-back-login" (click)="checkpage('signup1')">
+              <button class="btn-med btn-back-login" type="button" (click)="checkpage('signup1')">
                 <p>
                   {{ 'BUTTON.back' | translate }}
                   <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -267,7 +265,7 @@
 
           <div class="col-md-6 ">
             <div class="btn-wrapper-left">
-              <button class="btn-med btn-next-login" (click)="checkpage('otp')">
+              <button class="btn-med btn-next-login btn" type="submit" (click)="checkpage('otp')" [disabled]="loading">
                 <p>{{ 'BUTTON.signup' | translate }}
                   <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </p>
@@ -368,7 +366,7 @@
           </div>
           <div class="col-md-5">
             <div class="btn-wrapper">
-              <button class="btn-med btn-blue" (click)="requestotp()">
+              <button class="btn-med btn-blue btn" type="button" (click)="requestotp()" [disabled]="loading">
                 {{ 'BUTTON.otp' | translate }}
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </button>
@@ -385,7 +383,7 @@
             <div class="input-wrapper">
               <input id="otp" name="otp" maxlength="6" type="text" formControlName="otp" (keypress)="numberOnly($event)">
               <div class="form-control-feedback" *ngIf="this.formotp.controls.otp.errors && ( this.formotp.controls.otp.touched)">
-                <p *ngIf="this.formotp.controls.otp.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                <p *ngIf="this.formotp.controls.otp.errors.required">{{ 'Validation.required' | translate }}</p>
 
               </div>
             </div>
@@ -393,7 +391,7 @@
         </div>
         <div class="row pb-4">
           <div class="col-md-12">
-            <p> {{ 'LOGIN.otp-request' | translate }}</p>
+            <p>{{ 'LOGIN.otp-request' | translate }}{{ 'BUTTON.otp' | translate }}{{ 'LOGIN.otp-request2' | translate }}</p>
           </div>
         </div>
 
@@ -402,7 +400,7 @@
             <div class="btn-wrapper-left">
               <div class="row">
                 <div class="col-md-10">
-                  <button class="btn-med btn-cancel" (click)="navigate('')">
+                  <button class="btn-med btn-cancel" type="button" (click)="navigate('')">
                     <p>
                       {{ 'BUTTON.cancel' | translate }}
                       <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -418,7 +416,7 @@
               <div class="row justify-content-end">
                 <div class="col-md-10">
 
-                  <button class="btn-med btn-confirm-login" (click)="checkpage('complete')">
+                  <button class="btn-med btn-confirm-login btn" type="submit" (click)="checkpage('complete')" [disabled]="loading">
                     <p>{{ 'BUTTON.confirm' | translate }}
                       <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </p>
@@ -438,7 +436,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">สมัครสมาชิกล้มเหลว</h4>
+        <h4 class="modal-title">{{ 'Modal.notifications' | translate }}</h4>
       </div>
       <div class="modal-body" id="content-scroll-1">
         <h3>{{ message }}</h3>
@@ -447,7 +445,7 @@
         <div class="row justify-content-end">
           <div class="col-sm-6">
             <button class="btn-med btn-primary" data-dismiss="modal">
-              <p style="margin-top: 7px;">ตกลง
+              <p style="margin-top: 7px;">{{ 'BUTTON.ok' | translate }}
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </p>
             </button>

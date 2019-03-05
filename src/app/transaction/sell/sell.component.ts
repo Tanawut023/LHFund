@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseApplicationDataService } from '../../service/base-application-data.service';
 import { first } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-import { datethai, formatdatethai, getDate, boostrapdatepicker } from '../../Share/dateformat';
+import { datethai, formatdatethai, getDate, boostrapdatepicker, dateeng } from '../../Share/dateformat';
 import { OrderService } from '../../service/order.service'
 import { HttpParams } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { LanguageService } from '../../service/language.service';
+import { Observable } from 'rxjs';
+import { BaseApplicationDataService } from '../../service/base-application-data.service';
 declare var $: any;
 
 
@@ -21,6 +23,7 @@ export class SellComponent implements OnInit {
     userselect: any = {};
     unitholderno: any = "N/A";
     currentdate = datethai;
+    currentdateEng = dateeng;
     unitholderredemption: any = {};
     fundlist: any = 'N/A';
     banklist: any = 'N/A';
@@ -38,14 +41,17 @@ export class SellComponent implements OnInit {
     _originalData: any;
     deletedOrder: any;
     nolist: boolean = false;
-
-
+    resultvalidate;
+    loading = false;
+    lang: Observable<string>;
+    userdetail: any;
 
     constructor(
         private translate: TranslateService,
-        private basedataservice: BaseApplicationDataService,
         private orderservice: OrderService,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private basedataservice: BaseApplicationDataService,
+        private langservice: LanguageService
     ) { }
 
     ngOnInit() {
@@ -58,12 +64,18 @@ export class SellComponent implements OnInit {
         $('#mutual-tab-menu').find('li').removeClass('current');
         $('#mutual-tab-menu').find('li#menu2').addClass('current');
         var d = new Date();
-        var endDate = new Date(d.getFullYear(),d.getMonth(),d.getDate() + 1);
+        var endDate = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
         console.log(endDate);
-        
+
         this.minDate = { year: endDate.getFullYear(), month: endDate.getMonth() + 1, day: endDate.getDate() };
         this.datepick = { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate() };
 
+        this.langservice.listen().subscribe((m: any) => {
+            console.log(m);
+            this.lang = m;
+        })
+
+        this.userdetail = this.basedataservice.getmemberInfo();
 
     }
     checkpage(page) {
@@ -77,11 +89,29 @@ export class SellComponent implements OnInit {
                 this.reset();
                 break;
             case 'sell-step1':
+                if (this.resultvalidate.messages[0] != "") {
+                    $('#warning-ltfrmf').modal('toggle');
+                }
+
                 if (this.formredemption.controls.date.value) {
                     this.date = this.formredemption.controls.date.value.year + "-" + this.formredemption.controls.date.value.month + "-" + this.formredemption.controls.date.value.day;
                     this.date = formatdatethai(this.date);
                 }
                 this.page = "sell-step1";
+
+                if (this.resultsubmit.messages[0]) {
+                    this.message = this.resultsubmit.messages[0];
+
+                    setTimeout(() => {
+                        $('#message').modal({
+                            backdrop: 'static',
+                            keyboard: false,
+                            show: true
+                        });
+                    }, 100);
+
+
+                }
                 break;
             case 'sell-step2':
                 this.page = "sell-step2";
@@ -105,18 +135,21 @@ export class SellComponent implements OnInit {
             if (this.userall.unitholderlist[i].UnitholderId == this.unitholderno.UnitholderId) {
                 this.userselect = this.userall.unitholderlist[i];
                 this.getselectlistfundlistandbankaccount();
+                this.getorderinfolist();
 
             }
         }
     }
 
     getSelectListUnitholder() {
-        this.basedataservice.getSelectListUnitholder()
+        this.orderservice.getSelectListUnitholder()
             .pipe(first())
             .subscribe(
                 data => {
                     console.log(data);
-
+                    setTimeout(() => {
+                        $('.selectpicker').selectpicker('refresh');
+                    }, 100);
                     if (data) {
                         this.userall = data;
                         this.unitholderno = this.userall.unitholderlist[0];
@@ -138,6 +171,9 @@ export class SellComponent implements OnInit {
             .subscribe(
                 data => {
                     console.log(data)
+                    setTimeout(() => {
+                        $('.selectpicker').selectpicker('refresh');
+                    }, 100);
                     if (data) {
                         this.unitholderredemption = data;
                         if (this.unitholderredemption.fundlist) {
@@ -145,6 +181,9 @@ export class SellComponent implements OnInit {
                         }
                         if (this.unitholderredemption.bankaccountlist) {
                             this.banklist = this.unitholderredemption.bankaccountlist[0];
+                        }
+                        else if (this.unitholderredemption.bankaccountlist.length == 0) {
+                            this.banklist = "";
                         }
                         if (this.unitholderredemption.holdingbalance) {
                             this.holdingbalancelist = this.unitholderredemption.holdingbalance[0];
@@ -160,12 +199,6 @@ export class SellComponent implements OnInit {
 
     }
     fundlistonChange() {
-        // this.holdingbalanceselected = this.formredemption.controls.fund.value;
-
-
-
-
-
 
         const user = {
             UnitHolderID: this.userselect.UnitholderId,
@@ -179,11 +212,14 @@ export class SellComponent implements OnInit {
                     console.log(data);
                     this.holdingbalanceselected = data;
 
-                    if (this.formredemption.controls.amount.value && this.page !== "sell-step2") {
-
+                    if (this.page !== "sell-step2") {
+                        setTimeout(() => {
+                            $('.selectpicker').selectpicker('refresh');
+                        }, 100);
                         this.Type = "";
-                        this.formredemption.controls['amount'].setValue("", { onlySelf: true });
-                        this.formredemption.controls['type'].setValue("", { onlySelf: true });
+                        this.formredemption.controls['amount'].reset();
+                        this.formredemption.controls['type'].reset();
+                        this.formredemption.controls['type'].updateValueAndValidity();
                         //     var amount = this.formredemption.controls.amount.value;
                         //     amount = amount.replace(",", "");
                         //     amount = parseFloat(amount);
@@ -260,6 +296,7 @@ export class SellComponent implements OnInit {
             UnitHolderID: this.userselect.UnitholderId,
             TxType: "Redemption"
         }
+        console.log(user);
 
         this.orderservice.getorderinfolist(user)
             .pipe(first())
@@ -399,69 +436,142 @@ export class SellComponent implements OnInit {
     onChangeType() {
         console.log(this.formredemption.controls.type.value);
         this.Type = this.formredemption.controls.type.value;
+        this.formredemption.controls.amount.reset();
+        // if (this.formredemption.controls.amount.value) {
+        //     var amount = this.formredemption.controls.amount.value;
+        //     amount = amount.replace(",", "");
+        //     amount = parseFloat(amount);
+
+
+
+        //     if (this.Type == 'Amount') {
+        //         var tofix: any = amount.toFixed(2);
+        //         if (this.formredemption.controls.fund.value) {
+
+        //             if (amount > this.holdingbalanceselected.availablebalance.AvailableAmount) {
+        //                 var n = parseFloat(this.holdingbalanceselected.availablebalance.AvailableAmount);
+        //                 tofix = n.toFixed(2);
+        //                 tofix = tofix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        //                 this.formredemption.controls['amount'].setValue(tofix, { onlySelf: true });
+        //             } else {
+        //                 this.formredemption.controls['amount'].setValue(tofix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), { onlySelf: true });
+        //             }
+        //         }
+        //         else {
+        //             this.formredemption.controls['amount'].setValue(tofix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), { onlySelf: true });
+        //         }
+
+        //     }
+        //     else if (this.Type == 'Unit') {
+        //         var tofix: any = amount.toFixed(4);
+        //         if (this.formredemption.controls.fund.value) {
+
+        //             if (amount > this.holdingbalanceselected.availablebalance.AvailableUnit) {
+        //                 var n = parseFloat(this.holdingbalanceselected.availablebalance.AvailableUnit);
+        //                 tofix = n.toFixed(4);
+        //                 var parts = tofix.toString().split(".");
+        //                 parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        //                 this.formredemption.controls['amount'].setValue(parts.join("."), { onlySelf: true });
+        //             } else {
+        //                 var parts = tofix.toString().split(".");
+        //                 parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        //                 this.formredemption.controls['amount'].setValue(parts.join("."), { onlySelf: true });
+        //             }
+        //         }
+        //         else {
+        //             var parts = tofix.toString().split(".");
+        //             parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        //             this.formredemption.controls['amount'].setValue(parts.join("."), { onlySelf: true });
+        //         }
+
+        //     }
+        // }
+        if (this.Type == 'All' && this.formredemption.controls.fund.value) {
+            if (this.holdingbalanceselected.availablebalance.AvailableUnit != 0) {
+                var n = parseFloat(this.holdingbalanceselected.availablebalance.AvailableUnit);
+                var tofix = n.toFixed(4);
+                var parts = tofix.toString().split(".");
+                parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                this.formredemption.controls['amount'].setValue(parts.join("."), { onlySelf: true });
+                this.formredemption.controls['amount'].updateValueAndValidity();
+            } else {
+                this.formredemption.controls['amount'].setValue(0, { onlySelf: true });
+                this.formredemption.controls['amount'].updateValueAndValidity();
+            }
+
+        }
+
+
+
+
+
+    }
+
+    onBlurType() {
+        console.log(this.formredemption.controls.type.value);
+        this.Type = this.formredemption.controls.type.value;
         if (this.formredemption.controls.amount.value) {
             var amount = this.formredemption.controls.amount.value;
             amount = amount.replace(",", "");
             amount = parseFloat(amount);
 
-        }
 
-        if (this.Type == 'Amount') {
-            var tofix: any = amount.toFixed(2);
-            if (this.formredemption.controls.fund.value) {
-                if (amount > this.holdingbalanceselected.availablebalance.AvailableAmount) {
-                    var n = parseFloat(this.holdingbalanceselected.availablebalance.AvailableAmount);
-                    tofix = n.toFixed(2);
-                    tofix = tofix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    this.formredemption.controls['amount'].setValue(tofix, { onlySelf: true });
-                } else {
+
+            if (this.Type == 'Amount') {
+                var tofix: any = amount.toFixed(2);
+                if (this.formredemption.controls.fund.value) {
+
+                    if (amount > this.holdingbalanceselected.availablebalance.AvailableAmount) {
+                        var n = parseFloat(this.holdingbalanceselected.availablebalance.AvailableAmount);
+                        tofix = n.toFixed(2);
+                        tofix = tofix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        this.formredemption.controls['amount'].setValue(tofix, { onlySelf: true });
+                    } else {
+                        this.formredemption.controls['amount'].setValue(tofix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), { onlySelf: true });
+                    }
+                }
+                else {
                     this.formredemption.controls['amount'].setValue(tofix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), { onlySelf: true });
                 }
-            }
-            else {
-                this.formredemption.controls['amount'].setValue(tofix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), { onlySelf: true });
-            }
 
-        }
-        else if (this.Type == 'Unit') {
-            var tofix: any = amount.toFixed(4);
-            if (this.formredemption.controls.fund.value) {
-                if (amount > this.holdingbalanceselected.availablebalance.AvailableUnit) {
-                    var n = parseFloat(this.holdingbalanceselected.availablebalance.AvailableUnit);
-                    tofix = n.toFixed(4);
-                    var parts = tofix.toString().split(".");
-                    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    this.formredemption.controls['amount'].setValue(parts.join("."), { onlySelf: true });
-                } else {
+            }
+            else if (this.Type == 'Unit') {
+                var tofix: any = amount.toFixed(4);
+                if (this.formredemption.controls.fund.value) {
+
+                    if (amount > this.holdingbalanceselected.availablebalance.AvailableUnit) {
+                        var n = parseFloat(this.holdingbalanceselected.availablebalance.AvailableUnit);
+                        tofix = n.toFixed(4);
+                        var parts = tofix.toString().split(".");
+                        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        this.formredemption.controls['amount'].setValue(parts.join("."), { onlySelf: true });
+                    } else {
+                        var parts = tofix.toString().split(".");
+                        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        this.formredemption.controls['amount'].setValue(parts.join("."), { onlySelf: true });
+                    }
+                }
+                else {
                     var parts = tofix.toString().split(".");
                     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     this.formredemption.controls['amount'].setValue(parts.join("."), { onlySelf: true });
                 }
-            }
-            else {
-                var parts = tofix.toString().split(".");
-                parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                this.formredemption.controls['amount'].setValue(parts.join("."), { onlySelf: true });
-            }
 
-        } else if (this.Type == 'All') {
-            if (this.holdingbalanceselected.availablebalance.AvailableUnit) {
-                var n = parseFloat(this.holdingbalanceselected.availablebalance.AvailableUnit);
-                tofix = n.toFixed(4);
-                var parts = tofix.toString().split(".");
-                parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                this.formredemption.controls['amount'].setValue(parts.join("."), { onlySelf: true });
             }
-
         }
-        else {
-            if (this.holdingbalanceselected.availablebalance.AvailableUnit) {
+        else if (this.Type == 'All' && this.formredemption.controls.fund.value) {
+            if (this.holdingbalanceselected.availablebalance.AvailableUnit != 0) {
                 var n = parseFloat(this.holdingbalanceselected.availablebalance.AvailableUnit);
                 tofix = n.toFixed(4);
                 var parts = tofix.toString().split(".");
                 parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 this.formredemption.controls['amount'].setValue(parts.join("."), { onlySelf: true });
+                this.formredemption.controls['amount'].updateValueAndValidity();
+            } else {
+                this.formredemption.controls['amount'].setValue(0, { onlySelf: true });
+                this.formredemption.controls['amount'].updateValueAndValidity();
             }
+
         }
 
 
@@ -503,172 +613,321 @@ export class SellComponent implements OnInit {
 
     }
     onSubmited() {
+        this.loading = true;
         console.log(this.formredemption);
 
         if (this.formredemption.controls.amount.valid && this.formredemption.controls.type.valid && this.formredemption.controls.fund.valid) {
             this.isNotValid = false;
-            var user;
-
-            if (this.formredemption.controls.amount.value) {
-                var amount = this.formredemption.controls.amount.value;
-                amount = amount.replace(",", "");
-                amount = parseFloat(amount);
-
-            }
-
-            if (this.formredemption.controls.date.value) {
-                this.date = this.formredemption.controls.date.value.year + "-" + this.formredemption.controls.date.value.month + "-" + this.formredemption.controls.date.value.day;
-                this.date = boostrapdatepicker(this.date);
-
-                if (this.Type == "Amount") {
-                    user = {
-                        UnitHolderID: this.userselect.UnitholderId,
-                        FundID: this.formredemption.controls.fund.value.FundID,
-                        CounterFundID: 0,
-                        TxType: "Redemption",
-                        OrderUnitType: "Amount",
-                        OrderUnit: 0,
-                        OrderBankAccountID: this.banklist.BankAccountID,
-                        OrderAmount: amount,
-                        PaymentMethod: "ATS",
-                        orderdate: this.date
-                    }
-                }
-                else if (this.Type == "Unit") {
-                    user = {
-                        UnitHolderID: this.userselect.UnitholderId,
-                        FundID: this.formredemption.controls.fund.value.FundID,
-                        CounterFundID: 0,
-                        TxType: "Redemption",
-                        OrderUnitType: "Unit",
-                        OrderUnit: amount,
-                        OrderBankAccountID: this.banklist.BankAccountID,
-                        OrderAmount: 0,
-                        PaymentMethod: "ATS",
-                        orderdate: this.date
-                    }
-                }
-                else {
-                    user = {
-                        UnitHolderID: this.userselect.UnitholderId,
-                        FundID: this.formredemption.controls.fund.value.FundID,
-                        CounterFundID: 0,
-                        TxType: "Redemption",
-                        OrderUnitType: "All",
-                        OrderUnit: this.holdingbalanceselected.availablebalance.AvailableUnit,
-                        OrderBankAccountID: this.banklist.BankAccountID,
-                        OrderAmount: 0,
-                        PaymentMethod: "ATS",
-                        orderdate: this.date
-                    }
-                }
-            }
-            else {
-                if (this.Type == "Amount") {
-                    user = {
-                        UnitHolderID: this.userselect.UnitholderId,
-                        FundID: this.formredemption.controls.fund.value.FundID,
-                        CounterFundID: 0,
-                        TxType: "Redemption",
-                        OrderUnitType: "Amount",
-                        OrderUnit: 0,
-                        OrderBankAccountID: this.banklist.BankAccountID,
-                        OrderAmount: amount,
-                        PaymentMethod: "ATS",
-                        orderdate: null
-                        // getDate()
-                    }
-                }
-                else if (this.Type == "Unit") {
-                    user = {
-                        UnitHolderID: this.userselect.UnitholderId,
-                        FundID: this.formredemption.controls.fund.value.FundID,
-                        CounterFundID: 0,
-                        TxType: "Redemption",
-                        OrderUnitType: "Unit",
-                        OrderUnit: amount,
-                        OrderBankAccountID: this.banklist.BankAccountID,
-                        OrderAmount: 0,
-                        PaymentMethod: "ATS",
-                        orderdate: null
-                        // getDate()
-                    }
-                }
-                else {
-                    user = {
-                        UnitHolderID: this.userselect.UnitholderId,
-                        FundID: this.formredemption.controls.fund.value.FundID,
-                        CounterFundID: 0,
-                        TxType: "Redemption",
-                        OrderUnitType: "All",
-                        OrderUnit: this.holdingbalanceselected.availablebalance.AvailableUnit,
-                        OrderBankAccountID: this.banklist.BankAccountID,
-                        OrderAmount: 0,
-                        PaymentMethod: "ATS",
-                        orderdate: null
-                        // getDate()
-                    }
-                }
-            }
-
-
-
-
-            console.log(user);
-            this.orderservice.submitorder(user)
-                .pipe(first())
-                .subscribe(
-                    data => {
-                        console.log(data);
-                        this.resultsubmit = data;
-                        this.checkpage('sell-step1');
-                    },
-                    error => {
-                        console.log(error);
-
-                        this.message = error.error.messages;
-                        $('#message').modal({
-                            backdrop: 'static',
-                            keyboard: false,
-                            show: true
-                        });
-
+            if (!this.unitholderredemption.bankaccountlist[0] && this.userdetail.MemberType != 'Agent') {
+                // this.message = 'ติดต่อเจ้าหน้าที่การตลาด เบอร์ติดต่อ 02-286-3484 หรือ 02-679-2155 เพื่อดำเนินขอเปิดบัญชี ATS';
+                this.loading = false;
+                setTimeout(() => {
+                    $('#message2').modal({
+                        backdrop: 'static',
+                        keyboard: false,
+                        show: true
                     });
+                }, 100);
+
+
+            } else {
+                var user;
+
+                if (this.formredemption.controls.amount.value) {
+                    var amount = this.formredemption.controls.amount.value;
+                    amount = amount.replace(",", "");
+                    amount = parseFloat(amount);
+
+                }
+
+                if (this.formredemption.controls.date.value) {
+                    this.date = this.formredemption.controls.date.value.year + "-" + this.formredemption.controls.date.value.month + "-" + this.formredemption.controls.date.value.day;
+                    this.date = boostrapdatepicker(this.date);
+                    if (this.userdetail.MemberType == 'Agent' && this.banklist == "") {
+                        if (this.Type == "Amount") {
+                            user = {
+                                UnitHolderID: this.userselect.UnitholderId,
+                                FundID: this.formredemption.controls.fund.value.FundID,
+                                CounterFundID: 0,
+                                TxType: "Redemption",
+                                OrderUnitType: "Amount",
+                                OrderUnit: 0,
+                                OrderBankAccountID: null,
+                                OrderAmount: amount,
+                                PaymentMethod: "ATS",
+                                orderdate: this.date
+                            }
+                        }
+                        else if (this.Type == "Unit") {
+                            user = {
+                                UnitHolderID: this.userselect.UnitholderId,
+                                FundID: this.formredemption.controls.fund.value.FundID,
+                                CounterFundID: 0,
+                                TxType: "Redemption",
+                                OrderUnitType: "Unit",
+                                OrderUnit: amount,
+                                OrderBankAccountID: null,
+                                OrderAmount: 0,
+                                PaymentMethod: "ATS",
+                                orderdate: this.date
+                            }
+                        }
+                        else {
+                            user = {
+                                UnitHolderID: this.userselect.UnitholderId,
+                                FundID: this.formredemption.controls.fund.value.FundID,
+                                CounterFundID: 0,
+                                TxType: "Redemption",
+                                OrderUnitType: "All",
+                                OrderUnit: this.holdingbalanceselected.availablebalance.AvailableUnit,
+                                OrderBankAccountID: null,
+                                OrderAmount: 0,
+                                PaymentMethod: "ATS",
+                                orderdate: this.date
+                            }
+                        }
+                    }
+                    else {
+                        if (this.Type == "Amount") {
+                            user = {
+                                UnitHolderID: this.userselect.UnitholderId,
+                                FundID: this.formredemption.controls.fund.value.FundID,
+                                CounterFundID: 0,
+                                TxType: "Redemption",
+                                OrderUnitType: "Amount",
+                                OrderUnit: 0,
+                                OrderBankAccountID: this.banklist.BankAccountID,
+                                OrderAmount: amount,
+                                PaymentMethod: "ATS",
+                                orderdate: this.date
+                            }
+                        }
+                        else if (this.Type == "Unit") {
+                            user = {
+                                UnitHolderID: this.userselect.UnitholderId,
+                                FundID: this.formredemption.controls.fund.value.FundID,
+                                CounterFundID: 0,
+                                TxType: "Redemption",
+                                OrderUnitType: "Unit",
+                                OrderUnit: amount,
+                                OrderBankAccountID: this.banklist.BankAccountID,
+                                OrderAmount: 0,
+                                PaymentMethod: "ATS",
+                                orderdate: this.date
+                            }
+                        }
+                        else {
+                            user = {
+                                UnitHolderID: this.userselect.UnitholderId,
+                                FundID: this.formredemption.controls.fund.value.FundID,
+                                CounterFundID: 0,
+                                TxType: "Redemption",
+                                OrderUnitType: "All",
+                                OrderUnit: this.holdingbalanceselected.availablebalance.AvailableUnit,
+                                OrderBankAccountID: this.banklist.BankAccountID,
+                                OrderAmount: 0,
+                                PaymentMethod: "ATS",
+                                orderdate: this.date
+                            }
+                        }
+                    }
+
+                }
+                else {
+
+                    if (this.userdetail.MemberType == 'Agent' && this.banklist == "") {
+                        if (this.Type == "Amount") {
+                            user = {
+                                UnitHolderID: this.userselect.UnitholderId,
+                                FundID: this.formredemption.controls.fund.value.FundID,
+                                CounterFundID: 0,
+                                TxType: "Redemption",
+                                OrderUnitType: "Amount",
+                                OrderUnit: 0,
+                                OrderBankAccountID: null,
+                                OrderAmount: amount,
+                                PaymentMethod: "ATS",
+                                orderdate: null
+                                // getDate()
+                            }
+                        }
+                        else if (this.Type == "Unit") {
+                            user = {
+                                UnitHolderID: this.userselect.UnitholderId,
+                                FundID: this.formredemption.controls.fund.value.FundID,
+                                CounterFundID: 0,
+                                TxType: "Redemption",
+                                OrderUnitType: "Unit",
+                                OrderUnit: amount,
+                                OrderAmount: 0,
+                                OrderBankAccountID: null,
+                                PaymentMethod: "ATS",
+                                orderdate: null
+                                // getDate()
+                            }
+                        }
+                        else {
+                            user = {
+                                UnitHolderID: this.userselect.UnitholderId,
+                                FundID: this.formredemption.controls.fund.value.FundID,
+                                CounterFundID: 0,
+                                TxType: "Redemption",
+                                OrderUnitType: "All",
+                                OrderUnit: this.holdingbalanceselected.availablebalance.AvailableUnit,
+                                OrderAmount: 0,
+                                OrderBankAccountID: null,
+                                PaymentMethod: "ATS",
+                                orderdate: null
+                                // getDate()
+                            }
+                        }
+                    }
+                    else {
+                        if (this.Type == "Amount") {
+                            user = {
+                                UnitHolderID: this.userselect.UnitholderId,
+                                FundID: this.formredemption.controls.fund.value.FundID,
+                                CounterFundID: 0,
+                                TxType: "Redemption",
+                                OrderUnitType: "Amount",
+                                OrderUnit: 0,
+                                OrderBankAccountID: this.banklist.BankAccountID,
+                                OrderAmount: amount,
+                                PaymentMethod: "ATS",
+                                orderdate: null
+                                // getDate()
+                            }
+                        }
+                        else if (this.Type == "Unit") {
+                            user = {
+                                UnitHolderID: this.userselect.UnitholderId,
+                                FundID: this.formredemption.controls.fund.value.FundID,
+                                CounterFundID: 0,
+                                TxType: "Redemption",
+                                OrderUnitType: "Unit",
+                                OrderUnit: amount,
+                                OrderBankAccountID: this.banklist.BankAccountID,
+                                OrderAmount: 0,
+                                PaymentMethod: "ATS",
+                                orderdate: null
+                                // getDate()
+                            }
+                        }
+                        else {
+                            user = {
+                                UnitHolderID: this.userselect.UnitholderId,
+                                FundID: this.formredemption.controls.fund.value.FundID,
+                                CounterFundID: 0,
+                                TxType: "Redemption",
+                                OrderUnitType: "All",
+                                OrderUnit: this.holdingbalanceselected.availablebalance.AvailableUnit,
+                                OrderBankAccountID: this.banklist.BankAccountID,
+                                OrderAmount: 0,
+                                PaymentMethod: "ATS",
+                                orderdate: null
+                                // getDate()
+                            }
+                        }
+                    }
+
+                }
+
+
+
+
+                console.log(user);
+                this.orderservice.submitorder(user)
+                    .pipe(first())
+                    .subscribe(
+                        data => {
+                            console.log(data);
+                            this.resultsubmit = data;
+                            // this.checkpage('sell-step1');
+                            this.validateorderrmfltf();
+                            this.loading = false;
+                        },
+                        error => {
+                            console.log(error);
+                            this.loading = false;
+                            this.message = error.error.messages;
+                            $('#message').modal({
+                                backdrop: 'static',
+                                keyboard: false,
+                                show: true
+                            });
+
+                        });
+            }
+
         }
         else {
             this.isNotValid = true;
             this.validateAllFormFields(this.formredemption);
+            this.loading = false;
         }
 
     }
-    confirmredemption() {
+    validateorderrmfltf() {
+        this.loading = true;
+        this.orderservice.validateorderrmfltf(this.resultsubmit.data)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    console.log(data);
+                    this.resultvalidate = data;
+                    this.loading = false;
+                    if (this.resultvalidate.messages[0] != "") {
+                        console.log("not null");
+                        this.message = this.resultvalidate.messages[0];
+                        setTimeout(() => {
+                            $('#warning-ltfrmf').modal({
+                                backdrop: 'static',
+                                keyboard: false,
+                                show: true
+                            });
+                        }, 100);
 
-        if (this.resultsubmit.messages[0]) {
-            this.message = this.resultsubmit.messages[0];
 
-            setTimeout(() => {
-                $('#message').modal({
-                    backdrop: 'static',
-                    keyboard: false,
-                    show: true
+                    } else {
+                        this.checkpage("sell-step1");
+                    }
+
+
+                },
+                error => {
+                    console.log(error);
+                    this.message = error.error.messages;
+                    this.loading = false;
+                    $('#message').modal({
+                        backdrop: 'static',
+                        keyboard: false,
+                        show: true
+                    });
+
                 });
-            }, 100);
+    }
 
-
-        }
-
+    confirmredemption() {
+        this.loading = true;
         this.orderservice.confirmorder(this.resultsubmit.data)
             .pipe(first())
             .subscribe(
                 data => {
                     console.log(data);
                     this.checkpage("sell-step2");
+                    this.loading = false;
+                    this.message = 'ทำรายการสำเร็จ';
+                    $('#message').modal({
+                        backdrop: 'static',
+                        keyboard: false,
+                        show: true
+                    });
 
                 },
                 error => {
                     console.log(error);
-
                     this.message = error.error.messages;
+                    this.loading = false;
                     $('#message').modal({
                         backdrop: 'static',
                         keyboard: false,
@@ -697,6 +956,7 @@ export class SellComponent implements OnInit {
         });
     }
     deleteorder() {
+        this.loading = true;
         const order = {
             UnitHolderID: this.deletedOrder.UnitHolderID,
             OrderID: this.deletedOrder.OrderID
@@ -707,15 +967,23 @@ export class SellComponent implements OnInit {
             .subscribe(
                 data => {
                     console.log(data);
+                    this.loading = false;
                     this.getorderinfolist();
                     // this.ordersubscriptionlist = data;
                     $('#delete').modal('toggle');
+                    this.message = 'ลบรายการสำเร็จ';
+                    $('#message').modal({
+                        backdrop: 'static',
+                        keyboard: false,
+                        show: true
+                    });
 
                 },
                 error => {
                     console.log(error);
                     $('#delete').modal('toggle');
                     this.message = error.error.messages;
+                    this.loading = false;
                     $('#message').modal({
                         backdrop: 'static',
                         keyboard: false,
@@ -727,5 +995,8 @@ export class SellComponent implements OnInit {
     print() {
         window.focus();
         window.print();
-      }
+    }
+    resetdate() {
+        this.formredemption.controls['date'].reset();
+    }
 }

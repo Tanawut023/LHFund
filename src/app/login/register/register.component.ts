@@ -41,6 +41,7 @@ export class RegisterComponent implements OnInit {
   customer: Object;
   User: any = {}
   message: any;
+  loading = false;
 
   get cpwd() {
     return this.formstep2.get('repeatPassword');
@@ -92,6 +93,7 @@ export class RegisterComponent implements OnInit {
       case 'otp':
         console.log(this.formstep2)
         if (this.formstep2.valid) {
+          this.loading = true;
           // var refcode = this.User[0]
           let params = new HttpParams().set('refcode', this.User.refcode);
 
@@ -108,11 +110,13 @@ export class RegisterComponent implements OnInit {
               console.log(data);
               this.User = data;
               this.page = "otp";
+              this.loading = false;
 
             },
               (error) => {
                 console.log(error);
                 this.message = error.error.messages;
+                this.loading = false;
                 setTimeout(() => {
                   $('#message').modal({
                     backdrop: 'static',
@@ -131,7 +135,7 @@ export class RegisterComponent implements OnInit {
       case 'complete':
         if (this.formotp.valid) {
           let Params = new HttpParams();
-
+          this.loading = true;
           Params = Params.append('otp', this.formotp.controls.otp.value);
           Params = Params.append('refcode', this.User.refcode);
 
@@ -146,9 +150,11 @@ export class RegisterComponent implements OnInit {
               console.log(data);
               this.toastr.success('', 'Register Success');
               this.navigate('');
+              this.loading = false;
             },
               (error) => {
                 console.log(error);
+                this.loading = false;
                 this.message = error.error.messages;
                 setTimeout(() => {
                   $('#message').modal({
@@ -170,9 +176,7 @@ export class RegisterComponent implements OnInit {
         console.log(this.form)
 
         if (this.form.valid) {
-          // let daylist = await this.authenticationService.validateMember();
-
-
+          this.loading = true;
           this.isNotValid = false;
           var telephone = this.form.controls.tel.value;
           telephone = telephone.slice(1, 10);
@@ -197,9 +201,11 @@ export class RegisterComponent implements OnInit {
               this.User = data;
               console.log(this.User.refcode);
               this.page = "signup2";
+              this.loading = false;
             },
               (error: any) => {
                 console.log(error);
+                this.loading = false;
                 this.message = error.error.messages;
                 setTimeout(() => {
                   $('#message').modal({
@@ -270,8 +276,8 @@ export class RegisterComponent implements OnInit {
       ],
       prefix: [null,
         [
-          Validators.required,
-          Validators.pattern(/^[A-Za-zก-๗]{3,15}$/)
+          // Validators.required,
+          // Validators.pattern(/^[A-Za-zก-๗]{3,15}$/)
         ]
       ],
       recaptcha: [null,
@@ -376,17 +382,19 @@ export class RegisterComponent implements OnInit {
   }
   requestotp() {
     let params = new HttpParams().set('refcode', this.User.refcode);
-
+    this.loading = true;
     // this.http.post('http://fundchoiceuat.lhfund.co.th/api/member/requestOTP', { params: params })
     this.authenticationService.requestOTP(params)
       .subscribe((data) => {
         console.log(data);
         this.User = data;
+        this.loading = false;
         // this.page = "otp";
 
       },
         (error) => {
           console.log(error);
+          this.loading = false;
           this.message = error.error.messages;
           $('#message').modal({
             backdrop: 'static',

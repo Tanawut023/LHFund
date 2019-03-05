@@ -64,7 +64,7 @@ input[type="text"],input[type="password"]{
 } */
 
 .modal-body {
-    height: 380px;
+    height: 300px;
 }
 
 
@@ -77,4 +77,12 @@ input[type="text"],input[type="password"]{
 .modal-dialog {
         max-width: none ;
         // margin-top: 82px;
+}
+
+.copyright, .copyright-footer {
+    a {
+        font-size: $text-x-small;
+        line-height: $text-content;
+        color: $color-primary;
+    }
 }

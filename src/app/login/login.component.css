@@ -22,6 +22,30 @@
 #header .bottom-menu-wrapper {
   display: none !important; }
 
+#main-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0;
+  background-image: url("/assets/Images/banners/banner-login.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; }
+  @media screen and (max-width: 767px) {
+    #main-wrapper {
+      background-image: url("/assets/Images/banners/banner-login-m.png"); } }
 
 .footer_sub {
   display: none !important; }
@@ -59,7 +83,7 @@ input[type="text"], input[type="password"] {
     background: white !important;
 } */
 .modal-body {
-  height: 380px; }
+  height: 300px; }
 
 @media screen and (min-width: 767px) {
   .modal-body {
@@ -67,3 +91,8 @@ input[type="text"], input[type="password"] {
 
 .modal-dialog {
   max-width: none; }
+
+.copyright a, .copyright-footer a {
+  font-size: 24px;
+  line-height: 22px;
+  color: #1CA59B; }

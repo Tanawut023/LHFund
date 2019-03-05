@@ -89,6 +89,10 @@ if it's not present, don't show loader */
     color: $color-red !important;
     // font-size: 22px;
 }
+.color-primary{
+    color: $color-primary !important;
+    // font-size: 22px;
+}
 .bg-little-blue{
     background-color: rgba(0, 103, 137,0.9) !important;
 }
@@ -334,6 +338,10 @@ input[type=reset] {
         &:active{
             border: none;
             outline: none;
+        }
+
+        &:disabled{
+            background-color: $color-primary;
         }
     }
 

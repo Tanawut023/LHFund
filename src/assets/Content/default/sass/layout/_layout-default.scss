@@ -138,6 +138,42 @@
         width: 100%;
         margin-bottom: 10px;    
     }
+    .selectpicker{
+        display: block !important;
+    }
+    .bootstrap-select{
+        margin-bottom: 0 !important;
+        .dropdown-item{
+
+
+            &.active{
+                span {
+                        color: #FFF !important;
+                    }
+            }
+        }
+        
+    }
+    .dropdown-menu{
+        min-width: 200px !important;
+        width: 100% !important;
+        
+        .dropdown-item{
+            white-space: normal !important;
+        }
+    }
+
+    .btn {
+        border-radius: 1px !important;
+        line-height: 30px !important;
+        padding: 0px 10px 0px 10px !important;
+
+        &.btn-light {
+            border-color: #ccc !important;
+            background-color: $color-little-gray !important;
+            color: $color-primary !important;
+        }
+    }
 }
 
 .title-wrapper {
@@ -638,7 +674,7 @@
                             }
                         }
                         p{
-                            display: unset
+                            display: inline-block;
                         }      
                     }
                 }
@@ -647,7 +683,7 @@
             @media screen and (max-width: 999px) {
                 // display: none;
             }
-            @media screen and (max-width: 999px) {
+            @media screen and (max-width: 1090px) {
                 p{
                     display: none !important;
                     margin-bottom: 0px;
@@ -2552,6 +2588,7 @@
     .modal-dialog {
         width: 50%;
         margin-top: 82px;
+        // max-width: none;
 
         .modal-content {
             border-radius: 0px;
@@ -2559,6 +2596,8 @@
             .modal-header {
                 border-bottom: 0;
                 overflow: hidden;
+                padding-top: 15px;
+                padding-bottom: 15px;
 
                 &.warning{
                     background-color: #FF4A4A;
@@ -2660,7 +2699,9 @@
                 border-top: 1px solid transparent;
                 text-align: right;
                 display: block;
-
+                padding-top: 15px;
+                padding-bottom: 15px;
+                
                 p {
                     font-size: $text-content;
                     line-height: $text-small;

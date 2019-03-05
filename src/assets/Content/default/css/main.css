@@ -1641,6 +1641,9 @@ if it's not present, don't show loader */
 .color-red {
   color: #FF4A4A !important; }
 
+.color-primary {
+  color: #1CA59B !important; }
+
 .bg-little-blue {
   background-color: rgba(0, 103, 137, 0.9) !important; }
 
@@ -1878,6 +1881,13 @@ input[type=reset] {
     * button.btn-lg.btn-primary:active {
       border: none;
       outline: none; }
+    .btn-sm.btn-primary:disabled,
+    .btn-med.btn-primary:disabled,
+    .btn-lg.btn-primary:disabled,
+    * button.btn-sm.btn-primary:disabled,
+    * button.btn-med.btn-primary:disabled,
+    * button.btn-lg.btn-primary:disabled {
+      background-color: #1CA59B; }
   .btn-sm.btn-confirm-login,
   .btn-med.btn-confirm-login,
   .btn-lg.btn-confirm-login,
@@ -2899,8 +2909,11 @@ input[type=reset] {
       margin: 0 auto; }
     #header .bottom-menu-wrapper .logo {
       margin: 0 20px; }
-      #header .bottom-menu-wrapper .logo img {
-        height: 80px; }
+      #header .bottom-menu-wrapper .logo a {
+        display: block;
+        padding: 10px 0; }
+        #header .bottom-menu-wrapper .logo a img {
+          max-width: 100%; }
     #header .bottom-menu-wrapper .main-nav {
       position: relative;
       display: block;
@@ -2957,8 +2970,8 @@ input[type=reset] {
             #header .bottom-menu-wrapper .main-nav .main-nav-list ul li a {
               display: block;
               height: 100%;
-              padding: 30px 30px 0 30px;
-              font-size: 26px;
+              padding: 30px 20px 0 20px;
+              font-size: 24px;
               line-height: 24px;
               text-transform: capitalize;
               color: #1CA59B;
@@ -3185,7 +3198,7 @@ input[type=reset] {
     position: absolute;
     text-decoration: none;
     text-transform: uppercase;
-    top: 40px;
+    top: 15px;
     right: 10px;
     transition: right 0.5s ease-in-out 0s;
     -webkit-transition: right 0.5s ease-in-out 0s;
@@ -3434,6 +3447,14 @@ input[type=reset] {
         width: 100%;
         height: auto;
         z-index: 99; }
+      @media all and (-ms-high-contrast: none) {
+        #header.header-login .bottom-menu-wrapper {
+          /*IE10*/
+          /*IE11*/ }
+          #header.header-login .bottom-menu-wrapper .main-nav {
+            height: 85px; }
+          #header.header-login .bottom-menu-wrapper ::-ms-backdrop, #header.header-login .bottom-menu-wrapper .main-nav {
+            height: 85px; } }
 
 #header-Menu {
   height: 82px;
@@ -4005,6 +4026,25 @@ input[type=reset] {
     vertical-align: top;
     width: 100%;
     margin-bottom: 10px; }
+  .select-wrapper .selectpicker {
+    display: block !important; }
+  .select-wrapper .bootstrap-select {
+    margin-bottom: 0 !important; }
+    .select-wrapper .bootstrap-select .dropdown-item.active span {
+      color: #FFF !important; }
+  .select-wrapper .dropdown-menu {
+    min-width: 200px !important;
+    width: 100% !important; }
+    .select-wrapper .dropdown-menu .dropdown-item {
+      white-space: normal !important; }
+  .select-wrapper .btn {
+    border-radius: 1px !important;
+    line-height: 30px !important;
+    padding: 0px 10px 0px 10px !important; }
+    .select-wrapper .btn.btn-light {
+      border-color: #ccc !important;
+      background-color: #f5f5f5 !important;
+      color: #1CA59B !important; }
 
 .title-wrapper {
   display: block;
@@ -4326,8 +4366,8 @@ input[type=reset] {
                 .page-content-wrapper .sidenav-left .vertical-menu-wrapper ul li .btn-download img {
                   margin-left: 0px; } }
             .page-content-wrapper .sidenav-left .vertical-menu-wrapper ul li .btn-download p {
-              display: unset; }
-      @media screen and (max-width: 999px) {
+              display: inline-block; }
+      @media screen and (max-width: 1090px) {
         .page-content-wrapper .sidenav-left .vertical-menu-wrapper p {
           display: none !important;
           margin-bottom: 0px; } }
@@ -5656,7 +5696,9 @@ input[type=reset] {
       border-radius: 0px; }
       .modal-custom .modal-dialog .modal-content .modal-header {
         border-bottom: 0;
-        overflow: hidden; }
+        overflow: hidden;
+        padding-top: 15px;
+        padding-bottom: 15px; }
         .modal-custom .modal-dialog .modal-content .modal-header.warning {
           background-color: #FF4A4A;
           border-radius: 0px; }
@@ -5719,7 +5761,9 @@ input[type=reset] {
       .modal-custom .modal-dialog .modal-content .modal-footer {
         border-top: 1px solid transparent;
         text-align: right;
-        display: block; }
+        display: block;
+        padding-top: 15px;
+        padding-bottom: 15px; }
         .modal-custom .modal-dialog .modal-content .modal-footer p {
           font-size: 22px;
           line-height: 28px; }
@@ -6246,21 +6290,25 @@ input[type=reset] {
                     }
                 }
             }*/ }
-      .footer .footer_sub .footer_sub--block .copyright {
+      .footer .footer_sub .footer_sub--block .copyright, .footer .footer_sub .footer_sub--block .copyright-footer {
         position: relative;
         text-align: center; }
-        .footer .footer_sub .footer_sub--block .copyright h5 {
+        .footer .footer_sub .footer_sub--block .copyright h5, .footer .footer_sub .footer_sub--block .copyright-footer h5 {
           font-size: 24px;
           line-height: 22px;
           color: #5a5a5a; }
-        .footer .footer_sub .footer_sub--block .copyright span {
+        .footer .footer_sub .footer_sub--block .copyright span, .footer .footer_sub .footer_sub--block .copyright-footer span {
           font-size: 24px;
           line-height: 22px;
           color: #1CA59B; }
-        .footer .footer_sub .footer_sub--block .copyright p {
+        .footer .footer_sub .footer_sub--block .copyright p, .footer .footer_sub .footer_sub--block .copyright-footer p {
           font-size: 20px;
           line-height: 22px;
           color: #5a5a5a; }
+        .footer .footer_sub .footer_sub--block .copyright a, .footer .footer_sub .footer_sub--block .copyright-footer a {
+          font-size: 24px;
+          line-height: 22px;
+          color: #1CA59B; }
       .footer .footer_sub .footer_sub--block .bottom-menu {
         position: relative;
         text-align: right; }

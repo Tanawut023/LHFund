@@ -27,9 +27,9 @@
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
-            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno">
+            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno" class="selectpicker" data-live-search="true">
               <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
-                }}
+                }} <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container>
               </option>
             </select>
           </div>
@@ -54,70 +54,81 @@
         <thead>
           <tr>
             <th>
-              ชื่อกองทุน
+              <!-- ชื่อกองทุน -->
+              {{ 'TABLE.fund' | translate }}
             </th>
             <th>
-              วันที่ซื้อ
+              <!-- วันที่ซื้อ -->
+              {{ 'TABLE.first-date' | translate }}
             </th>
             <th>
-              จำนวนหน่วย
+              <!-- จำนวนหน่วย -->
+              {{ 'TABLE.unit2' | translate }}
             </th>
             <th>
-              วันที่
+              <!-- วันที่ -->
+              {{ 'CONTENT.day' | translate }}
             </th>
             <th>
-              มูลค่าต่อหน่วย
+              <!-- มูลค่าต่อหน่วย -->
+              {{ 'TABLE.nav-unit' | translate }}
             </th>
             <th>
-              มูลค่าหน่วย
+              <!-- มูลค่าหน่วย -->
+              {{ 'TABLE.unit-balance1' | translate }}
             </th>
           </tr>
         </thead>
         <tbody>
+          <tr class="text-center" *ngIf="nolist">
+            <td colspan="11">
+              <p>ไม่พบรายการดังกล่าว</p>
+            </td>
+          </tr>
           <ng-container *ngFor="let orderltflist of ltflist">
             <!-- <tr class="topic">
             <th colspan="11">
               9990244757
             </th>
           </tr> -->
-          <ng-container *ngIf="!orderltflist.islast">
-            <tr class="line" *ngIf="orderltflist.FundNameGroup || orderltflist.FundCodeGroup">
-              <td colspan="6">
-                {{ orderltflist.FundNameGroup }} ({{orderltflist.FundCodeGroup}})
-                <ng-container *ngIf="lang == 'th' ">{{ orderltflist.FundNameGroup }} ({{orderltflist.FundCodeGroup}})</ng-container>
-                <ng-container *ngIf="lang == 'en' ">{{ orderltflist.FundNameEngGroup }} ({{orderltflist.FundCodeGroup}})</ng-container>
-              </td>
-            </tr>
-            <tr>
-              <td class="text-left">
-                &nbsp;
-              </td>
-              <td class="">
-                {{ orderltflist.FirstPurchaseDate | datethai }}
-              </td>
-              <td class="">
-                {{ orderltflist.Unit | tofix4 }}
-              </td>
-              <td class="">
-                {{ orderltflist.BalanceDate | datethai }}
-              </td>
-              <td class="txt-right">
-                {{ orderltflist.NAV | tofix4 }}
-              </td>
-              <td class="txt-right">
-                {{ orderltflist.BalanceAmount | tofix }}
-              </td>
-            </tr>
-          </ng-container>
+            <ng-container *ngIf="!orderltflist.islast">
+              <tr class="line" *ngIf="orderltflist.FundNameGroup || orderltflist.FundCodeGroup">
+                <td colspan="6">
+                  <!-- {{ orderltflist.FundNameGroup }} ({{orderltflist.FundCodeGroup}}) -->
+                  <ng-container *ngIf="lang == 'th' ">{{ orderltflist.FundNameGroup }} ({{orderltflist.FundCodeGroup}})</ng-container>
+                  <ng-container *ngIf="lang == 'en' ">{{ orderltflist.FundNameEngGroup }} ({{orderltflist.FundCodeGroup}})</ng-container>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-left">
+                  &nbsp;
+                </td>
+                <td class="">
+                  {{ orderltflist.FirstPurchaseDate | datethai }}
+                </td>
+                <td class="">
+                  {{ orderltflist.Unit | tofix4 }}
+                </td>
+                <td class="">
+                  {{ orderltflist.BalanceDate | datethai }}
+                </td>
+                <td class="txt-right">
+                  {{ orderltflist.NAV | tofix4 }}
+                </td>
+                <td class="txt-right">
+                  {{ orderltflist.BalanceAmount | tofix }}
+                </td>
+              </tr>
+            </ng-container>
             <tr class="summary" *ngIf="orderltflist.islast">
-              <th class="text-left" >
-                รวม {{orderltflist.FundCode}}
+              <th class="text-left">
+                {{ 'TABLE.total' | translate }} {{orderltflist.FundCode}}
               </th>
               <th class="text-right" colspan="3">
                 &nbsp;
               </th>
               <th class="text-right">
-                {{orderltflist.nav | tofix4 }}
+                <!-- {{orderltflist.nav | tofix4 }} -->
               </th>
               <th class="text-right">
                 {{orderltflist.unit | tofix }}
@@ -127,7 +138,7 @@
           </ng-container>
           <tr class="summary" *ngIf="totalnav || totalunit">
             <th class="text-left custom-label">
-              รวม
+              {{ 'TABLE.total' | translate }}
             </th>
             <th colspan="3" class="custom-label">
               <!-- รวม {{list.FundCode}} -->

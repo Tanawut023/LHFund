@@ -6,6 +6,8 @@
 @import "/assets/Content/default/css/main.css";
 @import "/assets/Content/default/css/content/login.css";
 @import "/assets/Content/default/css/content/myport.css";
+/* @import url(/assets/Content/default/css/print.css) print; */
+/* <link href="../assets/Content/default/css/print.css" rel="stylesheet" media="print" /> */
 
 
 /* @font-face {

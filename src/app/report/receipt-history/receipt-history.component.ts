@@ -6,6 +6,10 @@ import { HttpParams } from '@angular/common/http';
 import { ReportService } from '../../service/report.service'
 import { getDate } from '../../Share/dateformat';
 import { log } from 'util';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { LanguageService } from '../../service/language.service';
+declare var $: any;
 @Component({
   selector: 'app-receipt-history',
   templateUrl: './receipt-history.component.html',
@@ -27,17 +31,30 @@ export class ReceiptHistoryComponent implements OnInit {
   reportlist;
   p: number = 1;
   minDate;
+  form: FormGroup;
+  loading = false;
+  nolist: boolean = false;
+  lang: Observable<string>;
+
   constructor(
     private basedataservice: BaseApplicationDataService,
-    private reportservice: ReportService
+    private reportservice: ReportService,
+    private fb: FormBuilder,
+    private langservice: LanguageService
 
   ) { }
 
   ngOnInit() {
 
+    this.createFormValidate();
     this.getSelectListUnitholder();
     this.getfundtypelist();
-    this.changefundtype();
+
+    this.langservice.listen().subscribe((m: any) => {
+      console.log(m);
+      this.lang = m;
+    })
+
 
     $('#mutual-tab-menu').find('li').removeClass('current');
     $('#mutual-tab-menu').find('li#menu3').addClass('current');
@@ -56,20 +73,51 @@ export class ReceiptHistoryComponent implements OnInit {
       }
     }
   }
+  createFormValidate() {
+    this.form = this.fb.group({
+
+      fundtype: [0],
+      fundname: [0, Validators.required],
+      startDate: [null, Validators.required],
+      endDate: [null, Validators.required]
+
+    })
+  }
+  isFieldNotValid(field: string) {
+    return !this.form.get(field).valid && this.form.get(field).touched
+
+  }
+
+  ValidatorDisplayCss(field: string) {
+    return {
+      'has-danger': this.isFieldNotValid(field)
+    };
+  }
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
+      }
+    })
+  }
   changefundtype() {
-    console.log(this.fundtype);
-
-    var id = this.fundtype;
-
-
+    var id = this.form.controls.fundtype.value;
     let Params = new HttpParams();
     Params = Params.append('fundtypeid', id);
+    Params = Params.append('unitholderid', this.userselect.UnitholderId);
     this.reportservice.changefundtype(Params)
       .pipe(first())
       .subscribe(
         data => {
           console.log(data);
           this.Fundnamelist = data['fundlist'];
+          this.form.controls['fundname'].setValue(0, { onlySelf: true });
+          setTimeout(() => {
+            $('.selectpicker').selectpicker('refresh');
+          }, 100);
         },
         error => {
           console.log(error)
@@ -77,10 +125,10 @@ export class ReceiptHistoryComponent implements OnInit {
         });
   }
   getstartdate() {
-    return this.model.startDate.year + "-" + this.model.startDate.month + "-" + this.model.startDate.day;
+    return this.form.controls.startDate.value.year + "-" + this.form.controls.startDate.value.month + "-" + this.form.controls.startDate.value.day;
   }
   getenddate() {
-    return this.model.endDate.year + "-" + this.model.endDate.month + "-" + this.model.endDate.day;
+    return this.form.controls.endDate.value.year + "-" + this.form.controls.endDate.value.month + "-" + this.form.controls.endDate.value.day;
   }
 
 
@@ -89,16 +137,21 @@ export class ReceiptHistoryComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          setTimeout(() => {
+            $('.selectpicker').selectpicker('refresh');
+          }, 100);
           console.log(data);
           this.userall = data;
           this.unitholderno = this.userall.unitholderlist[0];
           this.userselect = this.userall.unitholderlist[0];
+          this.changefundtype();
         },
         error => {
           console.log(error)
 
         });
   }
+  
 
   getfundtypelist() {
     this.reportservice.getfundtypelist()
@@ -114,68 +167,69 @@ export class ReceiptHistoryComponent implements OnInit {
   }
 
   OnSubmitd() {
+    this.loading = true;
+    this.nolist = false;
     let Params = new HttpParams();
     Params = Params.append('currentpage', "1");
     Params = Params.append('rowperpage', "999");
 
     var user;
-    console.log(this.model);
+    console.log(this.form);
 
-
-    if (this.fundtype == "0" && typeof this.model.startDate == 'undefined') {
-      console.log(this.fundtype);
-      console.log('test');
-      user = {
-        UnitholderID: this.userselect.UnitholderId
-      }
-
-    }
-    else if (this.fundtype !== "0" && typeof this.model.startDate == 'undefined' && typeof this.fundname.FundCode !== 'undefined') {
-      console.log(this.fundtype);
-      console.log('test4');
-      user = {
-        UnitholderID: this.userselect.UnitholderId,
-        FundTypeID: this.fundtype,
-        FundCode: this.fundname.FundCode,
-      }
-
-    }
-    else if (typeof this.model.startDate !== 'undefined' && this.fundtype == "0") {
-      console.log("test3");
-      user = {
-        UnitholderID: this.fundtype,
-        StartXDDate: this.getstartdate(),
-        EndXDDate: this.getenddate()
-      }
-
+    if (this.form.controls.fundtype.value != 0 && this.form.controls.fundname.value == 0) {
+      this.form.controls.fundname.setErrors({ 'invalid': true });
+      this.loading = false;
     } else {
-      console.log('test2');
-      console.log(this.fundname);
+      if (this.form.valid) {
+        this.dividendreport = [];
 
-      user = {
-        UnitholderID: this.userselect.UnitholderId,
-        FundTypeID: this.fundtype,
-        FundCode: this.fundname.FundCode,
-        StartXDDate: this.getstartdate(),
-        EndXDDate: this.getenddate(),
-        TransactionDate: getDate()
+        if (this.form.controls.fundtype.value == 0 && this.form.controls.fundname.value == 0) {
+          user = {
+            UnitholderID: this.userselect.UnitholderId,
+            FundTypeID: 0,
+            FundCode: "",
+            StartXDDate: this.getstartdate(),
+            EndXDDate: this.getenddate(),
+            TransactionDate: getDate()
+          }
+        } else {
+          user = {
+            UnitholderID: this.userselect.UnitholderId,
+            FundTypeID: this.form.controls.fundtype.value,
+            FundCode: this.form.controls.fundname.value.FundCode,
+            StartXDDate: this.getstartdate(),
+            EndXDDate: this.getenddate(),
+            TransactionDate: getDate()
+          }
+        }
+
+
+        console.log(user);
+        this.reportservice.dividendreport(user, Params)
+          .subscribe(
+            data => {
+              console.log(data);
+              this.dividendreport = data;
+              if (this.dividendreport.dividendreport.length == 0) {
+                this.nolist = true;
+                console.log('notlist');
+
+              }
+              this.calulatetable();
+              this.loading = false;
+            },
+            error => {
+              console.log(error)
+              this.loading = false;
+            });
+      } else {
+        this.validateAllFormFields(this.form);
+        this.loading = false;
       }
     }
-    console.log(user);
 
-    // let params = new HttpParams().set('unitholderid', this.userselect.UnitholderId);
 
-    this.reportservice.dividendreport(user, Params)
-      .subscribe(
-        data => {
-          console.log(data);
-          this.dividendreport = data;
-          this.calulatetable();
-        },
-        error => {
-          console.log(error)
 
-        });
 
 
   }
@@ -249,12 +303,13 @@ export class ReceiptHistoryComponent implements OnInit {
     console.log('reset');
 
     this.Fundnamelist = [];
-    this.fundtype = 0;
-    this.fundname = 0;
     this.dividendreport = '';
-    this.model = {};
     this.reportlist = [];
     this.p = 1;
+    this.createFormValidate();
+    this.getfundtypelist();
+    this.changefundtype();
+
   }
   print() {
     window.focus();

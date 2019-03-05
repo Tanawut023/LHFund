@@ -24,13 +24,10 @@
                 </div>
                 <div class="col-md-3">
                     <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
-                    <!-- <p *ngIf="(lang ='th' | async)">th</p>
-                    <p *ngIf="(lang ='en' | async)">th</p> -->
-                    <p>{{lang}}</p>
                     <div class="select-wrapper inline-block">
-                        <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
+                        <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno" class="selectpicker" data-live-search="true">
                             <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{
-                                unitholder.UnitholderNo }}</option>
+                                unitholder.UnitholderNo }} <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container></option>
                         </select>
                     </div>
                 </div>
@@ -87,7 +84,7 @@
                             </a>
                         </li> -->
                         <li class="ico-yt">
-                            <a href="#" title="youtube">
+                            <a href="#" title="print">
                                 <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
                             </a>
                         </li>
@@ -98,9 +95,9 @@
 
                     <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
                     <div class="select-wrapper inline-block">
-                        <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink">
+                        <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno" class="selectpicker" data-live-search="true">
                             <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{
-                                unitholder.UnitholderNo }}</option>
+                                unitholder.UnitholderNo }} <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container></option>
                         </select>
                     </div>
                 </div>
@@ -126,7 +123,9 @@
             <div class="row">
                 <div class="col-md-6 text-left">
                     <p class="no-margin">{{ 'CONTENT.eval-date' | translate }}
-                        <span> {{ dateformat }}</span>
+                        <!-- <span> {{ dateformat }}</span> -->
+                        <ng-container *ngIf="lang == 'th' "><span class="txt-middle">{{ dateformat }}</span></ng-container>
+                        <ng-container *ngIf="lang == 'en' "><span class="txt-middle">{{ dateformatEng }}</span></ng-container>
                     </p>
                 </div>
                 <div class="col-md-6 text-md-right">
@@ -142,9 +141,19 @@
         <form [formGroup]="form">
             <div class="open-account-box">
                 <div class="title-box">
-                    <h3 class="sub-title -main-color">มีคำถามทั้งหมด 11 ข้อ
+                    <!-- <h3 class="sub-title -main-color">มีคำถามทั้งหมด {{countquestion}} ข้อ
+                        <span class="color-red">ให้เลือกคำตอบที่คิดว่าดีที่สุดสำหรับนักลงทุนข้อละ 1 คำตอบ</span>
+                    </h3> -->
+                    <ng-container *ngIf="lang == 'th' ">
+                        <h3 class="sub-title -main-color">มีคำถามทั้งหมด {{countquestion}} ข้อ
                         <span class="color-red">ให้เลือกคำตอบที่คิดว่าดีที่สุดสำหรับนักลงทุนข้อละ 1 คำตอบ</span>
                     </h3>
+                    </ng-container>
+                    <ng-container *ngIf="lang == 'en' ">
+                        <h3 class="sub-title -main-color">There are {{countquestion}} questions
+                        <span class="color-red">you must choose the best answer for each question</span>
+                    </h3>
+                    </ng-container>
                 </div>
                 <div class="wrap-container" formArrayName="question">
                     <div class="wrap-suitability">
@@ -153,7 +162,11 @@
                             <div class="choice-wrap" *ngIf="suitest">
                                 <div class="col-md-12">
                                     <div class="question-wrapper">
-                                        <span class="color-red" *ngIf="y == 10">คำถามข้อ 11 ใช้เป็นข้อมูลเพิ่มเติมเพื่อประกอบการให้คำแนะนำ</span>
+                                        <span class="color-red" *ngIf="y == 10">
+                                                <ng-container *ngIf="lang == 'th' ">คำถามข้อ 11 ใช้เป็นข้อมูลเพิ่มเติมเพื่อประกอบการให้คำแนะนำ</ng-container>
+                                                <ng-container *ngIf="lang == 'en' ">Question 11 is used as additional information to suggestions.</ng-container>
+                                        </span>
+                                        
                                         <br/>
                                         <span *ngIf="lang == 'th' ">{{y+1}}. {{ question.Name }}</span>
                                         <span *ngIf="lang == 'en' ">{{y+1}}. {{ question.NameEng }}</span>
@@ -182,14 +195,14 @@
 
                         <div class="row justify-content-center">
                             <div class="col-md-2 col-6">
-                                <button class="btn-med btn-back-login" (click)="checkpage('over-view')">
+                                <button class="btn-med btn-back-login" type="button" (click)="checkpage('over-view')">
                                     {{ 'BUTTON.back' | translate }}
                                     <i class="fa fa-angle-right" aria-hidden="true"></i>
 
                                 </button>
                             </div>
                             <div class="col-md-2 col-6">
-                                <button class="btn-med btn-primary" (click)="checkpage('suitability-score')">
+                                <button class="btn-med btn-primary btn" type="submit" (click)="checkpage('suitability-score')" [disabled]="loading">
                                     {{ 'BUTTON.cal' | translate }}
                                     <i class="fa fa-angle-right" aria-hidden="true"></i>
 
@@ -237,7 +250,7 @@
 
                             <div class="col-sm-12">
                                 <div class="score-content">
-                                    <h3>คะแนนที่คำนวณได้</h3>
+                                    <h3>{{ 'CONTENT.score' | translate }}</h3>
                                 </div>
                             </div>
 
@@ -249,7 +262,7 @@
 
                             <div class="col-sm-12">
                                 <div class="score-content">
-                                    <span>ผลการประเมินความเสี่ยงในการลงทุน</span>
+                                    <span>{{ 'CONTENT.score-result' | translate }}</span>
                                 </div>
                             </div>
 
@@ -278,7 +291,7 @@
                                 <div class="row">
                                     <div class="col-md-8 col-8 no-padding">
                                         <div class="title-heading bg-little-primary">
-                                            <h3 class="">ระดับความเสี่ยงของกองทุน</h3>
+                                            <h3 class="">{{ 'TABLE.fund-risk' | translate }}</h3>
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-4 no-padding">
@@ -292,7 +305,7 @@
                                 <div class="row">
                                     <div class="col-md-8 col-8 no-padding">
                                         <div class="title-heading bg-little-blue">
-                                            <h3 class="">รับความเสี่ยงเรื่องอัตราแลกเปลี่ยน</h3>
+                                            <h3 class="">{{ 'TABLE.acc-risk' | translate }}</h3>
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-4 no-padding">
@@ -309,7 +322,7 @@
                 <div class="col-sm-12" *ngIf="show">
                     <div class="row mt-3 justify-content-center">
                         <div class="col-md-2 col-6">
-                            <button class="btn-med btn-primary" (click)="summitriskprofile()">
+                            <button class="btn-med btn-primary btn" type="submit" (click)="summitriskprofile()" [disabled]="loading">
                                 {{ 'BUTTON.accept' | translate }}
                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
 
@@ -317,7 +330,7 @@
 
                         </div>
                         <div class="col-md-2 col-6">
-                            <button class="btn-med btn-back-login" (click)="checkpage('suitability-test')">
+                            <button class="btn-med btn-back-login" type="button" (click)="checkpage('suitability-test')">
                                 {{ 'BUTTON.edit' | translate }}
                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
 
@@ -335,20 +348,22 @@
         <div class="row no-margin">
             <div class="col-md-6 no-padding">
                 <h3>
-                    ตัวอย่าง
+                    {{ 'CONTENT.example' | translate }}
                 </h3>
                 <div class="table-responsive">
                     <table class="table table-custom-score">
                         <thead>
                             <tr>
                                 <th>
-                                    คะแนน
+                                    <!-- คะแนน -->
+                                    {{ 'TABLE.score' | translate }}
                                 </th>
                                 <th>
                                     Risk Profile
                                 </th>
                                 <th>
-                                    ระดับความเสี่ยงของกองทุน
+                                    <!-- ระดับความเสี่ยงของกองทุน -->
+                                    {{ 'TABLE.fund-risk' | translate }}
                                 </th>
                             </tr>
                         </thead>
@@ -356,7 +371,7 @@
                             <tr>
                                 <td class="text-left">
                                     <ul>
-                                        <li>ต่ำกว่า 15</li>
+                                        <li>{{ 'TABLE.low' | translate }} 15</li>
                                     </ul>
                                 </td>
                                 <td class="text-left">
@@ -408,7 +423,7 @@
                             <tr>
                                 <td class="text-left">
                                     <ul>
-                                        <li>37 ขึ้นไป</li>
+                                        <li>37 {{ 'TABLE.up' | translate }}</li>
                                     </ul>
                                 </td>
                                 <td class="text-left">
@@ -428,33 +443,40 @@
         <div class="row no-margin">
             <div class="col-md-12 no-padding">
                 <h3>
-                    สัดส่วนการลงทุน
+                    <!-- สัดส่วนการลงทุน -->
+                    {{ 'CONTENT.asset-alloction' | translate }}
                 </h3>
                 <div class="table-responsive">
                     <table class="table table-custom-score">
                         <thead>
                             <tr>
                                 <th>
-                                    ประเภทนักลงทุน
+                                    <!-- ประเภทนักลงทุน -->
+                                    {{ 'TABLE.invetor-type' | translate }}
                                 </th>
                                 <th>
-                                    เงินฝากและ
-                                    <br/>ตราสารหนี้ระยะสั้น
+                                    <!-- เงินฝากและ
+                                    <br/>ตราสารหนี้ระยะสั้น -->
+                                    {{ 'TABLE.deposit' | translate }}
                                 </th>
                                 <th>
-                                    ตราสารหนี้ภาครัฐ
-                                    <br/>ที่มีอายุมากกว่า1ปี
+                                    <!-- ตราสารหนี้ภาครัฐ
+                                    <br/>ที่มีอายุ{{ 'TABLE.more' | translate }}1ปี -->
+                                    {{ 'TABLE.gov-bond' | translate }}
                                 </th>
                                 <th>
-                                    ตราสารหนี้
-                                    <br/>ภาคเอกชน
+                                    <!-- ตราสารหนี้
+                                    <br/>ภาคเอกชน -->
+                                    {{ 'TABLE.pri' | translate }}
                                 </th>
                                 <th>
-                                    ตราสารทุน
+                                    <!-- ตราสารทุน -->
+                                    {{ 'TABLE.equity' | translate }}
                                 </th>
                                 <th>
-                                    การลงทุน
-                                    <br/>ทางเลือก**
+                                    <!-- การลงทุน
+                                    <br/>ทางเลือก** -->
+                                    {{ 'TABLE.alter' | translate }}
                                 </th>
                             </tr>
                         </thead>
@@ -462,116 +484,116 @@
                             <tr>
                                 <td class="text-left">
                                     <ul>
-                                        <li>ระดับ 1</li>
+                                        <li>{{ 'TABLE.level' | translate }} 1</li>
                                     </ul>
                                 </td>
                                 <td class="text-left">
-                                    มากกว่า 60 %
+                                    {{ 'TABLE.more' | translate }} 60 %
                                 </td>
                                 <td class="text-left">
-                                    มากกว่า 60 %
+                                    {{ 'TABLE.more' | translate }} 60 %
                                 </td>
                                 <td class="text-left">
-                                    น้อยกว่า 20 %
+                                    {{ 'TABLE.less' | translate }} 20 %
                                 </td>
                                 <td class="text-left">
-                                    น้อยกว่า 10 %
+                                    {{ 'TABLE.less' | translate }} 10 %
                                 </td>
 
                                 <td class="text-left">
-                                    น้อยกว่า 5 %
+                                    {{ 'TABLE.less' | translate }} 5 %
                                 </td>
                             </tr>
                             <tr>
                                 <td class="text-left">
                                     <ul>
-                                        <li>ระดับ 2</li>
+                                        <li>{{ 'TABLE.level' | translate }} 2</li>
                                     </ul>
                                 </td>
                                 <td class="text-left">
-                                    น้อยกว่า 20 %
+                                    {{ 'TABLE.less' | translate }} 20 %
                                 </td>
                                 <td class="text-left">
-                                    น้อยกว่า 70 %
+                                    {{ 'TABLE.less' | translate }} 70 %
                                 </td>
                                 <td class="text-left">
-                                    น้อยกว่า 70 %
+                                    {{ 'TABLE.less' | translate }} 70 %
                                 </td>
                                 <td class="text-left">
-                                    น้อยกว่า 20 %
+                                    {{ 'TABLE.less' | translate }} 20 %
                                 </td>
 
                                 <td class="text-left">
-                                    น้อยกว่า 10 %
+                                    {{ 'TABLE.less' | translate }} 10 %
                                 </td>
                             </tr>
                             <tr>
                                 <td class="text-left">
                                     <ul>
-                                        <li>ระดับ 3</li>
+                                        <li>{{ 'TABLE.level' | translate }} 3</li>
                                     </ul>
                                 </td>
                                 <td class="text-left">
-                                    น้อยกว่า 10 %
+                                    {{ 'TABLE.less' | translate }} 10 %
                                 </td>
                                 <td class="text-left">
-                                    น้อยกว่า 60 %
+                                    {{ 'TABLE.less' | translate }} 60 %
                                 </td>
                                 <td class="text-left">
-                                    น้อยกว่า 60 %
+                                    {{ 'TABLE.less' | translate }} 60 %
                                 </td>
                                 <td class="text-left">
-                                    น้อยกว่า 30 %
+                                    {{ 'TABLE.less' | translate }} 30 %
                                 </td>
 
                                 <td class="text-left">
-                                    น้อยกว่า 10 %
+                                    {{ 'TABLE.less' | translate }} 10 %
                                 </td>
                             </tr>
                             <tr>
                                 <td class="text-left">
                                     <ul>
-                                        <li>ระดับ 4</li>
+                                        <li>{{ 'TABLE.level' | translate }} 4</li>
                                     </ul>
                                 </td>
                                 <td class="text-left">
-                                    น้อยกว่า 10 %
+                                    {{ 'TABLE.less' | translate }} 10 %
                                 </td>
                                 <td class="text-left">
-                                    น้อยกว่า 40 %
+                                    {{ 'TABLE.less' | translate }} 40 %
                                 </td>
                                 <td class="text-left">
-                                    น้อยกว่า 40 %
+                                    {{ 'TABLE.less' | translate }} 40 %
                                 </td>
                                 <td class="text-left">
-                                    น้อยกว่า 40 %
+                                    {{ 'TABLE.less' | translate }} 40 %
                                 </td>
 
                                 <td class="text-left">
-                                    น้อยกว่า 20 %
+                                    {{ 'TABLE.less' | translate }} 20 %
                                 </td>
                             </tr>
                             <tr>
                                 <td class="text-left">
                                     <ul>
-                                        <li>ระดับ 5</li>
+                                        <li>{{ 'TABLE.level' | translate }} 5</li>
                                     </ul>
                                 </td>
                                 <td class="text-left">
-                                    น้อยกว่า 5 %
+                                    {{ 'TABLE.less' | translate }} 5 %
                                 </td>
                                 <td class="text-left">
-                                    น้อยกว่า 30 %
+                                    {{ 'TABLE.less' | translate }} 30 %
                                 </td>
                                 <td class="text-left">
-                                    น้อยกว่า 30 %
+                                    {{ 'TABLE.less' | translate }} 30 %
                                 </td>
                                 <td class="text-left">
-                                    น้อยกว่า 60 %
+                                    {{ 'TABLE.less' | translate }} 60 %
                                 </td>
 
                                 <td class="text-left">
-                                    น้อยกว่า 30 %
+                                    {{ 'TABLE.less' | translate }} 30 %
                                 </td>
                             </tr>
 
@@ -598,7 +620,7 @@
 <!-- suitability-score -->
 
 <div class="modal fade modal-custom" tabindex="-1" role="dialog" style="z-index: 9999;" id="otpsuitest">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog otp" role="document">
         <div class="modal-content">
             <div class="modal-header">
 
@@ -620,7 +642,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="btn-wrapper" style="margin: 0;">
-                                <button class="btn-med btn-blue" (click)="requestotp()">
+                                <button class="btn-med btn-blue btn" (click)="requestotp()" type="button" [disabled]="loading">
                                     {{ 'BUTTON.otp' | translate }}
                                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                                 </button>
@@ -637,7 +659,7 @@
                             <div class="input-wrapper">
                                 <input class="bg-gray" id="otp" name="otp" maxlength="6" type="text" formControlName="otp" (keypress)="numberOnly($event)">
                                 <div class="form-control-feedback" *ngIf="this.formotp.controls.otp.errors && ( this.formotp.controls.otp.touched)">
-                                    <p *ngIf="this.formotp.controls.otp.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                                    <p *ngIf="this.formotp.controls.otp.errors.required">{{ 'Validation.required' | translate }}</p>
                                     <!-- <p *ngIf="this.form.controls.otp.errors.pattern">ข้อมูลไม่ถูกต้อง</p> -->
 
                                 </div>
@@ -652,19 +674,19 @@
                     </div>
                     <div class="row pb-4">
                         <div class="col-md-12">
-                            <p>{{ 'LOGIN.otp-request' | translate }}</p>
+                            <p>{{ 'LOGIN.otp-request' | translate }}{{ 'BUTTON.otp' | translate }}{{ 'LOGIN.otp-request2' | translate }}</p>
                         </div>
                     </div>
 
                     <div class="row mt-3 justify-content-center">
                         <div class="col-md-4 col-6">
-                            <button class="btn-med btn-primary" (click)="updatesuitest()">
+                            <button class="btn-med btn-primary btn" (click)="updatesuitest()" type="submit" [disabled]="loading">
                                 {{ 'BUTTON.confirm' | translate }}
                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                             </button>
                         </div>
                         <div class="col-md-4 col-6">
-                            <button class="btn-med btn-cancel" data-dismiss="modal">
+                            <button class="btn-med btn-cancel" data-dismiss="modal" type="button" (click)="resetotp()">
                                 {{ 'BUTTON.cancel' | translate }}
                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                             </button>
@@ -684,7 +706,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">แจ้งเตือน</h4>
+                <h4 class="modal-title">{{ 'Modal.notifications' | translate }}</h4>
             </div>
             <div class="modal-body" id="content-scroll-1">
                 <h3>บันทึกคะแนนแบบประเมินความเสี่ยงสำเร็จ</h3>
@@ -693,7 +715,7 @@
                 <div class="row justify-content-end">
                     <div class="col-sm-6">
                         <button class="btn-med btn-primary" data-dismiss="modal">
-                            <p style="margin-top: 7px;">ตกลง
+                            <p style="margin-top: 7px;">{{ 'BUTTON.ok' | translate }}
                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                             </p>
                         </button>
@@ -708,7 +730,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">แจ้งเตือน</h4>
+                <h4 class="modal-title">{{ 'Modal.notifications' | translate }}</h4>
             </div>
             <div class="modal-body" id="content-scroll-1">
                 <h3>{{message}}</h3>
@@ -717,7 +739,7 @@
                 <div class="row justify-content-end">
                     <div class="col-sm-6">
                         <button class="btn-med btn-primary" data-dismiss="modal">
-                            <p style="margin-top: 7px;">ตกลง
+                            <p style="margin-top: 7px;">{{ 'BUTTON.ok' | translate }}
                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                             </p>
                         </button>

@@ -7,6 +7,7 @@ import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../service/authentication.service'
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LanguageService } from '../service/language.service';
+declare var $: any;
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -45,7 +46,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.foo1 = this.translate.currentLang;
     this.userdetail = this.basedataservice.getmemberInfo();
-    
+
     var lang = localStorage.getItem('lang');
     this.langservice.filter(lang);
 
@@ -87,15 +88,16 @@ export class HeaderComponent implements OnInit {
         }
         else {
           // this.router.navigate(['/'], { queryParams: { returnUrl: this.router.url } });
-          window.location.href = "";
-          return false;
+          // window.location.href = "";
+          // return false;
+          this.logout();
         }
       }
     );
 
     this.userIdle.ping$.subscribe(() => {
       var date = new Date();
-      console.log("PING: "+date)
+      console.log("PING: " + date)
       this.authenticationService.refreshToken()
         .pipe(first())
         .subscribe(
@@ -128,6 +130,7 @@ export class HeaderComponent implements OnInit {
     this.userIdle.resetTimer();
   }
   switchlang(lang) {
+
     if (lang == 'th') {
       this.translate.use('th');
       this.langen = false;
@@ -144,7 +147,34 @@ export class HeaderComponent implements OnInit {
       this.langservice.filter('en');
       // console.log(navigator.language);
     }
+    this.refreshselectpicker();
 
+
+  }
+  refreshselectpicker() {
+    var select,bank;
+    this.translate.get(['CONTENT',]).subscribe(translations => {
+      console.log(translations);
+      select = translations.CONTENT.select;
+      bank = translations.CONTENT.ats;
+    })
+    $('#fund').selectpicker({ title: select });
+    $('#fund2').selectpicker({ title: select });
+    $('#type').selectpicker({ title: select });
+    $('#bank').selectpicker({ title: bank });
+    
+    setTimeout(() => {
+      console.log(select,bank);
+      $('.selectpicker').selectpicker('render');
+      $('.selectpicker').selectpicker('refresh');
+
+    }, 200);
+  }
+  logout() {
+    this.authenticationService.logout();
+    setTimeout(() => {
+      window.location.href = "";
+    }, 100);
 
   }
   // hidenav(){

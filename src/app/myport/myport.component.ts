@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { datethai } from '../Share/dateformat'
+import { datethai, dateeng } from '../Share/dateformat'
 import { TranslateService } from '@ngx-translate/core';
 import { BaseApplicationDataService } from '../service/base-application-data.service'
 import { first, count } from 'rxjs/operators';
@@ -9,15 +9,17 @@ import { MyportService } from '../service/myport.service'
 import { Chart } from 'angular-highcharts';
 import { Observable } from 'rxjs';
 import { LanguageService } from '../service/language.service';
+declare var $: any;
 @Component({
     selector: 'app-myport',
     templateUrl: './myport.component.html',
     styleUrls: ['./myport.component.scss',]
 })
 export class MyportComponent implements OnInit {
-    
+
     page = "dashboard";
     dateformat = datethai;
+    dateformatEng = dateeng;
     userall: any = {};
     userselect: any = {};
     unitholderno: any = "init";
@@ -46,9 +48,9 @@ export class MyportComponent implements OnInit {
         this.getSelectListUnitholder();
 
         $('#bottom-main-nav li').find('a').removeClass('current');
-        $('#bottom-main-nav li#myport').find('a').addClass('current'); 
-        
-        this.langservice.listen().subscribe((m:any) => {
+        $('#bottom-main-nav li#myport').find('a').addClass('current');
+
+        this.langservice.listen().subscribe((m: any) => {
             console.log(m);
             this.lang = m;
         })
@@ -86,6 +88,10 @@ export class MyportComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
+                    console.log(data);
+                    setTimeout(() => {
+                        $('.selectpicker').selectpicker('refresh');
+                    }, 100);
                     this.userall = data;
                     this.unitholderno = this.userall.unitholderlist[0];
                     this.getbalance();
@@ -118,25 +124,41 @@ export class MyportComponent implements OnInit {
                 }
             )
     }
-    calTotal() {
+    // checkgainloss(cost,gainlosts){
+    //     var gainlost = gainlosts*1;
+    //     if(gainlost < cost){
+    //         return
+    //     }
+    //     else if(gainlost > cost){
+    //         return {
+    //             ''
+    //         }
+    //     }
 
-        for (let i = 0; i < this.balancedetail.holdingbalance.length; i++) {
-            
-            this.NAV += parseFloat(this.balancedetail.holdingbalance[i].BalanceAmountTotal);
-            this.ProfitLoss += parseFloat(this.balancedetail.holdingbalance[i].GainLossTotal);
-            
+    // }
+    calTotal() {
+        if (this.balancedetail.holdingbalance) {
+            for (let i = 0; i < this.balancedetail.holdingbalance.length; i++) {
+
+                this.NAV += parseFloat(this.balancedetail.holdingbalance[i].BalanceAmountTotal);
+                this.ProfitLoss += parseFloat(this.balancedetail.holdingbalance[i].GainLossTotal);
+            }
         }
+
 
     }
-    calchart(){
+    calchart() {
         var array = new Array();
-        var arr  = ["#ED2B34","#00698C","#189D8C","#E99C92","#EFE5E4","#D5DF30","#7B99CF"];
+        var arr = ["#ED2B34", "#00698C", "#189D8C", "#E99C92", "#EFE5E4", "#D5DF30", "#7B99CF"];
 
-        for (let i = 0; i < this.balancedetail.holdingbalance.length; i++) {
-            var percent = 0;
-            percent = (this.balancedetail.holdingbalance[i].BalanceAmountTotal * 100) / this.NAV;
-            array.push({name: this.balancedetail.holdingbalance[i].FundTypeEng ,y: percent,color: arr[i]});
+        if (this.balancedetail.holdingbalance) {
+            for (let i = 0; i < this.balancedetail.holdingbalance.length; i++) {
+                var percent = 0;
+                percent = (this.balancedetail.holdingbalance[i].BalanceAmountTotal * 100) / this.NAV;
+                array.push({ name: this.balancedetail.holdingbalance[i].FundTypeEng, y: percent, color: arr[i] });
+            }
         }
+
         this.chartdetail = array;
         console.log(this.chartdetail);
     }
@@ -150,11 +172,11 @@ export class MyportComponent implements OnInit {
         this.userselect = {};
 
     }
-    generatechart(){
+    generatechart() {
         this.chart = new Chart({
             chart: {
                 type: 'pie'
-                
+
             },
             title: {
                 text: ''
@@ -186,6 +208,6 @@ export class MyportComponent implements OnInit {
         });
 
     }
-    
-    
+
+
 }

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseApplicationDataService } from '../../service/base-application-data.service';
 import { first } from 'rxjs/operators';
-import { datethai } from '../../Share/dateformat';
+import { datethai, dateeng } from '../../Share/dateformat';
 import { HttpParams } from '@angular/common/http';
 import { ReportService } from '../../service/report.service';
 import { OrderService } from '../../service/order.service';
+import { Observable } from 'rxjs';
+import { LanguageService } from '../../service/language.service';
 declare var $: any;
 @Component({
   selector: 'app-today-list',
@@ -16,15 +18,19 @@ export class TodayListComponent implements OnInit {
   userselect: any = {};
   unitholderno: any = "init";
   dateformat = datethai;
+  dateformatEng = dateeng;
   todayreport;
   deletedOrder: any;
   message: any;
   deletedGroup: any;
+  nolist: boolean = false;
+  lang: Observable<string>;
 
   constructor(
     private basedataservice: BaseApplicationDataService,
     private reportservice: ReportService,
-    private orderservice: OrderService
+    private orderservice: OrderService,
+    private langservice: LanguageService
   ) { }
 
   ngOnInit() {
@@ -33,6 +39,11 @@ export class TodayListComponent implements OnInit {
 
     $('#mutual-tab-menu').find('li').removeClass('current');
     $('#mutual-tab-menu').find('li#menu6').addClass('current');
+
+    this.langservice.listen().subscribe((m: any) => {
+      console.log(m);
+      this.lang = m;
+    })
   }
   onChange() {
 
@@ -48,6 +59,9 @@ export class TodayListComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          setTimeout(() => {
+            $('.selectpicker').selectpicker('refresh');
+        }, 100);
           this.userall = data;
           this.unitholderno = this.userall.unitholderlist[0];
           this.userselect = this.userall.unitholderlist[0];
@@ -64,6 +78,7 @@ export class TodayListComponent implements OnInit {
   }
 
   gettodayrport() {
+    this.nolist = false;
     let params = new HttpParams().set('unitholderid', this.userselect.UnitholderId);
     this.reportservice.todayreport(params)
       .pipe(first())
@@ -71,6 +86,11 @@ export class TodayListComponent implements OnInit {
         data => {
           console.log(data);
           this.todayreport = data;
+          if(this.todayreport.todayreport.length == 0){
+            this.nolist = true;
+            console.log('notlist');
+            
+          }
         },
         error => {
           console.log(error)

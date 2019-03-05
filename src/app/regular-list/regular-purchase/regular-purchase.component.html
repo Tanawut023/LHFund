@@ -34,9 +34,9 @@
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
-            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno">
+            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno" class="selectpicker" data-live-search="true">
               <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
-                }}
+                }} <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container>
               </option>
             </select>
           </div>
@@ -68,20 +68,18 @@
             </div>
             <div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss('fund')">
               <div class="select-wrapper inline-block">
-                <select id="fund" name="fund" formControlName="fund">
-                  <option value="" disabled>กรุณาเลือก</option>
+                <select id="fund" name="fund" formControlName="fund" class="selectpicker" data-live-search="true" title="{{ 'CONTENT.select' | translate }}">
+                  <!-- <option value="" disabled>กรุณาเลือก</option> -->
                   <option [ngValue]="fund" *ngFor="let fund of fundlist?.fundlist; let i = index">
-                    <ng-container *ngIf="lang == 'th' ">{{ fund.FundName }} ({{ fund.FundCode }})</ng-container>
-                    <ng-container *ngIf="lang == 'en' ">{{ fund.FundNameEng }} ({{ fund.FundCode }})</ng-container>
+                    <ng-container *ngIf="lang == 'th' ">{{ fund.FundName }}</ng-container>
+                    <ng-container *ngIf="lang == 'en' ">{{ fund.FundNameEng }}</ng-container>
                   </option>
                 </select>
                 <div class="form-control-feedback" *ngIf="this.formsubstanding.controls.fund.errors && (this.formsubstanding.controls.fund.touched)">
-                  <p *ngIf="this.formsubstanding.controls.fund.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                  <p *ngIf="this.formsubstanding.controls.fund.errors.required">{{ 'Validation.required' | translate }}</p>
                 </div>
-                <a href="{{this.formsubstanding.controls.fund.value.FundFactSheetTH}}" target="_blank" *ngIf="this.formsubstanding.controls.fund.value && lang == 'th' ">ดาวน์โหลดหนังสือชี้ชวน</a>
-                <a href="{{this.formsubstanding.controls.fund.value.FundFactSheetEN}}" target="_blank" *ngIf="this.formsubstanding.controls.fund.value && lang == 'en' ">Download
-                  Fundfactsheet
-                </a>
+                <a href="{{this.formsubstanding.controls.fund.value.FundFactSheetTH}}" target="_blank" *ngIf="this.formsubstanding.controls.fund.value && lang == 'th' ">{{ 'CONTENT.prospectus' | translate }}</a>
+                <a href="{{this.formsubstanding.controls.fund.value.FundFactSheetEN}}" target="_blank" *ngIf="this.formsubstanding.controls.fund.value && lang == 'en' ">{{ 'CONTENT.prospectus' | translate }}</a>
               </div>
             </div>
             <div class="col-md-4">
@@ -89,7 +87,7 @@
             </div>
             <div class="col-md-6">
               <div class="input-wrapper ">
-                <input id="bank" [(ngModel)]="Bank" name="Bank" maxlength="30" type="text" class="bg-gray" readonly [ngModelOptions]="{standalone: true}">
+                <input id="Bank" [(ngModel)]="Bank" name="Bank" maxlength="30" type="text" class="bg-gray" readonly [ngModelOptions]="{standalone: true}" placeholder="{{ 'CONTENT.ats' | translate }}">
               </div>
 
               <!-- <div class="select-wrapper inline-block">              
@@ -109,13 +107,13 @@
                 <input id="amount" name="amount" maxlength="30" type="text" class="bg-gray" formControlName="amount" required (keypress)="numberOnly($event)"
                   (blur)="tofix($event.target.value)">
                 <div class="form-control-feedback" *ngIf="this.formsubstanding.controls.amount.errors && (this.formsubstanding.controls.amount.touched)">
-                  <p *ngIf="this.formsubstanding.controls.amount.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                  <p *ngIf="this.formsubstanding.controls.amount.errors.required">{{ 'Validation.required' | translate }}</p>
                   <p *ngIf="cpwd.hasError('invalid')">กรุณากรอกจำนวนขั้นต่ำ 1000 บาท</p>
                 </div>
               </div>
             </div>
             <div class="col-md-3 col-6">
-              <p class="txt-middle">บาท</p>
+              <p class="txt-middle">{{ 'CONTENT.bath' | translate }}</p>
               <!-- <div class="select-wrapper inline-block">              
               <select name="ddlLink" id="ddlLink">
                 <option value="0" selected="" disabled>กรุณาเลือก</option>
@@ -145,16 +143,13 @@
             <div class="col-md-3 col-6">
               <div class="row">
                 <div class="col-md-6 col-6">
-                  <p class="txt-middle">ทุกๆ {{ 'CONTENT.day' | translate }}</p>
+                  <p class="txt-middle">{{ 'CONTENT.every-day' | translate }}</p>
                 </div>
                 <div class="col-md-6 col-6 form-group" style="padding-left:0px;">
                   <div class="select-wrapper inline-block">
 
-                    <select name="month" id="month" formControlName="day">
+                    <select name="month" id="month" formControlName="day" class="selectpicker">
                       <option [ngValue]="month" *ngFor="let month of month; let i = index">{{month}}</option>
-                      <!-- <option value="0" selected="">1</option>
-                    <option value="36">2</option>
-                    <option value="29">3</option> -->
                     </select>
                   </div>
                 </div>
@@ -168,10 +163,10 @@
             </div>
             <div class="col-md-6 col-lg-3 form-group " [ngClass]="ValidatorDisplayCss('datestart')">
               <div class="input-wrapper">
-                <input class=" textinput dateinput bg-gray" ngbDatepicker #d1="ngbDatepicker" id="startDate" placeholder="วว/ดด/ปปปป" name="startDate"
+                <input class=" textinput dateinput bg-gray" ngbDatepicker #d1="ngbDatepicker" id="startDate" placeholder="{{ 'CONTENT.place-holder-date' | translate }}" name="startDate"
                   type="text" (click)="d1.toggle()" formControlName="datestart" [minDate]="minDate" readonly>
                 <div class="form-control-feedback" *ngIf="this.formsubstanding.controls.datestart.errors && (this.formsubstanding.controls.datestart.touched)">
-                  <p *ngIf="this.formsubstanding.controls.datestart.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                  <p *ngIf="this.formsubstanding.controls.datestart.errors.required">{{ 'Validation.required' | translate }}</p>
                 </div>
               </div>
             </div>
@@ -187,10 +182,10 @@
             </div>
             <div class="col-md-6 col-lg-3 form-group" [ngClass]="ValidatorDisplayCss('dateend')">
               <div class="input-wrapper">
-                <input class=" textinput dateinput bg-gray" ngbDatepicker #d2="ngbDatepicker" id="endDate" placeholder="วว/ดด/ปปปป" name="endDate"
+                <input class=" textinput dateinput bg-gray" ngbDatepicker #d2="ngbDatepicker" id="endDate" placeholder="{{ 'CONTENT.place-holder-date' | translate }}" name="endDate"
                   type="text" (click)="d2.toggle()" formControlName="dateend" [minDate]="minDate" readonly>
                 <div class="form-control-feedback" *ngIf="this.formsubstanding.controls.dateend.errors && (this.formsubstanding.controls.dateend.touched)">
-                  <p *ngIf="this.formsubstanding.controls.dateend.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                  <p *ngIf="this.formsubstanding.controls.dateend.errors.required">{{ 'Validation.required' | translate }}</p>
                 </div>
               </div>
             </div>
@@ -198,13 +193,13 @@
 
           <div class="row">
             <div class="col-md-3  col-6 offset-md-4">
-              <button class="btn-med btn-primary" (click)="onSubmited()">
+              <button class="btn-med btn-primary btn" type="submit" (click)="onSubmited()" [disabled]="loading">
                 {{ 'BUTTON.ok' | translate }}
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </button>
             </div>
             <div class="col-md-3 col-6">
-              <button class="btn-med btn-cancel" (click)="reset()">
+              <button class="btn-med btn-cancel" type="button" (click)="reset()">
                 {{ 'BUTTON.cancel' | translate }}
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </button>
@@ -226,35 +221,41 @@
         <i class="fa fa-angle-right mr-1" aria-hidden="true"></i>
         <label>{{ 'CONTENT.view-all' | translate }}</label>
       </div> -->
-      <div class="col-md-12 mt-5 text-center" *ngIf="!nolist">
+      <div class="col-md-12 mt-5 text-center" *ngIf="nolist">
         <p>ไม่มีรายการที่รอดำเนินงาน</p>
       </div>
 
-      <div class="col-md-12 mt-2" *ngIf="nolist">
+      <div class="col-md-12" *ngIf="!nolist">
         <div class="table-responsive">
           <table class="table table-nav">
             <thead>
               <tr>
                 <th>
-                  กองทุน
+                  <!-- กองทุน -->
+                  {{ 'TABLE.fund' | translate }}
                 </th>
                 <th>
-                  บาท (THB)
+                  <!-- บาท (THB) -->
+                  {{ 'CONTENT.bath' | translate }} (THB)
                 </th>
                 <th>
-                  เงื่อนไข
+                  <!-- เงื่อนไข -->
+                  {{ 'CONTENT.condition' | translate }}
                 </th>
                 <th>
-                  ระยะเวลา
+                  <!-- ระยะเวลา -->
+                  {{ 'CONTENT.duration' | translate }}
                 </th>
                 <th>
-                  วันและเวลาที่ทำรายการ
+                  <!-- วันและเวลาที่ทำรายการ -->
+                  {{ 'TABLE.or-date-time' | translate }}
                 </th>
                 <!-- <th>
                   แก้ไข
                 </th> -->
                 <th>
-                  ยกเลิก
+                  <!-- ยกเลิก -->
+                  {{ 'BUTTON.cancel' | translate }}
                 </th>
               </tr>
             </thead>
@@ -281,7 +282,7 @@
                       {{list.StandingOrderAmount | tofix}}
                     </td>
                     <td>
-                      รายเดือน ทุกๆวันที่ ({{list.StandingOrderDayNo}})
+                      {{ 'CONTENT.monthly' | translate }} {{ 'CONTENT.every-day' | translate }} ({{list.StandingOrderDayNo}})
                     </td>
                     <td class="">
                       {{list.StandingOrderEffectiveDate | datethai}} - {{list.ExpiryDate | datethai}}
@@ -444,7 +445,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">คำเตือน</h4>
+        <h4 class="modal-title">{{ 'Modal.notifications' | translate }}</h4>
       </div>
       <div class="modal-body" id="content-scroll-1">
         <h3>{{ message }}</h3>
@@ -453,7 +454,7 @@
         <div class="row justify-content-end">
           <div class="col-sm-6">
             <button class="btn-med btn-primary" data-dismiss="modal">
-              <p style="margin-top: 7px;">ตกลง
+              <p style="margin-top: 7px;">{{ 'BUTTON.ok' | translate }}
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </p>
             </button>
@@ -467,7 +468,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">คำเตือน</h4>
+        <h4 class="modal-title">{{ 'Modal.notifications' | translate }}</h4>
       </div>
       <div class="modal-body" id="content-scroll-1">
         <h3>แบบประเมินความเสี่ยงของท่านครบกำหนดแล้ว กรุณาปรับปรุงแบบประเมินความเสี่ยง เพื่อให้สามารถทำรายการซื้อ หรือ รายการสับเปลี่ยนเข้า
@@ -504,7 +505,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">คำเตือน</h4>
+        <h4 class="modal-title">{{ 'Modal.notifications' | translate }}</h4>
       </div>
       <div class="modal-body" id="content-scroll-1">
         <h3 *ngIf="Islevel">- ระดับความเสี่ยงในการลงทุนของท่านน้อยกว่าระดับความเสี่ยงของกองทุน</h3>
@@ -542,7 +543,7 @@
     <div class="modal-content">
       <div class="modal-header warning">
 
-        <h4 class="modal-title warning">คุณต้องการลบรายการที่เลือกหรือไม่</h4>
+        <h4 class="modal-title warning">{{ 'Modal.delete' | translate }}</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <h4 class="modal-title warning">X</h4>
         </button>
@@ -550,11 +551,11 @@
       <div class="modal-body" id="content-scroll-1">
         <div class="row mt-3">
           <div class="col-md-6 col-6">
-            <p>เลขที่ผู้ถือหน่วยลงทุน</p>
-            <span>{{ userselect.UnitholderNo }}</span>
+            <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
+            <span>{{ userselect.UnitholderNo }} <ng-container *ngIf="userselect.AgentCode">({{userselect.AgentCode }})</ng-container></span>
           </div>
           <div class="col-md-6 col-6">
-            <p>ชื่อผู้ถือหน่วยลงทุน</p>
+            <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
             <span>{{ userselect.FirstName}} {{ userselect.LastName}}</span>
           </div>
 
@@ -564,7 +565,8 @@
                 <tbody>
                   <tr>
                     <td class="text-left">
-                      วันที่ทำรายการ
+                      <!-- วันที่ทำรายการ -->
+                      {{ 'TABLE.or-date-time' | translate }}
                     </td>
                     <td class="text-left content">
                       {{deletedOrder?.StandingOrderDate | datethai}}, {{deletedOrder?.StandingOrderDate | time}}
@@ -580,7 +582,8 @@
                   </tr> -->
                   <tr>
                     <td class="text-left">
-                      กองทุน
+                      <!-- กองทุน -->
+                      {{ 'TABLE.fund' | translate }}
                     </td>
                     <td class="text-left content">
                       <ng-container *ngIf="lang == 'th' ">{{ deletedGroup?.FundName }}</ng-container>
@@ -589,23 +592,25 @@
                   </tr>
                   <tr>
                     <td class="text-left">
-                      บาท (THB)
+                      {{ 'CONTENT.amount2' | translate }}
                     </td>
                     <td class="text-left content">
-                      <ng-container *ngIf="deletedOrder">{{deletedOrder?.StandingOrderAmount | tofix}}</ng-container>
+                      <ng-container *ngIf="deletedOrder">{{deletedOrder?.StandingOrderAmount | tofix}} {{ 'CONTENT.bath' | translate }}</ng-container>
                     </td>
                   </tr>
                   <tr>
                     <td class="text-left">
-                      เงื่อนไข
+                      <!-- เงื่อนไข -->
+                      {{ 'CONTENT.condition' | translate }}
                     </td>
                     <td class="text-left content">
-                      รายเดือน ทุกๆวันที่ ({{deletedOrder?.StandingOrderDayNo}})
+                      {{ 'CONTENT.monthly' | translate }} {{ 'CONTENT.every-day' | translate }} ({{deletedOrder?.StandingOrderDayNo}})
                     </td>
                   </tr>
                   <tr>
                     <td class="text-left">
-                      ระยะเวลา
+                      <!-- ระยะเวลา -->
+                      {{ 'CONTENT.duration' | translate }}
                     </td>
                     <td class="text-left content">
                       {{deletedOrder?.StandingOrderEffectiveDate | datethai}} - {{deletedOrder?.ExpiryDate | datethai}}
@@ -622,7 +627,8 @@
           <div class="row justify-content-center">
             <div class="col-md-6 col-6 col-sm-6">
               <button class="btn-med btn-cancel" (click)="deleteorder()">
-                ลบรายการนี้
+                <!-- ลบรายการนี้ -->
+                {{ 'BUTTON.delete' | translate }}
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
 
               </button>

@@ -1,12 +1,14 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { BaseApplicationDataService } from '../../service/base-application-data.service';
 import { first } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 import { OrderService } from '../../service/order.service'
-import { datethai, formatdatethai, getDate, boostrapdatepicker } from '../../Share/dateformat';
+import { datethai, dateeng, formatdatethai, getDate, boostrapdatepicker } from '../../Share/dateformat';
 import { FormGroup, FormBuilder, Validators, FormControl, ValidatorFn, AbstractControl } from '@angular/forms';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { LanguageService } from '../../service/language.service';
+import { Observable } from 'rxjs';
+import { BaseApplicationDataService } from '../../service/base-application-data.service';
 
 declare var $: any;
 export class customValidationService {
@@ -42,13 +44,14 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
     dialog: boolean = false;
     datepick;
     content = "ท่านยังไม่ได้ทำแบบประเมินความเสี่ยงหรือเคยทำมาแล้วเกิน2ปี หากต้องการดำเนินการต่อกรุณากด ตกลง";
-    userall: any = {};
+    userall;
     userselect: any = {};
-    unitholderno: any = "N/A";
+    unitholderno;
     unitholdersubscription: any = {};
     fundlist: any = "";
     banklist: any = 'N/A';
     currentdate = datethai;
+    currentdateEng = dateeng;
     date: any;
     formsubsription: FormGroup;
     isNotValid = false;
@@ -63,6 +66,9 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
     Islevel: boolean = false;
     Isprotect: boolean = false;
     link;
+    loading = false;
+    lang: Observable<string>;
+    userdetail: any;
 
     get cpwd() {
         return this.formsubsription.get('amount');
@@ -71,9 +77,10 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
 
     constructor(
         private translate: TranslateService,
-        private basedataservice: BaseApplicationDataService,
         private orderservice: OrderService,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private basedataservice: BaseApplicationDataService,
+        private langservice: LanguageService
     ) {
         translate.addLangs(["th", "en"]);
     }
@@ -93,6 +100,12 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
         this.datepick = { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate() };
         this.createFormValidate();
         this._originalData = this.formsubsription.value;
+
+        this.langservice.listen().subscribe((m: any) => {
+            console.log(m);
+            this.lang = m;
+        })
+        this.userdetail = this.basedataservice.getmemberInfo();
     }
     ngAfterViewInit() {
         // document.getElementById('preloader').classList.add('hide');
@@ -153,17 +166,20 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
             if (this.userall.unitholderlist[i].UnitholderId == this.unitholderno.UnitholderId) {
                 this.userselect = this.userall.unitholderlist[i];
                 this.getselectlistfundlistandbankaccount();
+                this.getorderinfolist();
             }
         }
     }
 
     getSelectListUnitholder() {
-        this.basedataservice.getSelectListUnitholder()
+        this.orderservice.getSelectListUnitholder()
             .pipe(first())
             .subscribe(
                 data => {
                     console.log(data);
-
+                    setTimeout(() => {
+                        $('.selectpicker').selectpicker('refresh');
+                    }, 100);
                     if (data) {
                         this.userall = data;
                         this.unitholderno = this.userall.unitholderlist[0];
@@ -181,6 +197,8 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
 
     getselectlistfundlistandbankaccount() {
         let params = new HttpParams().set('unitholderid', this.userselect.UnitholderId);
+        console.log(params);
+
         this.orderservice.changeunitholdersubscription(params)
             .pipe(first())
             .subscribe(
@@ -188,15 +206,18 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
                     if (data) {
                         console.log(data)
                         this.unitholdersubscription = data;
-                        // setTimeout(() => {
-                        //     $('.selectpicker').selectpicker('refresh');
-                        // }, 100);
+                        setTimeout(() => {
+                            $('.selectpicker').selectpicker('refresh');
+                        }, 100);
 
                         // if (this.unitholdersubscription.fundlist[0]) {
                         //     this.fundlist = this.unitholdersubscription.fundlist[0];
                         // }
                         if (this.unitholdersubscription.bankaccountlist[0]) {
                             this.banklist = this.unitholdersubscription.bankaccountlist[0];
+                        }
+                        else if (this.unitholdersubscription.bankaccountlist.length == 0) {
+                            this.banklist = "";
                         }
 
                     }
@@ -255,7 +276,7 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
         console.log(this.formsubsription);
         this.Islevel = false;
         this.Isprotect = false;
-
+        this.loading = true;
         // if(this.formsubsription.controls.amount.value){
         //     console.log("t");
         //     var amount = this.formsubsription.controls.amount.value;
@@ -271,17 +292,17 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
 
             if (this.userselect.RiskLevelExpire == true) {
                 console.log('expire');
-
+                this.loading = false;
                 $('#expiremodal').modal({
                     backdrop: 'static',
                     keyboard: false,
                     show: true
                 });
-            } else if (!this.unitholdersubscription.bankaccountlist[0]) {
-                this.message = 'ติดต่อเจ้าหน้าที่การตลาด เบอร์ติดต่อ 02-286-3484 หรือ 02-679-2155 เพื่อดำเนินขอเปิดบัญชี ATS';
-
+            } else if (!this.unitholdersubscription.bankaccountlist[0] && this.userdetail.MemberType != 'Agent') {
+                // this.message = 'ติดต่อเจ้าหน้าที่การตลาด เบอร์ติดต่อ 02-286-3484 หรือ 02-679-2155 เพื่อดำเนินขอเปิดบัญชี ATS';
+                this.loading = false;
                 setTimeout(() => {
-                    $('#message').modal({
+                    $('#message2').modal({
                         backdrop: 'static',
                         keyboard: false,
                         show: true
@@ -294,37 +315,74 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
             else {
                 this.isNotValid = false;
                 var user;
-
+                var amount = this.formsubsription.controls.amount.value;
+                amount = amount.replace(",", "");
+                amount = parseFloat(amount);
 
                 if (this.formsubsription.controls.date.value) {
                     this.date = this.formsubsription.controls.date.value.year + "-" + this.formsubsription.controls.date.value.month + "-" + this.formsubsription.controls.date.value.day;
                     this.date = boostrapdatepicker(this.date);
-                    user = {
-                        UnitHolderID: this.userselect.UnitholderId,
-                        FundID: this.formsubsription.controls.fund.value.FundID,
-                        CounterFundID: 0,
-                        TxType: "Subscription",
-                        OrderUnitType: "Amount",
-                        OrderUnit: 0,
-                        OrderBankAccountID: this.banklist.BankAccountID,
-                        OrderAmount: this.formsubsription.controls.amount.value,
-                        PaymentMethod: "ATS",
-                        orderdate: this.date
+
+                    if (this.userdetail.MemberType == 'Agent' && this.banklist == "") {
+                        user = {
+                            UnitHolderID: this.userselect.UnitholderId,
+                            FundID: this.formsubsription.controls.fund.value.FundID,
+                            CounterFundID: 0,
+                            TxType: "Subscription",
+                            OrderUnitType: "Amount",
+                            OrderUnit: 0,
+                            // OrderBankAccountID: null,
+                            OrderAmount: amount,
+                            PaymentMethod: "ATS",
+                            orderdate: this.date
+                        }
                     }
+                    else {
+                        user = {
+                            UnitHolderID: this.userselect.UnitholderId,
+                            FundID: this.formsubsription.controls.fund.value.FundID,
+                            CounterFundID: 0,
+                            TxType: "Subscription",
+                            OrderUnitType: "Amount",
+                            OrderUnit: 0,
+                            OrderBankAccountID: this.banklist.BankAccountID,
+                            OrderAmount: amount,
+                            PaymentMethod: "ATS",
+                            orderdate: this.date
+                        }
+                    }
+
                 }
                 else {
-                    user = {
-                        UnitHolderID: this.userselect.UnitholderId,
-                        FundID: this.formsubsription.controls.fund.value.FundID,
-                        CounterFundID: 0,
-                        TxType: "Subscription",
-                        OrderUnitType: "Amount",
-                        OrderUnit: 0,
-                        OrderBankAccountID: this.banklist.BankAccountID,
-                        OrderAmount: this.formsubsription.controls.amount.value,
-                        PaymentMethod: "ATS",
-                        orderdate: null
-                        // getDate()
+                    if (this.userdetail.MemberType == 'Agent' && this.banklist == "") {
+                        user = {
+                            UnitHolderID: this.userselect.UnitholderId,
+                            FundID: this.formsubsription.controls.fund.value.FundID,
+                            CounterFundID: 0,
+                            TxType: "Subscription",
+                            OrderUnitType: "Amount",
+                            OrderUnit: 0,
+                            // OrderBankAccountID: null,
+                            OrderAmount: amount,
+                            PaymentMethod: "ATS",
+                            orderdate: null
+                            // getDate()
+                        }
+                    }
+                    else {
+                        user = {
+                            UnitHolderID: this.userselect.UnitholderId,
+                            FundID: this.formsubsription.controls.fund.value.FundID,
+                            CounterFundID: 0,
+                            TxType: "Subscription",
+                            OrderUnitType: "Amount",
+                            OrderUnit: 0,
+                            OrderBankAccountID: this.banklist.BankAccountID,
+                            OrderAmount: amount,
+                            PaymentMethod: "ATS",
+                            orderdate: null
+                            // getDate()
+                        }
                     }
                 }
 
@@ -336,10 +394,12 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
                             console.log(data);
                             this.resultsubmit = data;
                             this.checkexpireandlevel();
+                            this.loading = false;
                         },
                         error => {
                             console.log(error);
                             this.message = error.error.messages;
+                            this.loading = false;
                             $('#message').modal({
                                 backdrop: 'static',
                                 keyboard: false,
@@ -353,6 +413,7 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
         else {
             this.isNotValid = true;
             this.validateAllFormFields(this.formsubsription);
+            this.loading = false;
         }
 
     }
@@ -360,6 +421,7 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
 
         // var Islevel = false;
         // var Isprotect ;
+        this.loading = true;
         const user = {
             UnitHolderID: this.userselect.UnitholderId,
             FundID: this.formsubsription.controls.fund.value.FundID
@@ -371,15 +433,16 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
             .subscribe(
                 data => {
                     console.log(data);
-                    if (data['messages']) {
+                    if (data['messages'] != null) {
                         this.message = data['messages'];
                         this.Islevel = true;
                     }
-
+                    this.loading = false;
                 },
                 error => {
                     console.log(error);
                     this.message = error.error.messages;
+                    this.loading = false;
                     $('#message').modal({
                         backdrop: 'static',
                         keyboard: false,
@@ -416,18 +479,26 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
     }
 
     confirmsubscription() {
-
+        this.loading = true;
         this.orderservice.confirmorder(this.resultsubmit.data)
             .pipe(first())
             .subscribe(
                 data => {
                     console.log(data);
                     this.page = "purchase-step2";
+                    this.loading = false;
 
+                    this.message = 'ทำรายการสำเร็จ';
+                    $('#message').modal({
+                        backdrop: 'static',
+                        keyboard: false,
+                        show: true
+                    });
                 },
                 error => {
                     console.log(error);
                     this.message = error.error.messages;
+                    this.loading = false;
                     $('#message').modal({
                         backdrop: 'static',
                         keyboard: false,
@@ -456,11 +527,13 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
 
     }
     getorderinfolist() {
-
+        this.ordersubscriptionlist = [];
         const user = {
             UnitHolderID: this.userselect.UnitholderId,
             TxType: "Subscription"
         }
+        console.log(user);
+
 
         this.orderservice.getorderinfolist(user)
             .pipe(first())
@@ -499,7 +572,7 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
         this.createFormValidate();
         this.getselectlistfundlistandbankaccount();
     }
-    resetdate(){
+    resetdate() {
         this.formsubsription.controls['date'].reset();
     }
     modaldeleteorder(order) {
@@ -526,6 +599,12 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
                     this.getorderinfolist();
                     // this.ordersubscriptionlist = data;
                     $('#delete').modal('toggle');
+                    this.message = 'ลบรายการสำเร็จ';
+                    $('#message').modal({
+                        backdrop: 'static',
+                        keyboard: false,
+                        show: true
+                    });
 
                 },
                 error => {

@@ -6,7 +6,7 @@
   /* tbody tr.bgforlhfund:nth-child(odd) {background: #FFF} */
 </style>
 <div class="fund-table-wrapper" *ngIf="page == 'exchange'">
-  <div class="heading-section">
+  <div class="heading-section" *ngIf="userall != ''">
     <div class="detail-head-wrapper">
       <div class="row">
         <div class="col-md-12 col-12 icon-option mb-3">
@@ -34,9 +34,9 @@
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
-            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno">
+            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno"  data-live-search="true" class="selectpicker">
               <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
-                }}
+                }} <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container>
               </option>
             </select>
           </div>
@@ -55,7 +55,7 @@
       </div>
     </div>
   </div>
-  <div class="detail-body-wrapper">
+  <div class="detail-body-wrapper" *ngIf="userall != ''">
     <form [formGroup]="formexchange">
       <div class="row">
         <div class="col-md-12">
@@ -68,7 +68,9 @@
               <p>{{ 'CONTENT.input-date' | translate }}</p>
             </div>
             <div class="col-md-6">
-              <span>{{ currentdate }}</span>
+              <!-- <span>{{ currentdate }}</span> -->
+              <ng-container *ngIf="lang == 'th' "><span>{{ currentdate }}</span></ng-container>
+              <ng-container *ngIf="lang == 'en' "><span>{{ currentdateEng }}</span></ng-container>
             </div>
           </div>
           <div class="row">
@@ -77,14 +79,17 @@
             </div>
             <div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss('fundsource')">
               <div class="select-wrapper inline-block">
-                <select id="fundsource" name="fundsource" formControlName="fundsource" (change)="fundlistonChange()">
-                  <option value="" disabled>กรุณาเลือก</option>
-                  <option [ngValue]="holdingbalancelist" *ngFor="let holdingbalancelist of unitholderswitching.holdingbalance; let i = index">
-                    {{ holdingbalancelist.FundName }} ({{ holdingbalancelist.FundCode }})
+                <select title="{{ 'CONTENT.select' | translate }}" id="fund" name="fundsource" formControlName="fundsource" (change)="fundlistonChange()"
+                  class="selectpicker" data-live-search="true">
+                  <!-- <option value="" disabled>กรุณาเลือก</option> -->
+                  <option [ngValue]="holdingbalancelist" *ngFor="let holdingbalancelist of unitholderswitching.fundlist; let i = index">
+                    <!-- {{ holdingbalancelist.FundName }} ({{ holdingbalancelist.FundCode }}) -->
+                    <ng-container *ngIf="lang == 'th' ">{{ holdingbalancelist.FundName }}</ng-container>
+                    <ng-container *ngIf="lang == 'en' ">{{ holdingbalancelist.FundNameEng }}</ng-container>
                   </option>
                 </select>
                 <div class="form-control-feedback" *ngIf="this.formexchange.controls.fundsource.errors && (this.formexchange.controls.fundsource.touched)">
-                  <p *ngIf="this.formexchange.controls.fundsource.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                  <p *ngIf="this.formexchange.controls.fundsource.errors.required">{{ 'Validation.required' | translate }}</p>
                 </div>
               </div>
             </div>
@@ -96,13 +101,16 @@
               <thead>
                 <tr>
                   <th class="bg-blue">
-                    ยอดคงเหลือ (หน่วย)
+                    <!-- ยอดคงเหลือ (หน่วย) -->
+                    {{ 'TABLE.balance' | translate }} {{ 'TABLE.unit' | translate }}
                   </th>
                   <th class="bg-primary">
-                    ยอดคงเหลือ (บาท)
+                    <!-- ยอดคงเหลือ (บาท) -->
+                    {{ 'TABLE.balance' | translate }} {{ 'TABLE.bath' | translate }}
                   </th>
                   <th class="bg-darkbrown">
-                    วันที่มีผล
+                    <!-- วันที่มีผล -->
+                    {{ 'TABLE.ef-date' | translate }}
                   </th>
                 </tr>
               </thead>
@@ -133,31 +141,25 @@
             </div>
             <div class="col-md-3 col-6 form-group" [ngClass]="ValidatorDisplayCss('type')">
               <div class="select-wrapper inline-block">
-                <select name="type" id="type" (change)="onChangeType()" formControlName="type">
-                  <option value="" selected="" disabled *ngIf="!Type">กรุณาเลือก</option>
-                  <option value="Amount">บาท</option>
-                  <option value="Unit">หน่วย</option>
-                  <option value="All">ทั้งหมด</option>
+                <select name="type" id="type" (change)="onChangeType()" formControlName="type" class="selectpicker" title="{{ 'CONTENT.select' | translate }}">
+                  <!-- <option value="" selected="" disabled *ngIf="!Type">กรุณาเลือก</option> -->
+                  <option value="Amount">{{ 'CONTENT.bath' | translate }}</option>
+                  <option value="Unit">{{ 'CONTENT.unit' | translate }}</option>
+                  <option value="All">{{ 'CONTENT.all' | translate }}</option>
                 </select>
                 <div class="form-control-feedback" *ngIf="this.formexchange.controls.type.errors && (this.formexchange.controls.type.touched)">
-                  <p *ngIf="this.formexchange.controls.type.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                  <p *ngIf="this.formexchange.controls.type.errors.required">{{ 'Validation.required' | translate }}</p>
                 </div>
               </div>
 
             </div>
             <div class="col-md-3 col-6 form-group" *ngIf="Type !== 'All' " [ngClass]="ValidatorDisplayCss('amount')">
               <div class="input-wrapper ">
-                <input id="amount"
-                name="amount" 
-                maxlength="30" 
-                type="text" 
-                class="bg-gray" 
-                (change)="onChangeType()" 
-                formControlName="amount"
-                (keypress)="notfill($event)">
+                <input id="amount" name="amount" maxlength="30" type="text" class="bg-gray" (change)="onBlurType()" formControlName="amount"
+                  (keypress)="notfill($event)">
 
                 <div class="form-control-feedback" *ngIf="this.formexchange.controls.amount.errors && (this.formexchange.controls.amount.touched)">
-                  <p *ngIf="this.formexchange.controls.amount.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                  <p *ngIf="this.formexchange.controls.amount.errors.required">{{ 'Validation.required' | translate }}</p>
                 </div>
               </div>
             </div>
@@ -168,37 +170,49 @@
             </div>
             <div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss('funddestination')">
               <div class="select-wrapper inline-block">
-                <select id="funddestination" formControlName="funddestination" name="funddestination">
-                  <option value="" disabled>กรุณาเลือก</option>
+                <select title="{{ 'CONTENT.select' | translate }}" id="fund2" formControlName="funddestination" name="funddestination" class="selectpicker"
+                  data-live-search="true">
+                  <!-- <option value="" disabled>กรุณาเลือก</option> -->
                   <option [ngValue]="funddestination" *ngFor="let funddestination of funddestinationlist?.fundswitchingdestination; let i = index">
-                    {{ funddestination.FundName }} ({{ funddestination.FundCode }})
+                    <!-- {{ funddestination.FundName }} ({{ funddestination.FundCode }}) -->
+                    <ng-container *ngIf="lang == 'th' ">{{ funddestination.FundName }}</ng-container>
+                    <ng-container *ngIf="lang == 'en' ">{{ funddestination.FundNameEng }}</ng-container>
                   </option>
                 </select>
                 <div class="form-control-feedback" *ngIf="this.formexchange.controls.funddestination.errors && (this.formexchange.controls.funddestination.touched)">
-                  <p *ngIf="this.formexchange.controls.funddestination.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                  <p *ngIf="this.formexchange.controls.funddestination.errors.required">{{ 'Validation.required' | translate }}</p>
                 </div>
-                <a href="{{this.formexchange.controls.funddestination.value.FundFactSheetEN}}" target="_blank" *ngIf="this.formexchange.controls.funddestination.value">ดาวน์โหลดหนังสือชี้ชวน</a>
+                <a href="{{this.formexchange.controls.funddestination.value.FundFactSheetTH}}" target="_blank" *ngIf="this.formexchange.controls.funddestination.value && lang == 'th'">{{ 'CONTENT.prospectus' | translate }}</a>
+                <a href="{{this.formexchange.controls.funddestination.value.FundFactSheetEN}}" target="_blank" *ngIf="this.formexchange.controls.funddestination.value && lang == 'en'">{{ 'CONTENT.prospectus' | translate }}</a>
               </div>
             </div>
           </div>
 
           <div class="row">
             <div class="col-md-4">
-              <p class="txt-middle">{{ 'CONTENT.Advance-sw-date' | translate }}</p>
+              <p class="">{{ 'CONTENT.Advance-sw-date' | translate }} <label class="color-red">*</label></p>
             </div>
-            <div class="col-md-6 col-lg-3 form-group">
-
+            <div class="col-md-5 col-lg-3 col-10 form-group">
               <div class="input-wrapper">
-                <input class=" textinput dateinput bg-gray" ngbDatepicker #d="ngbDatepicker" id="startDate" placeholder="วว/ดด/ปปปป" name="date"
-                  type="text" (click)="d.toggle()" formControlName="date" [minDate]="minDate" readonly>
+                <input class=" textinput dateinput bg-gray" ngbDatepicker #d="ngbDatepicker" id="startDate" placeholder="{{ 'CONTENT.place-holder-date' | translate }}"
+                  name="date" type="text" (click)="d.toggle()" formControlName="date" [minDate]="minDate" readonly>
               </div>
-
+            </div>
+            <div class="col-2 cleardate no-padding">
+              <i class="fa fa-times" aria-hidden="true" (click)="resetdate()" *ngIf="this.formexchange.controls.date.value"></i>
+            </div>
+            <div class="col-md-12 offset-md-4">
+              <div class="input-wrapper">
+                <!-- <p class="color-red">* หากไม่ต้องการกำหนดวันแลกเปลี่ยนหน่วยลงทุนล่วงหน้า ไม่ต้องระบุ</p> -->
+                <ng-container *ngIf="lang == 'th' "> <p class="color-red">* หากไม่ต้องการกำหนดวันแลกเปลี่ยนหน่วยลงทุนล่วงหน้า ไม่ต้องระบุ</p></ng-container>
+                <ng-container *ngIf="lang == 'en' "> <p class="color-red">* Please leave blank if you do not wish to plan advance Switching date</p></ng-container>
+              </div>
             </div>
           </div>
 
           <div class="row">
             <div class="col-md-3 col-6 offset-md-4">
-              <button class="btn-med btn-primary" (click)="onSubmited()">
+              <button class="btn-med btn-primary btn" (click)="onSubmited()" [disabled]="loading">
                 {{ 'BUTTON.ok' | translate }}
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </button>
@@ -214,7 +228,7 @@
       </div>
     </form>
   </div>
-  <div class="detail-footer-wrapper">
+  <div class="detail-footer-wrapper" *ngIf="userall != ''">
     <div class="row">
       <div class="col-md-6 text-left">
         <h4>{{ 'CONTENT.sw-order' | translate }}
@@ -236,25 +250,31 @@
             <thead>
               <tr>
                 <th>
-                  กองทุนที่สับเปลี่ยน
+                  <!-- กองทุนที่สับเปลี่ยน -->
+                  {{ 'TABLE.fund' | translate }}
                 </th>
                 <th>
-                  บาท (THB)
+                  <!-- บาท (THB) -->
+                  {{ 'CONTENT.bath' | translate }} (THB)
                 </th>
                 <th>
-                  หน่วย
+                  <!-- หน่วย -->
+                  {{ 'CONTENT.unit' | translate }}
                 </th>
                 <th>
-                  วันและเวลาที่ทำรายการ
+                  <!-- วันและเวลาที่ทำรายการ -->
+                  {{ 'TABLE.or-date-time' | translate }}
                 </th>
                 <th>
-                  วันที่มีผล
+                  <!-- วันที่มีผล -->
+                  {{ 'TABLE.ef-date' | translate }}
                 </th>
                 <!-- <th>
                   แก้ไข
                 </th> -->
                 <th>
-                  ยกเลิก
+                  <!-- ยกเลิก -->
+                  {{ 'BUTTON.cancel' | translate }}
                 </th>
               </tr>
             </thead>
@@ -262,8 +282,18 @@
               <ng-container *ngFor="let list of orderswitchinglist; let i = index">
                 <tr class="bgforlhfund">
                   <td class="text-left">
-                    <b>ต้นทาง:</b> {{list.FundSource}} ({{list.FundSourceCode}})<br>
-                    <b>ปลายทาง:</b> {{list.funddestination}} ({{list.funddestinationCode}})
+                    <!-- <b>ต้นทาง:</b> {{list.FundSource}} ({{list.FundSourceCode}})<br>
+                    <b>ปลายทาง:</b> {{list.funddestination}} ({{list.funddestinationCode}}) -->
+
+                    <ng-container *ngIf="lang == 'th' ">
+                      <b>ต้นทาง:</b> {{list.FundSource}} ({{list.FundSourceCode}})<br>
+                      <b>ปลายทาง:</b> {{list.funddestination}} ({{list.funddestinationCode}})
+                    </ng-container>
+                    <ng-container *ngIf="lang == 'en' ">
+                      <b>Switch from fund:</b> {{list.FundSourceEng}} ({{list.FundSourceCode}})<br>
+                      <b>Switch to fund:</b> {{list.funddestinationEng}} ({{list.funddestinationCode}})
+                    </ng-container>
+
                   </td>
                   <td class="text-right">
                     {{list.Amount | tofix}}
@@ -298,6 +328,13 @@
       </div>
     </div>
   </div>
+  <div class="detail-footer-wrapper" *ngIf="userall == ''">
+    <div class="row">
+      <div class="col-md-12 mt-5 text-center">
+        <p>ไม่พบเลขที่ผู้ถือหน่วยลงทุน ไม่สามารถทำรายการได้</p>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- exchange -->
 <div class="fund-table-wrapper" *ngIf="page == 'exchange-step1'">
@@ -328,7 +365,7 @@
 
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
-          <span class="txt-middle">{{ userselect.UnitholderNo}}</span>
+          <span class="txt-middle">{{ userselect.UnitholderNo}} <ng-container *ngIf="userselect.AgentCode">({{userselect.AgentCode }})</ng-container></span>
         </div>
 
         <div class="col-md-3">
@@ -348,6 +385,7 @@
     <div class="row">
       <div class="col-md-12">
         <H4 class="text-left">{{ 'CONTENT.switching' | translate }}</H4>
+        <span class="color-red">({{ 'CONTENT.be-confirm' | translate }})</span>
         <!-- <p>ขั้นตอนที่ 1 เลือกลงทุนและใส่จำนวนที่ต้องการ</p> -->
       </div>
       <div class="col-md-9">
@@ -356,7 +394,9 @@
             <p>{{ 'CONTENT.input-date' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>{{ currentdate }}</span>
+            <!-- <span>{{ currentdate }}</span> -->
+            <ng-container *ngIf="lang == 'th' "><span>{{ currentdate }}</span></ng-container>
+            <ng-container *ngIf="lang == 'en' "><span>{{ currentdateEng }}</span></ng-container>
           </div>
         </div>
         <div class="row">
@@ -364,7 +404,9 @@
             <p>{{ 'CONTENT.fund-name-r' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>{{ formexchange.controls.fundsource.value.FundName }}</span>
+            <!-- <span>{{ formexchange.controls.fundsource.value.FundName }}</span> -->
+            <ng-container *ngIf="lang == 'th' "><span>{{ formexchange.controls.fundsource.value.FundName }}</span></ng-container>
+            <ng-container *ngIf="lang == 'en' "><span>{{ formexchange.controls.fundsource.value.FundNameEng }}</span></ng-container>
           </div>
         </div>
       </div>
@@ -374,13 +416,16 @@
             <thead>
               <tr>
                 <th class="bg-blue">
-                  ยอดคงเหลือ (หน่วย)
+                  <!-- ยอดคงเหลือ (หน่วย) -->
+                  {{ 'TABLE.balance' | translate }} {{ 'TABLE.unit' | translate }}
                 </th>
                 <th class="bg-primary">
-                  ยอดคงเหลือ (บาท)
+                  <!-- ยอดคงเหลือ (บาท) -->
+                  {{ 'TABLE.balance' | translate }} {{ 'TABLE.bath' | translate }}
                 </th>
                 <th class="bg-darkbrown">
-                  วันที่มีผล
+                  <!-- วันที่มีผล -->
+                  {{ 'TABLE.ef-date' | translate }}
                 </th>
               </tr>
             </thead>
@@ -410,9 +455,9 @@
             <p>{{ 'CONTENT.switching-amount' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span *ngIf="Type == 'Amount'">{{formexchange.controls.amount.value}} บาท</span>
-            <span *ngIf="Type == 'Unit'">{{formexchange.controls.amount.value}} หน่วย</span>
-            <span *ngIf="Type == 'All'">{{funddestinationlist.availablebalance.AvailableUnit | tofix4}} หน่วย</span>
+            <span *ngIf="Type == 'Amount'">{{formexchange.controls.amount.value}} {{ 'CONTENT.bath' | translate }}</span>
+            <span *ngIf="Type == 'Unit'">{{formexchange.controls.amount.value}} {{ 'CONTENT.unit' | translate }}</span>
+            <span *ngIf="Type == 'All'">{{funddestinationlist.availablebalance.AvailableUnit | tofix4}} {{ 'CONTENT.unit' | translate }}</span>
           </div>
         </div>
         <div class="row">
@@ -420,7 +465,9 @@
             <p>{{ 'CONTENT.switching-to' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>{{formexchange.controls.funddestination.value.FundName}}</span>
+            <!-- <span>{{formexchange.controls.funddestination.value.FundName}}</span> -->
+            <ng-container *ngIf="lang == 'th' "><span>{{ formexchange.controls.funddestination.value.FundName }}</span></ng-container>
+            <ng-container *ngIf="lang == 'en' "><span>{{ formexchange.controls.funddestination.value.FundNameEng }}</span></ng-container>
           </div>
         </div>
 
@@ -429,7 +476,9 @@
             <p>{{ 'CONTENT.Advance-sw-date' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>{{date}}</span>
+            <!-- <span>{{date}}</span> -->
+            <ng-container *ngIf="lang == 'th' "><span>{{resultsubmit.data.OrderDate | datethaiDM}}</span></ng-container>
+            <ng-container *ngIf="lang == 'en' "><span>{{resultsubmit.data.OrderDate | dateengDM}}</span></ng-container>
           </div>
         </div>
 
@@ -438,13 +487,15 @@
             <p>{{ 'CONTENT.effectivedate' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>{{resultsubmit.data.EffectiveDate | datethaiDM}}</span>
+            <!-- <span>{{resultsubmit.data.EffectiveDate | datethaiDM}}</span> -->
+            <ng-container *ngIf="lang == 'th' "><span>{{resultsubmit.data.EffectiveDate | datethaiDM}}</span></ng-container>
+            <ng-container *ngIf="lang == 'en' "><span>{{resultsubmit.data.EffectiveDate | dateengDM}}</span></ng-container>
           </div>
         </div>
 
         <div class="row mt-2">
           <div class="col-md-3 col-6 offset-md-4">
-            <button class="btn-med btn-primary" (click)="confirmswitching()">
+            <button class="btn-med btn-primary btn" (click)="confirmswitching()" [disabled]="loading">
               {{ 'BUTTON.confirm' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
@@ -490,7 +541,7 @@
 
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
-          <span class="txt-middle">{{ userselect.UnitholderNo}}</span>
+          <span class="txt-middle">{{ userselect.UnitholderNo}} <ng-container *ngIf="userselect.AgentCode">({{userselect.AgentCode }})</ng-container></span>
         </div>
 
         <div class="col-md-3">
@@ -510,6 +561,7 @@
     <div class="row">
       <div class="col-md-12">
         <H4 class="text-left">{{ 'CONTENT.switching' | translate }}</H4>
+        <span class="color-red">({{ 'CONTENT.be-print' | translate }})</span>
         <!-- <p>ขั้นตอนที่ 1 เลือกลงทุนและใส่จำนวนที่ต้องการ</p> -->
       </div>
       <div class="col-md-9">
@@ -518,7 +570,9 @@
             <p>{{ 'CONTENT.input-date' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>{{ currentdate }}</span>
+            <!-- <span>{{ currentdate }}</span> -->
+            <ng-container *ngIf="lang == 'th' "><span>{{ currentdate }}</span></ng-container>
+            <ng-container *ngIf="lang == 'en' "><span>{{ currentdateEng }}</span></ng-container>
           </div>
         </div>
         <div class="row">
@@ -526,7 +580,9 @@
             <p>{{ 'CONTENT.fund-name-r' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>{{ formexchange.controls.fundsource.value.FundName }}</span>
+            <!-- <span>{{ formexchange.controls.fundsource.value.FundName }}</span> -->
+            <ng-container *ngIf="lang == 'th' "><span>{{ formexchange.controls.fundsource.value.FundName }}</span></ng-container>
+            <ng-container *ngIf="lang == 'en' "><span>{{ formexchange.controls.fundsource.value.FundNameEng }}</span></ng-container>
           </div>
         </div>
       </div>
@@ -536,13 +592,16 @@
             <thead>
               <tr>
                 <th class="bg-blue">
-                  ยอดคงเหลือ (หน่วย)
+                  <!-- ยอดคงเหลือ (หน่วย) -->
+                  {{ 'TABLE.balance' | translate }} {{ 'TABLE.unit' | translate }}
                 </th>
                 <th class="bg-primary">
-                  ยอดคงเหลือ (บาท)
+                  <!-- ยอดคงเหลือ (บาท) -->
+                  {{ 'TABLE.balance' | translate }} {{ 'TABLE.bath' | translate }}
                 </th>
                 <th class="bg-darkbrown">
-                  วันที่มีผล
+                  <!-- วันที่มีผล -->
+                  {{ 'TABLE.ef-date' | translate }}
                 </th>
               </tr>
             </thead>
@@ -572,9 +631,9 @@
             <p>{{ 'CONTENT.switching-amount' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span *ngIf="Type == 'Amount'">{{formexchange.controls.amount.value}} บาท</span>
-            <span *ngIf="Type == 'Unit'">{{formexchange.controls.amount.value}} หน่วย</span>
-            <span *ngIf="Type == 'All'">{{funddestinationlist.availablebalance.AvailableUnit | tofix4}} หน่วย</span>
+            <span *ngIf="Type == 'Amount'">{{formexchange.controls.amount.value}} {{ 'CONTENT.bath' | translate }}</span>
+            <span *ngIf="Type == 'Unit'">{{formexchange.controls.amount.value}} {{ 'CONTENT.unit' | translate }}</span>
+            <span *ngIf="Type == 'All'">{{funddestinationlist.availablebalance.AvailableUnit | tofix4}} {{ 'CONTENT.unit' | translate }}</span>
           </div>
         </div>
         <div class="row">
@@ -582,7 +641,9 @@
             <p>{{ 'CONTENT.switching-to' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>{{formexchange.controls.funddestination.value.FundName}}</span>
+            <!-- <span>{{formexchange.controls.funddestination.value.FundName}}</span> -->
+            <ng-container *ngIf="lang == 'th' "><span>{{ formexchange.controls.funddestination.value.FundName }}</span></ng-container>
+            <ng-container *ngIf="lang == 'en' "><span>{{ formexchange.controls.funddestination.value.FundNameEng }}</span></ng-container>
           </div>
         </div>
 
@@ -591,7 +652,9 @@
             <p>{{ 'CONTENT.Advance-sw-date' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>{{date}}</span>
+            <!-- <span>{{date}}</span> -->
+            <ng-container *ngIf="lang == 'th' "><span>{{resultsubmit.data.OrderDate | datethaiDM}}</span></ng-container>
+            <ng-container *ngIf="lang == 'en' "><span>{{resultsubmit.data.OrderDate | dateengDM}}</span></ng-container>
           </div>
         </div>
 
@@ -600,7 +663,9 @@
             <p>{{ 'CONTENT.effectivedate' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <span>{{resultsubmit.data.EffectiveDate | datethaiDM}}</span>
+            <!-- <span>{{resultsubmit.data.EffectiveDate | datethaiDM}}</span> -->
+            <ng-container *ngIf="lang == 'th' "><span>{{resultsubmit.data.EffectiveDate | datethaiDM}}</span></ng-container>
+            <ng-container *ngIf="lang == 'en' "><span>{{resultsubmit.data.EffectiveDate | dateengDM}}</span></ng-container>
           </div>
         </div>
 
@@ -621,10 +686,7 @@
       </div>
 
       <div class="col-md-12 mt-3">
-        <span class="color-red no-margin">การยืนยันรายการนี้ยังไม่ถือว่ารายการขายหน่วยลงทุนสมบูรณ์ ในกรณีที่ท่านยังมิได้ขอออกสมุดบัญชีแสดงสิทธิในหน่วยลงทุน
-          นายทะเบียนจะจัดส่งหนังสือรับรองสิทธิในหน่วยลงทุนให้แก่ท่าน
-        </span>
-        <span class="color-red no-margin">เมื่อรายการนี้ได้ทำเสร็จสมบูรณ์ ภายใน 2 วันทำการ</span>
+        <span class="color-red no-margin">{{ 'CONTENT.warn-order' | translate }}</span>
       </div>
     </div>
 
@@ -1025,7 +1087,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">คำเตือน</h4>
+        <h4 class="modal-title">{{ 'Modal.notifications' | translate }}</h4>
       </div>
       <div class="modal-body" id="content-scroll-1">
         <h3>{{ message }}</h3>
@@ -1034,7 +1096,7 @@
         <div class="row justify-content-end">
           <div class="col-sm-6">
             <button class="btn-med btn-primary" data-dismiss="modal">
-              <p style="margin-top: 7px;">ตกลง
+              <p style="margin-top: 7px;">{{ 'BUTTON.ok' | translate }}
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </p>
             </button>
@@ -1049,7 +1111,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">แจ้งเตือน</h4>
+        <h4 class="modal-title">{{ 'Modal.notifications' | translate }}</h4>
       </div>
       <div class="modal-body" id="content-scroll-1">
         <h3>{{ message }}</h3>
@@ -1058,7 +1120,7 @@
         <div class="row justify-content-end">
           <div class="col-sm-6">
             <button class="btn-med btn-primary" data-dismiss="modal" (click)="checkpage('exchange-step1')">
-              <p style="margin-top: 7px;">ตกลง
+              <p style="margin-top: 7px;">{{ 'BUTTON.ok' | translate }}
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </p>
             </button>
@@ -1075,7 +1137,7 @@
     <div class="modal-content">
       <div class="modal-header warning">
 
-        <h4 class="modal-title warning">คุณต้องการลบรายการที่เลือกหรือไม่</h4>
+        <h4 class="modal-title warning">{{ 'Modal.delete' | translate }}</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <h4 class="modal-title warning">X</h4>
         </button>
@@ -1083,11 +1145,11 @@
       <div class="modal-body" id="content-scroll-1">
         <div class="row mt-3">
           <div class="col-md-6 col-6">
-            <p>เลขที่ผู้ถือหน่วยลงทุน</p>
-            <span>{{ userselect.UnitholderNo }}</span>
+            <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
+            <span>{{ userselect.UnitholderNo }} <ng-container *ngIf="userselect.AgentCode">({{userselect.AgentCode }})</ng-container></span>
           </div>
           <div class="col-md-6 col-6">
-            <p>ชื่อผู้ถือหน่วยลงทุน</p>
+            <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
             <span>{{ userselect.FirstName}} {{ userselect.LastName}}</span>
           </div>
 
@@ -1097,7 +1159,8 @@
                 <tbody>
                   <tr>
                     <td class="text-left">
-                      วันที่ทำรายการ
+                      <!-- วันที่ทำรายการ -->
+                      {{ 'TABLE.or-date-time' | translate }}
                     </td>
                     <td class="text-left content">
                       {{deletedOrder?.OrderTime | datethai}}, {{deletedOrder?.OrderTime | time}}
@@ -1113,27 +1176,34 @@
                   </tr> -->
                   <tr>
                     <td class="text-left">
-                      กองทุนต้นทาง
+                      <!-- กองทุนต้นทาง -->
+                      {{ 'CONTENT.fund-name-s' | translate }}
                     </td>
                     <td class="text-left content">
-                      {{deletedOrder?.FundSource}} ({{deletedOrder?.FundSourceCode}})
+                      <!-- {{deletedOrder?.FundSource}} ({{deletedOrder?.FundSourceCode}}) -->
+                      <ng-container *ngIf="lang == 'th' ">{{deletedOrder?.FundSource}} ({{deletedOrder?.FundSourceCode}})</ng-container>
+                      <ng-container *ngIf="lang == 'en' ">{{deletedOrder?.FundSourceEng}} ({{deletedOrder?.FundSourceCode}})</ng-container>
                     </td>
                   </tr>
                   <tr>
                     <td class="text-left">
-                      กองทุนปลายทาง
+                      <!-- กองทุนปลายทาง -->
+                      {{ 'CONTENT.switching-to' | translate }}
                     </td>
-                    <td class="text-left content">                   
-                      {{deletedOrder?.funddestination}} ({{deletedOrder?.funddestinationCode}})
+                    <td class="text-left content">
+                      <!-- {{deletedOrder?.funddestination}} ({{deletedOrder?.funddestinationCode}}) -->
+                      <ng-container *ngIf="lang == 'th' ">{{deletedOrder?.funddestination}} ({{deletedOrder?.funddestinationCode}})</ng-container>
+                      <ng-container *ngIf="lang == 'en' ">{{deletedOrder?.funddestinationEng}} ({{deletedOrder?.funddestinationCode}})</ng-container>
                     </td>
                   </tr>
                   <tr>
                     <td class="text-left">
-                      จำนวน
+                      <!-- จำนวน -->
+                      {{ 'CONTENT.switching-amount' | translate }}
                     </td>
                     <td class="text-left content">
-                      <ng-container *ngIf="deletedOrder?.Amount">{{deletedOrder?.Amount | tofix}} บาท <br /></ng-container>
-                      <ng-container *ngIf="deletedOrder?.Unit">{{deletedOrder?.Unit | tofix}} หน่วย</ng-container>
+                      <ng-container *ngIf="deletedOrder?.Amount">{{deletedOrder?.Amount | tofix}} {{ 'CONTENT.bath' | translate }} <br /></ng-container>
+                      <ng-container *ngIf="deletedOrder?.Unit">{{deletedOrder?.Unit | tofix4}} {{ 'CONTENT.unit' | translate }}</ng-container>
                     </td>
                   </tr>
                   <!-- <tr>
@@ -1146,7 +1216,8 @@
                   </tr> -->
                   <tr>
                     <td class="text-left">
-                      วันที่มีผล
+                      <!-- วันที่มีผล -->
+                      {{ 'TABLE.ef-date' | translate }}
                     </td>
                     <td class="text-left content">
                       {{deletedOrder?.EffectiveDateSource | datethai}}<br>
@@ -1164,7 +1235,8 @@
           <div class="row justify-content-center">
             <div class="col-md-6 col-6 col-sm-6">
               <button class="btn-med btn-cancel" (click)="deleteorder()">
-                ลบรายการนี้
+                <!-- ลบรายการนี้ -->
+                {{ 'BUTTON.delete' | translate }}
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
 
               </button>
@@ -1183,11 +1255,10 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">คำเตือน</h4>
+        <h4 class="modal-title">{{ 'Modal.notifications' | translate }}</h4>
       </div>
       <div class="modal-body" id="content-scroll-1">
-        <h3>แบบประเมินความเสี่ยงของท่านครบกำหนดแล้ว กรุณาปรับปรุงแบบประเมินความเสี่ยง เพื่อให้สามารถทำรายการซื้อ หรือ รายการสับเปลี่ยนเข้า
-          ด้วยค่ะ
+        <h3>{{ 'CONTENT.expiremodal' | translate }}
         </h3>
       </div>
       <div class="modal-footer" style="display: block;">
@@ -1205,8 +1276,8 @@
             </button>
           </div>
           <div class="col-5">
-            <button class="btn-med btn-primary" data-dismiss="modal" routerLink="/profile/suitability">
-              <p style="margin-top: 7px;">ทำแบบประเมิน
+            <button class="btn-med btn-primary" data-dismiss="modal" routerLink="/profile/suitability" *ngIf="userdetail.MemberType != 'Agent'">
+              <p style="margin-top: 7px;">{{ 'BUTTON.suittest' | translate }}
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </p>
             </button>
@@ -1221,11 +1292,11 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">คำเตือน</h4>
+        <h4 class="modal-title">{{ 'Modal.notifications' | translate }}</h4>
       </div>
       <div class="modal-body" id="content-scroll-1">
-        <h3 *ngIf="Islevel">- ระดับความเสี่ยงในการลงทุนของท่านน้อยกว่าระดับความเสี่ยงของกองทุน</h3>
-        <h3 *ngIf="Isprotect">- กองทุนที่ท่านเลือกไม่มีนโยบายป้องกันความเสี่ยงอัตราแลกเปลี่ยนเต็มจำนวน</h3>
+        <h3 *ngIf="Islevel">- {{ 'CONTENT.risk-level' | translate }}</h3>
+        <h3 *ngIf="Isprotect">- {{ 'CONTENT.hed' | translate }}</h3>
       </div>
       <div class="modal-footer" style="display: block;">
         <div class="row justify-content-center">
@@ -1242,8 +1313,8 @@
             </button>
           </div>
           <div class="col-4" *ngIf="Islevel">
-            <button class="btn-med btn-primary" data-dismiss="modal" routerLink="/profile/suitability">
-              <p style="margin-top: 7px;">ทำแบบประเมินความเสี่ยง
+            <button class="btn-med btn-primary" data-dismiss="modal" routerLink="/profile/suitability" *ngIf="userdetail.MemberType != 'Agent'">
+              <p style="margin-top: 7px;">{{ 'BUTTON.suittest' | translate }}
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </p>
             </button>

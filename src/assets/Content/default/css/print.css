@@ -160,7 +160,25 @@ a[href]:after {
 .label {
   border: none !important; }
 
-#header-wrapper, #main-slider {
+html, body {
+  width: 100%;
+  margin: 0 auto;
+  background-color: #ccc;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0; }
+
+@page {
+  size: a4;
+  margin: 2cm 0; }
+
+#header-wrapper {
+  display: block; }
+
+#main-slider {
   display: none; }
 
 .tabs-menu-wrapper {
