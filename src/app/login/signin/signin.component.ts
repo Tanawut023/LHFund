@@ -102,8 +102,7 @@ export class SigninComponent implements OnInit {
       }
     })
   }
-  onSubmit() {
-    
+  onSubmit() {   
     
     console.log(this.formsighin)
     if (this.formsighin.valid) {
@@ -124,8 +123,6 @@ export class SigninComponent implements OnInit {
         .subscribe(
           data => {
             localStorage.setItem('userInfo', data['memberInfo']);
-            // localStorage.setItem('token', data['access_token']);
-            // localStorage.setItem('refresh_token', data['refresh_token']);
             this.router.navigate([this.returnUrl]);
           },
           error => {
@@ -142,8 +139,6 @@ export class SigninComponent implements OnInit {
                 show: true
               });
             }, 100);
-
-            
 
           });
 

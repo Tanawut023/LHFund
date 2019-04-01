@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
@@ -6,7 +6,9 @@ import { HttpParams } from '@angular/common/http';
 import { AuthenticationService } from '../../service/authentication.service'
 import { first } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+import { ReCaptcha2Component } from '../../../../node_modules/ngx-captcha';
 declare var $: any;
+
 
 @Component({
   selector: 'app-forgotpassword',
@@ -35,6 +37,9 @@ export class ForgotpasswordComponent implements OnInit {
     private toastr: ToastrService) {
     translate.addLangs(["th", "en"]);
   }
+
+  @ViewChild('captchaElem') captchaElem: ReCaptcha2Component;
+  
   ngOnInit() {
     this.createFormValidate();
     this.foo1 = this.translate.currentLang;
@@ -51,14 +56,14 @@ export class ForgotpasswordComponent implements OnInit {
       this.translate.use('th');
       this.langen = false;
       this.langth = true;
-      localStorage.setItem('lang', lang );
+      localStorage.setItem('lang', lang);
 
     }
     else if (lang == 'en') {
       this.translate.use('en');
       this.langth = false;
       this.langen = true;
-      localStorage.setItem('lang', lang );
+      localStorage.setItem('lang', lang);
     }
 
 
@@ -72,25 +77,28 @@ export class ForgotpasswordComponent implements OnInit {
         Email: this.formforgot.controls.email.value,
         IDCardNo: this.formforgot.controls.IDcard.value
       }
-      this.authenticationService.validateForgotPassword(user)
+      let Params = new HttpParams();
+      Params = Params.append('encodedresponse', this.formforgot.controls.recaptcha.value);
+      
+      this.authenticationService.validateForgotPassword(user, Params)
         .pipe(first())
         .subscribe(
           data => {
             console.log(data)
             this.User = data;
             this.loading = false;
-
+            this.reset();
             $('#reset').modal({
               backdrop: 'static',
               keyboard: false,
               show: true
-          });
-            // this.router.navigate(['/login/changepassword/' + this.User.refcode], { relativeTo: this.route })
+            });
           },
           error => {
             console.log(error);
             this.message = error.error.messages;
             this.loading = false;
+            this.reset();
             setTimeout(() => {
               $('#message').modal({
                 backdrop: 'static',
@@ -122,6 +130,11 @@ export class ForgotpasswordComponent implements OnInit {
           // Validators.minLength(7),
           // Validators.maxLength(13),
           // Validators.pattern(/^[A-Za-z0-9]*$/)
+        ]
+      ],
+      recaptcha: [null,
+        [
+          Validators.required,
         ]
       ]
     })
@@ -161,5 +174,7 @@ export class ForgotpasswordComponent implements OnInit {
     };
   }
 
-
+  reset(): void {
+    this.captchaElem.resetCaptcha();
+  }
 }

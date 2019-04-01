@@ -209,8 +209,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     if (this.form.valid) {
       this.isNotValid = false;
       this.loading = true;
-
-
       const user = {
         Id: this.profile.unitholderinfo.Id,
         UnitHolderID: this.profile.unitholderinfo.UnitHolderID,
@@ -229,12 +227,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         ContactCountry: this.form.controls.country.value.CountryName,
         ContactZipCode: this.form.controls.postcode.value,
         AllowWithholdTax: this.form.controls.allowtax.value,
-        // UpdateFlag: "string",
-        // CreateDate: "2018-10-08T07:44:02.668Z"
       }
       this.user = user;
       console.log(user);
-
       this.profileserice.submiteditprofile(this.user)
         .pipe(first())
         .subscribe(
@@ -301,6 +296,14 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         (error) => {
           console.log(error);
           this.loading = false;
+          this.message = error.error.messages;
+            setTimeout(() => {
+              $('#message').modal({
+                backdrop: 'static',
+                keyboard: false,
+                show: true
+              });
+            }, 100);
         });
   }
   updateprofile() {
@@ -309,12 +312,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     if (this.formotp.valid) {
       this.isNotValid = false;
       this.loading = true;
-
       let Params = new HttpParams();
       Params = Params.append('otp', this.formotp.controls.otp.value);
       Params = Params.append('refcode', this.res.refcode);
-
-
       const user = {
         Id: this.profile.unitholderinfo.Id,
         UnitHolderID: this.profile.unitholderinfo.UnitHolderID,
@@ -331,13 +331,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         UpdateFlag: "string",
         CreateDate: getDate()
       }
-
       console.log(user);
-
-
-
-
-
       this.profileserice.updateprofile(user, Params)
         .pipe(first())
         .subscribe(
@@ -354,7 +348,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
                 show: true
               });
             }, 100);
-            
             this.resetotp();
             
           },
@@ -362,11 +355,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
             console.log(error);
             this.loading = false;
             this.message = error.error.messages;
-            // $('#message').modal({
-            //   backdrop: 'static',
-            //   keyboard: false,
-            //   show: true
-            // });
           });
 
     } else {

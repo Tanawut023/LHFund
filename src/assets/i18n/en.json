@@ -40,6 +40,7 @@
   },
   "CONTENT": {
     "//all": null,
+    "not-found": "Not Found",
     "unit-holder-num": "Unit Holder Number",
     "unit-holder-name": "Unit Holder Name",
     "report-date": "Reporting Date",
@@ -58,7 +59,7 @@
     "all-unitholder": "Show All Unitholders",
     "ats": "Not found Bank Account",
     "duration": "Period time",
-    "SUB ": "SUBSCRIPTION",
+    "SUB": "SUBSCRIPTION",
     "RDM": "REDEMPTION",
     "SWI": "SWITCH IN",
     "SWO": "SWITCH OUT",
@@ -231,7 +232,10 @@
   },
   "Modal": {
     "notifications": "Notifications",
+    "succ": "Success",
+    "delete-or": "Deleted",
     "delete": "Do you want to delete the selected order"
+    
   },
   "LOGIN":{
     "username": "Username",

@@ -164,7 +164,7 @@
           <tbody>
             <tr class="text-center" *ngIf="nolist">
               <td colspan="11">
-                <p>ไม่พบรายการดังกล่าว</p>
+                <p>{{ 'CONTENT.not-found' | translate }}</p>
               </td>
             </tr>
             <ng-container *ngFor="let list of rmflist; let i = index">

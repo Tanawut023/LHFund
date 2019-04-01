@@ -106,6 +106,11 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
             this.lang = m;
         })
         this.userdetail = this.basedataservice.getmemberInfo();
+
+        this.translate.get('not-found').subscribe((res: string) => {
+            console.log(res);
+            //=> 'hello world'
+        });
     }
     ngAfterViewInit() {
         // document.getElementById('preloader').classList.add('hide');
@@ -180,12 +185,16 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
                     setTimeout(() => {
                         $('.selectpicker').selectpicker('refresh');
                     }, 100);
-                    if (data) {
-                        this.userall = data;
+                    this.userall = data;
+                    if (this.userall.unitholderlist.length > 0) {
+                        
                         this.unitholderno = this.userall.unitholderlist[0];
                         this.userselect = this.userall.unitholderlist[0];
                         this.getselectlistfundlistandbankaccount();
                         this.getorderinfolist();
+                    }
+                    else{
+                        this.userall = '';
                     }
 
                 },
@@ -277,19 +286,7 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
         this.Islevel = false;
         this.Isprotect = false;
         this.loading = true;
-        // if(this.formsubsription.controls.amount.value){
-        //     console.log("t");
-        //     var amount = this.formsubsription.controls.amount.value;
-        //     amount = parseInt(amount);
-        //     if(amount < 1000){
-        //         console.log("test");
-
-        //     }
-
-        // }
         if (this.formsubsription.valid) {
-
-
             if (this.userselect.RiskLevelExpire == true) {
                 console.log('expire');
                 this.loading = false;
@@ -299,19 +296,20 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
                     show: true
                 });
             } else if (!this.unitholdersubscription.bankaccountlist[0] && this.userdetail.MemberType != 'Agent') {
+                this.translate.get('CONTENT.ats-contact').subscribe((res: string) => {
+                    console.log(res);
+                    this.message = res;
+                });
                 // this.message = 'ติดต่อเจ้าหน้าที่การตลาด เบอร์ติดต่อ 02-286-3484 หรือ 02-679-2155 เพื่อดำเนินขอเปิดบัญชี ATS';
                 this.loading = false;
                 setTimeout(() => {
-                    $('#message2').modal({
+                    $('#message').modal({
                         backdrop: 'static',
                         keyboard: false,
                         show: true
                     });
                 }, 100);
-
-
             }
-
             else {
                 this.isNotValid = false;
                 var user;
@@ -385,7 +383,6 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
                         }
                     }
                 }
-
                 console.log(user);
                 this.orderservice.submitorder(user)
                     .pipe(first())
@@ -419,15 +416,12 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
     }
     checkexpireandlevel() {
 
-        // var Islevel = false;
-        // var Isprotect ;
         this.loading = true;
         const user = {
             UnitHolderID: this.userselect.UnitholderId,
             FundID: this.formsubsription.controls.fund.value.FundID
         }
         console.log(user);
-
         this.orderservice.changefundsubscription(user)
             .pipe(first())
             .subscribe(
@@ -448,13 +442,11 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
                         keyboard: false,
                         show: true
                     });
-
                 });
 
         setTimeout(() => {
             if (this.Islevel) {
                 console.log('level');
-
                 $('#risklevel').modal({
                     backdrop: 'static',
                     keyboard: false,
@@ -488,7 +480,11 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
                     this.page = "purchase-step2";
                     this.loading = false;
 
-                    this.message = 'ทำรายการสำเร็จ';
+                    this.translate.get('Modal.succ').subscribe((res: string) => {
+                        console.log(res);
+                        this.message = res;
+                    });
+                    // this.message = 'ทำรายการสำเร็จ';
                     $('#message').modal({
                         backdrop: 'static',
                         keyboard: false,
@@ -599,7 +595,12 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
                     this.getorderinfolist();
                     // this.ordersubscriptionlist = data;
                     $('#delete').modal('toggle');
-                    this.message = 'ลบรายการสำเร็จ';
+                    this.translate.get('Modal.delete-or').subscribe((res: string) => {
+                        console.log(res);
+                        this.message = res;
+                        //=> 'hello world'
+                    });
+                    // this.message = 'ลบรายการสำเร็จ';
                     $('#message').modal({
                         backdrop: 'static',
                         keyboard: false,

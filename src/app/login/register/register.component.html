@@ -110,7 +110,7 @@
             </div>
           </div>
           <div class="col-xl-6 col-12 form-group" id="recaptcha2" [ngClass]="ValidatorDisplayCss('recaptcha')">
-            <ngx-recaptcha2 [size]="size" [hl]="lang" [theme]="theme" [type]="type" (expire)="handleExpire()" (load)="handleLoad()" (success)="handleSuccess($event)"
+            <ngx-recaptcha2 #captchaElem [size]="size" [hl]="lang" [theme]="theme" [type]="type" 
               formControlName="recaptcha">
             </ngx-recaptcha2>
             <div class="form-control-feedback" *ngIf="this.form.controls.recaptcha.errors && ( this.form.controls.recaptcha.touched)">

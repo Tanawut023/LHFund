@@ -150,12 +150,15 @@ export class SellComponent implements OnInit {
                     setTimeout(() => {
                         $('.selectpicker').selectpicker('refresh');
                     }, 100);
-                    if (data) {
-                        this.userall = data;
+                    this.userall = data;
+                    if (this.userall.unitholderlist.length > 0) {
+                        
                         this.unitholderno = this.userall.unitholderlist[0];
                         this.userselect = this.userall.unitholderlist[0];
                         this.getselectlistfundlistandbankaccount();
                         this.getorderinfolist();
+                    }else{
+                        this.userall = '';
                     }
 
                 },
@@ -615,14 +618,17 @@ export class SellComponent implements OnInit {
     onSubmited() {
         this.loading = true;
         console.log(this.formredemption);
-
         if (this.formredemption.controls.amount.valid && this.formredemption.controls.type.valid && this.formredemption.controls.fund.valid) {
             this.isNotValid = false;
             if (!this.unitholderredemption.bankaccountlist[0] && this.userdetail.MemberType != 'Agent') {
+                this.translate.get('CONTENT.ats-contact').subscribe((res: string) => {
+                    console.log(res);
+                    this.message = res;
+                });
                 // this.message = 'ติดต่อเจ้าหน้าที่การตลาด เบอร์ติดต่อ 02-286-3484 หรือ 02-679-2155 เพื่อดำเนินขอเปิดบัญชี ATS';
                 this.loading = false;
                 setTimeout(() => {
-                    $('#message2').modal({
+                    $('#message').modal({
                         backdrop: 'static',
                         keyboard: false,
                         show: true
@@ -632,14 +638,12 @@ export class SellComponent implements OnInit {
 
             } else {
                 var user;
-
                 if (this.formredemption.controls.amount.value) {
                     var amount = this.formredemption.controls.amount.value;
                     amount = amount.replace(",", "");
                     amount = parseFloat(amount);
 
                 }
-
                 if (this.formredemption.controls.date.value) {
                     this.date = this.formredemption.controls.date.value.year + "-" + this.formredemption.controls.date.value.month + "-" + this.formredemption.controls.date.value.day;
                     this.date = boostrapdatepicker(this.date);
@@ -829,12 +833,7 @@ export class SellComponent implements OnInit {
                             }
                         }
                     }
-
                 }
-
-
-
-
                 console.log(user);
                 this.orderservice.submitorder(user)
                     .pipe(first())
@@ -842,7 +841,6 @@ export class SellComponent implements OnInit {
                         data => {
                             console.log(data);
                             this.resultsubmit = data;
-                            // this.checkpage('sell-step1');
                             this.validateorderrmfltf();
                             this.loading = false;
                         },
@@ -855,7 +853,6 @@ export class SellComponent implements OnInit {
                                 keyboard: false,
                                 show: true
                             });
-
                         });
             }
 
@@ -886,8 +883,6 @@ export class SellComponent implements OnInit {
                                 show: true
                             });
                         }, 100);
-
-
                     } else {
                         this.checkpage("sell-step1");
                     }
@@ -916,7 +911,11 @@ export class SellComponent implements OnInit {
                     console.log(data);
                     this.checkpage("sell-step2");
                     this.loading = false;
-                    this.message = 'ทำรายการสำเร็จ';
+                    this.translate.get('Modal.succ').subscribe((res: string) => {
+                        console.log(res);
+                        this.message = res;
+                    });
+                    // this.message = 'ทำรายการสำเร็จ';
                     $('#message').modal({
                         backdrop: 'static',
                         keyboard: false,
@@ -971,7 +970,12 @@ export class SellComponent implements OnInit {
                     this.getorderinfolist();
                     // this.ordersubscriptionlist = data;
                     $('#delete').modal('toggle');
-                    this.message = 'ลบรายการสำเร็จ';
+                    this.translate.get('Modal.delete-or').subscribe((res: string) => {
+                        console.log(res);
+                        this.message = res;
+                        //=> 'hello world'
+                    });
+                    // this.message = 'ลบรายการสำเร็จ';
                     $('#message').modal({
                         backdrop: 'static',
                         keyboard: false,

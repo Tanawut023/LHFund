@@ -7,6 +7,7 @@ import { HttpParams } from '@angular/common/http';
 import { LanguageService } from '../../service/language.service';
 import { Observable } from 'rxjs';
 import { OrderService } from '../../service/order.service';
+import { TranslateService } from '@ngx-translate/core';
 declare var $: any;
 @Component({
   selector: 'app-all-list',
@@ -27,6 +28,7 @@ export class AllListComponent implements OnInit {
   nolist: boolean;
 
   constructor(
+    private translate: TranslateService,
     private basedataservice: BaseApplicationDataService,
     private standingorderservice: StandingorderService,
     private orderservice: OrderService,
@@ -41,10 +43,10 @@ export class AllListComponent implements OnInit {
     $('#mutual-tab-menu').find('li').removeClass('current');
     $('#mutual-tab-menu').find('li#menu4').addClass('current');
 
-    this.langservice.listen().subscribe((m:any) => {
+    this.langservice.listen().subscribe((m: any) => {
       console.log(m);
       this.lang = m;
-  })
+    })
   }
   onChange() {
 
@@ -63,11 +65,16 @@ export class AllListComponent implements OnInit {
         data => {
           setTimeout(() => {
             $('.selectpicker').selectpicker('refresh');
-        }, 100);
+          }, 100);
           this.userall = data;
-          this.unitholderno = this.userall.unitholderlist[0];
-          this.userselect = this.userall.unitholderlist[0];
-          this.getstnadingorder();
+          if (this.userall.unitholderlist.length > 0) {
+            this.unitholderno = this.userall.unitholderlist[0];
+            this.userselect = this.userall.unitholderlist[0];
+            this.getstnadingorder();
+          }
+          else {
+            this.userall = '';
+          }
         },
         error => {
           console.log(error)
@@ -77,7 +84,7 @@ export class AllListComponent implements OnInit {
             keyboard: false,
             show: true
           });
-          
+
         });
   }
   getstnadingorder() {
@@ -90,7 +97,7 @@ export class AllListComponent implements OnInit {
         data => {
           console.log(data);
           this.standingorder = data;
-          if(!this.standingorder.standingorderlist){
+          if (!this.standingorder.standingorderlist) {
             this.nolist = true;
           }
         },
@@ -132,6 +139,17 @@ export class AllListComponent implements OnInit {
           this.getstnadingorder();
           // this.ordersubscriptionlist = data;
           $('#delete').modal('toggle');
+          this.translate.get('Modal.delete-or').subscribe((res: string) => {
+            console.log(res);
+            this.message = res;
+            //=> 'hello world'
+          });
+          // this.message = 'ลบรายการสำเร็จ';
+          $('#message').modal({
+            backdrop: 'static',
+            keyboard: false,
+            show: true
+          });
 
         },
         error => {

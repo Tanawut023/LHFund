@@ -8,6 +8,7 @@ import { getDate, boostrapdatepicker } from '../../Share/dateformat';
 import { Observable } from 'rxjs';
 import { LanguageService } from '../../service/language.service';
 import { OrderService } from '../../service/order.service';
+import { TranslateService } from '@ngx-translate/core';
 declare var $: any;
 
 export class customValidationService {
@@ -41,7 +42,7 @@ export class customValidationService {
 export class RegularPurchaseComponent implements OnInit {
     page = "regular-purchase";
     model: any = {};
-    userall: any = {};
+    userall;
     userselect: any = {};
     unitholderno: any = "init";
     month;
@@ -73,6 +74,7 @@ export class RegularPurchaseComponent implements OnInit {
     }
 
     constructor(
+        private translate: TranslateService,
         private basedataservice: BaseApplicationDataService,
         private standingorderservice: StandingorderService,
         private fb: FormBuilder,
@@ -200,12 +202,23 @@ export class RegularPurchaseComponent implements OnInit {
                     setTimeout(() => {
                         $('.selectpicker').selectpicker('refresh');
                     }, 100);
+                    console.log(data);
+                    
                     this.userall = data;
-                    this.unitholderno = this.userall.unitholderlist[0];
-                    this.userselect = this.userall.unitholderlist[0];
-                    this.getbanklist();
-                    this.getfundlist();
-                    this.getstnadingorder();
+                    if (this.userall.unitholderlist.length > 0) {
+
+                        this.unitholderno = this.userall.unitholderlist[0];
+                        this.userselect = this.userall.unitholderlist[0];
+                        this.getbanklist();
+                        this.getfundlist();
+                        this.getstnadingorder();
+                    }
+                    else{
+                        this.userall = '';
+                    }
+                    console.log(this.userall);
+                    
+                    
                 },
                 error => {
                     console.log(error)
@@ -261,8 +274,6 @@ export class RegularPurchaseComponent implements OnInit {
         this.Islevel = false;
         this.Isprotect = false;
         this.dateless = false;
-
-
         if (this.formsubstanding.valid) {
             if (this.userselect.RiskLevelExpire == true) {
                 console.log('expire');
@@ -273,7 +284,11 @@ export class RegularPurchaseComponent implements OnInit {
                     show: true
                 });
             } else if (!this.banklist.bankaccountlist[0] && this.userdetail.MemberType != 'Agent') {
-                this.message = 'ติดต่อเจ้าหน้าที่การตลาด เบอร์ติดต่อ 02-286-3484 หรือ 02-679-2155 เพื่อดำเนินขอเปิดบัญชี ATS';
+                this.translate.get('CONTENT.ats-contact').subscribe((res: string) => {
+                    console.log(res);
+                    this.message = res;
+                });
+                // this.message = 'ติดต่อเจ้าหน้าที่การตลาด เบอร์ติดต่อ 02-286-3484 หรือ 02-679-2155 เพื่อดำเนินขอเปิดบัญชี ATS';
 
                 setTimeout(() => {
                     $('#message').modal({
@@ -348,7 +363,6 @@ export class RegularPurchaseComponent implements OnInit {
             FundID: this.formsubstanding.controls.fund.value.FundID
         }
         console.log(user);
-
         this.standingorderservice.changefund(user)
             .pipe(first())
             .subscribe(
@@ -358,7 +372,6 @@ export class RegularPurchaseComponent implements OnInit {
                     if (data['messages']) {
                         this.message = data['messages'];
                         this.Islevel = true;
-
                         if (this.Islevel) {
                             console.log('level');
                             $('#risklevel').modal({
@@ -379,8 +392,6 @@ export class RegularPurchaseComponent implements OnInit {
                     } else {
                         this.confirm();
                     }
-
-
                 },
                 error => {
                     console.log(error);
@@ -410,7 +421,6 @@ export class RegularPurchaseComponent implements OnInit {
         this.loading = true;
         this.isNotValid = false;
         var user;
-
         this.datestart = this.formsubstanding.controls.datestart.value.year + "-" + this.formsubstanding.controls.datestart.value.month + "-" + this.formsubstanding.controls.datestart.value.day;
         this.datestart = boostrapdatepicker(this.datestart);
         this.dateend = this.formsubstanding.controls.dateend.value.year + "-" + this.formsubstanding.controls.dateend.value.month + "-" + this.formsubstanding.controls.dateend.value.day;
@@ -441,9 +451,6 @@ export class RegularPurchaseComponent implements OnInit {
                 IDCardNo: this.banklist.bankaccountlist[0].BankAccountID
             }
         }
-
-
-
         console.log(user);
         this.standingorderservice.submitstandingorder(user)
             .pipe(first())
@@ -451,7 +458,12 @@ export class RegularPurchaseComponent implements OnInit {
                 data => {
                     console.log(data);
                     this.resultsubmit = data;
-                    this.message = "ทำรายการสำเร็จ";
+                    this.translate.get('Modal.succ').subscribe((res: string) => {
+                        console.log(res);
+                        this.message = res;
+                        //=> 'hello world'
+                    });
+                    // this.message = "ทำรายการสำเร็จ";
                     this.loading = false;
                     setTimeout(() => {
                         $('#message').modal({
@@ -461,8 +473,6 @@ export class RegularPurchaseComponent implements OnInit {
                         });
                     }, 100);
                     this.reset();
-                    // this.checkpage('regular-purchase-step1');
-                    // this.checkexpireandlevel();
                 },
                 error => {
                     console.log(error);
@@ -524,6 +534,17 @@ export class RegularPurchaseComponent implements OnInit {
                     this.getstnadingorder();
                     // this.ordersubscriptionlist = data;
                     $('#delete').modal('toggle');
+                    this.translate.get('Modal.delete-or').subscribe((res: string) => {
+                        console.log(res);
+                        this.message = res;
+                        //=> 'hello world'
+                    });
+                    // this.message = 'ลบรายการสำเร็จ';
+                    $('#message').modal({
+                        backdrop: 'static',
+                        keyboard: false,
+                        show: true
+                    });
 
                 },
                 error => {

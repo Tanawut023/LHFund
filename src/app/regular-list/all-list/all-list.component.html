@@ -7,7 +7,7 @@
 </style>
 <div class="fund-table-wrapper">
   <div class="heading-section">
-    <div class="detail-head-wrapper">
+    <div class="detail-head-wrapper" *ngIf="userall != ''">
       <div class="row">
 
         <div class="col-md-12 col-12 icon-option mb-3">
@@ -35,8 +35,9 @@
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block pb-3">
             <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="ddlLink" class="selectpicker" data-live-search="true">
-              <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
-                }} <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container>
+              <option [ngValue]="unitholder" *ngFor="let unitholder of userall?.unitholderlist; let i = index">{{ unitholder?.UnitholderNo
+                }}
+                <ng-container *ngIf="unitholder?.AgentCode">({{unitholder?.AgentCode }})</ng-container>
               </option>
             </select>
           </div>
@@ -44,7 +45,7 @@
 
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-          <span class="txt-middle">{{ userselect.FirstName}} {{ userselect.LastName}}</span>
+          <span class="txt-middle">{{ userselect?.FirstName}} {{ userselect?.LastName}}</span>
         </div>
 
         <div class="col-md-3">
@@ -59,14 +60,21 @@
         <div class="col-sm-6 col-md-6">
 
           <p>{{ 'CONTENT.address' | translate }}</p>
-          <span class="txt-middle">{{ userselect.ContactAddress}}</span>
+          <span class="txt-middle">{{ userselect?.ContactAddress}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="detail-footer-wrapper" *ngIf="userall == ''">
+      <div class="row">
+        <div class="col-md-12 mt-5 text-center">
+          <p>ไม่พบเลขที่ผู้ถือหน่วยลงทุน ไม่สามารถทำรายการได้</p>
         </div>
       </div>
     </div>
 
   </div>
 
-  <div class="detail-body-wrapper">
+  <div class="detail-body-wrapper" *ngIf="userall != ''">
     <div class="row">
       <div class="col-md-12">
         <h4>{{ 'NAVBAR.view-plan' | translate }}</h4>
@@ -121,58 +129,58 @@
             <tbody>
               <tr *ngIf="nolist">
                 <td colspan="11" class="text-center">
-                  <p>ไม่พบรายการดังกล่าว</p>
+                  <p>{{ 'CONTENT.not-found' | translate }}</p>
                 </td>
               </tr>
               <ng-container *ngFor="let type of standingorder?.standingorderlist; let i = index">
-              <tr class="line">
-                <td colspan="10">
-                  <ng-container *ngIf="lang == 'th' ">{{ type.FundTypeName }}</ng-container>
-                  <ng-container *ngIf="lang == 'en' ">{{ type.FundTypeNameEng }}</ng-container>
-                </td>
-              </tr>
-              <ng-container *ngFor="let group of type?.StandingOrderFund; let y = index">
-                <!-- <tr class="line">
+                <tr class="line">
+                  <td colspan="10">
+                    <ng-container *ngIf="lang == 'th' ">{{ type.FundTypeName }}</ng-container>
+                    <ng-container *ngIf="lang == 'en' ">{{ type.FundTypeNameEng }}</ng-container>
+                  </td>
+                </tr>
+                <ng-container *ngFor="let group of type?.StandingOrderFund; let y = index">
+                  <!-- <tr class="line">
                   <td colspan="10">
                     {{group.FundName}}
                   </td>
                 </tr> -->
-                <tr *ngFor="let list of group?.StandingOrder; let z = index" class="bgforlhfund">
+                  <tr *ngFor="let list of group?.StandingOrder; let z = index" class="bgforlhfund">
 
-                  <td class="">
-                    {{list.StandingOrderDate | datethai}}, {{list.StandingOrderDate | time}}
-                  </td>
-                  <td class="text-center">
-                    {{list.StandingOrderTxType | type}}
-                  </td>
-                  <td class="text-center">
-                    {{list.IDCardNo}}
-                  </td>
-                  <td class="">
-                    &nbsp;
-                  </td>
-                  <td class="text-center">
-                    {{ 'CONTENT.monthly' | translate }} {{ 'CONTENT.every-day' | translate }} ({{list.StandingOrderDayNo}})
-                  </td>
-                  <td class="txt-right">
-                    {{list.StandingOrderAmount | tofix}}
-                  </td>
-                  <td class="text-center">
-                    {{list.StandingOrderEffectiveDate | datethai}} - {{list.ExpiryDate | datethai}}
-                  </td>
-                  <!-- <td>
+                    <td class="">
+                      {{list.StandingOrderDate | datethai}}, {{list.StandingOrderDate | time}}
+                    </td>
+                    <td class="text-center">
+                      {{list.StandingOrderTxType | type}}
+                    </td>
+                    <td class="text-center">
+                      {{list.IDCardNo}}
+                    </td>
+                    <td class="">
+                      &nbsp;
+                    </td>
+                    <td class="text-center">
+                      {{ 'CONTENT.monthly' | translate }} {{ 'CONTENT.every-day' | translate }} ({{list.StandingOrderDayNo}})
+                    </td>
+                    <td class="txt-right">
+                      {{list.StandingOrderAmount | tofix}}
+                    </td>
+                    <td class="text-center">
+                      {{list.StandingOrderEffectiveDate | datethai}} - {{list.ExpiryDate | datethai}}
+                    </td>
+                    <!-- <td>
                     <a>
                       <img src="/assets/Images/icons/ico-edit.png">
                     </a>
                   </td> -->
-                  <td class="text-center">
-                    <a>
-                      <img src="/assets/Images/icons/ico-delete.png" alt="" (click)="modaldeleteorder(group,list)">
-                    </a>
-                  </td>
-                </tr>
+                    <td class="text-center">
+                      <a>
+                        <img src="/assets/Images/icons/ico-delete.png" alt="" (click)="modaldeleteorder(group,list)">
+                      </a>
+                    </td>
+                  </tr>
+                </ng-container>
               </ng-container>
-            </ng-container>
             </tbody>
           </table>
         </div>
@@ -181,8 +189,13 @@
 
       </div>
       <div class="col-md-12 mb-5">
-        <p class="color-red no-margin">ข้อมูลที่แสดงข้างต้นนี้อาจมีการเปลี่ยนแปลงแก้ไขได้ หากเป็นการซื้อที่เรียกเก็บเงิน
-          หรือรายการผิดพลาดใดๆ ทั้งนี้การเปลี่ยนแปลงแก้ไขจะเป็นไปตามวิธีและข้อกำหนดที่ระบุไว้ในโครงการจัดการกองทุนที่ท่านลงทุน
+        <p class="color-red no-margin">
+          <ng-container *ngIf="lang == 'th' ">ข้อมูลที่แสดงข้างต้นนี้อาจมีการเปลี่ยนแปลงแก้ไขได้ หากเป็นการซื้อที่เรียกเก็บเงินหรือรายการผิดพลาดใดๆ
+            ทั้งนี้การเปลี่ยนแปลงแก้ไขจะเป็นไปตามวิธีและข้อกำหนดที่ระบุไว้ในโครงการจัดการกองทุนที่ท่านลงทุน</ng-container>
+          <ng-container *ngIf="lang == 'en' ">Information shown above may change. If it is a billable purchase or any errors.
+            Amendment will be in accordance with the methods and requirements specified in the fund management project that
+            you invest.</ng-container>
+
         </p>
       </div>
       <div class="col-md-12">
@@ -214,11 +227,11 @@
         <div class="row mt-3">
           <div class="col-md-6 col-6">
             <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
-            <span>{{ userselect.UnitholderNo }} <ng-container *ngIf="userselect.AgentCode">({{userselect.AgentCode }})</ng-container></span>
+            <span>{{ userselect?.UnitholderNo }} <ng-container *ngIf="userselect?.AgentCode">({{userselect?.AgentCode }})</ng-container></span>
           </div>
           <div class="col-md-6 col-6">
             <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-            <span>{{ userselect.FirstName}} {{ userselect.LastName}}</span>
+            <span>{{ userselect?.FirstName}} {{ userselect?.LastName}}</span>
           </div>
 
           <div class="col-md-12 mt-4">
@@ -257,7 +270,8 @@
                       {{ 'CONTENT.amount2' | translate }}
                     </td>
                     <td class="text-left content">
-                      <ng-container *ngIf="deletedOrder">{{deletedOrder?.StandingOrderAmount | tofix}} {{ 'CONTENT.bath' | translate }}</ng-container>
+                      <ng-container *ngIf="deletedOrder">{{deletedOrder?.StandingOrderAmount | tofix}} {{ 'CONTENT.bath'
+                        | translate }}</ng-container>
                     </td>
                   </tr>
                   <tr>

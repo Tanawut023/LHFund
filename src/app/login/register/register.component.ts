@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AbstractControl, FormBuilder, FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
@@ -7,6 +7,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { first } from 'rxjs/operators';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { ReCaptcha2Component } from '../../../../node_modules/ngx-captcha';
 
 declare var $: any;
 
@@ -58,6 +59,8 @@ export class RegisterComponent implements OnInit {
     translate.addLangs(["th", "en"]);
   }
 
+  @ViewChild('captchaElem') captchaElem: ReCaptcha2Component;
+
   ngOnInit() {
     this.createFormValidate();
     this.foo1 = this.translate.currentLang;
@@ -94,17 +97,12 @@ export class RegisterComponent implements OnInit {
         console.log(this.formstep2)
         if (this.formstep2.valid) {
           this.loading = true;
-          // var refcode = this.User[0]
           let params = new HttpParams().set('refcode', this.User.refcode);
-
           const user = {
             UserName: this.formstep2.controls.username.value,
             Password: this.formstep2.controls.password.value,
             ConfirmPassword: this.formstep2.controls.repeatPassword.value
           }
-
-
-          // await this.http.post('http://fundchoiceuat.lhfund.co.th/api/member/validateUserName', user, { params: params })
           await this.authenticationService.validateUserName(user, params)
             .subscribe((data) => {
               console.log(data);
@@ -181,6 +179,8 @@ export class RegisterComponent implements OnInit {
           var telephone = this.form.controls.tel.value;
           telephone = telephone.slice(1, 10);
           telephone = "66" + telephone;
+          let Params = new HttpParams();
+          Params = Params.append('encodedresponse', this.form.controls.recaptcha.value);
           const user = {
             PreName: this.form.controls.prefix.value,
             FirstName: this.form.controls.firstname.value,
@@ -189,12 +189,9 @@ export class RegisterComponent implements OnInit {
             Email: this.form.controls.email.value,
             Mobile: this.form.controls.tel.value
           }
-          // let res = await this.authenticationService.validateMember2(user);
-          // console.log(res);
+          console.log(this.form.controls.recaptcha.value);
 
-
-
-          await this.authenticationService.validateMember(user)
+          await this.authenticationService.validateMember(user, Params)
             .pipe(first())
             .subscribe((data: any) => {
               console.log(data);
@@ -202,11 +199,13 @@ export class RegisterComponent implements OnInit {
               console.log(this.User.refcode);
               this.page = "signup2";
               this.loading = false;
+              this.reset();
             },
               (error: any) => {
                 console.log(error);
                 this.loading = false;
                 this.message = error.error.messages;
+                this.reset();
                 setTimeout(() => {
                   $('#message').modal({
                     backdrop: 'static',
@@ -215,6 +214,8 @@ export class RegisterComponent implements OnInit {
                   });
                 }, 100);
               });
+
+
 
 
           var s = this.form.controls.tel.value;
@@ -402,5 +403,8 @@ export class RegisterComponent implements OnInit {
             show: true
           });
         });
+  }
+  reset(): void {
+    this.captchaElem.resetCaptcha();
   }
 }

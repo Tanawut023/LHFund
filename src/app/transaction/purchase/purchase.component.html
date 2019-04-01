@@ -35,19 +35,19 @@
           <div class="select-wrapper inline-block" *ngIf="unitholderno">
             <select id="unitholderno" [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" [ngModelOptions]="{standalone: true} "
               data-live-search="true" class="selectpicker">
-              <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
-                }} <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container>
+              <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder?.UnitholderNo
+                }} <ng-container *ngIf="unitholder?.AgentCode">({{unitholder?.AgentCode }})</ng-container>
               </option>
             </select>
           </div>
         </div>
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-          <span class="txt-middle">{{ userselect.FirstName}} {{ userselect.LastName}}</span>
+          <span class="txt-middle">{{ userselect?.FirstName}} {{ userselect?.LastName}}</span>
         </div>
         <div class="col-md-6">
           <p>{{ 'CONTENT.address' | translate }}</p>
-          <span class="txt-middle">{{ userselect.ContactAddress}}</span>
+          <span class="txt-middle">{{ userselect?.ContactAddress}}</span>
         </div>
       </div>
     </div>
@@ -1028,29 +1028,6 @@
       </div>
     </div>
   </div>
-  <div class="modal fade modal-custom" tabindex="-1" role="dialog" id="message2" style="z-index: 9999;">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">{{ 'Modal.notifications' | translate }}</h4>
-        </div>
-        <div class="modal-body" id="content-scroll-1">
-          <h3>{{ 'CONTENT.ats-contact' | translate }}</h3>
-        </div>
-        <div class="modal-footer" style="display: block;">
-          <div class="row justify-content-end">
-            <div class="col-sm-6">
-              <button class="btn-med btn-primary" data-dismiss="modal">
-                <p style="margin-top: 7px;">{{ 'BUTTON.ok' | translate }}
-                  <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </p>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <div class="modal fade modal-custom" tabindex="-1" role="dialog" id="risklevel" style="z-index: 9999;">
     <div class="modal-dialog modal-lg" role="document">
@@ -1140,11 +1117,11 @@
           <div class="row mt-3">
             <div class="col-md-6 col-6">
               <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
-              <span>{{ userselect.UnitholderNo }} <ng-container *ngIf="userselect.AgentCode">({{userselect.AgentCode }})</ng-container></span>
+              <span>{{ userselect?.UnitholderNo }} <ng-container *ngIf="userselect?.AgentCode">({{userselect?.AgentCode }})</ng-container></span>
             </div>
             <div class="col-md-6 col-6">
               <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-              <span>{{ userselect.FirstName}} {{ userselect.LastName}}</span>
+              <span>{{ userselect?.FirstName}} {{ userselect?.LastName}}</span>
             </div>
 
             <div class="col-md-12 mt-4">

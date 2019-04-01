@@ -149,13 +149,16 @@ export class ExchangeComponent implements OnInit {
                     setTimeout(() => {
                         $('.selectpicker').selectpicker('refresh');
                     }, 100);
-                    if (data) {
-                        this.userall = data;
+                    this.userall = data;
+                    if (this.userall.unitholderlist.length > 0) {
+                        
                         this.unitholderno = this.userall.unitholderlist[0];
                         this.userselect = this.userall.unitholderlist[0];
                         this.getselectlistfundlistandbankaccount();
                         this.getorderinfolist();
 
+                    }else{
+                        this.userall = '';
                     }
 
                 },
@@ -867,11 +870,6 @@ export class ExchangeComponent implements OnInit {
                         }
                     }
                 }
-
-
-
-
-
                 console.log(user);
                 this.orderservice.submitorder(user)
                     .pipe(first())
@@ -914,13 +912,17 @@ export class ExchangeComponent implements OnInit {
                     console.log(data);
                     this.loading = false;
                     this.checkpage("exchange-step2");
-                    this.message = 'ทำรายการสำเร็จ';
+                    this.translate.get('Modal.succ').subscribe((res: string) => {
+                        console.log(res);
+                        this.message = res;
+                        //=> 'hello world'
+                    });
+                    // this.message = 'ทำรายการสำเร็จ';
                     $('#message').modal({
                         backdrop: 'static',
                         keyboard: false,
                         show: true
                     });
-
 
                 },
                 error => {
@@ -953,19 +955,6 @@ export class ExchangeComponent implements OnInit {
                         this.message = data['messages'];
                         this.Islevel = true;
                     }
-                    // 
-                    //     this.message = data['messages'];
-                    //     $('#message2').modal({
-                    //         backdrop: 'static',
-                    //         keyboard: false,
-                    //         show: true
-                    //     });
-                    //     // this.page = "purchase-step1";
-                    // }
-                    // else {
-                    //     this.checkpage('exchange-step1');
-                    // }
-
                 },
                 error => {
                     console.log(error);
@@ -976,9 +965,7 @@ export class ExchangeComponent implements OnInit {
                         keyboard: false,
                         show: true
                     });
-
                 });
-
 
         setTimeout(() => {
             if (this.Islevel) {
@@ -1039,7 +1026,11 @@ export class ExchangeComponent implements OnInit {
                     this.getorderinfolist();
                     // this.ordersubscriptionlist = data;
                     $('#delete').modal('toggle');
-                    this.message = 'ลบรายการสำเร็จ';
+                    this.translate.get('Modal.delete-or').subscribe((res: string) => {
+                        console.log(res);
+                        this.message = res;
+                    });
+                    // this.message = 'ลบรายการสำเร็จ';
                     $('#message').modal({
                         backdrop: 'static',
                         keyboard: false,

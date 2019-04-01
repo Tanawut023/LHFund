@@ -331,12 +331,8 @@ export class SuitabilityComponent implements OnInit {
                 )
             }
             console.log(array);
-
-
             this.suitestselected = array;
             console.log(this.suitestselected);
-
-
             this.profileserice.calculateriskprofile(this.suitestselected)
                 .pipe(first())
                 .subscribe(
@@ -356,11 +352,6 @@ export class SuitabilityComponent implements OnInit {
                             show: true
                         });
                     });
-
-
-
-
-
         }
         else {
             this.isNotValid = true;
@@ -418,10 +409,8 @@ export class SuitabilityComponent implements OnInit {
                 .pipe(first())
                 .subscribe(
                     data => {
-                        // this.res = data;
-                        console.log('here1');
-                        this.loading = false;
                         console.log(data);
+                        this.loading = false;
                         this.show = false;
                         $('#otpsuitest').modal('toggle');
                         $('#messagesuc').modal({
@@ -434,7 +423,6 @@ export class SuitabilityComponent implements OnInit {
 
                     },
                     error => {
-                        console.log('here2');
                         console.log(error);
                         this.loading = false;
                         this.message = error.error.messages;
@@ -476,6 +464,14 @@ export class SuitabilityComponent implements OnInit {
                 (error) => {
                     console.log(error);
                     this.loading = false;
+                    this.message = error.error.messages;
+                    setTimeout(() => {
+                        $('#message').modal({
+                            backdrop: 'static',
+                            keyboard: false,
+                            show: true
+                        });
+                    }, 100);
                 });
     }
     reset() {

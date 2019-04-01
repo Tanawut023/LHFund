@@ -163,7 +163,6 @@ export class ChangepasswordComponent implements OnInit {
   }
 
   updatepassword() {
-
     console.log(this.formotp.controls.otp.value)
     console.log(this.formchangepass)
     if (this.formotp.valid) {
@@ -189,7 +188,7 @@ export class ChangepasswordComponent implements OnInit {
             this.res = data;
             this.loading = false;
             $('#otpchangepassword').modal('toggle');
-            this.message = "เปลี่ยนรหัสผ่านสำเร็จ";
+            this.message = "ท่านได้ทำการเปลี่ยนรหัสผ่านเรียบร้อยแล้ว";
             $('#message').modal({
               backdrop: 'static',
               keyboard: false,
@@ -265,6 +264,14 @@ export class ChangepasswordComponent implements OnInit {
         (error) => {
           console.log(error);
           this.loading = false;
+          this.message = error.error.messages;
+            setTimeout(() => {
+              $('#message').modal({
+                backdrop: 'static',
+                keyboard: false,
+                show: true
+              });
+            }, 100);
         });
   }
   print() {

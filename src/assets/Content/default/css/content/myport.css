@@ -489,7 +489,7 @@
           background-color: #1CA59B; }
       .open-account-wrapper .open-account-box .wrap-container .wrap-suitability .control-label {
         margin: 0;
-        display: unset; }
+        display: inline; }
       .open-account-wrapper .open-account-box .wrap-container .wrap-suitability span {
         display: inline-block; }
       .open-account-wrapper .open-account-box .wrap-container .wrap-suitability .choice-wrap {

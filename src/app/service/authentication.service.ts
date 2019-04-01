@@ -26,7 +26,6 @@ export class AuthenticationService {
 
     return this.http.post<any>(environment.serverUrl + '/authorize', data, { headers: headers })
       .pipe(map(user => {
-        // console.log(user)
         // login successful if there's a jwt token in the response
         if (user) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -69,14 +68,13 @@ export class AuthenticationService {
 
   logout() {
     // remove user from local storage to log user out
-    // this.loggedIn.next(false);
     localStorage.removeItem('currentUser');
     localStorage.removeItem('userInfo');
 
   }
 
-  validateMember(data) {
-    return this.http.post<any>(environment.serverUrl + '/api/member/validatemember', data);
+  validateMember(data, params) {
+    return this.http.post<any>(environment.serverUrl + '/api/member/validatemember', data, { params: params });
   }
   validateUserName(data, params) {
     return this.http.post(environment.serverUrl + '/api/member/validateusername', data, { params: params });
@@ -87,8 +85,8 @@ export class AuthenticationService {
   OTPRegister(data, params) {
     return this.http.post(environment.serverUrl + '/api/member/otpregister', data, { params: params });
   }
-  validateForgotPassword(data) {
-    return this.http.post(environment.serverUrl + '/api/member/validateforgotpassword', data);
+  validateForgotPassword(data, params) {
+    return this.http.post(environment.serverUrl + '/api/member/validateforgotpassword', data, { params: params });
   }
   validateActivateCode(params) {
     return this.http.post(environment.serverUrl + '/api/member/validateactivatecode', null, { params: params });
