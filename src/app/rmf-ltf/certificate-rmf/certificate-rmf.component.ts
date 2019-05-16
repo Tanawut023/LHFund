@@ -35,6 +35,7 @@ export class CertificateRmfComponent implements OnInit {
     $('#mutual-tab-menu').find('li').removeClass('current');
     $('#mutual-tab-menu').find('li#menu3').addClass('current');
   }
+
   onChange() {
 
     for (let i = 0; i < this.userall.unitholderlist.length; i++) {
@@ -43,6 +44,7 @@ export class CertificateRmfComponent implements OnInit {
       }
     }
   }
+
   getSelectListUnitholder() {
     this.basedataservice.getSelectListUnitholder()
       .pipe(first())
@@ -57,9 +59,9 @@ export class CertificateRmfComponent implements OnInit {
         },
         error => {
           console.log(error)
-
         });
   }
+
   getyearlist() {
     this.rmfltfservice.getyearlist()
       .pipe(first())
@@ -74,7 +76,6 @@ export class CertificateRmfComponent implements OnInit {
         },
         error => {
           console.log(error)
-
         });
   }
 
@@ -87,7 +88,6 @@ export class CertificateRmfComponent implements OnInit {
       CertificateType: 'RMF',
       Year: this.years
     }
-
     console.log(user);
 
     this.rmfltfservice.getcertificate(user)
@@ -98,7 +98,6 @@ export class CertificateRmfComponent implements OnInit {
           if(this.rmffilelist.filenamelist.length == 0){
             this.nolist = true;
             console.log('notlist');
-            
           }
           this.loading = false;
         },
@@ -110,16 +109,13 @@ export class CertificateRmfComponent implements OnInit {
             keyboard: false,
             show: true
           });
-
         });
-
-
   }
+
   download(arr) {
     this.loading = true;
     var i = arr;
     var filename = this.rmffilelist.filenamelist[i];
-
     var user = {
       UnitholderID: this.userselect.UnitholderId,
       CertificateType: 'RMF',
@@ -127,11 +123,9 @@ export class CertificateRmfComponent implements OnInit {
       FileName: filename
     }
     console.log(user);
-
     if (user instanceof HttpParams) {
       return 'application/x-www-form-urlencoded;charset=UTF-8';
     }
-
 
     this.rmfltfservice.downloadcertificate(user)
       .subscribe(
@@ -142,21 +136,16 @@ export class CertificateRmfComponent implements OnInit {
         },
         error => {
           console.log(error)
-
-          // setTimeout(() => {
           $('#message').modal({
             backdrop: 'static',
             keyboard: false,
             show: true
           });
-          // }, 100);
-
           this.loading = false;
-
         });
 
-
   }
+  
   print() {
     window.focus();
     window.print();

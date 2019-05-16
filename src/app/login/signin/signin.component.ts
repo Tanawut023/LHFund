@@ -78,16 +78,12 @@ export class SigninComponent implements OnInit {
     this.formsighin = this.fb.group({
       username: [null,
         [
-          Validators.required,
-          // Validators.minLength(8),
-          // Validators.pattern(/^[A-Za-z0-9]{8,16}$/)
+          Validators.required
         ]
       ],
       password: [null,
         [
-          Validators.required,
-          // Validators.minLength(8),
-          // Validators.pattern(/^(?=.*[0-9])(?=.*[A-Z])(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/)
+          Validators.required
         ]
       ]
     })

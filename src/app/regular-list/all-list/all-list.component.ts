@@ -87,10 +87,10 @@ export class AllListComponent implements OnInit {
 
         });
   }
+
   getstnadingorder() {
     this.nolist = false;
     let params = new HttpParams().set('unitholderid', this.userselect.UnitholderId);
-
     this.standingorderservice.getstnadingorder(params)
       .pipe(first())
       .subscribe(
@@ -113,11 +113,10 @@ export class AllListComponent implements OnInit {
 
         });
   }
-  modaldeleteorder(group, order) {
 
+  modaldeleteorder(group, order) {
     this.deletedOrder = order;
     this.deletedGroup = group;
-    // console.log(JSON.stringify(this.deletedOrder)+'index = '+index);
     $('#delete').modal({
       backdrop: 'static',
       keyboard: false,
@@ -137,12 +136,10 @@ export class AllListComponent implements OnInit {
         data => {
           console.log(data);
           this.getstnadingorder();
-          // this.ordersubscriptionlist = data;
           $('#delete').modal('toggle');
           this.translate.get('Modal.delete-or').subscribe((res: string) => {
             console.log(res);
             this.message = res;
-            //=> 'hello world'
           });
           // this.message = 'ลบรายการสำเร็จ';
           $('#message').modal({

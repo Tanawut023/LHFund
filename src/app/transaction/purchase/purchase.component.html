@@ -12,16 +12,6 @@
         <div class="col-md-12 col-12 icon-option mb-3">
 
           <ul class="">
-            <!-- <li class="ico-fb">
-              <a href="#" title="facebook">
-                <img src="/assets/Images/icons/ico-pipe.png" />
-              </a>
-            </li>
-            <li class="ico-line">
-              <a href="#" title="line">
-                <img src="/assets/Images/icons/ico-download.png" />
-              </a>
-            </li> -->
             <li class="ico-yt">
               <a title="print">
                 <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
@@ -36,7 +26,8 @@
             <select id="unitholderno" [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" [ngModelOptions]="{standalone: true} "
               data-live-search="true" class="selectpicker">
               <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder?.UnitholderNo
-                }} <ng-container *ngIf="unitholder?.AgentCode">({{unitholder?.AgentCode }})</ng-container>
+                }}
+                <ng-container *ngIf="unitholder?.AgentCode">({{unitholder?.AgentCode }})</ng-container>
               </option>
             </select>
           </div>
@@ -64,7 +55,6 @@
               <p>{{ 'CONTENT.input-date' | translate }}</p>
             </div>
             <div class="col-md-6">
-              <!-- <span>{{ currentdate }}</span> -->
               <ng-container *ngIf="lang == 'th' "><span>{{ currentdate }}</span></ng-container>
               <ng-container *ngIf="lang == 'en' "><span>{{ currentdateEng }}</span></ng-container>
             </div>
@@ -86,20 +76,11 @@
             <div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss('fund')">
               <div class="select-wrapper inline-block">
                 <select id="fund" formControlName="fund" name="fund" required class="selectpicker" data-live-search="true" title="{{ 'CONTENT.select' | translate }}">
-                  <!-- <option value="" *ngIf="!this.formsubsription.controls.fund.value">กรุณาเลือก</option> -->
-                  <!-- <option data-hidden="true">{{ 'CONTENT.select' | translate }}</option> -->
                   <option [ngValue]="fundlist" *ngFor="let fundlist of unitholdersubscription.fundlist; let i = index">
-                    <!-- {{ fundlist.FundName }} -->
                     <ng-container *ngIf="lang == 'th' ">{{ fundlist.FundName }}</ng-container>
                     <ng-container *ngIf="lang == 'en' ">{{ fundlist.FundNameEng }}</ng-container>
                   </option>
                 </select>
-
-                <!-- <select class="selectpicker" data-live-search="true">
-                  <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
-                  <option data-tokens="mustard">Burger, Shake and a Smile</option>
-                  <option data-tokens="frosting">Sugar, Spice and all things nice</option>
-                </select> -->
 
                 <div class="form-control-feedback" *ngIf="this.formsubsription.controls.fund.errors && (this.formsubsription.controls.fund.touched)">
                   <p *ngIf="this.formsubsription.controls.fund.errors.required">{{ 'Validation.required' | translate }}</p>
@@ -126,8 +107,8 @@
                   (blur)="tofix($event.target.value)">
                 <div class="form-control-feedback" *ngIf="this.formsubsription.controls.amount.errors && (this.formsubsription.controls.amount.touched)">
                   <p *ngIf="this.formsubsription.controls.amount.errors.required">{{ 'Validation.required' | translate }}</p>
-                  <!-- <p *ngIf="cpwd.hasError('invalid')">กรุณากรอกจำนวนขั้นต่ำ 1000 บาท</p> -->
                 </div>
+                <p class="color-red no-margin" *ngIf="this.formsubsription.controls.amount.value == 0">{{ 'CONTENT.lesszero' | translate }}</p>
               </div>
             </div>
             <div class="col-md-3 col-6">
@@ -143,7 +124,6 @@
             <div class="col-md-6">
               <div class="select-wrapper inline-block">
                 <select id="bank" [(ngModel)]="banklist" name="banklist" [ngModelOptions]="{standalone: true}" class="selectpicker">
-                  <!-- <option value=""  *ngIf="banklist == ''">ไม่พบบัญชีธนาคาร</option> -->
                   <ng-container *ngIf="lang == 'th' ">
                     <option value="" *ngIf="banklist == ''">ไม่พบบัญชีธนาคาร</option>
                   </ng-container>
@@ -162,7 +142,6 @@
             <div class="col-md-4">
               <p class="">{{ 'CONTENT.Advance-s-date' | translate }} <label class="color-red">*</label></p>
             </div>
-            <!-- [markDisabled]="isDisabled" -->
             <div class="col-md-5 col-lg-3 col-10">
               <div class="input-wrapper">
                 <input class=" textinput dateinput bg-gray" [minDate]="minDate" ngbDatepicker #d="ngbDatepicker" id="startDate" placeholder="{{ 'CONTENT.place-holder-date' | translate }}"
@@ -175,8 +154,6 @@
 
             <div class="col-md-12 offset-md-4">
               <div class="input-wrapper">
-                <!-- <p class="color-red">* หากไม่ต้องการกำหนดวันซื้อหน่วยลงทุนล่วงหน้า ไม่ต้องระบุ</p> -->
-
                 <ng-container *ngIf="lang == 'th' ">
                   <p class="color-red">* หากไม่ต้องการกำหนดวันซื้อหน่วยลงทุนล่วงหน้า ไม่ต้องระบุ</p>
                 </ng-container>
@@ -209,20 +186,18 @@
   </div>
   <div class="detail-footer-wrapper" *ngIf="userall != ''">
     <div class="row">
+
       <div class="col-md-6 text-left">
         <h4>{{ 'CONTENT.sub-order' | translate }}
           <br class="d-block d-sm-none" />
           <label>{{ 'CONTENT.order-to-be' | translate }}</label>
         </h4>
       </div>
+
       <div class="col-md-12 mt-5 text-center" *ngIf="!nolist">
         <p>{{ 'CONTENT.no-list' | translate }}</p>
       </div>
 
-      <!-- <div class="col-md-6 text-md-right">
-        <i class="fa fa-angle-right mr-1" aria-hidden="true"></i>
-        <label>{{ 'CONTENT.view-all' | translate }}</label>
-      </div> -->
       <div class="col-md-12 mt-2" *ngIf="nolist">
         <div class="table-responsive">
           <table class="table table-nav">
@@ -256,7 +231,6 @@
                 <ng-container *ngIf="list.OrderStatus == 'Initial' && list.TxType == 'Subscription' ">
                   <tr class="bgforlhfund">
                     <td class="text-left">
-                      <!-- {{list.FundName}} ({{list.FundCode}}) -->
                       <ng-container *ngIf="lang == 'th' ">{{ list.FundName }}</ng-container>
                       <ng-container *ngIf="lang == 'en' ">{{ list.FundNameEng }}</ng-container>
                     </td>
@@ -267,10 +241,12 @@
                       {{list.OrderAmount | tofix}}
                     </td>
                     <td>
-                      {{list.OrderTime | datethai}}, {{list.OrderTime | time}}
+                      <ng-container *ngIf="lang == 'th' ">{{list.OrderTime | datethai}}, {{list.OrderTime | time}}</ng-container>
+                      <ng-container *ngIf="lang == 'en' ">{{list.OrderTime | dateeng}}, {{list.OrderTime | time}}</ng-container>
                     </td>
                     <td>
-                      {{list.EffectiveDate | datethai}}
+                      <ng-container *ngIf="lang == 'th' ">{{list.EffectiveDate | datethai}}</ng-container>
+                      <ng-container *ngIf="lang == 'en' ">{{list.EffectiveDate | dateeng}}</ng-container>
                     </td>
                     <!-- <td>
                     <a href="">
@@ -297,914 +273,882 @@
   <div class="detail-footer-wrapper" *ngIf="userall == ''">
     <div class="row">
       <div class="col-md-12 mt-5 text-center">
-        <p>ไม่พบเลขที่ผู้ถือหน่วยลงทุน ไม่สามารถทำรายการได้</p>
+        <!-- <p>ไม่พบเลขที่ผู้ถือหน่วยลงทุน ไม่สามารถทำรายการได้</p> -->
+        <a href="https://www.lhfund.co.th/Investment/SellingPoint" target="_blank">กรุณาติดต่อตัวแทนของท่าน คลิกที่นี่</a>
       </div>
     </div>
   </div>
- </div>
-  <!-- purchase -->
+</div>
+<!-- purchase -->
 <div class="fund-table-wrapper" *ngIf="page == 'purchase-step1'">
-    <div class="heading-section">
-      <div class="detail-head-wrapper">
-        <div class="row">
-          <div class="col-md-12 col-12 icon-option mb-3">
+  <div class="heading-section">
+    <div class="detail-head-wrapper">
+      <div class="row">
+        <div class="col-md-12 col-12 icon-option mb-3">
 
-            <ul class="">
-              <!-- <li class="ico-fb">
-              <a href="#" title="facebook">
-                <img src="/assets/Images/icons/ico-pipe.png" />
+          <ul class="">
+            <li class="ico-yt">
+              <a title="print">
+                <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
               </a>
             </li>
-            <li class="ico-line">
-              <a href="#" title="line">
-                <img src="/assets/Images/icons/ico-download.png" />
-              </a>
-            </li> -->
-              <li class="ico-yt">
-                <a title="print">
-                  <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
-                </a>
-              </li>
 
-            </ul>
-          </div>
-          <div class="col-md-3">
-            <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
-            <span class="txt-middle">{{ userselect.UnitholderNo}} <ng-container *ngIf="userselect.AgentCode">({{userselect.AgentCode }})</ng-container></span>
-          </div>
-          <div class="col-md-3">
-            <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-            <span class="txt-middle">{{ userselect.FirstName}} {{ userselect.LastName}}</span>
-          </div>
-          <div class="col-md-6">
-            <p>{{ 'CONTENT.address' | translate }}</p>
-            <span class="txt-middle">{{ userselect.ContactAddress}}</span>
-          </div>
+          </ul>
         </div>
-      </div>
-    </div>
-    <div class="detail-body-wrapper">
-      <div class="row">
-        <div class="col-md-12">
-          <H4 class="text-left">{{ 'CONTENT.purchase' | translate }}</H4>
-          <span class="color-red">({{ 'CONTENT.be-confirm' | translate }})</span>
+        <div class="col-md-3">
+          <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
+          <span class="txt-middle">{{ userselect.UnitholderNo}} <ng-container *ngIf="userselect.AgentCode">({{userselect.AgentCode
+              }})</ng-container></span>
         </div>
-        <div class="col-md-9">
-          <div class="row">
-            <div class="col-md-4">
-              <p>{{ 'CONTENT.input-date' | translate }}</p>
-            </div>
-            <div class="col-md-6">
-              <!-- <span>{{ currentdate }}</span> -->
-              <ng-container *ngIf="lang == 'th' "><span>{{ currentdate }}</span></ng-container>
-              <ng-container *ngIf="lang == 'en' "><span>{{ currentdateEng }}</span></ng-container>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-              <p>{{ 'CONTENT.payment' | translate }}</p>
-            </div>
-            <div class="col-md-6">
-              <span>{{ 'CONTENT.payment-method' | translate }}</span>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-4">
-              <p>{{ 'CONTENT.fund-name' | translate }}</p>
-            </div>
-            <div class="col-md-6">
-              <!-- <span>{{ formsubsription.controls.fund.value.FundName }}</span> -->
-              <ng-container *ngIf="lang == 'th' "><span>{{ formsubsription.controls.fund.value.FundName }}</span></ng-container>
-              <ng-container *ngIf="lang == 'en' "><span>{{ formsubsription.controls.fund.value.FundNameEng }}</span></ng-container>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-4">
-              <p>{{ 'CONTENT.amount' | translate }}</p>
-            </div>
-            <div class="col-md-6">
-              <span>{{formsubsription.controls.amount.value}} {{ 'CONTENT.bath' | translate }}</span>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-4">
-              <p>{{ 'CONTENT.debit-from-acc' | translate }}</p>
-            </div>
-            <div class="col-md-6">
-              <span>{{ banklist.BankName }} {{ banklist.BankAccountNo }}</span>
-            </div>
-          </div>
-
-          <div class="row" *ngIf="date">
-            <div class="col-md-4">
-              <p>{{ 'CONTENT.Advance-s-date' | translate }}</p>
-            </div>
-            <div class="col-md-6">
-              <!-- <span>{{date}}</span> -->
-              <ng-container *ngIf="lang == 'th' "><span>{{resultsubmit.data.OrderDate | datethaiDM}}</span></ng-container>
-              <ng-container *ngIf="lang == 'en' "><span>{{resultsubmit.data.OrderDate | dateengDM}}</span></ng-container>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-4">
-              <p>{{ 'CONTENT.effectivedate' | translate }}</p>
-            </div>
-            <div class="col-md-6">
-              <!-- <span>{{resultsubmit.data.EffectiveDate | datethaiDM}}</span> -->
-              <ng-container *ngIf="lang == 'th' "><span>{{resultsubmit.data.EffectiveDate | datethaiDM}}</span></ng-container>
-              <ng-container *ngIf="lang == 'en' "><span>{{resultsubmit.data.EffectiveDate | dateengDM}}</span></ng-container>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-3 col-6 offset-md-4">
-              <button class="btn-med btn-primary btn" (click)="confirmsubscription()" [disabled]="loading">
-                {{ 'BUTTON.confirm' | translate }}
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-              </button>
-            </div>
-            <div class="col-md-3 col-6">
-              <button class="btn-med btn-back-login" (click)="checkpage('purchase')">
-                {{ 'BUTTON.cancel' | translate }}
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-              </button>
-            </div>
-          </div>
-
+        <div class="col-md-3">
+          <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
+          <span class="txt-middle">{{ userselect.FirstName}} {{ userselect.LastName}}</span>
         </div>
-        <div class="col-md-12 mt-5">
-          <!-- <p class="color-red no-margin">- ข้าพเจ้าตกลงซื้อหน่วยลงทุนตามที่ระบุไว้ในคำสั่งซื้อนี้</p>
-        <p class="color-red no-margin">- ข้าพเจ้ารับทราบว่าการสั่งซื้อหน่วยลงทุนทางระบบ internet นี้อาจไม่ได้รับการทำรายการ
-          หากมีความขัดข้องทางเทคนิคเกิดขึ้น
-        </p>
-        <p class="color-red no-margin">- ทั้งนี้ข้าพเจ้ายินยอมที่จะเสียค่าธรรมเนียมในการสั่งซื้อ และปฏิบัติตามข้อกำหนด และเงื่อนไขทั้งหมดที่ระบุไว้ในหนังสือชี้ชวนเสนอขายหน่วยลงทุนทุกประการ</p>
-        <h5 class=" no-margin" style="color: #C90A11;">- ในกรณีที่คำสั่งซื้อนี้ถูกปฏิเสธข้าพเจ้าตกลงที่จะรับเงินที่ได้ชำระแล้วคืนโดยไม่มีดอกเบี้ย</h5>
-        <p class="color-red no-margin">- การลงทุนในหน่วยลงทุนมิใช่การฝากเงินและมีความเสี่ยงของการลงทุน ผู้ถือหน่วยลงทุนอาจได้รับเงินลงทุนคืนมากกว่าหรือน้อยกว่าเงินลงทุน
-          เริ่มแรกก็ได้ และอาจไม่ได้รับชำระเงินค่าขายคืนหน่วยลงทุนภายในระยะเวลา ที่กำหนดหรืออาจไม่สามารถขายคืนหน่วยลงทุนได้ตามที่มีคำสั่งไว้</p> -->
-
-          <ng-container *ngIf="lang == 'th' ">
-            <p class="color-red no-margin">- ข้าพเจ้าตกลงซื้อหน่วยลงทุนตามที่ระบุไว้ในคำสั่งซื้อนี้</p>
-            <p class="color-red no-margin">- ข้าพเจ้ารับทราบว่าการสั่งซื้อหน่วยลงทุนทางระบบ internet นี้อาจไม่ได้รับการทำรายการ
-              หากมีความขัดข้องทางเทคนิคเกิดขึ้น
-            </p>
-            <p class="color-red no-margin">- ทั้งนี้ข้าพเจ้ายินยอมที่จะเสียค่าธรรมเนียมในการสั่งซื้อ และปฏิบัติตามข้อกำหนด
-              และเงื่อนไขทั้งหมดที่ระบุไว้ในหนังสือชี้ชวนเสนอขายหน่วยลงทุนทุกประการ</p>
-            <h5 class=" no-margin" style="color: #C90A11;">- ในกรณีที่คำสั่งซื้อนี้ถูกปฏิเสธข้าพเจ้าตกลงที่จะรับเงินที่ได้ชำระแล้วคืนโดยไม่มีดอกเบี้ย</h5>
-            <p class="color-red no-margin">- การลงทุนในหน่วยลงทุนมิใช่การฝากเงินและมีความเสี่ยงของการลงทุน ผู้ถือหน่วยลงทุนอาจได้รับเงินลงทุนคืนมากกว่าหรือน้อยกว่าเงินลงทุน
-              เริ่มแรกก็ได้ และอาจไม่ได้รับชำระเงินค่าขายคืนหน่วยลงทุนภายในระยะเวลา ที่กำหนดหรืออาจไม่สามารถขายคืนหน่วยลงทุนได้ตามที่มีคำสั่งไว้</p>
-          </ng-container>
-
-          <ng-container *ngIf="lang == 'en' ">
-            <p class="color-red no-margin">- I/We agree to subscribe to the fund units in this subscription order.</p>
-            <p class="color-red no-margin">- I/We accept and agree in case the transaction conducted via internet is not
-              complete or there is a technical problem, we will need to cancel the transaction.</p>
-            <p class="color-red no-margin">- I/We accept and agree to be bound by all terms and conditions specified in the
-              Fund’s Prospectus and Project.</p>
-            <h5 class=" no-margin" style="color: #C90A11;">- In case this subscription is rejected, I/ We agree to accept
-              the return of the subscription amount without interest and agree to pay the fees for the refund.</h5>
-            <p class="color-red no-margin">- Investment in mutual fund is not a deposit of money and such investment may
-              be subject to certain risks. The value of investments and the income from them may either be more or less than
-              the money in which the investors initially invested. and you are not guaranteed to get the money redemption
-              or investment units could not be sold within the specified period.</p>
-          </ng-container>
-          <!-- <p class="color-red no-margin">- </p> -->
+        <div class="col-md-6">
+          <p>{{ 'CONTENT.address' | translate }}</p>
+          <span class="txt-middle">{{ userselect.ContactAddress}}</span>
         </div>
       </div>
     </div>
   </div>
-  <!-- purchase-step1 -->
-  <div class="fund-table-wrapper" *ngIf="page == 'purchase-step2'">
-    <div class="heading-section">
-      <div class="detail-head-wrapper">
+  <div class="detail-body-wrapper" style="border-bottom: 0px;">
+    <div class="row">
+      <div class="col-md-12">
+        <H4 class="text-left">{{ 'CONTENT.purchase' | translate }}</H4>
+        <span class="color-red">({{ 'CONTENT.be-confirm' | translate }})</span>
+      </div>
+      <div class="col-md-9">
         <div class="row">
-          <div class="col-md-12 col-12 icon-option mb-3">
-
-            <ul class="">
-              <!-- <li class="ico-fb">
-              <a href="#" title="facebook">
-                <img src="/assets/Images/icons/ico-pipe.png" />
-              </a>
-            </li>
-            <li class="ico-line">
-              <a href="#" title="line">
-                <img src="/assets/Images/icons/ico-download.png" />
-              </a>
-            </li> -->
-              <li class="ico-yt">
-                <a title="print">
-                  <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
-                </a>
-              </li>
-
-            </ul>
-          </div>
-          <div class="col-md-3">
-            <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
-            <span class="txt-middle">{{ userselect.UnitholderNo}} <ng-container *ngIf="userselect.AgentCode">({{userselect.AgentCode }})</ng-container></span>
-          </div>
-          <div class="col-md-3">
-            <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-            <span class="txt-middle">{{ userselect.FirstName}} {{ userselect.LastName}}</span>
+          <div class="col-md-4">
+            <p>{{ 'CONTENT.input-date' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <p>{{ 'CONTENT.address' | translate }}</p>
-            <span class="txt-middle">{{ userselect.ContactAddress}}</span>
+            <ng-container *ngIf="lang == 'th' "><span>{{ currentdate }}</span></ng-container>
+            <ng-container *ngIf="lang == 'en' "><span>{{ currentdateEng }}</span></ng-container>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="detail-body-wrapper">
-      <div class="row">
-        <div class="col-md-12 mb-3">
-          <H4 class="text-left">{{ 'CONTENT.purchase' | translate }} </H4>
-          <span class="color-red">({{ 'CONTENT.be-print' | translate }})</span>
-        </div>
-        <div class="col-md-9">
-          <div class="row">
-            <div class="col-md-4">
-              <p>{{ 'CONTENT.input-date' | translate }}</p>
-            </div>
-            <div class="col-md-6">
-              <!-- <span>{{ currentdate }}</span> -->
-              <ng-container *ngIf="lang == 'th' "><span>{{ currentdate }}</span></ng-container>
-              <ng-container *ngIf="lang == 'en' "><span>{{ currentdateEng }}</span></ng-container>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-              <p>{{ 'CONTENT.payment' | translate }}</p>
-            </div>
-            <div class="col-md-6">
-              <span>{{ 'CONTENT.payment-method' | translate }}</span>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-4">
-              <p>{{ 'CONTENT.fund-name' | translate }}</p>
-            </div>
-            <div class="col-md-6">
-              <!-- <span>{{ formsubsription.controls.fund.value.FundName }}</span> -->
-              <ng-container *ngIf="lang == 'th' "><span>{{ formsubsription.controls.fund.value.FundName }}</span></ng-container>
-              <ng-container *ngIf="lang == 'en' "><span>{{ formsubsription.controls.fund.value.FundNameEng }}</span></ng-container>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-4">
-              <p>{{ 'CONTENT.amount' | translate }}</p>
-            </div>
-            <div class="col-md-6">
-              <span>{{formsubsription.controls.amount.value}} {{ 'CONTENT.bath' | translate }}</span>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-4">
-              <p>{{ 'CONTENT.debit-from-acc' | translate }}</p>
-            </div>
-            <div class="col-md-6">
-              <span>{{ banklist.BankName }} {{ banklist.BankAccountNo }}</span>
-            </div>
-          </div>
-
-          <div class="row" *ngIf="date">
-            <div class="col-md-4">
-              <p>{{ 'CONTENT.Advance-s-date' | translate }}</p>
-            </div>
-            <div class="col-md-6">
-              <!-- <span>{{date}}</span> -->
-              <ng-container *ngIf="lang == 'th' "><span>{{resultsubmit.data.OrderDate | datethaiDM}}</span></ng-container>
-              <ng-container *ngIf="lang == 'en' "><span>{{resultsubmit.data.OrderDate | dateengDM}}</span></ng-container>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-4">
-              <p>{{ 'CONTENT.effectivedate' | translate }}</p>
-            </div>
-            <div class="col-md-6">
-              <!-- <span>{{resultsubmit.data.EffectiveDate | datethaiDM}}</span> -->
-              <ng-container *ngIf="lang == 'th' "><span>{{resultsubmit.data.EffectiveDate | datethaiDM}}</span></ng-container>
-              <ng-container *ngIf="lang == 'en' "><span>{{resultsubmit.data.EffectiveDate | dateengDM}}</span></ng-container>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-3 col-6 offset-md-4">
-              <button class="btn-med btn-primary" (click)="print()">
-                {{ 'BUTTON.print' | translate }}
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-              </button>
-            </div>
-            <div class="col-md-3 col-6">
-              <button class="btn-med btn-blue" (click)="checkpage('purchase')" [disabled]="loading">
-                {{ 'BUTTON.view-list' | translate }}
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-              </button>
-            </div>
-          </div>
-
-        </div>
-        <div class="col-md-12 mt-5">
-          <p class="color-red no-margin">{{ 'CONTENT.warn-order' | translate }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- purchase-step2 -->
-  <div class="fund-table-wrapper" *ngIf="page == 'purchase-view-list'">
-    <div class="heading-section">
-      <div class="detail-head-wrapper">
         <div class="row">
-          <div class="col-md-12 col-12 icon-option mb-3">
-
-            <ul class="">
-              <!-- <li class="ico-fb">
-              <a href="#" title="facebook">
-                <img src="/assets/Images/icons/ico-pipe.png" />
-              </a>
-            </li>
-            <li class="ico-line">
-              <a href="#" title="line">
-                <img src="/assets/Images/icons/ico-download.png" />
-              </a>
-            </li> -->
-              <li class="ico-yt">
-                <a href="#" title="youtube">
-                  <img src="/assets/Images/icons/ico-print.png" />
-                </a>
-              </li>
-
-            </ul>
-          </div>
-          <div class="col-md-3">
-
-            <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
-
-            <div class="select-wrapper inline-block">
-              <select name="unitholderno" [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" [ngModelOptions]="{standalone: true}">
-                <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
-                  }}
-                </option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-            <span class="txt-middle">{{ userselect.FirstName}} {{ userselect.LastName}}</span>
+          <div class="col-md-4">
+            <p>{{ 'CONTENT.payment' | translate }}</p>
           </div>
           <div class="col-md-6">
-            <p>{{ 'CONTENT.address' | translate }}</p>
-            <span class="txt-middle">{{ userselect.ContactAddress}}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="detail-body-wrapper">
-      <div class="row">
-        <div class="col-md-12 mb-3">
-          <H4 class="text-left" style="display: unset;">{{ 'CONTENT.sub-all-order' | translate }}</H4>
-          <p style="display: unset;">{{ 'CONTENT.order-to-be' | translate }}</p>
-        </div>
-        <div class="col-md-12">
-          <div class="table-responsive">
-            <table class="table table-custom">
-              <thead>
-                <tr>
-                  <th>
-                    กองทุน
-                  </th>
-                  <th>
-                    วิธีชำระเงิน
-                  </th>
-                  <th>
-                    บาท (THB)
-                  </th>
-                  <th>
-                    วันและเวลาที่ทำการ
-                  </th>
-                  <th>
-                    วันที่มีผล
-                  </th>
-                  <th>
-                    แก้ไข
-                  </th>
-                  <th>
-                    ยกเลิก
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
-                  </td>
-                  <td>
-                    หักบัญชี
-                  </td>
-                  <td>
-                    20,000.00
-                  </td>
-                  <td>
-                    07/06/2561, 11:25
-                  </td>
-                  <td>
-                    07/06/2561
-                  </td>
-                  <td>
-                    <a href="">
-                      <img src="/assets/Images/icons/ico-edit.png">
-                    </a>
-                  </td>
-                  <td>
-                    <a href="">
-                      <img src="/assets/Images/icons/ico-delete.png" alt="">
-                    </a>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
-                  </td>
-                  <td>
-                    หักบัญชี
-                  </td>
-                  <td>
-                    20,000.00
-                  </td>
-                  <td>
-                    07/06/2561, 11:25
-                  </td>
-                  <td>
-                    07/06/2561
-                  </td>
-                  <td>
-                    <a href="">
-                      <img src="/assets/Images/icons/ico-edit.png">
-                    </a>
-                  </td>
-                  <td>
-                    <a href="">
-                      <img src="/assets/Images/icons/ico-delete.png" alt="">
-                    </a>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
-                  </td>
-                  <td>
-                    หักบัญชี
-                  </td>
-                  <td>
-                    20,000.00
-                  </td>
-                  <td>
-                    07/06/2561, 11:25
-                  </td>
-                  <td>
-                    07/06/2561
-                  </td>
-                  <td>
-                    <a href="">
-                      <img src="/assets/Images/icons/ico-edit.png">
-                    </a>
-                  </td>
-                  <td>
-                    <a href="">
-                      <img src="/assets/Images/icons/ico-delete.png" alt="">
-                    </a>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
-                  </td>
-                  <td>
-                    หักบัญชี
-                  </td>
-                  <td>
-                    20,000.00
-                  </td>
-                  <td>
-                    07/06/2561, 11:25
-                  </td>
-                  <td>
-                    07/06/2561
-                  </td>
-                  <td>
-                    <a href="">
-                      <img src="/assets/Images/icons/ico-edit.png">
-                    </a>
-                  </td>
-                  <td>
-                    <a href="">
-                      <img src="/assets/Images/icons/ico-delete.png" alt="">
-                    </a>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
-                  </td>
-                  <td>
-                    หักบัญชี
-                  </td>
-                  <td>
-                    20,000.00
-                  </td>
-                  <td>
-                    07/06/2561, 11:25
-                  </td>
-                  <td>
-                    07/06/2561
-                  </td>
-                  <td>
-                    <a href="">
-                      <img src="/assets/Images/icons/ico-edit.png">
-                    </a>
-                  </td>
-                  <td>
-                    <a href="">
-                      <img src="/assets/Images/icons/ico-delete.png" alt="">
-                    </a>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
-                  </td>
-                  <td>
-                    หักบัญชี
-                  </td>
-                  <td>
-                    20,000.00
-                  </td>
-                  <td>
-                    07/06/2561, 11:25
-                  </td>
-                  <td>
-                    07/06/2561
-                  </td>
-                  <td>
-                    <a href="">
-                      <img src="/assets/Images/icons/ico-edit.png">
-                    </a>
-                  </td>
-                  <td>
-                    <a href="">
-                      <img src="/assets/Images/icons/ico-delete.png" alt="">
-                    </a>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
-                  </td>
-                  <td>
-                    หักบัญชี
-                  </td>
-                  <td>
-                    20,000.00
-                  </td>
-                  <td>
-                    07/06/2561, 11:25
-                  </td>
-                  <td>
-                    07/06/2561
-                  </td>
-                  <td>
-                    <a href="">
-                      <img src="/assets/Images/icons/ico-edit.png">
-                    </a>
-                  </td>
-                  <td>
-                    <a href="">
-                      <img src="/assets/Images/icons/ico-delete.png" alt="">
-                    </a>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
-                  </td>
-                  <td>
-                    หักบัญชี
-                  </td>
-                  <td>
-                    20,000.00
-                  </td>
-                  <td>
-                    07/06/2561, 11:25
-                  </td>
-                  <td>
-                    07/06/2561
-                  </td>
-                  <td>
-                    <a href="">
-                      <img src="/assets/Images/icons/ico-edit.png">
-                    </a>
-                  </td>
-                  <td>
-                    <a href="">
-                      <img src="/assets/Images/icons/ico-delete.png" alt="">
-                    </a>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
-                  </td>
-                  <td>
-                    หักบัญชี
-                  </td>
-                  <td>
-                    20,000.00
-                  </td>
-                  <td>
-                    07/06/2561, 11:25
-                  </td>
-                  <td>
-                    07/06/2561
-                  </td>
-                  <td>
-                    <a href="">
-                      <img src="/assets/Images/icons/ico-edit.png">
-                    </a>
-                  </td>
-                  <td>
-                    <a href="">
-                      <img src="/assets/Images/icons/ico-delete.png" alt="">
-                    </a>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
-                  </td>
-                  <td>
-                    หักบัญชี
-                  </td>
-                  <td>
-                    20,000.00
-                  </td>
-                  <td>
-                    07/06/2561, 11:25
-                  </td>
-                  <td>
-                    07/06/2561
-                  </td>
-                  <td>
-                    <a href="">
-                      <img src="/assets/Images/icons/ico-edit.png">
-                    </a>
-                  </td>
-                  <td>
-                    <a href="">
-                      <img src="/assets/Images/icons/ico-delete.png" alt="">
-                    </a>
-                  </td>
-                </tr>
-
-              </tbody>
-
-            </table>
+            <span>{{ 'CONTENT.payment-method' | translate }}</span>
           </div>
         </div>
 
-        <div class="col-md-4 offset-md-8 no-padding">
-          <div class="list-pagination">
-            <div class="holder">
-              <!-- <a class="jp-first jp-disabled">First</a> -->
-              <a class="jp-previous jp-disabled">previous</a>
-              <a class="jp-current">1</a>
-              <!-- <span class="jp-hidden">...</span> -->
-              <a class="">2</a>
-              <a class="">3</a>
-              <a class="jp-next">next</a>
-              <!-- <a class="jp-last">Last</a> -->
-            </div>
+        <div class="row">
+          <div class="col-md-4">
+            <p>{{ 'CONTENT.fund-name' | translate }}</p>
+          </div>
+          <div class="col-md-6">
+            <ng-container *ngIf="lang == 'th' "><span>{{ formsubsription.controls.fund.value.FundName }}</span></ng-container>
+            <ng-container *ngIf="lang == 'en' "><span>{{ formsubsription.controls.fund.value.FundNameEng }}</span></ng-container>
           </div>
         </div>
 
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade modal-custom" tabindex="-1" role="dialog" id="message" style="z-index: 9999;">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">{{ 'Modal.notifications' | translate }}</h4>
-        </div>
-        <div class="modal-body" id="content-scroll-1">
-          <h3>{{ message }}</h3>
-        </div>
-        <div class="modal-footer" style="display: block;">
-          <div class="row justify-content-end">
-            <div class="col-sm-6">
-              <button class="btn-med btn-primary" data-dismiss="modal">
-                <p style="margin-top: 7px;">{{ 'BUTTON.ok' | translate }}
-                  <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </p>
-              </button>
-            </div>
+        <div class="row">
+          <div class="col-md-4">
+            <p>{{ 'CONTENT.amount' | translate }}</p>
+          </div>
+          <div class="col-md-6">
+            <span>{{formsubsription.controls.amount.value}} {{ 'CONTENT.bath' | translate }}</span>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="modal fade modal-custom" tabindex="-1" role="dialog" id="risklevel" style="z-index: 9999;">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">{{ 'Modal.notifications' | translate }}</h4>
-        </div>
-        <div class="modal-body" id="content-scroll-1">
-          <h3 *ngIf="Islevel">- {{ 'CONTENT.risk-level' | translate }}</h3>
-          <h3 *ngIf="Isprotect">- {{ 'CONTENT.hed' | translate }}</h3>
-        </div>
-        <div class="modal-footer" style="display: block;">
-          <div class="row justify-content-center">
-            <div class="col-4">
-              <button class="btn-med btn-primary" data-dismiss="modal" (click)="checkpage('purchase-step1')">
-                {{ 'BUTTON.acceptrisk' | translate }}
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-              </button>
-            </div>
-            <div class="col-4">
-              <button class="btn-med btn-cancel" data-dismiss="modal">
-                {{ 'BUTTON.notaccept' | translate }}
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-              </button>
-            </div>
-            <div class="col-4" *ngIf="Islevel">
-              <button class="btn-med btn-primary" data-dismiss="modal" routerLink="/profile/suitability" *ngIf="userdetail.MemberType != 'Agent'">
-                <p style="margin-top: 7px;">{{ 'BUTTON.suittest' | translate }}
-                  <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </p>
-              </button>
-            </div>
+        <div class="row">
+          <div class="col-md-4">
+            <p>{{ 'CONTENT.debit-from-acc' | translate }}</p>
+          </div>
+          <div class="col-md-6">
+            <span>{{ banklist.BankName }} {{ banklist.BankAccountNo }}</span>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="modal fade modal-custom" tabindex="-1" role="dialog" id="expiremodal" style="z-index: 9999;">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">{{ 'Modal.notifications' | translate }}</h4>
+        <div class="row" *ngIf="date">
+          <div class="col-md-4">
+            <p>{{ 'CONTENT.Advance-s-date' | translate }}</p>
+          </div>
+          <div class="col-md-6">
+            <ng-container *ngIf="lang == 'th' "><span>{{resultsubmit.data.OrderDate | datethaiDM}}</span></ng-container>
+            <ng-container *ngIf="lang == 'en' "><span>{{resultsubmit.data.OrderDate | dateengDM}}</span></ng-container>
+          </div>
         </div>
-        <div class="modal-body" id="content-scroll-1">
-          <h3>{{ 'CONTENT.expiremodal' | translate }}
-          </h3>
+
+        <div class="row">
+          <div class="col-md-4">
+            <p>{{ 'CONTENT.effectivedate' | translate }}</p>
+          </div>
+          <div class="col-md-6">
+            <ng-container *ngIf="lang == 'th' "><span>{{resultsubmit.data.EffectiveDate | datethaiDM}}</span></ng-container>
+            <ng-container *ngIf="lang == 'en' "><span>{{resultsubmit.data.EffectiveDate | dateengDM}}</span></ng-container>
+          </div>
         </div>
-        <div class="modal-footer" style="display: block;">
-          <div class="row justify-content-center">
-            <!-- <div class="col-4">
-            <button class="btn-med btn-primary" data-dismiss="modal" (click)="checkpage('purchase-step1')">
+
+        <div class="row">
+          <div class="col-md-3 col-6 offset-md-4">
+            <button class="btn-med btn-primary btn" (click)="confirmsubscription()" [disabled]="loading">
               {{ 'BUTTON.confirm' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </button>
-          </div> -->
-            <div class="col-5">
-              <button class="btn-med btn-cancel" data-dismiss="modal" routerLink="">
-                {{ 'BUTTON.cancel' | translate }}
+          </div>
+          <div class="col-md-3 col-6">
+            <button class="btn-med btn-back-login" (click)="checkpage('purchase')">
+              {{ 'BUTTON.cancel' | translate }}
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-12 mt-5">
+
+        <ng-container *ngIf="lang == 'th' ">
+          <p class="color-red no-margin">- ข้าพเจ้าตกลงซื้อหน่วยลงทุนตามที่ระบุไว้ในคำสั่งซื้อนี้</p>
+          <p class="color-red no-margin">- ข้าพเจ้ารับทราบว่าการสั่งซื้อหน่วยลงทุนทางระบบ internet นี้อาจไม่ได้รับการทำรายการ
+            หากมีความขัดข้องทางเทคนิคเกิดขึ้น
+          </p>
+          <p class="color-red no-margin">- ทั้งนี้ข้าพเจ้ายินยอมที่จะเสียค่าธรรมเนียมในการสั่งซื้อ และปฏิบัติตามข้อกำหนด
+            และเงื่อนไขทั้งหมดที่ระบุไว้ในหนังสือชี้ชวนเสนอขายหน่วยลงทุนทุกประการ
+          </p>
+          <h5 class=" no-margin" style="color: #C90A11;">- ในกรณีที่คำสั่งซื้อนี้ถูกปฏิเสธข้าพเจ้าตกลงที่จะรับเงินที่ได้ชำระแล้วคืนโดยไม่มีดอกเบี้ย</h5>
+          <p class="color-red no-margin">- การลงทุนในหน่วยลงทุนมิใช่การฝากเงินและมีความเสี่ยงของการลงทุน ผู้ถือหน่วยลงทุนอาจได้รับเงินลงทุนคืนมากกว่าหรือน้อยกว่าเงินลงทุน
+            เริ่มแรกก็ได้ และอาจไม่ได้รับชำระเงินค่าขายคืนหน่วยลงทุนภายในระยะเวลา ที่กำหนดหรืออาจไม่สามารถขายคืนหน่วยลงทุนได้ตามที่มีคำสั่งไว้</p>
+        </ng-container>
+
+        <ng-container *ngIf="lang == 'en' ">
+          <p class="color-red no-margin">- I/We agree to subscribe to the fund units in this subscription order.</p>
+          <p class="color-red no-margin">- I/We accept and agree in case the transaction conducted via internet is not complete
+            or there is a technical problem, we will need to cancel the transaction.</p>
+          <p class="color-red no-margin">- I/We accept and agree to be bound by all terms and conditions specified in the
+            Fund’s Prospectus and Project.</p>
+          <h5 class=" no-margin" style="color: #C90A11;">- In case this subscription is rejected, I/ We agree to accept the
+            return of the subscription amount without interest and agree to pay the fees for the refund.</h5>
+          <p class="color-red no-margin">- Investment in mutual fund is not a deposit of money and such investment may be
+            subject to certain risks. The value of investments and the income from them may either be more or less than the
+            money in which the investors initially invested. and you are not guaranteed to get the money redemption or investment
+            units could not be sold within the specified period.</p>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- purchase-step1 -->
+
+<div class="fund-table-wrapper" *ngIf="page == 'purchase-step2'">
+  <div class="heading-section">
+    <div class="detail-head-wrapper">
+      <div class="row">
+        <div class="col-md-12 col-12 icon-option mb-3">
+
+          <ul class="">
+            <li class="ico-yt">
+              <a title="print">
+                <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
+              </a>
+            </li>
+
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
+          <span class="txt-middle">{{ userselect.UnitholderNo}} <ng-container *ngIf="userselect.AgentCode">({{userselect.AgentCode
+              }})</ng-container></span>
+        </div>
+        <div class="col-md-3">
+          <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
+          <span class="txt-middle">{{ userselect.FirstName}} {{ userselect.LastName}}</span>
+        </div>
+        <div class="col-md-6">
+          <p>{{ 'CONTENT.address' | translate }}</p>
+          <span class="txt-middle">{{ userselect.ContactAddress}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="detail-body-wrapper" style="border-bottom: 0px;">
+    <div class="row">
+      <div class="col-md-12 mb-3">
+        <H4 class="text-left">{{ 'CONTENT.purchase' | translate }} </H4>
+        <span class="color-red">({{ 'CONTENT.be-print' | translate }})</span>
+      </div>
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-md-4">
+            <p>{{ 'CONTENT.input-date' | translate }}</p>
+          </div>
+          <div class="col-md-6">
+            <ng-container *ngIf="lang == 'th' "><span>{{ currentdate }}</span></ng-container>
+            <ng-container *ngIf="lang == 'en' "><span>{{ currentdateEng }}</span></ng-container>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <p>{{ 'CONTENT.payment' | translate }}</p>
+          </div>
+          <div class="col-md-6">
+            <span>{{ 'CONTENT.payment-method' | translate }}</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <p>{{ 'CONTENT.fund-name' | translate }}</p>
+          </div>
+          <div class="col-md-6">
+            <ng-container *ngIf="lang == 'th' "><span>{{ formsubsription.controls.fund.value.FundName }}</span></ng-container>
+            <ng-container *ngIf="lang == 'en' "><span>{{ formsubsription.controls.fund.value.FundNameEng }}</span></ng-container>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <p>{{ 'CONTENT.amount' | translate }}</p>
+          </div>
+          <div class="col-md-6">
+            <span>{{formsubsription.controls.amount.value}} {{ 'CONTENT.bath' | translate }}</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <p>{{ 'CONTENT.debit-from-acc' | translate }}</p>
+          </div>
+          <div class="col-md-6">
+            <span>{{ banklist.BankName }} {{ banklist.BankAccountNo }}</span>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="date">
+          <div class="col-md-4">
+            <p>{{ 'CONTENT.Advance-s-date' | translate }}</p>
+          </div>
+          <div class="col-md-6">
+            <ng-container *ngIf="lang == 'th' "><span>{{resultsubmit.data.OrderDate | datethaiDM}}</span></ng-container>
+            <ng-container *ngIf="lang == 'en' "><span>{{resultsubmit.data.OrderDate | dateengDM}}</span></ng-container>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <p>{{ 'CONTENT.effectivedate' | translate }}</p>
+          </div>
+          <div class="col-md-6">
+            <ng-container *ngIf="lang == 'th' "><span>{{resultsubmit.data.EffectiveDate | datethaiDM}}</span></ng-container>
+            <ng-container *ngIf="lang == 'en' "><span>{{resultsubmit.data.EffectiveDate | dateengDM}}</span></ng-container>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3 col-6 offset-md-4">
+            <button class="btn-med btn-primary" (click)="print()">
+              {{ 'BUTTON.print' | translate }}
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="col-md-3 col-6">
+            <button class="btn-med btn-blue" (click)="checkpage('purchase')" [disabled]="loading">
+              {{ 'BUTTON.view-list' | translate }}
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+      <!-- <div class="col-md-12 mt-5">
+        <p class="color-red no-margin">{{ 'CONTENT.warn-order' | translate }}</p>
+      </div> -->
+    </div>
+  </div>
+</div>
+<!-- purchase-step2 -->
+<div class="fund-table-wrapper" *ngIf="page == 'purchase-view-list'">
+  <div class="heading-section">
+    <div class="detail-head-wrapper">
+      <div class="row">
+        <div class="col-md-12 col-12 icon-option mb-3">
+
+          <ul class="">
+            <!-- <li class="ico-fb">
+              <a href="#" title="facebook">
+                <img src="/assets/Images/icons/ico-pipe.png" />
+              </a>
+            </li>
+            <li class="ico-line">
+              <a href="#" title="line">
+                <img src="/assets/Images/icons/ico-download.png" />
+              </a>
+            </li> -->
+            <li class="ico-yt">
+              <a href="#" title="youtube">
+                <img src="/assets/Images/icons/ico-print.png" />
+              </a>
+            </li>
+
+          </ul>
+        </div>
+        <div class="col-md-3">
+
+          <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
+
+          <div class="select-wrapper inline-block">
+            <select name="unitholderno" [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" [ngModelOptions]="{standalone: true}">
+              <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
+                }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
+          <span class="txt-middle">{{ userselect.FirstName}} {{ userselect.LastName}}</span>
+        </div>
+        <div class="col-md-6">
+          <p>{{ 'CONTENT.address' | translate }}</p>
+          <span class="txt-middle">{{ userselect.ContactAddress}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="detail-body-wrapper">
+    <div class="row">
+      <div class="col-md-12 mb-3">
+        <H4 class="text-left" style="display: unset;">{{ 'CONTENT.sub-all-order' | translate }}</H4>
+        <p style="display: unset;">{{ 'CONTENT.order-to-be' | translate }}</p>
+      </div>
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table table-custom">
+            <thead>
+              <tr>
+                <th>
+                  กองทุน
+                </th>
+                <th>
+                  วิธีชำระเงิน
+                </th>
+                <th>
+                  บาท (THB)
+                </th>
+                <th>
+                  วันและเวลาที่ทำการ
+                </th>
+                <th>
+                  วันที่มีผล
+                </th>
+                <th>
+                  แก้ไข
+                </th>
+                <th>
+                  ยกเลิก
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                </td>
+                <td>
+                  หักบัญชี
+                </td>
+                <td>
+                  20,000.00
+                </td>
+                <td>
+                  07/06/2561, 11:25
+                </td>
+                <td>
+                  07/06/2561
+                </td>
+                <td>
+                  <a href="">
+                    <img src="/assets/Images/icons/ico-edit.png">
+                  </a>
+                </td>
+                <td>
+                  <a href="">
+                    <img src="/assets/Images/icons/ico-delete.png" alt="">
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                </td>
+                <td>
+                  หักบัญชี
+                </td>
+                <td>
+                  20,000.00
+                </td>
+                <td>
+                  07/06/2561, 11:25
+                </td>
+                <td>
+                  07/06/2561
+                </td>
+                <td>
+                  <a href="">
+                    <img src="/assets/Images/icons/ico-edit.png">
+                  </a>
+                </td>
+                <td>
+                  <a href="">
+                    <img src="/assets/Images/icons/ico-delete.png" alt="">
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                </td>
+                <td>
+                  หักบัญชี
+                </td>
+                <td>
+                  20,000.00
+                </td>
+                <td>
+                  07/06/2561, 11:25
+                </td>
+                <td>
+                  07/06/2561
+                </td>
+                <td>
+                  <a href="">
+                    <img src="/assets/Images/icons/ico-edit.png">
+                  </a>
+                </td>
+                <td>
+                  <a href="">
+                    <img src="/assets/Images/icons/ico-delete.png" alt="">
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                </td>
+                <td>
+                  หักบัญชี
+                </td>
+                <td>
+                  20,000.00
+                </td>
+                <td>
+                  07/06/2561, 11:25
+                </td>
+                <td>
+                  07/06/2561
+                </td>
+                <td>
+                  <a href="">
+                    <img src="/assets/Images/icons/ico-edit.png">
+                  </a>
+                </td>
+                <td>
+                  <a href="">
+                    <img src="/assets/Images/icons/ico-delete.png" alt="">
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                </td>
+                <td>
+                  หักบัญชี
+                </td>
+                <td>
+                  20,000.00
+                </td>
+                <td>
+                  07/06/2561, 11:25
+                </td>
+                <td>
+                  07/06/2561
+                </td>
+                <td>
+                  <a href="">
+                    <img src="/assets/Images/icons/ico-edit.png">
+                  </a>
+                </td>
+                <td>
+                  <a href="">
+                    <img src="/assets/Images/icons/ico-delete.png" alt="">
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                </td>
+                <td>
+                  หักบัญชี
+                </td>
+                <td>
+                  20,000.00
+                </td>
+                <td>
+                  07/06/2561, 11:25
+                </td>
+                <td>
+                  07/06/2561
+                </td>
+                <td>
+                  <a href="">
+                    <img src="/assets/Images/icons/ico-edit.png">
+                  </a>
+                </td>
+                <td>
+                  <a href="">
+                    <img src="/assets/Images/icons/ico-delete.png" alt="">
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                </td>
+                <td>
+                  หักบัญชี
+                </td>
+                <td>
+                  20,000.00
+                </td>
+                <td>
+                  07/06/2561, 11:25
+                </td>
+                <td>
+                  07/06/2561
+                </td>
+                <td>
+                  <a href="">
+                    <img src="/assets/Images/icons/ico-edit.png">
+                  </a>
+                </td>
+                <td>
+                  <a href="">
+                    <img src="/assets/Images/icons/ico-delete.png" alt="">
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                </td>
+                <td>
+                  หักบัญชี
+                </td>
+                <td>
+                  20,000.00
+                </td>
+                <td>
+                  07/06/2561, 11:25
+                </td>
+                <td>
+                  07/06/2561
+                </td>
+                <td>
+                  <a href="">
+                    <img src="/assets/Images/icons/ico-edit.png">
+                  </a>
+                </td>
+                <td>
+                  <a href="">
+                    <img src="/assets/Images/icons/ico-delete.png" alt="">
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                </td>
+                <td>
+                  หักบัญชี
+                </td>
+                <td>
+                  20,000.00
+                </td>
+                <td>
+                  07/06/2561, 11:25
+                </td>
+                <td>
+                  07/06/2561
+                </td>
+                <td>
+                  <a href="">
+                    <img src="/assets/Images/icons/ico-edit.png">
+                  </a>
+                </td>
+                <td>
+                  <a href="">
+                    <img src="/assets/Images/icons/ico-delete.png" alt="">
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  กองทุนเปิดกรุงศรีหุ้นระยะยาวไทยออลสตาร์ปันผล
+                </td>
+                <td>
+                  หักบัญชี
+                </td>
+                <td>
+                  20,000.00
+                </td>
+                <td>
+                  07/06/2561, 11:25
+                </td>
+                <td>
+                  07/06/2561
+                </td>
+                <td>
+                  <a href="">
+                    <img src="/assets/Images/icons/ico-edit.png">
+                  </a>
+                </td>
+                <td>
+                  <a href="">
+                    <img src="/assets/Images/icons/ico-delete.png" alt="">
+                  </a>
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+
+      <div class="col-md-4 offset-md-8 no-padding">
+        <div class="list-pagination">
+          <div class="holder">
+            <!-- <a class="jp-first jp-disabled">First</a> -->
+            <a class="jp-previous jp-disabled">previous</a>
+            <a class="jp-current">1</a>
+            <!-- <span class="jp-hidden">...</span> -->
+            <a class="">2</a>
+            <a class="">3</a>
+            <a class="jp-next">next</a>
+            <!-- <a class="jp-last">Last</a> -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="message" style="z-index: 9999;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{ 'Modal.notifications' | translate }}</h4>
+      </div>
+      <div class="modal-body" id="content-scroll-1">
+        <h3>{{ message }}</h3>
+      </div>
+      <div class="modal-footer" style="display: block;">
+        <div class="row justify-content-end">
+          <div class="col-sm-6">
+            <button class="btn-med btn-primary" data-dismiss="modal">
+              <p style="margin-top: 7px;">{{ 'BUTTON.ok' | translate }}
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
-              </button>
-            </div>
-            <div class="col-5">
-              <button class="btn-med btn-primary" data-dismiss="modal" routerLink="/profile/suitability" *ngIf="userdetail.MemberType != 'Agent'">
-                <p style="margin-top: 7px;">{{ 'BUTTON.suittest' | translate }}
-                  <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </p>
-              </button>
-            </div>
+              </p>
+            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="modal fade modal-custom" tabindex="-1" role="dialog" id="delete">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header warning">
-
-          <h4 class="modal-title warning">{{ 'Modal.delete' | translate }}</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <h4 class="modal-title warning">X</h4>
-          </button>
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="risklevel" style="z-index: 9999;">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{ 'Modal.notifications' | translate }}</h4>
+      </div>
+      <div class="modal-body" id="content-scroll-1">
+        <h3 *ngIf="Islevel">- {{ 'CONTENT.risk-level' | translate }}</h3>
+        <h3 *ngIf="Isprotect">- {{ 'CONTENT.hed' | translate }}</h3>
+      </div>
+      <div class="modal-footer" style="display: block;">
+        <div class="row justify-content-center">
+          <div class="col-4">
+            <button class="btn-med btn-primary" data-dismiss="modal" (click)="checkpage('purchase-step1')">
+              {{ 'BUTTON.acceptrisk' | translate }}
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="col-4">
+            <button class="btn-med btn-cancel" data-dismiss="modal">
+              {{ 'BUTTON.notaccept' | translate }}
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="col-4" *ngIf="Islevel">
+            <button class="btn-med btn-primary" data-dismiss="modal" routerLink="/profile/suitability" *ngIf="userdetail.MemberType != 'Agent'">
+              <p style="margin-top: 7px;">{{ 'BUTTON.suittest' | translate }}
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </p>
+            </button>
+          </div>
         </div>
-        <div class="modal-body" id="content-scroll-1">
-          <div class="row mt-3">
-            <div class="col-md-6 col-6">
-              <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
-              <span>{{ userselect?.UnitholderNo }} <ng-container *ngIf="userselect?.AgentCode">({{userselect?.AgentCode }})</ng-container></span>
-            </div>
-            <div class="col-md-6 col-6">
-              <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
-              <span>{{ userselect?.FirstName}} {{ userselect?.LastName}}</span>
-            </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-            <div class="col-md-12 mt-4">
-              <div class="table-responsive">
-                <table class="table table-custom">
-                  <tbody>
-                    <tr>
-                      <td class="text-left">
-                        <!-- วันที่ทำรายการ -->
-                        {{ 'TABLE.or-date-time' | translate }}
-                      </td>
-                      <td class="text-left content">
-                        {{deletedOrder?.OrderTime | datethai}}, {{deletedOrder?.OrderTime | time}}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="text-left">
-                        {{ 'TABLE.payment-method' | translate }}
-                      </td>
-                      <td class="text-left content">
-                        {{ 'CONTENT.payment-method' | translate }}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="text-left">
-                        {{ 'TABLE.fund' | translate }}
-                      </td>
-                      <td class="text-left content">
-                        <!-- {{deletedOrder?.FundName}} ({{deletedOrder?.FundCode}}) -->
-                        <ng-container *ngIf="lang == 'th' ">{{deletedOrder?.FundName}} ({{deletedOrder?.FundCode}})</ng-container>
-                        <ng-container *ngIf="lang == 'en' ">{{deletedOrder?.FundNameEng}} ({{deletedOrder?.FundCode}})</ng-container>
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="expiremodal" style="z-index: 9999;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{ 'Modal.notifications' | translate }}</h4>
+      </div>
+      <div class="modal-body" id="content-scroll-1">
+        <h3>{{ 'CONTENT.expiremodal' | translate }}
+        </h3>
+      </div>
+      <div class="modal-footer" style="display: block;">
+        <div class="row justify-content-center">
+          <div class="col-5">
+            <button class="btn-med btn-cancel" data-dismiss="modal" routerLink="">
+              {{ 'BUTTON.cancel' | translate }}
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="col-5">
+            <button class="btn-med btn-primary" data-dismiss="modal" routerLink="/profile/suitability" *ngIf="userdetail.MemberType != 'Agent'">
+              <p style="margin-top: 7px;">{{ 'BUTTON.suittest' | translate }}
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </p>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="text-left">
-                        {{ 'CONTENT.amount' | translate }}
-                      </td>
-                      <td class="text-left content">
-                        <ng-container *ngIf="deletedOrder">{{deletedOrder?.OrderAmount | tofix}} {{ 'CONTENT.bath' | translate
-                          }}</ng-container>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="text-left">
-                        {{ 'CONTENT.payment-method' | translate }}
-                      </td>
-                      <td class="text-left content">
-                        {{deletedOrder?.BankName}} ({{deletedOrder?.OrderBankAccountNo}})
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="text-left">
-                        {{ 'TABLE.ef-date' | translate }}
-                      </td>
-                      <td class="text-left content">
-                        {{deletedOrder?.EffectiveDate | datethai}}
-                        <!-- <ng-container *ngIf="lang == 'th' ">{{deletedOrder?.EffectiveDate | datethai}}</ng-container>
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="delete">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header warning">
+
+        <h4 class="modal-title warning">{{ 'Modal.delete' | translate }}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <h4 class="modal-title warning">X</h4>
+        </button>
+      </div>
+      <div class="modal-body" id="content-scroll-1">
+        <div class="row mt-3">
+          <div class="col-md-6 col-6">
+            <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
+            <span>{{ userselect?.UnitholderNo }} <ng-container *ngIf="userselect?.AgentCode">({{userselect?.AgentCode }})</ng-container></span>
+          </div>
+          <div class="col-md-6 col-6">
+            <p>{{ 'CONTENT.unit-holder-name' | translate }}</p>
+            <span>{{ userselect?.FirstName}} {{ userselect?.LastName}}</span>
+          </div>
+
+          <div class="col-md-12 mt-4">
+            <div class="table-responsive">
+              <table class="table table-custom">
+                <tbody>
+                  <tr>
+                    <td class="text-left">
+                      <!-- วันที่ทำรายการ -->
+                      {{ 'TABLE.or-date-time' | translate }}
+                    </td>
+                    <td class="text-left content">
+                      
+                      <ng-container *ngIf="lang == 'th' ">{{deletedOrder?.OrderTime | datethai}}, {{deletedOrder?.OrderTime | time}}</ng-container>
+                      <ng-container *ngIf="lang == 'en' ">{{deletedOrder?.OrderTime | dateeng}}, {{deletedOrder?.OrderTime | time}}</ng-container>
+                      
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      {{ 'TABLE.payment-method' | translate }}
+                    </td>
+                    <td class="text-left content">
+                      {{ 'CONTENT.payment-method' | translate }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      {{ 'TABLE.fund' | translate }}
+                    </td>
+                    <td class="text-left content">
+                      <ng-container *ngIf="lang == 'th' ">{{deletedOrder?.FundName}} ({{deletedOrder?.FundCode}})</ng-container>
+                      <ng-container *ngIf="lang == 'en' ">{{deletedOrder?.FundNameEng}} ({{deletedOrder?.FundCode}})</ng-container>
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      {{ 'CONTENT.amount' | translate }}
+                    </td>
+                    <td class="text-left content">
+                      <ng-container *ngIf="deletedOrder">{{deletedOrder?.OrderAmount | tofix}} {{ 'CONTENT.bath' | translate
+                        }}
+                      </ng-container>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      {{ 'CONTENT.payment-method' | translate }}
+                    </td>
+                    <td class="text-left content">
+                      {{deletedOrder?.BankName}} ({{deletedOrder?.OrderBankAccountNo}})
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      {{ 'TABLE.ef-date' | translate }}
+                    </td>
+                    <td class="text-left content">
+                      <ng-container *ngIf="lang == 'th' "> {{deletedOrder?.EffectiveDate | datethai}}</ng-container>
+                      <ng-container *ngIf="lang == 'en' "> {{deletedOrder?.EffectiveDate | dateeng}}</ng-container>
+                      <!-- <ng-container *ngIf="lang == 'th' ">{{deletedOrder?.EffectiveDate | datethai}}</ng-container>
                       <ng-container *ngIf="lang == 'en' ">{{deletedOrder?.EffectiveDate }}</ng-container> -->
-                      </td>
-                    </tr>
+                    </td>
+                  </tr>
 
-                  </tbody>
+                </tbody>
 
-                </table>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <div class="row justify-content-center">
-              <div class="col-md-6 col-6 col-sm-6">
-                <button class="btn-med btn-cancel" (click)="deleteorder()">
-                  {{ 'BUTTON.delete' | translate }}
-                  <i class="fa fa-angle-right" aria-hidden="true"></i>
-
-                </button>
-              </div>
+              </table>
             </div>
           </div>
         </div>
-        <!-- /.modal-content -->
+        <div class="modal-footer">
+          <div class="row justify-content-center">
+            <div class="col-md-6 col-6 col-sm-6">
+              <button class="btn-med btn-cancel" (click)="deleteorder()">
+                {{ 'BUTTON.delete' | translate }}
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <!-- /.modal-dialog -->
+      <!-- /.modal-content -->
     </div>
-    <!-- /.modal -->
+    <!-- /.modal-dialog -->
   </div>
+  <!-- /.modal -->
+</div>
+
+<app-footerforwarning *ngIf="userall != ''"></app-footerforwarning>

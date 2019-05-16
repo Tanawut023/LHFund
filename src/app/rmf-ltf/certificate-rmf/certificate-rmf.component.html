@@ -5,16 +5,6 @@
         <div class="col-md-12 col-12 icon-option mb-3">
 
           <ul class="">
-            <!-- <li class="ico-fb">
-              <a href="#" title="facebook">
-                <img src="/assets/Images/icons/ico-pipe.png" />
-              </a>
-            </li>
-            <li class="ico-line">
-              <a href="#" title="line">
-                <img src="/assets/Images/icons/ico-download.png" />
-              </a>
-            </li> -->
             <li class="ico-yt">
               <a title="print">
                 <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
@@ -27,9 +17,11 @@
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
-            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno" class="selectpicker" data-live-search="true">
+            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno" class="selectpicker"
+              data-live-search="true">
               <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
-                }} <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container>
+                }}
+                <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container>
               </option>
             </select>
           </div>
@@ -53,15 +45,11 @@
       <div class="col-md-6 pull-md-6">
         <div class="row">
           <div class="col-md-12">
-            <!-- <div class="custom-radio-between">
-              <input value="101" id="101" name="rad1" type="radio" checked>
-              <label for="101"></label>
-              <p>{{ 'CONTENT.r-i-cer' | translate }}</p>
-            </div> -->
             <div class="row">
               <div class="col-md-2">
                 <p>{{ 'CONTENT.year' | translate }}</p>
               </div>
+
               <div class="col-md-6">
                 <div class="select-wrapper inline-block">
                   <select [(ngModel)]="years" name="years" id="years" class="selectpicker">
@@ -70,23 +58,16 @@
                   </select>
                 </div>
               </div>
+
               <div class="col-md-4 col-6 offset-6 offset-md-0">
                 <button class="btn-med btn-primary btn" [disabled]="loading" (click)="OnSubmit()">
                   {{ 'BUTTON.ok' | translate }}
                   <i class="fa fa-angle-right" aria-hidden="true"></i>
-
                 </button>
               </div>
             </div>
 
           </div>
-          <!-- <div class="col-md-6">
-            <div class="custom-radio-between">
-              <input value="102" id="102" name="rad1" type="radio">
-              <label for="102"></label>
-              <p>{{ 'CONTENT.r-r-cer' | translate }}</p>
-            </div>
-          </div> -->
         </div>
       </div>
     </div>
@@ -102,22 +83,26 @@
         <ul>
           <li *ngFor="let list of rmffilelist?.filenamelist; let i = index">
             <div class="row">
+
               <div class="col-md-10 col-9">
                 <a title="{{list}}">
                   {{list}}
                 </a>
               </div>
+
               <div class="col-md-2 col-3">
                 <button class="btn-sm btn-download width50 btn" [disabled]="loading" (click)="download(i)">
                   <p>Download</p>
                   <img src="/assets/Images/icons/ico-download-white.png">
                 </button>
               </div>
+              
             </div>
           </li>
+
           <div class="col-md-12 mt-5 text-center" *ngIf="nolist">
-              <p>{{ 'CONTENT.not-found' | translate }}</p>
-            </div>
+            <p>{{ 'CONTENT.not-found' | translate }}</p>
+          </div>
 
         </ul>
         <div class="clearfix"></div>

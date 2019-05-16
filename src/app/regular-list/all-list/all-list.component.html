@@ -13,16 +13,6 @@
         <div class="col-md-12 col-12 icon-option mb-3">
 
           <ul class="">
-            <!-- <li class="ico-fb">
-              <a href="#" title="facebook">
-                <img src="/assets/Images/icons/ico-pipe.png" />
-              </a>
-            </li>
-            <li class="ico-line">
-              <a href="#" title="line">
-                <img src="/assets/Images/icons/ico-download.png" />
-              </a>
-            </li> -->
             <li class="ico-yt">
               <a title="print">
                 <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
@@ -50,7 +40,6 @@
 
         <div class="col-md-3">
           <p>{{ 'CONTENT.report-date' | translate }}</p>
-          <!-- <span class="txt-middle">{{ dateformat }}</span> -->
           <ng-container *ngIf="lang == 'th' "><span class="txt-middle">{{ dateformat }}</span></ng-container>
           <ng-container *ngIf="lang == 'en' "><span class="txt-middle">{{ dateformatEng }}</span></ng-container>
         </div>
@@ -67,14 +56,15 @@
     <div class="detail-footer-wrapper" *ngIf="userall == ''">
       <div class="row">
         <div class="col-md-12 mt-5 text-center">
-          <p>ไม่พบเลขที่ผู้ถือหน่วยลงทุน ไม่สามารถทำรายการได้</p>
+          <!-- <p>ไม่พบเลขที่ผู้ถือหน่วยลงทุน ไม่สามารถทำรายการได้</p> -->
+          <a href="https://www.lhfund.co.th/Investment/SellingPoint" target="_blank">กรุณาติดต่อตัวแทนของท่าน คลิกที่นี่</a>
         </div>
       </div>
     </div>
 
   </div>
 
-  <div class="detail-body-wrapper" *ngIf="userall != ''">
+  <div class="detail-body-wrapper" style="border-bottom: 0px;" *ngIf="userall != ''">
     <div class="row">
       <div class="col-md-12">
         <h4>{{ 'NAVBAR.view-plan' | translate }}</h4>
@@ -147,8 +137,9 @@
                 </tr> -->
                   <tr *ngFor="let list of group?.StandingOrder; let z = index" class="bgforlhfund">
 
-                    <td class="">
-                      {{list.StandingOrderDate | datethai}}, {{list.StandingOrderDate | time}}
+                    <td class="">                      
+                      <ng-container *ngIf="lang == 'th' ">{{list.StandingOrderDate | datethai}}, {{list.StandingOrderDate | time}}</ng-container>
+                      <ng-container *ngIf="lang == 'en' ">{{list.StandingOrderDate | dateeng}}, {{list.StandingOrderDate | time}}</ng-container>
                     </td>
                     <td class="text-center">
                       {{list.StandingOrderTxType | type}}
@@ -166,7 +157,9 @@
                       {{list.StandingOrderAmount | tofix}}
                     </td>
                     <td class="text-center">
-                      {{list.StandingOrderEffectiveDate | datethai}} - {{list.ExpiryDate | datethai}}
+                      
+                      <ng-container *ngIf="lang == 'th' ">{{list.StandingOrderEffectiveDate | datethai}} - {{list.ExpiryDate | datethai}}</ng-container>
+                      <ng-container *ngIf="lang == 'en' ">{{list.StandingOrderEffectiveDate | dateeng}} - {{list.ExpiryDate | dateeng}}</ng-container>
                     </td>
                     <!-- <td>
                     <a>
@@ -188,7 +181,7 @@
 
 
       </div>
-      <div class="col-md-12 mb-5">
+      <!-- <div class="col-md-12 mb-5">
         <p class="color-red no-margin">
           <ng-container *ngIf="lang == 'th' ">ข้อมูลที่แสดงข้างต้นนี้อาจมีการเปลี่ยนแปลงแก้ไขได้ หากเป็นการซื้อที่เรียกเก็บเงินหรือรายการผิดพลาดใดๆ
             ทั้งนี้การเปลี่ยนแปลงแก้ไขจะเป็นไปตามวิธีและข้อกำหนดที่ระบุไว้ในโครงการจัดการกองทุนที่ท่านลงทุน</ng-container>
@@ -197,7 +190,7 @@
             you invest.</ng-container>
 
         </p>
-      </div>
+      </div> -->
       <div class="col-md-12">
         <div class="row justify-content-center">
           <div class="col-md-2 col-6 col-sm-4">
@@ -243,8 +236,9 @@
                       <!-- วันที่ทำรายการ -->
                       {{ 'TABLE.or-date-time' | translate }}
                     </td>
-                    <td class="text-left content">
-                      {{deletedOrder?.StandingOrderDate | datethai}}, {{deletedOrder?.StandingOrderDate | time}}
+                    <td class="text-left content">                      
+                      <ng-container *ngIf="lang == 'th' ">{{deletedOrder?.StandingOrderDate | datethai}}, {{deletedOrder?.StandingOrderDate | time}}</ng-container>
+                      <ng-container *ngIf="lang == 'en' ">{{deletedOrder?.StandingOrderDate | dateeng}}, {{deletedOrder?.StandingOrderDate | time}}</ng-container>
                     </td>
                   </tr>
                   <!-- <tr>
@@ -288,8 +282,9 @@
                       <!-- ระยะเวลา -->
                       {{ 'CONTENT.duration' | translate }}
                     </td>
-                    <td class="text-left content">
-                      {{deletedOrder?.StandingOrderEffectiveDate | datethai}} - {{deletedOrder?.ExpiryDate | datethai}}
+                    <td class="text-left content">                      
+                      <ng-container *ngIf="lang == 'th' ">{{deletedOrder?.StandingOrderEffectiveDate | datethai}} - {{deletedOrder?.ExpiryDate | datethai}}</ng-container>
+                      <ng-container *ngIf="lang == 'en' ">{{deletedOrder?.StandingOrderEffectiveDate | dateeng}} - {{deletedOrder?.ExpiryDate | dateeng}}</ng-container>
                     </td>
                   </tr>
 
@@ -341,3 +336,5 @@
     </div>
   </div>
 </div>
+
+<app-footerforwarning *ngIf="userall != ''"></app-footerforwarning>

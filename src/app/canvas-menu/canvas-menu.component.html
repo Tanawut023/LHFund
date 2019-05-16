@@ -3,88 +3,191 @@
 <!-- Ends -->
 
 <div class="canvas-menu-wrapper">
-  <nav class="canvas-menu">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hidenav()">
-          <h4 class="modal-title">X</h4>
+    <nav class="canvas-menu">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hidenav()">
+            <h4 class="modal-title">X</h4>
         </button>
-      <div class="top-menu-wrapper" id="top-menu-wrapper">
-          <div class="wrapper">
-              <div class="row">
-                  <div class="col-md-12 top-social-nav">
-                      <ul class="">
-                          <li class="ico-fb">
-                              <a href="#" title="บัญชีผู้ใช้">
-                                 {{ 'HEADER.Account' | translate }} : 
-                              </a>
-                          </li>
-                          <li class="ico-line">
-                              <a href="#" title="{{ userdetail.FirstName }}">
-                                  <img src="./assets/Images/icons/icon-login-white.png" />
-                                  {{ userdetail.FirstName }}
-                                  <!-- <img src="./assets/Images/icons/p_dropdown_select.png" /> -->
-                              </a>
-                          </li>
-                         
-                          <!-- <li class="ico-ig">
+        <div class="top-menu-wrapper" id="top-menu-wrapper">
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-12 top-social-nav">
+                        <ul class="">
+                            <li class="ico-fb">
+                                <a href="#" title="บัญชีผู้ใช้">
+                                    {{ 'HEADER.Account' | translate }} :
+                                </a>
+                            </li>
+                            <li class="ico-line">
+                                <a href="#" title="{{ userdetail.FirstName }}">
+                                    <img src="./assets/Images/icons/icon-login-white.png" /> {{ userdetail.FirstName }}
+                                    <!-- <img src="./assets/Images/icons/p_dropdown_select.png" /> -->
+                                </a>
+                            </li>
+
+                            <!-- <li class="ico-ig">
                               <a href="#" title="">
                                   <img src="./assets/Images/icons/ico-ig-white.png" />
                               </a>
                           </li> -->
-                      </ul>
-                      <ul class="sw-lang">
-                           <li class="th" (click)="switchlang('th')" [ngClass]="{'current': langth}">
-                              <a  title="ไทย">Thai</a>
-                          </li>
-                          <li class="en" (click)="switchlang('en')" [ngClass]="{'current': langen}">
-                              <a  title="Eng">Eng</a>
-                          </li>
-                          <!-- <li class="ch">
+                        </ul>
+                        <ul class="sw-lang">
+                            <li class="th" (click)="switchlang('th')" [ngClass]="{'current': langth}">
+                                <a title="ไทย">Thai</a>
+                            </li>
+                            <li class="en" (click)="switchlang('en')" [ngClass]="{'current': langen}">
+                                <a title="Eng">Eng</a>
+                            </li>
+                            <!-- <li class="ch">
                               <a href="#" title="Chi">Chi</a>
                           </li> -->
-                      </ul>
-                  </div>
-              </div>
-          </div>
-    </div>
- 
-<!-- 
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 
     <div id="top-canvas-menu" class="header_tools">
       
     </div> -->
-<!--Include your top navigation here-->
-    <!-- <div id="top-canvas-search" class="header_search">
+        <!--Include your top navigation here-->
+        <!-- <div id="top-canvas-search" class="header_search">
       
     </div> -->
-<!-- clone element form header_search -->
-    <ul id="canvas_mainnav" class="list-unstyled main-menu">
-      <li id="myport"><a routerLink="/myport" title="My Port">My Port <span class="icon"></span></a></li>
-                                <li id="transaction"><a routerLink="/transaction" title="{{ 'HEADER.transaction' | translate }}">{{ 'HEADER.transaction' | translate }}<span class="icon"></span></a></li>
-                                <li id="rmf-ltf"><a routerLink="/rmf-ltf" title="RMF/LTF">RMF/LTF<span class="icon"></span></a></li>
-                                <li id="report"><a routerLink="/report" title="{{ 'HEADER.report' | translate }}">{{ 'HEADER.report' | translate }}<span class="icon"></span></a></li>
-                                <li id="regular-list"><a routerLink="/regular-list" title="{{ 'HEADER.regular' | translate }} ">{{ 'HEADER.regular' | translate }} <span class="icon"></span></a></li>
-                                <li id="profile"*ngIf="userdetail.MemberType != 'Agent'"><a routerLink="/profile" title="{{ 'HEADER.profile' | translate }}">{{ 'HEADER.profile' | translate }} <span class="icon"></span></a></li>
-                                <li id="profile"*ngIf="userdetail.MemberType == 'Agent'"><a routerLink="/profile/change-password" title="{{ 'HEADER.profile' | translate }}">{{ 'HEADER.profile' | translate }} <span class="icon"></span></a></li>
-                                <li >&nbsp;</li>
-    </ul>
-    <div class="row justify-content-center ">
-        <div class="col-md-6 col-10 col-sm-6">
-          <button class="btn-med btn-primary text-center" (click)="logout()">
-                <img style="vertical-align: sub;" src="./assets/Images/icons/ico-forgot.png" />
-                {{ 'HEADER.logout' | translate }}
-            <!-- <i class="fa fa-angle-right" aria-hidden="true"></i> -->
+        <!-- clone element form header_search -->
+        <ul id="canvas_mainnav" class="list-unstyled main-menu">
+            <li id="myport"><a routerLink="/myport" title="My Port">My Port <span class="icon"></span></a></li>
+            <!-- <li id="transaction"><a routerLink="/transaction" title="{{ 'HEADER.transaction' | translate }}">{{ 'HEADER.transaction'
+                    | translate }}<span class="icon"></span></a>
+            </li> -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#submenu1" data-toggle="collapse" data-target="#submenu1">{{ 'HEADER.transaction'
+                    | translate }}</a>
+                <div class="collapse" id="submenu1" aria-expanded="false">
+                    <ul class="flex-column pl-2 nav">
+                        <li class="nav-item"><a class="nav-link py-0" (click)="navigate('/transaction')" >{{ 'NAVBAR.subscription' | translate }}</a></li>
+                        <li class="nav-item"><a class="nav-link py-0" (click)="navigate('/transaction/sell')" >{{ 'NAVBAR.redemption' | translate }}</a></li>
+                        <li class="nav-item"><a class="nav-link py-0" (click)="navigate('/transaction/exchange')" >{{ 'NAVBAR.switching' | translate }}</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#submenu2" data-toggle="collapse" data-target="#submenu2">RMF/LTF</a>
+                <div class="collapse" id="submenu2" aria-expanded="false">
+                    <ul class="flex-column pl-2 nav">
+                        <li class="nav-item"><a class="nav-link py-0" (click)="navigate('/rmf-ltf')" >{{ 'NAVBAR.ltf-for-re' | translate }}</a></li>
+                        <li class="nav-item"><a class="nav-link py-0" (click)="navigate('/rmf-ltf/conclusion')" >{{ 'NAVBAR.rmf-ltf-sub' | translate }}</a></li>
+                        <li class="nav-item"><a class="nav-link py-0" (click)="navigate('/rmf-ltf/certificate-rmf')" >{{ 'NAVBAR.rmf-cer' | translate }}</a></li>
+                        <li class="nav-item"><a class="nav-link py-0" (click)="navigate('/rmf-ltf/certificate-ltf')" >{{ 'NAVBAR.ltf-cer' | translate }}</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#submenu3" data-toggle="collapse" data-target="#submenu3">{{ 'HEADER.report' | translate
+                }}</a>
+                <div class="collapse" id="submenu3" aria-expanded="false">
+                    <ul class="flex-column pl-2 nav">
+                        <li class="nav-item"><a class="nav-link py-0" (click)="navigate('/report')" >{{ 'NAVBAR.dividend-detail' | translate }}</a></li>
+                        <li class="nav-item"><a class="nav-link py-0" (click)="navigate('/report/past-events')" >{{ 'NAVBAR.statement' | translate }}</a></li>
+                        <li class="nav-item"><a class="nav-link py-0" (click)="navigate('/report/not-available-list')" >{{ 'NAVBAR.today-input' | translate }}</a></li>
+                        <li class="nav-item"><a class="nav-link py-0" (click)="navigate('/report/certificate-ltf')" >{{ 'NAVBAR.unalloted-transaction' | translate }}</a></li>
+                        <li class="nav-item"><a class="nav-link py-0" (click)="navigate('/report/confirmation')" >{{ 'NAVBAR.transaction-comfirmmation' | translate }}</a></li>
+                        <li class="nav-item"><a class="nav-link py-0" (click)="navigate('/report/type')" >{{ 'NAVBAR.type' | translate }}</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#submenu4" data-toggle="collapse" data-target="#submenu4">{{ 'HEADER.regular'
+                    | translate }}</a>
+                <div class="collapse" id="submenu4" aria-expanded="false">
+                    <ul class="flex-column pl-2 nav">
+                        <li class="nav-item"><a class="nav-link py-0" (click)="navigate('/regular-list')" >{{ 'NAVBAR.regular-subscription-order' | translate }}</a></li>
+                        <li class="nav-item"><a class="nav-link py-0" (click)="navigate('/regular-list/all-list')" >{{ 'NAVBAR.view-plan' | translate }}</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item" *ngIf="userdetail.MemberType != 'Agent'">
+                <a class="nav-link collapsed" href="#submenu5" data-toggle="collapse" data-target="#submenu5">{{
+                    'HEADER.profile' | translate }}</a>
+                <div class="collapse" id="submenu5" aria-expanded="false">
+                    <ul class="flex-column pl-2 nav">
+                        <li class="nav-item"><a class="nav-link py-0" (click)="navigate('/profile')" >{{ 'NAVBAR.view-edit-personal-information' | translate }}</a></li>
+                        <li class="nav-item"><a class="nav-link py-0" (click)="navigate('/profile/suitability')" >{{ 'NAVBAR.suitability' | translate }}</a></li>
+                        <li class="nav-item"><a class="nav-link py-0" (click)="navigate('/profile/change-password')" >{{ 'NAVBAR.changepassword' | translate }}</a></li>
+                    </ul>
+                </div>
+            </li>
+            <!-- <li id="rmf-ltf"><a routerLink="/rmf-ltf" title="RMF/LTF">RMF/LTF<span class="icon"></span></a></li> -->
+            <!-- <li id="report"><a routerLink="/report" title="{{ 'HEADER.report' | translate }}">{{ 'HEADER.report' | translate
+                    }}
+                    <span class="icon"></span></a></li> -->
+            <!-- <li id="regular-list"><a routerLink="/regular-list" title="{{ 'HEADER.regular' | translate }} ">{{ 'HEADER.regular'
+                    | translate }} <span class="icon"></span></a></li> -->
+            <!-- <li id="profile" *ngIf="userdetail.MemberType != 'Agent'"><a routerLink="/profile" title="{{ 'HEADER.profile' | translate }}">{{
+                    'HEADER.profile' | translate }} <span class="icon"></span></a></li> -->
+            <li id="profile" *ngIf="userdetail.MemberType == 'Agent'"><a routerLink="/profile/change-password" title="{{ 'HEADER.profile' | translate }}">{{
+                    'HEADER.profile' | translate }} <span class="icon"></span></a></li>
+            <li>&nbsp;</li>
+        </ul>
+        <!-- <div class="container-fluid">
+            <div class="row">
+                <div class="col-2 collapse d-md-flex bg-light pt-2 min-vh-100" id="sidebar">
+                    <ul class="nav flex-column flex-nowrap">
+                        <li class="nav-item"><a class="nav-link" href="#">Overview</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link collapsed" href="#submenu1" data-toggle="collapse" data-target="#submenu1">Reports</a>
+                            <div class="collapse" id="submenu1" aria-expanded="false">
+                                <ul class="flex-column pl-2 nav">
+                                    <li class="nav-item"><a class="nav-link py-0" href="#">Orders</a></li>
+                                    <li class="nav-item">
+                                        <a class="nav-link collapsed py-1" href="#submenu1sub1" data-toggle="collapse" data-target="#submenu1sub1">Customers</a>
+                                        <div class="collapse" id="submenu1sub1" aria-expanded="false">
+                                            <ul class="flex-column nav pl-4">
+                                                <li class="nav-item">
+                                                    <a class="nav-link p-1" href="#">
+                                                        <i class="fa fa-fw fa-clock-o"></i> Daily
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link p-1" href="#">
+                                                        <i class="fa fa-fw fa-dashboard"></i> Dashboard
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link p-1" href="#">
+                                                        <i class="fa fa-fw fa-bar-chart"></i> Charts
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link p-1" href="#">
+                                                        <i class="fa fa-fw fa-compass"></i> Areas
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#">Analytics</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Export</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div> -->
 
-          </button>
+        <div class="row justify-content-center ">
+            <div class="col-md-6 col-10 col-sm-6">
+                <button class="btn-med btn-primary text-center" (click)="logout()">
+                    <img style="vertical-align: sub;" src="./assets/Images/icons/ico-forgot.png" /> {{ 'HEADER.logout' |
+                    translate }}
+                    <!-- <i class="fa fa-angle-right" aria-hidden="true"></i> -->
+
+                </button>
+            </div>
         </div>
-      </div>
-  </nav>
-  <!-- <li class="ico-yt">
-      <a href="#" title="ออกจากระบบ">
-          <img src="./assets/Images/icons/ico-forgot.png" />
-          {{ 'HEADER.logout' | translate }}
-      </a>
-  </li> -->
-
-  <!-- <div class="navbar navbar-inverse navbar-fixed-top">
+    </nav>
+    <!-- <div class="navbar navbar-inverse navbar-fixed-top">
       Include your brand here
       <div class="navbar-header">
         <a id="nav-expander" class="nav-expander fixed">

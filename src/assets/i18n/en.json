@@ -86,6 +86,7 @@
     "expiremodal": "Your suitability form is expire. Please update suitability form in order to complete your transaction",
     "warn-order": "Confirmation of this order is not considered to complete transaction. In case of you did not requested the fund book ,The Registrar will send the confirmation note to you when the transaction is completed within 2 business days.",
     "ats-contact": "To open ATS account, You may inquire more information regarding fund services by contacting LHfund, daily on Mondays to Fridays at 8.30-17.30 Tel: 02-286-3484 or 02-679-2155",
+    "lesszero": "Amount must more than 0",
     "//myport": null,   
     "net-asset-value": "Net Asset Value (baht)",
     "profit-loss": "Profit/Loss (baht)",
@@ -128,6 +129,7 @@
     "l-i-cer": "LTF INVESTMENT CERTIFICATE",
     "l-r-cer": "LTF REDEMPTION CERTIFICATE",
     "year": "Year",
+    "year2": "Year",
     "//report": null,
     "select-date-fund": "Please select the fund and Payment Date",
     "fund-group": "Fund group",
@@ -233,8 +235,11 @@
   "Modal": {
     "notifications": "Notifications",
     "succ": "Success",
-    "delete-or": "Deleted",
-    "delete": "Do you want to delete the selected order"
+    "delete-or": "Cancel selected order",
+    "delete": "Do you want to cancel the selected order",
+    "not-or": "The balance cannot be processed",
+    "not-ats": "Can not do saving plan transactions Please contact the marketing officer to determine the purchase payment account (ATS).",
+    "lastupdate": "your information is not update over 3 years, please contact your marketing officer to update your information"
     
   },
   "LOGIN":{
@@ -276,7 +281,7 @@
     "edit": "Edit data",
     "cal": "Calculate",
     "restore": "Restore",
-    "delete": "Delete Order",
+    "delete": "Cancel Order",
     "suittest": "Do Suitability",
     "acceptrisk": "Accept Risk"
     

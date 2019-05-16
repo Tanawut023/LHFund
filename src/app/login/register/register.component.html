@@ -30,19 +30,7 @@
             </p>
             <div class="input-wrapper">
               <input id="prefix" name="prefix" maxlength="15" type="text" formControlName="prefix">
-              <!-- <div class="form-control-feedback" *ngIf="this.form.controls.prefix.errors && ( this.form.controls.prefix.touched)">
-                <p *ngIf="this.form.controls.prefix.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                <p *ngIf="this.form.controls.prefix.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
-
-              </div> -->
             </div>
-            <!-- <div class="select-wrapper inline-block">
-                    <select name="ddlLink" id="ddlLink" required>
-                      <option value="นาย" selected="">นาย</option>
-                      <option value="นางสาว">นางสาว</option>
-                      <option value="นาง">นาง</option>
-                    </select>
-                  </div> -->
           </div>
           <div class="col-lg-4 form-group" [ngClass]="ValidatorDisplayCss('firstname')">
             <p>{{ 'LOGIN.firstname' | translate }}
@@ -79,7 +67,6 @@
               <input id="IDcard" name="IDcard" maxlength="13" type="text" formControlName="IDcard" required>
               <div class="form-control-feedback" *ngIf="this.form.controls.IDcard.errors && ( this.form.controls.IDcard.touched)">
                 <p *ngIf="this.form.controls.IDcard.errors.required || this.form.controls.IDcard.errors?.minlength">{{ 'Validation.required' | translate }}</p>
-                <!-- <p *ngIf="this.form.controls.IDcard.errors.pattern">ข้อมูลไม่ถูกต้อง</p> -->
               </div>
             </div>
           </div>
@@ -91,7 +78,6 @@
               <div class="form-control-feedback" *ngIf="this.form.controls.tel.errors && ( this.form.controls.tel.touched)">
                 <p *ngIf="this.form.controls.tel.errors.required || this.form.controls.tel.errors?.minlength">{{ 'Validation.required' | translate }}</p>
                 <p *ngIf="this.form.controls.tel.errors.pattern">{{ 'Validation.incorrect' | translate }}</p>
-                <!-- <p *ngIf="this.form.controls.tel.errors?.minlength">ข้อมูลไม่ครบ</p>																							 -->
               </div>
             </div>
           </div>
@@ -119,15 +105,6 @@
           </div>
         </div>
 
-        <!-- <div class="row justify-content-start">
-            <div class="col-md-12">
-                <div class="custom-radio-login">
-                    <input value="101" id="101" name="rad1" type="radio">
-                    <label for="101"></label>
-                    <span >ยอมรับ</span>
-                </div>
-            </div>
-        </div> -->
         <div class="row">
           <div class="col-md-6">
             <div class="btn-wrapper-left">
@@ -201,7 +178,6 @@
                   <div class="form-control-feedback" *ngIf="this.formstep2.controls.username.errors && (this.formstep2.controls.username.touched)">
                     <p *ngIf="this.formstep2.controls.username.errors.required">{{ 'Validation.required' | translate }}</p>
                     <p *ngIf="this.formstep2.controls.username.errors.pattern">{{ 'Validation.username' | translate }}</p>
-                    <!-- <p *ngIf="this.formstep2.controls.username.errors?.minlength">อย่างน้อย 8 ตัวอักษร </p> -->
                   </div>
                 </div>
             </div>
@@ -229,25 +205,14 @@
                 </p>
                 <div class="input-wrapper ">
                   <input id="repeatPassword" name="repeatPassword" maxlength="15" type="password" formControlName="repeatPassword">
-                  <!-- <span *ngIf="cpwd.hasError('invalid')"> Invalid Password </span> -->
                   <div class="form-control-feedback" *ngIf="this.formstep2.controls.repeatPassword.errors && (this.formstep2.controls.repeatPassword.touched)">
                     <p *ngIf="this.formstep2.controls.repeatPassword.errors.required">{{ 'Validation.required' | translate }}</p>
                     <p *ngIf="this.formstep2.controls.repeatPassword.errors.pattern">{{ 'Validation.password' | translate }}</p>
-                    <!-- <p *ngIf="this.formstep2.controls.password.value !== this.formstep2.controls.repeatPassword.value">mismatch</p> -->
                     <p *ngIf="cpwd.hasError('invalid')">{{ 'Validation.samepassword' | translate }}</p>
 
                   </div>
                 </div>
             </div>
-            <!-- <div class="col-sm-12 mt-3">
-                  <div class="btn-wrapper-left">
-                    <button class="btn-med btn-next-login" (click)="checkpage('signin')">
-                      <p class="pl-1 ">ลงทะเบียน
-                        <i class="fa fa-angle-right pl-4" aria-hidden="true"></i>
-                      </p>
-                    </button>
-                  </div>
-                </div> -->
           </div>
         </div>
 
@@ -272,57 +237,10 @@
               </button>
             </div>
           </div>
+          
         </div>
       </form>
     </div>
-    <!-- </div>
-  </div> -->
-    <!-- <div class="col-md-6 col-xs-12">
-        <div class="contact-title">
-            <div class="row ">
-              <div class="col-md-10 col-md-offset-8 xs-hide">
-                <ul>
-                  <li class="th current">
-                    <a href="#" title="ไทย">Thai</a>
-                  </li>
-                  <li class="en">
-                    <a href="#" title="Eng">Eng</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="contact-form-wrapper">
-            <div class="row mt-5">
-              <div class="col-md-12 mb-2 mt">
-                <h3>ทำความเข้าใจลักษณะสินค้า,</h3>
-                <h3>เงื่อนไข,ผลตอบแทน</h3>
-                <h3>และความเสี่ยงก่อนตัดสินใจ</h3>
-              </div>
-              <div class="col-md-12 mt-3">
-                <div class="btn-wrapper">
-                  <div class="row justify-content-center">
-                    <div class="col-md-8 col-xs-6">
-                      <button class="btn-med btn-light text-center" (click)="checkpage('signin')">
-                      <div class="login-icon ml-md-2 ml-0 mt-1">
-                          <img src="/assets/Images/icons/icon-login-white.png" class="visible-lg-block" />
-                            <img src="/assets/Images/icons/icon-login-white.png" class="visible-md-block visible-sm-block visible-xs-block" />
-                      </div>
-                      เข้าสู่ระบบ
-                      </button>
-
-                    </div>
-                  </div>
-                  
-                </div>
-              </div>
-
-              
-            </div>
-          </div>
-    </div> -->
-
-
   </div>
 </div>
 <div class="contact-popup active" *ngIf="page == 'otp'">
@@ -368,20 +286,22 @@
             <div class="btn-wrapper">
               <button class="btn-med btn-blue btn" type="button" (click)="requestotp()" [disabled]="loading">
                 {{ 'BUTTON.otp' | translate }}
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                <!-- <div class="d-xl-block d-none">
+                  <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </div> -->
               </button>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <p> {{ 'LOGIN.otp-receive' | translate }}</p>
+            <p> {{ 'LOGIN.otp-receive' | translate }} Ref. Code {{ User.refotp }}</p>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss4('otp')">
             <div class="input-wrapper">
-              <input id="otp" name="otp" maxlength="6" type="text" formControlName="otp" (keypress)="numberOnly($event)">
+              <input id="otp" name="otp" maxlength="6" type="password" formControlName="otp" (keypress)="numberOnly($event)">
               <div class="form-control-feedback" *ngIf="this.formotp.controls.otp.errors && ( this.formotp.controls.otp.touched)">
                 <p *ngIf="this.formotp.controls.otp.errors.required">{{ 'Validation.required' | translate }}</p>
 
@@ -432,7 +352,7 @@
   </div>
 </div>
 
-<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="message" style="z-index: 9999;" *ngIf="message">
+<div class="modal fade modal-custom" tabindex="-1" role="dialog" id="message" style="z-index: 9999;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

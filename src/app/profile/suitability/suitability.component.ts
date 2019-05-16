@@ -57,15 +57,8 @@ export class SuitabilityComponent implements OnInit {
             console.log(m);
             this.lang = m;
         })
-        // console.log(this.lang);
 
     }
-    // ngOnDestroy() {
-    //     $('#otpsuitest').modal('toggle');
-    //     $('#message').modal('toggle');
-    //     $('#messagesuc').modal('toggle');
-    // }
-
     checkpage(page) {
         window.scroll(0, 0);
         console.log(page)
@@ -95,8 +88,6 @@ export class SuitabilityComponent implements OnInit {
         this.formotp.reset();
     }
     checktype(event) {
-        // var Id = id;
-        // console.log(event);
         console.log(event.srcElement.attributes.id);
         var idAttr = event.srcElement.attributes.id;
         var value = idAttr.nodeValue;
@@ -106,8 +97,6 @@ export class SuitabilityComponent implements OnInit {
             $('#answerC1').find('input[type="radio"]').attr("disabled", "disabled");
             $('#answerC2').find('input[type="radio"]').attr("disabled", "disabled");
             $('#answerC2').find('input[type="text"]').attr("disabled", "disabled");
-            // $('#answerC1').find('input[type="radio"]').removeAttr("checked");
-            // $('#answerC2').find('input[type="radio"]').removeAttr("checked");
         }
 
         else {
@@ -115,28 +104,18 @@ export class SuitabilityComponent implements OnInit {
             $('#answerC1').find('input[type="radio"]').removeAttr("disabled");
             $('#answerC2').find('input[type="radio"]').removeAttr("disabled");
             $('#answerC2').find('input[type="text"]').removeAttr("disabled");
-            // $('#answerC1').find('input[type="radio"]').removeAttr("checked");
-            // $('#answerC2').find('input[type="radio"]').removeAttr("checked");        
-            // $('#answer').find('input[type="radio"]').removeAttr("checked");
         }
 
         if (value == 'size15') {
             $('#company').addClass('active');
             $('#answerP1').find('input[type="radio"]').attr("disabled", "disabled");
             $('#answerP2').find('input[type="radio"]').attr("disabled", "disabled");
-            // $('#answerP1').find('input[type="radio"]').removeAttr("checked");
-            // $('#answerP2').find('input[type="radio"]').removeAttr("checked");
-
-            // $('#answer1').find('input[type="radio"]').removeAttr("checked");
         }
 
         else {
             $('#company').removeClass('active');
             $('#answerP1').find('input[type="radio"]').removeAttr("disabled");
             $('#answerP2').find('input[type="radio"]').removeAttr("disabled");
-            // $('#answerP1').find('input[type="radio"]').removeAttr("checked");
-            // $('#answerP2').find('input[type="radio"]').removeAttr("checked");
-
         }
     }
     disable() {
@@ -186,66 +165,37 @@ export class SuitabilityComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    // var array = new Array();
-
                     this.suitest = data;
                     this.countquestion = this.suitest.question.length;
                     console.log(this.suitest);
-
-
-                    // for (let y = 0; y < this.suitest.question.length; y++) {
-
-                    //     console.log(this.suitest.question[y]);
-
-                    //     for (let i = 0; i < this.suitest.question[y].Answers.length; i++) {
-                    //         console.log(this.suitest.question[y].Answers[i]);
-
-                    //         if (this.suitest.question[y].Answers[i].Selected == true) {
-                    //             this.answer.push(this.suitest.question[y].Answers[i]);
-
-                    //         }
-
-
-                    //     }
-                    // }
-                    // console.log(this.answer);
                     setTimeout(() => {
                         // this.setdefault();
                         this.autocreateformcontrol();
                     }, 100);
-
-
                 },
                 error => {
                     console.log(error)
 
                 });
-
-
     }
+
     autocreateformcontrol() {
 
         if (this.suitest) {
             for (let y = 0; y < this.suitest.question.length; y++) {
-
                 this.question.push(
                     this.fb.control('')
                 )
-
                 for (let i = 0; i < this.suitest.question[y].Answers.length; i++) {
-
                     if (this.suitest.question[y].Answers[i].Selected == true) {
                         this.question.controls[y].setValue(this.suitest.question[y].Answers[i], { onlySelf: true })
                     }
-
-
                 }
-
             }
         }
         console.log(this.form);
-
     }
+
     getriskprofile() {
 
         let params = new HttpParams().set('unitholderid', this.userselect.UnitholderId);
@@ -266,14 +216,14 @@ export class SuitabilityComponent implements OnInit {
                     });
                 });
     }
+
     get question() {
         return this.form.get('question') as FormArray;
     }
+
     createFormValidate() {
         this.form = this.fb.group({
-
             question: this.fb.array([])
-
         });
 
         this.formotp = this.fb.group({
@@ -285,6 +235,7 @@ export class SuitabilityComponent implements OnInit {
             ]
         })
     }
+
     setdefault() {
 
         this.form.controls['choice0'].setValue(this.answer[0], { onlySelf: true });
@@ -358,6 +309,7 @@ export class SuitabilityComponent implements OnInit {
             this.validateAllFormFields(this.form);
         }
     }
+
     validateAllFormFields(formGroup: FormGroup) {
         Object.keys(formGroup.controls).forEach(field => {
             const control = formGroup.get(field);
@@ -395,6 +347,7 @@ export class SuitabilityComponent implements OnInit {
                     });
                 });
     }
+
     updatesuitest() {
         console.log(this.formotp)
         if (this.formotp.valid) {
@@ -420,7 +373,6 @@ export class SuitabilityComponent implements OnInit {
                         });
                         this.reset();
                         this.getsuitest();
-
                     },
                     error => {
                         console.log(error);
@@ -440,12 +392,10 @@ export class SuitabilityComponent implements OnInit {
             return false;
         }
         return true;
-
     }
 
     isFieldNotValid1(field: string) {
         return !this.formotp.get(field).valid && this.formotp.get(field).touched
-
     }
 
     ValidatorDisplayCss1(field: string) {
@@ -453,6 +403,7 @@ export class SuitabilityComponent implements OnInit {
             'has-danger': this.isFieldNotValid1(field)
         };
     }
+
     requestotp() {
         this.loading = true;
         this.basedataservice.requestotp()
@@ -474,14 +425,15 @@ export class SuitabilityComponent implements OnInit {
                     }, 100);
                 });
     }
+
     reset() {
         this.formotp.reset();
         this.form.reset();
         this.answer = [];
         this.suitest = {};
         this.message = "";
-
     }
+    
     print() {
         window.focus();
         window.print();

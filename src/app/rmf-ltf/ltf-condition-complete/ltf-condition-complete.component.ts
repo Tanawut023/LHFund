@@ -42,16 +42,15 @@ export class LtfConditionCompleteComponent implements OnInit {
       this.lang = m;
     })
   }
+
   onChange() {
     this.reset();
-
     for (let i = 0; i < this.userall.unitholderlist.length; i++) {
       if (this.userall.unitholderlist[i].UnitholderId == this.unitholderno.UnitholderId) {
         this.userselect = this.userall.unitholderlist[i];
       }
     }
     this.getorderltf();
-
   }
 
   getSelectListUnitholder() {
@@ -69,7 +68,6 @@ export class LtfConditionCompleteComponent implements OnInit {
         },
         error => {
           console.log(error)
-
         });
   }
 
@@ -95,7 +93,6 @@ export class LtfConditionCompleteComponent implements OnInit {
               islast: null,
               FundCode: null
             };
-            // SumRows = this.rmfltfannual.orderltflist[i].Order.length;
 
             var count2 = 0;
             for (let y = 0; y < this.orderltf.ltflist.length; y++) {
@@ -109,7 +106,6 @@ export class LtfConditionCompleteComponent implements OnInit {
               };
               if (obj) {
                 console.log('obj');
-
                 if (this.orderltf.ltflist[y].FundID !== obj.FundID) {
                   console.log(this.orderltf.ltflist[y].FundID + '-' + obj.FundID);
 
@@ -124,7 +120,6 @@ export class LtfConditionCompleteComponent implements OnInit {
                   count = 0;
 
                   console.log(y);
-
                 }
               }
 
@@ -141,9 +136,7 @@ export class LtfConditionCompleteComponent implements OnInit {
                   obj.FundCodeGroup = this.orderltf.ltflist[y].FundCode;
                 }
               }
-
               ltflist.push(obj);
-
 
               if ((y + 1) == this.orderltf.ltflist.length) {
 
@@ -153,46 +146,27 @@ export class LtfConditionCompleteComponent implements OnInit {
                 obj_sumlast.islast = true;
                 console.log('something');
               }
-
-              // if (y == 9) {
-              //   obj.nav = nav;
-              //   obj.unit = unit;
-
-
-              //   unit = 0;
-              //   nav = 0;
-              //   count = 0;
-              //   SumRows = 0;
-
-
-              // }
-
               count++;
             }
-
 
             ltflist.push(obj_sumlast);
             this.ltflist = ltflist;
             console.log(this.ltflist);
           } else {
-
             this.nolist = true;
             console.log('notlist');
-
-
           }
-
-
         },
         error => {
           console.log(error)
-
         });
 
   }
+
   reset() {
     this.orderltf = {};
   }
+  
   print() {
     window.focus();
     window.print();

@@ -37,16 +37,6 @@
 
                                         <div class="col-sm-12 col-md-12 col-12 icon-option mb-3">
                                             <ul class="">
-                                                <!-- <li class="ico-fb">
-                                                <a href="#" title="facebook">
-                                                    <img src="/assets/Images/icons/ico-pipe.png" />
-                                                </a>
-                                            </li>
-                                            <li class="ico-line">
-                                                <a href="#" title="line">
-                                                    <img src="/assets/Images/icons/ico-download.png" />
-                                                </a>
-                                            </li> -->
                                                 <li class="ico-yt">
                                                     <a title="print">
                                                         <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
@@ -59,10 +49,13 @@
                                             <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
                                             <div class="select-wrapper inline-block pb-3">
                                                 <select id="unitholderno" name="unitholderno" (change)="onChange($event.target.value)" class="selectpicker" data-live-search="true">
-                                                    <option [value]="0" selected *ngIf="allunit">{{ 'CONTENT.all-unitholder' | translate }}</option>
+                                                    <option [value]="0" selected *ngIf="allunit">{{ 'CONTENT.all-unitholder'
+                                                        | translate }}</option>
                                                     <option *ngFor="let unitholder of userall.unitholderlist; let i = index" [value]="unitholder.UnitholderId">{{
-                                                        unitholder.UnitholderNo }} <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container></option>
-                                                    <!-- <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index"  (change)="onChange(i)">{{ unitholder.UnitholderNo }}</option> -->
+                                                        unitholder.UnitholderNo }}
+                                                        <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container>
+                                                    </option>
+
                                                 </select>
                                             </div>
                                         </div>
@@ -75,9 +68,9 @@
                                         <div class="col-sm-6 col-md-3">
 
                                             <p>{{ 'CONTENT.report-date' | translate }}</p>
-                                            <!-- <span class="txt-middle">{{ dateformat }}</span> -->
                                             <ng-container *ngIf="lang == 'th' "><span class="txt-middle">{{ dateformat }}</span></ng-container>
-                                            <ng-container *ngIf="lang == 'en' "><span class="txt-middle">{{ dateformatEng }}</span></ng-container>
+                                            <ng-container *ngIf="lang == 'en' "><span class="txt-middle">{{ dateformatEng
+                                                    }}</span></ng-container>
                                         </div>
 
                                     </div>
@@ -85,7 +78,6 @@
                                         <div class="col-sm-6 col-md-6">
 
                                             <p>{{ 'CONTENT.address' | translate }}</p>
-                                            <!-- <span class="txt-middle" *ngIf="userselect.addressunitholder">{{ userselect?.addressunitholder?.ContactAddress}}</span> -->
                                             <span class="txt-middle">{{ userselect.ContactAddress}}</span>
                                         </div>
                                     </div>
@@ -126,7 +118,7 @@
                                                         </tr>
                                                         <tr>
                                                             <th>
-                                                                Fund Type
+                                                                {{ 'TABLE.fund' | translate }}
                                                             </th>
                                                             <th>
                                                                 {{ 'TABLE.date' | translate }}
@@ -172,7 +164,6 @@
                                                             <td class="txt-right">
                                                                 {{group.BalanceAmountTotal | tofix}}
                                                             </td>
-                                                            <!-- [ngClass]="group.BalanceAmountTotal > group.CostTotal ? 'color-primary' : 'color-red' -->
                                                             <td class="txt-right" [ngClass]="{'color-primary': group.BalanceAmountTotal > group.CostTotal, 'color-red' :group.BalanceAmountTotal < group.CostTotal}">
                                                                 {{group.GainLossTotal | tofix}}
                                                             </td>
@@ -181,11 +172,13 @@
                                                             <td>
                                                                 <ng-container *ngIf="lang == 'th' ">- {{list.FundName}} ({{list.FundCode}})</ng-container>
                                                                 <ng-container *ngIf="lang == 'en' ">- {{list.FundNameEng}}
-                                                                    ({{list.FundCode}})</ng-container>
+                                                                    ({{list.FundCode}})
+                                                                </ng-container>
 
                                                             </td>
                                                             <td class="txt-right">
-                                                                {{list.BalanceDate | datethai}}
+                                                                <ng-container *ngIf="lang == 'th' ">{{list.BalanceDate | datethai}}</ng-container>
+                                                                <ng-container *ngIf="lang == 'en' ">{{list.BalanceDate | dateeng}}</ng-container>
                                                             </td>
                                                             <td class="txt-right">
                                                                 {{list.Unit | tofix4}}
@@ -199,7 +192,6 @@
                                                             <td class="txt-right">
                                                                 {{list.BalanceAmount | tofix}}
                                                             </td>
-                                                            <!-- [ngClass]="list.BalanceAmount > list.Cost ? 'color-primary' : 'color-red'"                                                             -->
                                                             <td class="txt-right" [ngClass]="{'color-primary': list.BalanceAmount > list.Cost, 'color-red' :list.BalanceAmount < list.Cost}">
                                                                 {{list.GainLoss | tofix}}
                                                             </td>
@@ -238,14 +230,9 @@
                                                     </div>
                                                     <div class="col-sm-12">
                                                         <div [chart]="chart"></div>
-
-
                                                     </div>
                                                 </div>
 
-
-                                            </div>
-                                            <div class="col-md-6">
                                             </div>
                                         </div>
 
@@ -266,3 +253,4 @@
 
     </div>
 </div>
+<app-footerforwarning></app-footerforwarning>

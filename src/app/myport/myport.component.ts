@@ -124,18 +124,6 @@ export class MyportComponent implements OnInit {
                 }
             )
     }
-    // checkgainloss(cost,gainlosts){
-    //     var gainlost = gainlosts*1;
-    //     if(gainlost < cost){
-    //         return
-    //     }
-    //     else if(gainlost > cost){
-    //         return {
-    //             ''
-    //         }
-    //     }
-
-    // }
     calTotal() {
         if (this.balancedetail.holdingbalance) {
             for (let i = 0; i < this.balancedetail.holdingbalance.length; i++) {

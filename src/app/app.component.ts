@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, Subscription } from 'rxjs';
 import { AuthGuard } from './service/auth.guard';
+import { count, filter } from 'rxjs/operators';
 
-
+declare var gtag;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,13 +18,19 @@ export class AppComponent implements OnInit {
   HaveLang;
   constructor(
     private translate: TranslateService,
-    private AuthGuard: AuthGuard
+    private AuthGuard: AuthGuard,
+    router: Router
   ) {
-
-
-
-    // let browserLang = translate.getBrowserLang();
-    // translate.use(browserLang.match(/th|en/) ? browserLang : 'en');
+    const navEndEvents = router.events.pipe(
+      filter(event => event instanceof NavigationEnd),
+    );
+    navEndEvents.subscribe((event: NavigationEnd) => {
+      console.log("url = "+event.urlAfterRedirects);
+      
+      gtag('config', 'UA-118773053-2',{
+        'page_path': event.urlAfterRedirects
+      });
+    })
   }
   ngOnInit() {
     this.HaveLang = localStorage.getItem('lang')
@@ -42,19 +49,11 @@ export class AppComponent implements OnInit {
     console.log(this.isLoggedIn);
   }
   onActivate(event) {
-    // let scrollToTop = window.setInterval(() => {
-    //     let pos = window.pageYOffset;
-    //     if (pos > 0) {
-    //         window.scrollTo(0, pos - 20); // how far to scroll on each step
-    //     } else {
-    //         window.clearInterval(scrollToTop);
-    //     }
-    // }, 16);
+
     $(".se-pre-con").fadeOut("slow");;
     $('body').removeClass('nav-expanded');
     $('#exit-canvas').removeClass('expanded');
     window.scroll(0, 0);
-    //or document.body.scrollTop = 0;
-    //or document.querySelector('body').scrollTo(0,0)
+    
   }
 }

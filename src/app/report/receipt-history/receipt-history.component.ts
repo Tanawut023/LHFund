@@ -55,27 +55,25 @@ export class ReceiptHistoryComponent implements OnInit {
       this.lang = m;
     })
 
-
     $('#mutual-tab-menu').find('li').removeClass('current');
     $('#mutual-tab-menu').find('li#menu3').addClass('current');
 
     var d = new Date();
     var endDate = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
     console.log(endDate);
-
     this.minDate = { year: endDate.getFullYear(), month: endDate.getMonth() + 1, day: endDate.getDate() };
   }
-  onChange() {
 
+  onChange() {
     for (let i = 0; i < this.userall.unitholderlist.length; i++) {
       if (this.userall.unitholderlist[i].UnitholderId == this.unitholderno.UnitholderId) {
         this.userselect = this.userall.unitholderlist[i];
       }
     }
   }
+
   createFormValidate() {
     this.form = this.fb.group({
-
       fundtype: [0],
       fundname: [0, Validators.required],
       startDate: [null, Validators.required],
@@ -83,9 +81,9 @@ export class ReceiptHistoryComponent implements OnInit {
 
     })
   }
+
   isFieldNotValid(field: string) {
     return !this.form.get(field).valid && this.form.get(field).touched
-
   }
 
   ValidatorDisplayCss(field: string) {
@@ -93,6 +91,7 @@ export class ReceiptHistoryComponent implements OnInit {
       'has-danger': this.isFieldNotValid(field)
     };
   }
+
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
       const control = formGroup.get(field);
@@ -103,6 +102,7 @@ export class ReceiptHistoryComponent implements OnInit {
       }
     })
   }
+
   changefundtype() {
     var id = this.form.controls.fundtype.value;
     let Params = new HttpParams();
@@ -121,16 +121,16 @@ export class ReceiptHistoryComponent implements OnInit {
         },
         error => {
           console.log(error)
-
         });
   }
+
   getstartdate() {
     return this.form.controls.startDate.value.year + "-" + this.form.controls.startDate.value.month + "-" + this.form.controls.startDate.value.day;
   }
+
   getenddate() {
     return this.form.controls.endDate.value.year + "-" + this.form.controls.endDate.value.month + "-" + this.form.controls.endDate.value.day;
   }
-
 
   getSelectListUnitholder() {
     this.basedataservice.getSelectListUnitholder()
@@ -148,11 +148,9 @@ export class ReceiptHistoryComponent implements OnInit {
         },
         error => {
           console.log(error)
-
         });
   }
   
-
   getfundtypelist() {
     this.reportservice.getfundtypelist()
       .subscribe(
@@ -162,7 +160,6 @@ export class ReceiptHistoryComponent implements OnInit {
         },
         error => {
           console.log(error)
-
         });
   }
 
@@ -172,10 +169,8 @@ export class ReceiptHistoryComponent implements OnInit {
     let Params = new HttpParams();
     Params = Params.append('currentpage', "1");
     Params = Params.append('rowperpage', "999");
-
     var user;
     console.log(this.form);
-
     if (this.form.controls.fundtype.value != 0 && this.form.controls.fundname.value == 0) {
       this.form.controls.fundname.setErrors({ 'invalid': true });
       this.loading = false;
@@ -202,9 +197,8 @@ export class ReceiptHistoryComponent implements OnInit {
             TransactionDate: getDate()
           }
         }
-
-
         console.log(user);
+
         this.reportservice.dividendreport(user, Params)
           .subscribe(
             data => {
@@ -213,7 +207,6 @@ export class ReceiptHistoryComponent implements OnInit {
               if (this.dividendreport.dividendreport.length == 0) {
                 this.nolist = true;
                 console.log('notlist');
-
               }
               this.calulatetable();
               this.loading = false;
@@ -227,16 +220,10 @@ export class ReceiptHistoryComponent implements OnInit {
         this.loading = false;
       }
     }
-
-
-
-
-
   }
-  calulatetable() {
-    // var array = new Array();
-    var reportlist = new Array();
 
+  calulatetable() {
+    var reportlist = new Array();
     console.log('test');
     var count = 0;
     var iRows = 1;
@@ -248,13 +235,10 @@ export class ReceiptHistoryComponent implements OnInit {
       var tax = 0;
       var net = 0;
       var count2 = 0;
-      // var rowsofgroup = (this.dividendreport.dividendreport[i].DividendPayment.length) - 1;
-      // var rowsofgroup2 = ((this.dividendreport.dividendreport[i].DividendPayment.length) % 10) - 1;
       SumRows += this.dividendreport.dividendreport[i].DividendPayment.length;
       for (let y = 0; y < this.dividendreport.dividendreport[i].DividendPayment.length; y++) {
         console.log('fory');
         var obj;
-
         balance += parseFloat(this.dividendreport.dividendreport[i].DividendPayment[y].DividendAmount);
         tax += parseFloat(this.dividendreport.dividendreport[i].DividendPayment[y].DividendWithHoldingTax);
         net += parseFloat(this.dividendreport.dividendreport[i].DividendPayment[y].NetDividendAmount);
@@ -267,6 +251,7 @@ export class ReceiptHistoryComponent implements OnInit {
             obj.FundNameEng = this.dividendreport.dividendreport[i].FundNameEng;
           }
         }
+
         if (count == 9 || iRows == SumRows) {
           obj.balance = balance;
           obj.tax = tax;
@@ -281,27 +266,19 @@ export class ReceiptHistoryComponent implements OnInit {
         count++;
         count2++;
         iRows++;
+
         if (count == 10) {
           count = 0;
         }
+
       }
-      // array.push({ balance: balance, tax: tax, net: net });
-
     }
-    // this.holdtax = arraytax;
-    // this.caltable = array;
     this.reportlist = reportlist;
-    // console.log(this.caltable);
     console.log(this.reportlist);
-
-
-
-
   }
 
   reset() {
     console.log('reset');
-
     this.Fundnamelist = [];
     this.dividendreport = '';
     this.reportlist = [];
@@ -311,6 +288,7 @@ export class ReceiptHistoryComponent implements OnInit {
     this.changefundtype();
 
   }
+  
   print() {
     window.focus();
     window.print();

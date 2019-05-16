@@ -36,7 +36,6 @@ export class TodayListComponent implements OnInit {
   ngOnInit() {
 
     this.getSelectListUnitholder();
-
     $('#mutual-tab-menu').find('li').removeClass('current');
     $('#mutual-tab-menu').find('li#menu6').addClass('current');
 
@@ -61,7 +60,7 @@ export class TodayListComponent implements OnInit {
         data => {
           setTimeout(() => {
             $('.selectpicker').selectpicker('refresh');
-        }, 100);
+          }, 100);
           this.userall = data;
           this.unitholderno = this.userall.unitholderlist[0];
           this.userselect = this.userall.unitholderlist[0];
@@ -69,9 +68,9 @@ export class TodayListComponent implements OnInit {
         },
         error => {
           console.log(error)
-
         });
   }
+
   print() {
     window.focus();
     window.print();
@@ -86,19 +85,17 @@ export class TodayListComponent implements OnInit {
         data => {
           console.log(data);
           this.todayreport = data;
-          if(this.todayreport.todayreport.length == 0){
+          if (this.todayreport.todayreport.length == 0) {
             this.nolist = true;
             console.log('notlist');
-            
           }
         },
         error => {
           console.log(error)
-
         });
   }
-  modaldeleteorder(group,order) {
 
+  modaldeleteorder(group, order) {
     this.deletedOrder = order;
     this.deletedGroup = group;
     console.log(this.deletedOrder);
@@ -121,9 +118,7 @@ export class TodayListComponent implements OnInit {
         data => {
           console.log(data);
           this.gettodayrport();
-          // this.ordersubscriptionlist = data;
           $('#delete').modal('toggle');
-
         },
         error => {
           console.log(error);

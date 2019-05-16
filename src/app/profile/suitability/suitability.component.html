@@ -1,33 +1,25 @@
 <div class="fund-table-wrapper" *ngIf="page == 'over-view'">
     <div class="heading-section">
-        <div class="detail-head-wrapper" style="border:unset;">
+        <div class="detail-head-wrapper" style="border-bottom: 0px;">
             <div class="row">
                 <div class="col-md-12 col-12 icon-option mb-3">
                     <ul class="">
-                        <!-- <li class="ico-fb">
-                          <a href="#" title="facebook">
-                              <img src="/assets/Images/icons/ico-pipe.png" />
-                          </a>
-                      </li>
-                      <li class="ico-line">
-                          <a href="#" title="line">
-                              <img src="/assets/Images/icons/ico-download.png" />
-                          </a>
-                      </li> -->
                         <li class="ico-yt">
                             <a title="print">
                                 <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
                             </a>
                         </li>
-
                     </ul>
                 </div>
                 <div class="col-md-3">
                     <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
                     <div class="select-wrapper inline-block">
-                        <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno" class="selectpicker" data-live-search="true">
+                        <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno" class="selectpicker"
+                            data-live-search="true">
                             <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{
-                                unitholder.UnitholderNo }} <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container></option>
+                                unitholder.UnitholderNo }}
+                                <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container>
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -37,21 +29,33 @@
                 </div>
                 <div class="col-md-3">
                     <p>{{ 'CONTENT.eval-date' | translate }}</p>
-                    <span class="txt-middle">{{ userselect.RiskLevel1LastUpdated | datethai}}</span>
+                    <ng-container *ngIf="lang == 'th' "><span class="txt-middle">{{ userselect.RiskLevel1LastUpdated | datethai}}</span></ng-container>
+                    <ng-container *ngIf="lang == 'en' "><span class="txt-middle">{{ userselect.RiskLevel1LastUpdated | dateeng}}</span></ng-container>
                 </div>
                 <div class="col-md-3">
                     <p>{{ 'CONTENT.expired-date' | translate }}</p>
-                    <span class="txt-middle">{{ userselect.RiskLevelExpireDate | datethai}}</span>
+                    <ng-container *ngIf="lang == 'th' "><span class="txt-middle">{{ userselect.RiskLevelExpireDate | datethai}}</span></ng-container>
+                    <ng-container *ngIf="lang == 'en' "><span class="txt-middle">{{ userselect.RiskLevelExpireDate | dateeng}}</span></ng-container>
                 </div>
             </div>
             <div class="row mt-md-3">
                 <div class="col-md-3">
                     <p>{{ 'CONTENT.your-risk-socre' | translate }}</p>
-                    <span class="txt-middle">{{ riskprofile?.RiskProfileScore}}</span>
+                    <ng-container *ngIf="userselect?.RiskLevel1 == null || userselect?.RiskLevel1Score == null;">
+                        <span class="txt-middle">{{ userselect?.RiskLevel1Score}}</span>
+                    </ng-container>
+                    <ng-container *ngIf="userselect?.RiskLevel1 != null && userselect?.RiskLevel1Score != null;">
+                        <span class="txt-middle">{{ riskprofile?.RiskProfileScore}}</span>
+                    </ng-container>
                 </div>
                 <div class="col-md-3">
                     <p>{{ 'CONTENT.your-investor-level' | translate }}</p>
-                    <span class="txt-middle">{{ userselect.RiskLevel1}}</span>
+                    <ng-container *ngIf="userselect?.RiskLevel1 == null || userselect?.RiskLevel1Score == null;">
+                        <span class="txt-middle">{{ userselect?.RiskLevel1}}</span>
+                    </ng-container>
+                    <ng-container *ngIf="userselect?.RiskLevel1 != null && userselect?.RiskLevel1Score != null;">
+                        <span class="txt-middle">{{ riskprofile?.RiskProfileLevel}}</span>
+                    </ng-container>
                 </div>
             </div>
             <div class="row justify-content-center mb-3 mt-lg-4">
@@ -71,18 +75,7 @@
         <div class="detail-head-wrapper">
             <div class="row">
                 <div class="col-md-12 col-12 icon-option mb-3">
-
                     <ul class="">
-                        <!-- <li class="ico-fb">
-                            <a href="#" title="facebook">
-                                <img src="/assets/Images/icons/ico-pipe.png" />
-                            </a>
-                        </li>
-                        <li class="ico-line">
-                            <a href="#" title="line">
-                                <img src="/assets/Images/icons/ico-download.png" />
-                            </a>
-                        </li> -->
                         <li class="ico-yt">
                             <a href="#" title="print">
                                 <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
@@ -95,9 +88,12 @@
 
                     <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
                     <div class="select-wrapper inline-block">
-                        <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno" class="selectpicker" data-live-search="true">
+                        <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno" class="selectpicker"
+                            data-live-search="true">
                             <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{
-                                unitholder.UnitholderNo }} <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container></option>
+                                unitholder.UnitholderNo }}
+                                <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container>
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -123,7 +119,6 @@
             <div class="row">
                 <div class="col-md-6 text-left">
                     <p class="no-margin">{{ 'CONTENT.eval-date' | translate }}
-                        <!-- <span> {{ dateformat }}</span> -->
                         <ng-container *ngIf="lang == 'th' "><span class="txt-middle">{{ dateformat }}</span></ng-container>
                         <ng-container *ngIf="lang == 'en' "><span class="txt-middle">{{ dateformatEng }}</span></ng-container>
                     </p>
@@ -141,18 +136,15 @@
         <form [formGroup]="form">
             <div class="open-account-box">
                 <div class="title-box">
-                    <!-- <h3 class="sub-title -main-color">มีคำถามทั้งหมด {{countquestion}} ข้อ
-                        <span class="color-red">ให้เลือกคำตอบที่คิดว่าดีที่สุดสำหรับนักลงทุนข้อละ 1 คำตอบ</span>
-                    </h3> -->
                     <ng-container *ngIf="lang == 'th' ">
                         <h3 class="sub-title -main-color">มีคำถามทั้งหมด {{countquestion}} ข้อ
-                        <span class="color-red">ให้เลือกคำตอบที่คิดว่าดีที่สุดสำหรับนักลงทุนข้อละ 1 คำตอบ</span>
-                    </h3>
+                            <span class="color-red">ให้เลือกคำตอบที่คิดว่าดีที่สุดสำหรับนักลงทุนข้อละ 1 คำตอบ</span>
+                        </h3>
                     </ng-container>
                     <ng-container *ngIf="lang == 'en' ">
                         <h3 class="sub-title -main-color">There are {{countquestion}} questions
-                        <span class="color-red">you must choose the best answer for each question</span>
-                    </h3>
+                            <span class="color-red">you must choose the best answer for each question</span>
+                        </h3>
                     </ng-container>
                 </div>
                 <div class="wrap-container" formArrayName="question">
@@ -163,10 +155,11 @@
                                 <div class="col-md-12">
                                     <div class="question-wrapper">
                                         <span class="color-red" *ngIf="y == 10">
-                                                <ng-container *ngIf="lang == 'th' ">คำถามข้อ 11 ใช้เป็นข้อมูลเพิ่มเติมเพื่อประกอบการให้คำแนะนำ</ng-container>
-                                                <ng-container *ngIf="lang == 'en' ">Question 11 is used as additional information to suggestions.</ng-container>
+                                            <ng-container *ngIf="lang == 'th' ">คำถามข้อ 11 ใช้เป็นข้อมูลเพิ่มเติมเพื่อประกอบการให้คำแนะนำ</ng-container>
+                                            <ng-container *ngIf="lang == 'en' ">Question 11 is used as additional information
+                                                to suggestions.</ng-container>
                                         </span>
-                                        
+
                                         <br/>
                                         <span *ngIf="lang == 'th' ">{{y+1}}. {{ question.Name }}</span>
                                         <span *ngIf="lang == 'en' ">{{y+1}}. {{ question.NameEng }}</span>
@@ -190,8 +183,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- for -->
-
 
                         <div class="row justify-content-center">
                             <div class="col-md-2 col-6">
@@ -214,7 +205,6 @@
                 </div>
             </div>
         </form>
-
     </div>
 </div>
 <!-- suitability-test -->
@@ -223,28 +213,16 @@
         <div class="detail-head-wrapper">
             <div class="row">
                 <div class="col-md-12 icon-option mb-3">
-
                     <ul class="">
-                        <!-- <li class="ico-fb">
-                            <a href="#" title="sort">
-                                <img src="/assets/Images/icons/ico-pipe.png" />
-                            </a>
-                        </li>
-                        <li class="ico-line">
-                            <a href="#" title="download">
-                                <img src="/assets/Images/icons/ico-download.png" />
-                            </a>
-                        </li> -->
                         <li class="ico-yt">
                             <a href="#" title="print">
                                 <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
                             </a>
                         </li>
-
                     </ul>
                 </div>
-                <div class="col-md-12">
 
+                <div class="col-md-12">
                     <div class="score-wrapper">
                         <div class="score-result">
 
@@ -266,10 +244,10 @@
                                 </div>
                             </div>
 
-
                         </div>
                     </div>
                 </div>
+
                 <div class="col-sm-12">
                     <div class="fund-list-wrapper">
                         <div class="row justify-content-center">
@@ -325,22 +303,17 @@
                             <button class="btn-med btn-primary btn" type="submit" (click)="summitriskprofile()" [disabled]="loading">
                                 {{ 'BUTTON.accept' | translate }}
                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
-
                             </button>
-
                         </div>
                         <div class="col-md-2 col-6">
                             <button class="btn-med btn-back-login" type="button" (click)="checkpage('suitability-test')">
                                 {{ 'BUTTON.edit' | translate }}
                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
-
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 
@@ -596,13 +569,11 @@
                                     {{ 'TABLE.less' | translate }} 30 %
                                 </td>
                             </tr>
-
                         </tbody>
                     </table>
                     <p class="color-red mt-3">**รวมถึงสินค้าโภคภัณฑ์ สัญญาซื้อขายล่วงหน้า</p>
                 </div>
             </div>
-
         </div>
 
         <div class="row justify-content-center">
@@ -610,7 +581,6 @@
                 <button class="btn-med btn-primary" (click)="checkpage('over-view')">
                     {{ 'BUTTON.edit' | translate }}
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
-
                 </button>
             </div>
         </div>
@@ -644,26 +614,27 @@
                             <div class="btn-wrapper" style="margin: 0;">
                                 <button class="btn-med btn-blue btn" (click)="requestotp()" type="button" [disabled]="loading">
                                     {{ 'BUTTON.otp' | translate }}
-                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                    <!-- <div class="d-xl-block d-none">
+                                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                    </div> -->
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <p>{{ 'LOGIN.otp-receive' | translate }}</p>
+                            <p>{{ 'LOGIN.otp-receive' | translate }} Ref. Code {{ resultsubmit?.refotp }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 form-group" [ngClass]="ValidatorDisplayCss1('otp')">
                             <div class="input-wrapper">
-                                <input class="bg-gray" id="otp" name="otp" maxlength="6" type="text" formControlName="otp" (keypress)="numberOnly($event)">
+                                <input class="bg-gray" id="otp" name="otp" maxlength="6" type="password" formControlName="otp" (keypress)="numberOnly($event)">
                                 <div class="form-control-feedback" *ngIf="this.formotp.controls.otp.errors && ( this.formotp.controls.otp.touched)">
-                                    <p *ngIf="this.formotp.controls.otp.errors.required">{{ 'Validation.required' | translate }}</p>
-                                    <!-- <p *ngIf="this.form.controls.otp.errors.pattern">ข้อมูลไม่ถูกต้อง</p> -->
-
+                                    <p *ngIf="this.formotp.controls.otp.errors.required">{{ 'Validation.required' | translate
+                                        }}
+                                    </p>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -674,7 +645,8 @@
                     </div>
                     <div class="row pb-4">
                         <div class="col-md-12">
-                            <p>{{ 'LOGIN.otp-request' | translate }}{{ 'BUTTON.otp' | translate }}{{ 'LOGIN.otp-request2' | translate }}</p>
+                            <p>{{ 'LOGIN.otp-request' | translate }}{{ 'BUTTON.otp' | translate }}{{ 'LOGIN.otp-request2'
+                                | translate }}</p>
                         </div>
                     </div>
 

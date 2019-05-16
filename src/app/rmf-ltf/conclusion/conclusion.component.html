@@ -5,16 +5,6 @@
         <div class="col-md-12 col-12 icon-option mb-3">
 
           <ul class="">
-            <!-- <li class="ico-fb">
-              <a href="#" title="facebook">
-                <img src="/assets/Images/icons/ico-pipe.png" />
-              </a>
-            </li>
-            <li class="ico-line">
-              <a href="#" title="line">
-                <img src="/assets/Images/icons/ico-download.png" />
-              </a>
-            </li> -->
             <li class="ico-yt">
               <a title="print">
                 <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
@@ -27,9 +17,11 @@
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block">
-            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno" class="selectpicker" data-live-search="true">
+            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno" class="selectpicker"
+              data-live-search="true">
               <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
-                }} <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container>
+                }}
+                <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container>
               </option>
             </select>
           </div>
@@ -48,10 +40,10 @@
       </div>
     </div>
   </div>
-  <div class="detail-body-wrapper">
+  <div class="detail-body-wrapper" style="border-bottom: 0px;">
     <div class="row">
       <div class="col-md-2">
-        <p class="txt-middle">RMF & LTF ปี พ.ศ.</p>
+        <p class="txt-middle">RMF & LTF {{ 'CONTENT.year2' | translate }}</p>
       </div>
       <div class="col-md-3">
         <div class="select-wrapper inline-block">
@@ -74,14 +66,16 @@
             <div class="col-md-6 col-12 no-padding">
               <div class="title-heading-blue">
                 <div class="row">
-                  <!-- <div class="col-md-2"><img src="/assets/Images/icons/ico-asset.png"></div> -->
                   <div class="col-md-12">
                     <h3 class="no-margin">{{ 'CONTENT.sub' | translate }}</h3>
                   </div>
                   <div class="col-md-12">
-                    <!-- <h3 class="no-margin">จาก 1 มกราคม {{ years | yearthai }} ถึง 31 ธันวาคม {{ years | yearthai }}</h3> -->
-                    <ng-container *ngIf="lang == 'th' "><h3 class="no-margin">From 1 มกราคม {{ years | yearthai }} to 31 ธันวาคม {{ years | yearthai }}</h3></ng-container>
-                    <ng-container *ngIf="lang == 'en' "><h3 class="no-margin">From 1 January {{ years }} to 31 December {{ years }}</h3></ng-container>
+                    <ng-container *ngIf="lang == 'th' ">
+                      <h3 class="no-margin">From 1 มกราคม {{ years | yearthai }} to 31 ธันวาคม {{ years | yearthai }}</h3>
+                    </ng-container>
+                    <ng-container *ngIf="lang == 'en' ">
+                      <h3 class="no-margin">From 1 January {{ years }} to 31 December {{ years }}</h3>
+                    </ng-container>
                   </div>
                 </div>
               </div>
@@ -169,21 +163,21 @@
             </tr>
             <ng-container *ngFor="let list of rmflist; let i = index">
               <tr class="topic" *ngIf="list.FundNameGroup">
-                <th colspan="9">  
+                <th colspan="9">
                   <ng-container *ngIf="lang == 'th' ">{{list.FundNameGroup}}</ng-container>
                   <ng-container *ngIf="lang == 'en' ">{{list.FundNameEngGroup}}</ng-container>
                 </th>
               </tr>
               <tr class="line" *ngIf="list.FundName2">
                 <td colspan="6">
-                  <!-- {{list.FundCode}} : {{list.FundName}} -->
                   <ng-container *ngIf="lang == 'th' ">{{list.FundCode}} : {{list.FundName}}</ng-container>
                   <ng-container *ngIf="lang == 'en' ">{{list.FundCode}} : {{list.FundNameEng}}</ng-container>
                 </td>
               </tr>
               <tr>
-                <td class="text-center">
-                  {{list.OrderDate | datethai}}
+                <td class="text-center">                  
+                  <ng-container *ngIf="lang == 'th' ">{{list.OrderDate | datethai}}</ng-container>
+                  <ng-container *ngIf="lang == 'en' ">{{list.OrderDate | dateeng}}</ng-container>
                 </td>
                 <td class="text-center">
                   {{list.ReferenceNo}}
@@ -209,13 +203,13 @@
                   &nbsp;
                 </th>
                 <th class="text-right">
-                  <!-- {{list.nav | tofix4 }} -->
+                  &nbsp;
                 </th>
                 <th class="text-right">
                   {{list.unit | tofix4 }}
                 </th>
                 <th class="text-right">
-                    {{list.amount | tofix}}
+                  {{list.amount | tofix}}
                 </th>
 
               </tr>
@@ -224,60 +218,59 @@
 
           <tbody>
             <ng-container *ngFor="let list of ltflist; let i = index">
-            <tr class="topic" *ngIf="list.FundNameGroup">
-              <th colspan="9">
-                <!-- {{list.FundNameGroup}} -->
-                <ng-container *ngIf="lang == 'th' ">{{list.FundNameGroup}}</ng-container>
-                <ng-container *ngIf="lang == 'en' ">{{list.FundNameEngGroup}}</ng-container>
-              </th>
-            </tr>
-            <tr class="line" *ngIf="list.FundName2">
-              <td colspan="6">
-                <!-- {{list.FundCode}} : {{list.FundName}} -->
-                <ng-container *ngIf="lang == 'th' ">{{list.FundCode}} : {{list.FundName}}</ng-container>
-                <ng-container *ngIf="lang == 'en' ">{{list.FundCode}} : {{list.FundNameEng}}</ng-container>
-              </td>
-            </tr>
-            <tr>
-              <td class="text-center">
-                {{list.OrderDate | datethai}}
-              </td>
-              <td class="text-center">
-                {{list.ReferenceNo}}
-              </td>
-              <td class="text-center">
-                {{list.FundSubType}}
-              </td>
-              <td class="txt-right">
-                {{list.AllotedNAV | tofix4}}
-              </td>
-              <td class="txt-right">
-                {{list.AllotedUnit | tofix4}}
-              </td>
-              <td class="txt-right">
-                {{list.AllotedAmount | tofix}}
-              </td>
-            </tr>
-            <tr class="summary" *ngIf="list.unit || list.amount">
+              <tr class="topic" *ngIf="list.FundNameGroup">
+                <th colspan="9">
+                  <ng-container *ngIf="lang == 'th' ">{{list.FundNameGroup}}</ng-container>
+                  <ng-container *ngIf="lang == 'en' ">{{list.FundNameEngGroup}}</ng-container>
+                </th>
+              </tr>
+              <tr class="line" *ngIf="list.FundName2">
+                <td colspan="6">
+                  <ng-container *ngIf="lang == 'th' ">{{list.FundCode}} : {{list.FundName}}</ng-container>
+                  <ng-container *ngIf="lang == 'en' ">{{list.FundCode}} : {{list.FundNameEng}}</ng-container>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-center">
+                  <ng-container *ngIf="lang == 'th' ">{{list.OrderDate | datethai}}</ng-container>
+                  <ng-container *ngIf="lang == 'en' ">{{list.OrderDate | dateeng}}</ng-container>
+                </td>
+                <td class="text-center">
+                  {{list.ReferenceNo}}
+                </td>
+                <td class="text-center">
+                  {{list.FundSubType}}
+                </td>
+                <td class="txt-right">
+                  {{list.AllotedNAV | tofix4}}
+                </td>
+                <td class="txt-right">
+                  {{list.AllotedUnit | tofix4}}
+                </td>
+                <td class="txt-right">
+                  {{list.AllotedAmount | tofix}}
+                </td>
+              </tr>
+              <tr class="summary" *ngIf="list.unit || list.amount">
 
-              <th colspan="2">
-                {{ 'TABLE.total' | translate }} {{list.FundCode}}
-              </th>
-              <th class="text-right">
-                &nbsp;
-              </th>
-              <th class="text-right">
-                <!-- {{list.nav | tofix4}} -->
-              </th>
-              <th class="text-right">
-                {{list.unit | tofix4}}
-              </th>
-              <th class="text-right">
-                {{list.amount | tofix}}
-            </th>
+                <th colspan="2">
+                  {{ 'TABLE.total' | translate }} {{list.FundCode}}
+                </th>
+                <th class="text-right">
+                  &nbsp;
+                </th>
+                <th class="text-right">
+                  &nbsp;
+                </th>
+                <th class="text-right">
+                  {{list.unit | tofix4}}
+                </th>
+                <th class="text-right">
+                  {{list.amount | tofix}}
+                </th>
 
-            </tr>
-          </ng-container>
+              </tr>
+            </ng-container>
           </tbody>
         </table>
       </div>
@@ -297,14 +290,11 @@
             <button class="btn-med btn-primary" (click)="print()">
               {{ 'BUTTON.print' | translate }}
               <i class="fa fa-angle-right" aria-hidden="true"></i>
-
             </button>
           </div>
         </div>
-
       </div>
 
     </div>
-
   </div>
 </div>

@@ -34,7 +34,6 @@
                 <input id="name" name="name" maxlength="15" type="text" formControlName="username">
                 <div class="form-control-feedback" *ngIf="this.formsighin.controls.username.errors && (this.formsighin.controls.username.touched)">
                   <p *ngIf="this.formsighin.controls.username.errors.required">{{ 'Validation.required' | translate }}</p>
-                  <!-- <p *ngIf="this.formsighin.controls.username.errors.pattern">อย่างน้อย 8 ตัวอักษร รวมทั้งตัวเลข</p> -->
                 </div>
               </div>
             </div>
@@ -45,8 +44,6 @@
                 <input id="password" name="password" maxlength="15" type="password" formControlName="password">
                 <div class="form-control-feedback" *ngIf="this.formsighin.controls.password.errors && (this.formsighin.controls.password.touched)">
                   <p *ngIf="this.formsighin.controls.password.errors.required">{{ 'Validation.required' | translate }}</p>
-                  <!-- <p *ngIf="this.formsighin.controls.password.errors.pattern">(UpperCase, LowerCase, Number/SpecialChar and
-                    min 8 Chars)</p> -->
                 </div>
               </div>
             </div>
@@ -67,7 +64,6 @@
             <div class="col-md-12">
               <div class="btn-wrapper-left">
                 <button class="btn-med btn-confirm-login btn" type="submit" [disabled]="loading">
-                  <!-- (click)="checkpage('submit')" [routerLink]="['/myport']" -->
                   <p>
                     {{ 'BUTTON.signin' | translate }}
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -80,7 +76,6 @@
           <div class="row justify-content-center">
             <div class="col-md-12">
               <div class="btn-wrapper-left">
-                <!-- (click)="navigate('./register')" -->
                 <button class="btn-med btn-next-login"  type="button" (click)="navigate('register')">
                   <p>{{ 'BUTTON.signup' | translate }}
                     <i class="fa fa-angle-right" aria-hidden="true"></i>

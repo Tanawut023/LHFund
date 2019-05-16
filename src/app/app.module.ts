@@ -63,39 +63,98 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgbDateCustomParserFormatter } from './Share/dateformat';
+// import { CustomDatepickerI18n } from './datepicker-i18n';
 import { NgbDatepickerConfig, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './login/register/register.component';
 import { SigninComponent } from './login/signin/signin.component';
 import { ForgotpasswordComponent } from './login/forgotpassword/forgotpassword.component';
 import { ChangepasswordloginComponent } from './login/changepasswordlogin/changepasswordlogin.component';
+import { FooterforwarningComponent } from './footerforwarning/footerforwarning.component';
 
 import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
 import { AuthenticationService } from './service/authentication.service';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthGuard } from './service/auth.guard';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-import {BaseApplicationDataService} from './service/base-application-data.service';
+import { BaseApplicationDataService } from './service/base-application-data.service';
 import { UserIdleModule } from 'angular-user-idle';
-import { toFixed,toFixed4 } from './Share/tofix.pipe'
-import { DateThai,YearThai,Time,ExpiresDateThai,DateThaiDM, DateEngDM} from './Share/datethai.pipe';
+import { toFixed, toFixed4 } from './Share/tofix.pipe'
+import { DateThai, YearThai, Time, ExpiresDateThai, DateThaiDM, DateEngDM, DateEng } from './Share/datethai.pipe';
+import { NgbDateCustomParserFormatter } from "./Share/dateformat";
 import { Type } from './Share/allpipe.pipe'
 import { NgxPaginationModule } from 'ngx-pagination';
-import {NgxMaskModule} from 'ngx-mask'
+import { NgxMaskModule } from 'ngx-mask'
 import { TextMaskModule } from 'angular2-text-mask';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from "ng2-currency-mask/src/currency-mask.config";
 import { WINDOW_PROVIDERS } from './_helpers/hostname.interceptor';
- 
+import { Component, Injectable } from '@angular/core';
+import { NgbDatepickerI18n, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { Observable } from 'rxjs';
+import { LanguageService } from './service/language.service';
+
+const I18N_VALUES = {
+  en: {
+    weekdays: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
+    months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  },
+  th: {
+    weekdays: ['จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส', 'อา'],
+    months: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'],
+  }
+};
+
+@Injectable()
+export class CustomDatepickerI18n extends NgbDatepickerI18n {
+  lang: Observable<string>;
+  constructor(
+    private langservice: LanguageService) {
+    super();
+    this.langservice.listen().subscribe((m: any) => {
+      console.log(m);
+      this.lang = m;
+    })
+  }
+
+  getWeekdayShortName(weekday: number): string {
+    if (String(this.lang) == 'en') {
+      return I18N_VALUES['en'].weekdays[weekday - 1];
+    } else {
+      return I18N_VALUES['th'].weekdays[weekday - 1];
+    }
+  }
+  getMonthShortName(month: number): string {
+    if (String(this.lang) == 'en') {
+      return I18N_VALUES['en'].months[month - 1];
+    } else {
+      return I18N_VALUES['th'].months[month - 1];
+    }
+  }
+  getMonthFullName(month: number): string {
+    return this.getMonthShortName(month);
+  }
+
+  getDayAriaLabel(date: NgbDateStruct): string {
+    return `${date.day}-${date.month}-${date.year}`;
+  }
+  getYearNumerals(year: number): string {
+    if (String(this.lang) == 'th') {
+      return year + 543 + '';
+    } else {
+      return year + '';
+    }
+  }
+}
+
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
-    align: "right",
-    allowNegative: false,
-    decimal: ".",
-    precision: 0,
-    prefix: "",
-    suffix: "",
-    thousands: ","
+  align: "right",
+  allowNegative: false,
+  decimal: ".",
+  precision: 0,
+  prefix: "",
+  suffix: "",
+  thousands: ","
 };
 
 // import { NgbDateFRParserFormatter } from "./ngb-date-fr-parser-formatter"
@@ -146,8 +205,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     SigninComponent,
     ForgotpasswordComponent,
     ChangepasswordloginComponent,
-    toFixed,toFixed4,DateThai,YearThai,Type,Time,ExpiresDateThai,DateThaiDM,DateEngDM
-
+    FooterforwarningComponent,
+    toFixed, toFixed4, DateThai, YearThai, Type, Time, ExpiresDateThai, DateThaiDM, DateEngDM, DateEng,
   ],
   imports: [
     BrowserModule,
@@ -181,7 +240,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       reCaptcha2SiteKey: '6Lcc2okUAAAAAJAh0yRi35-OmXqhPjT2bXMSIWs9',
       invisibleCaptchaSiteKey: '6Lcc2okUAAAAAJdZ579SPU_pF08A9zW130NUYIPi'
     }),
-    UserIdleModule.forRoot({idle: 600, timeout: 10, ping: 480}),
+    UserIdleModule.forRoot({ idle: 600, timeout: 10, ping: 480 }),
     NgxPaginationModule,
     NgxMaskModule.forRoot(),
     TextMaskModule,
@@ -190,6 +249,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [
     { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter },
+    { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n },
     AuthenticationService, AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },

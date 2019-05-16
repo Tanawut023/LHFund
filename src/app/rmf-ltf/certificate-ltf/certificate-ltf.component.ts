@@ -28,10 +28,8 @@ export class CertificateLtfComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-
         this.getSelectListUnitholder();
         this.getyearlist();
-
         $('#mutual-tab-menu').find('li').removeClass('current');
         $('#mutual-tab-menu').find('li#menu4').addClass('current');
     }
@@ -58,7 +56,6 @@ export class CertificateLtfComponent implements OnInit {
                 },
                 error => {
                     console.log(error)
-
                 });
     }
 
@@ -76,9 +73,9 @@ export class CertificateLtfComponent implements OnInit {
                 },
                 error => {
                     console.log(error)
-
                 });
     }
+
     OnSubmit() {
         this.nolist = false;
         this.loading = true;
@@ -88,9 +85,7 @@ export class CertificateLtfComponent implements OnInit {
             CertificateType: 'LTF',
             Year: this.years
         }
-
         console.log(user);
-
         this.rmfltfservice.getcertificate(user)
             .subscribe(
                 data => {
@@ -99,8 +94,7 @@ export class CertificateLtfComponent implements OnInit {
                     this.loading = false;
                     if(this.ltffilelist.filenamelist.length == 0){
                         this.nolist = true;
-                        console.log('notlist');
-                        
+                        console.log('notlist');  
                       }
                 },
                 error => {
@@ -111,16 +105,13 @@ export class CertificateLtfComponent implements OnInit {
                         keyboard: false,
                         show: true
                     });
-
                 });
-
-
     }
+
     download(arr) {
         this.loading = true;
         var i = arr;
         var filename = this.ltffilelist.filenamelist[i];
-
         var user = {
             UnitholderID: this.userselect.UnitholderId,
             CertificateType: 'LTF',
@@ -128,12 +119,9 @@ export class CertificateLtfComponent implements OnInit {
             FileName: filename
         }
         console.log(user);
-
         if (user instanceof HttpParams) {
             return 'application/x-www-form-urlencoded;charset=UTF-8';
         }
-
-
         this.rmfltfservice.downloadcertificate(user)
             .subscribe(
                 data => {
@@ -143,21 +131,15 @@ export class CertificateLtfComponent implements OnInit {
                 },
                 error => {
                     console.log(error)
-
-                    // setTimeout(() => {
                     $('#message').modal({
                         backdrop: 'static',
                         keyboard: false,
                         show: true
                     });
-                    // }, 100);
-
                     this.loading = false;
-
                 });
-
-
     }
+
     print() {
         window.focus();
         window.print();

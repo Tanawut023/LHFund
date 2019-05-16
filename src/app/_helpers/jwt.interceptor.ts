@@ -16,22 +16,7 @@ export class JwtInterceptor implements HttpInterceptor {
         private injector: Injector,
         private authservice: AuthenticationService
     ) { }
-
-    // intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    //     // add authorization header with jwt token if available
-    //     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    //     let lang = JSON.parse(localStorage.getItem('lang'));
-    //     if (currentUser && currentUser.token) {
-    //         request = request.clone({
-    //             setHeaders: { 
-    //                 Authorization: `${currentUser.token}`
-    //             }
-    //         });
-    //     }
-
-    //     return next.handle(request);
-    // }
-
+    
     private generateAuthHeaders = function (req) {
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
         return req.clone({
@@ -93,48 +78,9 @@ export class JwtInterceptor implements HttpInterceptor {
         this.authservice = this.injector.get(AuthenticationService)
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser && currentUser.access_token) {
-          // req = this.generateAuthHeaders(req)
-            // const headers = new HttpHeaders({
-            //     'Authorization': `Bearer ${currentUser.access_token}`,
-            //     'Accept-Language': (localStorage.getItem('lang'))?localStorage.getItem('lang'):"en",
-            //     'Content-Type': 'application/json'
-            //   });
-            // this.authservice.refreshToken()
-            // .subscribe(
-            //   data => {
-            //     localStorage.setItem('currentUser', JSON.stringify(data));
-            //   },
-            //   error => {
-            //     console.log(error)            
-            //   });
-            
-
-            // const clonedreq = req.clone({headers});
-
-            // console.log('Intercepted HTTP call', clonedreq);
             
             req = this.generateAuthHeaders(req)
-
             return next.handle(req)
-
-            // .pipe(
-            //     catchError(err => {
-            //       if (err instanceof HttpErrorResponse) {
-            //         if (err.status === 401){
-            //           this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.url } });
-            //         }
-            //         else return err;
-                    
-            //         // switch ((<HttpErrorResponse>err).status) {
-            //         //   case 401:
-            //         //     return this.handle401Error(req, next);
-            //         //   case 400:
-            //         //     return <any>this.authservice.logout();
-            //         // }
-            //       } else {
-            //         return (err);
-            //       }
-            //     }));
                 .pipe(tap(
                     succ => {
                         console.log(succ);
@@ -150,25 +96,6 @@ export class JwtInterceptor implements HttpInterceptor {
                         }
                       }
                     ));
-
-                //             return this.authservice.refreshToken().pipe(
-                //                 switchMap((res: any) => {
-                //                     console.log('here' + res);
-                //                     localStorage.removeItem('token');
-                //                     localStorage.setItem('token', res['access_token']);
-
-                //                     req = this.generateAuthHeaders(req)
-                //                     return next.handle(req);
-                //                 }),
-                //                 // catchError((err) => {
-                //                 //     console.log(err)
-                //                 //     this.authservice.logout();
-                //                 //     return Observable.empty()
-                //                 // })
-                //             )
-                //         // this.router.navigateByUrl('/login');                    
-                //     }
-                // ));
         }
         const headers = new HttpHeaders({
             'Accept-Language': (localStorage.getItem('lang')) ? localStorage.getItem('lang') : "en",

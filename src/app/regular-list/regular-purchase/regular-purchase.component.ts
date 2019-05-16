@@ -68,6 +68,7 @@ export class RegularPurchaseComponent implements OnInit {
     dateless: boolean = false;
     loading = false;
     userdetail: any;
+    lesszero: boolean;
 
     get cpwd() {
         return this.formsubstanding.get('amount');
@@ -123,10 +124,6 @@ export class RegularPurchaseComponent implements OnInit {
                 this.page = "regular-purchase";
                 break;
             case 'regular-purchase-step1':
-                // if (this.formsubsription.controls.date.value) {
-                //     this.date = this.formsubsription.controls.date.value.year + "-" + this.formsubsription.controls.date.value.month + "-" + this.formsubsription.controls.date.value.day;
-                //     this.date = formatdatethai(this.date);
-                // }
                 this.page = "regular-purchase-step1";
                 break;
             default:
@@ -203,7 +200,7 @@ export class RegularPurchaseComponent implements OnInit {
                         $('.selectpicker').selectpicker('refresh');
                     }, 100);
                     console.log(data);
-                    
+
                     this.userall = data;
                     if (this.userall.unitholderlist.length > 0) {
 
@@ -213,12 +210,12 @@ export class RegularPurchaseComponent implements OnInit {
                         this.getfundlist();
                         this.getstnadingorder();
                     }
-                    else{
+                    else {
                         this.userall = '';
                     }
                     console.log(this.userall);
-                    
-                    
+
+
                 },
                 error => {
                     console.log(error)
@@ -237,21 +234,12 @@ export class RegularPurchaseComponent implements OnInit {
                     if (this.banklist.bankaccountlist[0]) {
                         this.Bank = this.banklist.bankaccountlist[0].BankName + " (" + this.banklist.bankaccountlist[0].BankAccountNo + ")";
                     }
-                    // else if (this.banklist.bankaccountlist.length == 0) {
-                    //     this.Bank = "ไม่พบบัญชีธนาคาร";
-                    // }
-
-                    // setTimeout(() => {
-                    //     this.formsubstanding.controls['bank'].setValue(this.banklist.bankaccountlist[0].BankName, { onlySelf: true });
-                    // }, 100);
-
                 },
                 error => {
                     console.log(error)
-
                 });
-
     }
+
     getfundlist() {
         this.standingorderservice.getfundlist()
             .pipe(first())
@@ -265,7 +253,6 @@ export class RegularPurchaseComponent implements OnInit {
                 },
                 error => {
                     console.log(error)
-
                 });
     }
 
@@ -274,49 +261,57 @@ export class RegularPurchaseComponent implements OnInit {
         this.Islevel = false;
         this.Isprotect = false;
         this.dateless = false;
+        this.lesszero = false;
         if (this.formsubstanding.valid) {
-            if (this.userselect.RiskLevelExpire == true) {
-                console.log('expire');
+            var amount = this.formsubstanding.controls.amount.value;
+            amount = amount.replace(",", "");
+            amount = parseFloat(amount);
+            if (amount > 0) {
+                if (this.userselect.RiskLevelExpire == true) {
+                    console.log('expire');
 
-                $('#expiremodal').modal({
-                    backdrop: 'static',
-                    keyboard: false,
-                    show: true
-                });
-            } else if (!this.banklist.bankaccountlist[0] && this.userdetail.MemberType != 'Agent') {
-                this.translate.get('CONTENT.ats-contact').subscribe((res: string) => {
-                    console.log(res);
-                    this.message = res;
-                });
-                // this.message = 'ติดต่อเจ้าหน้าที่การตลาด เบอร์ติดต่อ 02-286-3484 หรือ 02-679-2155 เพื่อดำเนินขอเปิดบัญชี ATS';
-
-                setTimeout(() => {
-                    $('#message').modal({
+                    $('#expiremodal').modal({
                         backdrop: 'static',
                         keyboard: false,
                         show: true
                     });
-                }, 100);
+                } else if (!this.banklist.bankaccountlist[0] && this.userdetail.MemberType != 'Agent') {
+                    this.translate.get('Modal.not-ats').subscribe((res: string) => {
+                        console.log(res);
+                        this.message = res;
+                    });
+
+                    setTimeout(() => {
+                        $('#message').modal({
+                            backdrop: 'static',
+                            keyboard: false,
+                            show: true
+                        });
+                    }, 100);
 
 
-            } else {
-                var st = new Date(this.formsubstanding.controls.datestart.value.year, (this.formsubstanding.controls.datestart.value.month - 1), this.formsubstanding.controls.datestart.value.day).getTime(); // 1379392680000
-                var ed = new Date(this.formsubstanding.controls.dateend.value.year, (this.formsubstanding.controls.dateend.value.month - 1), this.formsubstanding.controls.dateend.value.day).getTime();
-
-                console.log(st, ed);
-
-                if (st > ed) {
-                    console.log('less more');
-                    this.dateless = true;
-                    return;
                 } else {
-                    console.log('motto');
-                    this.checkexpireandlevel();
+
+                    var st = new Date(this.formsubstanding.controls.datestart.value.year, (this.formsubstanding.controls.datestart.value.month - 1), this.formsubstanding.controls.datestart.value.day).getTime(); // 1379392680000
+                    var ed = new Date(this.formsubstanding.controls.dateend.value.year, (this.formsubstanding.controls.dateend.value.month - 1), this.formsubstanding.controls.dateend.value.day).getTime();
+                    console.log(st, ed);
+
+                    if (st > ed) {
+                        console.log('less more');
+                        this.dateless = true;
+                        return;
+                    } else {
+                        console.log('motto');
+                        this.checkexpireandlevel();
+                    }
                 }
             }
 
-
         }
+        // else if(this.formsubstanding.controls.amount.value <= 0){
+        //     this.lesszero = true;
+        //     this.loading = false;
+        // }
         else {
             this.isNotValid = true;
             this.validateAllFormFields(this.formsubstanding);
@@ -329,6 +324,7 @@ export class RegularPurchaseComponent implements OnInit {
         this.getbanklist();
         this.getfundlist();
         this.getstnadingorder();
+        this.lesszero = false;
 
     }
     tofix(value) {
@@ -422,9 +418,9 @@ export class RegularPurchaseComponent implements OnInit {
         this.isNotValid = false;
         var user;
         this.datestart = this.formsubstanding.controls.datestart.value.year + "-" + this.formsubstanding.controls.datestart.value.month + "-" + this.formsubstanding.controls.datestart.value.day;
-        this.datestart = boostrapdatepicker(this.datestart);
+        // this.datestart = boostrapdatepicker(this.datestart);
         this.dateend = this.formsubstanding.controls.dateend.value.year + "-" + this.formsubstanding.controls.dateend.value.month + "-" + this.formsubstanding.controls.dateend.value.day;
-        this.dateend = boostrapdatepicker(this.dateend);
+        // this.dateend = boostrapdatepicker(this.dateend);
         if (this.userdetail.MemberType == 'Agent' && this.banklist == "") {
             user = {
                 StandingOrderDate: getDate(),
@@ -448,7 +444,7 @@ export class RegularPurchaseComponent implements OnInit {
                 StandingOrderDayNo: this.formsubstanding.controls.day.value,
                 ExpiryDate: this.dateend,
                 StandingOrderEffectiveDate: this.datestart,
-                IDCardNo: this.banklist.bankaccountlist[0].BankAccountID
+               // IDCardNo: this.banklist.bankaccountlist[0].BankAccountID
             }
         }
         console.log(user);
@@ -532,20 +528,16 @@ export class RegularPurchaseComponent implements OnInit {
                 data => {
                     console.log(data);
                     this.getstnadingorder();
-                    // this.ordersubscriptionlist = data;
                     $('#delete').modal('toggle');
                     this.translate.get('Modal.delete-or').subscribe((res: string) => {
                         console.log(res);
                         this.message = res;
-                        //=> 'hello world'
                     });
-                    // this.message = 'ลบรายการสำเร็จ';
                     $('#message').modal({
                         backdrop: 'static',
                         keyboard: false,
                         show: true
                     });
-
                 },
                 error => {
                     console.log(error);
@@ -556,9 +548,9 @@ export class RegularPurchaseComponent implements OnInit {
                         keyboard: false,
                         show: true
                     });
-
                 });
     }
+
     print() {
         window.focus();
         window.print();

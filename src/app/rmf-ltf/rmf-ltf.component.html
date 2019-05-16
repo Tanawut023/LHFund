@@ -5,6 +5,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="tabs-menu-wrapper">
+              
               <div class="dropdown dropdown-content">
                 <button class="btn-med btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                   aria-expanded="false">
@@ -17,6 +18,7 @@
                   <a class="dropdown-item" (click)="navigate('certificate-ltf')" title="{{ 'NAVBAR.ltf-cer' | translate }}">{{ 'NAVBAR.ltf-cer' | translate }}</a>
                 </div>
               </div>
+
               <ul class="nav nav-tabs" role="tablist" id="mutual-tab-menu">
                 <li role="presentation" id="menu1">
                   <a title="{{ 'NAVBAR.ltf-for-re' | translate }}" (click)="navigate('ltf-condition-complete')">{{ 'NAVBAR.ltf-for-re' | translate }}</a>
@@ -30,8 +32,8 @@
                 <li role="presentation" id="menu4">
                   <a title="{{ 'NAVBAR.ltf-cer' | translate }}" (click)="navigate('certificate-ltf')">{{ 'NAVBAR.ltf-cer' | translate }}</a>
                 </li>
-
               </ul>
+
             </div>
 
             <router-outlet></router-outlet>
@@ -41,3 +43,5 @@
       </div>
     </div>
   </div>
+
+  <app-footerforwarning></app-footerforwarning>

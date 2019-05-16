@@ -26,7 +26,6 @@ export class customValidationService {
                 return { invalid: true };
             }
 
-
             if (amount && (isNaN(amount) || amount < min || amount > max || amount == 0)) {
                 return { invalid: true };
             }
@@ -69,6 +68,8 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
     loading = false;
     lang: Observable<string>;
     userdetail: any;
+    lesszero: boolean;
+
 
     get cpwd() {
         return this.formsubsription.get('amount');
@@ -91,7 +92,6 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
         $('#mutual-tab-menu').find('li').removeClass('current');
         $('#mutual-tab-menu').find('li#menu1').addClass('current');
 
-        // $('.selectpicker').selectpicker();
         var d = new Date();
         var endDate = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
         console.log(endDate);
@@ -105,17 +105,17 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
             console.log(m);
             this.lang = m;
         })
+
         this.userdetail = this.basedataservice.getmemberInfo();
 
         this.translate.get('not-found').subscribe((res: string) => {
             console.log(res);
-            //=> 'hello world'
         });
     }
+
     ngAfterViewInit() {
-        // document.getElementById('preloader').classList.add('hide');
-        // $('.selectpicker').selectpicker();
     }
+
     checkpage(page) {
         window.scroll(0, 0);
         console.log(page)
@@ -134,7 +134,6 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
                 }
                 if (this.resultsubmit.messages[0]) {
                     this.message = this.resultsubmit.messages[0];
-
                     setTimeout(() => {
                         $('#message').modal({
                             backdrop: 'static',
@@ -142,11 +141,8 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
                             show: true
                         });
                     }, 100);
-
-
                 }
 
-                // this.onSubmit();
                 this.page = "purchase-step1";
 
                 break;
@@ -157,14 +153,12 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
                 this.page = "purchase-view-list";
                 break;
             default:
-
                 this.page = "purchase";
                 console.log(this.page)
                 break;
         }
-
-
     }
+
     onChange() {
 
         for (let i = 0; i < this.userall.unitholderlist.length; i++) {
@@ -187,20 +181,19 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
                     }, 100);
                     this.userall = data;
                     if (this.userall.unitholderlist.length > 0) {
-                        
+
                         this.unitholderno = this.userall.unitholderlist[0];
                         this.userselect = this.userall.unitholderlist[0];
                         this.getselectlistfundlistandbankaccount();
                         this.getorderinfolist();
                     }
-                    else{
+                    else {
                         this.userall = '';
                     }
 
                 },
                 error => {
                     console.log(error)
-
                 });
     }
 
@@ -218,25 +211,17 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
                         setTimeout(() => {
                             $('.selectpicker').selectpicker('refresh');
                         }, 100);
-
-                        // if (this.unitholdersubscription.fundlist[0]) {
-                        //     this.fundlist = this.unitholdersubscription.fundlist[0];
-                        // }
                         if (this.unitholdersubscription.bankaccountlist[0]) {
                             this.banklist = this.unitholdersubscription.bankaccountlist[0];
                         }
                         else if (this.unitholdersubscription.bankaccountlist.length == 0) {
                             this.banklist = "";
                         }
-
                     }
-
                 },
                 error => {
                     console.log(error)
-
                 });
-
     }
 
     createFormValidate() {
@@ -249,12 +234,12 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
             amount: [null,
                 [
                     Validators.required
-                    // , customValidationService.checkLimit(1000, 999999999999)
                 ]
             ],
             date: [null]
         })
     }
+
     validateAllFormFields(formGroup: FormGroup) {
         Object.keys(formGroup.controls).forEach(field => {
             const control = formGroup.get(field);
@@ -265,155 +250,181 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
             }
         })
     }
+
     tofix(value) {
         console.log(value);
 
         if (value) {
             var values = value;
             values = values.replace(",", "");
-            // var m = value.toString().split(",");
             var n = parseFloat(values);
             var tofix: any = n.toFixed(2);
             tofix = tofix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             console.log(tofix);
-
             this.formsubsription.controls['amount'].setValue(tofix, { onlySelf: true });
         }
-
     }
+
     onSubmited() {
         console.log(this.formsubsription);
         this.Islevel = false;
         this.Isprotect = false;
         this.loading = true;
+        this.lesszero = false;
+        var cd = new Date();
+        var Y1 = ((cd.getFullYear() * 1) - 1);
+        var Y2 = ((cd.getFullYear() * 1) - 2);
+        var Y3 = ((cd.getFullYear() * 1) - 3);
+        var M = cd.getMonth();
+        var D = cd.getDate();
+        var d1 = new Date(Y1 + "-" + M + "-" + D);
+        var d2 = new Date(Y2 + "-" + M + "-" + D);
+        var d3 = new Date(Y3 + "-" + M + "-" + D);
+        var lastupdate = new Date(this.userselect.RiskLevel1LastUpdated);
+
         if (this.formsubsription.valid) {
-            if (this.userselect.RiskLevelExpire == true) {
-                console.log('expire');
-                this.loading = false;
-                $('#expiremodal').modal({
-                    backdrop: 'static',
-                    keyboard: false,
-                    show: true
-                });
-            } else if (!this.unitholdersubscription.bankaccountlist[0] && this.userdetail.MemberType != 'Agent') {
-                this.translate.get('CONTENT.ats-contact').subscribe((res: string) => {
-                    console.log(res);
-                    this.message = res;
-                });
-                // this.message = 'ติดต่อเจ้าหน้าที่การตลาด เบอร์ติดต่อ 02-286-3484 หรือ 02-679-2155 เพื่อดำเนินขอเปิดบัญชี ATS';
-                this.loading = false;
-                setTimeout(() => {
-                    $('#message').modal({
+            var amount = this.formsubsription.controls.amount.value;
+            amount = amount.replace(",", "");
+            amount = parseFloat(amount);
+
+            if (amount > 0) {
+                if (this.userselect.RiskLevelExpire == true) {
+                    console.log('expire');
+                    this.loading = false;
+                    $('#expiremodal').modal({
                         backdrop: 'static',
                         keyboard: false,
                         show: true
                     });
-                }, 100);
-            }
-            else {
-                this.isNotValid = false;
-                var user;
-                var amount = this.formsubsription.controls.amount.value;
-                amount = amount.replace(",", "");
-                amount = parseFloat(amount);
-
-                if (this.formsubsription.controls.date.value) {
-                    this.date = this.formsubsription.controls.date.value.year + "-" + this.formsubsription.controls.date.value.month + "-" + this.formsubsription.controls.date.value.day;
-                    this.date = boostrapdatepicker(this.date);
-
-                    if (this.userdetail.MemberType == 'Agent' && this.banklist == "") {
-                        user = {
-                            UnitHolderID: this.userselect.UnitholderId,
-                            FundID: this.formsubsription.controls.fund.value.FundID,
-                            CounterFundID: 0,
-                            TxType: "Subscription",
-                            OrderUnitType: "Amount",
-                            OrderUnit: 0,
-                            // OrderBankAccountID: null,
-                            OrderAmount: amount,
-                            PaymentMethod: "ATS",
-                            orderdate: this.date
-                        }
-                    }
-                    else {
-                        user = {
-                            UnitHolderID: this.userselect.UnitholderId,
-                            FundID: this.formsubsription.controls.fund.value.FundID,
-                            CounterFundID: 0,
-                            TxType: "Subscription",
-                            OrderUnitType: "Amount",
-                            OrderUnit: 0,
-                            OrderBankAccountID: this.banklist.BankAccountID,
-                            OrderAmount: amount,
-                            PaymentMethod: "ATS",
-                            orderdate: this.date
-                        }
-                    }
-
+                }
+                else if (!this.unitholdersubscription.bankaccountlist[0] && this.userdetail.MemberType != 'Agent') {
+                    this.translate.get('CONTENT.ats-contact').subscribe((res: string) => {
+                        console.log(res);
+                        this.message = res;
+                    });
+                    // this.message = 'ติดต่อเจ้าหน้าที่การตลาด เบอร์ติดต่อ 02-286-3484 หรือ 02-679-2155 เพื่อดำเนินขอเปิดบัญชี ATS';
+                    this.loading = false;
+                    setTimeout(() => {
+                        $('#message').modal({
+                            backdrop: 'static',
+                            keyboard: false,
+                            show: true
+                        });
+                    }, 100);
                 }
                 else {
-                    if (this.userdetail.MemberType == 'Agent' && this.banklist == "") {
-                        user = {
-                            UnitHolderID: this.userselect.UnitholderId,
-                            FundID: this.formsubsription.controls.fund.value.FundID,
-                            CounterFundID: 0,
-                            TxType: "Subscription",
-                            OrderUnitType: "Amount",
-                            OrderUnit: 0,
-                            // OrderBankAccountID: null,
-                            OrderAmount: amount,
-                            PaymentMethod: "ATS",
-                            orderdate: null
-                            // getDate()
+
+                    this.isNotValid = false;
+                    var user;
+                    var amount = this.formsubsription.controls.amount.value;
+                    amount = amount.replace(",", "");
+                    amount = parseFloat(amount);
+
+                    if (this.formsubsription.controls.date.value) {
+                        this.date = this.formsubsription.controls.date.value.year + "-" + this.formsubsription.controls.date.value.month + "-" + this.formsubsription.controls.date.value.day;
+                        // this.date = boostrapdatepicker(this.date);
+
+                        if (this.userdetail.MemberType == 'Agent' && this.banklist == "") {
+                            user = {
+                                UnitHolderID: this.userselect.UnitholderId,
+                                FundID: this.formsubsription.controls.fund.value.FundID,
+                                CounterFundID: 0,
+                                TxType: "Subscription",
+                                OrderUnitType: "Amount",
+                                OrderUnit: 0,
+                                // OrderBankAccountID: null,
+                                OrderAmount: amount,
+                                PaymentMethod: "ATS",
+                                orderdate: this.date
+                            }
                         }
+                        else {
+                            user = {
+                                UnitHolderID: this.userselect.UnitholderId,
+                                FundID: this.formsubsription.controls.fund.value.FundID,
+                                CounterFundID: 0,
+                                TxType: "Subscription",
+                                OrderUnitType: "Amount",
+                                OrderUnit: 0,
+                                OrderBankAccountID: this.banklist.BankAccountID,
+                                OrderAmount: amount,
+                                PaymentMethod: "ATS",
+                                orderdate: this.date
+                            }
+                        }
+
                     }
                     else {
-                        user = {
-                            UnitHolderID: this.userselect.UnitholderId,
-                            FundID: this.formsubsription.controls.fund.value.FundID,
-                            CounterFundID: 0,
-                            TxType: "Subscription",
-                            OrderUnitType: "Amount",
-                            OrderUnit: 0,
-                            OrderBankAccountID: this.banklist.BankAccountID,
-                            OrderAmount: amount,
-                            PaymentMethod: "ATS",
-                            orderdate: null
-                            // getDate()
+                        if (this.userdetail.MemberType == 'Agent' && this.banklist == "") {
+                            user = {
+                                UnitHolderID: this.userselect.UnitholderId,
+                                FundID: this.formsubsription.controls.fund.value.FundID,
+                                CounterFundID: 0,
+                                TxType: "Subscription",
+                                OrderUnitType: "Amount",
+                                OrderUnit: 0,
+                                // OrderBankAccountID: null,
+                                OrderAmount: amount,
+                                PaymentMethod: "ATS",
+                                orderdate: null
+                                // getDate()
+                            }
+                        }
+                        else {
+                            user = {
+                                UnitHolderID: this.userselect.UnitholderId,
+                                FundID: this.formsubsription.controls.fund.value.FundID,
+                                CounterFundID: 0,
+                                TxType: "Subscription",
+                                OrderUnitType: "Amount",
+                                OrderUnit: 0,
+                                OrderBankAccountID: this.banklist.BankAccountID,
+                                OrderAmount: amount,
+                                PaymentMethod: "ATS",
+                                orderdate: null
+                                // getDate()
+                            }
                         }
                     }
-                }
-                console.log(user);
-                this.orderservice.submitorder(user)
-                    .pipe(first())
-                    .subscribe(
-                        data => {
-                            console.log(data);
-                            this.resultsubmit = data;
-                            this.checkexpireandlevel();
-                            this.loading = false;
-                        },
-                        error => {
-                            console.log(error);
-                            this.message = error.error.messages;
-                            this.loading = false;
-                            $('#message').modal({
-                                backdrop: 'static',
-                                keyboard: false,
-                                show: true
-                            });
+                    console.log(user);
 
-                        });
+                    this.orderservice.submitorder(user)
+                        .pipe(first())
+                        .subscribe(
+                            data => {
+                                console.log(data);
+                                this.resultsubmit = data;
+                                this.checkexpireandlevel();
+                                this.loading = false;
+                            },
+                            error => {
+                                console.log(error);
+                                this.message = error.error.messages;
+                                this.loading = false;
+                                $('#message').modal({
+                                    backdrop: 'static',
+                                    keyboard: false,
+                                    show: true
+                                });
+                            });
+                }
+            }
+            else {
+                this.loading = false;
             }
 
         }
+        // else if (this.formsubsription.controls.amount.value <= 0) {
+        //     this.lesszero = true;
+        //     this.loading = false;
+        // }
         else {
             this.isNotValid = true;
             this.validateAllFormFields(this.formsubsription);
             this.loading = false;
         }
-
     }
+
     checkexpireandlevel() {
 
         this.loading = true;
@@ -422,6 +433,7 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
             FundID: this.formsubsription.controls.fund.value.FundID
         }
         console.log(user);
+
         this.orderservice.changefundsubscription(user)
             .pipe(first())
             .subscribe(
@@ -503,9 +515,9 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
 
                 });
     }
+
     isFieldNotValid(field: string) {
         return !this.formsubsription.get(field).valid && this.formsubsription.get(field).touched
-
     }
 
     ValidatorDisplayCss(field: string) {
@@ -513,6 +525,7 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
             'has-danger': this.isFieldNotValid(field)
         };
     }
+
     numberOnly(event): boolean {
         const charCode = (event.which) ? event.which : event.keyCode;
         console.log(charCode);
@@ -520,8 +533,8 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
             return false;
         }
         return true;
-
     }
+
     getorderinfolist() {
         this.ordersubscriptionlist = [];
         const user = {
@@ -529,7 +542,6 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
             TxType: "Subscription"
         }
         console.log(user);
-
 
         this.orderservice.getorderinfolist(user)
             .pipe(first())
@@ -543,13 +555,9 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
                             if (this.ordersubscriptionlist.orderinfolist[i].OrderStatus == 'Initial' && this.ordersubscriptionlist.orderinfolist[i].TxType == 'Subscription') {
                                 this.nolist = true;
                                 console.log("nolist");
-
                             }
                         }
                     }
-
-
-
                 },
                 error => {
                     console.log(error);
@@ -559,7 +567,6 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
                         keyboard: false,
                         show: true
                     });
-
                 });
     }
 
@@ -567,10 +574,13 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
         console.log('reset');
         this.createFormValidate();
         this.getselectlistfundlistandbankaccount();
+        this.lesszero = false;
     }
+
     resetdate() {
         this.formsubsription.controls['date'].reset();
     }
+
     modaldeleteorder(order) {
 
         this.deletedOrder = order;
@@ -581,6 +591,7 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
             show: true
         });
     }
+
     deleteorder() {
         const order = {
             UnitHolderID: this.deletedOrder.UnitHolderID,
@@ -593,20 +604,16 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
                 data => {
                     console.log(data);
                     this.getorderinfolist();
-                    // this.ordersubscriptionlist = data;
                     $('#delete').modal('toggle');
                     this.translate.get('Modal.delete-or').subscribe((res: string) => {
                         console.log(res);
                         this.message = res;
-                        //=> 'hello world'
                     });
-                    // this.message = 'ลบรายการสำเร็จ';
                     $('#message').modal({
                         backdrop: 'static',
                         keyboard: false,
                         show: true
                     });
-
                 },
                 error => {
                     console.log(error);
@@ -617,13 +624,14 @@ export class PurchaseComponent implements OnInit, AfterViewInit {
                         keyboard: false,
                         show: true
                     });
-
                 });
     }
+
     isDisabled(date: NgbDateStruct) {
         const d = new Date(date.year, date.month - 1, date.day);
         return d.getDay() === 0 || d.getDay() === 6;
     }
+
     print() {
         window.focus();
         window.print();

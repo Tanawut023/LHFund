@@ -58,6 +58,7 @@ export class PastEventsComponent implements OnInit {
       this.lang = m;
     })
   }
+
   onChange() {
 
     for (let i = 0; i < this.userall.unitholderlist.length; i++) {
@@ -66,6 +67,7 @@ export class PastEventsComponent implements OnInit {
       }
     }
   }
+
   createFormValidate() {
     this.form = this.fb.group({
 
@@ -76,9 +78,9 @@ export class PastEventsComponent implements OnInit {
 
     })
   }
+
   isFieldNotValid(field: string) {
     return !this.form.get(field).valid && this.form.get(field).touched
-
   }
 
   ValidatorDisplayCss(field: string) {
@@ -86,6 +88,7 @@ export class PastEventsComponent implements OnInit {
       'has-danger': this.isFieldNotValid(field)
     };
   }
+
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
       const control = formGroup.get(field);
@@ -96,6 +99,7 @@ export class PastEventsComponent implements OnInit {
       }
     })
   }
+
   changefundtype() {
     var id = this.form.controls.fundtype.value;
     let Params = new HttpParams();
@@ -114,13 +118,13 @@ export class PastEventsComponent implements OnInit {
         },
         error => {
           console.log(error)
-
         });
   }
 
   getstartdate() {
     return this.form.controls.startDate.value.year + "-" + this.form.controls.startDate.value.month + "-" + this.form.controls.startDate.value.day;
   }
+
   getenddate() {
     return this.form.controls.endDate.value.year + "-" + this.form.controls.endDate.value.month + "-" + this.form.controls.endDate.value.day;
   }
@@ -140,7 +144,6 @@ export class PastEventsComponent implements OnInit {
         },
         error => {
           console.log(error)
-
         });
   }
 
@@ -153,12 +156,7 @@ export class PastEventsComponent implements OnInit {
         },
         error => {
           console.log(error)
-
         });
-
-    
-
-
   }
 
   OnSubmitd() {
@@ -170,14 +168,12 @@ export class PastEventsComponent implements OnInit {
     Params = Params.append('rowperpage', "999");
     var user;
 
-
     if (this.form.controls.fundtype.value != 0 && this.form.controls.fundname.value == 0) {
       this.form.controls.fundname.setErrors({ 'invalid': true });
       this.loading = false;
     } else {
       if (this.form.valid) {
         this.statementreport = [];
-
         if (this.form.controls.fundtype.value == 0 && this.form.controls.fundname.value == 0) {
           user = {
             UnitholderID: this.userselect.UnitholderId,
@@ -193,10 +189,8 @@ export class PastEventsComponent implements OnInit {
             EndOrderDate: this.getenddate()
           }
         }
-
-
         console.log(user);
-
+        
         this.reportservice.statementreport(user, Params)
           .subscribe(
             data => {
@@ -205,7 +199,6 @@ export class PastEventsComponent implements OnInit {
               if(this.statementreport.statementreport.length == 0){
                 this.nolist = true;
                 console.log('notlist');
-                
               }
               this.calulatetable();
               this.loading = false;
@@ -213,7 +206,6 @@ export class PastEventsComponent implements OnInit {
             error => {
               console.log(error)
               this.loading = false;
-
             });
       } else {
         this.loading = false;
@@ -221,12 +213,11 @@ export class PastEventsComponent implements OnInit {
       }
     }
   }
+
   calulatetable() {
     var array = new Array();
     var count = 0;
-
     console.log('test');
-
     if (this.statementreport.statementreport[0]) {
       for (let i = 0; i < this.statementreport.statementreport[0].StatementFunds.length; i++) {
         console.log('fori');
@@ -253,36 +244,24 @@ export class PastEventsComponent implements OnInit {
           if (count == 10) {
             count = 0;
           }
-          // balance += parseFloat(this.statementreport.statementreport[i].DividendPayment[y].BalanceUnit);
-          // tax += parseFloat(this.statementreport.statementreport[i].DividendPayment[y].DividendWithHoldingTax);
-          // net += parseFloat(this.statementreport.statementreport[i].DividendPayment[y].NetDividendAmount);
         }
-        // array.push({ balance: balance, tax: tax, net: net });
-
       }
     }
-
-
     this.statementlist = array;
     console.log(this.statementlist);
-
-
   }
+
   reset() {
     console.log('reset');
-
-    // this.Fundnamelist = [];
     this.statementreport = '';
-    // this.model = {};
     this.statementlist = [];
     this.p = 1;
     this.loading = false;
     this.createFormValidate();
     this.getfundtypelist();
     this.changefundtype();
-    // console.log(this.statementlist);
-
   }
+  
   print() {
     window.focus();
     window.print();

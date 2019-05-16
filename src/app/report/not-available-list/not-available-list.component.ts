@@ -31,7 +31,6 @@ export class NotAvailableListComponent implements OnInit {
   ngOnInit() {
 
     this.getSelectListUnitholder();
-
     $('#mutual-tab-menu').find('li').removeClass('current');
     $('#mutual-tab-menu').find('li#menu7').addClass('current');
     this.langservice.listen().subscribe((m: any) => {
@@ -65,9 +64,9 @@ export class NotAvailableListComponent implements OnInit {
         },
         error => {
           console.log(error)
-
         });
   }
+
   getunallocatedreport() {
     this.nolist = false;
     let params = new HttpParams().set('unitholderid', this.userselect.UnitholderId);
@@ -80,14 +79,13 @@ export class NotAvailableListComponent implements OnInit {
           if(this.unallocatedreportlist.unallocatedreport.length == 0){
             this.nolist = true;
             console.log('notlist');
-            
           }
         },
         error => {
           console.log(error)
-
         });
   }
+
   print() {
     window.focus();
     window.print();

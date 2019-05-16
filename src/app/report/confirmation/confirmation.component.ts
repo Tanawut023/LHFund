@@ -44,6 +44,7 @@ export class ConfirmationComponent implements OnInit {
 
     this.minDate = { year: endDate.getFullYear(), month: endDate.getMonth() + 1, day: endDate.getDate() };
   }
+
   onChange() {
 
     for (let i = 0; i < this.userall.unitholderlist.length; i++) {
@@ -52,6 +53,7 @@ export class ConfirmationComponent implements OnInit {
       }
     }
   }
+
   createFormValidate() {
     this.formconfirm = this.fb.group({
       dateorder: [null,
@@ -61,6 +63,7 @@ export class ConfirmationComponent implements OnInit {
       ]
     })
   }
+
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
       const control = formGroup.get(field);
@@ -71,9 +74,9 @@ export class ConfirmationComponent implements OnInit {
       }
     })
   }
+
   isFieldNotValid(field: string) {
     return !this.formconfirm.get(field).valid && this.formconfirm.get(field).touched
-
   }
 
   ValidatorDisplayCss(field: string) {
@@ -81,6 +84,7 @@ export class ConfirmationComponent implements OnInit {
       'has-danger': this.isFieldNotValid(field)
     };
   }
+
   getSelectListUnitholder() {
     this.basedataservice.getSelectListUnitholder()
       .pipe(first())
@@ -88,19 +92,20 @@ export class ConfirmationComponent implements OnInit {
         data => {
           setTimeout(() => {
             $('.selectpicker').selectpicker('refresh');
-        }, 100);
+          }, 100);
           this.userall = data;
           this.unitholderno = this.userall.unitholderlist[0];
           this.userselect = this.userall.unitholderlist[0];
         },
         error => {
           console.log(error)
-
         });
   }
+
   getEffectiveDate() {
     return this.model.year + "-" + this.model.month + "-" + this.model.day;
   }
+
   OnSubmitd() {
     this.confirmlist = [];
     this.loading = true;
@@ -108,81 +113,48 @@ export class ConfirmationComponent implements OnInit {
     var user;
     console.log(this.model);
     console.log(this.formconfirm);
-    if(this.formconfirm.valid){
+    if (this.formconfirm.valid) {
       user = {
         UnitholderID: this.userselect.UnitholderId,
         EffectiveDate: this.formconfirm.controls.dateorder.value.year + "-" + this.formconfirm.controls.dateorder.value.month + "-" + this.formconfirm.controls.dateorder.value.day
       }
-
       console.log(user);
-
       this.reportservice.confirmation(user)
         .subscribe(
           data => {
             console.log(data);
             this.confirmlist = data;
-            if(this.confirmlist.length == 0){
+            if (this.confirmlist.length == 0) {
               this.nolist = true;
               console.log('notlist');
-              
             }
             console.log(this.confirmlist.length);
-            
             this.loading = false;
           },
           error => {
             console.log(error)
             this.loading = false;
-  
+
           });
-    }else{
-        this.loading = false;
-        this.validateAllFormFields(this.formconfirm);
-    
+    } else {
+      this.loading = false;
+      this.validateAllFormFields(this.formconfirm);
     }
-    // if (typeof this.model == 'undefined') {
-    //   console.log('test');
-    //   user = {
-    //     UnitholderID: this.userselect.UnitholderId
-    //   }
-
-    // }
-    // else if (typeof this.model !== 'undefined') {
-    //   console.log("test3");
-      
-    // }
-    // } else {
-    //   console.log('test2');
-    //   console.log(this.fundname);
-
-    //   user = {
-    //     UnitholderID: this.userselect.UnitholderId,
-    //     FundID: this.fundname.FundID,
-    //     StartOrderDate: this.getstartdate(),
-    //     EndOrderDate: this.getenddate()
-    //   }
-    // }
-   
-
-
   }
+
   download(arr) {
     this.loading = true;
     var i = arr;
     var filename = this.confirmlist[i].ConfirmationName;
-
     var user = {
       UnitholderID: this.userselect.UnitholderId,
       OrderID: this.confirmlist[i].OrderID,
       TxType: this.type(this.confirmlist[i].TxType)
     }
     console.log(user);
-
     if (user instanceof HttpParams) {
       return 'application/x-www-form-urlencoded;charset=UTF-8';
     }
-
-
     this.reportservice.confirmationdownload(user)
       .subscribe(
         data => {
@@ -192,21 +164,15 @@ export class ConfirmationComponent implements OnInit {
         error => {
           console.log(error)
           console.log('here');
-
-          // setTimeout(() => {
           $('#message').modal({
             backdrop: 'static',
             keyboard: false,
             show: true
           });
-          // }, 100);
-
           this.loading = false;
-
         });
-
-
   }
+
   type(type) {
     var retype;
     switch (type) {
@@ -226,8 +192,8 @@ export class ConfirmationComponent implements OnInit {
         retype = 'SWI'
         return retype;
     }
-
   }
+
   print() {
     window.focus();
     window.print();

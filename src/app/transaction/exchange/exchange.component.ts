@@ -48,6 +48,7 @@ export class ExchangeComponent implements OnInit {
     loading = false;
     lang: Observable<string>;
     userdetail: any;
+    lesszero: boolean;
 
 
     constructor(
@@ -81,6 +82,7 @@ export class ExchangeComponent implements OnInit {
         })
         this.userdetail = this.basedataservice.getmemberInfo();
     }
+
     checkpage(page) {
         window.scroll(0, 0);
         console.log(page)
@@ -106,8 +108,6 @@ export class ExchangeComponent implements OnInit {
                             show: true
                         });
                     }, 100);
-
-
                 }
                 this.page = "exchange-step1";
                 break;
@@ -119,14 +119,12 @@ export class ExchangeComponent implements OnInit {
                 this.page = "exchange-view-list";
                 break;
             default:
-
                 this.page = "exchange";
                 console.log(this.page)
                 break;
         }
-
-
     }
+
     onChange() {
 
         for (let i = 0; i < this.userall.unitholderlist.length; i++) {
@@ -136,11 +134,10 @@ export class ExchangeComponent implements OnInit {
                 this.getorderinfolist();
             }
         }
-
-
     }
 
     getSelectListUnitholder() {
+
         this.orderservice.getSelectListUnitholder()
             .pipe(first())
             .subscribe(
@@ -151,20 +148,16 @@ export class ExchangeComponent implements OnInit {
                     }, 100);
                     this.userall = data;
                     if (this.userall.unitholderlist.length > 0) {
-                        
                         this.unitholderno = this.userall.unitholderlist[0];
                         this.userselect = this.userall.unitholderlist[0];
                         this.getselectlistfundlistandbankaccount();
                         this.getorderinfolist();
-
-                    }else{
+                    } else {
                         this.userall = '';
                     }
-
                 },
                 error => {
                     console.log(error)
-
                 });
     }
 
@@ -185,12 +178,9 @@ export class ExchangeComponent implements OnInit {
                 },
                 error => {
                     console.log(error)
-
                 });
-
     }
     fundlistonChange() {
-        // this.holdingbalanceselected = this.formexchange.controls.fundsource.value;
         this.getfundswitchingdestination();
     }
 
@@ -201,14 +191,14 @@ export class ExchangeComponent implements OnInit {
             TxType: "Switching"
         }
         console.log(user);
-        
+
         this.orderservice.getorderinfolist(user)
             .pipe(first())
             .subscribe(
                 data => {
                     console.log(data);
                     this.orderswitchinglist = data;
-                    this.nolist =false;
+                    this.nolist = false;
                     if (this.orderswitchinglist.orderinfolist) {
 
                         var ref;
@@ -219,69 +209,6 @@ export class ExchangeComponent implements OnInit {
                         var fundswitching;
                         var text_refno = "";
                         this.nolist = false;
-                        // var i_list = 0;
-                        // var getdatain_out = [];
-                        // for (let i = 0; i < this.orderswitchinglist.orderinfolist.length; i++) {
-                        //     if (array.indexOf(this.orderswitchinglist.orderinfolist[i].ReferenceNo) == -1) {
-                        //         array.push(this.orderswitchinglist.orderinfolist[i].ReferenceNo);
-
-
-                        //         getdatain_out["Data_IN_Out_" + i_list + "_0"] = this.orderswitchinglist.orderinfolist[i];
-
-                        //         i_list++;
-                        //     }
-                        //     else {
-                        //         getdatain_out["Data_IN_Out_" + i_list + "_1"] = this.orderswitchinglist.orderinfolist[i];
-                        //     }
-                        // }
-                        // var i_list2 = 0;
-                        // for (let y = 0; y < array.length; y++) {
-                        //     if (getdatain_out["Data_IN_Out_" + i_list + "_0"].TxType == "Switching In") {
-                        //         if (getdatain_out["Data_IN_Out_" + i_list + "_1"].TxType == "Switching Out") {
-                        //             orderlist.push({
-                        //                 FundSource: getdatain_out[i_list][1].FundName,
-                        //                 funddestination: getdatain_out[i_list][0].FundName,
-                        //                 FundSourceCode: getdatain_out[i_list][1].FundCode,
-                        //                 funddestinationCode: getdatain_out[i_list][0].FundCode,
-                        //                 Amount: getdatain_out[i_list][0].OrderAmount,
-                        //                 Unit: getdatain_out[i_list][0].OrderUnit,
-                        //                 OrderDate: getdatain_out[i_list][0].OrderDate,
-                        //                 OrderTime: getdatain_out[i_list][0].OrderTime,
-                        //                 EffectiveDateSource: getdatain_out[i_list][1].EffectiveDate,
-                        //                 EffectiveDatedestiantion: getdatain_out[i_list][0].EffectiveDate,
-                        //                 UnitHolderID: getdatain_out[i_list][1].UnitHolderID,
-                        //                 OrderID: getdatain_out[i_list][1].OrderID
-
-                        //             })
-                        //         }
-                        //     }
-                        //     else if (getdatain_out["Data_IN_Out_" + i_list + "_0"].TxType == "Switching Out") {
-                        //         if (getdatain_out["Data_IN_Out_" + i_list + "_1"].TxType == "Switching In") {
-                        //             orderlist.push({
-                        //                 FundSource: getdatain_out[i_list][0].FundName,
-                        //                 funddestination: getdatain_out[i_list][1].FundName,
-                        //                 FundSourceCode: getdatain_out[i_list][0].FundCode,
-                        //                 funddestinationCode: getdatain_out[i_list][1].FundCode,
-                        //                 Amount: getdatain_out[i_list][1].OrderAmount,
-                        //                 Unit: getdatain_out[i_list][1].OrderUnit,
-                        //                 OrderDate: getdatain_out[i_list][1].OrderDate,
-                        //                 OrderTime: getdatain_out[i_list][1].OrderTime,
-                        //                 EffectiveDateSource: getdatain_out[i_list][0].EffectiveDate,
-                        //                 EffectiveDatedestiantion: getdatain_out[i_list][1].EffectiveDate,
-                        //                 UnitHolderID: getdatain_out[i_list][0].UnitHolderID,
-                        //                 OrderID: getdatain_out[i_list][0].OrderID
-
-                        //             })
-                        //         }
-                        //     }
-                        //     i_list2++;
-
-
-
-
-
-                        // console.log(ReferenceNo);
-
                         for (let i = 0; i < this.orderswitchinglist.orderinfolist.length; i++) {
 
                             if (this.orderswitchinglist.orderinfolist[i].ReferenceNo != text_refno) {
@@ -289,33 +216,26 @@ export class ExchangeComponent implements OnInit {
                                 var text_switchingOut;
                                 var iswitching = 1;
                                 var Datahas = 0;
-
                                 console.log('1');
-
                             }
 
                             if (this.orderswitchinglist.orderinfolist[i].TxType == "Switching In") {
                                 text_switchingIn = this.orderswitchinglist.orderinfolist[i];
                                 console.log('2');
-
                             }
                             else if (this.orderswitchinglist.orderinfolist[i].TxType == "Switching Out") {
                                 text_switchingOut = this.orderswitchinglist.orderinfolist[i];
                                 console.log('3');
-
                             }
 
                             if ((this.orderswitchinglist.orderinfolist[i].TxType == "Switching In" || this.orderswitchinglist.orderinfolist[i].TxType == "Switching Out") && this.orderswitchinglist.orderinfolist[i].OrderStatus == 'Initial') {
                                 Datahas++;
                                 this.nolist = true;
                                 console.log('4');
-
                             }
 
                             if (iswitching == 2) {
                                 console.log('5');
-
-
                                 array.push({
                                     FundSource: text_switchingOut.FundName,
                                     funddestination: text_switchingIn.FundName,
@@ -331,55 +251,44 @@ export class ExchangeComponent implements OnInit {
                                     EffectiveDatedestiantion: text_switchingIn.EffectiveDate,
                                     UnitHolderID: text_switchingOut.UnitHolderID,
                                     OrderID: text_switchingOut.OrderID
-
                                 })
-
                             }
                             text_refno = this.orderswitchinglist.orderinfolist[i].ReferenceNo;
                             if (this.orderswitchinglist.orderinfolist[i].TxType == "Switching In" || this.orderswitchinglist.orderinfolist[i].TxType == "Switching Out") {
                                 iswitching++;
                                 console.log('6');
-
                             }
-
-                            // console.log(array);
                         }
                         this.orderswitchinglist = array;
                         console.log(this.orderswitchinglist);
                     }
-
-
-
-
-
                 },
                 error => {
                     console.log(error);
-
                     this.message = error.error.messages;
                     $('#message').modal({
                         backdrop: 'static',
                         keyboard: false,
                         show: true
                     });
-
                 });
     }
+
     getfundswitchingdestination() {
+        $(".se-pre-con").show();
         const user = {
             UnitHolderID: this.userselect.UnitholderId,
             FundID: this.formexchange.controls.fundsource.value.FundID
         }
         console.log(user);
 
-
         this.orderservice.changefundswitchingsource(user)
             .pipe(first())
             .subscribe(
                 data => {
                     console.log(data);
+                    $(".se-pre-con").fadeOut();
                     this.funddestinationlist = data;
-
                     if (this.page !== "exchange-step2") {
                         setTimeout(() => {
                             $('.selectpicker').selectpicker('refresh');
@@ -389,67 +298,11 @@ export class ExchangeComponent implements OnInit {
                         this.formexchange.controls['type'].reset();
                         this.formexchange.controls['type'].updateValueAndValidity();
 
-
-                        //     var amount = this.formexchange.controls.amount.value;
-                        //     amount = amount.replace(",", "");
-                        //     amount = parseFloat(amount);
-
-                        //     if (this.Type == "Amount") {
-                        //         var tofix: any = amount.toFixed(2);
-                        //         if (amount > this.funddestinationlist.availablebalance.AvailableAmount) {
-                        //             console.log("false");
-                        //             var AvailableAmount = parseFloat(this.funddestinationlist.availablebalance.AvailableAmount);
-                        //             tofix = AvailableAmount.toFixed(2);
-                        //             tofix = tofix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                        //             this.formexchange.controls['amount'].setValue(tofix, { onlySelf: true });
-
-                        //         }
-                        //         else {
-                        //             this.formexchange.controls['amount'].setValue(tofix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), { onlySelf: true });
-                        //         }
-
-                        //     }
-                        //     else if (this.Type == "Unit") {
-                        //         var tofix: any = amount.toFixed(4);
-                        //         if (amount > this.funddestinationlist.availablebalance.AvailableUnit) {
-                        //             console.log("false");
-                        //             var AvailableUnit = parseFloat(this.funddestinationlist.availablebalance.AvailableUnit);
-                        //             tofix = AvailableUnit.toFixed(4);
-                        //             var parts = tofix.toString().split(".");
-                        //             parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                        //             this.formexchange.controls['amount'].setValue(parts.join("."), { onlySelf: true });
-
-                        //         }
-                        //         else {
-                        //             var parts = tofix.toString().split(".");
-                        //             parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                        //             this.formexchange.controls['amount'].setValue(parts.join("."), { onlySelf: true });
-                        //         }
-                        //     } else if (this.Type == "All") {
-                        //         var tofix: any = amount.toFixed(4);
-                        //         var AvailableUnit = parseFloat(this.funddestinationlist.availablebalance.AvailableUnit);
-                        //         tofix = AvailableUnit.toFixed(4);
-                        //         var parts = tofix.toString().split(".");
-                        //         parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                        //         this.formexchange.controls['amount'].setValue(parts.join("."), { onlySelf: true });
-                        //     }
-                        // }
-                        // else if (this.Type == 'All') {
-                        //     if (this.funddestinationlist.availablebalance.AvailableUnit) {
-                        //         var n = parseFloat(this.funddestinationlist.availablebalance.AvailableUnit);
-                        //         tofix = n.toFixed(4);
-                        //         var parts = tofix.toString().split(".");
-                        //         parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                        //         this.formexchange.controls['amount'].setValue(parts.join("."), { onlySelf: true });
-                        //     }
                     }
-
                     if (this.funddestinationlist.fundswitchingdestination && this.page !== "exchange-step2") {
-                        // this.funddestination = 0;
                         if (this.formexchange.controls.funddestination.value) {
                             this.formexchange.controls['funddestination'].reset();;
                         }
-
                     }
 
                 },
@@ -461,10 +314,9 @@ export class ExchangeComponent implements OnInit {
                         keyboard: false,
                         show: true
                     });
-
                 });
-
     }
+
     createFormValidate() {
         this.formexchange = this.fb.group({
             amount: [null,
@@ -491,6 +343,7 @@ export class ExchangeComponent implements OnInit {
 
         })
     }
+
     validateAllFormFields(formGroup: FormGroup) {
         Object.keys(formGroup.controls).forEach(field => {
             const control = formGroup.get(field);
@@ -501,9 +354,9 @@ export class ExchangeComponent implements OnInit {
             }
         })
     }
+
     isFieldNotValid(field: string) {
         return !this.formexchange.get(field).valid && this.formexchange.get(field).touched
-
     }
 
     ValidatorDisplayCss(field: string) {
@@ -511,25 +364,23 @@ export class ExchangeComponent implements OnInit {
             'has-danger': this.isFieldNotValid(field)
         };
     }
+
     numberOnly(event): boolean {
         const charCode = (event.which) ? event.which : event.keyCode;
         if (charCode > 31 && (charCode < 48 || charCode > 57)) {
             return false;
         }
         return true;
-
     }
+
     notmorethan() {
         console.log(this.formexchange.controls.amount.value);
         if (this.formexchange.controls.amount.value) {
             var amount = this.formexchange.controls.amount.value;
             amount = amount.replace(",", "");
             amount = parseFloat(amount);
-
             console.log(amount);
         }
-
-
 
         if (this.Type == "Amount") {
             if (amount > this.funddestinationlist.availablebalance.AvailableAmount) {
@@ -539,7 +390,6 @@ export class ExchangeComponent implements OnInit {
             }
             else {
                 console.log("true");
-                // this.formexchange.controls['amount'].setValue(n, { onlySelf: true });
                 return true;
             }
         }
@@ -551,7 +401,6 @@ export class ExchangeComponent implements OnInit {
             }
             else {
                 console.log("true");
-                // this.formexchange.controls['amount'].setValue(n, { onlySelf: true });
                 return true;
             }
         }
@@ -559,22 +408,18 @@ export class ExchangeComponent implements OnInit {
             this.formexchange.controls['type'].markAsTouched();
             return false
         }
-
-
-
     }
+
     tofix(value) {
         console.log(value);
         if (this.Type == 'Amount') {
             if (value) {
                 var values = value;
                 values = values.replace(",", "");
-                // var m = value.toString().split(",");
                 var n = parseFloat(values);
                 var tofix: any = n.toFixed(2);
                 tofix = tofix.toString().replace(/\B(?=(\f{3})+(?!\f))/g, ",");
                 console.log(tofix);
-
                 this.formexchange.controls['amount'].setValue(tofix, { onlySelf: true });
             }
         }
@@ -582,20 +427,16 @@ export class ExchangeComponent implements OnInit {
             if (value) {
                 var values = value;
                 values = values.replace(",", "");
-                // var m = value.toString().split(",");
                 var n = parseFloat(values);
                 var tofix: any = n.toFixed(4);
                 var parts = tofix.toString().split(".");
                 parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                // tofix = tofix.toString().replace(/\B(?=(\f{3})+(?!\f))/g, ",");
                 console.log(tofix);
-
                 this.formexchange.controls['amount'].setValue(parts.join("."), { onlySelf: true });
             }
         }
-
-
     }
+
     notfill(event): boolean {
         const charCode = (event.which) ? event.which : event.keyCode;
         if (this.Type == "") {
@@ -606,65 +447,12 @@ export class ExchangeComponent implements OnInit {
             return false;
         }
         return true;
-
     }
 
     onChangeType() {
         console.log(this.formexchange.controls.type.value);
         this.Type = this.formexchange.controls.type.value;
         this.formexchange.controls.amount.reset();
-        // if (this.formexchange.controls.amount.value) {
-        //     var amount = this.formexchange.controls.amount.value;
-        //     amount = amount.replace(",", "");
-        //     amount = parseFloat(amount);
-
-
-
-        //     if (this.Type == 'Amount') {
-        //         var tofix: any = amount.toFixed(2);
-        //         if (this.formexchange.controls.fundsource.value) {
-
-        //             if (amount > this.funddestinationlist.availablebalance.AvailableAmount) {
-        //                 var n = parseFloat(this.funddestinationlist.availablebalance.AvailableAmount);
-        //                 tofix = n.toFixed(2);
-        //                 tofix = tofix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        //                 this.formexchange.controls['amount'].setValue(tofix, { onlySelf: true });
-        //             } else {
-        //                 this.formexchange.controls['amount'].setValue(tofix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), { onlySelf: true });
-        //             }
-        //         }
-        //         else {
-        //             this.formexchange.controls['amount'].setValue(tofix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), { onlySelf: true });
-        //         }
-
-
-        //     }
-        //     else if (this.Type == 'Unit') {
-        //         var tofix: any = amount.toFixed(4);
-        //         if (this.formexchange.controls.fundsource.value) {
-
-        //             if (amount > this.funddestinationlist.availablebalance.AvailableUnit) {
-        //                 var n = parseFloat(this.funddestinationlist.availablebalance.AvailableUnit);
-        //                 tofix = n.toFixed(4);
-        //                 var parts = tofix.toString().split(".");
-        //                 parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        //                 this.formexchange.controls['amount'].setValue(parts.join("."), { onlySelf: true });
-        //             } else {
-        //                 var parts = tofix.toString().split(".");
-        //                 parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        //                 this.formexchange.controls['amount'].setValue(parts.join("."), { onlySelf: true });
-        //             }
-        //         }
-        //         else {
-        //             var parts = tofix.toString().split(".");
-        //             parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        //             this.formexchange.controls['amount'].setValue(parts.join("."), { onlySelf: true });
-        //         }
-
-
-        //     }
-
-        // } 
         if (this.Type == 'All' && this.formexchange.controls.fundsource.value) {
             if (this.funddestinationlist.availablebalance.AvailableUnit != 0) {
                 var n = parseFloat(this.funddestinationlist.availablebalance.AvailableUnit);
@@ -673,7 +461,7 @@ export class ExchangeComponent implements OnInit {
                 parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 this.formexchange.controls['amount'].setValue(parts.join("."), { onlySelf: true });
                 this.formexchange.controls['amount'].updateValueAndValidity();
-            }else{
+            } else {
                 this.formexchange.controls['amount'].setValue(0, { onlySelf: true });
                 this.formexchange.controls['amount'].updateValueAndValidity();
             }
@@ -683,18 +471,13 @@ export class ExchangeComponent implements OnInit {
     onBlurType() {
         console.log(this.formexchange.controls.type.value);
         this.Type = this.formexchange.controls.type.value;
-        // this.formexchange.controls.amount.reset();
         if (this.formexchange.controls.amount.value) {
             var amount = this.formexchange.controls.amount.value;
             amount = amount.replace(",", "");
             amount = parseFloat(amount);
-
-
-
             if (this.Type == 'Amount') {
                 var tofix: any = amount.toFixed(2);
                 if (this.formexchange.controls.fundsource.value) {
-
                     if (amount > this.funddestinationlist.availablebalance.AvailableAmount) {
                         var n = parseFloat(this.funddestinationlist.availablebalance.AvailableAmount);
                         tofix = n.toFixed(2);
@@ -707,13 +490,10 @@ export class ExchangeComponent implements OnInit {
                 else {
                     this.formexchange.controls['amount'].setValue(tofix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), { onlySelf: true });
                 }
-
-
             }
             else if (this.Type == 'Unit') {
                 var tofix: any = amount.toFixed(4);
                 if (this.formexchange.controls.fundsource.value) {
-
                     if (amount > this.funddestinationlist.availablebalance.AvailableUnit) {
                         var n = parseFloat(this.funddestinationlist.availablebalance.AvailableUnit);
                         tofix = n.toFixed(4);
@@ -731,11 +511,8 @@ export class ExchangeComponent implements OnInit {
                     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     this.formexchange.controls['amount'].setValue(parts.join("."), { onlySelf: true });
                 }
-
-
             }
-
-        } 
+        }
         else if (this.Type == 'All' && this.formexchange.controls.fundsource.value) {
             if (this.funddestinationlist.availablebalance.AvailableUnit != 0) {
                 var n = parseFloat(this.funddestinationlist.availablebalance.AvailableUnit);
@@ -744,18 +521,41 @@ export class ExchangeComponent implements OnInit {
                 parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 this.formexchange.controls['amount'].setValue(parts.join("."), { onlySelf: true });
                 this.formexchange.controls['amount'].updateValueAndValidity();
-            }else{
+            } else {
                 this.formexchange.controls['amount'].setValue(0, { onlySelf: true });
                 this.formexchange.controls['amount'].updateValueAndValidity();
             }
         }
     }
+
     onSubmited() {
         console.log(this.formexchange);
         this.Islevel = false;
         this.Isprotect = false;
         this.loading = true;
+        this.lesszero = false;
+        var cd = new Date();
+        var Y1 = ((cd.getFullYear() * 1) - 1);
+        var Y2 = ((cd.getFullYear() * 1) - 2);
+        var Y3 = ((cd.getFullYear() * 1) - 3);
+        var M = cd.getMonth();
+        var D = cd.getDate();
+        var d1 = new Date(Y1 + "-" + M + "-" + D);
+        var d2 = new Date(Y2 + "-" + M + "-" + D);
+        var d3 = new Date(Y3 + "-" + M + "-" + D);
+        var lastupdate = new Date(this.userselect.RiskLevel1LastUpdated);
 
+        if (this.funddestinationlist.availablebalance.AvailableUnit == 0 && this.funddestinationlist.availablebalance.AvailableAmount == 0) {
+            this.translate.get('Modal.not-or').subscribe((res: string) => {
+                console.log(res);
+                this.message = res;
+            });
+            $('#message').modal({
+                backdrop: 'static',
+                keyboard: false,
+                show: true
+            });
+        }
         if (this.userselect.RiskLevelExpire == true) {
             console.log('expire');
             this.loading = false;
@@ -772,137 +572,137 @@ export class ExchangeComponent implements OnInit {
                     var amount = this.formexchange.controls.amount.value;
                     amount = amount.replace(",", "");
                     amount = parseFloat(amount);
-
                     console.log(amount);
                 }
+                if (amount > 0) {
 
-                if (this.formexchange.controls.date.value) {
-                    this.date = this.formexchange.controls.date.value.year + "-" + this.formexchange.controls.date.value.month + "-" + this.formexchange.controls.date.value.day;
-                    this.date = boostrapdatepicker(this.date);
+                    if (this.formexchange.controls.date.value) {
+                        this.date = this.formexchange.controls.date.value.year + "-" + this.formexchange.controls.date.value.month + "-" + this.formexchange.controls.date.value.day;
+                        // this.date = boostrapdatepicker(this.date);
 
-                    if (this.Type == "Amount") {
-                        user = {
-                            UnitHolderID: this.userselect.UnitholderId,
-                            FundID: this.formexchange.controls.fundsource.value.FundID,
-                            CounterFundID: this.formexchange.controls.funddestination.value.FundID,
-                            TxType: "Switching",
-                            OrderUnitType: "Amount",
-                            OrderUnit: 0,
-                            OrderBankAccountID: 0,
-                            OrderAmount: amount,
-                            PaymentMethod: "Cash",
-                            orderdate: this.date
+                        if (this.Type == "Amount") {
+                            user = {
+                                UnitHolderID: this.userselect.UnitholderId,
+                                FundID: this.formexchange.controls.fundsource.value.FundID,
+                                CounterFundID: this.formexchange.controls.funddestination.value.FundID,
+                                TxType: "Switching",
+                                OrderUnitType: "Amount",
+                                OrderUnit: 0,
+                                OrderBankAccountID: 0,
+                                OrderAmount: amount,
+                                PaymentMethod: "Cash",
+                                orderdate: this.date
+                            }
                         }
-                    }
-                    else if (this.Type == "Unit") {
-                        user = {
-                            UnitHolderID: this.userselect.UnitholderId,
-                            FundID: this.formexchange.controls.fundsource.value.FundID,
-                            CounterFundID: this.formexchange.controls.funddestination.value.FundID,
-                            TxType: "Switching",
-                            OrderUnitType: "Unit",
-                            OrderUnit: amount,
-                            OrderBankAccountID: 0,
-                            OrderAmount: 0,
-                            PaymentMethod: "Cash",
-                            orderdate: this.date
+                        else if (this.Type == "Unit") {
+                            user = {
+                                UnitHolderID: this.userselect.UnitholderId,
+                                FundID: this.formexchange.controls.fundsource.value.FundID,
+                                CounterFundID: this.formexchange.controls.funddestination.value.FundID,
+                                TxType: "Switching",
+                                OrderUnitType: "Unit",
+                                OrderUnit: amount,
+                                OrderBankAccountID: 0,
+                                OrderAmount: 0,
+                                PaymentMethod: "Cash",
+                                orderdate: this.date
+                            }
+                        }
+                        else {
+                            user = {
+                                UnitHolderID: this.userselect.UnitholderId,
+                                FundID: this.formexchange.controls.fundsource.value.FundID,
+                                CounterFundID: this.formexchange.controls.funddestination.value.FundID,
+                                TxType: "Switching",
+                                OrderUnitType: "All",
+                                OrderUnit: this.funddestinationlist.availablebalance.AvailableUnit,
+                                OrderBankAccountID: 0,
+                                OrderAmount: 0,
+                                PaymentMethod: "Cash",
+                                orderdate: this.date
+                            }
                         }
                     }
                     else {
-                        user = {
-                            UnitHolderID: this.userselect.UnitholderId,
-                            FundID: this.formexchange.controls.fundsource.value.FundID,
-                            CounterFundID: this.formexchange.controls.funddestination.value.FundID,
-                            TxType: "Switching",
-                            OrderUnitType: "All",
-                            OrderUnit: this.funddestinationlist.availablebalance.AvailableUnit,
-                            OrderBankAccountID: 0,
-                            OrderAmount: 0,
-                            PaymentMethod: "Cash",
-                            orderdate: this.date
+                        if (this.Type == "Amount") {
+                            user = {
+                                UnitHolderID: this.userselect.UnitholderId,
+                                FundID: this.formexchange.controls.fundsource.value.FundID,
+                                CounterFundID: this.formexchange.controls.funddestination.value.FundID,
+                                TxType: "Switching",
+                                OrderUnitType: "Amount",
+                                OrderUnit: 0,
+                                OrderBankAccountID: 0,
+                                OrderAmount: amount,
+                                PaymentMethod: "Cash",
+                                orderdate: null
+                                // getDate()
+                            }
+                        }
+                        else if (this.Type == "Unit") {
+                            user = {
+                                UnitHolderID: this.userselect.UnitholderId,
+                                FundID: this.formexchange.controls.fundsource.value.FundID,
+                                CounterFundID: this.formexchange.controls.funddestination.value.FundID,
+                                TxType: "Switching",
+                                OrderUnitType: "Unit",
+                                OrderUnit: amount,
+                                OrderBankAccountID: 0,
+                                OrderAmount: 0,
+                                PaymentMethod: "Cash",
+                                orderdate: null
+                                // getDate()
+                            }
+                        }
+                        else {
+                            user = {
+                                UnitHolderID: this.userselect.UnitholderId,
+                                FundID: this.formexchange.controls.fundsource.value.FundID,
+                                CounterFundID: this.formexchange.controls.funddestination.value.FundID,
+                                TxType: "Switching",
+                                OrderUnitType: "All",
+                                OrderUnit: this.funddestinationlist.availablebalance.AvailableUnit,
+                                OrderBankAccountID: 0,
+                                OrderAmount: 0,
+                                PaymentMethod: "Cash",
+                                orderdate: null
+                                // getDate()
+                            }
                         }
                     }
+                    console.log(user);
+                    this.orderservice.submitorder(user)
+                        .pipe(first())
+                        .subscribe(
+                            data => {
+                                console.log(data);
+                                this.resultsubmit = data;
+                                this.loading = false;
+                                this.checkexpireandlevel();
+                            },
+                            error => {
+                                console.log(error);
+                                this.loading = false;
+                                this.message = error.error.messages;
+                                $('#message').modal({
+                                    backdrop: 'static',
+                                    keyboard: false,
+                                    show: true
+                                });
+                            });
                 }
                 else {
-                    if (this.Type == "Amount") {
-                        user = {
-                            UnitHolderID: this.userselect.UnitholderId,
-                            FundID: this.formexchange.controls.fundsource.value.FundID,
-                            CounterFundID: this.formexchange.controls.funddestination.value.FundID,
-                            TxType: "Switching",
-                            OrderUnitType: "Amount",
-                            OrderUnit: 0,
-                            OrderBankAccountID: 0,
-                            OrderAmount: amount,
-                            PaymentMethod: "Cash",
-                            orderdate: null
-                            // getDate()
-                        }
-                    }
-                    else if (this.Type == "Unit") {
-                        user = {
-                            UnitHolderID: this.userselect.UnitholderId,
-                            FundID: this.formexchange.controls.fundsource.value.FundID,
-                            CounterFundID: this.formexchange.controls.funddestination.value.FundID,
-                            TxType: "Switching",
-                            OrderUnitType: "Unit",
-                            OrderUnit: amount,
-                            OrderBankAccountID: 0,
-                            OrderAmount: 0,
-                            PaymentMethod: "Cash",
-                            orderdate: null
-                            // getDate()
-                        }
-                    }
-                    else {
-                        user = {
-                            UnitHolderID: this.userselect.UnitholderId,
-                            FundID: this.formexchange.controls.fundsource.value.FundID,
-                            CounterFundID: this.formexchange.controls.funddestination.value.FundID,
-                            TxType: "Switching",
-                            OrderUnitType: "All",
-                            OrderUnit: this.funddestinationlist.availablebalance.AvailableUnit,
-                            OrderBankAccountID: 0,
-                            OrderAmount: 0,
-                            PaymentMethod: "Cash",
-                            orderdate: null
-                            // getDate()
-                        }
-                    }
+                    this.loading = false;
                 }
-                console.log(user);
-                this.orderservice.submitorder(user)
-                    .pipe(first())
-                    .subscribe(
-                        data => {
-                            console.log(data);
-                            this.resultsubmit = data;
-                            this.loading = false;
-                            this.checkexpireandlevel();
-                        },
-                        error => {
-                            console.log(error);
-                            this.loading = false;
-                            this.message = error.error.messages;
-                            $('#message').modal({
-                                backdrop: 'static',
-                                keyboard: false,
-                                show: true
-                            });
-
-                        });
             }
             else {
                 this.isNotValid = true;
                 this.validateAllFormFields(this.formexchange);
                 this.loading = false;
             }
-
         }
-
-
-
     }
+
     confirmswitching() {
         this.loading = true;
         this.orderservice.confirmorder(this.resultsubmit.data)
@@ -912,18 +712,16 @@ export class ExchangeComponent implements OnInit {
                     console.log(data);
                     this.loading = false;
                     this.checkpage("exchange-step2");
+
                     this.translate.get('Modal.succ').subscribe((res: string) => {
                         console.log(res);
                         this.message = res;
-                        //=> 'hello world'
                     });
-                    // this.message = 'ทำรายการสำเร็จ';
                     $('#message').modal({
                         backdrop: 'static',
                         keyboard: false,
                         show: true
                     });
-
                 },
                 error => {
                     console.log(error);
@@ -934,9 +732,9 @@ export class ExchangeComponent implements OnInit {
                         keyboard: false,
                         show: true
                     });
-
                 });
     }
+
     checkexpireandlevel() {
         this.loading = true;
         const user = {
@@ -992,16 +790,17 @@ export class ExchangeComponent implements OnInit {
             }
         }, 100)
     }
+
     reset() {
         console.log('reset');
         this.Type = "";
         this.funddestinationlist = "";
+        this.lesszero = false;
         this.createFormValidate();
         this.getselectlistfundlistandbankaccount();
-
     }
-    modaldeleteorder(order) {
 
+    modaldeleteorder(order) {
         this.deletedOrder = order;
         console.log(this.deletedOrder);
         $('#delete').modal({
@@ -1010,6 +809,7 @@ export class ExchangeComponent implements OnInit {
             show: true
         });
     }
+
     deleteorder() {
         const order = {
             UnitHolderID: this.deletedOrder.UnitHolderID,
@@ -1024,21 +824,16 @@ export class ExchangeComponent implements OnInit {
                     console.log(data);
                     this.deletedOrder = [];
                     this.getorderinfolist();
-                    // this.ordersubscriptionlist = data;
                     $('#delete').modal('toggle');
                     this.translate.get('Modal.delete-or').subscribe((res: string) => {
                         console.log(res);
                         this.message = res;
                     });
-                    // this.message = 'ลบรายการสำเร็จ';
                     $('#message').modal({
                         backdrop: 'static',
                         keyboard: false,
                         show: true
                     });
-
-                    
-
                 },
                 error => {
                     console.log(error);
@@ -1049,14 +844,15 @@ export class ExchangeComponent implements OnInit {
                         keyboard: false,
                         show: true
                     });
-
                 });
     }
+
     print() {
         window.focus();
         window.print();
     }
-    resetdate(){
+
+    resetdate() {
         this.formexchange.controls['date'].reset();
     }
 }

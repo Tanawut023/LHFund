@@ -41,14 +41,12 @@ export class ConclusionComponent implements OnInit {
     $('#mutual-tab-menu').find('li#menu2').addClass('current');
 
     var d = new Date();
-
     var array = new Array();
     for (var i = (d.getFullYear()); i >= 2011; i--) {
       array.push(i);
     }
     this.Year = array;
     console.log(this.Year);
-
     this.years = d.getFullYear();
 
     this.langservice.listen().subscribe((m: any) => {
@@ -56,8 +54,8 @@ export class ConclusionComponent implements OnInit {
       this.lang = m;
     })
   }
-  onChange() {
 
+  onChange() {
     for (let i = 0; i < this.userall.unitholderlist.length; i++) {
       if (this.userall.unitholderlist[i].UnitholderId == this.unitholderno.UnitholderId) {
         this.userselect = this.userall.unitholderlist[i];
@@ -72,16 +70,16 @@ export class ConclusionComponent implements OnInit {
         data => {
           setTimeout(() => {
             $('.selectpicker').selectpicker('refresh');
-        }, 100);
+          }, 100);
           this.userall = data;
           this.unitholderno = this.userall.unitholderlist[0];
           this.userselect = this.userall.unitholderlist[0];
         },
         error => {
           console.log(error)
-
         });
   }
+
   Onclick() {
     this.loading = true;
     this.nolist = false;
@@ -96,32 +94,29 @@ export class ConclusionComponent implements OnInit {
           console.log(data);
           this.loading = false;
           this.rmfltfannual = data;
-          if(this.rmfltfannual.orderltflist.length == 0 && this.rmfltfannual.orderrmflist.length == 0){
+          if (this.rmfltfannual.orderltflist.length == 0 && this.rmfltfannual.orderrmflist.length == 0) {
             this.nolist = true;
             console.log('notlist');
-            
           }
           this.format();
         },
         error => {
           console.log(error)
           this.loading = false;
-
         });
   }
+
   format() {
     var rmflist = new Array();
     var ltflist = new Array();
-
     console.log('test');
-
     var iRows = 1;
     var SumRows = 0;
     var balanceltf = 0;
     var balancermf = 0;
     for (let i = 0; i < this.rmfltfannual.orderltflist.length; i++) {
-      console.log('fori');
 
+      console.log('fori');
       var nav = 0;
       var unit = 0;
       var amount = 0;
@@ -146,14 +141,11 @@ export class ConclusionComponent implements OnInit {
             obj.FundNameEngGroup = this.rmfltfannual.orderltflist[i].FundNameEng;
           }
 
-
-
         }
         if ((y + 1) == SumRows || y == 9) {
           obj.nav = nav;
           obj.unit = unit;
           obj.amount = amount;
-
 
           unit = 0;
           nav = 0;
@@ -168,8 +160,6 @@ export class ConclusionComponent implements OnInit {
           count = 0;
         }
       }
-      // array.push({ balance: balance, tax: tax, net: net });
-
     }
 
     for (let i = 0; i < this.rmfltfannual.orderrmflist.length; i++) {
@@ -200,11 +190,10 @@ export class ConclusionComponent implements OnInit {
           }
 
         }
-        if ((y + 1) == SumRows || y== 9) {
+        if ((y + 1) == SumRows || y == 9) {
           obj.nav = nav;
           obj.unit = unit;
           obj.amount = amount;
-
 
           unit = 0;
           nav = 0;
@@ -219,23 +208,19 @@ export class ConclusionComponent implements OnInit {
           count = 0;
         }
       }
-      // array.push({ balance: balance, tax: tax, net: net });
-
     }
-    // this.holdtax = arraytax;
-    // this.caltable = array;
+
     this.balanceltf = balanceltf;
     this.balancermf = balancermf;
     this.ltflist = ltflist;
     this.rmflist = rmflist;
-    // console.log(this.caltable);
     console.log(this.ltflist);
     console.log(this.balanceltf);
-
   }
+
   print() {
     window.focus();
     window.print();
-}
+  }
 
 }

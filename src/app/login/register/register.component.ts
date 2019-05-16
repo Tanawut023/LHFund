@@ -254,7 +254,7 @@ export class RegisterComponent implements OnInit {
       email: [null,
         [
           Validators.required,
-          Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)
+          Validators.pattern(/^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)
         ]
       ],
 
@@ -269,22 +269,13 @@ export class RegisterComponent implements OnInit {
       ,
       IDcard: [null,
         [
-          Validators.required,
-          // Validators.minLength(7),
-          // Validators.maxLength(13),
-          // Validators.pattern(/^[A-Za-z0-9]*$/)
+          Validators.required
         ]
       ],
-      prefix: [null,
-        [
-          // Validators.required,
-          // Validators.pattern(/^[A-Za-zก-๗]{3,15}$/)
-        ]
-      ],
+      prefix: [null],
       recaptcha: [null,
         [
-          Validators.required,
-          // Validators.pattern(/^[A-Za-zก-๗]{3,15}$/)
+          Validators.required
         ]
       ]
     })
@@ -309,7 +300,6 @@ export class RegisterComponent implements OnInit {
           passwordConfirming,
           Validators.minLength(8),
           Validators.pattern(/^(?=.*[0-9])(?=.*[A-Z])(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/)
-          // Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)
         ]
       ],
     })
@@ -317,8 +307,6 @@ export class RegisterComponent implements OnInit {
       otp: [null,
         [
           Validators.required,
-          // Validators.minLength(10),
-          // Validators.maxLength(),
           Validators.pattern(/^[0-9]*$/)
         ]
       ]
@@ -384,14 +372,11 @@ export class RegisterComponent implements OnInit {
   requestotp() {
     let params = new HttpParams().set('refcode', this.User.refcode);
     this.loading = true;
-    // this.http.post('http://fundchoiceuat.lhfund.co.th/api/member/requestOTP', { params: params })
     this.authenticationService.requestOTP(params)
       .subscribe((data) => {
         console.log(data);
         this.User = data;
         this.loading = false;
-        // this.page = "otp";
-
       },
         (error) => {
           console.log(error);

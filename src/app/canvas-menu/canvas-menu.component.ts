@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 import { BaseApplicationDataService } from '../service/base-application-data.service';
 import { AuthenticationService } from '../service/authentication.service';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-canvas-menu',
   templateUrl: './canvas-menu.component.html',
@@ -16,46 +17,40 @@ export class CanvasMenuComponent implements OnInit {
   constructor(
     private translate: TranslateService,
     private authenticationService: AuthenticationService,
-    private basedataservice: BaseApplicationDataService
+    private basedataservice: BaseApplicationDataService,
+    private router: Router
   ) {
     translate.addLangs(["th", "en"]);
-   }
+  }
 
   ngOnInit() {
-    // this.translate.use('')
     this.foo1 = this.translate.currentLang;
     this.userdetail = this.basedataservice.getmemberInfo();
-    // console.log(this.userdetail)
-    if(this.foo1 == 'th'){
-      
+    if (this.foo1 == 'th') {
+
       this.langth = true;
     }
-    else if(this.foo1 == 'en'){
-      this.langen =true;
+    else if (this.foo1 == 'en') {
+      this.langen = true;
     }
   }
-  hidenav(){
+  hidenav() {
     $('body').removeClass('nav-expanded');
     $('#exit-canvas').removeClass('expanded');
   }
-  switchlang(lang){
-    if(lang=='th'){
+  switchlang(lang) {
+    if (lang == 'th') {
       this.translate.use('th');
       this.langen = false;
       this.langth = true;
-      localStorage.setItem('lang', lang );
-
-      
+      localStorage.setItem('lang', lang);
     }
-    else if(lang=='en'){
+    else if (lang == 'en') {
       this.translate.use('en');
       this.langth = false;
       this.langen = true;
-      localStorage.setItem('lang', lang );
-
-      // console.log(navigator.language);
-  }
-    
+      localStorage.setItem('lang', lang);
+    }
 
   }
   logout() {
@@ -65,4 +60,9 @@ export class CanvasMenuComponent implements OnInit {
     }, 100);
 
   }
+  navigate(url) {
+    $('body').removeClass('nav-expanded');
+    $('#exit-canvas').removeClass('expanded');
+    this.router.navigateByUrl(''+url+'');
+ }
 }

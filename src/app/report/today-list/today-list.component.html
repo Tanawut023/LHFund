@@ -7,21 +7,11 @@
 </style>
 <div class="fund-table-wrapper">
   <div class="heading-section">
-    <div class="detail-head-wrapper">
+    <div class="detail-head-wrapper" style="border-bottom: 0px;">
       <div class="row">
         <div class="col-md-12 col-12 icon-option mb-3">
 
           <ul class="">
-            <!-- <li class="ico-fb">
-              <a href="#" title="facebook">
-                <img src="/assets/Images/icons/ico-pipe.png" />
-              </a>
-            </li>
-            <li class="ico-line">
-              <a href="#" title="line">
-                <img src="/assets/Images/icons/ico-download.png" />
-              </a>
-            </li> -->
             <li class="ico-print">
               <a title="print">
                 <img src="/assets/Images/icons/ico-print.png" (click)="print()" />
@@ -34,9 +24,11 @@
         <div class="col-md-3">
           <p>{{ 'CONTENT.unit-holder-num' | translate }}</p>
           <div class="select-wrapper inline-block  pb-3">
-            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno" class="selectpicker" data-live-search="true">
+            <select [(ngModel)]="unitholderno" name="unitholderno" (ngModelChange)="onChange()" id="unitholderno" class="selectpicker"
+              data-live-search="true">
               <option [ngValue]="unitholder" *ngFor="let unitholder of userall.unitholderlist; let i = index">{{ unitholder.UnitholderNo
-                }} <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container>
+                }}
+                <ng-container *ngIf="unitholder.AgentCode">({{unitholder.AgentCode }})</ng-container>
               </option>
             </select>
           </div>
@@ -49,7 +41,6 @@
 
         <div class="col-md-3">
           <p>{{ 'CONTENT.report-date' | translate }}</p>
-          <!-- <span class="txt-middle">{{ dateformat }}</span> -->
           <ng-container *ngIf="lang == 'th' "><span class="txt-middle">{{ dateformat }}</span></ng-container>
           <ng-container *ngIf="lang == 'en' "><span class="txt-middle">{{ dateformatEng }}</span></ng-container>
         </div>
@@ -128,7 +119,6 @@
                   <ng-container *ngFor="let group of unitholder.TodayFunds; let y = index">
                     <tr class="line">
                       <td colspan="9">
-                        <!-- ({{group.FundCode}}) {{group.FundName}} -->
                         <ng-container *ngIf="lang == 'th' ">({{group.FundCode}}) {{group.FundName}}</ng-container>
                         <ng-container *ngIf="lang == 'en' ">({{group.FundCode}}) {{group.FundNameEng}}</ng-container>
                       </td>
@@ -139,11 +129,13 @@
                         <td class="">
                           &nbsp;
                         </td>
-                        <td class="">
-                          {{list.OrderTime | datethai}}, {{list.OrderTime | time}}
+                        <td class="">                          
+                          <ng-container *ngIf="lang == 'th' ">{{list.OrderTime | datethai}}, {{list.OrderTime | time}}</ng-container>
+                          <ng-container *ngIf="lang == 'en' ">{{list.OrderTime | dateeng}}, {{list.OrderTime | time}}</ng-container>
                         </td>
-                        <td class="">
-                          {{list.EffectiveDate | datethai}}
+                        <td class="">                          
+                          <ng-container *ngIf="lang == 'th' ">{{list.EffectiveDate | datethai}}</ng-container>
+                          <ng-container *ngIf="lang == 'en' ">{{list.EffectiveDate | dateeng}}</ng-container>
                         </td>
                         <td>
                           {{list.OrderUnitType}}
@@ -165,9 +157,6 @@
                           <ng-container *ngIf="list.CounterFundCode">
                             {{list.CounterFundCode}}
                           </ng-container>
-                          <!-- <ng-container *ngIf="list.SourceFundCode">
-                            {{list.SourceFundCode}}
-                          </ng-container> -->
                         </td>
                         <!-- <td>
                           <a>
@@ -175,29 +164,23 @@
                           </a>
                         </td> -->
                       </tr>
-
                     </ng-container>
                   </ng-container>
                 </ng-container>
               </tbody>
             </table>
           </div>
-
-
-
         </div>
-        <div class="col-md-12 mb-5">
+        <!-- <div class="col-md-12 mb-5">
           <ng-container *ngIf="lang == 'th' ">
             <p class="color-red no-margin">ข้อมูลที่แสดงข้างต้นนี้อาจมีการเปลี่ยนแปลงแก้ไขได้ หากเป็นรายการซื้อที่เรียกเก็บเงินไม่ได้
-              หรือรายการผิดพลาดใดๆ ทั้งนี้การเปลี่ยนแปลงแก้ไขจะเป็นไปตามวิธี และข้อกำหนดที่ระบุไว้ในโครงการจัดการกองทุนที่ท่านลงทุนรายงานนี้แสดงรายการที่ท่านทำผ่านระบบ
-              LHFund Online ที่ยังไม่มีผลเท่านั้น</p>
+              หรือรายการผิดพลาดใดๆ</p>
+
           </ng-container>
           <ng-container *ngIf="lang == 'en' ">
-            <p class="color-red no-margin">The information shown above may change. if it is an item that cannot be bill or
-              any wrong item The changes will be in accordance with the methods and requirements specified in prospectus.
-              This report show only transaction LHFUND Online that invalid only.</p>
+            <p class="color-red no-margin">The above information is unofficial, it may be changed or corrected if the subscription amount cannot be collected or there is any technical problem.</p>
           </ng-container>
-        </div>
+        </div> -->
 
         <div class="col-md-12">
           <div class="row justify-content-center">
@@ -214,38 +197,6 @@
       </div>
     </div>
   </div>
-  <!-- <div class="detail-footer-wrapper">
-    <div class="row">
-      <div class="col-md-12 text-left">
-        <h4>คำย่อ</h4>
-      </div>
-      <div class="col-md-3 text-left">
-        <p class="no-margin">DE=ซื้อ</p>
-        <p class="no-margin">NOR=รายการปกติ</p>
-      </div>
-      <div class="col-md-3 text-left">
-        <p class="no-margin">WI=ขายคืน</p>
-        <p class="no-margin">ADV=รายการล่วงหน้า</p>
-      </div>
-      <div class="col-md-3 text-left">
-        <p class="no-margin">SW=สับเปลี่ยน</p>
-        <p class="no-margin">REG=รายการประจำ</p>
-      </div>
-
-      <div class="col-md-12  mt-5 ">
-        <div class="row justify-content-center">
-          <div class="col-md-2 col-6 col-sm-4">
-            <button class="btn-med btn-primary" (click)="checkpage('signup1')">
-              พิมพ์
-              <i class="fa fa-angle-right" aria-hidden="true"></i>
-
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div> -->
 </div>
 
 <div class="modal fade modal-custom" tabindex="-1" role="dialog" id="message" style="z-index: 9999;">
@@ -301,8 +252,9 @@
                     <td class="text-left">
                       วันที่ทำรายการ
                     </td>
-                    <td class="text-left content">
-                      {{deletedOrder?.OrderTime | datethai}}, {{deletedOrder?.OrderTime | time}}
+                    <td class="text-left content">                      
+                      <ng-container *ngIf="lang == 'th' ">{{deletedOrder?.OrderTime | datethai}}, {{deletedOrder?.OrderTime | time}}</ng-container>
+                      <ng-container *ngIf="lang == 'en' ">{{deletedOrder?.OrderTime | dateeng}}, {{deletedOrder?.OrderTime | time}}</ng-container>
                     </td>
                   </tr>
                   <tr *ngIf="deletedOrder?.OrderBankAccountNo">
@@ -352,8 +304,9 @@
                     <td class="text-left">
                       วันที่มีผล
                     </td>
-                    <td class="text-left content">
-                      {{deletedOrder?.EffectiveDate | datethai}}
+                    <td class="text-left content">                      
+                      <ng-container *ngIf="lang == 'th' ">{{deletedOrder?.EffectiveDate | datethai}}</ng-container>
+                      <ng-container *ngIf="lang == 'en' ">{{deletedOrder?.EffectiveDate | dateeng}}</ng-container>
                     </td>
                   </tr>
 

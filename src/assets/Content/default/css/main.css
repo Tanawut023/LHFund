@@ -1576,24 +1576,6 @@ body .swal2-modal .swal2-content {
 /* Paste this css to your style sheet file or under head tag */
 /* This only works with JavaScript,
 if it's not present, don't show loader */
-.no-js #loader {
-  display: none; }
-
-.js #loader {
-  display: block;
-  position: absolute;
-  left: 100px;
-  top: 0; }
-
-.se-pre-con {
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  background: center no-repeat #232323; }
-
 /* main structure */
 #main-wrapper {
   overflow: hidden;
@@ -1699,11 +1681,10 @@ if it's not present, don't show loader */
 .form-group {
   margin: 0; }
 
-.ngx-pagination span {
-  color: unset !important; }
-
 .ngx-pagination .current {
   background: #1CA59B !important; }
+  .ngx-pagination .current span {
+    color: white !important; }
 
 .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
   width: 100% !important;
@@ -3930,6 +3911,101 @@ input[type=reset] {
     }
   }
 }*/
+.no-js #loader {
+  display: none; }
+
+.js #loader {
+  display: block;
+  position: absolute;
+  left: 100px;
+  top: 0; }
+
+.se-pre-con {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: none;
+  background-color: #ddd;
+  opacity: 0.25; }
+  .se-pre-con .preloader {
+    margin: 10em auto 0;
+    width: 66px;
+    height: 12px; }
+  .se-pre-con .preloader .line {
+    width: 1px;
+    height: 12px;
+    background: #fff;
+    margin: 0 1px;
+    display: inline-block;
+    -webkit-animation: opacity-1 1000ms infinite ease-in-out;
+    animation: opacity-1 1000ms infinite ease-in-out;
+    display: none; }
+  .se-pre-con .preloader .line-1, .se-pre-con .preloader-2 .line-1 {
+    -webkit-animation-delay: 800ms;
+    animation-delay: 800ms; }
+  .se-pre-con .preloader .line-2, .se-pre-con .preloader-2 .line-2 {
+    -webkit-animation-delay: 600ms;
+    animation-delay: 600ms; }
+  .se-pre-con .preloader .line-3, .se-pre-con .preloader-2 .line-3 {
+    -webkit-animation-delay: 400ms;
+    animation-delay: 400ms; }
+  .se-pre-con .preloader .line-4, .se-pre-con .preloader-2 .line-4 {
+    -webkit-animation-delay: 200ms;
+    animation-delay: 200ms; }
+  .se-pre-con .preloader .line-6, .se-pre-con .preloader-2 .line-6 {
+    -webkit-animation-delay: 200ms;
+    animation-delay: 200ms; }
+  .se-pre-con .preloader .line-7, .se-pre-con .preloader-2 .line-7 {
+    -webkit-animation-delay: 400ms;
+    animation-delay: 400ms; }
+  .se-pre-con .preloader .line-8, .se-pre-con .preloader-2 .line-8 {
+    -webkit-animation-delay: 600ms;
+    animation-delay: 600ms; }
+  .se-pre-con .preloader .line-9, .se-pre-con .preloader-2 .line-9 {
+    -webkit-animation-delay: 800ms;
+    animation-delay: 800ms; }
+
+@-webkit-keyframes opacity-1 {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes opacity-1 {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@-webkit-keyframes opacity-2 {
+  0% {
+    opacity: 1;
+    height: 15px; }
+  50% {
+    opacity: 0;
+    height: 12px; }
+  100% {
+    opacity: 1;
+    height: 15px; } }
+
+@keyframes opacity-2 {
+  0% {
+    opacity: 1;
+    height: 15px; }
+  50% {
+    opacity: 0;
+    height: 12px; }
+  100% {
+    opacity: 1;
+    height: 15px; } }
+
 .max-width-wrapper {
   display: block;
   width: 100%;
@@ -5704,7 +5780,7 @@ input[type=reset] {
           border-radius: 0px; }
         .modal-custom .modal-dialog .modal-content .modal-header .modal-title {
           float: left;
-          max-width: 90%;
+          max-width: 100%;
           color: #000;
           font-family: "KitithadaBold";
           font-size: 40px;

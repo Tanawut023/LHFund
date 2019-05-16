@@ -224,7 +224,6 @@ export class ChangepasswordloginComponent implements OnInit {
           passwordConfirming,
           Validators.minLength(8),
           Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{8,16}$/)
-          // Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)
         ]
       ],
     })
@@ -232,8 +231,6 @@ export class ChangepasswordloginComponent implements OnInit {
       otp: [null,
         [
           Validators.required,
-          // Validators.minLength(10),
-          // Validators.maxLength(),
           Validators.pattern(/^[0-9]*$/)
         ]
       ]

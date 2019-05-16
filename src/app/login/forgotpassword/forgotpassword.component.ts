@@ -121,15 +121,12 @@ export class ForgotpasswordComponent implements OnInit {
       email: [null,
         [
           Validators.required,
-          Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)
+          Validators.pattern(/^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)
         ]
       ],
       IDcard: [null,
         [
-          Validators.required,
-          // Validators.minLength(7),
-          // Validators.maxLength(13),
-          // Validators.pattern(/^[A-Za-z0-9]*$/)
+          Validators.required
         ]
       ],
       recaptcha: [null,
@@ -150,14 +147,6 @@ export class ForgotpasswordComponent implements OnInit {
       }
     })
   }
-  // numberOnly(event): boolean {
-  //   const charCode = (event.which) ? event.which : event.keyCode;
-  //   if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-  //     return false;
-  //   }
-  //   return true;
-
-  // }
   navigate(target) {
     var target = target;
     console.log(target);

@@ -5,7 +5,6 @@ import { HttpParams } from '@angular/common/http';
 import { ProfileService } from '../../service/profile.service'
 import { FormBuilder, FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { getDate } from '../../Share/dateformat'
-// declare let $: any;
 declare var $: any;
 
 @Component({
@@ -14,7 +13,7 @@ declare var $: any;
   styleUrls: ['./edit-profile.component.scss']
 })
 export class EditProfileComponent implements OnInit, OnDestroy {
-  // @ViewChild('modal') modal:ElementRef;
+
   userall: any = {};
   userselect: any = {};
   unitholderno: any = "init";
@@ -49,11 +48,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.createFormValidate();   
     this.getaddresslist();
 
-
-    // $('#modal').modal('show');
     $('#mutual-tab-menu').find('li').removeClass('current');
     $('#mutual-tab-menu').find('li#menu1').addClass('current');
-
 
   }
   openmodal() {
@@ -63,6 +59,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       show: true
     });
   }
+
   onChange() {
 
     for (let i = 0; i < this.userall.unitholderlist.length; i++) {
@@ -92,6 +89,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
         });
   }
+
   getprofileinfo() {
     let params = new HttpParams().set('unitholderid', this.userselect.UnitholderId);
 
@@ -126,8 +124,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           this.changeprovince(this.profile.umpurlist[0].ProvinceID);
           this.changeumpur(this.profile.tumbollist[0].UmpurID);
 
-
-
           setTimeout(() => {            
               this.setdefault();
                       
@@ -139,6 +135,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
         });
   }
+
   getaddresslist() {
     this.profileserice.getaddresslist()
       .pipe(first())
@@ -158,6 +155,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
         });
   }
+
   createFormValidate() {
     this.form = this.fb.group({
 
@@ -306,6 +304,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
             }, 100);
         });
   }
+
   updateprofile() {
 
     console.log(this.formotp)
@@ -364,83 +363,13 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
   reset() {
     this.getprofileinfo();
-    this.resetotp();
-    // this.getaddresslist();
-      
+    this.resetotp();      
     this.message = "";
   }
+
   resetotp(){
     this.formotp.reset();
   }
-
-  // autoreplaceid() {
-  //   if (this.form.controls.postcode.value) {
-
-  //     let Params = new HttpParams();
-  //     Params = Params.append('zipcode', this.form.controls.postcode.value);
-
-  //     this.profileserice.getaddressbyzipcode(Params)
-  //       .pipe(first())
-  //       .subscribe(
-  //         data => {
-  //           console.log(data);
-  //           this.addreszipcode = data;
-  //           if (this.form.controls.amphur.value.UmpurName == this.addreszipcode.umpurlist[0].UmpurName) {
-  //             this.umphur = this.addreszipcode.umpurlist[0];
-  //             console.log(this.umphur);
-
-  //           }
-
-  //           for (var key in this.addreszipcode.tumbollist) {
-  //             if (this.addreszipcode.tumbollist.hasOwnProperty(key)) {
-  //               // var val = this.countrylist[key];
-  //               if (this.form.controls.tambon.value == this.addreszipcode.tumbollist[key].TumbolName) {
-  //                 this.tumbon = this.addreszipcode.tumbollist[key];
-  //                 console.log(this.tumbon);
-
-  //               }
-
-  //             }
-  //           }
-
-
-  //           const user = {
-  //             UnitHolderID: this.profile.unitholderinfo.UnitHolderID,
-  //             UnitHolderNo: this.profile.unitholderinfo.UnitHolderNo,
-  //             UnitHolderName: this.profile.unitholderinfo.UnitHolderName,
-  //             OfficePhoneNo: this.form.controls.Ophone.value,
-  //             MobileNo: this.form.controls.Mphone.value,
-  //             FaxNo: this.form.controls.Faxno.value,
-  //             ContactAddress1: this.form.controls.address.value,
-  //             ContactAddress2: "ต." + this.form.controls.tambon.value.TumbolName + " อ." + this.form.controls.amphur.value.UmpurName,
-  //             ContactTumbolID: this.form.controls.tambon.value.TumbolID,
-  //             ContactTumbol: this.form.controls.tambon.value.TumbolName,
-  //             ContactUmpurID: this.form.controls.amphur.value.UmpurID,
-  //             ContactUmpur: this.form.controls.amphur.value.UmpurName,
-  //             ContactProvinceID: this.form.controls.province.value.ProvinceID,
-  //             ContactProvince: this.form.controls.province.value.ProvinceName,
-  //             ContactCountryID: this.form.controls.country.value.CountryID,
-  //             ContactCountry: this.form.controls.country.value.CountryName,
-  //             ContactZipCode: this.form.controls.postcode.value,
-  //             allowWithholdTax: this.form.controls.allowtax.value,
-  //             RiskLevel1: this.profile.unitholderinfo.RiskLevel1,
-  //             RiskLevel1LastUpdated: this.profile.unitholderinfo.RiskLevel1LastUpdated
-  //           }
-  //           this.user = user;
-  //           console.log(user);
-  //         },
-  //         error => {
-  //           $('#otpprofile').modal('toggle');
-  //           console.log(error);
-  //           this.message = error.error.error_description;
-  //           $('#message').modal({
-  //             backdrop: 'static',
-  //             keyboard: false,
-  //             show: true
-  //           });
-  //         });
-  //   }
-  // }
 
   autoselected() {
     if (this.form.controls.postcode.value) {
@@ -473,8 +402,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
               }
             }
 
-
-
           },
           error => {
             $('#otpprofile').modal('toggle');
@@ -489,6 +416,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
     }
   }
+
   changeprovince(ProvinceID) {
     this.addreszipcodeforselect.provinceid
     let Params = new HttpParams();
@@ -518,7 +446,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
         },
         error => {
-          // $('#otpprofile').modal('toggle');
           console.log(error);
           this.message = error.error.error_description;
           $('#message').modal({
@@ -528,6 +455,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           });
         });
   }
+
   changeumpur(umphurID) {
     this.addreszipcodeforselect.provinceid
     let Params = new HttpParams();
@@ -556,7 +484,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
         },
         error => {
-          // $('#otpprofile').modal('toggle');
           console.log(error);
           this.message = error.error.error_description;
           $('#message').modal({
@@ -566,6 +493,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           });
         });
   }
+
   changetambon(tambonID) {
     this.addreszipcodeforselect.provinceid
     let Params = new HttpParams();
@@ -584,7 +512,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           this.form.controls['postcode'].updateValueAndValidity();
         },
         error => {
-          // $('#otpprofile').modal('toggle');
           console.log(error);
           this.message = error.error.error_description;
           $('#message').modal({
@@ -594,30 +521,26 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           });
         });
   }
+
   onprovincechange() {
     this.show = true;
     this.tambonlist = [];
     this.changeprovince(this.form.controls.province.value.ProvinceID);
-    // setTimeout(() => {
-      this.form.controls['amphur'].reset();
-      this.form.controls['postcode'].reset();
-      this.form.controls['tambon'].reset();
-    // }, 100);
+    this.form.controls['amphur'].reset();
+    this.form.controls['postcode'].reset();
+    this.form.controls['tambon'].reset();
+    
   }
 
   onamphurchange() {
     this.changeumpur(this.form.controls.amphur.value.UmpurID);
-    // setTimeout(() => {
-    //   this.form.controls['tambon'].setValue("", { onlySelf: true });
-    // }, 100);
   }
+
   ontambonchange() {
     this.show = false;
     this.changetambon(this.form.controls.tambon.value.TumbolID);
-    // setTimeout(() => {
-    //   this.form.controls['postcode'].setValue(this.zipcode, { onlySelf: true });
-    // }, 100);
   }
+
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
       const control = formGroup.get(field);
@@ -628,6 +551,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       }
     })
   }
+  
   isFieldNotValid1(field: string) {
     return !this.formotp.get(field).valid && this.formotp.get(field).touched
 

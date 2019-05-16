@@ -32,12 +32,9 @@ export class HeaderComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private langservice: LanguageService
   ) {
-    // const id: string = route.snapshot.params.id;
     const url: string = route.snapshot.url.join('');
-    // const user = route.snapshot.data.user;
     translate.addLangs(["th", "en"]);
     console.log(translate.currentLang);
-    // console.log(url);
     this.param = url;
     console.log(this.router.url);
 
@@ -50,27 +47,14 @@ export class HeaderComponent implements OnInit {
     var lang = localStorage.getItem('lang');
     this.langservice.filter(lang);
 
-    // JSON.parse(localStorage.getItem('currentUser'))
-    // this.test = localStorage.getItem('userInfo');
-    // this.test = JSON.parse(this.test);
-    // console.log(this.test);
-    // console.log(this.test.UserName);
-    // console.log(JSON.parse(localStorage.getItem('currentUser.memberInfo.UserName')));
-    // console.log(this.userdetail.memberInfo['UserName']);
-    // console.log(this.userdetail);
-    // console.log(this.userdetail.FirstName);
-
     if (this.foo1 == 'th') {
-
       this.langth = true;
     }
     else if (this.foo1 == 'en') {
       this.langen = true;
     }
-    // console.log(this.translate.currentLang)
 
     $('body').removeClass('nav-expanded');
-    // $('#bottom-main-nav').children().clone().appendTo("#canvas_mainnav");
 
     //Start watching for user inactivity.
     this.userIdle.startWatching();
@@ -87,9 +71,6 @@ export class HeaderComponent implements OnInit {
           return;
         }
         else {
-          // this.router.navigate(['/'], { queryParams: { returnUrl: this.router.url } });
-          // window.location.href = "";
-          // return false;
           this.logout();
         }
       }
@@ -110,7 +91,6 @@ export class HeaderComponent implements OnInit {
     });
   }
   shownav() {
-    // console.log("dfdf");
     $('body').toggleClass('nav-expanded');
     $('#exit-canvas').addClass('expanded');
   }
@@ -137,7 +117,6 @@ export class HeaderComponent implements OnInit {
       this.langth = true;
       localStorage.setItem('lang', lang);
       this.langservice.filter('th');
-
     }
     else if (lang == 'en') {
       this.translate.use('en');
@@ -145,14 +124,12 @@ export class HeaderComponent implements OnInit {
       this.langen = true;
       localStorage.setItem('lang', lang);
       this.langservice.filter('en');
-      // console.log(navigator.language);
     }
     this.refreshselectpicker();
-
-
+  
   }
   refreshselectpicker() {
-    var select,bank;
+    var select, bank;
     this.translate.get(['CONTENT',]).subscribe(translations => {
       console.log(translations);
       select = translations.CONTENT.select;
@@ -162,9 +139,9 @@ export class HeaderComponent implements OnInit {
     $('#fund2').selectpicker({ title: select });
     $('#type').selectpicker({ title: select });
     $('#bank').selectpicker({ title: bank });
-    
+
     setTimeout(() => {
-      console.log(select,bank);
+      console.log(select, bank);
       $('.selectpicker').selectpicker('render');
       $('.selectpicker').selectpicker('refresh');
 
@@ -177,7 +154,4 @@ export class HeaderComponent implements OnInit {
     }, 100);
 
   }
-  // hidenav(){
-  //   $('body').removeClass('nav-expanded');
-  // }
 }
